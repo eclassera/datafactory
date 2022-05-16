@@ -1,0 +1,265 @@
+{
+	"name": "Onetime_Table_Creation_Notebook_IDEClookup",
+	"properties": {
+		"description": "This is a common ADF pipeline that will be used to execute the onetime table creation notebooks.",
+		"activities": [
+			{
+				"name": "Read_Env_File",
+				"type": "Lookup",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "JsonSource",
+						"storeSettings": {
+							"type": "AzureBlobStorageReadSettings",
+							"recursive": false,
+							"enablePartitionDiscovery": false
+						},
+						"formatSettings": {
+							"type": "JsonReadSettings"
+						}
+					},
+					"dataset": {
+						"referenceName": "Json",
+						"type": "DatasetReference"
+					}
+				}
+			},
+			{
+				"name": "Notebook",
+				"type": "DatabricksNotebook",
+				"dependsOn": [
+					{
+						"activity": "Read_Env_File",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"notebookPath": {
+						"value": "@concat(pipeline().parameters.Notebookpath,'/',pipeline().parameters.Notebookname)",
+						"type": "Expression"
+					},
+					"baseParameters": {
+						"Env": {
+							"value": "@activity('Read_Env_File').output.firstRow.azure_env",
+							"type": "Expression"
+						},
+						"Storageaccountname": {
+							"value": "@string(activity('Read_Env_File').output.firstRow.adls_storage_act)",
+							"type": "Expression"
+						},
+						"lookupTable": {
+							"value": "@pipeline().parameters.lookupTable",
+							"type": "Expression"
+						},
+						"lookupTableDB": {
+							"value": "@pipeline().parameters.lookupTableDB",
+							"type": "Expression"
+						},
+						"filename": {
+							"value": "@pipeline().parameters.filename",
+							"type": "Expression"
+						},
+						"adls_storage_cntner": {
+							"value": "@pipeline().parameters.adls_storage_cntner",
+							"type": "Expression"
+						},
+						"l_storage_account_name": {
+							"value": "@pipeline().parameters.l_storage_account_name",
+							"type": "Expression"
+						},
+						"adb_par": {
+							"value": "@string(activity('Read_Env_File').output.firstRow.adb_par)",
+							"type": "Expression"
+						}
+					}
+				},
+				"linkedServiceName": {
+					"referenceName": "AzureDatabricks_ls",
+					"type": "LinkedServiceReference"
+				}
+			},
+			{
+				"name": "Email_Notify_Success",
+				"type": "ExecutePipeline",
+				"dependsOn": [
+					{
+						"activity": "Notebook",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "EmailNotification",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true,
+					"parameters": {
+						"DataFactoryName": {
+							"value": "@pipeline().DataFactory",
+							"type": "Expression"
+						},
+						"PipelineName": {
+							"value": "@pipeline().Pipeline",
+							"type": "Expression"
+						},
+						"Message": {
+							"value": "@concat('Onetime notebook execution is successful')",
+							"type": "Expression"
+						},
+						"EmailTo": {
+							"value": "@activity('Read_Env_File').output.firstRow.succ_email_to",
+							"type": "Expression"
+						},
+						"SourceFile": {
+							"value": "NA",
+							"type": "Expression"
+						},
+						"Status": "Success"
+					}
+				}
+			},
+			{
+				"name": "Email_Notify_Failure",
+				"type": "ExecutePipeline",
+				"dependsOn": [
+					{
+						"activity": "Notebook",
+						"dependencyConditions": [
+							"Failed"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "EmailNotification",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true,
+					"parameters": {
+						"DataFactoryName": {
+							"value": "@pipeline().DataFactory",
+							"type": "Expression"
+						},
+						"PipelineName": {
+							"value": "@pipeline().Pipeline",
+							"type": "Expression"
+						},
+						"Message": {
+							"value": "@concat('The pipeline has encountered an error. Please check the logs for more details. ')",
+							"type": "Expression"
+						},
+						"EmailTo": {
+							"value": "suresh.pathipati@aa.com",
+							"type": "Expression"
+						},
+						"SourceFile": {
+							"value": "NA",
+							"type": "Expression"
+						},
+						"Status": "Fail"
+					}
+				}
+			},
+			{
+				"name": "Email_Notify_09",
+				"type": "ExecutePipeline",
+				"dependsOn": [
+					{
+						"activity": "Read_Env_File",
+						"dependencyConditions": [
+							"Failed"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "EmailNotification",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true,
+					"parameters": {
+						"DataFactoryName": {
+							"value": "@pipeline().DataFactory",
+							"type": "Expression"
+						},
+						"PipelineName": {
+							"value": "@pipeline().Pipeline",
+							"type": "Expression"
+						},
+						"Message": {
+							"value": "@concat('Could not find or unable to read job params json file. Please check the logs for more details.')",
+							"type": "Expression"
+						},
+						"EmailTo": {
+							"value": "DL_BA_Finance@aa.com",
+							"type": "Expression"
+						},
+						"SourceFile": {
+							"value": "NA",
+							"type": "Expression"
+						},
+						"Status": "Fail"
+					}
+				}
+			}
+		],
+		"parameters": {
+			"Notebookpath": {
+				"type": "string",
+				"defaultValue": "/rvact/dev/onetime/"
+			},
+			"Notebookname": {
+				"type": "string",
+				"defaultValue": "Create_lookup_table_IDEC"
+			},
+			"lookupTable": {
+				"type": "string",
+				"defaultValue": "idec_Lookup"
+			},
+			"lookupTableDB": {
+				"type": "string",
+				"defaultValue": "rvact_dev_struct"
+			},
+			"filename": {
+				"type": "string",
+				"defaultValue": "IDEC_CLEAN_metadata.json"
+			},
+			"adls_storage_cntner": {
+				"type": "string",
+				"defaultValue": "rvact"
+			},
+			"l_storage_account_name": {
+				"type": "string",
+				"defaultValue": "banzeausrvactdev"
+			}
+		},
+		"folder": {
+			"name": "DevOps"
+		},
+		"annotations": []
+	}
+}

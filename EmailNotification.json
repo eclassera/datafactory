@@ -1,0 +1,73 @@
+{
+	"name": "EmailNotification",
+	"properties": {
+		"description": "This pipeline will send an email notification",
+		"activities": [
+			{
+				"name": "SendEmail",
+				"type": "WebActivity",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"url": {
+						"value": "https://prod-95.eastus.logic.azure.com:443/workflows/8f214fed9cfe41e3abb5f0b81ea3ef06/triggers/manual/paths/invoke?api-version=2016-10-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=IxdWfrleWW-nvUPu7VHZdN5DH9e-Hzhvf1hpA5vcJtA",
+						"type": "Expression"
+					},
+					"method": "POST",
+					"headers": {
+						"Content-Type": "application/json"
+					},
+					"body": {
+						"value": "{\"DataFactoryName\":\"@{pipeline().parameters.DataFactoryName}\",\"PipelineName\":\"@{pipeline().parameters.PipelineName}\",\"SourceFile\":\"@{pipeline().parameters.SourceFile}\",\"Message\":\"@{pipeline().parameters.Message}\",\"EmailTo\":\"@{pipeline().parameters.EmailTo}\",\"Status\":\"@{pipeline().parameters.Status}\"}",
+						"type": "Expression"
+					},
+					"linkedServices": [
+						{
+							"referenceName": "AzureDataLakeStorage_ls",
+							"type": "LinkedServiceReference"
+						}
+					]
+				}
+			}
+		],
+		"parameters": {
+			"DataFactoryName": {
+				"type": "string",
+				"defaultValue": "Default"
+			},
+			"PipelineName": {
+				"type": "string",
+				"defaultValue": "Default"
+			},
+			"Message": {
+				"type": "string",
+				"defaultValue": "Default"
+			},
+			"EmailTo": {
+				"type": "string",
+				"defaultValue": "Default"
+			},
+			"SourceFile": {
+				"type": "string",
+				"defaultValue": "Default"
+			},
+			"Status": {
+				"type": "string",
+				"defaultValue": "Default"
+			}
+		},
+		"folder": {
+			"name": "LogicApp_EmailNotify"
+		},
+		"annotations": [],
+		"lastPublishTime": "2020-09-03T23:56:34Z"
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}

@@ -1,0 +1,249 @@
+{
+	"name": "pl_dataMigration_HistorymigrateFiles_01",
+	"properties": {
+		"description": "This pipeline will call the notebooks necessary to perform the data migration and copy files from transient ",
+		"activities": [
+			{
+				"name": "ac_lookupAdfParamFile",
+				"type": "Lookup",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "JsonSource",
+						"storeSettings": {
+							"type": "AzureBlobStorageReadSettings",
+							"recursive": true
+						},
+						"formatSettings": {
+							"type": "JsonReadSettings"
+						}
+					},
+					"dataset": {
+						"referenceName": "ds_adf_param",
+						"type": "DatasetReference"
+					}
+				}
+			},
+			{
+				"name": "db_migrateFiles",
+				"type": "DatabricksNotebook",
+				"dependsOn": [
+					{
+						"activity": "ac_lookupAdfParamFile",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"notebookPath": {
+						"value": "@concat('/',activity('ac_lookupAdfParamFile').output.firstRow.adls_storage_cntner,'/',activity('ac_lookupAdfParamFile').output.firstRow.azure_env,'/migration/migrateFiles')",
+						"type": "Expression"
+					},
+					"baseParameters": {
+						"adb_par": {
+							"value": "@string(activity('ac_lookupAdfParamFile').output.firstRow.adb_par)",
+							"type": "Expression"
+						},
+						"env": {
+							"value": "@string(activity('ac_lookupAdfParamFile').output.firstRow.azure_env)",
+							"type": "Expression"
+						},
+						"adbDebugInd": "N",
+						"Migration_sources": {
+							"value": "@pipeline().parameters.Migration_sources",
+							"type": "Expression"
+						}
+					}
+				},
+				"linkedServiceName": {
+					"referenceName": "AzureDatabricks_ls",
+					"type": "LinkedServiceReference"
+				}
+			},
+			{
+				"name": "ac_sendFailHistoryCopy_Email",
+				"type": "ExecutePipeline",
+				"dependsOn": [
+					{
+						"activity": "ac_lookupAdfParamFile",
+						"dependencyConditions": [
+							"Failed"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "EmailNotification",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true,
+					"parameters": {
+						"DataFactoryName": {
+							"value": "@pipeline().DataFactory",
+							"type": "Expression"
+						},
+						"PipelineName": {
+							"value": "@pipeline().Pipeline",
+							"type": "Expression"
+						},
+						"Message": {
+							"value": "@concat('The pipeline has encountered an error during the ac_lookupAdfParamFile activity. Please check the logs for more details. \nError: ', replace(activity('ac_lookupAdfParamFile').Error.Message, '\"', ''))\n",
+							"type": "Expression"
+						},
+						"EmailTo": {
+							"value": "DL_BA_Finance@aa.com",
+							"type": "Expression"
+						},
+						"SourceFile": {
+							"value": "@pipeline().parameters.filename",
+							"type": "Expression"
+						},
+						"Status": "FAIL"
+					}
+				}
+			},
+			{
+				"name": "ac_sendPassEmail",
+				"type": "ExecutePipeline",
+				"dependsOn": [
+					{
+						"activity": "db_migrateFiles",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "EmailNotification",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true,
+					"parameters": {
+						"DataFactoryName": {
+							"value": "@pipeline().DataFactory",
+							"type": "Expression"
+						},
+						"PipelineName": {
+							"value": "@pipeline().Pipeline",
+							"type": "Expression"
+						},
+						"Message": {
+							"value": "@concat('This pipeline has completed successfully : ',activity('db_migrateFiles').output.runPageUrl)",
+							"type": "Expression"
+						},
+						"EmailTo": {
+							"value": "@activity('ac_lookupAdfParamFile').output.firstRow.succ_email_to",
+							"type": "Expression"
+						},
+						"SourceFile": {
+							"value": "@pipeline().parameters.filename",
+							"type": "Expression"
+						},
+						"Status": "Success"
+					}
+				}
+			},
+			{
+				"name": "ac_sendFailHistoryCopy_Fail_Email",
+				"type": "ExecutePipeline",
+				"dependsOn": [
+					{
+						"activity": "db_migrateFiles",
+						"dependencyConditions": [
+							"Failed"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "EmailNotification",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true,
+					"parameters": {
+						"DataFactoryName": {
+							"value": "@pipeline().DataFactory",
+							"type": "Expression"
+						},
+						"PipelineName": {
+							"value": "@pipeline().Pipeline",
+							"type": "Expression"
+						},
+						"Message": {
+							"value": "@concat('The pipeline has encountered an error during the db_migrateFiles notebook. Please check the logs for more details. \nError: runPageUrl: ', activity('db_migrateFiles').output.runPageUrl)",
+							"type": "Expression"
+						},
+						"EmailTo": {
+							"value": "@activity('ac_lookupAdfParamFile').output.firstRow.fail_email_to",
+							"type": "Expression"
+						},
+						"SourceFile": {
+							"value": "@pipeline().parameters.filename",
+							"type": "Expression"
+						},
+						"Status": "FAIL"
+					}
+				}
+			}
+		],
+		"parameters": {
+			"filename": {
+				"type": "string",
+				"defaultValue": "n/a"
+			},
+			"adbDebugInd": {
+				"type": "string",
+				"defaultValue": "N"
+			},
+			"Migration_sources": {
+				"type": "string",
+				"defaultValue": "Codesharein_sources"
+			}
+		},
+		"variables": {
+			"throwError": {
+				"type": "String",
+				"defaultValue": "unknown"
+			},
+			"arrayPosition": {
+				"type": "String",
+				"defaultValue": "unknown"
+			},
+			"feedName": {
+				"type": "String",
+				"defaultValue": "unknown"
+			},
+			"sourceDataDt": {
+				"type": "String",
+				"defaultValue": "unknown"
+			}
+		},
+		"folder": {
+			"name": "History_Migration"
+		},
+		"annotations": [],
+		"lastPublishTime": "2020-09-10T06:54:47Z"
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}
