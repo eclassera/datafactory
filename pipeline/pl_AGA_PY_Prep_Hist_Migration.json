@@ -1,7 +1,7 @@
 {
-	"name": "Onetime_View_Creation_Notebook",
+	"name": "pl_AGA_PY_Prep_Hist_Migration",
 	"properties": {
-		"description": "This is a common ADF pipeline that will be used to execute the onetime VIEW creation notebooks.\nparameter file_name should be genetic",
+		"description": "This pipeline will ingest AGA_PY data Prep Zone for historical Data",
 		"activities": [
 			{
 				"name": "Read_Env_File",
@@ -34,145 +34,7 @@
 				}
 			},
 			{
-				"name": "Notebook",
-				"type": "DatabricksNotebook",
-				"dependsOn": [
-					{
-						"activity": "Read_Env_File",
-						"dependencyConditions": [
-							"Succeeded"
-						]
-					}
-				],
-				"policy": {
-					"timeout": "7.00:00:00",
-					"retry": 0,
-					"retryIntervalInSeconds": 30,
-					"secureOutput": false,
-					"secureInput": false
-				},
-				"userProperties": [],
-				"typeProperties": {
-					"notebookPath": {
-						"value": "@concat(pipeline().parameters.Notebookpath,'/',pipeline().parameters.Notebookname)",
-						"type": "Expression"
-					},
-					"baseParameters": {
-						"env": {
-							"value": "@activity('Read_Env_File').output.firstRow.azure_env",
-							"type": "Expression"
-						},
-						"adls_storage_cntner": {
-							"value": "@string(activity('Read_Env_File').output.firstRow.adls_storage_cntner)",
-							"type": "Expression"
-						},
-						"feed_name": {
-							"value": "@pipeline().parameters.feed_name",
-							"type": "Expression"
-						},
-						"filename": {
-							"value": "@pipeline().parameters.file_name",
-							"type": "Expression"
-						},
-						"adb_par": {
-							"value": "@string(activity('Read_Env_File').output.firstRow.adb_par)",
-							"type": "Expression"
-						}
-					}
-				},
-				"linkedServiceName": {
-					"referenceName": "AzureDatabricks_ls",
-					"type": "LinkedServiceReference"
-				}
-			},
-			{
-				"name": "Email_Notify_Success",
-				"type": "ExecutePipeline",
-				"dependsOn": [
-					{
-						"activity": "Notebook",
-						"dependencyConditions": [
-							"Succeeded"
-						]
-					}
-				],
-				"userProperties": [],
-				"typeProperties": {
-					"pipeline": {
-						"referenceName": "EmailNotification",
-						"type": "PipelineReference"
-					},
-					"waitOnCompletion": true,
-					"parameters": {
-						"DataFactoryName": {
-							"value": "@pipeline().DataFactory",
-							"type": "Expression"
-						},
-						"PipelineName": {
-							"value": "@pipeline().Pipeline",
-							"type": "Expression"
-						},
-						"Message": {
-							"value": "@concat('Onetime notebook execution is successful')",
-							"type": "Expression"
-						},
-						"EmailTo": {
-							"value": "@activity('Read_Env_File').output.firstRow.succ_email_to",
-							"type": "Expression"
-						},
-						"SourceFile": {
-							"value": "NA",
-							"type": "Expression"
-						},
-						"Status": "Success"
-					}
-				}
-			},
-			{
 				"name": "Email_Notify_Failure",
-				"type": "ExecutePipeline",
-				"dependsOn": [
-					{
-						"activity": "Notebook",
-						"dependencyConditions": [
-							"Failed"
-						]
-					}
-				],
-				"userProperties": [],
-				"typeProperties": {
-					"pipeline": {
-						"referenceName": "EmailNotification",
-						"type": "PipelineReference"
-					},
-					"waitOnCompletion": true,
-					"parameters": {
-						"DataFactoryName": {
-							"value": "@pipeline().DataFactory",
-							"type": "Expression"
-						},
-						"PipelineName": {
-							"value": "@pipeline().Pipeline",
-							"type": "Expression"
-						},
-						"Message": {
-							"value": "@concat('The pipeline has encountered an error. Please check the logs for more details. ')",
-							"type": "Expression"
-						},
-						"EmailTo": {
-							"value": "@activity('Read_Env_File').output.firstRow.fail_email_to",
-							"type": "Expression"
-						},
-						"SourceFile": {
-							"value": "NA",
-							"type": "Expression"
-						},
-						"Status": "Fail"
-					}
-				}
-			},
-			{
-				"name": "Email_Notify_09",
 				"type": "ExecutePipeline",
 				"dependsOn": [
 					{
@@ -207,7 +69,141 @@
 							"type": "Expression"
 						},
 						"SourceFile": {
-							"value": "NA",
+							"value": "@pipeline().parameters.Filename",
+							"type": "Expression"
+						},
+						"Status": "Fail"
+					}
+				}
+			},
+			{
+				"name": "StructToPrep",
+				"type": "DatabricksNotebook",
+				"dependsOn": [
+					{
+						"activity": "Read_Env_File",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"notebookPath": {
+						"value": "@concat('/',activity('Read_Env_File').output.firstRow.adls_storage_cntner,'/',activity('Read_Env_File').output.firstRow.azure_env,'/prep/',pipeline().parameters.feed_name,'_Prep_Hist')",
+						"type": "Expression"
+					},
+					"baseParameters": {
+						"filename": {
+							"value": "@pipeline().parameters.Filename",
+							"type": "Expression"
+						},
+						"env": {
+							"value": "@activity('Read_Env_File').output.firstRow.azure_env",
+							"type": "Expression"
+						},
+						"adb_par": {
+							"value": "@string(activity('Read_Env_File').output.firstRow.adb_par)",
+							"type": "Expression"
+						},
+						"feed_name": {
+							"value": "@trim(pipeline().parameters.feed_name)",
+							"type": "Expression"
+						}
+					}
+				},
+				"linkedServiceName": {
+					"referenceName": "AzureDatabricks_ls",
+					"type": "LinkedServiceReference"
+				}
+			},
+			{
+				"name": "Email_Notify_Success",
+				"type": "ExecutePipeline",
+				"dependsOn": [
+					{
+						"activity": "StructToPrep",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "EmailNotification",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true,
+					"parameters": {
+						"DataFactoryName": {
+							"value": "@pipeline().DataFactory",
+							"type": "Expression"
+						},
+						"PipelineName": {
+							"value": "@pipeline().Pipeline",
+							"type": "Expression"
+						},
+						"Message": {
+							"value": "@concat('Data ingestion is successfully completed for the above file...')",
+							"type": "Expression"
+						},
+						"EmailTo": {
+							"value": "@activity('Read_Env_File').output.firstRow.succ_email_to",
+							"type": "Expression"
+						},
+						"SourceFile": {
+							"value": "@pipeline().parameters.Filename",
+							"type": "Expression"
+						},
+						"Status": "Success"
+					}
+				}
+			},
+			{
+				"name": "Email_Notify_Prep_Load_Failure",
+				"type": "ExecutePipeline",
+				"dependsOn": [
+					{
+						"activity": "StructToPrep",
+						"dependencyConditions": [
+							"Failed"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "EmailNotification",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true,
+					"parameters": {
+						"DataFactoryName": {
+							"value": "@pipeline().DataFactory",
+							"type": "Expression"
+						},
+						"PipelineName": {
+							"value": "@pipeline().Pipeline",
+							"type": "Expression"
+						},
+						"Message": {
+							"value": "@concat('The pipeline has encountered an error. Please check the logs for more details. ')",
+							"type": "Expression"
+						},
+						"EmailTo": {
+							"value": "@activity('Read_Env_File').output.firstRow.fail_email_to",
+							"type": "Expression"
+						},
+						"SourceFile": {
+							"value": "@pipeline().parameters.Filename",
 							"type": "Expression"
 						},
 						"Status": "Fail"
@@ -216,28 +212,19 @@
 			}
 		],
 		"parameters": {
-			"Notebookpath": {
-				"type": "string",
-				"defaultValue": "/rvact/dev/onetime/"
-			},
-			"Notebookname": {
-				"type": "string",
-				"defaultValue": "CDC_Onetime_View_Creation"
-			},
 			"feed_name": {
 				"type": "string",
-				"defaultValue": "AGDECURR"
+				"defaultValue": "OPEN_COUPONS_PY"
 			},
-			"file_name": {
-				"type": "string",
-				"defaultValue": "RAC_AGDECURR_20210317000000.dat.gz"
+			"Filename": {
+				"type": "string"
 			}
 		},
 		"folder": {
-			"name": "DevOps"
+			"name": "AZ_open_upon"
 		},
 		"annotations": [],
-		"lastPublishTime": "2022-05-16T23:27:50Z"
+		"lastPublishTime": "2022-05-16T23:27:51Z"
 	},
 	"type": "Microsoft.DataFactory/factories/pipelines"
 }
