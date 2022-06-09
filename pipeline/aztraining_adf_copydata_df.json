@@ -49,6 +49,46 @@
 						"type": "DatasetReference"
 					}
 				]
+			},
+			{
+				"name": "Delete raw zone data",
+				"description": "this will delete the data from source blob after successfully processed files ",
+				"type": "Delete",
+				"dependsOn": [
+					{
+						"activity": "Raw to struct data copy",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": true
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"dataset": {
+						"referenceName": "Binary_blob_training_ds",
+						"type": "DatasetReference"
+					},
+					"logStorageSettings": {
+						"linkedServiceName": {
+							"referenceName": "AzureBlobStorage_adftraining",
+							"type": "LinkedServiceReference"
+						},
+						"path": "runlogs"
+					},
+					"enableLogging": true,
+					"storeSettings": {
+						"type": "AzureBlobStorageReadSettings",
+						"recursive": true,
+						"enablePartitionDiscovery": false
+					}
+				}
 			}
 		],
 		"folder": {
