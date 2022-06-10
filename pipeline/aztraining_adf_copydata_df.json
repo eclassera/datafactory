@@ -9,7 +9,7 @@
 				"type": "Copy",
 				"dependsOn": [
 					{
-						"activity": "Get Metadata_blob",
+						"activity": "Filter_condition",
 						"dependencyConditions": [
 							"Succeeded"
 						]
@@ -123,6 +123,30 @@
 					},
 					"formatSettings": {
 						"type": "BinaryReadSettings"
+					}
+				}
+			},
+			{
+				"name": "Filter_condition",
+				"description": "this activity will filter the list of files ",
+				"type": "Filter",
+				"dependsOn": [
+					{
+						"activity": "Get Metadata_blob",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"items": {
+						"value": "@activity('Get Metadata_blob').output.childItems",
+						"type": "Expression"
+					},
+					"condition": {
+						"value": "@contains(activity('Get Metadata_blob').output.childItems[0].name,item().name)",
+						"type": "Expression"
 					}
 				}
 			}
