@@ -7,6 +7,9 @@
 			"pipelineReference": {
 				"referenceName": "aztraining_adf_copydata_df_copy_Setvar_switch",
 				"type": "PipelineReference"
+			},
+			"parameters": {
+				"FileName": "LNDG_TYCO_ORDER_CONVT.TXT"
 			}
 		},
 		"type": "TumblingWindowTrigger",
@@ -19,7 +22,13 @@
 			"retryPolicy": {
 				"intervalInSeconds": 30
 			},
-			"dependsOn": []
+			"dependsOn": [
+				{
+					"type": "SelfDependencyTumblingWindowTriggerReference",
+					"size": "01:00:00",
+					"offset": "-01:00:00"
+				}
+			]
 		}
 	}
 }
