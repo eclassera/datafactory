@@ -1,0 +1,29 @@
+{
+	"name": "adf_blobread_to_load_ADLS_trigger",
+	"properties": {
+		"description": "This trigger can used to run pipeline to read data from blob storage account to ADLS ",
+		"annotations": [],
+		"runtimeState": "Started",
+		"pipelines": [
+			{
+				"pipelineReference": {
+					"referenceName": "aztraining_adf_copydata_df",
+					"type": "PipelineReference"
+				},
+				"parameters": {
+					"FileName": "LNDG_TYCO_CUST_CONVIT.txt"
+				}
+			}
+		],
+		"type": "BlobEventsTrigger",
+		"typeProperties": {
+			"blobPathBeginsWith": "/rawzone/blobs/LNDG_",
+			"blobPathEndsWith": ".txt",
+			"ignoreEmptyBlobs": true,
+			"scope": "/subscriptions/d3571c8c-8621-4d8d-a23e-f20440fc61a6/resourceGroups/azuredataengineer/providers/Microsoft.Storage/storageAccounts/azuredataengineerdev",
+			"events": [
+				"Microsoft.Storage.BlobCreated"
+			]
+		}
+	}
+}
