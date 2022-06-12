@@ -4,93 +4,6 @@
 		"description": "this pipeline is used to copy data in iterative loop ",
 		"activities": [
 			{
-				"name": "Raw to struct data copy",
-				"description": "raw to struct data copy in adf",
-				"type": "Copy",
-				"dependsOn": [],
-				"policy": {
-					"timeout": "7.00:00:00",
-					"retry": 2,
-					"retryIntervalInSeconds": 30,
-					"secureOutput": false,
-					"secureInput": false
-				},
-				"userProperties": [],
-				"typeProperties": {
-					"source": {
-						"type": "BinarySource",
-						"storeSettings": {
-							"type": "AzureBlobStorageReadSettings",
-							"recursive": true
-						},
-						"formatSettings": {
-							"type": "BinaryReadSettings"
-						}
-					},
-					"sink": {
-						"type": "BinarySink",
-						"storeSettings": {
-							"type": "AzureBlobFSWriteSettings"
-						}
-					},
-					"enableStaging": false,
-					"enableSkipIncompatibleRow": false,
-					"dataIntegrationUnits": 8
-				},
-				"inputs": [
-					{
-						"referenceName": "Binary_blob_training_ds",
-						"type": "DatasetReference"
-					}
-				],
-				"outputs": [
-					{
-						"referenceName": "Binary_adls_training_ds",
-						"type": "DatasetReference"
-					}
-				]
-			},
-			{
-				"name": "Delete raw zone data",
-				"description": "this will delete the data from source blob after successfully processed files ",
-				"type": "Delete",
-				"dependsOn": [
-					{
-						"activity": "Raw to struct data copy",
-						"dependencyConditions": [
-							"Succeeded"
-						]
-					}
-				],
-				"policy": {
-					"timeout": "7.00:00:00",
-					"retry": 0,
-					"retryIntervalInSeconds": 30,
-					"secureOutput": false,
-					"secureInput": false
-				},
-				"userProperties": [],
-				"typeProperties": {
-					"dataset": {
-						"referenceName": "Binary_blob_training_ds",
-						"type": "DatasetReference"
-					},
-					"logStorageSettings": {
-						"linkedServiceName": {
-							"referenceName": "AzureBlobStorage_adftraining",
-							"type": "LinkedServiceReference"
-						},
-						"path": "runlogs"
-					},
-					"enableLogging": true,
-					"storeSettings": {
-						"type": "AzureBlobStorageReadSettings",
-						"recursive": true,
-						"enablePartitionDiscovery": false
-					}
-				}
-			},
-			{
 				"name": "Get Metadata_blob",
 				"type": "GetMetadata",
 				"dependsOn": [],
@@ -104,7 +17,7 @@
 				"userProperties": [],
 				"typeProperties": {
 					"dataset": {
-						"referenceName": "Binary_Getmetatdata",
+						"referenceName": "Getmetadata_Dataset",
 						"type": "DatasetReference"
 					},
 					"fieldList": [
@@ -112,7 +25,6 @@
 					],
 					"storeSettings": {
 						"type": "AzureBlobStorageReadSettings",
-						"recursive": true,
 						"enablePartitionDiscovery": false
 					},
 					"formatSettings": {
@@ -121,11 +33,11 @@
 				}
 			},
 			{
-				"name": "Execute Pipeline_copydata",
-				"type": "ExecutePipeline",
+				"name": "Iterate each file_ForEach loop",
+				"type": "ForEach",
 				"dependsOn": [
 					{
-						"activity": "Delete raw zone data",
+						"activity": "Get Metadata_blob",
 						"dependencyConditions": [
 							"Succeeded"
 						]
@@ -133,11 +45,59 @@
 				],
 				"userProperties": [],
 				"typeProperties": {
-					"pipeline": {
-						"referenceName": "CopyPipeline_onetimecopy",
-						"type": "PipelineReference"
+					"items": {
+						"value": "@activity('Get Metadata_blob').output.childItems",
+						"type": "Expression"
 					},
-					"waitOnCompletion": true
+					"isSequential": true,
+					"activities": [
+						{
+							"name": "Copy data_Foreach loop",
+							"type": "Copy",
+							"dependsOn": [],
+							"policy": {
+								"timeout": "7.00:00:00",
+								"retry": 0,
+								"retryIntervalInSeconds": 30,
+								"secureOutput": false,
+								"secureInput": false
+							},
+							"userProperties": [],
+							"typeProperties": {
+								"source": {
+									"type": "BinarySource",
+									"storeSettings": {
+										"type": "AzureBlobStorageReadSettings",
+										"recursive": true,
+										"wildcardFileName": "*.txt",
+										"deleteFilesAfterCompletion": false
+									},
+									"formatSettings": {
+										"type": "BinaryReadSettings"
+									}
+								},
+								"sink": {
+									"type": "BinarySink",
+									"storeSettings": {
+										"type": "AzureBlobFSWriteSettings"
+									}
+								},
+								"enableStaging": false
+							},
+							"inputs": [
+								{
+									"referenceName": "Binary_copy_foreach",
+									"type": "DatasetReference"
+								}
+							],
+							"outputs": [
+								{
+									"referenceName": "Binary_Forch_Adls",
+									"type": "DatasetReference"
+								}
+							]
+						}
+					]
 				}
 			}
 		],
