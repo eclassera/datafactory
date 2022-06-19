@@ -1,0 +1,384 @@
+{
+	"name": "ADLS Data Cleanup_bkup",
+	"properties": {
+		"activities": [
+			{
+				"name": "DeleteFromWork",
+				"type": "Delete",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"dataset": {
+						"referenceName": "ADLS_work",
+						"type": "DatasetReference",
+						"parameters": {
+							"env": {
+								"value": "@pipeline().parameters.env",
+								"type": "Expression"
+							},
+							"adls_storage_cntner": {
+								"value": "@pipeline().parameters.adls_storage_cntner",
+								"type": "Expression"
+							}
+						}
+					},
+					"logStorageSettings": {
+						"linkedServiceName": {
+							"referenceName": "AzureBlobStorage_ls",
+							"type": "LinkedServiceReference"
+						},
+						"path": "log"
+					},
+					"enableLogging": true,
+					"storeSettings": {
+						"type": "AzureBlobFSReadSettings",
+						"recursive": false,
+						"wildcardFileName": {
+							"value": "@{pipeline().parameters.wildcard_file_path_work}",
+							"type": "Expression"
+						}
+					}
+				}
+			},
+			{
+				"name": "DeleteFromRaw",
+				"type": "Delete",
+				"dependsOn": [
+					{
+						"activity": "Source_Data_Dt",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"dataset": {
+						"referenceName": "ADLS_raw",
+						"type": "DatasetReference",
+						"parameters": {
+							"env": {
+								"value": "@pipeline().parameters.env",
+								"type": "Expression"
+							},
+							"adls_storage_cntner": {
+								"value": "@pipeline().parameters.adls_storage_cntner",
+								"type": "Expression"
+							},
+							"input_file_prefix": {
+								"value": "@variables('input_file_prefix')",
+								"type": "Expression"
+							},
+							"Filename": {
+								"value": "@variables('Filename')",
+								"type": "Expression"
+							},
+							"sourceDataDt": {
+								"value": "@variables('sourceDataDt')",
+								"type": "Expression"
+							}
+						}
+					},
+					"logStorageSettings": {
+						"linkedServiceName": {
+							"referenceName": "AzureBlobStorage_ls",
+							"type": "LinkedServiceReference"
+						},
+						"path": "log"
+					},
+					"enableLogging": true,
+					"storeSettings": {
+						"type": "AzureBlobFSReadSettings",
+						"recursive": false,
+						"wildcardFileName": {
+							"value": "@{pipeline().parameters.SourceFile}",
+							"type": "Expression"
+						}
+					}
+				}
+			},
+			{
+				"name": "Email_Notify_Failure_Work",
+				"type": "ExecutePipeline",
+				"dependsOn": [
+					{
+						"activity": "DeleteFromWork",
+						"dependencyConditions": [
+							"Failed"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "EmailNotification",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true,
+					"parameters": {
+						"DataFactoryName": {
+							"value": "@pipeline().DataFactory",
+							"type": "Expression"
+						},
+						"PipelineName": {
+							"value": "@pipeline().Pipeline",
+							"type": "Expression"
+						},
+						"Message": {
+							"value": "@concat('The pipeline has encountered an error. Please check the logs for more details. ')",
+							"type": "Expression"
+						},
+						"EmailTo": {
+							"value": "@pipeline().parameters.EmailTo",
+							"type": "Expression"
+						},
+						"SourceFile": {
+							"value": "@pipeline().parameters.SourceFile",
+							"type": "Expression"
+						},
+						"Status": "Fail"
+					}
+				}
+			},
+			{
+				"name": "Email_Notify_Failure_Raw",
+				"type": "ExecutePipeline",
+				"dependsOn": [
+					{
+						"activity": "DeleteFromRaw",
+						"dependencyConditions": [
+							"Failed"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "EmailNotification",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true,
+					"parameters": {
+						"DataFactoryName": {
+							"value": "@pipeline().DataFactory",
+							"type": "Expression"
+						},
+						"PipelineName": {
+							"value": "@pipeline().Pipeline",
+							"type": "Expression"
+						},
+						"Message": {
+							"value": "@concat('The pipeline has encountered an error. Please check the logs for more details. ')",
+							"type": "Expression"
+						},
+						"EmailTo": {
+							"value": "@pipeline().parameters.EmailTo",
+							"type": "Expression"
+						},
+						"SourceFile": {
+							"value": "@pipeline().parameters.SourceFile",
+							"type": "Expression"
+						},
+						"Status": "Fail"
+					}
+				}
+			},
+			{
+				"name": "DeleteFromBlobWork",
+				"type": "Delete",
+				"dependsOn": [
+					{
+						"activity": "DeleteFromRaw",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"dataset": {
+						"referenceName": "Blob_work",
+						"type": "DatasetReference"
+					},
+					"logStorageSettings": {
+						"linkedServiceName": {
+							"referenceName": "AzureBlobStorage_ls",
+							"type": "LinkedServiceReference"
+						},
+						"path": "log"
+					},
+					"enableLogging": true,
+					"storeSettings": {
+						"type": "AzureBlobStorageReadSettings",
+						"recursive": false,
+						"wildcardFileName": {
+							"value": "@{pipeline().parameters.wildcard_file_path_work}",
+							"type": "Expression"
+						}
+					}
+				}
+			},
+			{
+				"name": "Email_Notify_Failure_BlobWork",
+				"type": "ExecutePipeline",
+				"dependsOn": [
+					{
+						"activity": "DeleteFromBlobWork",
+						"dependencyConditions": [
+							"Failed"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "EmailNotification",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true,
+					"parameters": {
+						"DataFactoryName": {
+							"value": "@pipeline().DataFactory",
+							"type": "Expression"
+						},
+						"PipelineName": {
+							"value": "@pipeline().Pipeline",
+							"type": "Expression"
+						},
+						"Message": {
+							"value": "@concat('The pipeline has encountered an error. Please check the logs for more details. ')",
+							"type": "Expression"
+						},
+						"EmailTo": {
+							"value": "@pipeline().parameters.EmailTo",
+							"type": "Expression"
+						},
+						"SourceFile": {
+							"value": "@pipeline().parameters.SourceFile",
+							"type": "Expression"
+						},
+						"Status": "Fail"
+					}
+				}
+			},
+			{
+				"name": "Input_File_Prefix",
+				"type": "SetVariable",
+				"dependsOn": [
+					{
+						"activity": "DeleteFromWork",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "input_file_prefix",
+					"value": {
+						"value": "@substring(pipeline().parameters.SourceFile,0,lastindexof(pipeline().parameters.SourceFile,'_'))",
+						"type": "Expression"
+					}
+				}
+			},
+			{
+				"name": "File_Name",
+				"type": "SetVariable",
+				"dependsOn": [
+					{
+						"activity": "Input_File_Prefix",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "Filename",
+					"value": {
+						"value": "@pipeline().parameters.SourceFile",
+						"type": "Expression"
+					}
+				}
+			},
+			{
+				"name": "Source_Data_Dt",
+				"type": "SetVariable",
+				"dependsOn": [
+					{
+						"activity": "File_Name",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "sourceDataDt",
+					"value": {
+						"value": "@substring(pipeline().parameters.SourceFile,add(lastindexof(pipeline().parameters.SourceFile,'_'),1),8)",
+						"type": "Expression"
+					}
+				}
+			}
+		],
+		"parameters": {
+			"env": {
+				"type": "string"
+			},
+			"adls_storage_cntner": {
+				"type": "string"
+			},
+			"wildcard_file_path_work": {
+				"type": "string"
+			},
+			"wildcard_file_path_raw": {
+				"type": "string"
+			},
+			"EmailTo": {
+				"type": "string"
+			},
+			"SourceFile": {
+				"type": "string"
+			}
+		},
+		"variables": {
+			"input_file_prefix": {
+				"type": "String"
+			},
+			"Filename": {
+				"type": "String"
+			},
+			"sourceDataDt": {
+				"type": "String"
+			}
+		},
+		"folder": {
+			"name": "DevOps"
+		},
+		"annotations": [],
+		"lastPublishTime": "2022-06-18T16:21:11Z"
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}

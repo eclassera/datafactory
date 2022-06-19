@@ -1,0 +1,230 @@
+{
+	"name": "pl_TYR_Prep_Hist_Migration",
+	"properties": {
+		"description": "This pipeline will ingest YQYR data Prep Zone for historical Data",
+		"activities": [
+			{
+				"name": "Read_Env_File",
+				"type": "Lookup",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "JsonSource",
+						"storeSettings": {
+							"type": "AzureBlobStorageReadSettings",
+							"recursive": false,
+							"enablePartitionDiscovery": false
+						},
+						"formatSettings": {
+							"type": "JsonReadSettings"
+						}
+					},
+					"dataset": {
+						"referenceName": "Json",
+						"type": "DatasetReference"
+					}
+				}
+			},
+			{
+				"name": "Email_Notify_Failure",
+				"type": "ExecutePipeline",
+				"dependsOn": [
+					{
+						"activity": "Read_Env_File",
+						"dependencyConditions": [
+							"Failed"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "EmailNotification",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true,
+					"parameters": {
+						"DataFactoryName": {
+							"value": "@pipeline().DataFactory",
+							"type": "Expression"
+						},
+						"PipelineName": {
+							"value": "@pipeline().Pipeline",
+							"type": "Expression"
+						},
+						"Message": {
+							"value": "@concat('Could not find or unable to read job params json file. Please check the logs for more details.')",
+							"type": "Expression"
+						},
+						"EmailTo": {
+							"value": "DL_BA_Finance@aa.com",
+							"type": "Expression"
+						},
+						"SourceFile": {
+							"value": "@pipeline().parameters.Filename",
+							"type": "Expression"
+						},
+						"Status": "Fail"
+					}
+				}
+			},
+			{
+				"name": "StructToPrep",
+				"type": "DatabricksNotebook",
+				"dependsOn": [
+					{
+						"activity": "Read_Env_File",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"notebookPath": {
+						"value": "@concat('/',activity('Read_Env_File').output.firstRow.adls_storage_cntner,'/',activity('Read_Env_File').output.firstRow.azure_env,'/prep/',pipeline().parameters.feed_name,'_Prep_Hist')",
+						"type": "Expression"
+					},
+					"baseParameters": {
+						"filename": {
+							"value": "@pipeline().parameters.Filename",
+							"type": "Expression"
+						},
+						"env": {
+							"value": "@activity('Read_Env_File').output.firstRow.azure_env",
+							"type": "Expression"
+						},
+						"adb_par": {
+							"value": "@string(activity('Read_Env_File').output.firstRow.adb_par)",
+							"type": "Expression"
+						},
+						"feed_name": {
+							"value": "@trim(pipeline().parameters.feed_name)",
+							"type": "Expression"
+						}
+					}
+				},
+				"linkedServiceName": {
+					"referenceName": "AzureDatabricks_ls",
+					"type": "LinkedServiceReference"
+				}
+			},
+			{
+				"name": "Email_Notify_Success",
+				"type": "ExecutePipeline",
+				"dependsOn": [
+					{
+						"activity": "StructToPrep",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "EmailNotification",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true,
+					"parameters": {
+						"DataFactoryName": {
+							"value": "@pipeline().DataFactory",
+							"type": "Expression"
+						},
+						"PipelineName": {
+							"value": "@pipeline().Pipeline",
+							"type": "Expression"
+						},
+						"Message": {
+							"value": "@concat('Data ingestion is successfully completed for the above file...')",
+							"type": "Expression"
+						},
+						"EmailTo": {
+							"value": "@activity('Read_Env_File').output.firstRow.succ_email_to",
+							"type": "Expression"
+						},
+						"SourceFile": {
+							"value": "@pipeline().parameters.Filename",
+							"type": "Expression"
+						},
+						"Status": "Success"
+					}
+				}
+			},
+			{
+				"name": "Email_Notify_Prep_Load_Failure",
+				"type": "ExecutePipeline",
+				"dependsOn": [
+					{
+						"activity": "StructToPrep",
+						"dependencyConditions": [
+							"Failed"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "EmailNotification",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true,
+					"parameters": {
+						"DataFactoryName": {
+							"value": "@pipeline().DataFactory",
+							"type": "Expression"
+						},
+						"PipelineName": {
+							"value": "@pipeline().Pipeline",
+							"type": "Expression"
+						},
+						"Message": {
+							"value": "@concat('The pipeline has encountered an error. Please check the logs for more details. ')",
+							"type": "Expression"
+						},
+						"EmailTo": {
+							"value": "@activity('Read_Env_File').output.firstRow.fail_email_to",
+							"type": "Expression"
+						},
+						"SourceFile": {
+							"value": "@pipeline().parameters.Filename",
+							"type": "Expression"
+						},
+						"Status": "Fail"
+					}
+				}
+			}
+		],
+		"parameters": {
+			"feed_name": {
+				"type": "string",
+				"defaultValue": "YQYR"
+			},
+			"Filename": {
+				"type": "string"
+			}
+		},
+		"folder": {
+			"name": "TYR"
+		},
+		"annotations": [],
+		"lastPublishTime": "2022-06-18T16:21:12Z"
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}

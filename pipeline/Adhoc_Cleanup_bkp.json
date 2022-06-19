@@ -1,0 +1,315 @@
+{
+	"name": "Adhoc_Cleanup_bkp",
+	"properties": {
+		"description": "This pipeline will perform the adhoc clean up of Raw, Struct, Reject and Prep zones.\n\nInstructions:\nFor Raw Zone Cleanup: raw_cleanup_ind should be equal to Y and data filename(wildcard not supported) should be populated.\nFor Struct Zone Cleanup: struct_cleanup_ind should be equal to Y and struct_table_name & struct_filter should not be empty.\nFor Prep Zone Cleanup: prep_cleanup_ind should be equal to Y and prep_table_name & prep_filter should not be empty.",
+		"activities": [
+			{
+				"name": "Read_Env_File",
+				"type": "Lookup",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "JsonSource",
+						"storeSettings": {
+							"type": "AzureBlobStorageReadSettings",
+							"recursive": true,
+							"enablePartitionDiscovery": false
+						},
+						"formatSettings": {
+							"type": "JsonReadSettings"
+						}
+					},
+					"dataset": {
+						"referenceName": "Json",
+						"type": "DatasetReference"
+					}
+				}
+			},
+			{
+				"name": "Email_Notify_03",
+				"type": "ExecutePipeline",
+				"dependsOn": [
+					{
+						"activity": "Read_Env_File",
+						"dependencyConditions": [
+							"Failed"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "EmailNotification",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true,
+					"parameters": {
+						"DataFactoryName": {
+							"value": "@pipeline().DataFactory",
+							"type": "Expression"
+						},
+						"PipelineName": {
+							"value": "@pipeline().Pipeline",
+							"type": "Expression"
+						},
+						"Message": {
+							"value": "@concat('The pipeline has encountered an error. Please check the logs for more details.')",
+							"type": "Expression"
+						},
+						"EmailTo": {
+							"value": "DL_BA_Finance@aa.com",
+							"type": "Expression"
+						},
+						"SourceFile": {
+							"value": "@pipeline().parameters.filename",
+							"type": "Expression"
+						},
+						"Status": "Fail"
+					}
+				}
+			},
+			{
+				"name": "Cleanup",
+				"type": "DatabricksNotebook",
+				"dependsOn": [
+					{
+						"activity": "Read_Env_File",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"notebookPath": {
+						"value": "@concat('/',activity('Read_Env_File').output.firstRow.adls_storage_cntner,'/',activity('Read_Env_File').output.firstRow.azure_env,'/devops/Adhoc_Cleanup')",
+						"type": "Expression"
+					},
+					"baseParameters": {
+						"filename": {
+							"value": "@pipeline().parameters.filename",
+							"type": "Expression"
+						},
+						"storageaccountname": {
+							"value": "@string(activity('Read_Env_File').output.firstRow.adls_storage_act)",
+							"type": "Expression"
+						},
+						"env": {
+							"value": "@activity('Read_Env_File').output.firstRow.azure_env",
+							"type": "Expression"
+						},
+						"raw_cleanup_ind": {
+							"value": "@pipeline().parameters.raw_cleanup_ind",
+							"type": "Expression"
+						},
+						"struct_cleanup_ind": {
+							"value": "@pipeline().parameters.struct_cleanup_ind",
+							"type": "Expression"
+						},
+						"prep_cleanup_ind": {
+							"value": "@pipeline().parameters.prep_cleanup_ind",
+							"type": "Expression"
+						},
+						"struct_filter": {
+							"value": "@pipeline().parameters.struct_filter",
+							"type": "Expression"
+						},
+						"prep_filter": {
+							"value": "@pipeline().parameters.prep_filter",
+							"type": "Expression"
+						},
+						"adlsstoragecntner": {
+							"value": "@string(activity('Read_Env_File').output.firstRow.adls_storage_cntner)",
+							"type": "Expression"
+						},
+						"struct_table_name": {
+							"value": "@pipeline().parameters.struct_table_name",
+							"type": "Expression"
+						},
+						"prep_table_name": {
+							"value": "@pipeline().parameters.prep_table_name",
+							"type": "Expression"
+						},
+						"reject_cleanup_ind": {
+							"value": "@pipeline().parameters.reject_cleanup_ind",
+							"type": "Expression"
+						},
+						"reject_table_name": {
+							"value": "@pipeline().parameters.reject_table_name",
+							"type": "Expression"
+						},
+						"reject_filter": {
+							"value": "@pipeline().parameters.reject_filter",
+							"type": "Expression"
+						},
+						"filepath": {
+							"value": "@pipeline().parameters.raw_subfolder_path",
+							"type": "Expression"
+						}
+					}
+				},
+				"linkedServiceName": {
+					"referenceName": "AzureDatabricks_ls",
+					"type": "LinkedServiceReference"
+				}
+			},
+			{
+				"name": "Email_Notify_02",
+				"type": "ExecutePipeline",
+				"dependsOn": [
+					{
+						"activity": "Cleanup",
+						"dependencyConditions": [
+							"Failed"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "EmailNotification",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true,
+					"parameters": {
+						"DataFactoryName": {
+							"value": "@pipeline().DataFactory",
+							"type": "Expression"
+						},
+						"PipelineName": {
+							"value": "@pipeline().Pipeline",
+							"type": "Expression"
+						},
+						"Message": {
+							"value": "@concat('The pipeline has encountered an error. Please check the logs for more details. \nLog : ' ,activity('Cleanup').output.runPageUrl)",
+							"type": "Expression"
+						},
+						"EmailTo": {
+							"value": "@activity('Read_Env_File').output.firstRow.fail_email_to",
+							"type": "Expression"
+						},
+						"SourceFile": {
+							"value": "@pipeline().parameters.filename",
+							"type": "Expression"
+						},
+						"Status": "Fail"
+					}
+				}
+			},
+			{
+				"name": "Email_Notify_01",
+				"type": "ExecutePipeline",
+				"dependsOn": [
+					{
+						"activity": "Cleanup",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "EmailNotification",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true,
+					"parameters": {
+						"DataFactoryName": {
+							"value": "@pipeline().DataFactory",
+							"type": "Expression"
+						},
+						"PipelineName": {
+							"value": "@pipeline().Pipeline",
+							"type": "Expression"
+						},
+						"Message": {
+							"value": "@concat('Adhoc Cleanup completed successfully. Please verify the notebook log for more details. Log : ' ,activity('Cleanup').output.runPageUrl)",
+							"type": "Expression"
+						},
+						"EmailTo": {
+							"value": "@activity('Read_Env_File').output.firstRow.fail_email_to",
+							"type": "Expression"
+						},
+						"SourceFile": {
+							"value": "@pipeline().parameters.filename",
+							"type": "Expression"
+						},
+						"Status": "Success"
+					}
+				}
+			}
+		],
+		"parameters": {
+			"raw_cleanup_ind": {
+				"type": "string",
+				"defaultValue": "N"
+			},
+			"struct_cleanup_ind": {
+				"type": "string",
+				"defaultValue": "N"
+			},
+			"prep_cleanup_ind": {
+				"type": "string",
+				"defaultValue": "N"
+			},
+			"filename": {
+				"type": "string",
+				"defaultValue": " NA"
+			},
+			"struct_table_name": {
+				"type": "string",
+				"defaultValue": " "
+			},
+			"struct_filter": {
+				"type": "string",
+				"defaultValue": " "
+			},
+			"prep_table_name": {
+				"type": "string",
+				"defaultValue": " "
+			},
+			"prep_filter": {
+				"type": "string",
+				"defaultValue": " "
+			},
+			"reject_table_name": {
+				"type": "string",
+				"defaultValue": " "
+			},
+			"reject_filter": {
+				"type": "string",
+				"defaultValue": " "
+			},
+			"raw_subfolder_path": {
+				"type": "string",
+				"defaultValue": "dev/rvact/YQYR"
+			},
+			"reject_cleanup_ind": {
+				"type": "string",
+				"defaultValue": "Y"
+			}
+		},
+		"folder": {
+			"name": "DevOps"
+		},
+		"annotations": [],
+		"lastPublishTime": "2022-06-18T16:21:11Z"
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}

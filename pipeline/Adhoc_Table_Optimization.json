@@ -1,0 +1,236 @@
+{
+	"name": "Adhoc_Table_Optimization",
+	"properties": {
+		"description": "This pipeline will perform the adhoc optimization on Struct, Reject and Prep tables.\n\nInstructions:\nFor a specific or individual table optimization input the STRUCT or PREP or BOTH in the parameter value AND frequency value cannot be blank.\n   input D for Daily, W for Weekly, and M for Monthly\n\nJust run the pipeline for all tables optimization ",
+		"activities": [
+			{
+				"name": "Read_Env_File",
+				"type": "Lookup",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "JsonSource",
+						"storeSettings": {
+							"type": "AzureBlobStorageReadSettings",
+							"recursive": true,
+							"enablePartitionDiscovery": false
+						},
+						"formatSettings": {
+							"type": "JsonReadSettings"
+						}
+					},
+					"dataset": {
+						"referenceName": "Json",
+						"type": "DatasetReference"
+					}
+				}
+			},
+			{
+				"name": "Email_Notify_03",
+				"type": "ExecutePipeline",
+				"dependsOn": [
+					{
+						"activity": "Read_Env_File",
+						"dependencyConditions": [
+							"Failed"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "EmailNotification",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true,
+					"parameters": {
+						"DataFactoryName": {
+							"value": "@pipeline().DataFactory",
+							"type": "Expression"
+						},
+						"PipelineName": {
+							"value": "@pipeline().Pipeline",
+							"type": "Expression"
+						},
+						"Message": {
+							"value": "@concat('The pipeline has encountered an error. Please check the logs for more details.')",
+							"type": "Expression"
+						},
+						"EmailTo": {
+							"value": "DL_BA_Finance@aa.com",
+							"type": "Expression"
+						},
+						"Status": {
+							"value": "Fail",
+							"type": "Expression"
+						}
+					}
+				}
+			},
+			{
+				"name": "Table_Optimization",
+				"type": "DatabricksNotebook",
+				"dependsOn": [
+					{
+						"activity": "Read_Env_File",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"notebookPath": {
+						"value": "@concat('/',activity('Read_Env_File').output.firstRow.adls_storage_cntner,'/',activity('Read_Env_File').output.firstRow.azure_env,'/devops/Table_Optimization')",
+						"type": "Expression"
+					},
+					"baseParameters": {
+						"struct_table_name": {
+							"value": "@pipeline().parameters.struct_table_name",
+							"type": "Expression"
+						},
+						"prep_table_name": {
+							"value": "@pipeline().parameters.prep_table_name",
+							"type": "Expression"
+						},
+						"env": {
+							"value": "@activity('Read_Env_File').output.firstRow.azure_env",
+							"type": "Expression"
+						},
+						"adls_storage_cntner": {
+							"value": "@string(activity('Read_Env_File').output.firstRow.adls_storage_cntner)",
+							"type": "Expression"
+						},
+						"frequency": {
+							"value": "@pipeline().parameters.frequency",
+							"type": "Expression"
+						}
+					}
+				},
+				"linkedServiceName": {
+					"referenceName": "AzureDatabricks_ls",
+					"type": "LinkedServiceReference"
+				}
+			},
+			{
+				"name": "Email_Notify_02",
+				"type": "ExecutePipeline",
+				"dependsOn": [
+					{
+						"activity": "Table_Optimization",
+						"dependencyConditions": [
+							"Failed"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "EmailNotification",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true,
+					"parameters": {
+						"DataFactoryName": {
+							"value": "@pipeline().DataFactory",
+							"type": "Expression"
+						},
+						"PipelineName": {
+							"value": "@pipeline().Pipeline",
+							"type": "Expression"
+						},
+						"Message": {
+							"value": "@concat('The pipeline has encountered an error. Please check the logs for more details. \nLog : ' ,activity('Table_Optimization').output.runPageUrl)",
+							"type": "Expression"
+						},
+						"EmailTo": {
+							"value": "@activity('Read_Env_File').output.firstRow.fail_email_to",
+							"type": "Expression"
+						},
+						"Status": {
+							"value": "Fail",
+							"type": "Expression"
+						}
+					}
+				}
+			},
+			{
+				"name": "Email_Notify_01",
+				"type": "ExecutePipeline",
+				"dependsOn": [
+					{
+						"activity": "Table_Optimization",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "EmailNotification",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true,
+					"parameters": {
+						"DataFactoryName": {
+							"value": "@pipeline().DataFactory",
+							"type": "Expression"
+						},
+						"PipelineName": {
+							"value": "@pipeline().Pipeline",
+							"type": "Expression"
+						},
+						"Message": {
+							"value": "@concat('Adhoc Table_Optimization completed successfully. Please verify the notebook log for more details. Log : ' ,activity('Table_Optimization').output.runPageUrl)",
+							"type": "Expression"
+						},
+						"EmailTo": {
+							"value": "@activity('Read_Env_File').output.firstRow.fail_email_to",
+							"type": "Expression"
+						},
+						"Status": {
+							"value": "Success",
+							"type": "Expression"
+						}
+					}
+				}
+			}
+		],
+		"parameters": {
+			"struct_table_name": {
+				"type": "string",
+				"defaultValue": " "
+			},
+			"prep_table_name": {
+				"type": "string",
+				"defaultValue": " "
+			},
+			"frequency": {
+				"type": "string",
+				"defaultValue": "D"
+			}
+		},
+		"folder": {
+			"name": "DevOps"
+		},
+		"annotations": [],
+		"lastPublishTime": "2022-06-18T16:21:11Z"
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}
