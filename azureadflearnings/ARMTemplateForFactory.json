@@ -290,27 +290,6 @@
 								"type": "Expression"
 							}
 						}
-					},
-					{
-						"name": "Execute Pipeline_copydata",
-						"type": "ExecutePipeline",
-						"dependsOn": [
-							{
-								"activity": "Delete raw zone data",
-								"dependencyConditions": [
-									"Succeeded"
-								]
-							}
-						],
-						"userProperties": [],
-						"typeProperties": {
-							"pipeline": {
-								"referenceName": "CopyPipeline_onetimecopy",
-								"type": "PipelineReference"
-							},
-							"waitOnCompletion": true,
-							"parameters": {}
-						}
 					}
 				],
 				"policy": {
@@ -345,7 +324,6 @@
 				"[concat(variables('factoryId'), '/datasets/Binary_blob_training_ds')]",
 				"[concat(variables('factoryId'), '/datasets/Binary_adls_training_ds')]",
 				"[concat(variables('factoryId'), '/datasets/Binary_Getmetatdata')]",
-				"[concat(variables('factoryId'), '/pipelines/CopyPipeline_onetimecopy')]",
 				"[concat(variables('factoryId'), '/linkedServices/AzureBlobStorage_ls')]"
 			]
 		},
