@@ -150,10 +150,68 @@
 						"type": "Expression"
 					}
 				}
+			},
+			{
+				"name": "Email_Notification",
+				"type": "WebActivity",
+				"dependsOn": [
+					{
+						"activity": "Delete raw zone data",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"url": {
+						"value": "https://prod2-29.eastus2.logic.azure.com:443/workflows/67cae0b99360404da450c207d5f89588/triggers/manual/paths/invoke?api-version=2016-10-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=4Wj2YAfbM-UokQivut2TWfbLXqb9ZKh13CY37pJLM3g",
+						"type": "Expression"
+					},
+					"method": "POST",
+					"headers": {
+						"Content-Type": {
+							"value": "application/json",
+							"type": "Expression"
+						}
+					},
+					"body": {
+						"value": "{\"DataFactoryName\":\"@{pipeline().parameters.DataFactoryName}\",\"PipelineName\":\"@{pipeline().parameters.PipelineName}\",\"SourceFile\":\"@{pipeline().parameters.SourceFile}\",\"Message\":\"@{pipeline().parameters.Message}\",\"EmailTo\":\"@{pipeline().parameters.EmailTo}\",\"Status\":\"@{pipeline().parameters.Status}\"}",
+						"type": "Expression"
+					},
+					"linkedServices": [
+						{
+							"referenceName": "AzureDataLakeStorage_ls",
+							"type": "LinkedServiceReference"
+						}
+					]
+				}
 			}
 		],
 		"parameters": {
-			"FileName": {
+			"DataFactoryName": {
+				"type": "string"
+			},
+			"PipelineName": {
+				"type": "string"
+			},
+			"Message": {
+				"type": "string"
+			},
+			"EmailTo": {
+				"type": "string"
+			},
+			"SourceFile": {
+				"type": "string"
+			},
+			"Status": {
 				"type": "string"
 			}
 		},
