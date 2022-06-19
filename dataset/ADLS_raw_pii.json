@@ -1,0 +1,42 @@
+{
+	"name": "ADLS_raw_pii",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureDataLakeStorage_ls",
+			"type": "LinkedServiceReference"
+		},
+		"parameters": {
+			"env": {
+				"type": "string"
+			},
+			"adls_storage_cntner_pii": {
+				"type": "string"
+			},
+			"input_file_prefix": {
+				"type": "string"
+			},
+			"Filename": {
+				"type": "string"
+			},
+			"sourceDataDt": {
+				"type": "string"
+			}
+		},
+		"annotations": [],
+		"type": "Binary",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"folderPath": {
+					"value": "@concat(dataset().env,'/raw-pii','/',dataset().input_file_prefix,'/',dataset().sourceDataDt)",
+					"type": "Expression"
+				},
+				"fileSystem": {
+					"value": "@dataset().adls_storage_cntner_pii",
+					"type": "Expression"
+				}
+			}
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

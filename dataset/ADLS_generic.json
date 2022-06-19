@@ -1,0 +1,33 @@
+{
+	"name": "ADLS_generic",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureDataLakeStorage_ls",
+			"type": "LinkedServiceReference"
+		},
+		"parameters": {
+			"complete_path": {
+				"type": "string"
+			},
+			"adls_storage_cntner": {
+				"type": "string"
+			}
+		},
+		"annotations": [],
+		"type": "Binary",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"folderPath": {
+					"value": "@dataset().complete_path",
+					"type": "Expression"
+				},
+				"fileSystem": {
+					"value": "@dataset().adls_storage_cntner",
+					"type": "Expression"
+				}
+			}
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}
