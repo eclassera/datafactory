@@ -27,7 +27,7 @@
 						}
 					},
 					"body": {
-						"value": "{\"DataFactoryName\":\"@{pipeline().parameters.DataFactoryName}\",\"PipelineName\":\"@{pipeline().parameters.PipelineName}\",\"SourceFile\":\"@{pipeline().parameters.SourceFile}\",\"Message\":\"@{pipeline().parameters.Message}\",\"EmailTo\":\"@{pipeline().parameters.EmailTo}\",\"Status\":\"@{pipeline().parameters.Status}\"}",
+						"value": "{\r\n    \"message\" : \"This is a custom dynamic message from your pipeline with run ID @{pipeline().RunId}.\",\r\n    \"dataFactoryName\" : \"@{pipeline().DataFactory}\", \r\n    \"pipelineName\" : \"@{pipeline().Pipeline}\", \r\n    \"receiver\" : \"@{pipeline().parameters.receiver}\"\r\n   }",
 						"type": "Expression"
 					},
 					"linkedServices": [
@@ -49,7 +49,7 @@
 			"Message": {
 				"type": "string"
 			},
-			"EmailTo": {
+			"receiver": {
 				"type": "string"
 			},
 			"SourceFile": {
