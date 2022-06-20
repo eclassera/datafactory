@@ -17,18 +17,18 @@
 				"userProperties": [],
 				"typeProperties": {
 					"source": {
-						"type": "JsonSource",
+						"type": "DelimitedTextSource",
 						"storeSettings": {
 							"type": "AzureBlobStorageReadSettings",
-							"recursive": false,
+							"recursive": true,
 							"enablePartitionDiscovery": false
 						},
 						"formatSettings": {
-							"type": "JsonReadSettings"
+							"type": "DelimitedTextReadSettings"
 						}
 					},
 					"dataset": {
-						"referenceName": "Json",
+						"referenceName": "SourceDataset_opy",
 						"type": "DatasetReference"
 					}
 				}
@@ -107,10 +107,6 @@
 										"type": "Expression"
 									}
 								}
-							},
-							"linkedServiceName": {
-								"referenceName": "AzureDatabricks_ls",
-								"type": "LinkedServiceReference"
 							}
 						},
 						{
@@ -164,46 +160,8 @@
 													"type": "AzureBlobFSWriteSettings"
 												}
 											},
-											"enableStaging": false,
-											"skipErrorFile": {
-												"fileMissing": true
-											},
-											"validateDataConsistency": false
-										},
-										"inputs": [
-											{
-												"referenceName": "Blob",
-												"type": "DatasetReference"
-											}
-										],
-										"outputs": [
-											{
-												"referenceName": "ADLS_Reject",
-												"type": "DatasetReference",
-												"parameters": {
-													"env": {
-														"value": "@activity('Read_Env_File').output.firstRow.azure_env",
-														"type": "Expression"
-													},
-													"adls_storage_cntner": {
-														"value": "@activity('Read_Env_File').output.firstRow.adls_storage_cntner",
-														"type": "Expression"
-													},
-													"input_file_prefix": {
-														"value": "@substring(pipeline().parameters.filename,0,lastindexof(pipeline().parameters.filename,'_'))",
-														"type": "Expression"
-													},
-													"sourceDataDt": {
-														"value": "@substring(pipeline().parameters.filename,add(lastindexof(pipeline().parameters.filename,'_'),1),8)",
-														"type": "Expression"
-													},
-													"Filename": {
-														"value": "@pipeline().parameters.Filename",
-														"type": "Expression"
-													}
-												}
-											}
-										]
+											"enableStaging": false
+										}
 									},
 									{
 										"name": "Delete_Reject_Files_From_Landing",
@@ -225,10 +183,6 @@
 										},
 										"userProperties": [],
 										"typeProperties": {
-											"dataset": {
-												"referenceName": "Blob",
-												"type": "DatasetReference"
-											},
 											"logStorageSettings": {
 												"linkedServiceName": {
 													"referenceName": "AzureBlobStorage_ls",
@@ -313,10 +267,6 @@
 										},
 										"userProperties": [],
 										"typeProperties": {
-											"dataset": {
-												"referenceName": "Blob_work",
-												"type": "DatasetReference"
-											},
 											"logStorageSettings": {
 												"linkedServiceName": {
 													"referenceName": "AzureBlobStorage_ls",
@@ -379,10 +329,6 @@
 													"type": "Expression"
 												}
 											}
-										},
-										"linkedServiceName": {
-											"referenceName": "AzureDatabricks_ls",
-											"type": "LinkedServiceReference"
 										}
 									},
 									{
@@ -419,43 +365,8 @@
 													"type": "AzureBlobFSWriteSettings"
 												}
 											},
-											"enableStaging": false,
-											"validateDataConsistency": false
-										},
-										"inputs": [
-											{
-												"referenceName": "Blob",
-												"type": "DatasetReference"
-											}
-										],
-										"outputs": [
-											{
-												"referenceName": "ADLS_raw",
-												"type": "DatasetReference",
-												"parameters": {
-													"env": {
-														"value": "@activity('Read_Env_File').output.firstRow.azure_env",
-														"type": "Expression"
-													},
-													"adls_storage_cntner": {
-														"value": "@activity('Read_Env_File').output.firstRow.adls_storage_cntner",
-														"type": "Expression"
-													},
-													"input_file_prefix": {
-														"value": "@substring(pipeline().parameters.filename,0,lastindexof(pipeline().parameters.filename,'_'))",
-														"type": "Expression"
-													},
-													"Filename": {
-														"value": "@pipeline().parameters.Filename",
-														"type": "Expression"
-													},
-													"sourceDataDt": {
-														"value": "@substring(pipeline().parameters.filename,add(lastindexof(pipeline().parameters.filename,'_'),1),8)",
-														"type": "Expression"
-													}
-												}
-											}
-										]
+											"enableStaging": false
+										}
 									},
 									{
 										"name": "Copy_From_Raw_To_Work",
@@ -504,35 +415,7 @@
 												}
 											},
 											"enableStaging": false
-										},
-										"inputs": [
-											{
-												"referenceName": "ADLS_gzip",
-												"type": "DatasetReference",
-												"parameters": {
-													"adls_storage_cntner": {
-														"value": "@activity('Read_Env_File').output.firstRow.adls_storage_cntner",
-														"type": "Expression"
-													}
-												}
-											}
-										],
-										"outputs": [
-											{
-												"referenceName": "ADLS_work",
-												"type": "DatasetReference",
-												"parameters": {
-													"env": {
-														"value": "@activity('Read_Env_File').output.firstRow.azure_env",
-														"type": "Expression"
-													},
-													"adls_storage_cntner": {
-														"value": "@activity('Read_Env_File').output.firstRow.adls_storage_cntner",
-														"type": "Expression"
-													}
-												}
-											}
-										]
+										}
 									},
 									{
 										"name": "DeleteFromWork",
@@ -554,20 +437,6 @@
 										},
 										"userProperties": [],
 										"typeProperties": {
-											"dataset": {
-												"referenceName": "ADLS_work",
-												"type": "DatasetReference",
-												"parameters": {
-													"env": {
-														"value": "@activity('Read_Env_File').output.firstRow.azure_env",
-														"type": "Expression"
-													},
-													"adls_storage_cntner": {
-														"value": "@string(activity('Read_Env_File').output.firstRow.adls_storage_cntner)",
-														"type": "Expression"
-													}
-												}
-											},
 											"logStorageSettings": {
 												"linkedServiceName": {
 													"referenceName": "AzureBlobStorage_ls",
@@ -609,10 +478,6 @@
 										},
 										"userProperties": [],
 										"typeProperties": {
-											"dataset": {
-												"referenceName": "Blob",
-												"type": "DatasetReference"
-											},
 											"logStorageSettings": {
 												"linkedServiceName": {
 													"referenceName": "AzureBlobStorage_ls",
@@ -694,32 +559,6 @@
 										},
 										"userProperties": [],
 										"typeProperties": {
-											"dataset": {
-												"referenceName": "ADLS_raw",
-												"type": "DatasetReference",
-												"parameters": {
-													"env": {
-														"value": "@activity('Read_Env_File').output.firstRow.azure_env",
-														"type": "Expression"
-													},
-													"adls_storage_cntner": {
-														"value": "@string(activity('Read_Env_File').output.firstRow.adls_storage_cntner)",
-														"type": "Expression"
-													},
-													"input_file_prefix": {
-														"value": "@substring(pipeline().parameters.filename,0,lastindexof(pipeline().parameters.filename,'_'))",
-														"type": "Expression"
-													},
-													"Filename": {
-														"value": "@pipeline().parameters.Filename",
-														"type": "Expression"
-													},
-													"sourceDataDt": {
-														"value": "@substring(pipeline().parameters.filename,add(lastindexof(pipeline().parameters.filename,'_'),1),8)",
-														"type": "Expression"
-													}
-												}
-											},
 											"logStorageSettings": {
 												"linkedServiceName": {
 													"referenceName": "AzureBlobStorage_ls",
@@ -1041,10 +880,6 @@
 													"type": "Expression"
 												}
 											}
-										},
-										"linkedServiceName": {
-											"referenceName": "AzureDatabricks_ls",
-											"type": "LinkedServiceReference"
 										}
 									},
 									{
@@ -1248,10 +1083,6 @@
 										},
 										"userProperties": [],
 										"typeProperties": {
-											"dataset": {
-												"referenceName": "Blob_work",
-												"type": "DatasetReference"
-											},
 											"logStorageSettings": {
 												"linkedServiceName": {
 													"referenceName": "AzureBlobStorage_ls",
@@ -1369,10 +1200,6 @@
 													"type": "Expression"
 												}
 											}
-										},
-										"linkedServiceName": {
-											"referenceName": "AzureDatabricks_ls",
-											"type": "LinkedServiceReference"
 										}
 									},
 									{
@@ -1499,19 +1326,7 @@
 									}
 								},
 								"enableStaging": false
-							},
-							"inputs": [
-								{
-									"referenceName": "Blob_gzip",
-									"type": "DatasetReference"
-								}
-							],
-							"outputs": [
-								{
-									"referenceName": "Blob_work",
-									"type": "DatasetReference"
-								}
-							]
+							}
 						},
 						{
 							"name": "Email_Notify_Cleanup_Blob_Work",
@@ -1576,10 +1391,6 @@
 							},
 							"userProperties": [],
 							"typeProperties": {
-								"dataset": {
-									"referenceName": "Blob_work",
-									"type": "DatasetReference"
-								},
 								"logStorageSettings": {
 									"linkedServiceName": {
 										"referenceName": "AzureBlobStorage_ls",
@@ -1665,10 +1476,6 @@
 				},
 				"userProperties": [],
 				"typeProperties": {
-					"dataset": {
-						"referenceName": "Blob",
-						"type": "DatasetReference"
-					},
 					"fieldList": [
 						"childItems"
 					],
