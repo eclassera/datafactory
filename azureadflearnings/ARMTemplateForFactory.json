@@ -5413,6 +5413,48 @@
 								}
 							}
 						}
+					},
+					{
+						"name": "Execute Pipeline_Email_Notification",
+						"type": "ExecutePipeline",
+						"dependsOn": [
+							{
+								"activity": "Get Metadata_blob",
+								"dependencyConditions": [
+									"Failed"
+								]
+							}
+						],
+						"userProperties": [],
+						"typeProperties": {
+							"pipeline": {
+								"referenceName": "EmailNotification_Pipelines",
+								"type": "PipelineReference"
+							},
+							"waitOnCompletion": true,
+							"parameters": {
+								"DataFactoryName": {
+									"value": "@pipeline().DataFactory",
+									"type": "Expression"
+								},
+								"PipelineName": {
+									"value": "@pipeline().Pipeline",
+									"type": "Expression"
+								},
+								"Message": {
+									"value": "@concat('The pipeline has encountered an error. Please check the logs for more details.')",
+									"type": "Expression"
+								},
+								"EmailTo": {
+									"value": "eclasserasureshaz@outlook.com",
+									"type": "Expression"
+								},
+								"Status": {
+									"value": "\"Fail\"",
+									"type": "Expression"
+								}
+							}
+						}
 					}
 				],
 				"policy": {
