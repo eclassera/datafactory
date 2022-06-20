@@ -107,6 +107,10 @@
 										"type": "Expression"
 									}
 								}
+							},
+							"linkedServiceName": {
+								"referenceName": "AzureDatabricks_ls",
+								"type": "LinkedServiceReference"
 							}
 						},
 						{
@@ -143,7 +147,7 @@
 											"source": {
 												"type": "BinarySource",
 												"storeSettings": {
-													"type": "AzureBlobStorageReadSettings",
+													"type": "AzureBlobFSReadSettings",
 													"recursive": false,
 													"wildcardFileName": {
 														"value": "@{concat(substring(item().name,0,add(indexof(item().name,'.'),-0)),'.*')}",
@@ -161,7 +165,19 @@
 												}
 											},
 											"enableStaging": false
-										}
+										},
+										"inputs": [
+											{
+												"referenceName": "ADLS_Reject",
+												"type": "DatasetReference"
+											}
+										],
+										"outputs": [
+											{
+												"referenceName": "ADLS_Reject",
+												"type": "DatasetReference"
+											}
+										]
 									},
 									{
 										"name": "Delete_Reject_Files_From_Landing",
@@ -183,6 +199,10 @@
 										},
 										"userProperties": [],
 										"typeProperties": {
+											"dataset": {
+												"referenceName": "ADLS_Reject",
+												"type": "DatasetReference"
+											},
 											"logStorageSettings": {
 												"linkedServiceName": {
 													"referenceName": "AzureBlobStorage_ls",
@@ -192,7 +212,7 @@
 											},
 											"enableLogging": true,
 											"storeSettings": {
-												"type": "AzureBlobStorageReadSettings",
+												"type": "AzureBlobFSReadSettings",
 												"recursive": false,
 												"wildcardFileName": {
 													"value": "@{concat(substring(item().name,0,add(indexof(item().name,'.'),-0)),'*')}",
@@ -267,6 +287,10 @@
 										},
 										"userProperties": [],
 										"typeProperties": {
+											"dataset": {
+												"referenceName": "ADLS_work",
+												"type": "DatasetReference"
+											},
 											"logStorageSettings": {
 												"linkedServiceName": {
 													"referenceName": "AzureBlobStorage_ls",
@@ -276,7 +300,7 @@
 											},
 											"enableLogging": true,
 											"storeSettings": {
-												"type": "AzureBlobStorageReadSettings",
+												"type": "AzureBlobFSReadSettings",
 												"recursive": false,
 												"wildcardFileName": {
 													"value": "@{concat(substring(item().name,0,add(indexof(item().name,'.'),-0)),'.dat')}",
@@ -329,6 +353,10 @@
 													"type": "Expression"
 												}
 											}
+										},
+										"linkedServiceName": {
+											"referenceName": "AzureDatabricks_ls",
+											"type": "LinkedServiceReference"
 										}
 									},
 									{
@@ -347,7 +375,7 @@
 											"source": {
 												"type": "BinarySource",
 												"storeSettings": {
-													"type": "AzureBlobStorageReadSettings",
+													"type": "AzureBlobFSReadSettings",
 													"maxConcurrentConnections": 1,
 													"recursive": false,
 													"wildcardFileName": {
@@ -366,7 +394,19 @@
 												}
 											},
 											"enableStaging": false
-										}
+										},
+										"inputs": [
+											{
+												"referenceName": "ADLS_raw",
+												"type": "DatasetReference"
+											}
+										],
+										"outputs": [
+											{
+												"referenceName": "ADLS_raw",
+												"type": "DatasetReference"
+											}
+										]
 									},
 									{
 										"name": "Copy_From_Raw_To_Work",
@@ -415,7 +455,19 @@
 												}
 											},
 											"enableStaging": false
-										}
+										},
+										"inputs": [
+											{
+												"referenceName": "ADLS_work",
+												"type": "DatasetReference"
+											}
+										],
+										"outputs": [
+											{
+												"referenceName": "ADLS_work",
+												"type": "DatasetReference"
+											}
+										]
 									},
 									{
 										"name": "DeleteFromWork",
@@ -437,6 +489,10 @@
 										},
 										"userProperties": [],
 										"typeProperties": {
+											"dataset": {
+												"referenceName": "ADLS_work",
+												"type": "DatasetReference"
+											},
 											"logStorageSettings": {
 												"linkedServiceName": {
 													"referenceName": "AzureBlobStorage_ls",
@@ -478,6 +534,10 @@
 										},
 										"userProperties": [],
 										"typeProperties": {
+											"dataset": {
+												"referenceName": "Blob_work",
+												"type": "DatasetReference"
+											},
 											"logStorageSettings": {
 												"linkedServiceName": {
 													"referenceName": "AzureBlobStorage_ls",
@@ -559,6 +619,10 @@
 										},
 										"userProperties": [],
 										"typeProperties": {
+											"dataset": {
+												"referenceName": "ADLS_raw",
+												"type": "DatasetReference"
+											},
 											"logStorageSettings": {
 												"linkedServiceName": {
 													"referenceName": "AzureBlobStorage_ls",
@@ -880,6 +944,10 @@
 													"type": "Expression"
 												}
 											}
+										},
+										"linkedServiceName": {
+											"referenceName": "AzureDatabricks_ls",
+											"type": "LinkedServiceReference"
 										}
 									},
 									{
@@ -1083,6 +1151,10 @@
 										},
 										"userProperties": [],
 										"typeProperties": {
+											"dataset": {
+												"referenceName": "Blob_work",
+												"type": "DatasetReference"
+											},
 											"logStorageSettings": {
 												"linkedServiceName": {
 													"referenceName": "AzureBlobStorage_ls",
@@ -1200,6 +1272,10 @@
 													"type": "Expression"
 												}
 											}
+										},
+										"linkedServiceName": {
+											"referenceName": "AzureDatabricks_ls",
+											"type": "LinkedServiceReference"
 										}
 									},
 									{
@@ -1326,7 +1402,19 @@
 									}
 								},
 								"enableStaging": false
-							}
+							},
+							"inputs": [
+								{
+									"referenceName": "Blob_work",
+									"type": "DatasetReference"
+								}
+							],
+							"outputs": [
+								{
+									"referenceName": "Blob_work",
+									"type": "DatasetReference"
+								}
+							]
 						},
 						{
 							"name": "Email_Notify_Cleanup_Blob_Work",
@@ -1391,6 +1479,10 @@
 							},
 							"userProperties": [],
 							"typeProperties": {
+								"dataset": {
+									"referenceName": "Blob_work",
+									"type": "DatasetReference"
+								},
 								"logStorageSettings": {
 									"linkedServiceName": {
 										"referenceName": "AzureBlobStorage_ls",
@@ -1476,15 +1568,17 @@
 				},
 				"userProperties": [],
 				"typeProperties": {
-					"fieldList": [
-						"childItems"
-					],
+					"dataset": {
+						"referenceName": "SourceDataset_opy",
+						"type": "DatasetReference"
+					},
+					"fieldList": [],
 					"storeSettings": {
 						"type": "AzureBlobStorageReadSettings",
 						"recursive": true
 					},
 					"formatSettings": {
-						"type": "BinaryReadSettings"
+						"type": "DelimitedTextReadSettings"
 					}
 				}
 			},
