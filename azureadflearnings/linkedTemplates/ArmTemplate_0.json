@@ -146,7 +146,7 @@
 								"Content-Type": "application/json"
 							},
 							"body": {
-								"value": "{\"DataFactoryName\":\"@{pipeline().parameters.DataFactoryName}\",\"PipelineName\":\"@{pipeline().parameters.PipelineName}\",\"SourceFile\":\"@{pipeline().parameters.SourceFile}\",\"Message\":\"@{pipeline().parameters.Message}\",\"EmailTo\":\"@{pipeline().parameters.EmailTo}\",\"Status\":\"@{pipeline().parameters.Status}\"}",
+								"value": "{\r\n    \"message\" : \"This is a custom dynamic message from your pipeline with run ID @{pipeline().RunId}.\",\r\n    \"dataFactoryName\" : \"@{pipeline().DataFactory}\", \r\n    \"pipelineName\" : \"@{pipeline().Pipeline}\", \r\n    \"receiver\" : \"@{pipeline().parameters.receiver}\"\r\n   }",
 								"type": "Expression"
 							},
 							"linkedServices": [
@@ -175,15 +175,11 @@
 						"type": "string",
 						"defaultValue": "Default"
 					},
-					"EmailTo": {
+					"receiver": {
 						"type": "string",
 						"defaultValue": "Default"
 					},
 					"SourceFile": {
-						"type": "string",
-						"defaultValue": "Default"
-					},
-					"Status": {
 						"type": "string",
 						"defaultValue": "Default"
 					}
@@ -229,7 +225,7 @@
 								}
 							},
 							"body": {
-								"value": "{\"DataFactoryName\":\"@{pipeline().parameters.DataFactoryName}\",\"PipelineName\":\"@{pipeline().parameters.PipelineName}\",\"SourceFile\":\"@{pipeline().parameters.SourceFile}\",\"Message\":\"@{pipeline().parameters.Message}\",\"EmailTo\":\"@{pipeline().parameters.EmailTo}\",\"Status\":\"@{pipeline().parameters.Status}\"}",
+								"value": "{\r\n    \"message\" : \"This is a custom dynamic message from your pipeline with run ID @{pipeline().RunId}.\",\r\n    \"dataFactoryName\" : \"@{pipeline().DataFactory}\", \r\n    \"pipelineName\" : \"@{pipeline().Pipeline}\", \r\n    \"receiver\" : \"@{pipeline().parameters.receiver}\"\r\n   }",
 								"type": "Expression"
 							},
 							"linkedServices": [
@@ -247,28 +243,22 @@
 				},
 				"parameters": {
 					"DataFactoryName": {
-						"type": "string",
-						"defaultValue": "Default"
+						"type": "string"
 					},
 					"PipelineName": {
-						"type": "string",
-						"defaultValue": "Default"
+						"type": "string"
 					},
 					"Message": {
-						"type": "string",
-						"defaultValue": "Default"
+						"type": "string"
 					},
-					"EmailTo": {
-						"type": "string",
-						"defaultValue": "Default"
+					"receiver": {
+						"type": "string"
 					},
 					"SourceFile": {
-						"type": "string",
-						"defaultValue": "Default"
+						"type": "string"
 					},
 					"Status": {
-						"type": "string",
-						"defaultValue": "Default"
+						"type": "string"
 					}
 				},
 				"folder": {
