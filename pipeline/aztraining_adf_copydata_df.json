@@ -152,52 +152,6 @@
 				}
 			},
 			{
-				"name": "Execute Pipeline_Emailnotification",
-				"type": "ExecutePipeline",
-				"dependsOn": [
-					{
-						"activity": "Delete raw zone data",
-						"dependencyConditions": [
-							"Succeeded"
-						]
-					}
-				],
-				"userProperties": [],
-				"typeProperties": {
-					"pipeline": {
-						"referenceName": "EmailNotification_Pipelines",
-						"type": "PipelineReference"
-					},
-					"waitOnCompletion": true,
-					"parameters": {
-						"DataFactoryName": {
-							"value": "@pipeline().DataFactory",
-							"type": "Expression"
-						},
-						"PipelineName": {
-							"value": "@pipeline().Pipeline",
-							"type": "Expression"
-						},
-						"Message": {
-							"value": "@concat('Could not run data factory pipeline. Please check the logs for more details.')",
-							"type": "Expression"
-						},
-						"EmailTo": {
-							"value": "eclasserasureshaz@outlook.com",
-							"type": "Expression"
-						},
-						"SourceFile": {
-							"value": "@pipeline().parameters.SourceFile",
-							"type": "Expression"
-						},
-						"Status": {
-							"value": "@pipeline().parameters.Status",
-							"type": "Expression"
-						}
-					}
-				}
-			},
-			{
 				"name": "Execute Pipeline_Email_Notification",
 				"type": "ExecutePipeline",
 				"dependsOn": [
