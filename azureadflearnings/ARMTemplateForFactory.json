@@ -5697,7 +5697,7 @@
 									"userProperties": [],
 									"typeProperties": {
 										"variableName": "ID1",
-										"value": "70"
+										"value": "40"
 									}
 								}
 							],
@@ -12930,6 +12930,66 @@
 			"dependsOn": [
 				"[concat(variables('factoryId'), '/pipelines/CopyPipeline_onetimecopy')]"
 			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/EmailNotification_Pipelines_Webhook')]",
+			"type": "Microsoft.DataFactory/factories/pipelines",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"activities": [
+					{
+						"name": "WebHook1",
+						"type": "WebHook",
+						"dependsOn": [],
+						"userProperties": [],
+						"typeProperties": {
+							"url": {
+								"value": "https://prod2-29.eastus2.logic.azure.com:443/workflows/67cae0b99360404da450c207d5f89588/triggers/manual/paths/invoke?api-version=2016-10-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=4Wj2YAfbM-UokQivut2TWfbLXqb9ZKh13CY37pJLM3g",
+								"type": "Expression"
+							},
+							"method": "POST",
+							"headers": {
+								"Content-type": {
+									"value": "application/json",
+									"type": "Expression"
+								}
+							},
+							"body": {},
+							"timeout": "00:10:00",
+							"reportStatusOnCallBack": true
+						}
+					}
+				],
+				"policy": {
+					"elapsedTimeMetric": {},
+					"cancelAfter": {}
+				},
+				"parameters": {
+					"DataFactoryName": {
+						"type": "string"
+					},
+					"PipelineName": {
+						"type": "string"
+					},
+					"Message": {
+						"type": "string"
+					},
+					"receiver": {
+						"type": "string"
+					},
+					"SourceFile": {
+						"type": "string"
+					},
+					"Status": {
+						"type": "string"
+					}
+				},
+				"folder": {
+					"name": "Azuretraining"
+				},
+				"annotations": []
+			},
+			"dependsOn": []
 		}
 	]
 }

@@ -13,6 +13,34 @@
 	},
 	"resources": [
 		{
+			"name": "[concat(parameters('factoryName'), '/BinaryDatasetForDeleteActivity1')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"description": "Connect to your source store to delete files.",
+				"linkedServiceName": {
+					"referenceName": "AzureBlobStorage_ls",
+					"type": "LinkedServiceReference"
+				},
+				"parameters": {
+					"FolderPath": {
+						"type": "string"
+					},
+					"Directory": {
+						"type": "string"
+					}
+				},
+				"annotations": [],
+				"type": "Binary",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobStorageLocation"
+					}
+				}
+			},
+			"dependsOn": []
+		},
+		{
 			"name": "[concat(parameters('factoryName'), '/Binary_ADLS_ds')]",
 			"type": "Microsoft.DataFactory/factories/datasets",
 			"apiVersion": "2018-06-01",
@@ -3772,96 +3800,6 @@
 					}
 				},
 				"schema": {}
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/adfdeplyblob_json')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "AzureBlobStorage_ls",
-					"type": "LinkedServiceReference"
-				},
-				"annotations": [],
-				"type": "Json",
-				"typeProperties": {
-					"location": {
-						"type": "AzureBlobStorageLocation",
-						"fileName": "azuredeploy.json",
-						"container": "rawzone"
-					}
-				},
-				"schema": {
-					"type": "object",
-					"properties": {
-						"$schema": {
-							"type": "string"
-						},
-						"contentVersion": {
-							"type": "string"
-						},
-						"parameters": {
-							"type": "object",
-							"properties": {
-								"name": {
-									"type": "object",
-									"properties": {
-										"type": {
-											"type": "string"
-										},
-										"defaultValue": {
-											"type": "string"
-										}
-									}
-								},
-								"apiVersion": {
-									"type": "object",
-									"properties": {
-										"type": {
-											"type": "string"
-										},
-										"defaultValue": {
-											"type": "string"
-										}
-									}
-								}
-							}
-						},
-						"resources": {
-							"type": "array",
-							"items": {
-								"type": "object",
-								"properties": {
-									"apiVersion": {
-										"type": "string"
-									},
-									"name": {
-										"type": "string"
-									},
-									"location": {
-										"type": "string"
-									},
-									"type": {
-										"type": "string"
-									},
-									"identity": {
-										"type": "object",
-										"properties": {
-											"type": {
-												"type": "string"
-											}
-										}
-									},
-									"properties": {
-										"type": "object"
-									}
-								}
-							}
-						}
-					}
-				}
 			},
 			"dependsOn": []
 		}
