@@ -14,10 +14,16 @@
 					},
 					"method": "POST",
 					"headers": {
-						"Content-type": {
+						"Content-Type": {
 							"value": "application/json",
 							"type": "Expression"
 						}
+					},
+					"body": {
+						"message": "This is a custom dynamic message from your pipeline with run ID @{pipeline().RunId}.",
+						"dataFactoryName": "@{pipeline().DataFactory}",
+						"pipelineName": "@{pipeline().Pipeline}",
+						"receiver": "@{pipeline().parameters.receiver}"
 					},
 					"timeout": "00:1:00",
 					"reportStatusOnCallBack": true
