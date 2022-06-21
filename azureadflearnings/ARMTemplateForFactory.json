@@ -7,6 +7,14 @@
 			"metadata": "Data Factory name",
 			"defaultValue": "azureadflearnings"
 		},
+		"AzureBlobStorage_ls_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'AzureBlobStorage_ls'"
+		},
+		"AzureDataLakeStorage_ls_accountKey": {
+			"type": "secureString",
+			"metadata": "Secure string for 'accountKey' of 'AzureDataLakeStorage_ls'"
+		},
 		"linkedService1_connectionString": {
 			"type": "secureString",
 			"metadata": "Secure string for 'connectionString' of 'linkedService1'"
@@ -15,13 +23,9 @@
 			"type": "secureString",
 			"metadata": "Secure string for 'connectionString' of 'linkedService2'"
 		},
-		"AzureBlobStorage_ls_properties_typeProperties_serviceEndpoint": {
-			"type": "string",
-			"defaultValue": "https://banzeausrvactdev.blob.core.windows.net"
-		},
 		"AzureDataLakeStorage_ls_properties_typeProperties_url": {
 			"type": "string",
-			"defaultValue": "https://aabaoriondlsnp.dfs.core.windows.net"
+			"defaultValue": "https://azuredataadlsdev.dfs.core.windows.net/"
 		},
 		"AzureKeyVault_ls_properties_typeProperties_baseUrl": {
 			"type": "string",
@@ -5403,48 +5407,6 @@
 								}
 							}
 						}
-					},
-					{
-						"name": "Execute Pipeline_Webhook",
-						"type": "ExecutePipeline",
-						"dependsOn": [
-							{
-								"activity": "Delete raw zone data",
-								"dependencyConditions": [
-									"Succeeded"
-								]
-							}
-						],
-						"userProperties": [],
-						"typeProperties": {
-							"pipeline": {
-								"referenceName": "pipeline_Webhook",
-								"type": "PipelineReference"
-							},
-							"waitOnCompletion": true,
-							"parameters": {
-								"DataFactoryName": {
-									"value": "@pipeline().DataFactory",
-									"type": "Expression"
-								},
-								"PipelineName": {
-									"value": "@pipeline().Pipeline",
-									"type": "Expression"
-								},
-								"receiver": {
-									"value": "eclasserasureshaz@outlook.com",
-									"type": "Expression"
-								},
-								"SourceFile": {
-									"value": "LNDG_TYCO_CUST_CONVIT.txt",
-									"type": "Expression"
-								},
-								"Status": {
-									"value": "\"successfully Ran the Pipeline\"",
-									"type": "Expression"
-								}
-							}
-						}
 					}
 				],
 				"policy": {
@@ -5475,7 +5437,6 @@
 				"[concat(variables('factoryId'), '/datasets/Binary_adls_training_ds')]",
 				"[concat(variables('factoryId'), '/datasets/Binary_Getmetatdata')]",
 				"[concat(variables('factoryId'), '/pipelines/EmailNotification_Pipelines')]",
-				"[concat(variables('factoryId'), '/pipelines/pipeline_Webhook')]",
 				"[concat(variables('factoryId'), '/linkedServices/AzureBlobStorage_ls')]"
 			]
 		},
@@ -8469,8 +8430,7 @@
 				"type": "Binary",
 				"typeProperties": {
 					"location": {
-						"type": "AzureBlobStorageLocation",
-						"container": "rawzone"
+						"type": "AzureBlobStorageLocation"
 					}
 				}
 			},
@@ -9131,7 +9091,7 @@
 				"annotations": [],
 				"type": "AzureBlobStorage",
 				"typeProperties": {
-					"serviceEndpoint": "[parameters('AzureBlobStorage_ls_properties_typeProperties_serviceEndpoint')]"
+					"connectionString": "[parameters('AzureBlobStorage_ls_connectionString')]"
 				}
 			},
 			"dependsOn": []
@@ -9145,7 +9105,11 @@
 				"annotations": [],
 				"type": "AzureBlobFS",
 				"typeProperties": {
-					"url": "[parameters('AzureDataLakeStorage_ls_properties_typeProperties_url')]"
+					"url": "[parameters('AzureDataLakeStorage_ls_properties_typeProperties_url')]",
+					"accountKey": {
+						"type": "SecureString",
+						"value": "[parameters('AzureDataLakeStorage_ls_accountKey')]"
+					}
 				}
 			},
 			"dependsOn": []
@@ -9282,64 +9246,6 @@
 			"dependsOn": [
 				"[concat(variables('factoryId'), '/pipelines/CopyPipeline_onetimecopy')]"
 			]
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/pipeline_Webhook')]",
-			"type": "Microsoft.DataFactory/factories/pipelines",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"activities": [
-					{
-						"name": "WebHook1",
-						"type": "WebHook",
-						"dependsOn": [],
-						"userProperties": [],
-						"typeProperties": {
-							"url": {
-								"value": "https://prod2-29.eastus2.logic.azure.com:443/workflows/67cae0b99360404da450c207d5f89588/triggers/manual/paths/invoke?api-version=2016-10-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=4Wj2YAfbM-UokQivut2TWfbLXqb9ZKh13CY37pJLM3g",
-								"type": "Expression"
-							},
-							"method": "POST",
-							"headers": {
-								"Content-Type": "application/json"
-							},
-							"body": {},
-							"timeout": "00:10:00",
-							"reportStatusOnCallBack": false,
-							"disableCertValidation": false
-						}
-					}
-				],
-				"policy": {
-					"elapsedTimeMetric": {},
-					"cancelAfter": {}
-				},
-				"parameters": {
-					"DataFactoryName": {
-						"type": "string"
-					},
-					"PipelineName": {
-						"type": "string"
-					},
-					"Message": {
-						"type": "string"
-					},
-					"receiver": {
-						"type": "string"
-					},
-					"SourceFile": {
-						"type": "string"
-					},
-					"Status": {
-						"type": "string"
-					}
-				},
-				"folder": {
-					"name": "Azuretraining"
-				},
-				"annotations": []
-			},
-			"dependsOn": []
 		}
 	]
 }
