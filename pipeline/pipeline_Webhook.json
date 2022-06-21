@@ -1,0 +1,46 @@
+{
+	"name": "pipeline_Webhook",
+	"properties": {
+		"activities": [
+			{
+				"name": "WebHook1",
+				"type": "WebHook",
+				"dependsOn": [],
+				"userProperties": [],
+				"typeProperties": {
+					"url": {
+						"value": "https://prod2-29.eastus2.logic.azure.com:443/workflows/67cae0b99360404da450c207d5f89588/triggers/manual/paths/invoke?api-version=2016-10-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=4Wj2YAfbM-UokQivut2TWfbLXqb9ZKh13CY37pJLM3g",
+						"type": "Expression"
+					},
+					"method": "POST",
+					"body": {
+						"value": "{\n    \"message\" : \"This is a custom dynamic message from your pipeline with run ID @{pipeline().RunId}.\",\n    \"dataFactoryName\" : \"@{pipeline().DataFactory}\", \n    \"pipelineName\" : \"@{pipeline().Pipeline}\", \n    \"receiver\" : \"@{pipeline().parameters.receiver}\"\n   }",
+						"type": "Expression"
+					},
+					"timeout": "00:10:00"
+				}
+			}
+		],
+		"parameters": {
+			"DataFactoryName": {
+				"type": "string"
+			},
+			"PipelineName": {
+				"type": "string"
+			},
+			"Message": {
+				"type": "string"
+			},
+			"receiver": {
+				"type": "string"
+			},
+			"SourceFile": {
+				"type": "string"
+			},
+			"Status": {
+				"type": "string"
+			}
+		},
+		"annotations": []
+	}
+}
