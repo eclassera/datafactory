@@ -5276,6 +5276,48 @@
 								}
 							}
 						}
+					},
+					{
+						"name": "Execute Pipeline_Email_Notification_copy1",
+						"type": "ExecutePipeline",
+						"dependsOn": [
+							{
+								"activity": "Delete raw zone data",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"userProperties": [],
+						"typeProperties": {
+							"pipeline": {
+								"referenceName": "EmailNotification_Pipelines",
+								"type": "PipelineReference"
+							},
+							"waitOnCompletion": true,
+							"parameters": {
+								"DataFactoryName": {
+									"value": "@pipeline().DataFactory",
+									"type": "Expression"
+								},
+								"PipelineName": {
+									"value": "@pipeline().Pipeline",
+									"type": "Expression"
+								},
+								"receiver": {
+									"value": "eclasserasureshaz@outlook.com",
+									"type": "Expression"
+								},
+								"SourceFile": {
+									"value": "LNDG_TYCO_CUST_CONVIT.txt",
+									"type": "Expression"
+								},
+								"Status": {
+									"value": "\"Fail\"",
+									"type": "Expression"
+								}
+							}
+						}
 					}
 				],
 				"policy": {
