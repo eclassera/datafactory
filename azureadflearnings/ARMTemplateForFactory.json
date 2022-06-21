@@ -5598,11 +5598,36 @@
 								"type": "BinaryReadSettings"
 							}
 						}
+					},
+					{
+						"name": "Append variable1_Example",
+						"type": "AppendVariable",
+						"dependsOn": [
+							{
+								"activity": "Get Metadata_jobparam",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"userProperties": [],
+						"typeProperties": {
+							"variableName": "Append_Test",
+							"value": {
+								"value": "@activity('Get Metadata_jobparam').output.itemName",
+								"type": "Expression"
+							}
+						}
 					}
 				],
 				"policy": {
 					"elapsedTimeMetric": {},
 					"cancelAfter": {}
+				},
+				"variables": {
+					"Append_Test": {
+						"type": "Array"
+					}
 				},
 				"annotations": []
 			},
