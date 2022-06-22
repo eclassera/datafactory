@@ -4159,12 +4159,7 @@
 									"type": "Expression"
 								}
 							},
-							"body": {
-								"message": "This is a custom dynamic message from your pipeline with run ID @{pipeline().RunId}.",
-								"dataFactoryName": "@{pipeline().DataFactory}",
-								"pipelineName": "@{pipeline().Pipeline}",
-								"receiver": "@{pipeline().parameters.receiver}"
-							},
+							"body": {},
 							"timeout": "00:1:00",
 							"reportStatusOnCallBack": true
 						}
@@ -4173,26 +4168,6 @@
 				"policy": {
 					"elapsedTimeMetric": {},
 					"cancelAfter": {}
-				},
-				"parameters": {
-					"DataFactoryName": {
-						"type": "string"
-					},
-					"PipelineName": {
-						"type": "string"
-					},
-					"Message": {
-						"type": "string"
-					},
-					"receiver": {
-						"type": "string"
-					},
-					"SourceFile": {
-						"type": "string"
-					},
-					"Status": {
-						"type": "string"
-					}
 				},
 				"folder": {
 					"name": "Azuretraining"
@@ -5762,15 +5737,18 @@
 									"userProperties": [],
 									"typeProperties": {
 										"variableName": "ID1",
-										"value": "40"
+										"value": {
+											"value": "70",
+											"type": "Expression"
+										}
 									}
 								}
 							],
-							"timeout": "0.00:02:00"
+							"timeout": "0.00:10:00"
 						}
 					},
 					{
-						"name": "Wait1",
+						"name": "Wait_Untilvar",
 						"type": "Wait",
 						"dependsOn": [],
 						"userProperties": [],
@@ -5783,7 +5761,7 @@
 						"type": "SetVariable",
 						"dependsOn": [
 							{
-								"activity": "Wait1",
+								"activity": "Wait_Untilvar",
 								"dependencyConditions": [
 									"Succeeded"
 								]
@@ -5793,7 +5771,7 @@
 						"typeProperties": {
 							"variableName": "ID1",
 							"value": {
-								"value": "50",
+								"value": "10",
 								"type": "Expression"
 							}
 						}
@@ -5803,7 +5781,7 @@
 						"type": "SetVariable",
 						"dependsOn": [
 							{
-								"activity": "Wait1",
+								"activity": "Wait_Untilvar",
 								"dependencyConditions": [
 									"Succeeded"
 								]
