@@ -23,6 +23,18 @@
 			"type": "secureString",
 			"metadata": "Secure string for 'connectionString' of 'linkedService2'"
 		},
+		"dataFactory_properties_globalParameters_FileName_value": {
+			"type": "string",
+			"defaultValue": "LNDG_TYCO_CUST_CONVIT.txt"
+		},
+		"dataFactory_location": {
+			"type": "string",
+			"defaultValue": "eastus2"
+		},
+		"dataFactory_identity_type": {
+			"type": "string",
+			"defaultValue": "SystemAssigned"
+		},
 		"AzureDataLakeStorage_ls_properties_typeProperties_url": {
 			"type": "string",
 			"defaultValue": "https://azuredataadlsdev.dfs.core.windows.net/"
@@ -40,6 +52,24 @@
 		"factoryId": "[concat('Microsoft.DataFactory/factories/', parameters('factoryName'))]"
 	},
 	"resources": [
+		{
+			"name": "[parameters('factoryName')]",
+			"type": "Microsoft.DataFactory/factories",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"globalParameters": {
+					"FileName": {
+						"type": "string",
+						"value": "[parameters('dataFactory_properties_globalParameters_FileName_value')]"
+					}
+				}
+			},
+			"dependsOn": [],
+			"location": "[parameters('dataFactory_location')]",
+			"identity": {
+				"type": "[parameters('dataFactory_identity_type')]"
+			}
+		},
 		{
 			"name": "[concat(parameters('factoryName'), '/EmailNotification_Pipelines_Webhook')]",
 			"type": "Microsoft.DataFactory/factories/pipelines",
@@ -701,44 +731,6 @@
 						"type": "AzureBlobStorageLocation",
 						"fileName": "job_param.json",
 						"container": "rawblob"
-					}
-				}
-			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/linkedServices/AzureBlobStorage_ls')]"
-			]
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/BinaryDatasetForDeleteActivity')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"description": "Connect to your source store to delete files.",
-				"linkedServiceName": {
-					"referenceName": "AzureBlobStorage_ls",
-					"type": "LinkedServiceReference"
-				},
-				"parameters": {
-					"FolderPath": {
-						"type": "string"
-					},
-					"Directory": {
-						"type": "string"
-					}
-				},
-				"annotations": [],
-				"type": "Binary",
-				"typeProperties": {
-					"location": {
-						"type": "AzureBlobStorageLocation",
-						"folderPath": {
-							"value": "@dataset().Directory",
-							"type": "Expression"
-						},
-						"container": {
-							"value": "@dataset().FolderPath",
-							"type": "Expression"
-						}
 					}
 				}
 			},

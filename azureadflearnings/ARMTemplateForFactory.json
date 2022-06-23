@@ -38,6 +38,18 @@
 		"trigger_DataCopy_properties_typeProperties_scope": {
 			"type": "string",
 			"defaultValue": "/subscriptions/b8501930-c7b6-4fa6-a05b-c62ac6d01b8c/resourceGroups/azuretraining/providers/Microsoft.Storage/storageAccounts/azuredatablobdev"
+		},
+		"dataFactory_properties_globalParameters_FileName_value": {
+			"type": "string",
+			"defaultValue": "LNDG_TYCO_CUST_CONVIT.txt"
+		},
+		"dataFactory_location": {
+			"type": "string",
+			"defaultValue": "eastus2"
+		},
+		"dataFactory_identity_type": {
+			"type": "string",
+			"defaultValue": "SystemAssigned"
 		}
 	},
 	"variables": {
@@ -922,6 +934,7 @@
 				"lastPublishTime": "2022-06-18T16:21:12Z"
 			},
 			"dependsOn": [
+				"[variables('factoryId')]",
 				"[concat(variables('factoryId'), '/datasets/Blob_work')]",
 				"[concat(variables('factoryId'), '/pipelines/EmailNotification')]",
 				"[concat(variables('factoryId'), '/linkedServices/AzureBlobStorage_ls')]",
@@ -1323,6 +1336,7 @@
 				"lastPublishTime": "2022-06-18T16:21:12Z"
 			},
 			"dependsOn": [
+				"[variables('factoryId')]",
 				"[concat(variables('factoryId'), '/datasets/ADLS_work_pii')]",
 				"[concat(variables('factoryId'), '/datasets/ADLS_raw_pii')]",
 				"[concat(variables('factoryId'), '/pipelines/EmailNotification')]",
@@ -1660,6 +1674,7 @@
 				"lastPublishTime": "2022-06-18T16:21:12Z"
 			},
 			"dependsOn": [
+				"[variables('factoryId')]",
 				"[concat(variables('factoryId'), '/datasets/ADLS_work')]",
 				"[concat(variables('factoryId'), '/datasets/ADLS_raw')]",
 				"[concat(variables('factoryId'), '/pipelines/EmailNotification')]",
@@ -2057,6 +2072,7 @@
 				"lastPublishTime": "2022-06-18T16:21:11Z"
 			},
 			"dependsOn": [
+				"[variables('factoryId')]",
 				"[concat(variables('factoryId'), '/datasets/ADLS_work')]",
 				"[concat(variables('factoryId'), '/datasets/ADLS_raw')]",
 				"[concat(variables('factoryId'), '/pipelines/EmailNotification')]",
@@ -2401,6 +2417,7 @@
 				"lastPublishTime": "2022-06-18T16:21:11Z"
 			},
 			"dependsOn": [
+				"[variables('factoryId')]",
 				"[concat(variables('factoryId'), '/datasets/Json')]",
 				"[concat(variables('factoryId'), '/pipelines/EmailNotification')]",
 				"[concat(variables('factoryId'), '/linkedServices/AzureDatabricks_ls')]"
@@ -2727,6 +2744,7 @@
 				"lastPublishTime": "2022-06-18T16:21:11Z"
 			},
 			"dependsOn": [
+				"[variables('factoryId')]",
 				"[concat(variables('factoryId'), '/datasets/Json')]",
 				"[concat(variables('factoryId'), '/pipelines/EmailNotification')]",
 				"[concat(variables('factoryId'), '/linkedServices/AzureDatabricks_ls')]"
@@ -2974,6 +2992,7 @@
 				"lastPublishTime": "2022-06-18T16:21:11Z"
 			},
 			"dependsOn": [
+				"[variables('factoryId')]",
 				"[concat(variables('factoryId'), '/datasets/Json')]",
 				"[concat(variables('factoryId'), '/pipelines/EmailNotification')]",
 				"[concat(variables('factoryId'), '/linkedServices/AzureDatabricks_ls')]"
@@ -3078,6 +3097,7 @@
 				"annotations": []
 			},
 			"dependsOn": [
+				"[variables('factoryId')]",
 				"[concat(variables('factoryId'), '/datasets/SourceDataset_opy')]",
 				"[concat(variables('factoryId'), '/datasets/DestinationDataset_opy')]",
 				"[concat(variables('factoryId'), '/linkedServices/AzureBlobStorage_ls')]"
@@ -3489,6 +3509,7 @@
 				"lastPublishTime": "2022-06-18T16:21:12Z"
 			},
 			"dependsOn": [
+				"[variables('factoryId')]",
 				"[concat(variables('factoryId'), '/datasets/Json')]",
 				"[concat(variables('factoryId'), '/pipelines/EmailNotification')]",
 				"[concat(variables('factoryId'), '/datasets/ADLS_generic')]",
@@ -3890,6 +3911,7 @@
 				"lastPublishTime": "2022-06-18T16:21:11Z"
 			},
 			"dependsOn": [
+				"[variables('factoryId')]",
 				"[concat(variables('factoryId'), '/datasets/Json')]",
 				"[concat(variables('factoryId'), '/pipelines/EmailNotification')]",
 				"[concat(variables('factoryId'), '/datasets/Blob_Binary_Generic')]",
@@ -3978,6 +4000,7 @@
 				"annotations": []
 			},
 			"dependsOn": [
+				"[variables('factoryId')]",
 				"[concat(variables('factoryId'), '/datasets/BinaryDatasetForDeleteActivity1')]",
 				"[concat(variables('factoryId'), '/linkedServices/AzureDataLakeStorage_ls')]"
 			]
@@ -4056,6 +4079,7 @@
 				"lastPublishTime": "2022-06-18T16:21:11Z"
 			},
 			"dependsOn": [
+				"[variables('factoryId')]",
 				"[concat(variables('factoryId'), '/linkedServices/AzureDataLakeStorage_ls')]"
 			]
 		},
@@ -4133,6 +4157,7 @@
 				"annotations": []
 			},
 			"dependsOn": [
+				"[variables('factoryId')]",
 				"[concat(variables('factoryId'), '/linkedServices/AzureDataLakeStorage_ls')]"
 			]
 		},
@@ -4174,7 +4199,9 @@
 				},
 				"annotations": []
 			},
-			"dependsOn": []
+			"dependsOn": [
+				"[variables('factoryId')]"
+			]
 		},
 		{
 			"name": "[concat(parameters('factoryName'), '/Onetime_Table_Creation_Notebook')]",
@@ -4429,6 +4456,7 @@
 				"lastPublishTime": "2022-06-18T16:21:12Z"
 			},
 			"dependsOn": [
+				"[variables('factoryId')]",
 				"[concat(variables('factoryId'), '/datasets/Json')]",
 				"[concat(variables('factoryId'), '/linkedServices/AzureDatabricks_ls')]",
 				"[concat(variables('factoryId'), '/pipelines/EmailNotification')]"
@@ -4707,6 +4735,7 @@
 				"lastPublishTime": "2022-06-18T16:21:11Z"
 			},
 			"dependsOn": [
+				"[variables('factoryId')]",
 				"[concat(variables('factoryId'), '/datasets/Json')]",
 				"[concat(variables('factoryId'), '/linkedServices/AzureDatabricks_ls')]",
 				"[concat(variables('factoryId'), '/pipelines/EmailNotification')]"
@@ -4989,6 +5018,7 @@
 				"lastPublishTime": "2022-06-18T16:21:11Z"
 			},
 			"dependsOn": [
+				"[variables('factoryId')]",
 				"[concat(variables('factoryId'), '/datasets/Json')]",
 				"[concat(variables('factoryId'), '/linkedServices/AzureDatabricks_ls')]",
 				"[concat(variables('factoryId'), '/pipelines/EmailNotification')]"
@@ -5243,6 +5273,7 @@
 				"lastPublishTime": "2022-06-18T16:21:11Z"
 			},
 			"dependsOn": [
+				"[variables('factoryId')]",
 				"[concat(variables('factoryId'), '/datasets/Json')]",
 				"[concat(variables('factoryId'), '/linkedServices/AzureDatabricks_ls')]",
 				"[concat(variables('factoryId'), '/pipelines/EmailNotification')]"
@@ -5534,6 +5565,7 @@
 				"annotations": []
 			},
 			"dependsOn": [
+				"[variables('factoryId')]",
 				"[concat(variables('factoryId'), '/datasets/Binary_blob_training_ds')]",
 				"[concat(variables('factoryId'), '/datasets/Binary_adls_training_ds')]",
 				"[concat(variables('factoryId'), '/datasets/Binary_Getmetatdata')]",
@@ -5675,6 +5707,7 @@
 				"annotations": []
 			},
 			"dependsOn": [
+				"[variables('factoryId')]",
 				"[concat(variables('factoryId'), '/datasets/Json_jobparam')]",
 				"[concat(variables('factoryId'), '/datasets/Binary1_dsjobparam')]"
 			]
@@ -5815,6 +5848,7 @@
 				"annotations": []
 			},
 			"dependsOn": [
+				"[variables('factoryId')]",
 				"[concat(variables('factoryId'), '/pipelines/aztraining_adf_copydata_df')]"
 			]
 		},
@@ -7685,6 +7719,7 @@
 				"lastPublishTime": "2022-06-18T16:21:12Z"
 			},
 			"dependsOn": [
+				"[variables('factoryId')]",
 				"[concat(variables('factoryId'), '/datasets/Json')]",
 				"[concat(variables('factoryId'), '/pipelines/EmailNotification')]",
 				"[concat(variables('factoryId'), '/datasets/Blob')]",
@@ -7954,6 +7989,7 @@
 				"lastPublishTime": "2022-06-18T16:21:12Z"
 			},
 			"dependsOn": [
+				"[variables('factoryId')]",
 				"[concat(variables('factoryId'), '/datasets/ds_adf_param')]",
 				"[concat(variables('factoryId'), '/linkedServices/AzureDatabricks_ls')]",
 				"[concat(variables('factoryId'), '/pipelines/EmailNotification')]"
@@ -8045,6 +8081,7 @@
 				"lastPublishTime": "2022-06-18T16:21:11Z"
 			},
 			"dependsOn": [
+				"[variables('factoryId')]",
 				"[concat(variables('factoryId'), '/datasets/ds_FileMigration')]",
 				"[concat(variables('factoryId'), '/datasets/ds_FileLanding')]"
 			]
@@ -8312,6 +8349,7 @@
 				"lastPublishTime": "2022-06-18T16:21:12Z"
 			},
 			"dependsOn": [
+				"[variables('factoryId')]",
 				"[concat(variables('factoryId'), '/datasets/ds_adf_param')]",
 				"[concat(variables('factoryId'), '/linkedServices/AzureDatabricks_ls')]",
 				"[concat(variables('factoryId'), '/pipelines/EmailNotification')]"
@@ -8360,6 +8398,7 @@
 				}
 			},
 			"dependsOn": [
+				"[variables('factoryId')]",
 				"[concat(variables('factoryId'), '/linkedServices/AzureDataLakeStorage_ls')]"
 			]
 		},
@@ -8397,6 +8436,7 @@
 				}
 			},
 			"dependsOn": [
+				"[variables('factoryId')]",
 				"[concat(variables('factoryId'), '/linkedServices/AzureDataLakeStorage_ls')]"
 			]
 		},
@@ -8431,6 +8471,7 @@
 				}
 			},
 			"dependsOn": [
+				"[variables('factoryId')]",
 				"[concat(variables('factoryId'), '/linkedServices/AzureDataLakeStorage_ls')]"
 			]
 		},
@@ -8477,6 +8518,7 @@
 				}
 			},
 			"dependsOn": [
+				"[variables('factoryId')]",
 				"[concat(variables('factoryId'), '/linkedServices/AzureDataLakeStorage_ls')]"
 			]
 		},
@@ -8523,6 +8565,7 @@
 				}
 			},
 			"dependsOn": [
+				"[variables('factoryId')]",
 				"[concat(variables('factoryId'), '/linkedServices/AzureDataLakeStorage_ls')]"
 			]
 		},
@@ -8569,6 +8612,7 @@
 				}
 			},
 			"dependsOn": [
+				"[variables('factoryId')]",
 				"[concat(variables('factoryId'), '/linkedServices/AzureDataLakeStorage_ls')]"
 			]
 		},
@@ -8606,6 +8650,7 @@
 				}
 			},
 			"dependsOn": [
+				"[variables('factoryId')]",
 				"[concat(variables('factoryId'), '/linkedServices/AzureDataLakeStorage_ls')]"
 			]
 		},
@@ -8643,6 +8688,7 @@
 				}
 			},
 			"dependsOn": [
+				"[variables('factoryId')]",
 				"[concat(variables('factoryId'), '/linkedServices/AzureDataLakeStorage_ls')]"
 			]
 		},
@@ -8680,6 +8726,7 @@
 				}
 			},
 			"dependsOn": [
+				"[variables('factoryId')]",
 				"[concat(variables('factoryId'), '/linkedServices/AzureDataLakeStorage_ls')]"
 			]
 		},
@@ -8703,6 +8750,7 @@
 				}
 			},
 			"dependsOn": [
+				"[variables('factoryId')]",
 				"[concat(variables('factoryId'), '/linkedServices/AzureBlobStorage_ls')]"
 			]
 		},
@@ -8741,6 +8789,7 @@
 				}
 			},
 			"dependsOn": [
+				"[variables('factoryId')]",
 				"[concat(variables('factoryId'), '/linkedServices/AzureBlobStorage_ls')]"
 			]
 		},
@@ -8771,6 +8820,7 @@
 				}
 			},
 			"dependsOn": [
+				"[variables('factoryId')]",
 				"[concat(variables('factoryId'), '/linkedServices/AzureBlobStorage_ls')]"
 			]
 		},
@@ -8793,6 +8843,7 @@
 				}
 			},
 			"dependsOn": [
+				"[variables('factoryId')]",
 				"[concat(variables('factoryId'), '/linkedServices/AzureDataLakeStorage_ls')]"
 			]
 		},
@@ -8815,6 +8866,7 @@
 				}
 			},
 			"dependsOn": [
+				"[variables('factoryId')]",
 				"[concat(variables('factoryId'), '/linkedServices/AzureDataLakeStorage_ls')]"
 			]
 		},
@@ -8837,6 +8889,7 @@
 				}
 			},
 			"dependsOn": [
+				"[variables('factoryId')]",
 				"[concat(variables('factoryId'), '/linkedServices/AzureBlobStorage_ls')]"
 			]
 		},
@@ -8859,6 +8912,7 @@
 				}
 			},
 			"dependsOn": [
+				"[variables('factoryId')]",
 				"[concat(variables('factoryId'), '/linkedServices/AzureDataLakeStorage_ls')]"
 			]
 		},
@@ -8881,6 +8935,7 @@
 				}
 			},
 			"dependsOn": [
+				"[variables('factoryId')]",
 				"[concat(variables('factoryId'), '/linkedServices/AzureBlobStorage_ls')]"
 			]
 		},
@@ -8903,6 +8958,7 @@
 				}
 			},
 			"dependsOn": [
+				"[variables('factoryId')]",
 				"[concat(variables('factoryId'), '/linkedServices/AzureDataLakeStorage_ls')]"
 			]
 		},
@@ -8926,6 +8982,7 @@
 				}
 			},
 			"dependsOn": [
+				"[variables('factoryId')]",
 				"[concat(variables('factoryId'), '/linkedServices/AzureBlobStorage_ls')]"
 			]
 		},
@@ -8948,6 +9005,7 @@
 				}
 			},
 			"dependsOn": [
+				"[variables('factoryId')]",
 				"[concat(variables('factoryId'), '/linkedServices/AzureBlobStorage_ls')]"
 			]
 		},
@@ -8978,6 +9036,7 @@
 				}
 			},
 			"dependsOn": [
+				"[variables('factoryId')]",
 				"[concat(variables('factoryId'), '/linkedServices/AzureBlobStorage_ls')]"
 			]
 		},
@@ -9000,6 +9059,7 @@
 				}
 			},
 			"dependsOn": [
+				"[variables('factoryId')]",
 				"[concat(variables('factoryId'), '/linkedServices/AzureBlobStorage_ls')]"
 			]
 		},
@@ -9026,6 +9086,7 @@
 				}
 			},
 			"dependsOn": [
+				"[variables('factoryId')]",
 				"[concat(variables('factoryId'), '/linkedServices/AzureBlobStorage_ls')]"
 			]
 		},
@@ -9052,6 +9113,7 @@
 				}
 			},
 			"dependsOn": [
+				"[variables('factoryId')]",
 				"[concat(variables('factoryId'), '/linkedServices/AzureBlobStorage_ls')]"
 			]
 		},
@@ -9074,6 +9136,7 @@
 				}
 			},
 			"dependsOn": [
+				"[variables('factoryId')]",
 				"[concat(variables('factoryId'), '/linkedServices/AzureBlobStorage_ls')]"
 			]
 		},
@@ -9100,6 +9163,7 @@
 				"schema": []
 			},
 			"dependsOn": [
+				"[variables('factoryId')]",
 				"[concat(variables('factoryId'), '/linkedServices/AzureBlobStorage_ls')]"
 			]
 		},
@@ -9123,6 +9187,7 @@
 				}
 			},
 			"dependsOn": [
+				"[variables('factoryId')]",
 				"[concat(variables('factoryId'), '/linkedServices/AzureBlobStorage_ls')]"
 			]
 		},
@@ -9147,6 +9212,7 @@
 				"schema": {}
 			},
 			"dependsOn": [
+				"[variables('factoryId')]",
 				"[concat(variables('factoryId'), '/linkedServices/AzureBlobStorage_ls')]"
 			]
 		},
@@ -12473,6 +12539,7 @@
 				}
 			},
 			"dependsOn": [
+				"[variables('factoryId')]",
 				"[concat(variables('factoryId'), '/linkedServices/AzureBlobStorage_ls')]"
 			]
 		},
@@ -12549,6 +12616,7 @@
 				]
 			},
 			"dependsOn": [
+				"[variables('factoryId')]",
 				"[concat(variables('factoryId'), '/linkedServices/AzureBlobStorage_ls')]"
 			]
 		},
@@ -12572,6 +12640,7 @@
 				"schema": {}
 			},
 			"dependsOn": [
+				"[variables('factoryId')]",
 				"[concat(variables('factoryId'), '/linkedServices/AzureBlobStorage_ls')]"
 			]
 		},
@@ -12664,6 +12733,7 @@
 				}
 			},
 			"dependsOn": [
+				"[variables('factoryId')]",
 				"[concat(variables('factoryId'), '/linkedServices/AzureBlobStorage_ls')]"
 			]
 		},
@@ -12695,6 +12765,7 @@
 				}
 			},
 			"dependsOn": [
+				"[variables('factoryId')]",
 				"[concat(variables('factoryId'), '/linkedServices/AzureBlobStorage_ls')]"
 			]
 		},
@@ -12733,6 +12804,7 @@
 				}
 			},
 			"dependsOn": [
+				"[variables('factoryId')]",
 				"[concat(variables('factoryId'), '/linkedServices/AzureBlobStorage_ls')]"
 			]
 		},
@@ -12757,6 +12829,7 @@
 				"schema": {}
 			},
 			"dependsOn": [
+				"[variables('factoryId')]",
 				"[concat(variables('factoryId'), '/linkedServices/AzureBlobStorage_ls')]"
 			]
 		},
@@ -12806,6 +12879,7 @@
 				]
 			},
 			"dependsOn": [
+				"[variables('factoryId')]",
 				"[concat(variables('factoryId'), '/linkedServices/AzureBlobStorage_ls')]"
 			]
 		},
@@ -12821,7 +12895,9 @@
 					"connectionString": "[parameters('AzureBlobStorage_ls_connectionString')]"
 				}
 			},
-			"dependsOn": []
+			"dependsOn": [
+				"[variables('factoryId')]"
+			]
 		},
 		{
 			"name": "[concat(parameters('factoryName'), '/AzureDataLakeStorage_ls')]",
@@ -12839,7 +12915,9 @@
 					}
 				}
 			},
-			"dependsOn": []
+			"dependsOn": [
+				"[variables('factoryId')]"
+			]
 		},
 		{
 			"name": "[concat(parameters('factoryName'), '/AzureDatabricks_V6_4')]",
@@ -12863,6 +12941,7 @@
 				}
 			},
 			"dependsOn": [
+				"[variables('factoryId')]",
 				"[concat(variables('factoryId'), '/linkedServices/AzureKeyVault_ls')]"
 			]
 		},
@@ -12887,6 +12966,7 @@
 				}
 			},
 			"dependsOn": [
+				"[variables('factoryId')]",
 				"[concat(variables('factoryId'), '/linkedServices/AzureKeyVault_ls')]"
 			]
 		},
@@ -12902,7 +12982,9 @@
 					"baseUrl": "[parameters('AzureKeyVault_ls_properties_typeProperties_baseUrl')]"
 				}
 			},
-			"dependsOn": []
+			"dependsOn": [
+				"[variables('factoryId')]"
+			]
 		},
 		{
 			"name": "[concat(parameters('factoryName'), '/TransientStorage_ls')]",
@@ -12915,7 +12997,9 @@
 					"url": "[parameters('TransientStorage_ls_properties_typeProperties_url')]"
 				}
 			},
-			"dependsOn": []
+			"dependsOn": [
+				"[variables('factoryId')]"
+			]
 		},
 		{
 			"name": "[concat(parameters('factoryName'), '/linkedService1')]",
@@ -12928,7 +13012,9 @@
 					"connectionString": "[parameters('linkedService1_connectionString')]"
 				}
 			},
-			"dependsOn": []
+			"dependsOn": [
+				"[variables('factoryId')]"
+			]
 		},
 		{
 			"name": "[concat(parameters('factoryName'), '/linkedService2')]",
@@ -12941,7 +13027,9 @@
 					"connectionString": "[parameters('linkedService2_connectionString')]"
 				}
 			},
-			"dependsOn": []
+			"dependsOn": [
+				"[variables('factoryId')]"
+			]
 		},
 		{
 			"name": "[concat(parameters('factoryName'), '/trigger_DataCopy')]",
@@ -12971,8 +13059,27 @@
 				}
 			},
 			"dependsOn": [
+				"[variables('factoryId')]",
 				"[concat(variables('factoryId'), '/pipelines/CopyPipeline_onetimecopy')]"
 			]
+		},
+		{
+			"name": "[parameters('factoryName')]",
+			"type": "Microsoft.DataFactory/factories",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"globalParameters": {
+					"FileName": {
+						"type": "string",
+						"value": "[parameters('dataFactory_properties_globalParameters_FileName_value')]"
+					}
+				}
+			},
+			"dependsOn": [],
+			"location": "[parameters('dataFactory_location')]",
+			"identity": {
+				"type": "[parameters('dataFactory_identity_type')]"
+			}
 		}
 	]
 }
