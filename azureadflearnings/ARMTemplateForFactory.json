@@ -3954,6 +3954,10 @@
 									"Directory": {
 										"value": "@pipeline().parameters.SourceDirectory",
 										"type": "Expression"
+									},
+									"Env": {
+										"value": "@pipeline().globalParameters.Env",
+										"type": "Expression"
 									}
 								}
 							},
@@ -3986,8 +3990,7 @@
 				},
 				"parameters": {
 					"SourceFolder": {
-						"type": "string",
-						"defaultValue": "structzone"
+						"type": "string"
 					},
 					"SourceDirectory": {
 						"type": "string",
@@ -5315,7 +5318,8 @@
 								"type": "BinarySource",
 								"storeSettings": {
 									"type": "AzureBlobStorageReadSettings",
-									"recursive": true
+									"recursive": false,
+									"deleteFilesAfterCompletion": false
 								},
 								"formatSettings": {
 									"type": "BinaryReadSettings"
@@ -8830,6 +8834,9 @@
 						"type": "string"
 					},
 					"Directory": {
+						"type": "string"
+					},
+					"Env": {
 						"type": "string"
 					}
 				},
