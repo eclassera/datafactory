@@ -55,7 +55,7 @@
 			"properties": {
 				"description": "Connect to your source store to delete files.",
 				"linkedServiceName": {
-					"referenceName": "AzureBlobStorage_ls",
+					"referenceName": "AzureDataLakeStorage_ls",
 					"type": "LinkedServiceReference"
 				},
 				"parameters": {
@@ -73,7 +73,15 @@
 				"type": "Binary",
 				"typeProperties": {
 					"location": {
-						"type": "AzureBlobStorageLocation"
+						"type": "AzureBlobFSLocation",
+						"folderPath": {
+							"value": "@dataset().Directory",
+							"type": "Expression"
+						},
+						"fileSystem": {
+							"value": "@dataset().FolderPath",
+							"type": "Expression"
+						}
 					}
 				}
 			},

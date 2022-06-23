@@ -3973,7 +3973,7 @@
 							},
 							"enableLogging": true,
 							"storeSettings": {
-								"type": "AzureBlobStorageReadSettings",
+								"type": "AzureBlobFSReadSettings",
 								"recursive": true,
 								"modifiedDatetimeEnd": {
 									"value": "@{adddays(pipeline().TriggerTime, -1)}",
@@ -3991,7 +3991,7 @@
 				"parameters": {
 					"SourceFolder": {
 						"type": "string",
-						"defaultValue": "structzone"
+						"defaultValue": "/structzone"
 					},
 					"SourceDirectory": {
 						"type": "string",
@@ -5827,11 +5827,16 @@
 								]
 							}
 						],
-						"userProperties": [],
+						"userProperties": [
+							{
+								"name": "pipeline Annotation",
+								"value": "\"Wait and until run \""
+							}
+						],
 						"typeProperties": {
 							"variableName": "ID1",
 							"value": {
-								"value": "10",
+								"value": "@pipeline().DataFactory",
 								"type": "Expression"
 							}
 						}
@@ -8827,7 +8832,7 @@
 			"properties": {
 				"description": "Connect to your source store to delete files.",
 				"linkedServiceName": {
-					"referenceName": "AzureBlobStorage_ls",
+					"referenceName": "AzureDataLakeStorage_ls",
 					"type": "LinkedServiceReference"
 				},
 				"parameters": {
@@ -8845,13 +8850,21 @@
 				"type": "Binary",
 				"typeProperties": {
 					"location": {
-						"type": "AzureBlobStorageLocation"
+						"type": "AzureBlobFSLocation",
+						"folderPath": {
+							"value": "@dataset().Directory",
+							"type": "Expression"
+						},
+						"fileSystem": {
+							"value": "@dataset().FolderPath",
+							"type": "Expression"
+						}
 					}
 				}
 			},
 			"dependsOn": [
 				"[variables('factoryId')]",
-				"[concat(variables('factoryId'), '/linkedServices/AzureBlobStorage_ls')]"
+				"[concat(variables('factoryId'), '/linkedServices/AzureDataLakeStorage_ls')]"
 			]
 		},
 		{
