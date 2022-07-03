@@ -17,6 +17,742 @@
 	},
 	"resources": [
 		{
+			"name": "[concat(parameters('factoryName'), '/Copy_or_Move_files_within_Blobstorage_containers')]",
+			"type": "Microsoft.DataFactory/factories/pipelines",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"description": "This is a common ADF pipeline that can be used to copy/move the files  between the folders(containers) within the local blob storage.\n\n*wild card is supported.",
+				"activities": [
+					{
+						"name": "Read_Env_File",
+						"type": "Lookup",
+						"dependsOn": [],
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"source": {
+								"type": "JsonSource",
+								"storeSettings": {
+									"type": "AzureBlobStorageReadSettings",
+									"recursive": false,
+									"enablePartitionDiscovery": false
+								},
+								"formatSettings": {
+									"type": "JsonReadSettings"
+								}
+							},
+							"dataset": {
+								"referenceName": "Json",
+								"type": "DatasetReference",
+								"parameters": {}
+							}
+						}
+					},
+					{
+						"name": "Email_Notify_Success",
+						"type": "ExecutePipeline",
+						"dependsOn": [
+							{
+								"activity": "If Condition1",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"userProperties": [],
+						"typeProperties": {
+							"pipeline": {
+								"referenceName": "EmailNotification",
+								"type": "PipelineReference"
+							},
+							"waitOnCompletion": true,
+							"parameters": {
+								"DataFactoryName": {
+									"value": "@pipeline().DataFactory",
+									"type": "Expression"
+								},
+								"PipelineName": {
+									"value": "@pipeline().Pipeline",
+									"type": "Expression"
+								},
+								"Message": {
+									"value": "@concat('Pipeline execution is successful')",
+									"type": "Expression"
+								},
+								"EmailTo": {
+									"value": "@activity('Read_Env_File').output.firstRow.succ_email_to",
+									"type": "Expression"
+								},
+								"SourceFile": {
+									"value": "@pipeline().parameters.Filename",
+									"type": "Expression"
+								},
+								"Status": "Success"
+							}
+						}
+					},
+					{
+						"name": "Email_Notify_Failure_02",
+						"type": "ExecutePipeline",
+						"dependsOn": [
+							{
+								"activity": "If Condition1",
+								"dependencyConditions": [
+									"Failed"
+								]
+							}
+						],
+						"userProperties": [],
+						"typeProperties": {
+							"pipeline": {
+								"referenceName": "EmailNotification",
+								"type": "PipelineReference"
+							},
+							"waitOnCompletion": true,
+							"parameters": {
+								"DataFactoryName": {
+									"value": "@pipeline().DataFactory",
+									"type": "Expression"
+								},
+								"PipelineName": {
+									"value": "@pipeline().Pipeline",
+									"type": "Expression"
+								},
+								"Message": {
+									"value": "@concat('The pipeline has encountered an error. Please check the logs for more details. ')",
+									"type": "Expression"
+								},
+								"EmailTo": {
+									"value": "@activity('Read_Env_File').output.firstRow.fail_email_to",
+									"type": "Expression"
+								},
+								"SourceFile": {
+									"value": "@pipeline().parameters.Filename",
+									"type": "Expression"
+								},
+								"Status": "Fail"
+							}
+						}
+					},
+					{
+						"name": "Email_Notify_Failure_01",
+						"type": "ExecutePipeline",
+						"dependsOn": [
+							{
+								"activity": "Read_Env_File",
+								"dependencyConditions": [
+									"Failed"
+								]
+							}
+						],
+						"userProperties": [],
+						"typeProperties": {
+							"pipeline": {
+								"referenceName": "EmailNotification",
+								"type": "PipelineReference"
+							},
+							"waitOnCompletion": true,
+							"parameters": {
+								"DataFactoryName": {
+									"value": "@pipeline().DataFactory",
+									"type": "Expression"
+								},
+								"PipelineName": {
+									"value": "@pipeline().Pipeline",
+									"type": "Expression"
+								},
+								"Message": {
+									"value": "@concat('Could not find or unable to read job params json file. Please check the logs for more details.')",
+									"type": "Expression"
+								},
+								"EmailTo": {
+									"value": "DL_BA_Finance@aa.com",
+									"type": "Expression"
+								},
+								"SourceFile": {
+									"value": "@pipeline().parameters.Filename",
+									"type": "Expression"
+								},
+								"Status": "Fail"
+							}
+						}
+					},
+					{
+						"name": "If Condition1",
+						"type": "IfCondition",
+						"dependsOn": [
+							{
+								"activity": "Read_Env_File",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"userProperties": [],
+						"typeProperties": {
+							"expression": {
+								"value": "@equals(pipeline().parameters.Move_Ind,'Y')",
+								"type": "Expression"
+							},
+							"ifFalseActivities": [
+								{
+									"name": "Copy_Files1",
+									"type": "Copy",
+									"dependsOn": [],
+									"policy": {
+										"timeout": "0.01:00:00",
+										"retry": 0,
+										"retryIntervalInSeconds": 30,
+										"secureOutput": false,
+										"secureInput": false
+									},
+									"userProperties": [],
+									"typeProperties": {
+										"source": {
+											"type": "BinarySource",
+											"storeSettings": {
+												"type": "AzureBlobStorageReadSettings",
+												"maxConcurrentConnections": 1,
+												"recursive": false,
+												"wildcardFileName": {
+													"value": "@concat(pipeline().parameters.Filename,'*')",
+													"type": "Expression"
+												},
+												"deleteFilesAfterCompletion": false
+											},
+											"formatSettings": {
+												"type": "BinaryReadSettings"
+											}
+										},
+										"sink": {
+											"type": "BinarySink",
+											"storeSettings": {
+												"type": "AzureBlobStorageWriteSettings"
+											}
+										},
+										"enableStaging": false,
+										"validateDataConsistency": false
+									},
+									"inputs": [
+										{
+											"referenceName": "Blob_Binary_Generic",
+											"type": "DatasetReference",
+											"parameters": {
+												"ContainerName": {
+													"value": "@pipeline().parameters.From_Folder",
+													"type": "Expression"
+												}
+											}
+										}
+									],
+									"outputs": [
+										{
+											"referenceName": "Blob_Binary_Generic",
+											"type": "DatasetReference",
+											"parameters": {
+												"ContainerName": {
+													"value": "@pipeline().parameters.To_Folder",
+													"type": "Expression"
+												}
+											}
+										}
+									]
+								}
+							],
+							"ifTrueActivities": [
+								{
+									"name": "Copy_Files",
+									"type": "Copy",
+									"dependsOn": [],
+									"policy": {
+										"timeout": "0.01:00:00",
+										"retry": 0,
+										"retryIntervalInSeconds": 30,
+										"secureOutput": false,
+										"secureInput": false
+									},
+									"userProperties": [],
+									"typeProperties": {
+										"source": {
+											"type": "BinarySource",
+											"storeSettings": {
+												"type": "AzureBlobStorageReadSettings",
+												"maxConcurrentConnections": 1,
+												"recursive": false,
+												"wildcardFileName": {
+													"value": "@concat(pipeline().parameters.Filename,'*')",
+													"type": "Expression"
+												},
+												"deleteFilesAfterCompletion": false
+											},
+											"formatSettings": {
+												"type": "BinaryReadSettings"
+											}
+										},
+										"sink": {
+											"type": "BinarySink",
+											"storeSettings": {
+												"type": "AzureBlobStorageWriteSettings"
+											}
+										},
+										"enableStaging": false,
+										"validateDataConsistency": false
+									},
+									"inputs": [
+										{
+											"referenceName": "Blob_Binary_Generic",
+											"type": "DatasetReference",
+											"parameters": {
+												"ContainerName": {
+													"value": "@pipeline().parameters.From_Folder",
+													"type": "Expression"
+												}
+											}
+										}
+									],
+									"outputs": [
+										{
+											"referenceName": "Blob_Binary_Generic",
+											"type": "DatasetReference",
+											"parameters": {
+												"ContainerName": {
+													"value": "@pipeline().parameters.To_Folder",
+													"type": "Expression"
+												}
+											}
+										}
+									]
+								},
+								{
+									"name": "DeleteFromSource",
+									"type": "Delete",
+									"dependsOn": [
+										{
+											"activity": "Copy_Files",
+											"dependencyConditions": [
+												"Succeeded"
+											]
+										}
+									],
+									"policy": {
+										"timeout": "7.00:00:00",
+										"retry": 0,
+										"retryIntervalInSeconds": 30,
+										"secureOutput": false,
+										"secureInput": false
+									},
+									"userProperties": [],
+									"typeProperties": {
+										"dataset": {
+											"referenceName": "Blob_Binary_Generic",
+											"type": "DatasetReference",
+											"parameters": {
+												"ContainerName": {
+													"value": "@pipeline().parameters.From_Folder",
+													"type": "Expression"
+												}
+											}
+										},
+										"logStorageSettings": {
+											"linkedServiceName": {
+												"referenceName": "AzureBlobStorage_ls",
+												"type": "LinkedServiceReference"
+											},
+											"path": "log"
+										},
+										"enableLogging": true,
+										"storeSettings": {
+											"type": "AzureBlobStorageReadSettings",
+											"recursive": false,
+											"wildcardFileName": {
+												"value": "@{concat(pipeline().parameters.Filename,'*')}",
+												"type": "Expression"
+											}
+										}
+									}
+								}
+							]
+						}
+					}
+				],
+				"policy": {
+					"elapsedTimeMetric": {},
+					"cancelAfter": {}
+				},
+				"parameters": {
+					"Filename": {
+						"type": "string",
+						"defaultValue": "NA"
+					},
+					"From_Folder": {
+						"type": "string",
+						"defaultValue": "NA"
+					},
+					"To_Folder": {
+						"type": "string",
+						"defaultValue": "NA"
+					},
+					"Move_Ind": {
+						"type": "string",
+						"defaultValue": "N"
+					}
+				},
+				"folder": {
+					"name": "DevOps"
+				},
+				"annotations": [],
+				"lastPublishTime": "2022-06-18T16:21:11Z"
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/Delete files older than 30 days')]",
+			"type": "Microsoft.DataFactory/factories/pipelines",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"description": "Please input a folder path as the parameter for this pipeline, and the pipeline will delete files which were last modified more than 30 days ago under the particular folder path.",
+				"activities": [
+					{
+						"name": "DeleteFiles",
+						"description": "Connect to your storage account to save the log file.",
+						"type": "Delete",
+						"dependsOn": [],
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"dataset": {
+								"referenceName": "BinaryDatasetForDeleteActivity1",
+								"type": "DatasetReference",
+								"parameters": {
+									"FolderPath": {
+										"value": "@pipeline().parameters.SourceFolder",
+										"type": "Expression"
+									},
+									"Directory": {
+										"value": "@pipeline().parameters.SourceDirectory",
+										"type": "Expression"
+									},
+									"Env": {
+										"value": "@pipeline().globalParameters.Env",
+										"type": "Expression"
+									}
+								}
+							},
+							"logStorageSettings": {
+								"linkedServiceName": {
+									"referenceName": "AzureDataLakeStorage_ls",
+									"type": "LinkedServiceReference"
+								},
+								"path": {
+									"value": "@pipeline().parameters.LoggingPath",
+									"type": "Expression"
+								}
+							},
+							"enableLogging": true,
+							"storeSettings": {
+								"type": "AzureBlobFSReadSettings",
+								"recursive": true,
+								"modifiedDatetimeEnd": {
+									"value": "@{adddays(pipeline().TriggerTime, -1)}",
+									"type": "Expression"
+								},
+								"wildcardFileName": "*"
+							}
+						}
+					}
+				],
+				"policy": {
+					"elapsedTimeMetric": {},
+					"cancelAfter": {}
+				},
+				"parameters": {
+					"SourceFolder": {
+						"type": "string",
+						"defaultValue": "/structzone"
+					},
+					"SourceDirectory": {
+						"type": "string",
+						"defaultValue": "STRUCT_ARCH"
+					},
+					"LoggingPath": {
+						"type": "string",
+						"defaultValue": "/transiant"
+					}
+				},
+				"folder": {
+					"name": "Azuretraining"
+				},
+				"annotations": []
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/Onetime_Table_Creation_Notebook')]",
+			"type": "Microsoft.DataFactory/factories/pipelines",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"description": "This is a common ADF pipeline that will be used to execute the onetime table creation notebooks.",
+				"activities": [
+					{
+						"name": "Read_Env_File",
+						"type": "Lookup",
+						"dependsOn": [],
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"source": {
+								"type": "JsonSource",
+								"storeSettings": {
+									"type": "AzureBlobStorageReadSettings",
+									"recursive": false,
+									"enablePartitionDiscovery": false
+								},
+								"formatSettings": {
+									"type": "JsonReadSettings"
+								}
+							},
+							"dataset": {
+								"referenceName": "Json",
+								"type": "DatasetReference",
+								"parameters": {}
+							}
+						}
+					},
+					{
+						"name": "Notebook",
+						"type": "DatabricksNotebook",
+						"dependsOn": [
+							{
+								"activity": "Read_Env_File",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"notebookPath": {
+								"value": "@concat(pipeline().parameters.Notebookpath,'/',pipeline().parameters.Notebookname)",
+								"type": "Expression"
+							},
+							"baseParameters": {
+								"Env": {
+									"value": "@activity('Read_Env_File').output.firstRow.azure_env",
+									"type": "Expression"
+								},
+								"Storageaccountname": {
+									"value": "@string(activity('Read_Env_File').output.firstRow.adls_storage_act)",
+									"type": "Expression"
+								},
+								"Structtablename": {
+									"value": "@pipeline().parameters.Structtablename",
+									"type": "Expression"
+								},
+								"Rejecttablename": {
+									"value": "@pipeline().parameters.Rejecttablename",
+									"type": "Expression"
+								},
+								"Preptablename": {
+									"value": "@pipeline().parameters.Preptablename",
+									"type": "Expression"
+								}
+							}
+						},
+						"linkedServiceName": {
+							"referenceName": "AzureDatabricks_ls",
+							"type": "LinkedServiceReference"
+						}
+					},
+					{
+						"name": "Email_Notify_Success",
+						"type": "ExecutePipeline",
+						"dependsOn": [
+							{
+								"activity": "Notebook",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"userProperties": [],
+						"typeProperties": {
+							"pipeline": {
+								"referenceName": "EmailNotification",
+								"type": "PipelineReference"
+							},
+							"waitOnCompletion": true,
+							"parameters": {
+								"DataFactoryName": {
+									"value": "@pipeline().DataFactory",
+									"type": "Expression"
+								},
+								"PipelineName": {
+									"value": "@pipeline().Pipeline",
+									"type": "Expression"
+								},
+								"Message": {
+									"value": "@concat('Onetime notebook execution is successful')",
+									"type": "Expression"
+								},
+								"EmailTo": {
+									"value": "@activity('Read_Env_File').output.firstRow.succ_email_to",
+									"type": "Expression"
+								},
+								"SourceFile": {
+									"value": "NA",
+									"type": "Expression"
+								},
+								"Status": "Success"
+							}
+						}
+					},
+					{
+						"name": "Email_Notify_Failure",
+						"type": "ExecutePipeline",
+						"dependsOn": [
+							{
+								"activity": "Notebook",
+								"dependencyConditions": [
+									"Failed"
+								]
+							}
+						],
+						"userProperties": [],
+						"typeProperties": {
+							"pipeline": {
+								"referenceName": "EmailNotification",
+								"type": "PipelineReference"
+							},
+							"waitOnCompletion": true,
+							"parameters": {
+								"DataFactoryName": {
+									"value": "@pipeline().DataFactory",
+									"type": "Expression"
+								},
+								"PipelineName": {
+									"value": "@pipeline().Pipeline",
+									"type": "Expression"
+								},
+								"Message": {
+									"value": "@concat('The pipeline has encountered an error. Please check the logs for more details. ')",
+									"type": "Expression"
+								},
+								"EmailTo": {
+									"value": "@activity('Read_Env_File').output.firstRow.fail_email_to",
+									"type": "Expression"
+								},
+								"SourceFile": {
+									"value": "NA",
+									"type": "Expression"
+								},
+								"Status": "Fail"
+							}
+						}
+					},
+					{
+						"name": "Email_Notify_09",
+						"type": "ExecutePipeline",
+						"dependsOn": [
+							{
+								"activity": "Read_Env_File",
+								"dependencyConditions": [
+									"Failed"
+								]
+							}
+						],
+						"userProperties": [],
+						"typeProperties": {
+							"pipeline": {
+								"referenceName": "EmailNotification",
+								"type": "PipelineReference"
+							},
+							"waitOnCompletion": true,
+							"parameters": {
+								"DataFactoryName": {
+									"value": "@pipeline().DataFactory",
+									"type": "Expression"
+								},
+								"PipelineName": {
+									"value": "@pipeline().Pipeline",
+									"type": "Expression"
+								},
+								"Message": {
+									"value": "@concat('Could not find or unable to read job params json file. Please check the logs for more details.')",
+									"type": "Expression"
+								},
+								"EmailTo": {
+									"value": "DL_BA_Finance@aa.com",
+									"type": "Expression"
+								},
+								"SourceFile": {
+									"value": "NA",
+									"type": "Expression"
+								},
+								"Status": "Fail"
+							}
+						}
+					}
+				],
+				"policy": {
+					"elapsedTimeMetric": {},
+					"cancelAfter": {}
+				},
+				"parameters": {
+					"Notebookpath": {
+						"type": "string",
+						"defaultValue": "/rvact/dev/onetime"
+					},
+					"Notebookname": {
+						"type": "string",
+						"defaultValue": "YQYR_Onetime_Table_Creation"
+					},
+					"Structtablename": {
+						"type": "string",
+						"defaultValue": "NA"
+					},
+					"Rejecttablename": {
+						"type": "string",
+						"defaultValue": "NA"
+					},
+					"Preptablename": {
+						"type": "string",
+						"defaultValue": "NA"
+					}
+				},
+				"folder": {
+					"name": "DevOps"
+				},
+				"annotations": [],
+				"lastPublishTime": "2022-06-18T16:21:12Z"
+			},
+			"dependsOn": []
+		},
+		{
 			"name": "[concat(parameters('factoryName'), '/Onetime_Table_Creation_Notebook_DElookup')]",
 			"type": "Microsoft.DataFactory/factories/pipelines",
 			"apiVersion": "2018-06-01",
@@ -1125,141 +1861,6 @@
 			"dependsOn": []
 		},
 		{
-			"name": "[concat(parameters('factoryName'), '/aztraining_adf_fail_df')]",
-			"type": "Microsoft.DataFactory/factories/pipelines",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"activities": [
-					{
-						"name": "Fail_jobparam",
-						"type": "Fail",
-						"dependsOn": [
-							{
-								"activity": "Lookup_jobparmfile",
-								"dependencyConditions": [
-									"Failed"
-								]
-							}
-						],
-						"userProperties": [],
-						"typeProperties": {
-							"message": {
-								"value": "{\n\n\"pipelineName\" : \"aztraining_adf_fail_df\"\n\"type\" : \"Failure Message\"\n\"ErrorCode\" : \"500\"\n}",
-								"type": "Expression"
-							},
-							"errorCode": {
-								"value": "500",
-								"type": "Expression"
-							}
-						}
-					},
-					{
-						"name": "Lookup_jobparmfile",
-						"type": "Lookup",
-						"dependsOn": [],
-						"policy": {
-							"timeout": "7.00:00:00",
-							"retry": 0,
-							"retryIntervalInSeconds": 30,
-							"secureOutput": false,
-							"secureInput": false
-						},
-						"userProperties": [],
-						"typeProperties": {
-							"source": {
-								"type": "JsonSource",
-								"storeSettings": {
-									"type": "AzureBlobStorageReadSettings",
-									"recursive": true,
-									"enablePartitionDiscovery": false
-								},
-								"formatSettings": {
-									"type": "JsonReadSettings"
-								}
-							},
-							"dataset": {
-								"referenceName": "Json_jobparam",
-								"type": "DatasetReference",
-								"parameters": {}
-							}
-						}
-					},
-					{
-						"name": "Get Metadata_jobparam",
-						"type": "GetMetadata",
-						"dependsOn": [
-							{
-								"activity": "Lookup_jobparmfile",
-								"dependencyConditions": [
-									"Succeeded"
-								]
-							}
-						],
-						"policy": {
-							"timeout": "7.00:00:00",
-							"retry": 0,
-							"retryIntervalInSeconds": 30,
-							"secureOutput": false,
-							"secureInput": false
-						},
-						"userProperties": [],
-						"typeProperties": {
-							"dataset": {
-								"referenceName": "Binary1_dsjobparam",
-								"type": "DatasetReference",
-								"parameters": {}
-							},
-							"fieldList": [
-								"itemName"
-							],
-							"storeSettings": {
-								"type": "AzureBlobStorageReadSettings",
-								"recursive": true,
-								"enablePartitionDiscovery": false
-							},
-							"formatSettings": {
-								"type": "BinaryReadSettings"
-							}
-						}
-					},
-					{
-						"name": "Append variable1_Example",
-						"type": "AppendVariable",
-						"dependsOn": [
-							{
-								"activity": "Get Metadata_jobparam",
-								"dependencyConditions": [
-									"Succeeded"
-								]
-							}
-						],
-						"userProperties": [],
-						"typeProperties": {
-							"variableName": "Append_Test",
-							"value": {
-								"value": "@activity('Get Metadata_jobparam').output.itemName",
-								"type": "Expression"
-							}
-						}
-					}
-				],
-				"policy": {
-					"elapsedTimeMetric": {},
-					"cancelAfter": {}
-				},
-				"variables": {
-					"Append_Test": {
-						"type": "Array"
-					}
-				},
-				"folder": {
-					"name": "Azuretraining"
-				},
-				"annotations": []
-			},
-			"dependsOn": []
-		},
-		{
 			"name": "[concat(parameters('factoryName'), '/pl_dataMigration_HistorymigrateFiles_01')]",
 			"type": "Microsoft.DataFactory/factories/pipelines",
 			"apiVersion": "2018-06-01",
@@ -1512,93 +2113,6 @@
 				},
 				"annotations": [],
 				"lastPublishTime": "2022-06-18T16:21:12Z"
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/pl_dataMigration_copyMigrationFileToLanding')]",
-			"type": "Microsoft.DataFactory/factories/pipelines",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"activities": [
-					{
-						"name": "ac_copyMigrationFileToLanding",
-						"type": "Copy",
-						"dependsOn": [],
-						"policy": {
-							"timeout": "7.00:00:00",
-							"retry": 0,
-							"retryIntervalInSeconds": 30,
-							"secureOutput": false,
-							"secureInput": false
-						},
-						"userProperties": [],
-						"typeProperties": {
-							"source": {
-								"type": "BinarySource",
-								"storeSettings": {
-									"type": "AzureBlobStorageReadSettings",
-									"recursive": true
-								},
-								"formatSettings": {
-									"type": "BinaryReadSettings"
-								}
-							},
-							"sink": {
-								"type": "BinarySink",
-								"storeSettings": {
-									"type": "AzureBlobStorageWriteSettings"
-								}
-							},
-							"enableStaging": false
-						},
-						"inputs": [
-							{
-								"referenceName": "ds_FileMigration",
-								"type": "DatasetReference",
-								"parameters": {
-									"sourceFileName": {
-										"value": "@pipeline().parameters.filename",
-										"type": "Expression"
-									},
-									"folderName": {
-										"value": "@pipeline().parameters.feed_name",
-										"type": "Expression"
-									}
-								}
-							}
-						],
-						"outputs": [
-							{
-								"referenceName": "ds_FileLanding",
-								"type": "DatasetReference",
-								"parameters": {
-									"sourceFileName": {
-										"value": "@pipeline().parameters.filename",
-										"type": "Expression"
-									}
-								}
-							}
-						]
-					}
-				],
-				"policy": {
-					"elapsedTimeMetric": {},
-					"cancelAfter": {}
-				},
-				"parameters": {
-					"filename": {
-						"type": "string"
-					},
-					"feed_name": {
-						"type": "string"
-					}
-				},
-				"folder": {
-					"name": "History_Migration"
-				},
-				"annotations": [],
-				"lastPublishTime": "2022-06-18T16:21:11Z"
 			},
 			"dependsOn": []
 		},
@@ -1867,6 +2381,35 @@
 			"dependsOn": []
 		},
 		{
+			"name": "[concat(parameters('factoryName'), '/trigger_DataCopy')]",
+			"type": "Microsoft.DataFactory/factories/triggers",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"runtimeState": "Stopped",
+				"pipelines": [
+					{
+						"pipelineReference": {
+							"referenceName": "CopyPipeline_onetimecopy",
+							"type": "PipelineReference"
+						},
+						"parameters": {}
+					}
+				],
+				"type": "BlobEventsTrigger",
+				"typeProperties": {
+					"blobPathBeginsWith": "/rawblob/blobs/LNDG_",
+					"blobPathEndsWith": ".txt",
+					"ignoreEmptyBlobs": true,
+					"scope": "[parameters('trigger_DataCopy_properties_typeProperties_scope')]",
+					"events": [
+						"Microsoft.Storage.BlobCreated"
+					]
+				}
+			},
+			"dependsOn": []
+		},
+		{
 			"name": "[concat(parameters('factoryName'), '/pipelin_Untilactivity_Test')]",
 			"type": "Microsoft.DataFactory/factories/pipelines",
 			"apiVersion": "2018-06-01",
@@ -1963,7 +2506,7 @@
 						"typeProperties": {
 							"variableName": "ID1",
 							"value": {
-								"value": "@pipeline().DataFactory",
+								"value": "10",
 								"type": "Expression"
 							}
 						}
@@ -3875,35 +4418,6 @@
 				},
 				"annotations": [],
 				"lastPublishTime": "2022-06-18T16:21:12Z"
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/trigger_DataCopy')]",
-			"type": "Microsoft.DataFactory/factories/triggers",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"annotations": [],
-				"runtimeState": "Stopped",
-				"pipelines": [
-					{
-						"pipelineReference": {
-							"referenceName": "CopyPipeline_onetimecopy",
-							"type": "PipelineReference"
-						},
-						"parameters": {}
-					}
-				],
-				"type": "BlobEventsTrigger",
-				"typeProperties": {
-					"blobPathBeginsWith": "/rawblob/blobs/LNDG_",
-					"blobPathEndsWith": ".txt",
-					"ignoreEmptyBlobs": true,
-					"scope": "[parameters('trigger_DataCopy_properties_typeProperties_scope')]",
-					"events": [
-						"Microsoft.Storage.BlobCreated"
-					]
-				}
 			},
 			"dependsOn": []
 		}

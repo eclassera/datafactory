@@ -11,10 +11,6 @@
 			"type": "secureString",
 			"metadata": "Secure string for 'connectionString' of 'AzureBlobStorage_ls'"
 		},
-		"AzureDataLakeStorage_ls_accountKey": {
-			"type": "secureString",
-			"metadata": "Secure string for 'accountKey' of 'AzureDataLakeStorage_ls'"
-		},
 		"linkedService1_connectionString": {
 			"type": "secureString",
 			"metadata": "Secure string for 'connectionString' of 'linkedService1'"
@@ -30,6 +26,10 @@
 		"AzureKeyVault_ls_properties_typeProperties_baseUrl": {
 			"type": "string",
 			"defaultValue": "https://ba-n-zeaus-rvact-dev-kv.vault.azure.net/"
+		},
+		"AzureKeyVault_training_properties_typeProperties_baseUrl": {
+			"type": "string",
+			"defaultValue": "https://azure-east-kv.vault.azure.net/"
 		},
 		"TransientStorage_ls_properties_typeProperties_url": {
 			"type": "string",
@@ -4170,48 +4170,6 @@
 			]
 		},
 		{
-			"name": "[concat(parameters('factoryName'), '/EmailNotification_Pipelines_Webhook')]",
-			"type": "Microsoft.DataFactory/factories/pipelines",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"activities": [
-					{
-						"name": "WebHook1",
-						"type": "WebHook",
-						"dependsOn": [],
-						"userProperties": [],
-						"typeProperties": {
-							"url": {
-								"value": "https://prod2-29.eastus2.logic.azure.com:443/workflows/67cae0b99360404da450c207d5f89588/triggers/manual/paths/invoke?api-version=2016-10-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=4Wj2YAfbM-UokQivut2TWfbLXqb9ZKh13CY37pJLM3g",
-								"type": "Expression"
-							},
-							"method": "POST",
-							"headers": {
-								"Content-Type": {
-									"value": "application/json",
-									"type": "Expression"
-								}
-							},
-							"body": {},
-							"timeout": "00:10:00",
-							"reportStatusOnCallBack": true
-						}
-					}
-				],
-				"policy": {
-					"elapsedTimeMetric": {},
-					"cancelAfter": {}
-				},
-				"folder": {
-					"name": "Azuretraining"
-				},
-				"annotations": []
-			},
-			"dependsOn": [
-				"[variables('factoryId')]"
-			]
-		},
-		{
 			"name": "[concat(parameters('factoryName'), '/Onetime_Table_Creation_Notebook')]",
 			"type": "Microsoft.DataFactory/factories/pipelines",
 			"apiVersion": "2018-06-01",
@@ -5836,7 +5794,7 @@
 						"typeProperties": {
 							"variableName": "ID1",
 							"value": {
-								"value": "@pipeline().DataFactory",
+								"value": "10",
 								"type": "Expression"
 							}
 						}
@@ -12965,13 +12923,19 @@
 				"typeProperties": {
 					"url": "[parameters('AzureDataLakeStorage_ls_properties_typeProperties_url')]",
 					"accountKey": {
-						"type": "SecureString",
-						"value": "[parameters('AzureDataLakeStorage_ls_accountKey')]"
+						"type": "AzureKeyVaultSecret",
+						"store": {
+							"referenceName": "AzureKeyVault_training",
+							"type": "LinkedServiceReference"
+						},
+						"secretName": "azuretrainingsecreat",
+						"secretVersion": "03a5781fbb7f4a2c856af6fba3c43938"
 					}
 				}
 			},
 			"dependsOn": [
-				"[variables('factoryId')]"
+				"[variables('factoryId')]",
+				"[concat(variables('factoryId'), '/linkedServices/AzureKeyVault_training')]"
 			]
 		},
 		{
@@ -13035,6 +12999,21 @@
 				"type": "AzureKeyVault",
 				"typeProperties": {
 					"baseUrl": "[parameters('AzureKeyVault_ls_properties_typeProperties_baseUrl')]"
+				}
+			},
+			"dependsOn": [
+				"[variables('factoryId')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/AzureKeyVault_training')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "AzureKeyVault",
+				"typeProperties": {
+					"baseUrl": "[parameters('AzureKeyVault_training_properties_typeProperties_baseUrl')]"
 				}
 			},
 			"dependsOn": [
@@ -13116,6 +13095,15 @@
 			"dependsOn": [
 				"[variables('factoryId')]",
 				"[concat(variables('factoryId'), '/pipelines/CopyPipeline_onetimecopy')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/default')]",
+			"type": "Microsoft.DataFactory/factories/managedVirtualNetworks",
+			"apiVersion": "2018-06-01",
+			"properties": {},
+			"dependsOn": [
+				"[variables('factoryId')]"
 			]
 		},
 		{
