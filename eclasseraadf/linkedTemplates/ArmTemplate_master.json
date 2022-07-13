@@ -1,0 +1,179 @@
+{
+	"$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"factoryName": {
+			"type": "string",
+			"metadata": "Data Factory name",
+			"defaultValue": "eclasseraadf"
+		},
+		"AzureBlobStorage_ls_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'AzureBlobStorage_ls'"
+		},
+		"linkedService1_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'linkedService1'"
+		},
+		"linkedService2_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'linkedService2'"
+		},
+		"AzureDataExplorer_linkservice_properties_typeProperties_endpoint": {
+			"type": "string",
+			"defaultValue": "https://azureadxtraining.eastus2.kusto.windows.net"
+		},
+		"AzureDataExplorer_linkservice_properties_typeProperties_database": {
+			"type": "string",
+			"defaultValue": "mra_dwh"
+		},
+		"AzureDataLakeStorage_ls_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://azuredataadlsdev.dfs.core.windows.net/"
+		},
+		"AzureKeyVault_adx_properties_typeProperties_baseUrl": {
+			"type": "string",
+			"defaultValue": "https://azure-east-kv.vault.azure.net/"
+		},
+		"AzureKeyVault_ls_properties_typeProperties_baseUrl": {
+			"type": "string",
+			"defaultValue": "https://ba-n-zeaus-rvact-dev-kv.vault.azure.net/"
+		},
+		"AzureKeyVault_training_properties_typeProperties_baseUrl": {
+			"type": "string",
+			"defaultValue": "https://azure-east-kv.vault.azure.net/"
+		},
+		"TransientStorage_ls_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://banoriontransient.dfs.core.windows.net"
+		},
+		"trigger_DataCopy_properties_typeProperties_scope": {
+			"type": "string",
+			"defaultValue": "/subscriptions/b8501930-c7b6-4fa6-a05b-c62ac6d01b8c/resourceGroups/azuretraining/providers/Microsoft.Storage/storageAccounts/azuredatablobdev"
+		},
+		"containerUri": {
+			"type": "string",
+			"metadata": "URI to storage account containing linked ARM templates"
+		},
+		"containerSasToken": {
+			"type": "string",
+			"metadata": "Sas token to storage account containing linked ARM templates"
+		}
+	},
+	"variables": {
+		"factoryId": "[concat('Microsoft.DataFactory/factories/', parameters('factoryName'))]"
+	},
+	"resources": [
+		{
+			"name": "eclasseraadf_ArmTemplate_0",
+			"type": "Microsoft.Resources/deployments",
+			"apiVersion": "2018-02-01",
+			"properties": {
+				"mode": "incremental",
+				"templateLink": {
+					"uri": "[concat(parameters('containerUri'), '/ArmTemplate_0.json', parameters('containerSasToken'))]",
+					"contentVersion": "1.0.0.0"
+				},
+				"parameters": {
+					"factoryName": {
+						"value": "[parameters('factoryName')]"
+					},
+					"AzureBlobStorage_ls_connectionString": {
+						"value": "[parameters('AzureBlobStorage_ls_connectionString')]"
+					},
+					"linkedService1_connectionString": {
+						"value": "[parameters('linkedService1_connectionString')]"
+					},
+					"linkedService2_connectionString": {
+						"value": "[parameters('linkedService2_connectionString')]"
+					},
+					"AzureDataExplorer_linkservice_properties_typeProperties_endpoint": {
+						"value": "[parameters('AzureDataExplorer_linkservice_properties_typeProperties_endpoint')]"
+					},
+					"AzureDataExplorer_linkservice_properties_typeProperties_database": {
+						"value": "[parameters('AzureDataExplorer_linkservice_properties_typeProperties_database')]"
+					},
+					"AzureKeyVault_adx_properties_typeProperties_baseUrl": {
+						"value": "[parameters('AzureKeyVault_adx_properties_typeProperties_baseUrl')]"
+					},
+					"AzureKeyVault_ls_properties_typeProperties_baseUrl": {
+						"value": "[parameters('AzureKeyVault_ls_properties_typeProperties_baseUrl')]"
+					},
+					"AzureKeyVault_training_properties_typeProperties_baseUrl": {
+						"value": "[parameters('AzureKeyVault_training_properties_typeProperties_baseUrl')]"
+					},
+					"TransientStorage_ls_properties_typeProperties_url": {
+						"value": "[parameters('TransientStorage_ls_properties_typeProperties_url')]"
+					}
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "eclasseraadf_ArmTemplate_1",
+			"type": "Microsoft.Resources/deployments",
+			"apiVersion": "2018-02-01",
+			"properties": {
+				"mode": "incremental",
+				"templateLink": {
+					"uri": "[concat(parameters('containerUri'), '/ArmTemplate_1.json', parameters('containerSasToken'))]",
+					"contentVersion": "1.0.0.0"
+				},
+				"parameters": {
+					"factoryName": {
+						"value": "[parameters('factoryName')]"
+					},
+					"AzureDataLakeStorage_ls_properties_typeProperties_url": {
+						"value": "[parameters('AzureDataLakeStorage_ls_properties_typeProperties_url')]"
+					}
+				}
+			},
+			"dependsOn": [
+				"[resourceId('Microsoft.Resources/deployments', 'eclasseraadf_ArmTemplate_0')]"
+			]
+		},
+		{
+			"name": "eclasseraadf_ArmTemplate_2",
+			"type": "Microsoft.Resources/deployments",
+			"apiVersion": "2018-02-01",
+			"properties": {
+				"mode": "incremental",
+				"templateLink": {
+					"uri": "[concat(parameters('containerUri'), '/ArmTemplate_2.json', parameters('containerSasToken'))]",
+					"contentVersion": "1.0.0.0"
+				},
+				"parameters": {
+					"factoryName": {
+						"value": "[parameters('factoryName')]"
+					}
+				}
+			},
+			"dependsOn": [
+				"[resourceId('Microsoft.Resources/deployments', 'eclasseraadf_ArmTemplate_1')]"
+			]
+		},
+		{
+			"name": "eclasseraadf_ArmTemplate_3",
+			"type": "Microsoft.Resources/deployments",
+			"apiVersion": "2018-02-01",
+			"properties": {
+				"mode": "incremental",
+				"templateLink": {
+					"uri": "[concat(parameters('containerUri'), '/ArmTemplate_3.json', parameters('containerSasToken'))]",
+					"contentVersion": "1.0.0.0"
+				},
+				"parameters": {
+					"factoryName": {
+						"value": "[parameters('factoryName')]"
+					},
+					"trigger_DataCopy_properties_typeProperties_scope": {
+						"value": "[parameters('trigger_DataCopy_properties_typeProperties_scope')]"
+					}
+				}
+			},
+			"dependsOn": [
+				"[resourceId('Microsoft.Resources/deployments', 'eclasseraadf_ArmTemplate_2')]"
+			]
+		}
+	]
+}
