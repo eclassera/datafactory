@@ -42,8 +42,7 @@
 					"sink": {
 						"type": "DelimitedTextSink",
 						"storeSettings": {
-							"type": "AzureBlobFSWriteSettings",
-							"maxConcurrentConnections": 10
+							"type": "AzureBlobStorageWriteSettings"
 						},
 						"formatSettings": {
 							"type": "DelimitedTextWriteSettings",
@@ -52,6 +51,7 @@
 						}
 					},
 					"enableStaging": false,
+					"validateDataConsistency": false,
 					"logSettings": {
 						"enableCopyActivityLog": true,
 						"copyActivityLogSettings": {
@@ -67,7 +67,19 @@
 						}
 					},
 					"dataIntegrationUnits": 16
-				}
+				},
+				"inputs": [
+					{
+						"referenceName": "SourceDataset_opy",
+						"type": "DatasetReference"
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "SourceDataset_opy",
+						"type": "DatasetReference"
+					}
+				]
 			}
 		],
 		"folder": {
