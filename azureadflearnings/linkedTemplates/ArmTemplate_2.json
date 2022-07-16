@@ -13,19 +13,16 @@
 	},
 	"resources": [
 		{
-			"name": "[concat(parameters('factoryName'), '/ADLS_work_spii')]",
+			"name": "[concat(parameters('factoryName'), '/ds_FileLanding')]",
 			"type": "Microsoft.DataFactory/factories/datasets",
 			"apiVersion": "2018-06-01",
 			"properties": {
 				"linkedServiceName": {
-					"referenceName": "AzureDataLakeStorage_ls",
+					"referenceName": "AzureBlobStorage_ls",
 					"type": "LinkedServiceReference"
 				},
 				"parameters": {
-					"env": {
-						"type": "string"
-					},
-					"adls_storage_cntner_spii": {
+					"sourceFileName": {
 						"type": "string"
 					}
 				},
@@ -33,22 +30,145 @@
 				"type": "Binary",
 				"typeProperties": {
 					"location": {
-						"type": "AzureBlobFSLocation",
-						"folderPath": {
-							"value": "@concat(dataset().env,'/work-spii')",
+						"type": "AzureBlobStorageLocation",
+						"fileName": {
+							"value": "@dataset().sourceFileName",
 							"type": "Expression"
 						},
-						"fileSystem": {
-							"value": "@dataset().adls_storage_cntner_spii",
+						"container": "landing"
+					}
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/ds_FileMigration')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "AzureBlobStorage_ls",
+					"type": "LinkedServiceReference"
+				},
+				"parameters": {
+					"sourceFileName": {
+						"type": "string"
+					},
+					"folderName": {
+						"type": "string"
+					}
+				},
+				"annotations": [],
+				"type": "Binary",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobStorageLocation",
+						"fileName": {
+							"value": "@dataset().sourceFileName",
 							"type": "Expression"
-						}
+						},
+						"folderPath": {
+							"value": "@dataset().folderName",
+							"type": "Expression"
+						},
+						"container": "migration"
 					}
 				}
 			},
 			"dependsOn": []
 		},
 		{
-			"name": "[concat(parameters('factoryName'), '/Binary_ADLS_ds')]",
+			"name": "[concat(parameters('factoryName'), '/ds_adf_param')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "AzureBlobStorage_ls",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "Json",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobStorageLocation",
+						"fileName": "job_param_Historymigration.json",
+						"container": "config"
+					}
+				},
+				"schema": {}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/jobparamlookup')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "AzureBlobStorage_ls",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "DelimitedText",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobStorageLocation",
+						"fileName": "Jobparam.txt",
+						"container": "transiant"
+					},
+					"columnDelimiter": "|",
+					"escapeChar": "\\",
+					"firstRowAsHeader": true,
+					"quoteChar": "\""
+				},
+				"schema": [
+					{
+						"name": "env",
+						"type": "String"
+					},
+					{
+						"name": "blob_path",
+						"type": "String"
+					},
+					{
+						"name": "ADLS_PATH",
+						"type": "String"
+					},
+					{
+						"name": "Token_id",
+						"type": "String"
+					},
+					{
+						"name": "Param_path",
+						"type": "String"
+					}
+				]
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/Binary_blob_training_ds1')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "AzureBlobStorage_ls",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "Binary",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobStorageLocation",
+						"fileName": "LNDG_TYCO_CUST_CONVIT.txt",
+						"container": "rawzone"
+					}
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/Binary_adls_training_ds1')]",
 			"type": "Microsoft.DataFactory/factories/datasets",
 			"apiVersion": "2018-06-01",
 			"properties": {
@@ -68,47 +188,101 @@
 			"dependsOn": []
 		},
 		{
-			"name": "[concat(parameters('factoryName'), '/Binary_Forch_Adls')]",
+			"name": "[concat(parameters('factoryName'), '/Binary_Getmetatdata1')]",
 			"type": "Microsoft.DataFactory/factories/datasets",
 			"apiVersion": "2018-06-01",
 			"properties": {
 				"linkedServiceName": {
-					"referenceName": "AzureDataLakeStorage_ls",
+					"referenceName": "AzureBlobStorage_ls",
 					"type": "LinkedServiceReference"
 				},
 				"annotations": [],
 				"type": "Binary",
 				"typeProperties": {
 					"location": {
-						"type": "AzureBlobFSLocation",
-						"fileSystem": "structzone"
+						"type": "AzureBlobStorageLocation",
+						"container": "rawzone"
 					}
 				}
 			},
 			"dependsOn": []
 		},
 		{
-			"name": "[concat(parameters('factoryName'), '/Binary_adls_training_ds')]",
+			"name": "[concat(parameters('factoryName'), '/SourceDataset_opy1')]",
 			"type": "Microsoft.DataFactory/factories/datasets",
 			"apiVersion": "2018-06-01",
 			"properties": {
 				"linkedServiceName": {
-					"referenceName": "AzureDataLakeStorage_ls",
+					"referenceName": "AzureBlobStorage_ls",
 					"type": "LinkedServiceReference"
 				},
 				"annotations": [],
-				"type": "Binary",
+				"type": "DelimitedText",
 				"typeProperties": {
 					"location": {
-						"type": "AzureBlobFSLocation",
-						"fileSystem": "structzone"
+						"type": "AzureBlobStorageLocation",
+						"container": "rawzone"
+					},
+					"columnDelimiter": ",",
+					"escapeChar": "\\",
+					"firstRowAsHeader": false,
+					"quoteChar": "\""
+				},
+				"schema": [
+					{
+						"name": "Key",
+						"type": "String"
+					},
+					{
+						"name": "PolicyNumber",
+						"type": "String"
+					},
+					{
+						"name": "BirthDate",
+						"type": "String"
+					},
+					{
+						"name": "SSN",
+						"type": "String"
+					},
+					{
+						"name": "Email",
+						"type": "String"
+					},
+					{
+						"name": "Name",
+						"type": "String"
+					},
+					{
+						"name": "Address1",
+						"type": "String"
+					},
+					{
+						"name": "Address2",
+						"type": "String"
+					},
+					{
+						"name": "City",
+						"type": "String"
+					},
+					{
+						"name": "State",
+						"type": "String"
+					},
+					{
+						"name": "Zip5",
+						"type": "String"
+					},
+					{
+						"name": "Zip4",
+						"type": "String"
 					}
-				}
+				]
 			},
 			"dependsOn": []
 		},
 		{
-			"name": "[concat(parameters('factoryName'), '/Binary_copy_foreach')]",
+			"name": "[concat(parameters('factoryName'), '/DestinationDataset_opy1')]",
 			"type": "Microsoft.DataFactory/factories/datasets",
 			"apiVersion": "2018-06-01",
 			"properties": {
@@ -117,13 +291,17 @@
 					"type": "LinkedServiceReference"
 				},
 				"annotations": [],
-				"type": "Binary",
+				"type": "DelimitedText",
 				"typeProperties": {
 					"location": {
 						"type": "AzureBlobFSLocation",
-						"fileSystem": "rawzone"
-					}
-				}
+						"fileSystem": "structzone"
+					},
+					"columnDelimiter": ",",
+					"escapeChar": "\\",
+					"quoteChar": "\""
+				},
+				"schema": []
 			},
 			"dependsOn": []
 		},
@@ -1004,9 +1182,7 @@
 				"annotations": [],
 				"lastPublishTime": "2022-06-18T16:21:12Z"
 			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/datasets/ADLS_work_spii')]"
-			]
+			"dependsOn": []
 		},
 		{
 			"name": "[concat(parameters('factoryName'), '/ADLS Data Cleanup_Pii')]",
@@ -4351,1054 +4527,6 @@
 				},
 				"annotations": [],
 				"lastPublishTime": "2022-06-18T16:21:11Z"
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/Onetime_Table_and_View_Creation_Notebook')]",
-			"type": "Microsoft.DataFactory/factories/pipelines",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"description": "This is a common ADF pipeline that will be used to execute the onetime table  & view creation notebooks.",
-				"activities": [
-					{
-						"name": "Read_Env_File",
-						"type": "Lookup",
-						"dependsOn": [],
-						"policy": {
-							"timeout": "7.00:00:00",
-							"retry": 0,
-							"retryIntervalInSeconds": 30,
-							"secureOutput": false,
-							"secureInput": false
-						},
-						"userProperties": [],
-						"typeProperties": {
-							"source": {
-								"type": "JsonSource",
-								"storeSettings": {
-									"type": "AzureBlobStorageReadSettings",
-									"recursive": false,
-									"enablePartitionDiscovery": false
-								},
-								"formatSettings": {
-									"type": "JsonReadSettings"
-								}
-							},
-							"dataset": {
-								"referenceName": "Json",
-								"type": "DatasetReference",
-								"parameters": {}
-							}
-						}
-					},
-					{
-						"name": "Notebook",
-						"type": "DatabricksNotebook",
-						"dependsOn": [
-							{
-								"activity": "Read_Env_File",
-								"dependencyConditions": [
-									"Succeeded"
-								]
-							}
-						],
-						"policy": {
-							"timeout": "7.00:00:00",
-							"retry": 0,
-							"retryIntervalInSeconds": 30,
-							"secureOutput": false,
-							"secureInput": false
-						},
-						"userProperties": [],
-						"typeProperties": {
-							"notebookPath": {
-								"value": "@concat(pipeline().parameters.Notebookpath,'/',pipeline().parameters.Notebookname)",
-								"type": "Expression"
-							},
-							"baseParameters": {
-								"env": {
-									"value": "@activity('Read_Env_File').output.firstRow.azure_env",
-									"type": "Expression"
-								},
-								"Storageaccountname": {
-									"value": "@string(activity('Read_Env_File').output.firstRow.adls_storage_act)",
-									"type": "Expression"
-								},
-								"Structtablename": {
-									"value": "@pipeline().parameters.Structtablename",
-									"type": "Expression"
-								},
-								"Rejecttablename": {
-									"value": "@pipeline().parameters.Rejecttablename",
-									"type": "Expression"
-								},
-								"Preptablename": {
-									"value": "@pipeline().parameters.Preptablename",
-									"type": "Expression"
-								},
-								"adls_storage_cntner": {
-									"value": "@string(activity('Read_Env_File').output.firstRow.adls_storage_cntner)",
-									"type": "Expression"
-								},
-								"adb_par": {
-									"value": "@string(activity('Read_Env_File').output.firstRow.adb_par)",
-									"type": "Expression"
-								},
-								"feed_name": {
-									"value": "@pipeline().parameters.feed_name",
-									"type": "Expression"
-								},
-								"filename": {
-									"value": "@pipeline().parameters.file_name",
-									"type": "Expression"
-								}
-							}
-						},
-						"linkedServiceName": {
-							"referenceName": "AzureDatabricks_ls",
-							"type": "LinkedServiceReference"
-						}
-					},
-					{
-						"name": "Email_Notify_Success",
-						"type": "ExecutePipeline",
-						"dependsOn": [
-							{
-								"activity": "Notebook",
-								"dependencyConditions": [
-									"Succeeded"
-								]
-							}
-						],
-						"userProperties": [],
-						"typeProperties": {
-							"pipeline": {
-								"referenceName": "EmailNotification",
-								"type": "PipelineReference"
-							},
-							"waitOnCompletion": true,
-							"parameters": {
-								"DataFactoryName": {
-									"value": "@pipeline().DataFactory",
-									"type": "Expression"
-								},
-								"PipelineName": {
-									"value": "@pipeline().Pipeline",
-									"type": "Expression"
-								},
-								"Message": {
-									"value": "@concat('Onetime notebook execution is successful')",
-									"type": "Expression"
-								},
-								"EmailTo": {
-									"value": "@activity('Read_Env_File').output.firstRow.succ_email_to",
-									"type": "Expression"
-								},
-								"SourceFile": {
-									"value": "NA",
-									"type": "Expression"
-								},
-								"Status": "Success"
-							}
-						}
-					},
-					{
-						"name": "Email_Notify_Failure",
-						"type": "ExecutePipeline",
-						"dependsOn": [
-							{
-								"activity": "Notebook",
-								"dependencyConditions": [
-									"Failed"
-								]
-							}
-						],
-						"userProperties": [],
-						"typeProperties": {
-							"pipeline": {
-								"referenceName": "EmailNotification",
-								"type": "PipelineReference"
-							},
-							"waitOnCompletion": true,
-							"parameters": {
-								"DataFactoryName": {
-									"value": "@pipeline().DataFactory",
-									"type": "Expression"
-								},
-								"PipelineName": {
-									"value": "@pipeline().Pipeline",
-									"type": "Expression"
-								},
-								"Message": {
-									"value": "@concat('The pipeline has encountered an error. Please check the logs for more details. ')",
-									"type": "Expression"
-								},
-								"EmailTo": {
-									"value": "@activity('Read_Env_File').output.firstRow.fail_email_to",
-									"type": "Expression"
-								},
-								"SourceFile": {
-									"value": "NA",
-									"type": "Expression"
-								},
-								"Status": "Fail"
-							}
-						}
-					},
-					{
-						"name": "Email_Notify_09",
-						"type": "ExecutePipeline",
-						"dependsOn": [
-							{
-								"activity": "Read_Env_File",
-								"dependencyConditions": [
-									"Failed"
-								]
-							}
-						],
-						"userProperties": [],
-						"typeProperties": {
-							"pipeline": {
-								"referenceName": "EmailNotification",
-								"type": "PipelineReference"
-							},
-							"waitOnCompletion": true,
-							"parameters": {
-								"DataFactoryName": {
-									"value": "@pipeline().DataFactory",
-									"type": "Expression"
-								},
-								"PipelineName": {
-									"value": "@pipeline().Pipeline",
-									"type": "Expression"
-								},
-								"Message": {
-									"value": "@concat('Could not find or unable to read job params json file. Please check the logs for more details.')",
-									"type": "Expression"
-								},
-								"EmailTo": {
-									"value": "DL_BA_Finance@aa.com",
-									"type": "Expression"
-								},
-								"SourceFile": {
-									"value": "NA",
-									"type": "Expression"
-								},
-								"Status": "Fail"
-							}
-						}
-					}
-				],
-				"policy": {
-					"elapsedTimeMetric": {},
-					"cancelAfter": {}
-				},
-				"parameters": {
-					"Notebookpath": {
-						"type": "string",
-						"defaultValue": "/rvact/dev/onetime"
-					},
-					"Notebookname": {
-						"type": "string",
-						"defaultValue": "AGDECURR_Onetime_Table_Creation"
-					},
-					"Structtablename": {
-						"type": "string",
-						"defaultValue": "NA"
-					},
-					"Rejecttablename": {
-						"type": "string",
-						"defaultValue": "NA"
-					},
-					"Preptablename": {
-						"type": "string",
-						"defaultValue": "NA"
-					},
-					"feed_name": {
-						"type": "string",
-						"defaultValue": "AGDECURR"
-					},
-					"file_name": {
-						"type": "string",
-						"defaultValue": "RAC_AGDECURR_20210317000000.dat.gz"
-					}
-				},
-				"folder": {
-					"name": "DevOps"
-				},
-				"annotations": [],
-				"lastPublishTime": "2022-06-18T16:21:11Z"
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/Onetime_View_Creation_Notebook')]",
-			"type": "Microsoft.DataFactory/factories/pipelines",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"description": "This is a common ADF pipeline that will be used to execute the onetime VIEW creation notebooks.\nparameter file_name should be genetic",
-				"activities": [
-					{
-						"name": "Read_Env_File",
-						"type": "Lookup",
-						"dependsOn": [],
-						"policy": {
-							"timeout": "7.00:00:00",
-							"retry": 0,
-							"retryIntervalInSeconds": 30,
-							"secureOutput": false,
-							"secureInput": false
-						},
-						"userProperties": [],
-						"typeProperties": {
-							"source": {
-								"type": "JsonSource",
-								"storeSettings": {
-									"type": "AzureBlobStorageReadSettings",
-									"recursive": false,
-									"enablePartitionDiscovery": false
-								},
-								"formatSettings": {
-									"type": "JsonReadSettings"
-								}
-							},
-							"dataset": {
-								"referenceName": "Json",
-								"type": "DatasetReference",
-								"parameters": {}
-							}
-						}
-					},
-					{
-						"name": "Notebook",
-						"type": "DatabricksNotebook",
-						"dependsOn": [
-							{
-								"activity": "Read_Env_File",
-								"dependencyConditions": [
-									"Succeeded"
-								]
-							}
-						],
-						"policy": {
-							"timeout": "7.00:00:00",
-							"retry": 0,
-							"retryIntervalInSeconds": 30,
-							"secureOutput": false,
-							"secureInput": false
-						},
-						"userProperties": [],
-						"typeProperties": {
-							"notebookPath": {
-								"value": "@concat(pipeline().parameters.Notebookpath,'/',pipeline().parameters.Notebookname)",
-								"type": "Expression"
-							},
-							"baseParameters": {
-								"env": {
-									"value": "@activity('Read_Env_File').output.firstRow.azure_env",
-									"type": "Expression"
-								},
-								"adls_storage_cntner": {
-									"value": "@string(activity('Read_Env_File').output.firstRow.adls_storage_cntner)",
-									"type": "Expression"
-								},
-								"feed_name": {
-									"value": "@pipeline().parameters.feed_name",
-									"type": "Expression"
-								},
-								"filename": {
-									"value": "@pipeline().parameters.file_name",
-									"type": "Expression"
-								},
-								"adb_par": {
-									"value": "@string(activity('Read_Env_File').output.firstRow.adb_par)",
-									"type": "Expression"
-								}
-							}
-						},
-						"linkedServiceName": {
-							"referenceName": "AzureDatabricks_ls",
-							"type": "LinkedServiceReference"
-						}
-					},
-					{
-						"name": "Email_Notify_Success",
-						"type": "ExecutePipeline",
-						"dependsOn": [
-							{
-								"activity": "Notebook",
-								"dependencyConditions": [
-									"Succeeded"
-								]
-							}
-						],
-						"userProperties": [],
-						"typeProperties": {
-							"pipeline": {
-								"referenceName": "EmailNotification",
-								"type": "PipelineReference"
-							},
-							"waitOnCompletion": true,
-							"parameters": {
-								"DataFactoryName": {
-									"value": "@pipeline().DataFactory",
-									"type": "Expression"
-								},
-								"PipelineName": {
-									"value": "@pipeline().Pipeline",
-									"type": "Expression"
-								},
-								"Message": {
-									"value": "@concat('Onetime notebook execution is successful')",
-									"type": "Expression"
-								},
-								"EmailTo": {
-									"value": "@activity('Read_Env_File').output.firstRow.succ_email_to",
-									"type": "Expression"
-								},
-								"SourceFile": {
-									"value": "NA",
-									"type": "Expression"
-								},
-								"Status": "Success"
-							}
-						}
-					},
-					{
-						"name": "Email_Notify_Failure",
-						"type": "ExecutePipeline",
-						"dependsOn": [
-							{
-								"activity": "Notebook",
-								"dependencyConditions": [
-									"Failed"
-								]
-							}
-						],
-						"userProperties": [],
-						"typeProperties": {
-							"pipeline": {
-								"referenceName": "EmailNotification",
-								"type": "PipelineReference"
-							},
-							"waitOnCompletion": true,
-							"parameters": {
-								"DataFactoryName": {
-									"value": "@pipeline().DataFactory",
-									"type": "Expression"
-								},
-								"PipelineName": {
-									"value": "@pipeline().Pipeline",
-									"type": "Expression"
-								},
-								"Message": {
-									"value": "@concat('The pipeline has encountered an error. Please check the logs for more details. ')",
-									"type": "Expression"
-								},
-								"EmailTo": {
-									"value": "@activity('Read_Env_File').output.firstRow.fail_email_to",
-									"type": "Expression"
-								},
-								"SourceFile": {
-									"value": "NA",
-									"type": "Expression"
-								},
-								"Status": "Fail"
-							}
-						}
-					},
-					{
-						"name": "Email_Notify_09",
-						"type": "ExecutePipeline",
-						"dependsOn": [
-							{
-								"activity": "Read_Env_File",
-								"dependencyConditions": [
-									"Failed"
-								]
-							}
-						],
-						"userProperties": [],
-						"typeProperties": {
-							"pipeline": {
-								"referenceName": "EmailNotification",
-								"type": "PipelineReference"
-							},
-							"waitOnCompletion": true,
-							"parameters": {
-								"DataFactoryName": {
-									"value": "@pipeline().DataFactory",
-									"type": "Expression"
-								},
-								"PipelineName": {
-									"value": "@pipeline().Pipeline",
-									"type": "Expression"
-								},
-								"Message": {
-									"value": "@concat('Could not find or unable to read job params json file. Please check the logs for more details.')",
-									"type": "Expression"
-								},
-								"EmailTo": {
-									"value": "DL_BA_Finance@aa.com",
-									"type": "Expression"
-								},
-								"SourceFile": {
-									"value": "NA",
-									"type": "Expression"
-								},
-								"Status": "Fail"
-							}
-						}
-					}
-				],
-				"policy": {
-					"elapsedTimeMetric": {},
-					"cancelAfter": {}
-				},
-				"parameters": {
-					"Notebookpath": {
-						"type": "string",
-						"defaultValue": "/rvact/dev/onetime/"
-					},
-					"Notebookname": {
-						"type": "string",
-						"defaultValue": "CDC_Onetime_View_Creation"
-					},
-					"feed_name": {
-						"type": "string",
-						"defaultValue": "AGDECURR"
-					},
-					"file_name": {
-						"type": "string",
-						"defaultValue": "RAC_AGDECURR_20210317000000.dat.gz"
-					}
-				},
-				"folder": {
-					"name": "DevOps"
-				},
-				"annotations": [],
-				"lastPublishTime": "2022-06-18T16:21:11Z"
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/pl_dataMigration_HistorymigrateFiles_01')]",
-			"type": "Microsoft.DataFactory/factories/pipelines",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"description": "This pipeline will call the notebooks necessary to perform the data migration and copy files from transient ",
-				"activities": [
-					{
-						"name": "ac_lookupAdfParamFile",
-						"type": "Lookup",
-						"dependsOn": [],
-						"policy": {
-							"timeout": "7.00:00:00",
-							"retry": 0,
-							"retryIntervalInSeconds": 30,
-							"secureOutput": false,
-							"secureInput": false
-						},
-						"userProperties": [],
-						"typeProperties": {
-							"source": {
-								"type": "JsonSource",
-								"storeSettings": {
-									"type": "AzureBlobStorageReadSettings",
-									"recursive": true
-								},
-								"formatSettings": {
-									"type": "JsonReadSettings"
-								}
-							},
-							"dataset": {
-								"referenceName": "ds_adf_param",
-								"type": "DatasetReference",
-								"parameters": {}
-							}
-						}
-					},
-					{
-						"name": "db_migrateFiles",
-						"type": "DatabricksNotebook",
-						"dependsOn": [
-							{
-								"activity": "ac_lookupAdfParamFile",
-								"dependencyConditions": [
-									"Succeeded"
-								]
-							}
-						],
-						"policy": {
-							"timeout": "7.00:00:00",
-							"retry": 0,
-							"retryIntervalInSeconds": 30,
-							"secureOutput": false,
-							"secureInput": false
-						},
-						"userProperties": [],
-						"typeProperties": {
-							"notebookPath": {
-								"value": "@concat('/',activity('ac_lookupAdfParamFile').output.firstRow.adls_storage_cntner,'/',activity('ac_lookupAdfParamFile').output.firstRow.azure_env,'/migration/migrateFiles')",
-								"type": "Expression"
-							},
-							"baseParameters": {
-								"adb_par": {
-									"value": "@string(activity('ac_lookupAdfParamFile').output.firstRow.adb_par)",
-									"type": "Expression"
-								},
-								"env": {
-									"value": "@string(activity('ac_lookupAdfParamFile').output.firstRow.azure_env)",
-									"type": "Expression"
-								},
-								"adbDebugInd": "N",
-								"Migration_sources": {
-									"value": "@pipeline().parameters.Migration_sources",
-									"type": "Expression"
-								}
-							}
-						},
-						"linkedServiceName": {
-							"referenceName": "AzureDatabricks_ls",
-							"type": "LinkedServiceReference"
-						}
-					},
-					{
-						"name": "ac_sendFailHistoryCopy_Email",
-						"type": "ExecutePipeline",
-						"dependsOn": [
-							{
-								"activity": "ac_lookupAdfParamFile",
-								"dependencyConditions": [
-									"Failed"
-								]
-							}
-						],
-						"userProperties": [],
-						"typeProperties": {
-							"pipeline": {
-								"referenceName": "EmailNotification",
-								"type": "PipelineReference"
-							},
-							"waitOnCompletion": true,
-							"parameters": {
-								"DataFactoryName": {
-									"value": "@pipeline().DataFactory",
-									"type": "Expression"
-								},
-								"PipelineName": {
-									"value": "@pipeline().Pipeline",
-									"type": "Expression"
-								},
-								"Message": {
-									"value": "@concat('The pipeline has encountered an error during the ac_lookupAdfParamFile activity. Please check the logs for more details. \nError: ', replace(activity('ac_lookupAdfParamFile').Error.Message, '\"', ''))\n",
-									"type": "Expression"
-								},
-								"EmailTo": {
-									"value": "DL_BA_Finance@aa.com",
-									"type": "Expression"
-								},
-								"SourceFile": {
-									"value": "@pipeline().parameters.filename",
-									"type": "Expression"
-								},
-								"Status": "FAIL"
-							}
-						}
-					},
-					{
-						"name": "ac_sendPassEmail",
-						"type": "ExecutePipeline",
-						"dependsOn": [
-							{
-								"activity": "db_migrateFiles",
-								"dependencyConditions": [
-									"Succeeded"
-								]
-							}
-						],
-						"userProperties": [],
-						"typeProperties": {
-							"pipeline": {
-								"referenceName": "EmailNotification",
-								"type": "PipelineReference"
-							},
-							"waitOnCompletion": true,
-							"parameters": {
-								"DataFactoryName": {
-									"value": "@pipeline().DataFactory",
-									"type": "Expression"
-								},
-								"PipelineName": {
-									"value": "@pipeline().Pipeline",
-									"type": "Expression"
-								},
-								"Message": {
-									"value": "@concat('This pipeline has completed successfully : ',activity('db_migrateFiles').output.runPageUrl)",
-									"type": "Expression"
-								},
-								"EmailTo": {
-									"value": "@activity('ac_lookupAdfParamFile').output.firstRow.succ_email_to",
-									"type": "Expression"
-								},
-								"SourceFile": {
-									"value": "@pipeline().parameters.filename",
-									"type": "Expression"
-								},
-								"Status": "Success"
-							}
-						}
-					},
-					{
-						"name": "ac_sendFailHistoryCopy_Fail_Email",
-						"type": "ExecutePipeline",
-						"dependsOn": [
-							{
-								"activity": "db_migrateFiles",
-								"dependencyConditions": [
-									"Failed"
-								]
-							}
-						],
-						"userProperties": [],
-						"typeProperties": {
-							"pipeline": {
-								"referenceName": "EmailNotification",
-								"type": "PipelineReference"
-							},
-							"waitOnCompletion": true,
-							"parameters": {
-								"DataFactoryName": {
-									"value": "@pipeline().DataFactory",
-									"type": "Expression"
-								},
-								"PipelineName": {
-									"value": "@pipeline().Pipeline",
-									"type": "Expression"
-								},
-								"Message": {
-									"value": "@concat('The pipeline has encountered an error during the db_migrateFiles notebook. Please check the logs for more details. \nError: runPageUrl: ', activity('db_migrateFiles').output.runPageUrl)",
-									"type": "Expression"
-								},
-								"EmailTo": {
-									"value": "@activity('ac_lookupAdfParamFile').output.firstRow.fail_email_to",
-									"type": "Expression"
-								},
-								"SourceFile": {
-									"value": "@pipeline().parameters.filename",
-									"type": "Expression"
-								},
-								"Status": "FAIL"
-							}
-						}
-					}
-				],
-				"policy": {
-					"elapsedTimeMetric": {},
-					"cancelAfter": {}
-				},
-				"parameters": {
-					"filename": {
-						"type": "string",
-						"defaultValue": "n/a"
-					},
-					"adbDebugInd": {
-						"type": "string",
-						"defaultValue": "N"
-					},
-					"Migration_sources": {
-						"type": "string",
-						"defaultValue": "Codesharein_sources"
-					}
-				},
-				"variables": {
-					"throwError": {
-						"type": "String",
-						"defaultValue": "unknown"
-					},
-					"arrayPosition": {
-						"type": "String",
-						"defaultValue": "unknown"
-					},
-					"feedName": {
-						"type": "String",
-						"defaultValue": "unknown"
-					},
-					"sourceDataDt": {
-						"type": "String",
-						"defaultValue": "unknown"
-					}
-				},
-				"folder": {
-					"name": "History_Migration"
-				},
-				"annotations": [],
-				"lastPublishTime": "2022-06-18T16:21:12Z"
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/pl_dataMigration_migration_landing_02')]",
-			"type": "Microsoft.DataFactory/factories/pipelines",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"description": "This pipeline will call the notebooks necessary to perform the data migration and copy files from migration to landing folder",
-				"activities": [
-					{
-						"name": "ac_lookupAdfParamFile",
-						"type": "Lookup",
-						"dependsOn": [],
-						"policy": {
-							"timeout": "7.00:00:00",
-							"retry": 0,
-							"retryIntervalInSeconds": 30,
-							"secureOutput": false,
-							"secureInput": false
-						},
-						"userProperties": [],
-						"typeProperties": {
-							"source": {
-								"type": "JsonSource",
-								"storeSettings": {
-									"type": "AzureBlobStorageReadSettings",
-									"recursive": true
-								},
-								"formatSettings": {
-									"type": "JsonReadSettings"
-								}
-							},
-							"dataset": {
-								"referenceName": "ds_adf_param",
-								"type": "DatasetReference",
-								"parameters": {}
-							}
-						}
-					},
-					{
-						"name": "db_copyMigrationFilesToLanding",
-						"type": "DatabricksNotebook",
-						"dependsOn": [
-							{
-								"activity": "ac_lookupAdfParamFile",
-								"dependencyConditions": [
-									"Succeeded"
-								]
-							}
-						],
-						"policy": {
-							"timeout": "7.00:00:00",
-							"retry": 0,
-							"retryIntervalInSeconds": 30,
-							"secureOutput": false,
-							"secureInput": false
-						},
-						"userProperties": [],
-						"typeProperties": {
-							"notebookPath": {
-								"value": "@concat('/',activity('ac_lookupAdfParamFile').output.firstRow.adls_storage_cntner,'/',activity('ac_lookupAdfParamFile').output.firstRow.azure_env,'/migration/copyMigrationFilesToLanding')",
-								"type": "Expression"
-							},
-							"baseParameters": {
-								"adb_par": {
-									"value": "@string(activity('ac_lookupAdfParamFile').output.firstRow.adb_par)",
-									"type": "Expression"
-								},
-								"env": {
-									"value": "@string(activity('ac_lookupAdfParamFile').output.firstRow.azure_env)",
-									"type": "Expression"
-								},
-								"feed_name": {
-									"value": "incr",
-									"type": "Expression"
-								},
-								"adbDebugInd": "N",
-								"Migration_sources": {
-									"value": "@pipeline().parameters.Migration_sources",
-									"type": "Expression"
-								}
-							}
-						},
-						"linkedServiceName": {
-							"referenceName": "AzureDatabricks_ls",
-							"type": "LinkedServiceReference"
-						}
-					},
-					{
-						"name": "ac_sendFailHistoryCopy_Email",
-						"type": "ExecutePipeline",
-						"dependsOn": [
-							{
-								"activity": "ac_lookupAdfParamFile",
-								"dependencyConditions": [
-									"Failed"
-								]
-							}
-						],
-						"userProperties": [],
-						"typeProperties": {
-							"pipeline": {
-								"referenceName": "EmailNotification",
-								"type": "PipelineReference"
-							},
-							"waitOnCompletion": true,
-							"parameters": {
-								"DataFactoryName": {
-									"value": "@pipeline().DataFactory",
-									"type": "Expression"
-								},
-								"PipelineName": {
-									"value": "@pipeline().Pipeline",
-									"type": "Expression"
-								},
-								"Message": {
-									"value": "@concat('The pipeline has encountered an error during the ac_lookupAdfParamFile activity. Please check the logs for more details. \nError: ', replace(activity('ac_lookupAdfParamFile').Error.Message, '\"', ''),\n' runPageUrl: ', activity('ac_lookupAdfParamFile').output.runPageUrl)",
-									"type": "Expression"
-								},
-								"EmailTo": {
-									"value": "DL_BA_Finance@aa.com",
-									"type": "Expression"
-								},
-								"SourceFile": {
-									"value": "@pipeline().parameters.filename",
-									"type": "Expression"
-								},
-								"Status": "FAIL"
-							}
-						}
-					},
-					{
-						"name": "ac_sendPassEmail",
-						"type": "ExecutePipeline",
-						"dependsOn": [
-							{
-								"activity": "db_copyMigrationFilesToLanding",
-								"dependencyConditions": [
-									"Succeeded"
-								]
-							}
-						],
-						"userProperties": [],
-						"typeProperties": {
-							"pipeline": {
-								"referenceName": "EmailNotification",
-								"type": "PipelineReference"
-							},
-							"waitOnCompletion": true,
-							"parameters": {
-								"DataFactoryName": {
-									"value": "@pipeline().DataFactory",
-									"type": "Expression"
-								},
-								"PipelineName": {
-									"value": "@pipeline().Pipeline",
-									"type": "Expression"
-								},
-								"Message": {
-									"value": "@concat('This pipeline has completed successfully.   db_copyMigrationFilesToLanding.runPageUrl: ', activity('db_copyMigrationFilesToLanding').output.runPageUrl)",
-									"type": "Expression"
-								},
-								"EmailTo": {
-									"value": "@activity('ac_lookupAdfParamFile').output.firstRow.succ_email_to",
-									"type": "Expression"
-								},
-								"SourceFile": {
-									"value": "@pipeline().parameters.feed_name",
-									"type": "Expression"
-								},
-								"Status": "Success"
-							}
-						}
-					},
-					{
-						"name": "ac_sendFailEmail_historyload",
-						"type": "ExecutePipeline",
-						"dependsOn": [
-							{
-								"activity": "db_copyMigrationFilesToLanding",
-								"dependencyConditions": [
-									"Failed"
-								]
-							}
-						],
-						"userProperties": [],
-						"typeProperties": {
-							"pipeline": {
-								"referenceName": "EmailNotification",
-								"type": "PipelineReference"
-							},
-							"waitOnCompletion": true,
-							"parameters": {
-								"DataFactoryName": {
-									"value": "@pipeline().DataFactory",
-									"type": "Expression"
-								},
-								"PipelineName": {
-									"value": "@pipeline().Pipeline",
-									"type": "Expression"
-								},
-								"Message": {
-									"value": "@concat('The pipeline has encountered an error during the db_copyMigrationFilesToLanding notebook. Please check the logs for more details. \nError: ', replace(activity('db_copyMigrationFilesToLanding').Error.Message, '\"', ''),\n' runPageUrl: ', activity('db_copyMigrationFilesToLanding').output.runPageUrl)",
-									"type": "Expression"
-								},
-								"EmailTo": {
-									"value": "@activity('ac_lookupAdfParamFile').output.firstRow.fail_email_to",
-									"type": "Expression"
-								},
-								"SourceFile": {
-									"value": "db_copyMigrationFilesToLanding",
-									"type": "Expression"
-								},
-								"Status": "FAIL"
-							}
-						}
-					}
-				],
-				"policy": {
-					"elapsedTimeMetric": {},
-					"cancelAfter": {}
-				},
-				"parameters": {
-					"feed_name": {
-						"type": "string",
-						"defaultValue": "incr"
-					},
-					"adbDebugInd": {
-						"type": "string",
-						"defaultValue": "N"
-					},
-					"filename": {
-						"type": "string",
-						"defaultValue": "n/a"
-					},
-					"Migration_sources": {
-						"type": "string",
-						"defaultValue": "RESPIN_sources"
-					}
-				},
-				"variables": {
-					"throwError": {
-						"type": "String",
-						"defaultValue": "unknown"
-					},
-					"arrayPosition": {
-						"type": "String",
-						"defaultValue": "unknown"
-					},
-					"feedName": {
-						"type": "String",
-						"defaultValue": "unknown"
-					},
-					"sourceDataDt": {
-						"type": "String",
-						"defaultValue": "unknown"
-					}
-				},
-				"folder": {
-					"name": "History_Migration"
-				},
-				"annotations": [],
-				"lastPublishTime": "2022-06-18T16:21:12Z"
 			},
 			"dependsOn": []
 		}
