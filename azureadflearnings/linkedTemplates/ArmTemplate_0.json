@@ -30,10 +30,6 @@
 		"TransientStorage_ls_properties_typeProperties_url": {
 			"type": "string",
 			"defaultValue": "https://banoriontransient.dfs.core.windows.net"
-		},
-		"trigger_DataCopy_properties_typeProperties_scope": {
-			"type": "string",
-			"defaultValue": "/subscriptions/b8501930-c7b6-4fa6-a05b-c62ac6d01b8c/resourceGroups/azuretraining/providers/Microsoft.Storage/storageAccounts/azuredatablobdev"
 		}
 	},
 	"variables": {
@@ -69,6 +65,24 @@
 			"dependsOn": []
 		},
 		{
+			"name": "[concat(parameters('factoryName'), '/AzureDatabricks_ls')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "AzureDatabricks",
+				"typeProperties": {
+					"domain": "https://adb-7250696620574566.6.azuredatabricks.net",
+					"accessToken": {
+						"type": "SecureString",
+						"value": "[parameters('AzureDatabricks_ls_accessToken')]"
+					},
+					"existingClusterId": "0716-162125-88c45xpg"
+				}
+			},
+			"dependsOn": []
+		},
+		{
 			"name": "[concat(parameters('factoryName'), '/AzureKeyVault_training')]",
 			"type": "Microsoft.DataFactory/factories/linkedServices",
 			"apiVersion": "2018-06-01",
@@ -95,27 +109,6 @@
 			"dependsOn": []
 		},
 		{
-			"name": "[concat(parameters('factoryName'), '/trigger_DataCopy')]",
-			"type": "Microsoft.DataFactory/factories/triggers",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"annotations": [],
-				"runtimeState": "Stopped",
-				"pipelines": [],
-				"type": "BlobEventsTrigger",
-				"typeProperties": {
-					"blobPathBeginsWith": "/rawblob/blobs/LNDG_",
-					"blobPathEndsWith": ".txt",
-					"ignoreEmptyBlobs": true,
-					"scope": "[parameters('trigger_DataCopy_properties_typeProperties_scope')]",
-					"events": [
-						"Microsoft.Storage.BlobCreated"
-					]
-				}
-			},
-			"dependsOn": []
-		},
-		{
 			"name": "[concat(parameters('factoryName'), '/credential1')]",
 			"type": "Microsoft.DataFactory/factories/credentials",
 			"apiVersion": "2018-06-01",
@@ -132,24 +125,6 @@
 			"type": "Microsoft.DataFactory/factories/managedVirtualNetworks",
 			"apiVersion": "2018-06-01",
 			"properties": {},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/AzureDatabricks_ls')]",
-			"type": "Microsoft.DataFactory/factories/linkedServices",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"annotations": [],
-				"type": "AzureDatabricks",
-				"typeProperties": {
-					"domain": "https://adb-7250696620574566.6.azuredatabricks.net",
-					"accessToken": {
-						"type": "SecureString",
-						"value": "[parameters('AzureDatabricks_ls_accessToken')]"
-					},
-					"existingClusterId": "0716-162125-88c45xpg"
-				}
-			},
 			"dependsOn": []
 		},
 		{
@@ -461,6 +436,29 @@
 					"quoteChar": "\""
 				},
 				"schema": []
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/AzureBlobStorage_ls')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/Getmetadata_Dataset')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "AzureBlobStorage_ls",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "Binary",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobStorageLocation",
+						"fileName": "LNDG_TYCO_CUST_CONVIT.txt",
+						"container": "rawzone"
+					}
+				}
 			},
 			"dependsOn": [
 				"[concat(variables('factoryId'), '/linkedServices/AzureBlobStorage_ls')]"

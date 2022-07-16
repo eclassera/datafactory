@@ -17,27 +17,6 @@
 	},
 	"resources": [
 		{
-			"name": "[concat(parameters('factoryName'), '/Getmetadata_Dataset')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "AzureBlobStorage_ls",
-					"type": "LinkedServiceReference"
-				},
-				"annotations": [],
-				"type": "Binary",
-				"typeProperties": {
-					"location": {
-						"type": "AzureBlobStorageLocation",
-						"fileName": "LNDG_TYCO_CUST_CONVIT.txt",
-						"container": "rawzone"
-					}
-				}
-			},
-			"dependsOn": []
-		},
-		{
 			"name": "[concat(parameters('factoryName'), '/Json')]",
 			"type": "Microsoft.DataFactory/factories/datasets",
 			"apiVersion": "2018-06-01",
@@ -4175,6 +4154,43 @@
 						},
 						"fileSystem": {
 							"value": "@dataset().adls_storage_cntner",
+							"type": "Expression"
+						}
+					}
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/AzureDataLakeStorage_ls')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/ADLS_work_pii')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "AzureDataLakeStorage_ls",
+					"type": "LinkedServiceReference"
+				},
+				"parameters": {
+					"env": {
+						"type": "string"
+					},
+					"adls_storage_cntner_pii": {
+						"type": "string"
+					}
+				},
+				"annotations": [],
+				"type": "Binary",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobFSLocation",
+						"folderPath": {
+							"value": "@concat(dataset().env,'/work-pii')",
+							"type": "Expression"
+						},
+						"fileSystem": {
+							"value": "@dataset().adls_storage_cntner_pii",
 							"type": "Expression"
 						}
 					}
