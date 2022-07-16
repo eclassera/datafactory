@@ -11,21 +11,21 @@
 			"type": "secureString",
 			"metadata": "Secure string for 'connectionString' of 'AzureBlobStorage_ls'"
 		},
-		"linkedService1_connectionString": {
+		"AzureDatabricks_ls_accessToken": {
 			"type": "secureString",
-			"metadata": "Secure string for 'connectionString' of 'linkedService1'"
+			"metadata": "Secure string for 'accessToken' of 'AzureDatabricks_ls'"
 		},
-		"linkedService2_connectionString": {
-			"type": "secureString",
-			"metadata": "Secure string for 'connectionString' of 'linkedService2'"
+		"AzureDataExplorer_linkservice_properties_typeProperties_endpoint": {
+			"type": "string",
+			"defaultValue": "https://azureadxtraining.eastus2.kusto.windows.net"
+		},
+		"AzureDataExplorer_linkservice_properties_typeProperties_database": {
+			"type": "string",
+			"defaultValue": "mra_dwh"
 		},
 		"AzureDataLakeStorage_ls_properties_typeProperties_url": {
 			"type": "string",
 			"defaultValue": "https://azuredataadlsdev.dfs.core.windows.net/"
-		},
-		"AzureKeyVault_ls_properties_typeProperties_baseUrl": {
-			"type": "string",
-			"defaultValue": "https://ba-n-zeaus-rvact-dev-kv.vault.azure.net/"
 		},
 		"AzureKeyVault_training_properties_typeProperties_baseUrl": {
 			"type": "string",
@@ -38,26 +38,6 @@
 		"trigger_DataCopy_properties_typeProperties_scope": {
 			"type": "string",
 			"defaultValue": "/subscriptions/b8501930-c7b6-4fa6-a05b-c62ac6d01b8c/resourceGroups/azuretraining/providers/Microsoft.Storage/storageAccounts/azuredatablobdev"
-		},
-		"trigger_custom_properties_typeProperties_scope": {
-			"type": "string",
-			"defaultValue": "/subscriptions/b8501930-c7b6-4fa6-a05b-c62ac6d01b8c/resourceGroups/azuretraining/providers/Microsoft.EventGrid/topics/adfcustomtrigger"
-		},
-		"dataFactory_properties_globalParameters_FileName_value": {
-			"type": "string",
-			"defaultValue": "LNDG_TYCO_CUST_CONVIT.txt"
-		},
-		"dataFactory_properties_globalParameters_Env_value": {
-			"type": "string",
-			"defaultValue": "Dev"
-		},
-		"dataFactory_location": {
-			"type": "string",
-			"defaultValue": "eastus2"
-		},
-		"dataFactory_identity_type": {
-			"type": "string",
-			"defaultValue": "SystemAssigned"
 		}
 	},
 	"variables": {
@@ -942,7 +922,6 @@
 				"lastPublishTime": "2022-06-18T16:21:12Z"
 			},
 			"dependsOn": [
-				"[variables('factoryId')]",
 				"[concat(variables('factoryId'), '/datasets/Blob_work')]",
 				"[concat(variables('factoryId'), '/pipelines/EmailNotification')]",
 				"[concat(variables('factoryId'), '/linkedServices/AzureBlobStorage_ls')]",
@@ -1344,7 +1323,6 @@
 				"lastPublishTime": "2022-06-18T16:21:12Z"
 			},
 			"dependsOn": [
-				"[variables('factoryId')]",
 				"[concat(variables('factoryId'), '/datasets/ADLS_work_pii')]",
 				"[concat(variables('factoryId'), '/datasets/ADLS_raw_pii')]",
 				"[concat(variables('factoryId'), '/pipelines/EmailNotification')]",
@@ -1682,7 +1660,6 @@
 				"lastPublishTime": "2022-06-18T16:21:12Z"
 			},
 			"dependsOn": [
-				"[variables('factoryId')]",
 				"[concat(variables('factoryId'), '/datasets/ADLS_work')]",
 				"[concat(variables('factoryId'), '/datasets/ADLS_raw')]",
 				"[concat(variables('factoryId'), '/pipelines/EmailNotification')]",
@@ -2080,7 +2057,6 @@
 				"lastPublishTime": "2022-06-18T16:21:11Z"
 			},
 			"dependsOn": [
-				"[variables('factoryId')]",
 				"[concat(variables('factoryId'), '/datasets/ADLS_work')]",
 				"[concat(variables('factoryId'), '/datasets/ADLS_raw')]",
 				"[concat(variables('factoryId'), '/pipelines/EmailNotification')]",
@@ -2425,7 +2401,6 @@
 				"lastPublishTime": "2022-06-18T16:21:11Z"
 			},
 			"dependsOn": [
-				"[variables('factoryId')]",
 				"[concat(variables('factoryId'), '/datasets/Json')]",
 				"[concat(variables('factoryId'), '/pipelines/EmailNotification')]",
 				"[concat(variables('factoryId'), '/linkedServices/AzureDatabricks_ls')]"
@@ -2752,7 +2727,6 @@
 				"lastPublishTime": "2022-06-18T16:21:11Z"
 			},
 			"dependsOn": [
-				"[variables('factoryId')]",
 				"[concat(variables('factoryId'), '/datasets/Json')]",
 				"[concat(variables('factoryId'), '/pipelines/EmailNotification')]",
 				"[concat(variables('factoryId'), '/linkedServices/AzureDatabricks_ls')]"
@@ -3000,115 +2974,9 @@
 				"lastPublishTime": "2022-06-18T16:21:11Z"
 			},
 			"dependsOn": [
-				"[variables('factoryId')]",
 				"[concat(variables('factoryId'), '/datasets/Json')]",
 				"[concat(variables('factoryId'), '/pipelines/EmailNotification')]",
 				"[concat(variables('factoryId'), '/linkedServices/AzureDatabricks_ls')]"
-			]
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/CopyPipeline_onetimecopy')]",
-			"type": "Microsoft.DataFactory/factories/pipelines",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"activities": [
-					{
-						"name": "Copy_opy",
-						"type": "Copy",
-						"dependsOn": [],
-						"policy": {
-							"timeout": "7.00:00:00",
-							"retry": 0,
-							"retryIntervalInSeconds": 30,
-							"secureOutput": false,
-							"secureInput": false
-						},
-						"userProperties": [
-							{
-								"name": "Source",
-								"value": "rawzone//"
-							},
-							{
-								"name": "Destination",
-								"value": "structzone//"
-							}
-						],
-						"typeProperties": {
-							"source": {
-								"type": "DelimitedTextSource",
-								"storeSettings": {
-									"type": "AzureBlobStorageReadSettings",
-									"maxConcurrentConnections": 10,
-									"recursive": true,
-									"modifiedDatetimeStart": "2022-06-09T00:00:00.013Z",
-									"wildcardFileName": "*",
-									"enablePartitionDiscovery": false
-								},
-								"formatSettings": {
-									"type": "DelimitedTextReadSettings",
-									"skipLineCount": 0
-								}
-							},
-							"sink": {
-								"type": "DelimitedTextSink",
-								"storeSettings": {
-									"type": "AzureBlobStorageWriteSettings",
-									"maxConcurrentConnections": 10
-								},
-								"formatSettings": {
-									"type": "DelimitedTextWriteSettings",
-									"quoteAllText": true,
-									"fileExtension": ".txt"
-								}
-							},
-							"enableStaging": false,
-							"validateDataConsistency": false,
-							"logSettings": {
-								"enableCopyActivityLog": true,
-								"copyActivityLogSettings": {
-									"logLevel": "Warning",
-									"enableReliableLogging": false
-								},
-								"logLocationSettings": {
-									"linkedServiceName": {
-										"referenceName": "AzureBlobStorage_ls",
-										"type": "LinkedServiceReference"
-									},
-									"path": "runlogs"
-								}
-							},
-							"dataIntegrationUnits": 16
-						},
-						"inputs": [
-							{
-								"referenceName": "SourceDataset_opy",
-								"type": "DatasetReference",
-								"parameters": {}
-							}
-						],
-						"outputs": [
-							{
-								"referenceName": "DestinationDataset_opy",
-								"type": "DatasetReference",
-								"parameters": {}
-							}
-						]
-					}
-				],
-				"policy": {
-					"elapsedTimeMetric": {},
-					"cancelAfter": {}
-				},
-				"folder": {
-					"name": "Azuretraining"
-				},
-				"annotations": []
-			},
-			"dependsOn": [
-				"[variables('factoryId')]",
-				"[concat(variables('factoryId'), '/datasets/SourceDataset_opy')]",
-				"[concat(variables('factoryId'), '/datasets/DestinationDataset_opy')]",
-				"[concat(variables('factoryId'), '/linkedServices/AzureBlobStorage_ls')]"
 			]
 		},
 		{
@@ -3517,7 +3385,6 @@
 				"lastPublishTime": "2022-06-18T16:21:12Z"
 			},
 			"dependsOn": [
-				"[variables('factoryId')]",
 				"[concat(variables('factoryId'), '/datasets/Json')]",
 				"[concat(variables('factoryId'), '/pipelines/EmailNotification')]",
 				"[concat(variables('factoryId'), '/datasets/ADLS_generic')]",
@@ -3919,102 +3786,10 @@
 				"lastPublishTime": "2022-06-18T16:21:11Z"
 			},
 			"dependsOn": [
-				"[variables('factoryId')]",
 				"[concat(variables('factoryId'), '/datasets/Json')]",
 				"[concat(variables('factoryId'), '/pipelines/EmailNotification')]",
 				"[concat(variables('factoryId'), '/datasets/Blob_Binary_Generic')]",
 				"[concat(variables('factoryId'), '/linkedServices/AzureBlobStorage_ls')]"
-			]
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/Delete files older than 30 days')]",
-			"type": "Microsoft.DataFactory/factories/pipelines",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"description": "Please input a folder path as the parameter for this pipeline, and the pipeline will delete files which were last modified more than 30 days ago under the particular folder path.",
-				"activities": [
-					{
-						"name": "DeleteFiles",
-						"description": "Connect to your storage account to save the log file.",
-						"type": "Delete",
-						"dependsOn": [],
-						"policy": {
-							"timeout": "7.00:00:00",
-							"retry": 0,
-							"retryIntervalInSeconds": 30,
-							"secureOutput": false,
-							"secureInput": false
-						},
-						"userProperties": [],
-						"typeProperties": {
-							"dataset": {
-								"referenceName": "BinaryDatasetForDeleteActivity1",
-								"type": "DatasetReference",
-								"parameters": {
-									"FolderPath": {
-										"value": "@pipeline().parameters.SourceFolder",
-										"type": "Expression"
-									},
-									"Directory": {
-										"value": "@pipeline().parameters.SourceDirectory",
-										"type": "Expression"
-									},
-									"Env": {
-										"value": "@pipeline().globalParameters.Env",
-										"type": "Expression"
-									}
-								}
-							},
-							"logStorageSettings": {
-								"linkedServiceName": {
-									"referenceName": "AzureDataLakeStorage_ls",
-									"type": "LinkedServiceReference"
-								},
-								"path": {
-									"value": "@pipeline().parameters.LoggingPath",
-									"type": "Expression"
-								}
-							},
-							"enableLogging": true,
-							"storeSettings": {
-								"type": "AzureBlobFSReadSettings",
-								"recursive": true,
-								"modifiedDatetimeEnd": {
-									"value": "@{adddays(pipeline().TriggerTime, -1)}",
-									"type": "Expression"
-								},
-								"wildcardFileName": "*"
-							}
-						}
-					}
-				],
-				"policy": {
-					"elapsedTimeMetric": {},
-					"cancelAfter": {}
-				},
-				"parameters": {
-					"SourceFolder": {
-						"type": "string",
-						"defaultValue": "/structzone"
-					},
-					"SourceDirectory": {
-						"type": "string",
-						"defaultValue": "STRUCT_ARCH"
-					},
-					"LoggingPath": {
-						"type": "string",
-						"defaultValue": "/transiant"
-					}
-				},
-				"folder": {
-					"name": "Azuretraining"
-				},
-				"annotations": []
-			},
-			"dependsOn": [
-				"[variables('factoryId')]",
-				"[concat(variables('factoryId'), '/datasets/BinaryDatasetForDeleteActivity1')]",
-				"[concat(variables('factoryId'), '/linkedServices/AzureDataLakeStorage_ls')]"
 			]
 		},
 		{
@@ -4091,85 +3866,6 @@
 				"lastPublishTime": "2022-06-18T16:21:11Z"
 			},
 			"dependsOn": [
-				"[variables('factoryId')]",
-				"[concat(variables('factoryId'), '/linkedServices/AzureDataLakeStorage_ls')]"
-			]
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/EmailNotification_Pipelines')]",
-			"type": "Microsoft.DataFactory/factories/pipelines",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"activities": [
-					{
-						"name": "Email_Notification",
-						"type": "WebActivity",
-						"dependsOn": [],
-						"policy": {
-							"timeout": "7.00:00:00",
-							"retry": 0,
-							"retryIntervalInSeconds": 30,
-							"secureOutput": false,
-							"secureInput": false
-						},
-						"userProperties": [],
-						"typeProperties": {
-							"url": {
-								"value": "https://prod2-29.eastus2.logic.azure.com:443/workflows/67cae0b99360404da450c207d5f89588/triggers/manual/paths/invoke?api-version=2016-10-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=4Wj2YAfbM-UokQivut2TWfbLXqb9ZKh13CY37pJLM3g",
-								"type": "Expression"
-							},
-							"method": "POST",
-							"headers": {
-								"Content-Type": {
-									"value": "application/json",
-									"type": "Expression"
-								}
-							},
-							"body": {
-								"value": "{\n    \"message\" : \"This is a custom dynamic message from your pipeline with run ID @{pipeline().RunId}.\",\n    \"dataFactoryName\" : \"@{pipeline().DataFactory}\", \n    \"pipelineName\" : \"@{pipeline().Pipeline}\", \n    \"receiver\" : \"@{pipeline().parameters.receiver}\"\n   }",
-								"type": "Expression"
-							},
-							"linkedServices": [
-								{
-									"referenceName": "AzureDataLakeStorage_ls",
-									"type": "LinkedServiceReference"
-								}
-							],
-							"turnOffAsync": false
-						}
-					}
-				],
-				"policy": {
-					"elapsedTimeMetric": {},
-					"cancelAfter": {}
-				},
-				"parameters": {
-					"DataFactoryName": {
-						"type": "string"
-					},
-					"PipelineName": {
-						"type": "string"
-					},
-					"Message": {
-						"type": "string"
-					},
-					"receiver": {
-						"type": "string"
-					},
-					"SourceFile": {
-						"type": "string"
-					},
-					"Status": {
-						"type": "string"
-					}
-				},
-				"folder": {
-					"name": "Azuretraining"
-				},
-				"annotations": []
-			},
-			"dependsOn": [
-				"[variables('factoryId')]",
 				"[concat(variables('factoryId'), '/linkedServices/AzureDataLakeStorage_ls')]"
 			]
 		},
@@ -4426,7 +4122,6 @@
 				"lastPublishTime": "2022-06-18T16:21:12Z"
 			},
 			"dependsOn": [
-				"[variables('factoryId')]",
 				"[concat(variables('factoryId'), '/datasets/Json')]",
 				"[concat(variables('factoryId'), '/linkedServices/AzureDatabricks_ls')]",
 				"[concat(variables('factoryId'), '/pipelines/EmailNotification')]"
@@ -4705,7 +4400,6 @@
 				"lastPublishTime": "2022-06-18T16:21:11Z"
 			},
 			"dependsOn": [
-				"[variables('factoryId')]",
 				"[concat(variables('factoryId'), '/datasets/Json')]",
 				"[concat(variables('factoryId'), '/linkedServices/AzureDatabricks_ls')]",
 				"[concat(variables('factoryId'), '/pipelines/EmailNotification')]"
@@ -4988,7 +4682,6 @@
 				"lastPublishTime": "2022-06-18T16:21:11Z"
 			},
 			"dependsOn": [
-				"[variables('factoryId')]",
 				"[concat(variables('factoryId'), '/datasets/Json')]",
 				"[concat(variables('factoryId'), '/linkedServices/AzureDatabricks_ls')]",
 				"[concat(variables('factoryId'), '/pipelines/EmailNotification')]"
@@ -5243,607 +4936,9 @@
 				"lastPublishTime": "2022-06-18T16:21:11Z"
 			},
 			"dependsOn": [
-				"[variables('factoryId')]",
 				"[concat(variables('factoryId'), '/datasets/Json')]",
 				"[concat(variables('factoryId'), '/linkedServices/AzureDatabricks_ls')]",
 				"[concat(variables('factoryId'), '/pipelines/EmailNotification')]"
-			]
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/aztraining_adf_copydata_df')]",
-			"type": "Microsoft.DataFactory/factories/pipelines",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"description": "this pipeline is used to copy data from raw zone to structured zone ",
-				"activities": [
-					{
-						"name": "Raw to struct data copy",
-						"description": "raw to struct data copy in adf",
-						"type": "Copy",
-						"dependsOn": [
-							{
-								"activity": "Filter_condition",
-								"dependencyConditions": [
-									"Succeeded"
-								]
-							}
-						],
-						"policy": {
-							"timeout": "7.00:00:00",
-							"retry": 2,
-							"retryIntervalInSeconds": 30,
-							"secureOutput": false,
-							"secureInput": false
-						},
-						"userProperties": [],
-						"typeProperties": {
-							"source": {
-								"type": "BinarySource",
-								"storeSettings": {
-									"type": "AzureBlobStorageReadSettings",
-									"recursive": false,
-									"deleteFilesAfterCompletion": false
-								},
-								"formatSettings": {
-									"type": "BinaryReadSettings"
-								}
-							},
-							"sink": {
-								"type": "BinarySink",
-								"storeSettings": {
-									"type": "AzureBlobFSWriteSettings"
-								}
-							},
-							"enableStaging": false,
-							"enableSkipIncompatibleRow": false,
-							"dataIntegrationUnits": 8
-						},
-						"inputs": [
-							{
-								"referenceName": "Binary_blob_training_ds",
-								"type": "DatasetReference",
-								"parameters": {
-									"FileName_ds": {
-										"value": "@pipeline().globalParameters.FileName",
-										"type": "Expression"
-									},
-									"Env": {
-										"value": "@pipeline().globalParameters.Env",
-										"type": "Expression"
-									}
-								}
-							}
-						],
-						"outputs": [
-							{
-								"referenceName": "Binary_adls_training_ds",
-								"type": "DatasetReference",
-								"parameters": {}
-							}
-						]
-					},
-					{
-						"name": "Delete raw zone data",
-						"description": "this will delete the data from source blob after successfully processed files ",
-						"type": "Delete",
-						"dependsOn": [
-							{
-								"activity": "Raw to struct data copy",
-								"dependencyConditions": [
-									"Succeeded"
-								]
-							}
-						],
-						"policy": {
-							"timeout": "7.00:00:00",
-							"retry": 0,
-							"retryIntervalInSeconds": 30,
-							"secureOutput": false,
-							"secureInput": false
-						},
-						"userProperties": [],
-						"typeProperties": {
-							"dataset": {
-								"referenceName": "Binary_blob_training_ds",
-								"type": "DatasetReference",
-								"parameters": {
-									"FileName_ds": {
-										"value": "@pipeline().globalParameters.FileName",
-										"type": "Expression"
-									},
-									"Env": {
-										"value": "@pipeline().globalParameters.Env",
-										"type": "Expression"
-									}
-								}
-							},
-							"logStorageSettings": {
-								"linkedServiceName": {
-									"referenceName": "AzureBlobStorage_ls",
-									"type": "LinkedServiceReference"
-								},
-								"path": "runlogs"
-							},
-							"enableLogging": true,
-							"storeSettings": {
-								"type": "AzureBlobStorageReadSettings",
-								"recursive": true,
-								"enablePartitionDiscovery": false
-							}
-						}
-					},
-					{
-						"name": "Get Metadata_blob",
-						"type": "GetMetadata",
-						"dependsOn": [],
-						"policy": {
-							"timeout": "7.00:00:00",
-							"retry": 0,
-							"retryIntervalInSeconds": 30,
-							"secureOutput": false,
-							"secureInput": false
-						},
-						"userProperties": [],
-						"typeProperties": {
-							"dataset": {
-								"referenceName": "Binary_Getmetatdata",
-								"type": "DatasetReference",
-								"parameters": {}
-							},
-							"fieldList": [
-								"childItems"
-							],
-							"storeSettings": {
-								"type": "AzureBlobStorageReadSettings",
-								"recursive": true,
-								"enablePartitionDiscovery": false
-							},
-							"formatSettings": {
-								"type": "BinaryReadSettings"
-							}
-						}
-					},
-					{
-						"name": "Filter_condition",
-						"description": "this activity will filter the list of files ",
-						"type": "Filter",
-						"dependsOn": [
-							{
-								"activity": "Get Metadata_blob",
-								"dependencyConditions": [
-									"Succeeded"
-								]
-							}
-						],
-						"userProperties": [],
-						"typeProperties": {
-							"items": {
-								"value": "@activity('Get Metadata_blob').output.childItems",
-								"type": "Expression"
-							},
-							"condition": {
-								"value": "@contains(activity('Get Metadata_blob').output.childItems[0].name,item().name)",
-								"type": "Expression"
-							}
-						}
-					},
-					{
-						"name": "Execute Pipeline_Email_Notification",
-						"type": "ExecutePipeline",
-						"dependsOn": [
-							{
-								"activity": "Get Metadata_blob",
-								"dependencyConditions": [
-									"Failed"
-								]
-							},
-							{
-								"activity": "Filter_condition",
-								"dependencyConditions": [
-									"Failed"
-								]
-							},
-							{
-								"activity": "Raw to struct data copy",
-								"dependencyConditions": [
-									"Failed"
-								]
-							},
-							{
-								"activity": "Delete raw zone data",
-								"dependencyConditions": [
-									"Failed"
-								]
-							}
-						],
-						"userProperties": [],
-						"typeProperties": {
-							"pipeline": {
-								"referenceName": "EmailNotification_Pipelines",
-								"type": "PipelineReference"
-							},
-							"waitOnCompletion": true,
-							"parameters": {
-								"DataFactoryName": {
-									"value": "@pipeline().DataFactory",
-									"type": "Expression"
-								},
-								"PipelineName": {
-									"value": "@pipeline().Pipeline",
-									"type": "Expression"
-								},
-								"receiver": {
-									"value": "eclasserasureshaz@outlook.com",
-									"type": "Expression"
-								},
-								"SourceFile": {
-									"value": "LNDG_TYCO_CUST_CONVIT.txt",
-									"type": "Expression"
-								},
-								"Status": {
-									"value": "\"Fail\"",
-									"type": "Expression"
-								}
-							}
-						}
-					},
-					{
-						"name": "Execute Pipeline_Email_Notification_copy1",
-						"type": "ExecutePipeline",
-						"dependsOn": [
-							{
-								"activity": "Delete raw zone data",
-								"dependencyConditions": [
-									"Succeeded"
-								]
-							}
-						],
-						"userProperties": [],
-						"typeProperties": {
-							"pipeline": {
-								"referenceName": "EmailNotification_Pipelines",
-								"type": "PipelineReference"
-							},
-							"waitOnCompletion": true,
-							"parameters": {
-								"DataFactoryName": {
-									"value": "@pipeline().DataFactory",
-									"type": "Expression"
-								},
-								"PipelineName": {
-									"value": "@pipeline().Pipeline",
-									"type": "Expression"
-								},
-								"receiver": {
-									"value": "eclasserasureshaz@outlook.com",
-									"type": "Expression"
-								},
-								"SourceFile": {
-									"value": "LNDG_TYCO_CUST_CONVIT.txt",
-									"type": "Expression"
-								},
-								"Status": {
-									"value": "\" pipeline Run Success\"",
-									"type": "Expression"
-								}
-							}
-						}
-					}
-				],
-				"policy": {
-					"elapsedTimeMetric": {},
-					"cancelAfter": {}
-				},
-				"variables": {
-					"TokenID": {
-						"type": "String"
-					},
-					"Value": {
-						"type": "String"
-					},
-					"Runtokenvalue": {
-						"type": "String"
-					},
-					"TokenPath": {
-						"type": "String"
-					}
-				},
-				"folder": {
-					"name": "Azuretraining"
-				},
-				"annotations": []
-			},
-			"dependsOn": [
-				"[variables('factoryId')]",
-				"[concat(variables('factoryId'), '/datasets/Binary_blob_training_ds')]",
-				"[concat(variables('factoryId'), '/datasets/Binary_adls_training_ds')]",
-				"[concat(variables('factoryId'), '/datasets/Binary_Getmetatdata')]",
-				"[concat(variables('factoryId'), '/pipelines/EmailNotification_Pipelines')]",
-				"[concat(variables('factoryId'), '/linkedServices/AzureBlobStorage_ls')]"
-			]
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/aztraining_adf_fail_df')]",
-			"type": "Microsoft.DataFactory/factories/pipelines",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"activities": [
-					{
-						"name": "Fail_jobparam",
-						"type": "Fail",
-						"dependsOn": [
-							{
-								"activity": "Lookup_jobparmfile",
-								"dependencyConditions": [
-									"Failed"
-								]
-							}
-						],
-						"userProperties": [],
-						"typeProperties": {
-							"message": {
-								"value": "{\n\n\"pipelineName\" : \"aztraining_adf_fail_df\"\n\"type\" : \"Failure Message\"\n\"ErrorCode\" : \"500\"\n}",
-								"type": "Expression"
-							},
-							"errorCode": {
-								"value": "500",
-								"type": "Expression"
-							}
-						}
-					},
-					{
-						"name": "Lookup_jobparmfile",
-						"type": "Lookup",
-						"dependsOn": [],
-						"policy": {
-							"timeout": "7.00:00:00",
-							"retry": 0,
-							"retryIntervalInSeconds": 30,
-							"secureOutput": false,
-							"secureInput": false
-						},
-						"userProperties": [],
-						"typeProperties": {
-							"source": {
-								"type": "JsonSource",
-								"storeSettings": {
-									"type": "AzureBlobStorageReadSettings",
-									"recursive": true,
-									"enablePartitionDiscovery": false
-								},
-								"formatSettings": {
-									"type": "JsonReadSettings"
-								}
-							},
-							"dataset": {
-								"referenceName": "Json_jobparam",
-								"type": "DatasetReference",
-								"parameters": {}
-							}
-						}
-					},
-					{
-						"name": "Get Metadata_jobparam",
-						"type": "GetMetadata",
-						"dependsOn": [
-							{
-								"activity": "Lookup_jobparmfile",
-								"dependencyConditions": [
-									"Succeeded"
-								]
-							}
-						],
-						"policy": {
-							"timeout": "7.00:00:00",
-							"retry": 0,
-							"retryIntervalInSeconds": 30,
-							"secureOutput": false,
-							"secureInput": false
-						},
-						"userProperties": [],
-						"typeProperties": {
-							"dataset": {
-								"referenceName": "Binary1_dsjobparam",
-								"type": "DatasetReference",
-								"parameters": {}
-							},
-							"fieldList": [
-								"itemName"
-							],
-							"storeSettings": {
-								"type": "AzureBlobStorageReadSettings",
-								"recursive": true,
-								"enablePartitionDiscovery": false
-							},
-							"formatSettings": {
-								"type": "BinaryReadSettings"
-							}
-						}
-					},
-					{
-						"name": "Append variable1_Example",
-						"type": "AppendVariable",
-						"dependsOn": [
-							{
-								"activity": "Get Metadata_jobparam",
-								"dependencyConditions": [
-									"Succeeded"
-								]
-							}
-						],
-						"userProperties": [],
-						"typeProperties": {
-							"variableName": "Append_Test",
-							"value": {
-								"value": "@activity('Get Metadata_jobparam').output.itemName",
-								"type": "Expression"
-							}
-						}
-					}
-				],
-				"policy": {
-					"elapsedTimeMetric": {},
-					"cancelAfter": {}
-				},
-				"variables": {
-					"Append_Test": {
-						"type": "Array"
-					}
-				},
-				"folder": {
-					"name": "Azuretraining"
-				},
-				"annotations": []
-			},
-			"dependsOn": [
-				"[variables('factoryId')]",
-				"[concat(variables('factoryId'), '/datasets/Json_jobparam')]",
-				"[concat(variables('factoryId'), '/datasets/Binary1_dsjobparam')]"
-			]
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/pipelin_Untilactivity_Test')]",
-			"type": "Microsoft.DataFactory/factories/pipelines",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"activities": [
-					{
-						"name": "Until_Testpipeline",
-						"type": "Until",
-						"dependsOn": [
-							{
-								"activity": "IDentity_set1",
-								"dependencyConditions": [
-									"Succeeded"
-								]
-							},
-							{
-								"activity": "Identity_Set2",
-								"dependencyConditions": [
-									"Succeeded"
-								]
-							}
-						],
-						"userProperties": [],
-						"typeProperties": {
-							"expression": {
-								"value": "@greater(int(variables('ID1')),int(variables('ID2')))",
-								"type": "Expression"
-							},
-							"activities": [
-								{
-									"name": "Execute Pipelin_Until",
-									"type": "ExecutePipeline",
-									"dependsOn": [],
-									"userProperties": [],
-									"typeProperties": {
-										"pipeline": {
-											"referenceName": "aztraining_adf_copydata_df",
-											"type": "PipelineReference"
-										},
-										"waitOnCompletion": true,
-										"parameters": {}
-									}
-								},
-								{
-									"name": "Set variable_unil",
-									"type": "SetVariable",
-									"dependsOn": [
-										{
-											"activity": "Execute Pipelin_Until",
-											"dependencyConditions": [
-												"Succeeded"
-											]
-										}
-									],
-									"userProperties": [],
-									"typeProperties": {
-										"variableName": "ID1",
-										"value": {
-											"value": "70",
-											"type": "Expression"
-										}
-									}
-								}
-							],
-							"timeout": "0.00:10:00"
-						}
-					},
-					{
-						"name": "Wait_Untilvar",
-						"type": "Wait",
-						"dependsOn": [],
-						"userProperties": [],
-						"typeProperties": {
-							"waitTimeInSeconds": 60
-						}
-					},
-					{
-						"name": "IDentity_set1",
-						"type": "SetVariable",
-						"dependsOn": [
-							{
-								"activity": "Wait_Untilvar",
-								"dependencyConditions": [
-									"Succeeded"
-								]
-							}
-						],
-						"userProperties": [
-							{
-								"name": "pipeline Annotation",
-								"value": "\"Wait and until run \""
-							}
-						],
-						"typeProperties": {
-							"variableName": "ID1",
-							"value": {
-								"value": "10",
-								"type": "Expression"
-							}
-						}
-					},
-					{
-						"name": "Identity_Set2",
-						"type": "SetVariable",
-						"dependsOn": [
-							{
-								"activity": "Wait_Untilvar",
-								"dependencyConditions": [
-									"Succeeded"
-								]
-							}
-						],
-						"userProperties": [],
-						"typeProperties": {
-							"variableName": "ID2",
-							"value": {
-								"value": "60",
-								"type": "Expression"
-							}
-						}
-					}
-				],
-				"policy": {
-					"elapsedTimeMetric": {},
-					"cancelAfter": {}
-				},
-				"variables": {
-					"ID1": {
-						"type": "String"
-					},
-					"ID2": {
-						"type": "String"
-					}
-				},
-				"folder": {
-					"name": "Azuretraining"
-				},
-				"annotations": []
-			},
-			"dependsOn": [
-				"[variables('factoryId')]",
-				"[concat(variables('factoryId'), '/pipelines/aztraining_adf_copydata_df')]"
 			]
 		},
 		{
@@ -7713,7 +6808,6 @@
 				"lastPublishTime": "2022-06-18T16:21:12Z"
 			},
 			"dependsOn": [
-				"[variables('factoryId')]",
 				"[concat(variables('factoryId'), '/datasets/Json')]",
 				"[concat(variables('factoryId'), '/pipelines/EmailNotification')]",
 				"[concat(variables('factoryId'), '/datasets/Blob')]",
@@ -7983,7 +7077,6 @@
 				"lastPublishTime": "2022-06-18T16:21:12Z"
 			},
 			"dependsOn": [
-				"[variables('factoryId')]",
 				"[concat(variables('factoryId'), '/datasets/ds_adf_param')]",
 				"[concat(variables('factoryId'), '/linkedServices/AzureDatabricks_ls')]",
 				"[concat(variables('factoryId'), '/pipelines/EmailNotification')]"
@@ -8075,7 +7168,6 @@
 				"lastPublishTime": "2022-06-18T16:21:11Z"
 			},
 			"dependsOn": [
-				"[variables('factoryId')]",
 				"[concat(variables('factoryId'), '/datasets/ds_FileMigration')]",
 				"[concat(variables('factoryId'), '/datasets/ds_FileLanding')]"
 			]
@@ -8343,7 +7435,6 @@
 				"lastPublishTime": "2022-06-18T16:21:12Z"
 			},
 			"dependsOn": [
-				"[variables('factoryId')]",
 				"[concat(variables('factoryId'), '/datasets/ds_adf_param')]",
 				"[concat(variables('factoryId'), '/linkedServices/AzureDatabricks_ls')]",
 				"[concat(variables('factoryId'), '/pipelines/EmailNotification')]"
@@ -8392,7 +7483,6 @@
 				}
 			},
 			"dependsOn": [
-				"[variables('factoryId')]",
 				"[concat(variables('factoryId'), '/linkedServices/AzureDataLakeStorage_ls')]"
 			]
 		},
@@ -8430,7 +7520,6 @@
 				}
 			},
 			"dependsOn": [
-				"[variables('factoryId')]",
 				"[concat(variables('factoryId'), '/linkedServices/AzureDataLakeStorage_ls')]"
 			]
 		},
@@ -8465,7 +7554,6 @@
 				}
 			},
 			"dependsOn": [
-				"[variables('factoryId')]",
 				"[concat(variables('factoryId'), '/linkedServices/AzureDataLakeStorage_ls')]"
 			]
 		},
@@ -8512,7 +7600,6 @@
 				}
 			},
 			"dependsOn": [
-				"[variables('factoryId')]",
 				"[concat(variables('factoryId'), '/linkedServices/AzureDataLakeStorage_ls')]"
 			]
 		},
@@ -8559,7 +7646,6 @@
 				}
 			},
 			"dependsOn": [
-				"[variables('factoryId')]",
 				"[concat(variables('factoryId'), '/linkedServices/AzureDataLakeStorage_ls')]"
 			]
 		},
@@ -8606,7 +7692,6 @@
 				}
 			},
 			"dependsOn": [
-				"[variables('factoryId')]",
 				"[concat(variables('factoryId'), '/linkedServices/AzureDataLakeStorage_ls')]"
 			]
 		},
@@ -8644,7 +7729,6 @@
 				}
 			},
 			"dependsOn": [
-				"[variables('factoryId')]",
 				"[concat(variables('factoryId'), '/linkedServices/AzureDataLakeStorage_ls')]"
 			]
 		},
@@ -8682,7 +7766,6 @@
 				}
 			},
 			"dependsOn": [
-				"[variables('factoryId')]",
 				"[concat(variables('factoryId'), '/linkedServices/AzureDataLakeStorage_ls')]"
 			]
 		},
@@ -8720,7 +7803,6 @@
 				}
 			},
 			"dependsOn": [
-				"[variables('factoryId')]",
 				"[concat(variables('factoryId'), '/linkedServices/AzureDataLakeStorage_ls')]"
 			]
 		},
@@ -8744,7 +7826,6 @@
 				}
 			},
 			"dependsOn": [
-				"[variables('factoryId')]",
 				"[concat(variables('factoryId'), '/linkedServices/AzureBlobStorage_ls')]"
 			]
 		},
@@ -8783,7 +7864,6 @@
 				}
 			},
 			"dependsOn": [
-				"[variables('factoryId')]",
 				"[concat(variables('factoryId'), '/linkedServices/AzureBlobStorage_ls')]"
 			]
 		},
@@ -8825,7 +7905,44 @@
 				}
 			},
 			"dependsOn": [
-				"[variables('factoryId')]",
+				"[concat(variables('factoryId'), '/linkedServices/AzureDataLakeStorage_ls')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/BinaryDatasetForDeleteActivity2')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"description": "Connect to your source store to delete files.",
+				"linkedServiceName": {
+					"referenceName": "AzureDataLakeStorage_ls",
+					"type": "LinkedServiceReference"
+				},
+				"parameters": {
+					"FolderPath": {
+						"type": "string"
+					},
+					"Directory": {
+						"type": "string"
+					}
+				},
+				"annotations": [],
+				"type": "Binary",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobFSLocation",
+						"folderPath": {
+							"value": "@dataset().Directory",
+							"type": "Expression"
+						},
+						"fileSystem": {
+							"value": "@dataset().FolderPath",
+							"type": "Expression"
+						}
+					}
+				}
+			},
+			"dependsOn": [
 				"[concat(variables('factoryId'), '/linkedServices/AzureDataLakeStorage_ls')]"
 			]
 		},
@@ -8848,7 +7965,6 @@
 				}
 			},
 			"dependsOn": [
-				"[variables('factoryId')]",
 				"[concat(variables('factoryId'), '/linkedServices/AzureDataLakeStorage_ls')]"
 			]
 		},
@@ -8871,7 +7987,6 @@
 				}
 			},
 			"dependsOn": [
-				"[variables('factoryId')]",
 				"[concat(variables('factoryId'), '/linkedServices/AzureDataLakeStorage_ls')]"
 			]
 		},
@@ -8894,7 +8009,6 @@
 				}
 			},
 			"dependsOn": [
-				"[variables('factoryId')]",
 				"[concat(variables('factoryId'), '/linkedServices/AzureBlobStorage_ls')]"
 			]
 		},
@@ -8917,7 +8031,6 @@
 				}
 			},
 			"dependsOn": [
-				"[variables('factoryId')]",
 				"[concat(variables('factoryId'), '/linkedServices/AzureDataLakeStorage_ls')]"
 			]
 		},
@@ -8952,7 +8065,6 @@
 				}
 			},
 			"dependsOn": [
-				"[variables('factoryId')]",
 				"[concat(variables('factoryId'), '/linkedServices/AzureBlobStorage_ls')]"
 			]
 		},
@@ -8975,7 +8087,6 @@
 				}
 			},
 			"dependsOn": [
-				"[variables('factoryId')]",
 				"[concat(variables('factoryId'), '/linkedServices/AzureDataLakeStorage_ls')]"
 			]
 		},
@@ -8999,7 +8110,6 @@
 				}
 			},
 			"dependsOn": [
-				"[variables('factoryId')]",
 				"[concat(variables('factoryId'), '/linkedServices/AzureBlobStorage_ls')]"
 			]
 		},
@@ -9022,7 +8132,6 @@
 				}
 			},
 			"dependsOn": [
-				"[variables('factoryId')]",
 				"[concat(variables('factoryId'), '/linkedServices/AzureBlobStorage_ls')]"
 			]
 		},
@@ -9053,7 +8162,6 @@
 				}
 			},
 			"dependsOn": [
-				"[variables('factoryId')]",
 				"[concat(variables('factoryId'), '/linkedServices/AzureBlobStorage_ls')]"
 			]
 		},
@@ -9076,7 +8184,6 @@
 				}
 			},
 			"dependsOn": [
-				"[variables('factoryId')]",
 				"[concat(variables('factoryId'), '/linkedServices/AzureBlobStorage_ls')]"
 			]
 		},
@@ -9103,7 +8210,6 @@
 				}
 			},
 			"dependsOn": [
-				"[variables('factoryId')]",
 				"[concat(variables('factoryId'), '/linkedServices/AzureBlobStorage_ls')]"
 			]
 		},
@@ -9130,7 +8236,6 @@
 				}
 			},
 			"dependsOn": [
-				"[variables('factoryId')]",
 				"[concat(variables('factoryId'), '/linkedServices/AzureBlobStorage_ls')]"
 			]
 		},
@@ -9153,7 +8258,6 @@
 				}
 			},
 			"dependsOn": [
-				"[variables('factoryId')]",
 				"[concat(variables('factoryId'), '/linkedServices/AzureBlobStorage_ls')]"
 			]
 		},
@@ -9180,7 +8284,6 @@
 				"schema": []
 			},
 			"dependsOn": [
-				"[variables('factoryId')]",
 				"[concat(variables('factoryId'), '/linkedServices/AzureBlobStorage_ls')]"
 			]
 		},
@@ -9204,7 +8307,6 @@
 				}
 			},
 			"dependsOn": [
-				"[variables('factoryId')]",
 				"[concat(variables('factoryId'), '/linkedServices/AzureBlobStorage_ls')]"
 			]
 		},
@@ -9229,7 +8331,6 @@
 				"schema": {}
 			},
 			"dependsOn": [
-				"[variables('factoryId')]",
 				"[concat(variables('factoryId'), '/linkedServices/AzureBlobStorage_ls')]"
 			]
 		},
@@ -12556,7 +11657,6 @@
 				}
 			},
 			"dependsOn": [
-				"[variables('factoryId')]",
 				"[concat(variables('factoryId'), '/linkedServices/AzureBlobStorage_ls')]"
 			]
 		},
@@ -12633,7 +11733,6 @@
 				]
 			},
 			"dependsOn": [
-				"[variables('factoryId')]",
 				"[concat(variables('factoryId'), '/linkedServices/AzureBlobStorage_ls')]"
 			]
 		},
@@ -12657,7 +11756,6 @@
 				"schema": {}
 			},
 			"dependsOn": [
-				"[variables('factoryId')]",
 				"[concat(variables('factoryId'), '/linkedServices/AzureBlobStorage_ls')]"
 			]
 		},
@@ -12750,7 +11848,6 @@
 				}
 			},
 			"dependsOn": [
-				"[variables('factoryId')]",
 				"[concat(variables('factoryId'), '/linkedServices/AzureBlobStorage_ls')]"
 			]
 		},
@@ -12782,7 +11879,6 @@
 				}
 			},
 			"dependsOn": [
-				"[variables('factoryId')]",
 				"[concat(variables('factoryId'), '/linkedServices/AzureBlobStorage_ls')]"
 			]
 		},
@@ -12821,7 +11917,6 @@
 				}
 			},
 			"dependsOn": [
-				"[variables('factoryId')]",
 				"[concat(variables('factoryId'), '/linkedServices/AzureBlobStorage_ls')]"
 			]
 		},
@@ -12846,7 +11941,6 @@
 				"schema": {}
 			},
 			"dependsOn": [
-				"[variables('factoryId')]",
 				"[concat(variables('factoryId'), '/linkedServices/AzureBlobStorage_ls')]"
 			]
 		},
@@ -12896,7 +11990,6 @@
 				]
 			},
 			"dependsOn": [
-				"[variables('factoryId')]",
 				"[concat(variables('factoryId'), '/linkedServices/AzureBlobStorage_ls')]"
 			]
 		},
@@ -12912,9 +12005,21 @@
 					"connectionString": "[parameters('AzureBlobStorage_ls_connectionString')]"
 				}
 			},
-			"dependsOn": [
-				"[variables('factoryId')]"
-			]
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/AzureDataExplorer_linkservice')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "AzureDataExplorer",
+				"typeProperties": {
+					"endpoint": "[parameters('AzureDataExplorer_linkservice_properties_typeProperties_endpoint')]",
+					"database": "[parameters('AzureDataExplorer_linkservice_properties_typeProperties_database')]"
+				}
+			},
+			"dependsOn": []
 		},
 		{
 			"name": "[concat(parameters('factoryName'), '/AzureDataLakeStorage_ls')]",
@@ -12938,75 +12043,7 @@
 				}
 			},
 			"dependsOn": [
-				"[variables('factoryId')]",
 				"[concat(variables('factoryId'), '/linkedServices/AzureKeyVault_training')]"
-			]
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/AzureDatabricks_V6_4')]",
-			"type": "Microsoft.DataFactory/factories/linkedServices",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"description": "This will use the run time 6.4 cluster",
-				"annotations": [],
-				"type": "AzureDatabricks",
-				"typeProperties": {
-					"domain": "https://adb-7339348852698591.11.azuredatabricks.net",
-					"accessToken": {
-						"type": "AzureKeyVaultSecret",
-						"store": {
-							"referenceName": "AzureKeyVault_ls",
-							"type": "LinkedServiceReference"
-						},
-						"secretName": "ba-n-rvact-001-adbtoken-secret"
-					},
-					"existingClusterId": "0222-202204-flora568"
-				}
-			},
-			"dependsOn": [
-				"[variables('factoryId')]",
-				"[concat(variables('factoryId'), '/linkedServices/AzureKeyVault_ls')]"
-			]
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/AzureDatabricks_ls')]",
-			"type": "Microsoft.DataFactory/factories/linkedServices",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"annotations": [],
-				"type": "AzureDatabricks",
-				"typeProperties": {
-					"domain": "https://adb-7339348852698591.11.azuredatabricks.net",
-					"accessToken": {
-						"type": "AzureKeyVaultSecret",
-						"store": {
-							"referenceName": "AzureKeyVault_ls",
-							"type": "LinkedServiceReference"
-						},
-						"secretName": "ba-n-rvact-001-adbtoken-secret"
-					},
-					"existingClusterId": "0406-221726-guess351"
-				}
-			},
-			"dependsOn": [
-				"[variables('factoryId')]",
-				"[concat(variables('factoryId'), '/linkedServices/AzureKeyVault_ls')]"
-			]
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/AzureKeyVault_ls')]",
-			"type": "Microsoft.DataFactory/factories/linkedServices",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"description": "Linked service for azure key vault",
-				"annotations": [],
-				"type": "AzureKeyVault",
-				"typeProperties": {
-					"baseUrl": "[parameters('AzureKeyVault_ls_properties_typeProperties_baseUrl')]"
-				}
-			},
-			"dependsOn": [
-				"[variables('factoryId')]"
 			]
 		},
 		{
@@ -13020,9 +12057,7 @@
 					"baseUrl": "[parameters('AzureKeyVault_training_properties_typeProperties_baseUrl')]"
 				}
 			},
-			"dependsOn": [
-				"[variables('factoryId')]"
-			]
+			"dependsOn": []
 		},
 		{
 			"name": "[concat(parameters('factoryName'), '/TransientStorage_ls')]",
@@ -13035,39 +12070,7 @@
 					"url": "[parameters('TransientStorage_ls_properties_typeProperties_url')]"
 				}
 			},
-			"dependsOn": [
-				"[variables('factoryId')]"
-			]
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/linkedService1')]",
-			"type": "Microsoft.DataFactory/factories/linkedServices",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"annotations": [],
-				"type": "AzureBlobStorage",
-				"typeProperties": {
-					"connectionString": "[parameters('linkedService1_connectionString')]"
-				}
-			},
-			"dependsOn": [
-				"[variables('factoryId')]"
-			]
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/linkedService2')]",
-			"type": "Microsoft.DataFactory/factories/linkedServices",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"annotations": [],
-				"type": "AzureBlobStorage",
-				"typeProperties": {
-					"connectionString": "[parameters('linkedService2_connectionString')]"
-				}
-			},
-			"dependsOn": [
-				"[variables('factoryId')]"
-			]
+			"dependsOn": []
 		},
 		{
 			"name": "[concat(parameters('factoryName'), '/trigger_DataCopy')]",
@@ -13076,15 +12079,7 @@
 			"properties": {
 				"annotations": [],
 				"runtimeState": "Stopped",
-				"pipelines": [
-					{
-						"pipelineReference": {
-							"referenceName": "CopyPipeline_onetimecopy",
-							"type": "PipelineReference"
-						},
-						"parameters": {}
-					}
-				],
+				"pipelines": [],
 				"type": "BlobEventsTrigger",
 				"typeProperties": {
 					"blobPathBeginsWith": "/rawblob/blobs/LNDG_",
@@ -13096,72 +12091,44 @@
 					]
 				}
 			},
-			"dependsOn": [
-				"[variables('factoryId')]",
-				"[concat(variables('factoryId'), '/pipelines/CopyPipeline_onetimecopy')]"
-			]
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/credential1')]",
+			"type": "Microsoft.DataFactory/factories/credentials",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"type": "ManagedIdentity",
+				"typeProperties": {
+					"resourceId": "/subscriptions/b8501930-c7b6-4fa6-a05b-c62ac6d01b8c/resourceGroups/azuretraining/providers/Microsoft.ManagedIdentity/userAssignedIdentities/sureshMI"
+				}
+			},
+			"dependsOn": []
 		},
 		{
 			"name": "[concat(parameters('factoryName'), '/default')]",
 			"type": "Microsoft.DataFactory/factories/managedVirtualNetworks",
 			"apiVersion": "2018-06-01",
 			"properties": {},
-			"dependsOn": [
-				"[variables('factoryId')]"
-			]
+			"dependsOn": []
 		},
 		{
-			"name": "[concat(parameters('factoryName'), '/trigger_custom')]",
-			"type": "Microsoft.DataFactory/factories/triggers",
+			"name": "[concat(parameters('factoryName'), '/AzureDatabricks_ls')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
 			"apiVersion": "2018-06-01",
 			"properties": {
 				"annotations": [],
-				"runtimeState": "Started",
-				"pipelines": [
-					{
-						"pipelineReference": {
-							"referenceName": "aztraining_adf_copydata_df",
-							"type": "PipelineReference"
-						},
-						"parameters": {}
-					}
-				],
-				"type": "CustomEventsTrigger",
+				"type": "AzureDatabricks",
 				"typeProperties": {
-					"subjectEndsWith": ".txt",
-					"subjectBeginsWith": "LNDG_",
-					"scope": "[parameters('trigger_custom_properties_typeProperties_scope')]",
-					"events": [
-						"adfcustomtrigger"
-					]
-				}
-			},
-			"dependsOn": [
-				"[variables('factoryId')]",
-				"[concat(variables('factoryId'), '/pipelines/aztraining_adf_copydata_df')]"
-			]
-		},
-		{
-			"name": "[parameters('factoryName')]",
-			"type": "Microsoft.DataFactory/factories",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"globalParameters": {
-					"FileName": {
-						"type": "string",
-						"value": "[parameters('dataFactory_properties_globalParameters_FileName_value')]"
+					"domain": "https://adb-7250696620574566.6.azuredatabricks.net",
+					"accessToken": {
+						"type": "SecureString",
+						"value": "[parameters('AzureDatabricks_ls_accessToken')]"
 					},
-					"Env": {
-						"type": "string",
-						"value": "[parameters('dataFactory_properties_globalParameters_Env_value')]"
-					}
+					"existingClusterId": "0716-162125-88c45xpg"
 				}
 			},
-			"dependsOn": [],
-			"location": "[parameters('dataFactory_location')]",
-			"identity": {
-				"type": "[parameters('dataFactory_identity_type')]"
-			}
+			"dependsOn": []
 		}
 	]
 }

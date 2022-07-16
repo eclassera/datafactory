@@ -11,33 +11,17 @@
 			"type": "secureString",
 			"metadata": "Secure string for 'connectionString' of 'AzureBlobStorage_ls'"
 		},
-		"linkedService1_connectionString": {
+		"AzureDatabricks_ls_accessToken": {
 			"type": "secureString",
-			"metadata": "Secure string for 'connectionString' of 'linkedService1'"
+			"metadata": "Secure string for 'accessToken' of 'AzureDatabricks_ls'"
 		},
-		"linkedService2_connectionString": {
-			"type": "secureString",
-			"metadata": "Secure string for 'connectionString' of 'linkedService2'"
-		},
-		"dataFactory_properties_globalParameters_FileName_value": {
+		"AzureDataExplorer_linkservice_properties_typeProperties_endpoint": {
 			"type": "string",
-			"defaultValue": "LNDG_TYCO_CUST_CONVIT.txt"
+			"defaultValue": "https://azureadxtraining.eastus2.kusto.windows.net"
 		},
-		"dataFactory_properties_globalParameters_Env_value": {
+		"AzureDataExplorer_linkservice_properties_typeProperties_database": {
 			"type": "string",
-			"defaultValue": "Dev"
-		},
-		"dataFactory_location": {
-			"type": "string",
-			"defaultValue": "eastus2"
-		},
-		"dataFactory_identity_type": {
-			"type": "string",
-			"defaultValue": "SystemAssigned"
-		},
-		"AzureKeyVault_ls_properties_typeProperties_baseUrl": {
-			"type": "string",
-			"defaultValue": "https://ba-n-zeaus-rvact-dev-kv.vault.azure.net/"
+			"defaultValue": "mra_dwh"
 		},
 		"AzureKeyVault_training_properties_typeProperties_baseUrl": {
 			"type": "string",
@@ -46,34 +30,16 @@
 		"TransientStorage_ls_properties_typeProperties_url": {
 			"type": "string",
 			"defaultValue": "https://banoriontransient.dfs.core.windows.net"
+		},
+		"trigger_DataCopy_properties_typeProperties_scope": {
+			"type": "string",
+			"defaultValue": "/subscriptions/b8501930-c7b6-4fa6-a05b-c62ac6d01b8c/resourceGroups/azuretraining/providers/Microsoft.Storage/storageAccounts/azuredatablobdev"
 		}
 	},
 	"variables": {
 		"factoryId": "[concat('Microsoft.DataFactory/factories/', parameters('factoryName'))]"
 	},
 	"resources": [
-		{
-			"name": "[parameters('factoryName')]",
-			"type": "Microsoft.DataFactory/factories",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"globalParameters": {
-					"FileName": {
-						"type": "string",
-						"value": "[parameters('dataFactory_properties_globalParameters_FileName_value')]"
-					},
-					"Env": {
-						"type": "string",
-						"value": "[parameters('dataFactory_properties_globalParameters_Env_value')]"
-					}
-				}
-			},
-			"dependsOn": [],
-			"location": "[parameters('dataFactory_location')]",
-			"identity": {
-				"type": "[parameters('dataFactory_identity_type')]"
-			}
-		},
 		{
 			"name": "[concat(parameters('factoryName'), '/AzureBlobStorage_ls')]",
 			"type": "Microsoft.DataFactory/factories/linkedServices",
@@ -89,15 +55,15 @@
 			"dependsOn": []
 		},
 		{
-			"name": "[concat(parameters('factoryName'), '/AzureKeyVault_ls')]",
+			"name": "[concat(parameters('factoryName'), '/AzureDataExplorer_linkservice')]",
 			"type": "Microsoft.DataFactory/factories/linkedServices",
 			"apiVersion": "2018-06-01",
 			"properties": {
-				"description": "Linked service for azure key vault",
 				"annotations": [],
-				"type": "AzureKeyVault",
+				"type": "AzureDataExplorer",
 				"typeProperties": {
-					"baseUrl": "[parameters('AzureKeyVault_ls_properties_typeProperties_baseUrl')]"
+					"endpoint": "[parameters('AzureDataExplorer_linkservice_properties_typeProperties_endpoint')]",
+					"database": "[parameters('AzureDataExplorer_linkservice_properties_typeProperties_database')]"
 				}
 			},
 			"dependsOn": []
@@ -129,27 +95,34 @@
 			"dependsOn": []
 		},
 		{
-			"name": "[concat(parameters('factoryName'), '/linkedService1')]",
-			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"name": "[concat(parameters('factoryName'), '/trigger_DataCopy')]",
+			"type": "Microsoft.DataFactory/factories/triggers",
 			"apiVersion": "2018-06-01",
 			"properties": {
 				"annotations": [],
-				"type": "AzureBlobStorage",
+				"runtimeState": "Stopped",
+				"pipelines": [],
+				"type": "BlobEventsTrigger",
 				"typeProperties": {
-					"connectionString": "[parameters('linkedService1_connectionString')]"
+					"blobPathBeginsWith": "/rawblob/blobs/LNDG_",
+					"blobPathEndsWith": ".txt",
+					"ignoreEmptyBlobs": true,
+					"scope": "[parameters('trigger_DataCopy_properties_typeProperties_scope')]",
+					"events": [
+						"Microsoft.Storage.BlobCreated"
+					]
 				}
 			},
 			"dependsOn": []
 		},
 		{
-			"name": "[concat(parameters('factoryName'), '/linkedService2')]",
-			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"name": "[concat(parameters('factoryName'), '/credential1')]",
+			"type": "Microsoft.DataFactory/factories/credentials",
 			"apiVersion": "2018-06-01",
 			"properties": {
-				"annotations": [],
-				"type": "AzureBlobStorage",
+				"type": "ManagedIdentity",
 				"typeProperties": {
-					"connectionString": "[parameters('linkedService2_connectionString')]"
+					"resourceId": "/subscriptions/b8501930-c7b6-4fa6-a05b-c62ac6d01b8c/resourceGroups/azuretraining/providers/Microsoft.ManagedIdentity/userAssignedIdentities/sureshMI"
 				}
 			},
 			"dependsOn": []
@@ -159,6 +132,24 @@
 			"type": "Microsoft.DataFactory/factories/managedVirtualNetworks",
 			"apiVersion": "2018-06-01",
 			"properties": {},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/AzureDatabricks_ls')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "AzureDatabricks",
+				"typeProperties": {
+					"domain": "https://adb-7250696620574566.6.azuredatabricks.net",
+					"accessToken": {
+						"type": "SecureString",
+						"value": "[parameters('AzureDatabricks_ls_accessToken')]"
+					},
+					"existingClusterId": "0716-162125-88c45xpg"
+				}
+			},
 			"dependsOn": []
 		},
 		{

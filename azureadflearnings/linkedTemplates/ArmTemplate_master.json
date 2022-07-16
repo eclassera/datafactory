@@ -11,21 +11,21 @@
 			"type": "secureString",
 			"metadata": "Secure string for 'connectionString' of 'AzureBlobStorage_ls'"
 		},
-		"linkedService1_connectionString": {
+		"AzureDatabricks_ls_accessToken": {
 			"type": "secureString",
-			"metadata": "Secure string for 'connectionString' of 'linkedService1'"
+			"metadata": "Secure string for 'accessToken' of 'AzureDatabricks_ls'"
 		},
-		"linkedService2_connectionString": {
-			"type": "secureString",
-			"metadata": "Secure string for 'connectionString' of 'linkedService2'"
+		"AzureDataExplorer_linkservice_properties_typeProperties_endpoint": {
+			"type": "string",
+			"defaultValue": "https://azureadxtraining.eastus2.kusto.windows.net"
+		},
+		"AzureDataExplorer_linkservice_properties_typeProperties_database": {
+			"type": "string",
+			"defaultValue": "mra_dwh"
 		},
 		"AzureDataLakeStorage_ls_properties_typeProperties_url": {
 			"type": "string",
 			"defaultValue": "https://azuredataadlsdev.dfs.core.windows.net/"
-		},
-		"AzureKeyVault_ls_properties_typeProperties_baseUrl": {
-			"type": "string",
-			"defaultValue": "https://ba-n-zeaus-rvact-dev-kv.vault.azure.net/"
 		},
 		"AzureKeyVault_training_properties_typeProperties_baseUrl": {
 			"type": "string",
@@ -38,26 +38,6 @@
 		"trigger_DataCopy_properties_typeProperties_scope": {
 			"type": "string",
 			"defaultValue": "/subscriptions/b8501930-c7b6-4fa6-a05b-c62ac6d01b8c/resourceGroups/azuretraining/providers/Microsoft.Storage/storageAccounts/azuredatablobdev"
-		},
-		"trigger_custom_properties_typeProperties_scope": {
-			"type": "string",
-			"defaultValue": "/subscriptions/b8501930-c7b6-4fa6-a05b-c62ac6d01b8c/resourceGroups/azuretraining/providers/Microsoft.EventGrid/topics/adfcustomtrigger"
-		},
-		"dataFactory_properties_globalParameters_FileName_value": {
-			"type": "string",
-			"defaultValue": "LNDG_TYCO_CUST_CONVIT.txt"
-		},
-		"dataFactory_properties_globalParameters_Env_value": {
-			"type": "string",
-			"defaultValue": "Dev"
-		},
-		"dataFactory_location": {
-			"type": "string",
-			"defaultValue": "eastus2"
-		},
-		"dataFactory_identity_type": {
-			"type": "string",
-			"defaultValue": "SystemAssigned"
 		},
 		"containerUri": {
 			"type": "string",
@@ -89,32 +69,23 @@
 					"AzureBlobStorage_ls_connectionString": {
 						"value": "[parameters('AzureBlobStorage_ls_connectionString')]"
 					},
-					"linkedService1_connectionString": {
-						"value": "[parameters('linkedService1_connectionString')]"
+					"AzureDatabricks_ls_accessToken": {
+						"value": "[parameters('AzureDatabricks_ls_accessToken')]"
 					},
-					"linkedService2_connectionString": {
-						"value": "[parameters('linkedService2_connectionString')]"
+					"AzureDataExplorer_linkservice_properties_typeProperties_endpoint": {
+						"value": "[parameters('AzureDataExplorer_linkservice_properties_typeProperties_endpoint')]"
 					},
-					"dataFactory_properties_globalParameters_FileName_value": {
-						"value": "[parameters('dataFactory_properties_globalParameters_FileName_value')]"
-					},
-					"dataFactory_properties_globalParameters_Env_value": {
-						"value": "[parameters('dataFactory_properties_globalParameters_Env_value')]"
-					},
-					"dataFactory_location": {
-						"value": "[parameters('dataFactory_location')]"
-					},
-					"dataFactory_identity_type": {
-						"value": "[parameters('dataFactory_identity_type')]"
-					},
-					"AzureKeyVault_ls_properties_typeProperties_baseUrl": {
-						"value": "[parameters('AzureKeyVault_ls_properties_typeProperties_baseUrl')]"
+					"AzureDataExplorer_linkservice_properties_typeProperties_database": {
+						"value": "[parameters('AzureDataExplorer_linkservice_properties_typeProperties_database')]"
 					},
 					"AzureKeyVault_training_properties_typeProperties_baseUrl": {
 						"value": "[parameters('AzureKeyVault_training_properties_typeProperties_baseUrl')]"
 					},
 					"TransientStorage_ls_properties_typeProperties_url": {
 						"value": "[parameters('TransientStorage_ls_properties_typeProperties_url')]"
+					},
+					"trigger_DataCopy_properties_typeProperties_scope": {
+						"value": "[parameters('trigger_DataCopy_properties_typeProperties_scope')]"
 					}
 				}
 			},
@@ -176,12 +147,6 @@
 				"parameters": {
 					"factoryName": {
 						"value": "[parameters('factoryName')]"
-					},
-					"trigger_DataCopy_properties_typeProperties_scope": {
-						"value": "[parameters('trigger_DataCopy_properties_typeProperties_scope')]"
-					},
-					"trigger_custom_properties_typeProperties_scope": {
-						"value": "[parameters('trigger_custom_properties_typeProperties_scope')]"
 					}
 				}
 			},
