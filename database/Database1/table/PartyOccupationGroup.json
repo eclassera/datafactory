@@ -1,0 +1,119 @@
+{
+	"name": "PartyOccupationGroup",
+	"properties": {
+		"Name": "PartyOccupationGroup",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Database1"
+		},
+		"Description": "The Party Occupation Group.\n\nThese criteria can change over a period of time and are represented with 'period start date/period end date' qualifications, which represented the best case for knowing this information.    If the data is only randomly sampled or recorded then you could use a single 'date' to identify its recording or effective as-of date.\n\nExamples:\n\n-  Executive, Administrative, Managerial\n-  Professional Specialty\n-  Technician\n-  Sales\n-  Clerical\n-  Private Household Service\n-  Protective Service\n-  Service Occupations Except Protective and Household\n-  Farming, Forestry and Fishing\n-  Precision Production, Craft and Repair\n-  Machine Operators, Assemblers and Inspectors\n-  Transportation/Material Moving\n-  Handlers, Equipment Cleaners, Helpers, Laborers",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "PartyId",
+					"Description": "The unique identifier of a Party.",
+					"BaseAttributeReference": {
+						"Entity": "PartyOccupationGroup.cdm.json/PartyOccupationGroup",
+						"Name": "PartyId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "long",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "long"
+						}
+					}
+				},
+				{
+					"Name": "OccupationGroupId",
+					"Description": "The unique identifier of an Occupation Group.",
+					"BaseAttributeReference": {
+						"Entity": "PartyOccupationGroup.cdm.json/PartyOccupationGroup",
+						"Name": "OccupationGroupId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "PeriodStartDate",
+					"Description": "The period start date for which the associated data is effective or 'as-of'.",
+					"BaseAttributeReference": {
+						"Entity": "PartyOccupationGroup.cdm.json/PartyOccupationGroup",
+						"Name": "PeriodStartDate"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "date",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"DateFormat": "YYYY-MM-DD",
+							"HIVE_TYPE_STRING": "date"
+						}
+					}
+				},
+				{
+					"Name": "PeriodEndDate",
+					"Description": "The period end date for which the associated data is effective or 'as-of'.",
+					"BaseAttributeReference": {
+						"Entity": "PartyOccupationGroup.cdm.json/PartyOccupationGroup",
+						"Name": "PeriodEndDate"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "date",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"DateFormat": "YYYY-MM-DD",
+							"HIVE_TYPE_STRING": "date"
+						}
+					}
+				},
+				{
+					"Name": "PartyOccupationGroupNote",
+					"Description": "A note, comment or additional information regarding the Party Occupation Group relationship.",
+					"BaseAttributeReference": {
+						"Entity": "PartyOccupationGroup.cdm.json/PartyOccupationGroup",
+						"Name": "PartyOccupationGroupNote"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 1024,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				}
+			],
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"PartyId\":{\"entity\":\"PartyOccupationGroup.cdm.json/PartyOccupationGroup\",\"name\":\"PartyId\"},\"OccupationGroupId\":{\"entity\":\"PartyOccupationGroup.cdm.json/PartyOccupationGroup\",\"name\":\"OccupationGroupId\"},\"PeriodStartDate\":{\"entity\":\"PartyOccupationGroup.cdm.json/PartyOccupationGroup\",\"name\":\"PeriodStartDate\"},\"PeriodEndDate\":{\"entity\":\"PartyOccupationGroup.cdm.json/PartyOccupationGroup\",\"name\":\"PeriodEndDate\"},\"PartyOccupationGroupNote\":{\"entity\":\"PartyOccupationGroup.cdm.json/PartyOccupationGroup\",\"name\":\"PartyOccupationGroupNote\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"PartyOccupationGroup\",\"path\":\"PartyOccupationGroup.cdm.json/PartyOccupationGroup\"},\"description\":\"The Party Occupation Group.\\n\\nThese criteria can change over a period of time and are represented with 'period start date/period end date' qualifications, which represented the best case for knowing this information.    If the data is only randomly sampled or recorded then you could use a single 'date' to identify its recording or effective as-of date.\\n\\nExamples:\\n\\n-  Executive, Administrative, Managerial\\n-  Professional Specialty\\n-  Technician\\n-  Sales\\n-  Clerical\\n-  Private Household Service\\n-  Protective Service\\n-  Service Occupations Except Protective and Household\\n-  Farming, Forestry and Fishing\\n-  Precision Production, Craft and Repair\\n-  Machine Operators, Assemblers and Inspectors\\n-  Transportation/Material Moving\\n-  Handlers, Equipment Cleaners, Helpers, Laborers\",\"primaryKey\":[\"PartyId\",\"OccupationGroupId\",\"PeriodStartDate\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"PartyOccupationGroup.cdm.json/PartyOccupationGroup\",\"name\":\"PartyId\"},\"dataType\":\"long\",\"description\":\"The unique identifier of a Party.\",\"isNullable\":false,\"name\":\"PartyId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"PartyOccupationGroup.cdm.json/PartyOccupationGroup\",\"name\":\"OccupationGroupId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of an Occupation Group.\",\"isNullable\":false,\"name\":\"OccupationGroupId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"PartyOccupationGroup.cdm.json/PartyOccupationGroup\",\"name\":\"PeriodStartDate\"},\"dataType\":\"date\",\"dateFormat\":\"YYYY-MM-DD\",\"description\":\"The period start date for which the associated data is effective or 'as-of'.\",\"isNullable\":false,\"name\":\"PeriodStartDate\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"PartyOccupationGroup.cdm.json/PartyOccupationGroup\",\"name\":\"PeriodEndDate\"},\"dataType\":\"date\",\"dateFormat\":\"YYYY-MM-DD\",\"description\":\"The period end date for which the associated data is effective or 'as-of'.\",\"isNullable\":true,\"name\":\"PeriodEndDate\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"PartyOccupationGroup.cdm.json/PartyOccupationGroup\",\"name\":\"PartyOccupationGroupNote\"},\"dataType\":\"string\",\"dataTypeLength\":1024,\"description\":\"A note, comment or additional information regarding the Party Occupation Group relationship.\",\"isNullable\":true,\"name\":\"PartyOccupationGroupNote\"}]}}}",
+			"Description": "The Party Occupation Group.\n\nThese criteria can change over a period of time and are represented with 'period start date/period end date' qualifications, which represented the best case for knowing this information.    If the data is only randomly sampled or recorded then you could use a single 'date' to identify its recording or effective as-of date.\n\nExamples:\n\n-  Executive, Administrative, Managerial\n-  Professional Specialty\n-  Technician\n-  Sales\n-  Clerical\n-  Private Household Service\n-  Protective Service\n-  Service Occupations Except Protective and Household\n-  Farming, Forestry and Fishing\n-  Precision Production, Craft and Repair\n-  Machine Operators, Assemblers and Inspectors\n-  Transportation/Material Moving\n-  Handlers, Equipment Cleaners, Helpers, Laborers",
+			"DisplayFolderInfo": "{\"name\":\"Party\",\"colorCode\":\"#0E3D73\"}",
+			"PrimaryKeys": "PartyId,OccupationGroupId,PeriodStartDate"
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

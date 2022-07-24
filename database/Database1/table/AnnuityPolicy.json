@@ -1,0 +1,511 @@
+{
+	"name": "AnnuityPolicy",
+	"properties": {
+		"Name": "AnnuityPolicy",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Database1"
+		},
+		"Description": "Annuity: A plan that allows individuals to make tax-deferred contributions to a retirement savings account and to select a payout option that meets their income needs upon retirement.\n\nWhat is an 'Annuity'\nAn annuity is a contractual financial product sold by financial institutions that is designed to accept and grow funds from an individual and then, upon annuitization, pay out a stream of payments to the individual at a later point in time. The period of time when an annuity is being funded and before payouts begin is referred to as the accumulation phase. Once payments commence, the contract is in the annuitization phase.\n\nAnnuities were designed to be a reliable means of securing a steady cash flow for an individual during their retirement years and to alleviate fears of longevity risk, or outliving one's assets.\n\nAnnuities can also be created to turn a substantial lump sum into a steady cash flow, such as for winners of large cash settlements from a lawsuit or from winning the lottery.\n\nDefined benefit pensions and Social Security are two examples of lifetime guaranteed annuities that pay retirees a steady cash flow until they pass.",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "AnnuityPolicyId",
+					"Description": "The unique identifier of an annuity.",
+					"BaseAttributeReference": {
+						"Entity": "AnnuityPolicy.cdm.json/AnnuityPolicy",
+						"Name": "AnnuityPolicyId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "OwnedByPartyId",
+					"Description": "The unique identifier of a Party.",
+					"BaseAttributeReference": {
+						"Entity": "AnnuityPolicy.cdm.json/AnnuityPolicy",
+						"Name": "OwnedByPartyId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "long",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"HIVE_TYPE_STRING": "long"
+						}
+					}
+				},
+				{
+					"Name": "CostBasisAmount",
+					"Description": "Cost Basis: the original payment paid to an annuity.",
+					"BaseAttributeReference": {
+						"Entity": "AnnuityPolicy.cdm.json/AnnuityPolicy",
+						"Name": "CostBasisAmount"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "decimal",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Precision": 18,
+						"Scale": 2,
+						"Properties": {
+							"HIVE_TYPE_STRING": "decimal"
+						}
+					}
+				},
+				{
+					"Name": "DeathBenefitAmount",
+					"Description": "Death Benefit: The annuity benefit paid to a designated beneficiary when the annuity contract's owner dies.",
+					"BaseAttributeReference": {
+						"Entity": "AnnuityPolicy.cdm.json/AnnuityPolicy",
+						"Name": "DeathBenefitAmount"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "decimal",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Precision": 18,
+						"Scale": 2,
+						"Properties": {
+							"HIVE_TYPE_STRING": "decimal"
+						}
+					}
+				},
+				{
+					"Name": "AnnuityDurationPeriodYears",
+					"Description": "Duration: Timeframe of an annuity contract: 1, 2, 3, 5, 7, or 10 years. The longer the duration, the better the return rate on fixed annuities.",
+					"BaseAttributeReference": {
+						"Entity": "AnnuityPolicy.cdm.json/AnnuityPolicy",
+						"Name": "AnnuityDurationPeriodYears"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "AnnuityGuaranteedInterestRatePercentage",
+					"Description": "Guaranteed Interest Rate: The minimum interest rate an insurer will credit during an annuity contract's accumulation phase, usually between three and four percent.",
+					"BaseAttributeReference": {
+						"Entity": "AnnuityPolicy.cdm.json/AnnuityPolicy",
+						"Name": "AnnuityGuaranteedInterestRatePercentage"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "decimal",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Precision": 18,
+						"Scale": 8,
+						"Properties": {
+							"HIVE_TYPE_STRING": "decimal"
+						}
+					}
+				},
+				{
+					"Name": "AnnuityInitialInterestRatePercentage",
+					"Description": "The initial interest rate percentage.",
+					"BaseAttributeReference": {
+						"Entity": "AnnuityPolicy.cdm.json/AnnuityPolicy",
+						"Name": "AnnuityInitialInterestRatePercentage"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "decimal",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Precision": 18,
+						"Scale": 8,
+						"Properties": {
+							"HIVE_TYPE_STRING": "decimal"
+						}
+					}
+				},
+				{
+					"Name": "IncomeFloorGuaranteePercentage",
+					"Description": "Income Floor Guarantee Annuity feature that guarantees payments will never be less than a given percentage of the original payment, such as 80%, regardless of the performance of the underlying investments.",
+					"BaseAttributeReference": {
+						"Entity": "AnnuityPolicy.cdm.json/AnnuityPolicy",
+						"Name": "IncomeFloorGuaranteePercentage"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "decimal",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Precision": 18,
+						"Scale": 8,
+						"Properties": {
+							"HIVE_TYPE_STRING": "decimal"
+						}
+					}
+				},
+				{
+					"Name": "AnnuityInitialInterestRatePeriodStartDate",
+					"Description": "The period start date of the annuity initial interest rate.",
+					"BaseAttributeReference": {
+						"Entity": "AnnuityPolicy.cdm.json/AnnuityPolicy",
+						"Name": "AnnuityInitialInterestRatePeriodStartDate"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "date",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"DateFormat": "YYYY-MM-DD",
+							"HIVE_TYPE_STRING": "date"
+						}
+					}
+				},
+				{
+					"Name": "AnnuityInitialInterestRatePeriodEndDate",
+					"Description": "The period end date of the annuity initial interest rate.",
+					"BaseAttributeReference": {
+						"Entity": "AnnuityPolicy.cdm.json/AnnuityPolicy",
+						"Name": "AnnuityInitialInterestRatePeriodEndDate"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "date",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"DateFormat": "YYYY-MM-DD",
+							"HIVE_TYPE_STRING": "date"
+						}
+					}
+				},
+				{
+					"Name": "AnnuityUponReachingAge",
+					"Description": "The age at which the annuity begins in terms of the annuitant's age.",
+					"BaseAttributeReference": {
+						"Entity": "AnnuityPolicy.cdm.json/AnnuityPolicy",
+						"Name": "AnnuityUponReachingAge"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "AnnuityIssueDate",
+					"Description": "The effective date of your Annuity.",
+					"BaseAttributeReference": {
+						"Entity": "AnnuityPolicy.cdm.json/AnnuityPolicy",
+						"Name": "AnnuityIssueDate"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "date",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"DateFormat": "YYYY-MM-DD",
+							"HIVE_TYPE_STRING": "date"
+						}
+					}
+				},
+				{
+					"Name": "AnnuityTermStartDate",
+					"Description": "The start date of the annuity.",
+					"BaseAttributeReference": {
+						"Entity": "AnnuityPolicy.cdm.json/AnnuityPolicy",
+						"Name": "AnnuityTermStartDate"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "date",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"DateFormat": "YYYY-MM-DD",
+							"HIVE_TYPE_STRING": "date"
+						}
+					}
+				},
+				{
+					"Name": "AnnuityTermEndDate",
+					"Description": "The end date of the annuity.",
+					"BaseAttributeReference": {
+						"Entity": "AnnuityPolicy.cdm.json/AnnuityPolicy",
+						"Name": "AnnuityTermEndDate"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "date",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"DateFormat": "YYYY-MM-DD",
+							"HIVE_TYPE_STRING": "date"
+						}
+					}
+				},
+				{
+					"Name": "AnniversaryDate",
+					"Description": "The anniversary of the date on which an annuity starts or becomes effective. \n\nNote:\nIndex annuities calculate annual yield by taking the difference in the S&P 500 between anniversary dates.",
+					"BaseAttributeReference": {
+						"Entity": "AnnuityPolicy.cdm.json/AnnuityPolicy",
+						"Name": "AnniversaryDate"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "date",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"DateFormat": "YYYY-MM-DD",
+							"HIVE_TYPE_STRING": "date"
+						}
+					}
+				},
+				{
+					"Name": "MaturityDate",
+					"Description": "Maturity Date: The date on which an annuity starts to make income payouts.",
+					"BaseAttributeReference": {
+						"Entity": "AnnuityPolicy.cdm.json/AnnuityPolicy",
+						"Name": "MaturityDate"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "date",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"DateFormat": "YYYY-MM-DD",
+							"HIVE_TYPE_STRING": "date"
+						}
+					}
+				},
+				{
+					"Name": "AnnuityCommencementDate",
+					"Description": "The date income payments begin, also known as the annuity start date.",
+					"BaseAttributeReference": {
+						"Entity": "AnnuityPolicy.cdm.json/AnnuityPolicy",
+						"Name": "AnnuityCommencementDate"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "date",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"DateFormat": "YYYY-MM-DD",
+							"HIVE_TYPE_STRING": "date"
+						}
+					}
+				},
+				{
+					"Name": "AnnuityPayoutPeriodStartDate",
+					"Description": "The start date for annuity payouts.",
+					"BaseAttributeReference": {
+						"Entity": "AnnuityPolicy.cdm.json/AnnuityPolicy",
+						"Name": "AnnuityPayoutPeriodStartDate"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "date",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"DateFormat": "YYYY-MM-DD",
+							"HIVE_TYPE_STRING": "date"
+						}
+					}
+				},
+				{
+					"Name": "AnnuityPayoutPeriodEndDate",
+					"Description": "The annuity payout period end date.",
+					"BaseAttributeReference": {
+						"Entity": "AnnuityPolicy.cdm.json/AnnuityPolicy",
+						"Name": "AnnuityPayoutPeriodEndDate"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "date",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"DateFormat": "YYYY-MM-DD",
+							"HIVE_TYPE_STRING": "date"
+						}
+					}
+				},
+				{
+					"Name": "AnnuitantDeathDate",
+					"Description": "The date of the annuitants death.",
+					"BaseAttributeReference": {
+						"Entity": "AnnuityPolicy.cdm.json/AnnuityPolicy",
+						"Name": "AnnuitantDeathDate"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "date",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"DateFormat": "YYYY-MM-DD",
+							"HIVE_TYPE_STRING": "date"
+						}
+					}
+				},
+				{
+					"Name": "AnnuitantDueProofOfDeathDate",
+					"Description": "Due Proof of Death is satisfied when we receive all of the following in Good Order: (a) a death certificate or similar documentation\nacceptable to us; (b) all representations we require or which are mandated by applicable law or regulation in relation to the death claim and the payment\nof death proceeds (representations may include, but are not limited to, trust or estate paperwork (if needed); consent forms (if applicable); and claims\nforms from at least one beneficiary); and (c) any applicable election of the method of payment of the death benefit, if not previously elected by the\nOwner, by at least one Beneficiary.",
+					"BaseAttributeReference": {
+						"Entity": "AnnuityPolicy.cdm.json/AnnuityPolicy",
+						"Name": "AnnuitantDueProofOfDeathDate"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "date",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"DateFormat": "YYYY-MM-DD",
+							"HIVE_TYPE_STRING": "date"
+						}
+					}
+				},
+				{
+					"Name": "FirstBeneficiarySpouseDeathDate",
+					"Description": "First Death: The first of the Spousal Designated Lives to die.",
+					"BaseAttributeReference": {
+						"Entity": "AnnuityPolicy.cdm.json/AnnuityPolicy",
+						"Name": "FirstBeneficiarySpouseDeathDate"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "date",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"DateFormat": "YYYY-MM-DD",
+							"HIVE_TYPE_STRING": "date"
+						}
+					}
+				},
+				{
+					"Name": "FreeLookProvisionStartDate",
+					"Description": "The start date of the first look provision.",
+					"BaseAttributeReference": {
+						"Entity": "AnnuityPolicy.cdm.json/AnnuityPolicy",
+						"Name": "FreeLookProvisionStartDate"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "date",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"DateFormat": "YYYY-MM-DD",
+							"HIVE_TYPE_STRING": "date"
+						}
+					}
+				},
+				{
+					"Name": "FreeLookProvisionEndDate",
+					"Description": "The end date of the first look provision.",
+					"BaseAttributeReference": {
+						"Entity": "AnnuityPolicy.cdm.json/AnnuityPolicy",
+						"Name": "FreeLookProvisionEndDate"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "date",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"DateFormat": "YYYY-MM-DD",
+							"HIVE_TYPE_STRING": "date"
+						}
+					}
+				},
+				{
+					"Name": "FreeWithdrawalProvisionAmount",
+					"Description": "The amount associated with the free withdrawal period on an annual basis.",
+					"BaseAttributeReference": {
+						"Entity": "AnnuityPolicy.cdm.json/AnnuityPolicy",
+						"Name": "FreeWithdrawalProvisionAmount"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "decimal",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Precision": 18,
+						"Scale": 2,
+						"Properties": {
+							"HIVE_TYPE_STRING": "decimal"
+						}
+					}
+				},
+				{
+					"Name": "AnnuityPayoutFrequencyTypeId",
+					"Description": "The unique identifier of an annuity payout frequency type.",
+					"BaseAttributeReference": {
+						"Entity": "AnnuityPolicy.cdm.json/AnnuityPolicy",
+						"Name": "AnnuityPayoutFrequencyTypeId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "AnnuitizationOptionTypeId",
+					"Description": "The unique identifier of an annuitization option type.",
+					"BaseAttributeReference": {
+						"Entity": "AnnuityPolicy.cdm.json/AnnuityPolicy",
+						"Name": "AnnuitizationOptionTypeId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "QualifiedTaxPlanTypeId",
+					"Description": "The unique identifier of a qualified tax plan type.",
+					"BaseAttributeReference": {
+						"Entity": "AnnuityPolicy.cdm.json/AnnuityPolicy",
+						"Name": "QualifiedTaxPlanTypeId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				}
+			],
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"AnnuityPolicyId\":{\"entity\":\"AnnuityPolicy.cdm.json/AnnuityPolicy\",\"name\":\"AnnuityPolicyId\"},\"OwnedByPartyId\":{\"entity\":\"AnnuityPolicy.cdm.json/AnnuityPolicy\",\"name\":\"OwnedByPartyId\"},\"CostBasisAmount\":{\"entity\":\"AnnuityPolicy.cdm.json/AnnuityPolicy\",\"name\":\"CostBasisAmount\"},\"DeathBenefitAmount\":{\"entity\":\"AnnuityPolicy.cdm.json/AnnuityPolicy\",\"name\":\"DeathBenefitAmount\"},\"AnnuityDurationPeriodYears\":{\"entity\":\"AnnuityPolicy.cdm.json/AnnuityPolicy\",\"name\":\"AnnuityDurationPeriodYears\"},\"AnnuityGuaranteedInterestRatePercentage\":{\"entity\":\"AnnuityPolicy.cdm.json/AnnuityPolicy\",\"name\":\"AnnuityGuaranteedInterestRatePercentage\"},\"AnnuityInitialInterestRatePercentage\":{\"entity\":\"AnnuityPolicy.cdm.json/AnnuityPolicy\",\"name\":\"AnnuityInitialInterestRatePercentage\"},\"IncomeFloorGuaranteePercentage\":{\"entity\":\"AnnuityPolicy.cdm.json/AnnuityPolicy\",\"name\":\"IncomeFloorGuaranteePercentage\"},\"AnnuityInitialInterestRatePeriodStartDate\":{\"entity\":\"AnnuityPolicy.cdm.json/AnnuityPolicy\",\"name\":\"AnnuityInitialInterestRatePeriodStartDate\"},\"AnnuityInitialInterestRatePeriodEndDate\":{\"entity\":\"AnnuityPolicy.cdm.json/AnnuityPolicy\",\"name\":\"AnnuityInitialInterestRatePeriodEndDate\"},\"AnnuityUponReachingAge\":{\"entity\":\"AnnuityPolicy.cdm.json/AnnuityPolicy\",\"name\":\"AnnuityUponReachingAge\"},\"AnnuityIssueDate\":{\"entity\":\"AnnuityPolicy.cdm.json/AnnuityPolicy\",\"name\":\"AnnuityIssueDate\"},\"AnnuityTermStartDate\":{\"entity\":\"AnnuityPolicy.cdm.json/AnnuityPolicy\",\"name\":\"AnnuityTermStartDate\"},\"AnnuityTermEndDate\":{\"entity\":\"AnnuityPolicy.cdm.json/AnnuityPolicy\",\"name\":\"AnnuityTermEndDate\"},\"AnniversaryDate\":{\"entity\":\"AnnuityPolicy.cdm.json/AnnuityPolicy\",\"name\":\"AnniversaryDate\"},\"MaturityDate\":{\"entity\":\"AnnuityPolicy.cdm.json/AnnuityPolicy\",\"name\":\"MaturityDate\"},\"AnnuityCommencementDate\":{\"entity\":\"AnnuityPolicy.cdm.json/AnnuityPolicy\",\"name\":\"AnnuityCommencementDate\"},\"AnnuityPayoutPeriodStartDate\":{\"entity\":\"AnnuityPolicy.cdm.json/AnnuityPolicy\",\"name\":\"AnnuityPayoutPeriodStartDate\"},\"AnnuityPayoutPeriodEndDate\":{\"entity\":\"AnnuityPolicy.cdm.json/AnnuityPolicy\",\"name\":\"AnnuityPayoutPeriodEndDate\"},\"AnnuitantDeathDate\":{\"entity\":\"AnnuityPolicy.cdm.json/AnnuityPolicy\",\"name\":\"AnnuitantDeathDate\"},\"AnnuitantDueProofOfDeathDate\":{\"entity\":\"AnnuityPolicy.cdm.json/AnnuityPolicy\",\"name\":\"AnnuitantDueProofOfDeathDate\"},\"FirstBeneficiarySpouseDeathDate\":{\"entity\":\"AnnuityPolicy.cdm.json/AnnuityPolicy\",\"name\":\"FirstBeneficiarySpouseDeathDate\"},\"FreeLookProvisionStartDate\":{\"entity\":\"AnnuityPolicy.cdm.json/AnnuityPolicy\",\"name\":\"FreeLookProvisionStartDate\"},\"FreeLookProvisionEndDate\":{\"entity\":\"AnnuityPolicy.cdm.json/AnnuityPolicy\",\"name\":\"FreeLookProvisionEndDate\"},\"FreeWithdrawalProvisionAmount\":{\"entity\":\"AnnuityPolicy.cdm.json/AnnuityPolicy\",\"name\":\"FreeWithdrawalProvisionAmount\"},\"AnnuityPayoutFrequencyTypeId\":{\"entity\":\"AnnuityPolicy.cdm.json/AnnuityPolicy\",\"name\":\"AnnuityPayoutFrequencyTypeId\"},\"AnnuitizationOptionTypeId\":{\"entity\":\"AnnuityPolicy.cdm.json/AnnuityPolicy\",\"name\":\"AnnuitizationOptionTypeId\"},\"QualifiedTaxPlanTypeId\":{\"entity\":\"AnnuityPolicy.cdm.json/AnnuityPolicy\",\"name\":\"QualifiedTaxPlanTypeId\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"AnnuityPolicy\",\"path\":\"AnnuityPolicy.cdm.json/AnnuityPolicy\"},\"description\":\"Annuity: A plan that allows individuals to make tax-deferred contributions to a retirement savings account and to select a payout option that meets their income needs upon retirement.\\n\\nWhat is an 'Annuity'\\nAn annuity is a contractual financial product sold by financial institutions that is designed to accept and grow funds from an individual and then, upon annuitization, pay out a stream of payments to the individual at a later point in time. The period of time when an annuity is being funded and before payouts begin is referred to as the accumulation phase. Once payments commence, the contract is in the annuitization phase.\\n\\nAnnuities were designed to be a reliable means of securing a steady cash flow for an individual during their retirement years and to alleviate fears of longevity risk, or outliving one's assets.\\n\\nAnnuities can also be created to turn a substantial lump sum into a steady cash flow, such as for winners of large cash settlements from a lawsuit or from winning the lottery.\\n\\nDefined benefit pensions and Social Security are two examples of lifetime guaranteed annuities that pay retirees a steady cash flow until they pass.\",\"primaryKey\":[\"AnnuityPolicyId\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"AnnuityPolicy.cdm.json/AnnuityPolicy\",\"name\":\"AnnuityPolicyId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of an annuity.\",\"isNullable\":false,\"name\":\"AnnuityPolicyId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"AnnuityPolicy.cdm.json/AnnuityPolicy\",\"name\":\"OwnedByPartyId\"},\"dataType\":\"long\",\"description\":\"The unique identifier of a Party.\",\"isNullable\":true,\"name\":\"OwnedByPartyId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"AnnuityPolicy.cdm.json/AnnuityPolicy\",\"name\":\"CostBasisAmount\"},\"dataType\":\"decimal\",\"dataTypeLength\":18,\"description\":\"Cost Basis: the original payment paid to an annuity.\",\"isNullable\":true,\"scale\":2,\"name\":\"CostBasisAmount\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"AnnuityPolicy.cdm.json/AnnuityPolicy\",\"name\":\"DeathBenefitAmount\"},\"dataType\":\"decimal\",\"dataTypeLength\":18,\"description\":\"Death Benefit: The annuity benefit paid to a designated beneficiary when the annuity contract's owner dies.\",\"isNullable\":true,\"scale\":2,\"name\":\"DeathBenefitAmount\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"AnnuityPolicy.cdm.json/AnnuityPolicy\",\"name\":\"AnnuityDurationPeriodYears\"},\"dataType\":\"integer\",\"description\":\"Duration: Timeframe of an annuity contract: 1, 2, 3, 5, 7, or 10 years. The longer the duration, the better the return rate on fixed annuities.\",\"isNullable\":true,\"name\":\"AnnuityDurationPeriodYears\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"AnnuityPolicy.cdm.json/AnnuityPolicy\",\"name\":\"AnnuityGuaranteedInterestRatePercentage\"},\"dataType\":\"decimal\",\"dataTypeLength\":18,\"description\":\"Guaranteed Interest Rate: The minimum interest rate an insurer will credit during an annuity contract's accumulation phase, usually between three and four percent.\",\"isNullable\":true,\"scale\":8,\"name\":\"AnnuityGuaranteedInterestRatePercentage\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"AnnuityPolicy.cdm.json/AnnuityPolicy\",\"name\":\"AnnuityInitialInterestRatePercentage\"},\"dataType\":\"decimal\",\"dataTypeLength\":18,\"description\":\"The initial interest rate percentage.\",\"isNullable\":true,\"scale\":8,\"name\":\"AnnuityInitialInterestRatePercentage\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"AnnuityPolicy.cdm.json/AnnuityPolicy\",\"name\":\"IncomeFloorGuaranteePercentage\"},\"dataType\":\"decimal\",\"dataTypeLength\":18,\"description\":\"Income Floor Guarantee Annuity feature that guarantees payments will never be less than a given percentage of the original payment, such as 80%, regardless of the performance of the underlying investments.\",\"isNullable\":true,\"scale\":8,\"name\":\"IncomeFloorGuaranteePercentage\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"AnnuityPolicy.cdm.json/AnnuityPolicy\",\"name\":\"AnnuityInitialInterestRatePeriodStartDate\"},\"dataType\":\"date\",\"dateFormat\":\"YYYY-MM-DD\",\"description\":\"The period start date of the annuity initial interest rate.\",\"isNullable\":true,\"name\":\"AnnuityInitialInterestRatePeriodStartDate\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"AnnuityPolicy.cdm.json/AnnuityPolicy\",\"name\":\"AnnuityInitialInterestRatePeriodEndDate\"},\"dataType\":\"date\",\"dateFormat\":\"YYYY-MM-DD\",\"description\":\"The period end date of the annuity initial interest rate.\",\"isNullable\":true,\"name\":\"AnnuityInitialInterestRatePeriodEndDate\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"AnnuityPolicy.cdm.json/AnnuityPolicy\",\"name\":\"AnnuityUponReachingAge\"},\"dataType\":\"integer\",\"description\":\"The age at which the annuity begins in terms of the annuitant's age.\",\"isNullable\":true,\"name\":\"AnnuityUponReachingAge\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"AnnuityPolicy.cdm.json/AnnuityPolicy\",\"name\":\"AnnuityIssueDate\"},\"dataType\":\"date\",\"dateFormat\":\"YYYY-MM-DD\",\"description\":\"The effective date of your Annuity.\",\"isNullable\":true,\"name\":\"AnnuityIssueDate\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"AnnuityPolicy.cdm.json/AnnuityPolicy\",\"name\":\"AnnuityTermStartDate\"},\"dataType\":\"date\",\"dateFormat\":\"YYYY-MM-DD\",\"description\":\"The start date of the annuity.\",\"isNullable\":true,\"name\":\"AnnuityTermStartDate\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"AnnuityPolicy.cdm.json/AnnuityPolicy\",\"name\":\"AnnuityTermEndDate\"},\"dataType\":\"date\",\"dateFormat\":\"YYYY-MM-DD\",\"description\":\"The end date of the annuity.\",\"isNullable\":true,\"name\":\"AnnuityTermEndDate\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"AnnuityPolicy.cdm.json/AnnuityPolicy\",\"name\":\"AnniversaryDate\"},\"dataType\":\"date\",\"dateFormat\":\"YYYY-MM-DD\",\"description\":\"The anniversary of the date on which an annuity starts or becomes effective. \\n\\nNote:\\nIndex annuities calculate annual yield by taking the difference in the S&P 500 between anniversary dates.\",\"isNullable\":true,\"name\":\"AnniversaryDate\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"AnnuityPolicy.cdm.json/AnnuityPolicy\",\"name\":\"MaturityDate\"},\"dataType\":\"date\",\"dateFormat\":\"YYYY-MM-DD\",\"description\":\"Maturity Date: The date on which an annuity starts to make income payouts.\",\"isNullable\":true,\"name\":\"MaturityDate\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"AnnuityPolicy.cdm.json/AnnuityPolicy\",\"name\":\"AnnuityCommencementDate\"},\"dataType\":\"date\",\"dateFormat\":\"YYYY-MM-DD\",\"description\":\"The date income payments begin, also known as the annuity start date.\",\"isNullable\":true,\"name\":\"AnnuityCommencementDate\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"AnnuityPolicy.cdm.json/AnnuityPolicy\",\"name\":\"AnnuityPayoutPeriodStartDate\"},\"dataType\":\"date\",\"dateFormat\":\"YYYY-MM-DD\",\"description\":\"The start date for annuity payouts.\",\"isNullable\":true,\"name\":\"AnnuityPayoutPeriodStartDate\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"AnnuityPolicy.cdm.json/AnnuityPolicy\",\"name\":\"AnnuityPayoutPeriodEndDate\"},\"dataType\":\"date\",\"dateFormat\":\"YYYY-MM-DD\",\"description\":\"The annuity payout period end date.\",\"isNullable\":true,\"name\":\"AnnuityPayoutPeriodEndDate\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"AnnuityPolicy.cdm.json/AnnuityPolicy\",\"name\":\"AnnuitantDeathDate\"},\"dataType\":\"date\",\"dateFormat\":\"YYYY-MM-DD\",\"description\":\"The date of the annuitants death.\",\"isNullable\":true,\"name\":\"AnnuitantDeathDate\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"AnnuityPolicy.cdm.json/AnnuityPolicy\",\"name\":\"AnnuitantDueProofOfDeathDate\"},\"dataType\":\"date\",\"dateFormat\":\"YYYY-MM-DD\",\"description\":\"Due Proof of Death is satisfied when we receive all of the following in Good Order: (a) a death certificate or similar documentation\\nacceptable to us; (b) all representations we require or which are mandated by applicable law or regulation in relation to the death claim and the payment\\nof death proceeds (representations may include, but are not limited to, trust or estate paperwork (if needed); consent forms (if applicable); and claims\\nforms from at least one beneficiary); and (c) any applicable election of the method of payment of the death benefit, if not previously elected by the\\nOwner, by at least one Beneficiary.\",\"isNullable\":true,\"name\":\"AnnuitantDueProofOfDeathDate\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"AnnuityPolicy.cdm.json/AnnuityPolicy\",\"name\":\"FirstBeneficiarySpouseDeathDate\"},\"dataType\":\"date\",\"dateFormat\":\"YYYY-MM-DD\",\"description\":\"First Death: The first of the Spousal Designated Lives to die.\",\"isNullable\":true,\"name\":\"FirstBeneficiarySpouseDeathDate\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"AnnuityPolicy.cdm.json/AnnuityPolicy\",\"name\":\"FreeLookProvisionStartDate\"},\"dataType\":\"date\",\"dateFormat\":\"YYYY-MM-DD\",\"description\":\"The start date of the first look provision.\",\"isNullable\":true,\"name\":\"FreeLookProvisionStartDate\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"AnnuityPolicy.cdm.json/AnnuityPolicy\",\"name\":\"FreeLookProvisionEndDate\"},\"dataType\":\"date\",\"dateFormat\":\"YYYY-MM-DD\",\"description\":\"The end date of the first look provision.\",\"isNullable\":true,\"name\":\"FreeLookProvisionEndDate\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"AnnuityPolicy.cdm.json/AnnuityPolicy\",\"name\":\"FreeWithdrawalProvisionAmount\"},\"dataType\":\"decimal\",\"dataTypeLength\":18,\"description\":\"The amount associated with the free withdrawal period on an annual basis.\",\"isNullable\":true,\"scale\":2,\"name\":\"FreeWithdrawalProvisionAmount\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"AnnuityPolicy.cdm.json/AnnuityPolicy\",\"name\":\"AnnuityPayoutFrequencyTypeId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of an annuity payout frequency type.\",\"isNullable\":true,\"name\":\"AnnuityPayoutFrequencyTypeId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"AnnuityPolicy.cdm.json/AnnuityPolicy\",\"name\":\"AnnuitizationOptionTypeId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of an annuitization option type.\",\"isNullable\":true,\"name\":\"AnnuitizationOptionTypeId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"AnnuityPolicy.cdm.json/AnnuityPolicy\",\"name\":\"QualifiedTaxPlanTypeId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a qualified tax plan type.\",\"isNullable\":true,\"name\":\"QualifiedTaxPlanTypeId\"}]}}}",
+			"Description": "Annuity: A plan that allows individuals to make tax-deferred contributions to a retirement savings account and to select a payout option that meets their income needs upon retirement.\n\nWhat is an 'Annuity'\nAn annuity is a contractual financial product sold by financial institutions that is designed to accept and grow funds from an individual and then, upon annuitization, pay out a stream of payments to the individual at a later point in time. The period of time when an annuity is being funded and before payouts begin is referred to as the accumulation phase. Once payments commence, the contract is in the annuitization phase.\n\nAnnuities were designed to be a reliable means of securing a steady cash flow for an individual during their retirement years and to alleviate fears of longevity risk, or outliving one's assets.\n\nAnnuities can also be created to turn a substantial lump sum into a steady cash flow, such as for winners of large cash settlements from a lawsuit or from winning the lottery.\n\nDefined benefit pensions and Social Security are two examples of lifetime guaranteed annuities that pay retirees a steady cash flow until they pass.",
+			"DisplayFolderInfo": "{\"name\":\"Policy\",\"colorCode\":\"#7062A8\"}",
+			"PrimaryKeys": "AnnuityPolicyId"
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

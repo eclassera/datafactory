@@ -1,0 +1,204 @@
+{
+	"name": "PolicyAssignment",
+	"properties": {
+		"Name": "PolicyAssignment",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Database1"
+		},
+		"Description": "People who purchase life insurance policies actually own their policies and may do with them as they wish - including giving them away or transferring them just as any other kind of property.\n\nThis transfer is known as an Assignment.\n\nAssignment is the transfer by the policyholder of legal rights or interest in the insurance policy contract to a third party\n\nThe assignment procedures normally requires that the policy owner notify the company in writing.\n\nThe new owner of the policy is known as the assignee.\n\nThe assignee is granted all rights policy ownership.\n\nThere are two types of assignments:  Absolute and Collateral",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "InsurancePolicyId",
+					"Description": "The unique identifier of an Insurance Policy.",
+					"BaseAttributeReference": {
+						"Entity": "PolicyAssignment.cdm.json/PolicyAssignment",
+						"Name": "InsurancePolicyId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "AssignmentDeclaredDate",
+					"Description": "The date that the Assignment was declared to the Insurer.",
+					"BaseAttributeReference": {
+						"Entity": "PolicyAssignment.cdm.json/PolicyAssignment",
+						"Name": "AssignmentDeclaredDate"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "date",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"DateFormat": "YYYY-MM-DD",
+							"HIVE_TYPE_STRING": "date"
+						}
+					}
+				},
+				{
+					"Name": "PartyId",
+					"Description": "The unique identifier of a Party.",
+					"BaseAttributeReference": {
+						"Entity": "PolicyAssignment.cdm.json/PolicyAssignment",
+						"Name": "PartyId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "long",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "long"
+						}
+					}
+				},
+				{
+					"Name": "AssignmentEffectiveDate",
+					"Description": "The date that the Assignment was effective.",
+					"BaseAttributeReference": {
+						"Entity": "PolicyAssignment.cdm.json/PolicyAssignment",
+						"Name": "AssignmentEffectiveDate"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "date",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"DateFormat": "YYYY-MM-DD",
+							"HIVE_TYPE_STRING": "date"
+						}
+					}
+				},
+				{
+					"Name": "AssigneeAmount",
+					"Description": "The amount of Assignment (if not 100%)",
+					"BaseAttributeReference": {
+						"Entity": "PolicyAssignment.cdm.json/PolicyAssignment",
+						"Name": "AssigneeAmount"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "decimal",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Precision": 18,
+						"Scale": 2,
+						"Properties": {
+							"HIVE_TYPE_STRING": "decimal"
+						}
+					}
+				},
+				{
+					"Name": "AssigneePercentage",
+					"Description": "The percentage of Assignment (if not 100%).",
+					"BaseAttributeReference": {
+						"Entity": "PolicyAssignment.cdm.json/PolicyAssignment",
+						"Name": "AssigneePercentage"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "decimal",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Precision": 18,
+						"Scale": 8,
+						"Properties": {
+							"HIVE_TYPE_STRING": "decimal"
+						}
+					}
+				},
+				{
+					"Name": "DateAssignorNotified",
+					"Description": "The date that the Assignor was notified of the change of Policy ownership.",
+					"BaseAttributeReference": {
+						"Entity": "PolicyAssignment.cdm.json/PolicyAssignment",
+						"Name": "DateAssignorNotified"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "date",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"DateFormat": "YYYY-MM-DD",
+							"HIVE_TYPE_STRING": "date"
+						}
+					}
+				},
+				{
+					"Name": "PolicyAssignmentTypeId",
+					"Description": "The unique identifier of a Policy Assignment Type.",
+					"BaseAttributeReference": {
+						"Entity": "PolicyAssignment.cdm.json/PolicyAssignment",
+						"Name": "PolicyAssignmentTypeId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "AssigneeRelationshipTypeId",
+					"Description": "The unique identifier of the Assignee Relationship.",
+					"BaseAttributeReference": {
+						"Entity": "PolicyAssignment.cdm.json/PolicyAssignment",
+						"Name": "AssigneeRelationshipTypeId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "AssignmentNote",
+					"Description": "A note, comment or additional information regarding the policy assignment.",
+					"BaseAttributeReference": {
+						"Entity": "PolicyAssignment.cdm.json/PolicyAssignment",
+						"Name": "AssignmentNote"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 1024,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				}
+			],
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"InsurancePolicyId\":{\"entity\":\"PolicyAssignment.cdm.json/PolicyAssignment\",\"name\":\"InsurancePolicyId\"},\"AssignmentDeclaredDate\":{\"entity\":\"PolicyAssignment.cdm.json/PolicyAssignment\",\"name\":\"AssignmentDeclaredDate\"},\"PartyId\":{\"entity\":\"PolicyAssignment.cdm.json/PolicyAssignment\",\"name\":\"PartyId\"},\"AssignmentEffectiveDate\":{\"entity\":\"PolicyAssignment.cdm.json/PolicyAssignment\",\"name\":\"AssignmentEffectiveDate\"},\"AssigneeAmount\":{\"entity\":\"PolicyAssignment.cdm.json/PolicyAssignment\",\"name\":\"AssigneeAmount\"},\"AssigneePercentage\":{\"entity\":\"PolicyAssignment.cdm.json/PolicyAssignment\",\"name\":\"AssigneePercentage\"},\"DateAssignorNotified\":{\"entity\":\"PolicyAssignment.cdm.json/PolicyAssignment\",\"name\":\"DateAssignorNotified\"},\"PolicyAssignmentTypeId\":{\"entity\":\"PolicyAssignment.cdm.json/PolicyAssignment\",\"name\":\"PolicyAssignmentTypeId\"},\"AssigneeRelationshipTypeId\":{\"entity\":\"PolicyAssignment.cdm.json/PolicyAssignment\",\"name\":\"AssigneeRelationshipTypeId\"},\"AssignmentNote\":{\"entity\":\"PolicyAssignment.cdm.json/PolicyAssignment\",\"name\":\"AssignmentNote\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"PolicyAssignment\",\"path\":\"PolicyAssignment.cdm.json/PolicyAssignment\"},\"description\":\"People who purchase life insurance policies actually own their policies and may do with them as they wish - including giving them away or transferring them just as any other kind of property.\\n\\nThis transfer is known as an Assignment.\\n\\nAssignment is the transfer by the policyholder of legal rights or interest in the insurance policy contract to a third party\\n\\nThe assignment procedures normally requires that the policy owner notify the company in writing.\\n\\nThe new owner of the policy is known as the assignee.\\n\\nThe assignee is granted all rights policy ownership.\\n\\nThere are two types of assignments:  Absolute and Collateral\",\"primaryKey\":[\"InsurancePolicyId\",\"AssignmentDeclaredDate\",\"PartyId\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"PolicyAssignment.cdm.json/PolicyAssignment\",\"name\":\"InsurancePolicyId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of an Insurance Policy.\",\"isNullable\":false,\"name\":\"InsurancePolicyId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"PolicyAssignment.cdm.json/PolicyAssignment\",\"name\":\"AssignmentDeclaredDate\"},\"dataType\":\"date\",\"dateFormat\":\"YYYY-MM-DD\",\"description\":\"The date that the Assignment was declared to the Insurer.\",\"isNullable\":false,\"name\":\"AssignmentDeclaredDate\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"PolicyAssignment.cdm.json/PolicyAssignment\",\"name\":\"PartyId\"},\"dataType\":\"long\",\"description\":\"The unique identifier of a Party.\",\"isNullable\":false,\"name\":\"PartyId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"PolicyAssignment.cdm.json/PolicyAssignment\",\"name\":\"AssignmentEffectiveDate\"},\"dataType\":\"date\",\"dateFormat\":\"YYYY-MM-DD\",\"description\":\"The date that the Assignment was effective.\",\"isNullable\":true,\"name\":\"AssignmentEffectiveDate\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"PolicyAssignment.cdm.json/PolicyAssignment\",\"name\":\"AssigneeAmount\"},\"dataType\":\"decimal\",\"dataTypeLength\":18,\"description\":\"The amount of Assignment (if not 100%)\",\"isNullable\":true,\"scale\":2,\"name\":\"AssigneeAmount\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"PolicyAssignment.cdm.json/PolicyAssignment\",\"name\":\"AssigneePercentage\"},\"dataType\":\"decimal\",\"dataTypeLength\":18,\"description\":\"The percentage of Assignment (if not 100%).\",\"isNullable\":true,\"scale\":8,\"name\":\"AssigneePercentage\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"PolicyAssignment.cdm.json/PolicyAssignment\",\"name\":\"DateAssignorNotified\"},\"dataType\":\"date\",\"dateFormat\":\"YYYY-MM-DD\",\"description\":\"The date that the Assignor was notified of the change of Policy ownership.\",\"isNullable\":true,\"name\":\"DateAssignorNotified\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"PolicyAssignment.cdm.json/PolicyAssignment\",\"name\":\"PolicyAssignmentTypeId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Policy Assignment Type.\",\"isNullable\":false,\"name\":\"PolicyAssignmentTypeId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"PolicyAssignment.cdm.json/PolicyAssignment\",\"name\":\"AssigneeRelationshipTypeId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of the Assignee Relationship.\",\"isNullable\":false,\"name\":\"AssigneeRelationshipTypeId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"PolicyAssignment.cdm.json/PolicyAssignment\",\"name\":\"AssignmentNote\"},\"dataType\":\"string\",\"dataTypeLength\":1024,\"description\":\"A note, comment or additional information regarding the policy assignment.\",\"isNullable\":true,\"name\":\"AssignmentNote\"}]}}}",
+			"Description": "People who purchase life insurance policies actually own their policies and may do with them as they wish - including giving them away or transferring them just as any other kind of property.\n\nThis transfer is known as an Assignment.\n\nAssignment is the transfer by the policyholder of legal rights or interest in the insurance policy contract to a third party\n\nThe assignment procedures normally requires that the policy owner notify the company in writing.\n\nThe new owner of the policy is known as the assignee.\n\nThe assignee is granted all rights policy ownership.\n\nThere are two types of assignments:  Absolute and Collateral",
+			"DisplayFolderInfo": "{\"name\":\"Policy\",\"colorCode\":\"#7062A8\"}",
+			"PrimaryKeys": "InsurancePolicyId,AssignmentDeclaredDate,PartyId"
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

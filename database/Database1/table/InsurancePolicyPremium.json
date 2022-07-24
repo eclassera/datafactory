@@ -1,0 +1,104 @@
+{
+	"name": "InsurancePolicyPremium",
+	"properties": {
+		"Name": "InsurancePolicyPremium",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Database1"
+		},
+		"Description": "The premium for the associated insurance policy for the indicated period.",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "InsurancePolicyId",
+					"Description": "The unique identifier of an Insurance Policy.",
+					"BaseAttributeReference": {
+						"Entity": "InsurancePolicyPremium.cdm.json/InsurancePolicyPremium",
+						"Name": "InsurancePolicyId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "PeriodStartDate",
+					"Description": "The period start date for which the associated premium is determined.",
+					"BaseAttributeReference": {
+						"Entity": "InsurancePolicyPremium.cdm.json/InsurancePolicyPremium",
+						"Name": "PeriodStartDate"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "date",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"DateFormat": "YYYY-MM-DD",
+							"HIVE_TYPE_STRING": "date"
+						}
+					}
+				},
+				{
+					"Name": "PeriodEndDate",
+					"Description": "The period end date for which the associated premium is determined.",
+					"BaseAttributeReference": {
+						"Entity": "InsurancePolicyPremium.cdm.json/InsurancePolicyPremium",
+						"Name": "PeriodEndDate"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "date",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"DateFormat": "YYYY-MM-DD",
+							"HIVE_TYPE_STRING": "date"
+						}
+					}
+				},
+				{
+					"Name": "PolicyPremiumAmount",
+					"Description": "The total premium amount.",
+					"BaseAttributeReference": {
+						"Entity": "InsurancePolicyPremium.cdm.json/InsurancePolicyPremium",
+						"Name": "PolicyPremiumAmount"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "decimal",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Precision": 18,
+						"Scale": 2,
+						"Properties": {
+							"HIVE_TYPE_STRING": "decimal"
+						}
+					}
+				}
+			],
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"InsurancePolicyId\":{\"entity\":\"InsurancePolicyPremium.cdm.json/InsurancePolicyPremium\",\"name\":\"InsurancePolicyId\"},\"PeriodStartDate\":{\"entity\":\"InsurancePolicyPremium.cdm.json/InsurancePolicyPremium\",\"name\":\"PeriodStartDate\"},\"PeriodEndDate\":{\"entity\":\"InsurancePolicyPremium.cdm.json/InsurancePolicyPremium\",\"name\":\"PeriodEndDate\"},\"PolicyPremiumAmount\":{\"entity\":\"InsurancePolicyPremium.cdm.json/InsurancePolicyPremium\",\"name\":\"PolicyPremiumAmount\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"InsurancePolicyPremium\",\"path\":\"InsurancePolicyPremium.cdm.json/InsurancePolicyPremium\"},\"description\":\"The premium for the associated insurance policy for the indicated period.\",\"primaryKey\":[\"InsurancePolicyId\",\"PeriodStartDate\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"InsurancePolicyPremium.cdm.json/InsurancePolicyPremium\",\"name\":\"InsurancePolicyId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of an Insurance Policy.\",\"isNullable\":false,\"name\":\"InsurancePolicyId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"InsurancePolicyPremium.cdm.json/InsurancePolicyPremium\",\"name\":\"PeriodStartDate\"},\"dataType\":\"date\",\"dateFormat\":\"YYYY-MM-DD\",\"description\":\"The period start date for which the associated premium is determined.\",\"isNullable\":false,\"name\":\"PeriodStartDate\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"InsurancePolicyPremium.cdm.json/InsurancePolicyPremium\",\"name\":\"PeriodEndDate\"},\"dataType\":\"date\",\"dateFormat\":\"YYYY-MM-DD\",\"description\":\"The period end date for which the associated premium is determined.\",\"isNullable\":true,\"name\":\"PeriodEndDate\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"InsurancePolicyPremium.cdm.json/InsurancePolicyPremium\",\"name\":\"PolicyPremiumAmount\"},\"dataType\":\"decimal\",\"dataTypeLength\":18,\"description\":\"The total premium amount.\",\"isNullable\":true,\"scale\":2,\"name\":\"PolicyPremiumAmount\"}]}}}",
+			"Description": "The premium for the associated insurance policy for the indicated period.",
+			"DisplayFolderInfo": "{\"name\":\"Policy\",\"colorCode\":\"#7062A8\"}",
+			"PrimaryKeys": "InsurancePolicyId,PeriodStartDate"
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

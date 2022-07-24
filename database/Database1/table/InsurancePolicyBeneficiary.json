@@ -1,0 +1,333 @@
+{
+	"name": "InsurancePolicyBeneficiary",
+	"properties": {
+		"Name": "InsurancePolicyBeneficiary",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Database1"
+		},
+		"Description": "An individual person(s) or legal entity(s) who may be eligible to receive or is receiving benefits under an insurance policy other than the participant.\n\nThere are potentially two types of beneficiary (INDIVIDUAL and LEGAL ENTITY), where a Legal Entity is an artificial legal creation such as a corporation, sole proprietorship, partnership.\n\nThere are several types of beneficiary relationships that may exist:\n\n- Irrevocable beneficiary\n- Revocable beneficiary\n- Primary beneficiary\n- Secondary beneficiary\n- Tertiary beneficiary\n- Contingent beneficiary",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "InsurancePolicyId",
+					"Description": "The unique identifier of an Insurance Policy.",
+					"BaseAttributeReference": {
+						"Entity": "InsurancePolicyBeneficiary.cdm.json/InsurancePolicyBeneficiary",
+						"Name": "InsurancePolicyId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "BeneficiaryId",
+					"Description": "The unique identifier of the Beneficiary.",
+					"BaseAttributeReference": {
+						"Entity": "InsurancePolicyBeneficiary.cdm.json/InsurancePolicyBeneficiary",
+						"Name": "BeneficiaryId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "DateNamedBeneficiary",
+					"Description": "The date that the beneficiary was named to the insurance policy.",
+					"BaseAttributeReference": {
+						"Entity": "InsurancePolicyBeneficiary.cdm.json/InsurancePolicyBeneficiary",
+						"Name": "DateNamedBeneficiary"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "date",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"DateFormat": "YYYY-MM-DD",
+							"HIVE_TYPE_STRING": "date"
+						}
+					}
+				},
+				{
+					"Name": "DateRemovedAsBeneficiary",
+					"Description": "The date that the beneficiary was removed as beneficiary of the Insurance Policy.",
+					"BaseAttributeReference": {
+						"Entity": "InsurancePolicyBeneficiary.cdm.json/InsurancePolicyBeneficiary",
+						"Name": "DateRemovedAsBeneficiary"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "date",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"DateFormat": "YYYY-MM-DD",
+							"HIVE_TYPE_STRING": "date"
+						}
+					}
+				},
+				{
+					"Name": "ProceedsPercentage",
+					"Description": "The percentage split amongst the respective beneficiaries named in the insurance policy.",
+					"BaseAttributeReference": {
+						"Entity": "InsurancePolicyBeneficiary.cdm.json/InsurancePolicyBeneficiary",
+						"Name": "ProceedsPercentage"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "decimal",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Precision": 18,
+						"Scale": 8,
+						"Properties": {
+							"HIVE_TYPE_STRING": "decimal"
+						}
+					}
+				},
+				{
+					"Name": "ProceedsAmount",
+					"Description": "The dollar amount split amongst the respective beneficiaries named in the insurance policy.",
+					"BaseAttributeReference": {
+						"Entity": "InsurancePolicyBeneficiary.cdm.json/InsurancePolicyBeneficiary",
+						"Name": "ProceedsAmount"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "decimal",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Precision": 18,
+						"Scale": 2,
+						"Properties": {
+							"HIVE_TYPE_STRING": "decimal"
+						}
+					}
+				},
+				{
+					"Name": "DistributionPerStirpesIndicator",
+					"Description": "The policy proceeds are paid only to the beneficiaries wo are living and have been named in the policy.",
+					"BaseAttributeReference": {
+						"Entity": "InsurancePolicyBeneficiary.cdm.json/InsurancePolicyBeneficiary",
+						"Name": "DistributionPerStirpesIndicator"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "boolean",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"HIVE_TYPE_STRING": "boolean"
+						}
+					}
+				},
+				{
+					"Name": "DistributionPerCapitaIndicator",
+					"Description": "The distribution is claimed on the behalf of the Beneficiary.\n\nThis is in contrast to the per stirpes beneficiary who receives the proceeds through the rights of another.",
+					"BaseAttributeReference": {
+						"Entity": "InsurancePolicyBeneficiary.cdm.json/InsurancePolicyBeneficiary",
+						"Name": "DistributionPerCapitaIndicator"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "boolean",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"HIVE_TYPE_STRING": "boolean"
+						}
+					}
+				},
+				{
+					"Name": "PolicyholderBeneficiaryRelationshipTypeId",
+					"Description": "The unique identifier of the Policyholder Beneficiary Relationship Type.",
+					"BaseAttributeReference": {
+						"Entity": "InsurancePolicyBeneficiary.cdm.json/InsurancePolicyBeneficiary",
+						"Name": "PolicyholderBeneficiaryRelationshipTypeId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "RelationshipToInsured",
+					"Description": "The relationship of the Beneficiary to the insured.",
+					"BaseAttributeReference": {
+						"Entity": "InsurancePolicyBeneficiary.cdm.json/InsurancePolicyBeneficiary",
+						"Name": "RelationshipToInsured"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 1024,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "InsurableInterestTypeId",
+					"Description": "The unique identifier of the Insurable Interest Type.",
+					"BaseAttributeReference": {
+						"Entity": "InsurancePolicyBeneficiary.cdm.json/InsurancePolicyBeneficiary",
+						"Name": "InsurableInterestTypeId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "InsurableInterestStatement",
+					"Description": "81",
+					"BaseAttributeReference": {
+						"Entity": "InsurancePolicyBeneficiary.cdm.json/InsurancePolicyBeneficiary",
+						"Name": "InsurableInterestStatement"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "RevocableBeneficiaryIndicator",
+					"Description": "Indicates that the Beneficiary designation is or is not revocable.",
+					"BaseAttributeReference": {
+						"Entity": "InsurancePolicyBeneficiary.cdm.json/InsurancePolicyBeneficiary",
+						"Name": "RevocableBeneficiaryIndicator"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "boolean",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"HIVE_TYPE_STRING": "boolean"
+						}
+					}
+				},
+				{
+					"Name": "FacilityOfPaymentInEffectIndicator",
+					"Description": "A clause permitted under a uniform health insurance policy provision that allows companies to pay up to $1,000of benefits or proceeds to any relative appearing entitled to it if there is no beneficiary or if the insured or beneficiary is a minor or legally incompetent.",
+					"BaseAttributeReference": {
+						"Entity": "InsurancePolicyBeneficiary.cdm.json/InsurancePolicyBeneficiary",
+						"Name": "FacilityOfPaymentInEffectIndicator"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "boolean",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"HIVE_TYPE_STRING": "boolean"
+						}
+					}
+				},
+				{
+					"Name": "ReasonForBeneficiaryChange",
+					"Description": "The reason that the beneficiary was changed.",
+					"BaseAttributeReference": {
+						"Entity": "InsurancePolicyBeneficiary.cdm.json/InsurancePolicyBeneficiary",
+						"Name": "ReasonForBeneficiaryChange"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 1024,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "DistributionMethodId",
+					"Description": "The unique identifier of a Distribution Method.",
+					"BaseAttributeReference": {
+						"Entity": "InsurancePolicyBeneficiary.cdm.json/InsurancePolicyBeneficiary",
+						"Name": "DistributionMethodId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "OrderOfSuccessionId",
+					"Description": "The unique identifier of a specific Succession Order.",
+					"BaseAttributeReference": {
+						"Entity": "InsurancePolicyBeneficiary.cdm.json/InsurancePolicyBeneficiary",
+						"Name": "OrderOfSuccessionId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "BeneficiaryRevocationStatusId",
+					"Description": "The unique identifier of a Beneficiary Revocation Status.",
+					"BaseAttributeReference": {
+						"Entity": "InsurancePolicyBeneficiary.cdm.json/InsurancePolicyBeneficiary",
+						"Name": "BeneficiaryRevocationStatusId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				}
+			],
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"InsurancePolicyId\":{\"entity\":\"InsurancePolicyBeneficiary.cdm.json/InsurancePolicyBeneficiary\",\"name\":\"InsurancePolicyId\"},\"BeneficiaryId\":{\"entity\":\"InsurancePolicyBeneficiary.cdm.json/InsurancePolicyBeneficiary\",\"name\":\"BeneficiaryId\"},\"DateNamedBeneficiary\":{\"entity\":\"InsurancePolicyBeneficiary.cdm.json/InsurancePolicyBeneficiary\",\"name\":\"DateNamedBeneficiary\"},\"DateRemovedAsBeneficiary\":{\"entity\":\"InsurancePolicyBeneficiary.cdm.json/InsurancePolicyBeneficiary\",\"name\":\"DateRemovedAsBeneficiary\"},\"ProceedsPercentage\":{\"entity\":\"InsurancePolicyBeneficiary.cdm.json/InsurancePolicyBeneficiary\",\"name\":\"ProceedsPercentage\"},\"ProceedsAmount\":{\"entity\":\"InsurancePolicyBeneficiary.cdm.json/InsurancePolicyBeneficiary\",\"name\":\"ProceedsAmount\"},\"DistributionPerStirpesIndicator\":{\"entity\":\"InsurancePolicyBeneficiary.cdm.json/InsurancePolicyBeneficiary\",\"name\":\"DistributionPerStirpesIndicator\"},\"DistributionPerCapitaIndicator\":{\"entity\":\"InsurancePolicyBeneficiary.cdm.json/InsurancePolicyBeneficiary\",\"name\":\"DistributionPerCapitaIndicator\"},\"PolicyholderBeneficiaryRelationshipTypeId\":{\"entity\":\"InsurancePolicyBeneficiary.cdm.json/InsurancePolicyBeneficiary\",\"name\":\"PolicyholderBeneficiaryRelationshipTypeId\"},\"RelationshipToInsured\":{\"entity\":\"InsurancePolicyBeneficiary.cdm.json/InsurancePolicyBeneficiary\",\"name\":\"RelationshipToInsured\"},\"InsurableInterestTypeId\":{\"entity\":\"InsurancePolicyBeneficiary.cdm.json/InsurancePolicyBeneficiary\",\"name\":\"InsurableInterestTypeId\"},\"InsurableInterestStatement\":{\"entity\":\"InsurancePolicyBeneficiary.cdm.json/InsurancePolicyBeneficiary\",\"name\":\"InsurableInterestStatement\"},\"RevocableBeneficiaryIndicator\":{\"entity\":\"InsurancePolicyBeneficiary.cdm.json/InsurancePolicyBeneficiary\",\"name\":\"RevocableBeneficiaryIndicator\"},\"FacilityOfPaymentInEffectIndicator\":{\"entity\":\"InsurancePolicyBeneficiary.cdm.json/InsurancePolicyBeneficiary\",\"name\":\"FacilityOfPaymentInEffectIndicator\"},\"ReasonForBeneficiaryChange\":{\"entity\":\"InsurancePolicyBeneficiary.cdm.json/InsurancePolicyBeneficiary\",\"name\":\"ReasonForBeneficiaryChange\"},\"DistributionMethodId\":{\"entity\":\"InsurancePolicyBeneficiary.cdm.json/InsurancePolicyBeneficiary\",\"name\":\"DistributionMethodId\"},\"OrderOfSuccessionId\":{\"entity\":\"InsurancePolicyBeneficiary.cdm.json/InsurancePolicyBeneficiary\",\"name\":\"OrderOfSuccessionId\"},\"BeneficiaryRevocationStatusId\":{\"entity\":\"InsurancePolicyBeneficiary.cdm.json/InsurancePolicyBeneficiary\",\"name\":\"BeneficiaryRevocationStatusId\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"InsurancePolicyBeneficiary\",\"path\":\"InsurancePolicyBeneficiary.cdm.json/InsurancePolicyBeneficiary\"},\"description\":\"An individual person(s) or legal entity(s) who may be eligible to receive or is receiving benefits under an insurance policy other than the participant.\\n\\nThere are potentially two types of beneficiary (INDIVIDUAL and LEGAL ENTITY), where a Legal Entity is an artificial legal creation such as a corporation, sole proprietorship, partnership.\\n\\nThere are several types of beneficiary relationships that may exist:\\n\\n- Irrevocable beneficiary\\n- Revocable beneficiary\\n- Primary beneficiary\\n- Secondary beneficiary\\n- Tertiary beneficiary\\n- Contingent beneficiary\",\"primaryKey\":[\"InsurancePolicyId\",\"BeneficiaryId\",\"DateNamedBeneficiary\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"InsurancePolicyBeneficiary.cdm.json/InsurancePolicyBeneficiary\",\"name\":\"InsurancePolicyId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of an Insurance Policy.\",\"isNullable\":false,\"name\":\"InsurancePolicyId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"InsurancePolicyBeneficiary.cdm.json/InsurancePolicyBeneficiary\",\"name\":\"BeneficiaryId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of the Beneficiary.\",\"isNullable\":false,\"name\":\"BeneficiaryId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"InsurancePolicyBeneficiary.cdm.json/InsurancePolicyBeneficiary\",\"name\":\"DateNamedBeneficiary\"},\"dataType\":\"date\",\"dateFormat\":\"YYYY-MM-DD\",\"description\":\"The date that the beneficiary was named to the insurance policy.\",\"isNullable\":false,\"name\":\"DateNamedBeneficiary\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"InsurancePolicyBeneficiary.cdm.json/InsurancePolicyBeneficiary\",\"name\":\"DateRemovedAsBeneficiary\"},\"dataType\":\"date\",\"dateFormat\":\"YYYY-MM-DD\",\"description\":\"The date that the beneficiary was removed as beneficiary of the Insurance Policy.\",\"isNullable\":true,\"name\":\"DateRemovedAsBeneficiary\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"InsurancePolicyBeneficiary.cdm.json/InsurancePolicyBeneficiary\",\"name\":\"ProceedsPercentage\"},\"dataType\":\"decimal\",\"dataTypeLength\":18,\"description\":\"The percentage split amongst the respective beneficiaries named in the insurance policy.\",\"isNullable\":true,\"scale\":8,\"name\":\"ProceedsPercentage\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"InsurancePolicyBeneficiary.cdm.json/InsurancePolicyBeneficiary\",\"name\":\"ProceedsAmount\"},\"dataType\":\"decimal\",\"dataTypeLength\":18,\"description\":\"The dollar amount split amongst the respective beneficiaries named in the insurance policy.\",\"isNullable\":true,\"scale\":2,\"name\":\"ProceedsAmount\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"InsurancePolicyBeneficiary.cdm.json/InsurancePolicyBeneficiary\",\"name\":\"DistributionPerStirpesIndicator\"},\"dataType\":\"boolean\",\"description\":\"The policy proceeds are paid only to the beneficiaries wo are living and have been named in the policy.\",\"isNullable\":true,\"name\":\"DistributionPerStirpesIndicator\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"InsurancePolicyBeneficiary.cdm.json/InsurancePolicyBeneficiary\",\"name\":\"DistributionPerCapitaIndicator\"},\"dataType\":\"boolean\",\"description\":\"The distribution is claimed on the behalf of the Beneficiary.\\n\\nThis is in contrast to the per stirpes beneficiary who receives the proceeds through the rights of another.\",\"isNullable\":true,\"name\":\"DistributionPerCapitaIndicator\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"InsurancePolicyBeneficiary.cdm.json/InsurancePolicyBeneficiary\",\"name\":\"PolicyholderBeneficiaryRelationshipTypeId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of the Policyholder Beneficiary Relationship Type.\",\"isNullable\":true,\"name\":\"PolicyholderBeneficiaryRelationshipTypeId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"InsurancePolicyBeneficiary.cdm.json/InsurancePolicyBeneficiary\",\"name\":\"RelationshipToInsured\"},\"dataType\":\"string\",\"dataTypeLength\":1024,\"description\":\"The relationship of the Beneficiary to the insured.\",\"isNullable\":true,\"name\":\"RelationshipToInsured\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"InsurancePolicyBeneficiary.cdm.json/InsurancePolicyBeneficiary\",\"name\":\"InsurableInterestTypeId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of the Insurable Interest Type.\",\"isNullable\":true,\"name\":\"InsurableInterestTypeId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"InsurancePolicyBeneficiary.cdm.json/InsurancePolicyBeneficiary\",\"name\":\"InsurableInterestStatement\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"81\",\"isNullable\":true,\"name\":\"InsurableInterestStatement\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"InsurancePolicyBeneficiary.cdm.json/InsurancePolicyBeneficiary\",\"name\":\"RevocableBeneficiaryIndicator\"},\"dataType\":\"boolean\",\"description\":\"Indicates that the Beneficiary designation is or is not revocable.\",\"isNullable\":true,\"name\":\"RevocableBeneficiaryIndicator\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"InsurancePolicyBeneficiary.cdm.json/InsurancePolicyBeneficiary\",\"name\":\"FacilityOfPaymentInEffectIndicator\"},\"dataType\":\"boolean\",\"description\":\"A clause permitted under a uniform health insurance policy provision that allows companies to pay up to $1,000of benefits or proceeds to any relative appearing entitled to it if there is no beneficiary or if the insured or beneficiary is a minor or legally incompetent.\",\"isNullable\":true,\"name\":\"FacilityOfPaymentInEffectIndicator\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"InsurancePolicyBeneficiary.cdm.json/InsurancePolicyBeneficiary\",\"name\":\"ReasonForBeneficiaryChange\"},\"dataType\":\"string\",\"dataTypeLength\":1024,\"description\":\"The reason that the beneficiary was changed.\",\"isNullable\":true,\"name\":\"ReasonForBeneficiaryChange\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"InsurancePolicyBeneficiary.cdm.json/InsurancePolicyBeneficiary\",\"name\":\"DistributionMethodId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Distribution Method.\",\"isNullable\":false,\"name\":\"DistributionMethodId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"InsurancePolicyBeneficiary.cdm.json/InsurancePolicyBeneficiary\",\"name\":\"OrderOfSuccessionId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a specific Succession Order.\",\"isNullable\":false,\"name\":\"OrderOfSuccessionId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"InsurancePolicyBeneficiary.cdm.json/InsurancePolicyBeneficiary\",\"name\":\"BeneficiaryRevocationStatusId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Beneficiary Revocation Status.\",\"isNullable\":false,\"name\":\"BeneficiaryRevocationStatusId\"}]}}}",
+			"Description": "An individual person(s) or legal entity(s) who may be eligible to receive or is receiving benefits under an insurance policy other than the participant.\n\nThere are potentially two types of beneficiary (INDIVIDUAL and LEGAL ENTITY), where a Legal Entity is an artificial legal creation such as a corporation, sole proprietorship, partnership.\n\nThere are several types of beneficiary relationships that may exist:\n\n- Irrevocable beneficiary\n- Revocable beneficiary\n- Primary beneficiary\n- Secondary beneficiary\n- Tertiary beneficiary\n- Contingent beneficiary",
+			"DisplayFolderInfo": "{\"name\":\"Party\",\"colorCode\":\"#0E3D73\"}",
+			"PrimaryKeys": "InsurancePolicyId,BeneficiaryId,DateNamedBeneficiary"
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

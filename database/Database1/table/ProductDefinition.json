@@ -1,0 +1,119 @@
+{
+	"name": "ProductDefinition",
+	"properties": {
+		"Name": "ProductDefinition",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Database1"
+		},
+		"Description": "The definition(s) written into an Insurance Product.",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "ProductId",
+					"Description": "The unique identifier of a Product.",
+					"BaseAttributeReference": {
+						"Entity": "ProductDefinition.cdm.json/ProductDefinition",
+						"Name": "ProductId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "long",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "long"
+						}
+					}
+				},
+				{
+					"Name": "InsuranceDefinitionTypeId",
+					"Description": "The unique identifier of an Insurance Definition Type.",
+					"BaseAttributeReference": {
+						"Entity": "ProductDefinition.cdm.json/ProductDefinition",
+						"Name": "InsuranceDefinitionTypeId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "PeriodStartDate",
+					"Description": "The period start date that the associated definition is written into the insurance product.\n\nAdditional coverage definitions etc. may be added over time and mailed to the customer as updates.",
+					"BaseAttributeReference": {
+						"Entity": "ProductDefinition.cdm.json/ProductDefinition",
+						"Name": "PeriodStartDate"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "date",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"DateFormat": "YYYY-MM-DD",
+							"HIVE_TYPE_STRING": "date"
+						}
+					}
+				},
+				{
+					"Name": "PeriodEndDate",
+					"Description": "The period end date that the associated definition is written into the insurance product.\n\nAdditional coverage definitions etc. may be added over time and mailed to the customer as updates.",
+					"BaseAttributeReference": {
+						"Entity": "ProductDefinition.cdm.json/ProductDefinition",
+						"Name": "PeriodEndDate"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "date",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"DateFormat": "YYYY-MM-DD",
+							"HIVE_TYPE_STRING": "date"
+						}
+					}
+				},
+				{
+					"Name": "ProductDefinitionStatement",
+					"Description": "The text of the actual definition written into the Product.",
+					"BaseAttributeReference": {
+						"Entity": "ProductDefinition.cdm.json/ProductDefinition",
+						"Name": "ProductDefinitionStatement"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				}
+			],
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"ProductId\":{\"entity\":\"ProductDefinition.cdm.json/ProductDefinition\",\"name\":\"ProductId\"},\"InsuranceDefinitionTypeId\":{\"entity\":\"ProductDefinition.cdm.json/ProductDefinition\",\"name\":\"InsuranceDefinitionTypeId\"},\"PeriodStartDate\":{\"entity\":\"ProductDefinition.cdm.json/ProductDefinition\",\"name\":\"PeriodStartDate\"},\"PeriodEndDate\":{\"entity\":\"ProductDefinition.cdm.json/ProductDefinition\",\"name\":\"PeriodEndDate\"},\"ProductDefinitionStatement\":{\"entity\":\"ProductDefinition.cdm.json/ProductDefinition\",\"name\":\"ProductDefinitionStatement\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"ProductDefinition\",\"path\":\"ProductDefinition.cdm.json/ProductDefinition\"},\"description\":\"The definition(s) written into an Insurance Product.\",\"primaryKey\":[\"ProductId\",\"InsuranceDefinitionTypeId\",\"PeriodStartDate\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ProductDefinition.cdm.json/ProductDefinition\",\"name\":\"ProductId\"},\"dataType\":\"long\",\"description\":\"The unique identifier of a Product.\",\"isNullable\":false,\"name\":\"ProductId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ProductDefinition.cdm.json/ProductDefinition\",\"name\":\"InsuranceDefinitionTypeId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of an Insurance Definition Type.\",\"isNullable\":false,\"name\":\"InsuranceDefinitionTypeId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ProductDefinition.cdm.json/ProductDefinition\",\"name\":\"PeriodStartDate\"},\"dataType\":\"date\",\"dateFormat\":\"YYYY-MM-DD\",\"description\":\"The period start date that the associated definition is written into the insurance product.\\n\\nAdditional coverage definitions etc. may be added over time and mailed to the customer as updates.\",\"isNullable\":false,\"name\":\"PeriodStartDate\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ProductDefinition.cdm.json/ProductDefinition\",\"name\":\"PeriodEndDate\"},\"dataType\":\"date\",\"dateFormat\":\"YYYY-MM-DD\",\"description\":\"The period end date that the associated definition is written into the insurance product.\\n\\nAdditional coverage definitions etc. may be added over time and mailed to the customer as updates.\",\"isNullable\":true,\"name\":\"PeriodEndDate\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ProductDefinition.cdm.json/ProductDefinition\",\"name\":\"ProductDefinitionStatement\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"The text of the actual definition written into the Product.\",\"isNullable\":true,\"name\":\"ProductDefinitionStatement\"}]}}}",
+			"Description": "The definition(s) written into an Insurance Product.",
+			"DisplayFolderInfo": "{\"name\":\"Product\",\"colorCode\":\"#7D0F6C\"}",
+			"PrimaryKeys": "ProductId,InsuranceDefinitionTypeId,PeriodStartDate"
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

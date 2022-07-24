@@ -1,0 +1,87 @@
+{
+	"name": "OrganizationalUnit",
+	"properties": {
+		"Name": "OrganizationalUnit",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Database1"
+		},
+		"Description": "A unit of a organization party that performs a specific function or pursues a common interest on behalf of the sponsoring organization.\n\nEx:\n- Customs Department",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "PartyId",
+					"Description": "The unique identifier of a Party.",
+					"BaseAttributeReference": {
+						"Entity": "OrganizationalUnit.cdm.json/OrganizationalUnit",
+						"Name": "PartyId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "long",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "long"
+						}
+					}
+				},
+				{
+					"Name": "OrganizationUnitFunction",
+					"Description": "A statement of the organization units functional responsibility.",
+					"BaseAttributeReference": {
+						"Entity": "OrganizationalUnit.cdm.json/OrganizationalUnit",
+						"Name": "OrganizationUnitFunction"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "GlobalLocationNumber",
+					"Description": "The Global Location Number (GLN) is a simple tool used to uniquely identify locations. It can be used to identify physical locations such as a warehouse, legal entities, or a function / department within a legal entity. The GLN is part of the GS1 system of standards.",
+					"BaseAttributeReference": {
+						"Entity": "OrganizationalUnit.cdm.json/OrganizationalUnit",
+						"Name": "GlobalLocationNumber"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "decimal",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Precision": 13,
+						"Scale": 0,
+						"Properties": {
+							"HIVE_TYPE_STRING": "decimal"
+						}
+					}
+				}
+			],
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"PartyId\":{\"entity\":\"OrganizationalUnit.cdm.json/OrganizationalUnit\",\"name\":\"PartyId\"},\"OrganizationUnitFunction\":{\"entity\":\"OrganizationalUnit.cdm.json/OrganizationalUnit\",\"name\":\"OrganizationUnitFunction\"},\"GlobalLocationNumber\":{\"entity\":\"OrganizationalUnit.cdm.json/OrganizationalUnit\",\"name\":\"GlobalLocationNumber\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"OrganizationalUnit\",\"path\":\"OrganizationalUnit.cdm.json/OrganizationalUnit\"},\"description\":\"A unit of a organization party that performs a specific function or pursues a common interest on behalf of the sponsoring organization.\\n\\nEx:\\n- Customs Department\",\"primaryKey\":[\"PartyId\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"OrganizationalUnit.cdm.json/OrganizationalUnit\",\"name\":\"PartyId\"},\"dataType\":\"long\",\"description\":\"The unique identifier of a Party.\",\"isNullable\":false,\"name\":\"PartyId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"OrganizationalUnit.cdm.json/OrganizationalUnit\",\"name\":\"OrganizationUnitFunction\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"A statement of the organization units functional responsibility.\",\"isNullable\":true,\"name\":\"OrganizationUnitFunction\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"OrganizationalUnit.cdm.json/OrganizationalUnit\",\"name\":\"GlobalLocationNumber\"},\"dataType\":\"decimal\",\"dataTypeLength\":13,\"description\":\"The Global Location Number (GLN) is a simple tool used to uniquely identify locations. It can be used to identify physical locations such as a warehouse, legal entities, or a function / department within a legal entity. The GLN is part of the GS1 system of standards.\",\"isNullable\":true,\"scale\":0,\"name\":\"GlobalLocationNumber\"}]}}}",
+			"Description": "A unit of a organization party that performs a specific function or pursues a common interest on behalf of the sponsoring organization.\n\nEx:\n- Customs Department",
+			"DisplayFolderInfo": "{\"name\":\"Party\",\"colorCode\":\"#0E3D73\"}",
+			"PrimaryKeys": "PartyId"
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

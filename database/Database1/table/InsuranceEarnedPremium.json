@@ -1,0 +1,104 @@
+{
+	"name": "InsuranceEarnedPremium",
+	"properties": {
+		"Name": "InsuranceEarnedPremium",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Database1"
+		},
+		"Description": "The part of your premium used up by any given point in the life of your policy. \n\nFor example, after six months of coverage on a twelve-month policy, one half of your premium will have been \"earned\".",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "InsurancePolicyId",
+					"Description": "The unique identifier of an Insurance Policy.",
+					"BaseAttributeReference": {
+						"Entity": "InsuranceEarnedPremium.cdm.json/InsuranceEarnedPremium",
+						"Name": "InsurancePolicyId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "PeriodStartDate",
+					"Description": "The period start date for which the associated earned premium is determined.",
+					"BaseAttributeReference": {
+						"Entity": "InsuranceEarnedPremium.cdm.json/InsuranceEarnedPremium",
+						"Name": "PeriodStartDate"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "date",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"DateFormat": "YYYY-MM-DD",
+							"HIVE_TYPE_STRING": "date"
+						}
+					}
+				},
+				{
+					"Name": "PeriodEndDate",
+					"Description": "The period end date for which the associated earned premium is determined.",
+					"BaseAttributeReference": {
+						"Entity": "InsuranceEarnedPremium.cdm.json/InsuranceEarnedPremium",
+						"Name": "PeriodEndDate"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "date",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"DateFormat": "YYYY-MM-DD",
+							"HIVE_TYPE_STRING": "date"
+						}
+					}
+				},
+				{
+					"Name": "EarnedPremiumAmount",
+					"Description": "The amount of earned premium.",
+					"BaseAttributeReference": {
+						"Entity": "InsuranceEarnedPremium.cdm.json/InsuranceEarnedPremium",
+						"Name": "EarnedPremiumAmount"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "decimal",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Precision": 18,
+						"Scale": 2,
+						"Properties": {
+							"HIVE_TYPE_STRING": "decimal"
+						}
+					}
+				}
+			],
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"InsurancePolicyId\":{\"entity\":\"InsuranceEarnedPremium.cdm.json/InsuranceEarnedPremium\",\"name\":\"InsurancePolicyId\"},\"PeriodStartDate\":{\"entity\":\"InsuranceEarnedPremium.cdm.json/InsuranceEarnedPremium\",\"name\":\"PeriodStartDate\"},\"PeriodEndDate\":{\"entity\":\"InsuranceEarnedPremium.cdm.json/InsuranceEarnedPremium\",\"name\":\"PeriodEndDate\"},\"EarnedPremiumAmount\":{\"entity\":\"InsuranceEarnedPremium.cdm.json/InsuranceEarnedPremium\",\"name\":\"EarnedPremiumAmount\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"InsuranceEarnedPremium\",\"path\":\"InsuranceEarnedPremium.cdm.json/InsuranceEarnedPremium\"},\"description\":\"The part of your premium used up by any given point in the life of your policy. \\n\\nFor example, after six months of coverage on a twelve-month policy, one half of your premium will have been \\\"earned\\\".\",\"primaryKey\":[\"InsurancePolicyId\",\"PeriodStartDate\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"InsuranceEarnedPremium.cdm.json/InsuranceEarnedPremium\",\"name\":\"InsurancePolicyId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of an Insurance Policy.\",\"isNullable\":false,\"name\":\"InsurancePolicyId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"InsuranceEarnedPremium.cdm.json/InsuranceEarnedPremium\",\"name\":\"PeriodStartDate\"},\"dataType\":\"date\",\"dateFormat\":\"YYYY-MM-DD\",\"description\":\"The period start date for which the associated earned premium is determined.\",\"isNullable\":false,\"name\":\"PeriodStartDate\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"InsuranceEarnedPremium.cdm.json/InsuranceEarnedPremium\",\"name\":\"PeriodEndDate\"},\"dataType\":\"date\",\"dateFormat\":\"YYYY-MM-DD\",\"description\":\"The period end date for which the associated earned premium is determined.\",\"isNullable\":true,\"name\":\"PeriodEndDate\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"InsuranceEarnedPremium.cdm.json/InsuranceEarnedPremium\",\"name\":\"EarnedPremiumAmount\"},\"dataType\":\"decimal\",\"dataTypeLength\":18,\"description\":\"The amount of earned premium.\",\"isNullable\":true,\"scale\":2,\"name\":\"EarnedPremiumAmount\"}]}}}",
+			"Description": "The part of your premium used up by any given point in the life of your policy. \n\nFor example, after six months of coverage on a twelve-month policy, one half of your premium will have been \"earned\".",
+			"DisplayFolderInfo": "{\"name\":\"Customer Account\",\"colorCode\":\"#022F22\"}",
+			"PrimaryKeys": "InsurancePolicyId,PeriodStartDate"
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

@@ -1,0 +1,87 @@
+{
+	"name": "AmountAtRisk",
+	"properties": {
+		"Name": "AmountAtRisk",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Database1"
+		},
+		"Description": "The difference between the face amount of a whole life insurance contract and the cash value which it has built up.\n\nThe net amount at risk declines throughout the life of the contract, while the policy reserve increases along with the cash value.   It is the amount that the insurer would have to draw from its own funds or reserve rather than the policy reserves were the contract to become a death claim.",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "InsurancePolicyId",
+					"Description": "The unique identifier of an Insurance Policy.",
+					"BaseAttributeReference": {
+						"Entity": "AmountAtRisk.cdm.json/AmountAtRisk",
+						"Name": "InsurancePolicyId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "EffectiveDate",
+					"Description": "The effective date for which the amount at risk is calculated.",
+					"BaseAttributeReference": {
+						"Entity": "AmountAtRisk.cdm.json/AmountAtRisk",
+						"Name": "EffectiveDate"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "date",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"DateFormat": "YYYY-MM-DD",
+							"HIVE_TYPE_STRING": "date"
+						}
+					}
+				},
+				{
+					"Name": "AmountAtRisk",
+					"Description": "The difference between the face amount of a Whole Life Insurance contract and the cash value which it has built up.\n\nIt is the amount the insurer would have to draw from its own funds rather than the policy reserve were the contract to become a death claim.",
+					"BaseAttributeReference": {
+						"Entity": "AmountAtRisk.cdm.json/AmountAtRisk",
+						"Name": "AmountAtRisk"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "decimal",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Precision": 18,
+						"Scale": 2,
+						"Properties": {
+							"HIVE_TYPE_STRING": "decimal"
+						}
+					}
+				}
+			],
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"InsurancePolicyId\":{\"entity\":\"AmountAtRisk.cdm.json/AmountAtRisk\",\"name\":\"InsurancePolicyId\"},\"EffectiveDate\":{\"entity\":\"AmountAtRisk.cdm.json/AmountAtRisk\",\"name\":\"EffectiveDate\"},\"AmountAtRisk\":{\"entity\":\"AmountAtRisk.cdm.json/AmountAtRisk\",\"name\":\"AmountAtRisk\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"AmountAtRisk\",\"path\":\"AmountAtRisk.cdm.json/AmountAtRisk\"},\"description\":\"The difference between the face amount of a whole life insurance contract and the cash value which it has built up.\\n\\nThe net amount at risk declines throughout the life of the contract, while the policy reserve increases along with the cash value.   It is the amount that the insurer would have to draw from its own funds or reserve rather than the policy reserves were the contract to become a death claim.\",\"primaryKey\":[\"InsurancePolicyId\",\"EffectiveDate\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"AmountAtRisk.cdm.json/AmountAtRisk\",\"name\":\"InsurancePolicyId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of an Insurance Policy.\",\"isNullable\":false,\"name\":\"InsurancePolicyId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"AmountAtRisk.cdm.json/AmountAtRisk\",\"name\":\"EffectiveDate\"},\"dataType\":\"date\",\"dateFormat\":\"YYYY-MM-DD\",\"description\":\"The effective date for which the amount at risk is calculated.\",\"isNullable\":false,\"name\":\"EffectiveDate\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"AmountAtRisk.cdm.json/AmountAtRisk\",\"name\":\"AmountAtRisk\"},\"dataType\":\"decimal\",\"dataTypeLength\":18,\"description\":\"The difference between the face amount of a Whole Life Insurance contract and the cash value which it has built up.\\n\\nIt is the amount the insurer would have to draw from its own funds rather than the policy reserve were the contract to become a death claim.\",\"isNullable\":true,\"scale\":2,\"name\":\"AmountAtRisk\"}]}}}",
+			"Description": "The difference between the face amount of a whole life insurance contract and the cash value which it has built up.\n\nThe net amount at risk declines throughout the life of the contract, while the policy reserve increases along with the cash value.   It is the amount that the insurer would have to draw from its own funds or reserve rather than the policy reserves were the contract to become a death claim.",
+			"DisplayFolderInfo": "{\"name\":\"Customer Account\",\"colorCode\":\"#022F22\"}",
+			"PrimaryKeys": "InsurancePolicyId,EffectiveDate"
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

@@ -1,0 +1,354 @@
+{
+	"name": "ServiceRequest",
+	"properties": {
+		"Name": "ServiceRequest",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Database1"
+		},
+		"Description": "A request for services made by a party.\n\nA Service Request may be addressed immediately or require additional activity(s) or Service Request Activity(s).\n\nBoth Service Request(s) and Service Request Activity(s) involve one or more parties of various types and responsibilities and may incur costs that are charged internally or to the party.\n\nA Service Request may be raised to an Issue if it can not be resolved or required higher visibility.",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "ServiceRequestId",
+					"Description": "The unique identifier of a Service Request.",
+					"BaseAttributeReference": {
+						"Entity": "ServiceRequest.cdm.json/ServiceRequest",
+						"Name": "ServiceRequestId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "ServiceRequestDescription",
+					"Description": "A description of the service request.",
+					"BaseAttributeReference": {
+						"Entity": "ServiceRequest.cdm.json/ServiceRequest",
+						"Name": "ServiceRequestDescription"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 512,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "ServiceRequestReceivedTimestamp",
+					"Description": "The timestamp that the service request was received.",
+					"BaseAttributeReference": {
+						"Entity": "ServiceRequest.cdm.json/ServiceRequest",
+						"Name": "ServiceRequestReceivedTimestamp"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "timestamp",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"TimestampFormat": "YYYY-MM-DD HH:MM:SS.fffffffff",
+							"HIVE_TYPE_STRING": "timestamp"
+						}
+					}
+				},
+				{
+					"Name": "ServiceRequestOpenedTimestamp",
+					"Description": "The timestamp that the service request was opened for processing.",
+					"BaseAttributeReference": {
+						"Entity": "ServiceRequest.cdm.json/ServiceRequest",
+						"Name": "ServiceRequestOpenedTimestamp"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "timestamp",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"TimestampFormat": "YYYY-MM-DD HH:MM:SS.fffffffff",
+							"HIVE_TYPE_STRING": "timestamp"
+						}
+					}
+				},
+				{
+					"Name": "ServiceRequestResolutionTimestamp",
+					"Description": "The timestamp that the service request was resolved or closed.",
+					"BaseAttributeReference": {
+						"Entity": "ServiceRequest.cdm.json/ServiceRequest",
+						"Name": "ServiceRequestResolutionTimestamp"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "timestamp",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"TimestampFormat": "YYYY-MM-DD HH:MM:SS.fffffffff",
+							"HIVE_TYPE_STRING": "timestamp"
+						}
+					}
+				},
+				{
+					"Name": "TotalManhoursRequired",
+					"Description": "The total number of manhours required to resolve the Service Request.",
+					"BaseAttributeReference": {
+						"Entity": "ServiceRequest.cdm.json/ServiceRequest",
+						"Name": "TotalManhoursRequired"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "TotalInternalManhours",
+					"Description": "The total number of internal (organization) manhours required to resolve the Service Request.",
+					"BaseAttributeReference": {
+						"Entity": "ServiceRequest.cdm.json/ServiceRequest",
+						"Name": "TotalInternalManhours"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "TotalExternalThirdPartyManhours",
+					"Description": "The total number of external (third-party or external organization) manhours required to resolve the Service Request.",
+					"BaseAttributeReference": {
+						"Entity": "ServiceRequest.cdm.json/ServiceRequest",
+						"Name": "TotalExternalThirdPartyManhours"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "TotalCustomerPartyBillableHours",
+					"Description": "The total number of billable manhours associated with the Service Request.",
+					"BaseAttributeReference": {
+						"Entity": "ServiceRequest.cdm.json/ServiceRequest",
+						"Name": "TotalCustomerPartyBillableHours"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "TotalChargesAmount",
+					"Description": "The total charges amount charged to external parties in relationship to the Service Request.",
+					"BaseAttributeReference": {
+						"Entity": "ServiceRequest.cdm.json/ServiceRequest",
+						"Name": "TotalChargesAmount"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "decimal",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Precision": 18,
+						"Scale": 2,
+						"Properties": {
+							"HIVE_TYPE_STRING": "decimal"
+						}
+					}
+				},
+				{
+					"Name": "TotalInternalCostsAmount",
+					"Description": "The total charges amount charged to internal parties in relationship to the Service Request.",
+					"BaseAttributeReference": {
+						"Entity": "ServiceRequest.cdm.json/ServiceRequest",
+						"Name": "TotalInternalCostsAmount"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "decimal",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Precision": 18,
+						"Scale": 2,
+						"Properties": {
+							"HIVE_TYPE_STRING": "decimal"
+						}
+					}
+				},
+				{
+					"Name": "TotalChargedInternalCostsAmount",
+					"Description": "The total amount of internal/activity-related costs that were chargeable.",
+					"BaseAttributeReference": {
+						"Entity": "ServiceRequest.cdm.json/ServiceRequest",
+						"Name": "TotalChargedInternalCostsAmount"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "decimal",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Precision": 18,
+						"Scale": 2,
+						"Properties": {
+							"HIVE_TYPE_STRING": "decimal"
+						}
+					}
+				},
+				{
+					"Name": "TotalChargedToCustomerAmount",
+					"Description": "The total amount charged to the customer.",
+					"BaseAttributeReference": {
+						"Entity": "ServiceRequest.cdm.json/ServiceRequest",
+						"Name": "TotalChargedToCustomerAmount"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "decimal",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Precision": 18,
+						"Scale": 2,
+						"Properties": {
+							"HIVE_TYPE_STRING": "decimal"
+						}
+					}
+				},
+				{
+					"Name": "TotalChargedToThirdPartyAmount",
+					"Description": "The total amount charged to third parties.",
+					"BaseAttributeReference": {
+						"Entity": "ServiceRequest.cdm.json/ServiceRequest",
+						"Name": "TotalChargedToThirdPartyAmount"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "decimal",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Precision": 18,
+						"Scale": 2,
+						"Properties": {
+							"HIVE_TYPE_STRING": "decimal"
+						}
+					}
+				},
+				{
+					"Name": "ServiceRequestTypeId",
+					"Description": "The unique identifier of a Service Request Type.",
+					"BaseAttributeReference": {
+						"Entity": "ServiceRequest.cdm.json/ServiceRequest",
+						"Name": "ServiceRequestTypeId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "ServiceRequestPriorityId",
+					"Description": "The unique identifier of the Service Request Priority.",
+					"BaseAttributeReference": {
+						"Entity": "ServiceRequest.cdm.json/ServiceRequest",
+						"Name": "ServiceRequestPriorityId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "PartyId",
+					"Description": "The unique identifier of a Party.",
+					"BaseAttributeReference": {
+						"Entity": "ServiceRequest.cdm.json/ServiceRequest",
+						"Name": "PartyId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "long",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"HIVE_TYPE_STRING": "long"
+						}
+					}
+				},
+				{
+					"Name": "OrganizationId",
+					"Description": "The unique identifier of an organization or business unit.",
+					"BaseAttributeReference": {
+						"Entity": "ServiceRequest.cdm.json/ServiceRequest",
+						"Name": "OrganizationId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "IssueId",
+					"Description": "The unique identifier of the Issue to which the Service Request is raised or related.",
+					"BaseAttributeReference": {
+						"Entity": "ServiceRequest.cdm.json/ServiceRequest",
+						"Name": "IssueId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				}
+			],
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"ServiceRequestId\":{\"entity\":\"ServiceRequest.cdm.json/ServiceRequest\",\"name\":\"ServiceRequestId\"},\"ServiceRequestDescription\":{\"entity\":\"ServiceRequest.cdm.json/ServiceRequest\",\"name\":\"ServiceRequestDescription\"},\"ServiceRequestReceivedTimestamp\":{\"entity\":\"ServiceRequest.cdm.json/ServiceRequest\",\"name\":\"ServiceRequestReceivedTimestamp\"},\"ServiceRequestOpenedTimestamp\":{\"entity\":\"ServiceRequest.cdm.json/ServiceRequest\",\"name\":\"ServiceRequestOpenedTimestamp\"},\"ServiceRequestResolutionTimestamp\":{\"entity\":\"ServiceRequest.cdm.json/ServiceRequest\",\"name\":\"ServiceRequestResolutionTimestamp\"},\"TotalManhoursRequired\":{\"entity\":\"ServiceRequest.cdm.json/ServiceRequest\",\"name\":\"TotalManhoursRequired\"},\"TotalInternalManhours\":{\"entity\":\"ServiceRequest.cdm.json/ServiceRequest\",\"name\":\"TotalInternalManhours\"},\"TotalExternalThirdPartyManhours\":{\"entity\":\"ServiceRequest.cdm.json/ServiceRequest\",\"name\":\"TotalExternalThirdPartyManhours\"},\"TotalCustomerPartyBillableHours\":{\"entity\":\"ServiceRequest.cdm.json/ServiceRequest\",\"name\":\"TotalCustomerPartyBillableHours\"},\"TotalChargesAmount\":{\"entity\":\"ServiceRequest.cdm.json/ServiceRequest\",\"name\":\"TotalChargesAmount\"},\"TotalInternalCostsAmount\":{\"entity\":\"ServiceRequest.cdm.json/ServiceRequest\",\"name\":\"TotalInternalCostsAmount\"},\"TotalChargedInternalCostsAmount\":{\"entity\":\"ServiceRequest.cdm.json/ServiceRequest\",\"name\":\"TotalChargedInternalCostsAmount\"},\"TotalChargedToCustomerAmount\":{\"entity\":\"ServiceRequest.cdm.json/ServiceRequest\",\"name\":\"TotalChargedToCustomerAmount\"},\"TotalChargedToThirdPartyAmount\":{\"entity\":\"ServiceRequest.cdm.json/ServiceRequest\",\"name\":\"TotalChargedToThirdPartyAmount\"},\"ServiceRequestTypeId\":{\"entity\":\"ServiceRequest.cdm.json/ServiceRequest\",\"name\":\"ServiceRequestTypeId\"},\"ServiceRequestPriorityId\":{\"entity\":\"ServiceRequest.cdm.json/ServiceRequest\",\"name\":\"ServiceRequestPriorityId\"},\"PartyId\":{\"entity\":\"ServiceRequest.cdm.json/ServiceRequest\",\"name\":\"PartyId\"},\"OrganizationId\":{\"entity\":\"ServiceRequest.cdm.json/ServiceRequest\",\"name\":\"OrganizationId\"},\"IssueId\":{\"entity\":\"ServiceRequest.cdm.json/ServiceRequest\",\"name\":\"IssueId\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"ServiceRequest\",\"path\":\"ServiceRequest.cdm.json/ServiceRequest\"},\"description\":\"A request for services made by a party.\\n\\nA Service Request may be addressed immediately or require additional activity(s) or Service Request Activity(s).\\n\\nBoth Service Request(s) and Service Request Activity(s) involve one or more parties of various types and responsibilities and may incur costs that are charged internally or to the party.\\n\\nA Service Request may be raised to an Issue if it can not be resolved or required higher visibility.\",\"primaryKey\":[\"ServiceRequestId\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ServiceRequest.cdm.json/ServiceRequest\",\"name\":\"ServiceRequestId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Service Request.\",\"isNullable\":false,\"name\":\"ServiceRequestId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ServiceRequest.cdm.json/ServiceRequest\",\"name\":\"ServiceRequestDescription\"},\"dataType\":\"string\",\"dataTypeLength\":512,\"description\":\"A description of the service request.\",\"isNullable\":true,\"name\":\"ServiceRequestDescription\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ServiceRequest.cdm.json/ServiceRequest\",\"name\":\"ServiceRequestReceivedTimestamp\"},\"dataType\":\"timestamp\",\"description\":\"The timestamp that the service request was received.\",\"isNullable\":true,\"name\":\"ServiceRequestReceivedTimestamp\",\"timestampFormat\":\"YYYY-MM-DD HH:MM:SS.fffffffff\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ServiceRequest.cdm.json/ServiceRequest\",\"name\":\"ServiceRequestOpenedTimestamp\"},\"dataType\":\"timestamp\",\"description\":\"The timestamp that the service request was opened for processing.\",\"isNullable\":true,\"name\":\"ServiceRequestOpenedTimestamp\",\"timestampFormat\":\"YYYY-MM-DD HH:MM:SS.fffffffff\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ServiceRequest.cdm.json/ServiceRequest\",\"name\":\"ServiceRequestResolutionTimestamp\"},\"dataType\":\"timestamp\",\"description\":\"The timestamp that the service request was resolved or closed.\",\"isNullable\":true,\"name\":\"ServiceRequestResolutionTimestamp\",\"timestampFormat\":\"YYYY-MM-DD HH:MM:SS.fffffffff\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ServiceRequest.cdm.json/ServiceRequest\",\"name\":\"TotalManhoursRequired\"},\"dataType\":\"integer\",\"description\":\"The total number of manhours required to resolve the Service Request.\",\"isNullable\":true,\"name\":\"TotalManhoursRequired\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ServiceRequest.cdm.json/ServiceRequest\",\"name\":\"TotalInternalManhours\"},\"dataType\":\"integer\",\"description\":\"The total number of internal (organization) manhours required to resolve the Service Request.\",\"isNullable\":true,\"name\":\"TotalInternalManhours\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ServiceRequest.cdm.json/ServiceRequest\",\"name\":\"TotalExternalThirdPartyManhours\"},\"dataType\":\"integer\",\"description\":\"The total number of external (third-party or external organization) manhours required to resolve the Service Request.\",\"isNullable\":true,\"name\":\"TotalExternalThirdPartyManhours\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ServiceRequest.cdm.json/ServiceRequest\",\"name\":\"TotalCustomerPartyBillableHours\"},\"dataType\":\"integer\",\"description\":\"The total number of billable manhours associated with the Service Request.\",\"isNullable\":true,\"name\":\"TotalCustomerPartyBillableHours\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ServiceRequest.cdm.json/ServiceRequest\",\"name\":\"TotalChargesAmount\"},\"dataType\":\"decimal\",\"dataTypeLength\":18,\"description\":\"The total charges amount charged to external parties in relationship to the Service Request.\",\"isNullable\":true,\"scale\":2,\"name\":\"TotalChargesAmount\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ServiceRequest.cdm.json/ServiceRequest\",\"name\":\"TotalInternalCostsAmount\"},\"dataType\":\"decimal\",\"dataTypeLength\":18,\"description\":\"The total charges amount charged to internal parties in relationship to the Service Request.\",\"isNullable\":true,\"scale\":2,\"name\":\"TotalInternalCostsAmount\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ServiceRequest.cdm.json/ServiceRequest\",\"name\":\"TotalChargedInternalCostsAmount\"},\"dataType\":\"decimal\",\"dataTypeLength\":18,\"description\":\"The total amount of internal/activity-related costs that were chargeable.\",\"isNullable\":true,\"scale\":2,\"name\":\"TotalChargedInternalCostsAmount\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ServiceRequest.cdm.json/ServiceRequest\",\"name\":\"TotalChargedToCustomerAmount\"},\"dataType\":\"decimal\",\"dataTypeLength\":18,\"description\":\"The total amount charged to the customer.\",\"isNullable\":true,\"scale\":2,\"name\":\"TotalChargedToCustomerAmount\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ServiceRequest.cdm.json/ServiceRequest\",\"name\":\"TotalChargedToThirdPartyAmount\"},\"dataType\":\"decimal\",\"dataTypeLength\":18,\"description\":\"The total amount charged to third parties.\",\"isNullable\":true,\"scale\":2,\"name\":\"TotalChargedToThirdPartyAmount\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ServiceRequest.cdm.json/ServiceRequest\",\"name\":\"ServiceRequestTypeId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Service Request Type.\",\"isNullable\":true,\"name\":\"ServiceRequestTypeId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ServiceRequest.cdm.json/ServiceRequest\",\"name\":\"ServiceRequestPriorityId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of the Service Request Priority.\",\"isNullable\":true,\"name\":\"ServiceRequestPriorityId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ServiceRequest.cdm.json/ServiceRequest\",\"name\":\"PartyId\"},\"dataType\":\"long\",\"description\":\"The unique identifier of a Party.\",\"isNullable\":true,\"name\":\"PartyId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ServiceRequest.cdm.json/ServiceRequest\",\"name\":\"OrganizationId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of an organization or business unit.\",\"isNullable\":true,\"name\":\"OrganizationId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ServiceRequest.cdm.json/ServiceRequest\",\"name\":\"IssueId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of the Issue to which the Service Request is raised or related.\",\"isNullable\":true,\"name\":\"IssueId\"}]}}}",
+			"Description": "A request for services made by a party.\n\nA Service Request may be addressed immediately or require additional activity(s) or Service Request Activity(s).\n\nBoth Service Request(s) and Service Request Activity(s) involve one or more parties of various types and responsibilities and may incur costs that are charged internally or to the party.\n\nA Service Request may be raised to an Issue if it can not be resolved or required higher visibility.",
+			"DisplayFolderInfo": "{\"name\":\"Customer Service & Contact Management\",\"colorCode\":\"#502006\"}",
+			"PrimaryKeys": "ServiceRequestId"
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

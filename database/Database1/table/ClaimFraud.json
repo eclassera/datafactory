@@ -1,0 +1,203 @@
+{
+	"name": "ClaimFraud",
+	"properties": {
+		"Name": "ClaimFraud",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Database1"
+		},
+		"Description": "Intentional lying or concealment by policyholders to obtain payment of an insurance claim that would otherwise not be paid, or lying or misrepresentation by the insurance company managers, employees, agents, and brokers for financial gain.",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "ClaimId",
+					"Description": "The unique identifier of a Claim.",
+					"BaseAttributeReference": {
+						"Entity": "ClaimFraud.cdm.json/ClaimFraud",
+						"Name": "ClaimId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "long",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "long"
+						}
+					}
+				},
+				{
+					"Name": "FraudId",
+					"Description": "The unique identifier of a fraudulent activity.",
+					"BaseAttributeReference": {
+						"Entity": "ClaimFraud.cdm.json/ClaimFraud",
+						"Name": "FraudId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "ClaimFraudTypeId",
+					"Description": "The unique identifier of a Claim Fraud Type.",
+					"BaseAttributeReference": {
+						"Entity": "ClaimFraud.cdm.json/ClaimFraud",
+						"Name": "ClaimFraudTypeId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "FraudCommittedTimestamp",
+					"Description": "The timestamp that the fraud was committed.",
+					"BaseAttributeReference": {
+						"Entity": "ClaimFraud.cdm.json/ClaimFraud",
+						"Name": "FraudCommittedTimestamp"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "timestamp",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"TimestampFormat": "YYYY-MM-DD HH:MM:SS.fffffffff",
+							"HIVE_TYPE_STRING": "timestamp"
+						}
+					}
+				},
+				{
+					"Name": "FraudReportedDate",
+					"Description": "The date that the fraud was reported.\n\nNote:\nThis may more likely to be known precisely than the date that the fraud was committed.",
+					"BaseAttributeReference": {
+						"Entity": "ClaimFraud.cdm.json/ClaimFraud",
+						"Name": "FraudReportedDate"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "date",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"DateFormat": "YYYY-MM-DD",
+							"HIVE_TYPE_STRING": "date"
+						}
+					}
+				},
+				{
+					"Name": "FraudLossAmount",
+					"Description": "The amount resulting from the fraud.",
+					"BaseAttributeReference": {
+						"Entity": "ClaimFraud.cdm.json/ClaimFraud",
+						"Name": "FraudLossAmount"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "decimal",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Precision": 18,
+						"Scale": 2,
+						"Properties": {
+							"HIVE_TYPE_STRING": "decimal"
+						}
+					}
+				},
+				{
+					"Name": "FraudStatement",
+					"Description": "A statement regarding the fraud.",
+					"BaseAttributeReference": {
+						"Entity": "ClaimFraud.cdm.json/ClaimFraud",
+						"Name": "FraudStatement"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "FraudResolutionMethodId",
+					"Description": "The unique identifier of a fraud resolution method.",
+					"BaseAttributeReference": {
+						"Entity": "ClaimFraud.cdm.json/ClaimFraud",
+						"Name": "FraudResolutionMethodId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "LegalOutcomeStatement",
+					"Description": "A statement describing the results or outcome of the legal action against the party for fraud.",
+					"BaseAttributeReference": {
+						"Entity": "ClaimFraud.cdm.json/ClaimFraud",
+						"Name": "LegalOutcomeStatement"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "PaymentCardFraudNote",
+					"Description": "A note, comment or additional information regarding the Payment Card Fraud.",
+					"BaseAttributeReference": {
+						"Entity": "ClaimFraud.cdm.json/ClaimFraud",
+						"Name": "PaymentCardFraudNote"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 1024,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				}
+			],
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"ClaimId\":{\"entity\":\"ClaimFraud.cdm.json/ClaimFraud\",\"name\":\"ClaimId\"},\"FraudId\":{\"entity\":\"ClaimFraud.cdm.json/ClaimFraud\",\"name\":\"FraudId\"},\"ClaimFraudTypeId\":{\"entity\":\"ClaimFraud.cdm.json/ClaimFraud\",\"name\":\"ClaimFraudTypeId\"},\"FraudCommittedTimestamp\":{\"entity\":\"ClaimFraud.cdm.json/ClaimFraud\",\"name\":\"FraudCommittedTimestamp\"},\"FraudReportedDate\":{\"entity\":\"ClaimFraud.cdm.json/ClaimFraud\",\"name\":\"FraudReportedDate\"},\"FraudLossAmount\":{\"entity\":\"ClaimFraud.cdm.json/ClaimFraud\",\"name\":\"FraudLossAmount\"},\"FraudStatement\":{\"entity\":\"ClaimFraud.cdm.json/ClaimFraud\",\"name\":\"FraudStatement\"},\"FraudResolutionMethodId\":{\"entity\":\"ClaimFraud.cdm.json/ClaimFraud\",\"name\":\"FraudResolutionMethodId\"},\"LegalOutcomeStatement\":{\"entity\":\"ClaimFraud.cdm.json/ClaimFraud\",\"name\":\"LegalOutcomeStatement\"},\"PaymentCardFraudNote\":{\"entity\":\"ClaimFraud.cdm.json/ClaimFraud\",\"name\":\"PaymentCardFraudNote\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"ClaimFraud\",\"path\":\"ClaimFraud.cdm.json/ClaimFraud\"},\"description\":\"Intentional lying or concealment by policyholders to obtain payment of an insurance claim that would otherwise not be paid, or lying or misrepresentation by the insurance company managers, employees, agents, and brokers for financial gain.\",\"primaryKey\":[\"ClaimId\",\"FraudId\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ClaimFraud.cdm.json/ClaimFraud\",\"name\":\"ClaimId\"},\"dataType\":\"long\",\"description\":\"The unique identifier of a Claim.\",\"isNullable\":false,\"name\":\"ClaimId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ClaimFraud.cdm.json/ClaimFraud\",\"name\":\"FraudId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a fraudulent activity.\",\"isNullable\":false,\"name\":\"FraudId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ClaimFraud.cdm.json/ClaimFraud\",\"name\":\"ClaimFraudTypeId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Claim Fraud Type.\",\"isNullable\":false,\"name\":\"ClaimFraudTypeId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ClaimFraud.cdm.json/ClaimFraud\",\"name\":\"FraudCommittedTimestamp\"},\"dataType\":\"timestamp\",\"description\":\"The timestamp that the fraud was committed.\",\"isNullable\":true,\"name\":\"FraudCommittedTimestamp\",\"timestampFormat\":\"YYYY-MM-DD HH:MM:SS.fffffffff\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ClaimFraud.cdm.json/ClaimFraud\",\"name\":\"FraudReportedDate\"},\"dataType\":\"date\",\"dateFormat\":\"YYYY-MM-DD\",\"description\":\"The date that the fraud was reported.\\n\\nNote:\\nThis may more likely to be known precisely than the date that the fraud was committed.\",\"isNullable\":true,\"name\":\"FraudReportedDate\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ClaimFraud.cdm.json/ClaimFraud\",\"name\":\"FraudLossAmount\"},\"dataType\":\"decimal\",\"dataTypeLength\":18,\"description\":\"The amount resulting from the fraud.\",\"isNullable\":true,\"scale\":2,\"name\":\"FraudLossAmount\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ClaimFraud.cdm.json/ClaimFraud\",\"name\":\"FraudStatement\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"A statement regarding the fraud.\",\"isNullable\":true,\"name\":\"FraudStatement\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ClaimFraud.cdm.json/ClaimFraud\",\"name\":\"FraudResolutionMethodId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a fraud resolution method.\",\"isNullable\":true,\"name\":\"FraudResolutionMethodId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ClaimFraud.cdm.json/ClaimFraud\",\"name\":\"LegalOutcomeStatement\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"A statement describing the results or outcome of the legal action against the party for fraud.\",\"isNullable\":true,\"name\":\"LegalOutcomeStatement\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ClaimFraud.cdm.json/ClaimFraud\",\"name\":\"PaymentCardFraudNote\"},\"dataType\":\"string\",\"dataTypeLength\":1024,\"description\":\"A note, comment or additional information regarding the Payment Card Fraud.\",\"isNullable\":true,\"name\":\"PaymentCardFraudNote\"}]}}}",
+			"Description": "Intentional lying or concealment by policyholders to obtain payment of an insurance claim that would otherwise not be paid, or lying or misrepresentation by the insurance company managers, employees, agents, and brokers for financial gain.",
+			"DisplayFolderInfo": "{\"name\":\"Claim\",\"colorCode\":\"#917EDB\"}",
+			"PrimaryKeys": "ClaimId,FraudId"
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

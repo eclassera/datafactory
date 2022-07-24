@@ -1,0 +1,172 @@
+{
+	"name": "ProductRatingFactorValue",
+	"properties": {
+		"Name": "ProductRatingFactorValue",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Database1"
+		},
+		"Description": "The Rating Multiplier or Amount associated with an Insurance Product Rating Factor during the designated period.\n\nAll multipliers should be applied to the base rate and then incremented by the values for all applicable values.\n\nFor example: \nFactor Type of \"Sex\" with value \"Male\" has an associated Rating Multiplier of 1.5\nFactor Type of \"Age\" with value \"50\" has an associated Rating Multiplier of 0.90\nFactor Type of \"Occupation\" with value of \"Retired\" has an associated Rating Amount of -50\nPolicy Premium would be calculated as Base Premium * 1.5 * 0.90 + -50",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "ProductId",
+					"Description": "The unique identifier of a Product.",
+					"BaseAttributeReference": {
+						"Entity": "ProductRatingFactorValue.cdm.json/ProductRatingFactorValue",
+						"Name": "ProductId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "long",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "long"
+						}
+					}
+				},
+				{
+					"Name": "ProductRatingFactorTypeId",
+					"Description": "The unique identifier of an Insurance Definition Type.",
+					"BaseAttributeReference": {
+						"Entity": "ProductRatingFactorValue.cdm.json/ProductRatingFactorValue",
+						"Name": "ProductRatingFactorTypeId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "ProductRatingFactorValue",
+					"Description": "The value associated with the Product Rating Factor Type for which the associated Product Rating Factor Rating Multiplier and Amount are applicable.",
+					"BaseAttributeReference": {
+						"Entity": "ProductRatingFactorValue.cdm.json/ProductRatingFactorValue",
+						"Name": "ProductRatingFactorValue"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Length": 20,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "RatingPeriodStartDate",
+					"Description": "The period start date for which the associated Satisfaction Rating is provided.",
+					"BaseAttributeReference": {
+						"Entity": "ProductRatingFactorValue.cdm.json/ProductRatingFactorValue",
+						"Name": "RatingPeriodStartDate"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "date",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"DateFormat": "YYYY-MM-DD",
+							"HIVE_TYPE_STRING": "date"
+						}
+					}
+				},
+				{
+					"Name": "RatingPeriodEndDate",
+					"Description": "The period end date that the associated Product Rating Factor Value is associated with the Product.",
+					"BaseAttributeReference": {
+						"Entity": "ProductRatingFactorValue.cdm.json/ProductRatingFactorValue",
+						"Name": "RatingPeriodEndDate"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "date",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"DateFormat": "YYYY-MM-DD",
+							"HIVE_TYPE_STRING": "date"
+						}
+					}
+				},
+				{
+					"Name": "ProductRatingFactorRatingMultiplier",
+					"Description": "The multiplier associated with the Product Rating Factor for the given Value for the given period.",
+					"BaseAttributeReference": {
+						"Entity": "ProductRatingFactorValue.cdm.json/ProductRatingFactorValue",
+						"Name": "ProductRatingFactorRatingMultiplier"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "decimal",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Precision": 18,
+						"Scale": 8,
+						"Properties": {
+							"HIVE_TYPE_STRING": "decimal"
+						}
+					}
+				},
+				{
+					"Name": "ProductRatingFactorRatingAmount",
+					"Description": "The Amount associated with the Product Rating Factor for the given Value for the given period.",
+					"BaseAttributeReference": {
+						"Entity": "ProductRatingFactorValue.cdm.json/ProductRatingFactorValue",
+						"Name": "ProductRatingFactorRatingAmount"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "decimal",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Precision": 18,
+						"Scale": 2,
+						"Properties": {
+							"HIVE_TYPE_STRING": "decimal"
+						}
+					}
+				},
+				{
+					"Name": "ProductRatingFactorValueNote",
+					"Description": "A note, comment or additional information regarding the Product Rating Factor Value.",
+					"BaseAttributeReference": {
+						"Entity": "ProductRatingFactorValue.cdm.json/ProductRatingFactorValue",
+						"Name": "ProductRatingFactorValueNote"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 1024,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				}
+			],
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"ProductId\":{\"entity\":\"ProductRatingFactorValue.cdm.json/ProductRatingFactorValue\",\"name\":\"ProductId\"},\"ProductRatingFactorTypeId\":{\"entity\":\"ProductRatingFactorValue.cdm.json/ProductRatingFactorValue\",\"name\":\"ProductRatingFactorTypeId\"},\"ProductRatingFactorValue\":{\"entity\":\"ProductRatingFactorValue.cdm.json/ProductRatingFactorValue\",\"name\":\"ProductRatingFactorValue\"},\"RatingPeriodStartDate\":{\"entity\":\"ProductRatingFactorValue.cdm.json/ProductRatingFactorValue\",\"name\":\"RatingPeriodStartDate\"},\"RatingPeriodEndDate\":{\"entity\":\"ProductRatingFactorValue.cdm.json/ProductRatingFactorValue\",\"name\":\"RatingPeriodEndDate\"},\"ProductRatingFactorRatingMultiplier\":{\"entity\":\"ProductRatingFactorValue.cdm.json/ProductRatingFactorValue\",\"name\":\"ProductRatingFactorRatingMultiplier\"},\"ProductRatingFactorRatingAmount\":{\"entity\":\"ProductRatingFactorValue.cdm.json/ProductRatingFactorValue\",\"name\":\"ProductRatingFactorRatingAmount\"},\"ProductRatingFactorValueNote\":{\"entity\":\"ProductRatingFactorValue.cdm.json/ProductRatingFactorValue\",\"name\":\"ProductRatingFactorValueNote\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"ProductRatingFactorValue\",\"path\":\"ProductRatingFactorValue.cdm.json/ProductRatingFactorValue\"},\"description\":\"The Rating Multiplier or Amount associated with an Insurance Product Rating Factor during the designated period.\\n\\nAll multipliers should be applied to the base rate and then incremented by the values for all applicable values.\\n\\nFor example: \\nFactor Type of \\\"Sex\\\" with value \\\"Male\\\" has an associated Rating Multiplier of 1.5\\nFactor Type of \\\"Age\\\" with value \\\"50\\\" has an associated Rating Multiplier of 0.90\\nFactor Type of \\\"Occupation\\\" with value of \\\"Retired\\\" has an associated Rating Amount of -50\\nPolicy Premium would be calculated as Base Premium * 1.5 * 0.90 + -50\",\"primaryKey\":[\"ProductId\",\"ProductRatingFactorTypeId\",\"ProductRatingFactorValue\",\"RatingPeriodStartDate\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ProductRatingFactorValue.cdm.json/ProductRatingFactorValue\",\"name\":\"ProductId\"},\"dataType\":\"long\",\"description\":\"The unique identifier of a Product.\",\"isNullable\":false,\"name\":\"ProductId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ProductRatingFactorValue.cdm.json/ProductRatingFactorValue\",\"name\":\"ProductRatingFactorTypeId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of an Insurance Definition Type.\",\"isNullable\":false,\"name\":\"ProductRatingFactorTypeId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ProductRatingFactorValue.cdm.json/ProductRatingFactorValue\",\"name\":\"ProductRatingFactorValue\"},\"dataType\":\"string\",\"dataTypeLength\":20,\"description\":\"The value associated with the Product Rating Factor Type for which the associated Product Rating Factor Rating Multiplier and Amount are applicable.\",\"isNullable\":false,\"name\":\"ProductRatingFactorValue\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ProductRatingFactorValue.cdm.json/ProductRatingFactorValue\",\"name\":\"RatingPeriodStartDate\"},\"dataType\":\"date\",\"dateFormat\":\"YYYY-MM-DD\",\"description\":\"The period start date for which the associated Satisfaction Rating is provided.\",\"isNullable\":false,\"name\":\"RatingPeriodStartDate\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ProductRatingFactorValue.cdm.json/ProductRatingFactorValue\",\"name\":\"RatingPeriodEndDate\"},\"dataType\":\"date\",\"dateFormat\":\"YYYY-MM-DD\",\"description\":\"The period end date that the associated Product Rating Factor Value is associated with the Product.\",\"isNullable\":true,\"name\":\"RatingPeriodEndDate\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ProductRatingFactorValue.cdm.json/ProductRatingFactorValue\",\"name\":\"ProductRatingFactorRatingMultiplier\"},\"dataType\":\"decimal\",\"dataTypeLength\":18,\"description\":\"The multiplier associated with the Product Rating Factor for the given Value for the given period.\",\"isNullable\":true,\"scale\":8,\"name\":\"ProductRatingFactorRatingMultiplier\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ProductRatingFactorValue.cdm.json/ProductRatingFactorValue\",\"name\":\"ProductRatingFactorRatingAmount\"},\"dataType\":\"decimal\",\"dataTypeLength\":18,\"description\":\"The Amount associated with the Product Rating Factor for the given Value for the given period.\",\"isNullable\":true,\"scale\":2,\"name\":\"ProductRatingFactorRatingAmount\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ProductRatingFactorValue.cdm.json/ProductRatingFactorValue\",\"name\":\"ProductRatingFactorValueNote\"},\"dataType\":\"string\",\"dataTypeLength\":1024,\"description\":\"A note, comment or additional information regarding the Product Rating Factor Value.\",\"isNullable\":true,\"name\":\"ProductRatingFactorValueNote\"}]}}}",
+			"Description": "The Rating Multiplier or Amount associated with an Insurance Product Rating Factor during the designated period.\n\nAll multipliers should be applied to the base rate and then incremented by the values for all applicable values.\n\nFor example: \nFactor Type of \"Sex\" with value \"Male\" has an associated Rating Multiplier of 1.5\nFactor Type of \"Age\" with value \"50\" has an associated Rating Multiplier of 0.90\nFactor Type of \"Occupation\" with value of \"Retired\" has an associated Rating Amount of -50\nPolicy Premium would be calculated as Base Premium * 1.5 * 0.90 + -50",
+			"DisplayFolderInfo": "{\"name\":\"Product\",\"colorCode\":\"#7D0F6C\"}",
+			"PrimaryKeys": "ProductId,ProductRatingFactorTypeId,ProductRatingFactorValue,RatingPeriodStartDate"
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

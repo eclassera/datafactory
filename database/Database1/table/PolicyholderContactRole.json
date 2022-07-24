@@ -1,0 +1,154 @@
+{
+	"name": "PolicyholderContactRole",
+	"properties": {
+		"Name": "PolicyholderContactRole",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Database1"
+		},
+		"Description": "The person, organization or department that the Policyholder contacts for assistance, information or support regarding the associated Policyholder Role.\n\nNote that organization would be referenced through the department.\n\nThe intent of this data structure is to provide a means of answering types of questions such as:\n\n- Who does Policyholder 'x' contact regarding payment questions?\n- Where does Policyholder 'y' direct questions regarding claims?\n\nThese types of queries are significant components of help desk and Policyholder service applications.",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "PolicyholderId",
+					"Description": "The unique identifier of a Policyholder.",
+					"BaseAttributeReference": {
+						"Entity": "PolicyholderContactRole.cdm.json/PolicyholderContactRole",
+						"Name": "PolicyholderId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "ContactRoleId",
+					"Description": "The unique identifier of a Contact Role.",
+					"BaseAttributeReference": {
+						"Entity": "PolicyholderContactRole.cdm.json/PolicyholderContactRole",
+						"Name": "ContactRoleId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "PersonName",
+					"Description": "The name of the person performing or fulfilling the associated Policyholder Contact Role person.",
+					"BaseAttributeReference": {
+						"Entity": "PolicyholderContactRole.cdm.json/PolicyholderContactRole",
+						"Name": "PersonName"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Length": 128,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "TelephoneNumber",
+					"Description": "The telephone number of the person performing the associated Policyholder Contact Role.",
+					"BaseAttributeReference": {
+						"Entity": "PolicyholderContactRole.cdm.json/PolicyholderContactRole",
+						"Name": "TelephoneNumber"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "decimal",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Precision": 15,
+						"Scale": 0,
+						"Properties": {
+							"HIVE_TYPE_STRING": "decimal"
+						}
+					}
+				},
+				{
+					"Name": "FaxNumber",
+					"Description": "The fax number of the person performing the associated Policyholder Contact Role.",
+					"BaseAttributeReference": {
+						"Entity": "PolicyholderContactRole.cdm.json/PolicyholderContactRole",
+						"Name": "FaxNumber"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "decimal",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Precision": 15,
+						"Scale": 0,
+						"Properties": {
+							"HIVE_TYPE_STRING": "decimal"
+						}
+					}
+				},
+				{
+					"Name": "EmailAddress",
+					"Description": "The email address of the  person performing the associated Policyholder Contact Role.",
+					"BaseAttributeReference": {
+						"Entity": "PolicyholderContactRole.cdm.json/PolicyholderContactRole",
+						"Name": "EmailAddress"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 256,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "EmployeeId",
+					"Description": "The unique identifier of an Employee.",
+					"BaseAttributeReference": {
+						"Entity": "PolicyholderContactRole.cdm.json/PolicyholderContactRole",
+						"Name": "EmployeeId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				}
+			],
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"PolicyholderId\":{\"entity\":\"PolicyholderContactRole.cdm.json/PolicyholderContactRole\",\"name\":\"PolicyholderId\"},\"ContactRoleId\":{\"entity\":\"PolicyholderContactRole.cdm.json/PolicyholderContactRole\",\"name\":\"ContactRoleId\"},\"PersonName\":{\"entity\":\"PolicyholderContactRole.cdm.json/PolicyholderContactRole\",\"name\":\"PersonName\"},\"TelephoneNumber\":{\"entity\":\"PolicyholderContactRole.cdm.json/PolicyholderContactRole\",\"name\":\"TelephoneNumber\"},\"FaxNumber\":{\"entity\":\"PolicyholderContactRole.cdm.json/PolicyholderContactRole\",\"name\":\"FaxNumber\"},\"EmailAddress\":{\"entity\":\"PolicyholderContactRole.cdm.json/PolicyholderContactRole\",\"name\":\"EmailAddress\"},\"EmployeeId\":{\"entity\":\"PolicyholderContactRole.cdm.json/PolicyholderContactRole\",\"name\":\"EmployeeId\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"PolicyholderContactRole\",\"path\":\"PolicyholderContactRole.cdm.json/PolicyholderContactRole\"},\"description\":\"The person, organization or department that the Policyholder contacts for assistance, information or support regarding the associated Policyholder Role.\\n\\nNote that organization would be referenced through the department.\\n\\nThe intent of this data structure is to provide a means of answering types of questions such as:\\n\\n- Who does Policyholder 'x' contact regarding payment questions?\\n- Where does Policyholder 'y' direct questions regarding claims?\\n\\nThese types of queries are significant components of help desk and Policyholder service applications.\",\"primaryKey\":[\"PolicyholderId\",\"ContactRoleId\",\"PersonName\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"PolicyholderContactRole.cdm.json/PolicyholderContactRole\",\"name\":\"PolicyholderId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Policyholder.\",\"isNullable\":false,\"name\":\"PolicyholderId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"PolicyholderContactRole.cdm.json/PolicyholderContactRole\",\"name\":\"ContactRoleId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Contact Role.\",\"isNullable\":false,\"name\":\"ContactRoleId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"PolicyholderContactRole.cdm.json/PolicyholderContactRole\",\"name\":\"PersonName\"},\"dataType\":\"string\",\"dataTypeLength\":128,\"description\":\"The name of the person performing or fulfilling the associated Policyholder Contact Role person.\",\"isNullable\":false,\"name\":\"PersonName\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"PolicyholderContactRole.cdm.json/PolicyholderContactRole\",\"name\":\"TelephoneNumber\"},\"dataType\":\"decimal\",\"dataTypeLength\":15,\"description\":\"The telephone number of the person performing the associated Policyholder Contact Role.\",\"isNullable\":true,\"scale\":0,\"name\":\"TelephoneNumber\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"PolicyholderContactRole.cdm.json/PolicyholderContactRole\",\"name\":\"FaxNumber\"},\"dataType\":\"decimal\",\"dataTypeLength\":15,\"description\":\"The fax number of the person performing the associated Policyholder Contact Role.\",\"isNullable\":true,\"scale\":0,\"name\":\"FaxNumber\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"PolicyholderContactRole.cdm.json/PolicyholderContactRole\",\"name\":\"EmailAddress\"},\"dataType\":\"string\",\"dataTypeLength\":256,\"description\":\"The email address of the  person performing the associated Policyholder Contact Role.\",\"isNullable\":true,\"name\":\"EmailAddress\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"PolicyholderContactRole.cdm.json/PolicyholderContactRole\",\"name\":\"EmployeeId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of an Employee.\",\"isNullable\":true,\"name\":\"EmployeeId\"}]}}}",
+			"Description": "The person, organization or department that the Policyholder contacts for assistance, information or support regarding the associated Policyholder Role.\n\nNote that organization would be referenced through the department.\n\nThe intent of this data structure is to provide a means of answering types of questions such as:\n\n- Who does Policyholder 'x' contact regarding payment questions?\n- Where does Policyholder 'y' direct questions regarding claims?\n\nThese types of queries are significant components of help desk and Policyholder service applications.",
+			"DisplayFolderInfo": "{\"name\":\"Party\",\"colorCode\":\"#0E3D73\"}",
+			"PrimaryKeys": "PolicyholderId,ContactRoleId,PersonName"
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}
