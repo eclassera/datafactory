@@ -1,0 +1,144 @@
+{
+	"name": "Branch",
+	"properties": {
+		"Name": "Branch",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "A Bank site or location that sells Bank Products.\n\nA branch is any banking facility away from a bank's main office that accepts deposits or makes loans.\n\nState laws strictly control branches of state and national banks.     Savings and loan and thrift institutions have been generally exempted.   \n\nA Branch may be a full-service branch or a mini-branch.\nA mini-branch is a specialized branch office that offers a limited number of banking services.",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "BranchId",
+					"Description": "The unique identifier of a Branch.",
+					"BaseAttributeReference": {
+						"Entity": "Branch.cdm.json/Branch",
+						"Name": "BranchId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "BranchName",
+					"Description": "The name of the Sales Location.",
+					"BaseAttributeReference": {
+						"Entity": "Branch.cdm.json/Branch",
+						"Name": "BranchName"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 256,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "BranchTypeId",
+					"Description": "The unique identifier of a branch type.",
+					"BaseAttributeReference": {
+						"Entity": "Branch.cdm.json/Branch",
+						"Name": "BranchTypeId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "ChannelId",
+					"Description": "The unique identifier of a Channel.",
+					"BaseAttributeReference": {
+						"Entity": "Branch.cdm.json/Branch",
+						"Name": "ChannelId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "FinancialInstitutionId",
+					"Description": "The unique identifier of a Financial Institution.",
+					"BaseAttributeReference": {
+						"Entity": "Branch.cdm.json/Branch",
+						"Name": "FinancialInstitutionId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/Branch",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/Branch",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"BranchId\":{\"entity\":\"Branch.cdm.json/Branch\",\"name\":\"BranchId\"},\"BranchName\":{\"entity\":\"Branch.cdm.json/Branch\",\"name\":\"BranchName\"},\"BranchTypeId\":{\"entity\":\"Branch.cdm.json/Branch\",\"name\":\"BranchTypeId\"},\"ChannelId\":{\"entity\":\"Branch.cdm.json/Branch\",\"name\":\"ChannelId\"},\"FinancialInstitutionId\":{\"entity\":\"Branch.cdm.json/Branch\",\"name\":\"FinancialInstitutionId\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"Branch\",\"path\":\"Branch.cdm.json/Branch\"},\"description\":\"A Bank site or location that sells Bank Products.\\n\\nA branch is any banking facility away from a bank's main office that accepts deposits or makes loans.\\n\\nState laws strictly control branches of state and national banks.     Savings and loan and thrift institutions have been generally exempted.   \\n\\nA Branch may be a full-service branch or a mini-branch.\\nA mini-branch is a specialized branch office that offers a limited number of banking services.\",\"primaryKey\":[\"BranchId\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"Branch.cdm.json/Branch\",\"name\":\"BranchId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Branch.\",\"isNullable\":false,\"name\":\"BranchId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"Branch.cdm.json/Branch\",\"name\":\"BranchName\"},\"dataType\":\"string\",\"dataTypeLength\":256,\"description\":\"The name of the Sales Location.\",\"isNullable\":true,\"name\":\"BranchName\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"Branch.cdm.json/Branch\",\"name\":\"BranchTypeId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a branch type.\",\"isNullable\":true,\"name\":\"BranchTypeId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"Branch.cdm.json/Branch\",\"name\":\"ChannelId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Channel.\",\"isNullable\":true,\"name\":\"ChannelId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"Branch.cdm.json/Branch\",\"name\":\"FinancialInstitutionId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Financial Institution.\",\"isNullable\":true,\"name\":\"FinancialInstitutionId\"}]}}}",
+			"Description": "A Bank site or location that sells Bank Products.\n\nA branch is any banking facility away from a bank's main office that accepts deposits or makes loans.\n\nState laws strictly control branches of state and national banks.     Savings and loan and thrift institutions have been generally exempted.   \n\nA Branch may be a full-service branch or a mini-branch.\nA mini-branch is a specialized branch office that offers a limited number of banking services.",
+			"DisplayFolderInfo": "{\"name\":\"Channel\",\"colorCode\":\"#001D3F\"}",
+			"PrimaryKeys": "BranchId",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

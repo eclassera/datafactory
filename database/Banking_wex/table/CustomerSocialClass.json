@@ -1,0 +1,146 @@
+{
+	"name": "CustomerSocialClass",
+	"properties": {
+		"Name": "CustomerSocialClass",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "The Individual Customer Social Class characteristic.\n\nA classification of American consumers created by SRI International.",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "CustomerId",
+					"Description": "The unique identifier of a Customer.",
+					"BaseAttributeReference": {
+						"Entity": "CustomerSocialClass.cdm.json/CustomerSocialClass",
+						"Name": "CustomerId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "long",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "long"
+						}
+					}
+				},
+				{
+					"Name": "SocialClassId",
+					"Description": "The unique identifier of a Social Class.",
+					"BaseAttributeReference": {
+						"Entity": "CustomerSocialClass.cdm.json/CustomerSocialClass",
+						"Name": "SocialClassId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "PeriodStartDate",
+					"Description": "The period start date for which the associated data is effective or 'as-of'.",
+					"BaseAttributeReference": {
+						"Entity": "CustomerSocialClass.cdm.json/CustomerSocialClass",
+						"Name": "PeriodStartDate"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "date",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"DateFormat": "YYYY-MM-DD",
+							"HIVE_TYPE_STRING": "date"
+						}
+					}
+				},
+				{
+					"Name": "PeriodEndDate",
+					"Description": "The period end date for which the associated data is effective or 'as-of'.",
+					"BaseAttributeReference": {
+						"Entity": "CustomerSocialClass.cdm.json/CustomerSocialClass",
+						"Name": "PeriodEndDate"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "date",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"DateFormat": "YYYY-MM-DD",
+							"HIVE_TYPE_STRING": "date"
+						}
+					}
+				},
+				{
+					"Name": "CustomerSocialClassNote",
+					"Description": "A note, comment or additional information regarding the Customer Social Class relationship.",
+					"BaseAttributeReference": {
+						"Entity": "CustomerSocialClass.cdm.json/CustomerSocialClass",
+						"Name": "CustomerSocialClassNote"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/CustomerSocialClass",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/CustomerSocialClass",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"CustomerId\":{\"entity\":\"CustomerSocialClass.cdm.json/CustomerSocialClass\",\"name\":\"CustomerId\"},\"SocialClassId\":{\"entity\":\"CustomerSocialClass.cdm.json/CustomerSocialClass\",\"name\":\"SocialClassId\"},\"PeriodStartDate\":{\"entity\":\"CustomerSocialClass.cdm.json/CustomerSocialClass\",\"name\":\"PeriodStartDate\"},\"PeriodEndDate\":{\"entity\":\"CustomerSocialClass.cdm.json/CustomerSocialClass\",\"name\":\"PeriodEndDate\"},\"CustomerSocialClassNote\":{\"entity\":\"CustomerSocialClass.cdm.json/CustomerSocialClass\",\"name\":\"CustomerSocialClassNote\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"CustomerSocialClass\",\"path\":\"CustomerSocialClass.cdm.json/CustomerSocialClass\"},\"description\":\"The Individual Customer Social Class characteristic.\\n\\nA classification of American consumers created by SRI International.\",\"primaryKey\":[\"CustomerId\",\"SocialClassId\",\"PeriodStartDate\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CustomerSocialClass.cdm.json/CustomerSocialClass\",\"name\":\"CustomerId\"},\"dataType\":\"long\",\"description\":\"The unique identifier of a Customer.\",\"isNullable\":false,\"name\":\"CustomerId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CustomerSocialClass.cdm.json/CustomerSocialClass\",\"name\":\"SocialClassId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Social Class.\",\"isNullable\":false,\"name\":\"SocialClassId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CustomerSocialClass.cdm.json/CustomerSocialClass\",\"name\":\"PeriodStartDate\"},\"dataType\":\"date\",\"dateFormat\":\"YYYY-MM-DD\",\"description\":\"The period start date for which the associated data is effective or 'as-of'.\",\"isNullable\":false,\"name\":\"PeriodStartDate\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CustomerSocialClass.cdm.json/CustomerSocialClass\",\"name\":\"PeriodEndDate\"},\"dataType\":\"date\",\"dateFormat\":\"YYYY-MM-DD\",\"description\":\"The period end date for which the associated data is effective or 'as-of'.\",\"isNullable\":true,\"name\":\"PeriodEndDate\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CustomerSocialClass.cdm.json/CustomerSocialClass\",\"name\":\"CustomerSocialClassNote\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"A note, comment or additional information regarding the Customer Social Class relationship.\",\"isNullable\":true,\"name\":\"CustomerSocialClassNote\"}]}}}",
+			"Description": "The Individual Customer Social Class characteristic.\n\nA classification of American consumers created by SRI International.",
+			"DisplayFolderInfo": "{\"name\":\"Customer\",\"colorCode\":\"#4B003F\"}",
+			"PrimaryKeys": "CustomerId,SocialClassId,PeriodStartDate",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

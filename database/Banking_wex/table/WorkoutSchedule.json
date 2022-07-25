@@ -1,0 +1,166 @@
+{
+	"name": "WorkoutSchedule",
+	"properties": {
+		"Name": "WorkoutSchedule",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "The scheduled amount to be paid to the associated party on the indicated date.",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "WorkoutProceedingId",
+					"Description": "The unique identifier of a Workout Proceeding.",
+					"BaseAttributeReference": {
+						"Entity": "WorkoutSchedule.cdm.json/WorkoutSchedule",
+						"Name": "WorkoutProceedingId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "PartyId",
+					"Description": "The unique identifier of a Party.",
+					"BaseAttributeReference": {
+						"Entity": "WorkoutSchedule.cdm.json/WorkoutSchedule",
+						"Name": "PartyId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "long",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "long"
+						}
+					}
+				},
+				{
+					"Name": "Date",
+					"Description": "The date for the associated payment.",
+					"BaseAttributeReference": {
+						"Entity": "WorkoutSchedule.cdm.json/WorkoutSchedule",
+						"Name": "Date"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "date",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"DateFormat": "YYYY-MM-DD",
+							"HIVE_TYPE_STRING": "date"
+						}
+					}
+				},
+				{
+					"Name": "AmountToBePaid",
+					"Description": "The amount to be paid.",
+					"BaseAttributeReference": {
+						"Entity": "WorkoutSchedule.cdm.json/WorkoutSchedule",
+						"Name": "AmountToBePaid"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "decimal",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Precision": 18,
+						"Scale": 2,
+						"Properties": {
+							"HIVE_TYPE_STRING": "decimal"
+						}
+					}
+				},
+				{
+					"Name": "AmountPaid",
+					"Description": "The actual amount paid.",
+					"BaseAttributeReference": {
+						"Entity": "WorkoutSchedule.cdm.json/WorkoutSchedule",
+						"Name": "AmountPaid"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "decimal",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Precision": 18,
+						"Scale": 2,
+						"Properties": {
+							"HIVE_TYPE_STRING": "decimal"
+						}
+					}
+				},
+				{
+					"Name": "AmountOutstanding",
+					"Description": "The total amount outstanding as of the indicated date.",
+					"BaseAttributeReference": {
+						"Entity": "WorkoutSchedule.cdm.json/WorkoutSchedule",
+						"Name": "AmountOutstanding"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "decimal",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Precision": 18,
+						"Scale": 2,
+						"Properties": {
+							"HIVE_TYPE_STRING": "decimal"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/WorkoutSchedule",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/WorkoutSchedule",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"WorkoutProceedingId\":{\"entity\":\"WorkoutSchedule.cdm.json/WorkoutSchedule\",\"name\":\"WorkoutProceedingId\"},\"PartyId\":{\"entity\":\"WorkoutSchedule.cdm.json/WorkoutSchedule\",\"name\":\"PartyId\"},\"Date\":{\"entity\":\"WorkoutSchedule.cdm.json/WorkoutSchedule\",\"name\":\"Date\"},\"AmountToBePaid\":{\"entity\":\"WorkoutSchedule.cdm.json/WorkoutSchedule\",\"name\":\"AmountToBePaid\"},\"AmountPaid\":{\"entity\":\"WorkoutSchedule.cdm.json/WorkoutSchedule\",\"name\":\"AmountPaid\"},\"AmountOutstanding\":{\"entity\":\"WorkoutSchedule.cdm.json/WorkoutSchedule\",\"name\":\"AmountOutstanding\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"WorkoutSchedule\",\"path\":\"WorkoutSchedule.cdm.json/WorkoutSchedule\"},\"description\":\"The scheduled amount to be paid to the associated party on the indicated date.\",\"primaryKey\":[\"WorkoutProceedingId\",\"PartyId\",\"Date\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"WorkoutSchedule.cdm.json/WorkoutSchedule\",\"name\":\"WorkoutProceedingId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Workout Proceeding.\",\"isNullable\":false,\"name\":\"WorkoutProceedingId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"WorkoutSchedule.cdm.json/WorkoutSchedule\",\"name\":\"PartyId\"},\"dataType\":\"long\",\"description\":\"The unique identifier of a Party.\",\"isNullable\":false,\"name\":\"PartyId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"WorkoutSchedule.cdm.json/WorkoutSchedule\",\"name\":\"Date\"},\"dataType\":\"date\",\"dateFormat\":\"YYYY-MM-DD\",\"description\":\"The date for the associated payment.\",\"isNullable\":false,\"name\":\"Date\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"WorkoutSchedule.cdm.json/WorkoutSchedule\",\"name\":\"AmountToBePaid\"},\"dataType\":\"decimal\",\"dataTypeLength\":18,\"description\":\"The amount to be paid.\",\"isNullable\":true,\"scale\":2,\"name\":\"AmountToBePaid\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"WorkoutSchedule.cdm.json/WorkoutSchedule\",\"name\":\"AmountPaid\"},\"dataType\":\"decimal\",\"dataTypeLength\":18,\"description\":\"The actual amount paid.\",\"isNullable\":true,\"scale\":2,\"name\":\"AmountPaid\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"WorkoutSchedule.cdm.json/WorkoutSchedule\",\"name\":\"AmountOutstanding\"},\"dataType\":\"decimal\",\"dataTypeLength\":18,\"description\":\"The total amount outstanding as of the indicated date.\",\"isNullable\":true,\"scale\":2,\"name\":\"AmountOutstanding\"}]}}}",
+			"Description": "The scheduled amount to be paid to the associated party on the indicated date.",
+			"DisplayFolderInfo": "{\"name\":\"Customer Credit & Collections\",\"colorCode\":\"#022F22\"}",
+			"PrimaryKeys": "WorkoutProceedingId,PartyId,Date",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

@@ -1,0 +1,113 @@
+{
+	"name": "DunBradstreetLegalEntityRatingIndicator",
+	"properties": {
+		"Name": "DunBradstreetLegalEntityRatingIndicator",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "Occasionally when you pull a full report, you will see other indicators in place of the D&B\nRating. Following is a list of indicators and their significance:\n\nIndicators that may be applied to a legal entity.\n\nEx:\n- DS (DUNS Support)\n- FB (Foreign Branch)\n- INV (Investigate)\n- NQ (Not Quoted)\n- Black Rating\n- 1R (10 or more employee when company net worth not available)\n- 2R (1-9 employees when company net worth not available)\n\nwhere:\n\nRating Meaning Significance\n\nIndicator - DS           \nMeaning - DUNS Support              \nDescription -  Information available to D&B does not permit us to classify company within our rating key.\n\nFB \nForeign Branch \nThe company is a branch of a foreign firm.\n\nINV\n Investigative \nD&B is currently conducting an investigation on the business to get the most current details at the time you ordered the report.\n\nNQ \nNot Quoted \nThis is generally assigned when a business has been confirmed as no longer active at the location, or when D&B is unable to confirm active operations. It may also appear on some branch reports, when the branch is located\\\n\nBlank Rating\nA Blank Rating should not be interpreted as indicating that credit should be denied. It simply means that the information available to Dun & Bradstreet does not permit the assignment of a D&B Rating. It indicates that a review of a full report should be\nmade before reaching a credit decision.\n\nIn many cases a Blank Rating is used because a current financial statement on the business is\nnot available to D&B. Some other reasons for using a Blank Rating include:\n- Deficit net worth\n- Bankruptcy proceedings\n- A critical financial condition\n- Extensive public filings against a company (i.e., lawsuits, liens, judgments)\n- Lack of sufficient payment information\n- Incomplete history indicator in the BIR summary\n- Blank rating on the firm's parent company\n\n1R - 10 or more employees\n2R - 1-9 employees",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "DunBradstreetLegalEntityRatingIndicatorId",
+					"Description": "The unique identifier of a Dun Bradstreet Legal Rating Indicator.",
+					"BaseAttributeReference": {
+						"Entity": "DunBradstreetLegalEntityRatingIndicator.cdm.json/DunBradstreetLegalEntityRatingIndicator",
+						"Name": "DunBradstreetLegalEntityRatingIndicatorId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "DunBradstreetLegalEntityRatingIndicatorName",
+					"Description": "The name of a Dun Bradstreet Legal Rating Indicator.",
+					"BaseAttributeReference": {
+						"Entity": "DunBradstreetLegalEntityRatingIndicator.cdm.json/DunBradstreetLegalEntityRatingIndicator",
+						"Name": "DunBradstreetLegalEntityRatingIndicatorName"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 256,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "DunBradstreetLegalEntityRatingIndicatorDescription",
+					"Description": "The description of a Dun Bradstreet Legal Rating Indicator.",
+					"BaseAttributeReference": {
+						"Entity": "DunBradstreetLegalEntityRatingIndicator.cdm.json/DunBradstreetLegalEntityRatingIndicator",
+						"Name": "DunBradstreetLegalEntityRatingIndicatorDescription"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/DunBradstreetLegalEntityRatingIndicator",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/DunBradstreetLegalEntityRatingIndicator",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"DunBradstreetLegalEntityRatingIndicatorId\":{\"entity\":\"DunBradstreetLegalEntityRatingIndicator.cdm.json/DunBradstreetLegalEntityRatingIndicator\",\"name\":\"DunBradstreetLegalEntityRatingIndicatorId\"},\"DunBradstreetLegalEntityRatingIndicatorName\":{\"entity\":\"DunBradstreetLegalEntityRatingIndicator.cdm.json/DunBradstreetLegalEntityRatingIndicator\",\"name\":\"DunBradstreetLegalEntityRatingIndicatorName\"},\"DunBradstreetLegalEntityRatingIndicatorDescription\":{\"entity\":\"DunBradstreetLegalEntityRatingIndicator.cdm.json/DunBradstreetLegalEntityRatingIndicator\",\"name\":\"DunBradstreetLegalEntityRatingIndicatorDescription\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"DunBradstreetLegalEntityRatingIndicator\",\"path\":\"DunBradstreetLegalEntityRatingIndicator.cdm.json/DunBradstreetLegalEntityRatingIndicator\"},\"description\":\"Occasionally when you pull a full report, you will see other indicators in place of the D&B\\nRating. Following is a list of indicators and their significance:\\n\\nIndicators that may be applied to a legal entity.\\n\\nEx:\\n- DS (DUNS Support)\\n- FB (Foreign Branch)\\n- INV (Investigate)\\n- NQ (Not Quoted)\\n- Black Rating\\n- 1R (10 or more employee when company net worth not available)\\n- 2R (1-9 employees when company net worth not available)\\n\\nwhere:\\n\\nRating Meaning Significance\\n\\nIndicator - DS           \\nMeaning - DUNS Support              \\nDescription -  Information available to D&B does not permit us to classify company within our rating key.\\n\\nFB \\nForeign Branch \\nThe company is a branch of a foreign firm.\\n\\nINV\\n Investigative \\nD&B is currently conducting an investigation on the business to get the most current details at the time you ordered the report.\\n\\nNQ \\nNot Quoted \\nThis is generally assigned when a business has been confirmed as no longer active at the location, or when D&B is unable to confirm active operations. It may also appear on some branch reports, when the branch is located\\\\\\n\\nBlank Rating\\nA Blank Rating should not be interpreted as indicating that credit should be denied. It simply means that the information available to Dun & Bradstreet does not permit the assignment of a D&B Rating. It indicates that a review of a full report should be\\nmade before reaching a credit decision.\\n\\nIn many cases a Blank Rating is used because a current financial statement on the business is\\nnot available to D&B. Some other reasons for using a Blank Rating include:\\n- Deficit net worth\\n- Bankruptcy proceedings\\n- A critical financial condition\\n- Extensive public filings against a company (i.e., lawsuits, liens, judgments)\\n- Lack of sufficient payment information\\n- Incomplete history indicator in the BIR summary\\n- Blank rating on the firm's parent company\\n\\n1R - 10 or more employees\\n2R - 1-9 employees\",\"primaryKey\":[\"DunBradstreetLegalEntityRatingIndicatorId\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"DunBradstreetLegalEntityRatingIndicator.cdm.json/DunBradstreetLegalEntityRatingIndicator\",\"name\":\"DunBradstreetLegalEntityRatingIndicatorId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Dun Bradstreet Legal Rating Indicator.\",\"isNullable\":false,\"name\":\"DunBradstreetLegalEntityRatingIndicatorId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"DunBradstreetLegalEntityRatingIndicator.cdm.json/DunBradstreetLegalEntityRatingIndicator\",\"name\":\"DunBradstreetLegalEntityRatingIndicatorName\"},\"dataType\":\"string\",\"dataTypeLength\":256,\"description\":\"The name of a Dun Bradstreet Legal Rating Indicator.\",\"isNullable\":true,\"name\":\"DunBradstreetLegalEntityRatingIndicatorName\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"DunBradstreetLegalEntityRatingIndicator.cdm.json/DunBradstreetLegalEntityRatingIndicator\",\"name\":\"DunBradstreetLegalEntityRatingIndicatorDescription\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"The description of a Dun Bradstreet Legal Rating Indicator.\",\"isNullable\":true,\"name\":\"DunBradstreetLegalEntityRatingIndicatorDescription\"}]}}}",
+			"Description": "Occasionally when you pull a full report, you will see other indicators in place of the D&B\nRating. Following is a list of indicators and their significance:\n\nIndicators that may be applied to a legal entity.\n\nEx:\n- DS (DUNS Support)\n- FB (Foreign Branch)\n- INV (Investigate)\n- NQ (Not Quoted)\n- Black Rating\n- 1R (10 or more employee when company net worth not available)\n- 2R (1-9 employees when company net worth not available)\n\nwhere:\n\nRating Meaning Significance\n\nIndicator - DS           \nMeaning - DUNS Support              \nDescription -  Information available to D&B does not permit us to classify company within our rating key.\n\nFB \nForeign Branch \nThe company is a branch of a foreign firm.\n\nINV\n Investigative \nD&B is currently conducting an investigation on the business to get the most current details at the time you ordered the report.\n\nNQ \nNot Quoted \nThis is generally assigned when a business has been confirmed as no longer active at the location, or when D&B is unable to confirm active operations. It may also appear on some branch reports, when the branch is located\\\n\nBlank Rating\nA Blank Rating should not be interpreted as indicating that credit should be denied. It simply means that the information available to Dun & Bradstreet does not permit the assignment of a D&B Rating. It indicates that a review of a full report should be\nmade before reaching a credit decision.\n\nIn many cases a Blank Rating is used because a current financial statement on the business is\nnot available to D&B. Some other reasons for using a Blank Rating include:\n- Deficit net worth\n- Bankruptcy proceedings\n- A critical financial condition\n- Extensive public filings against a company (i.e., lawsuits, liens, judgments)\n- Lack of sufficient payment information\n- Incomplete history indicator in the BIR summary\n- Blank rating on the firm's parent company\n\n1R - 10 or more employees\n2R - 1-9 employees",
+			"DisplayFolderInfo": "{\"name\":\"Customer Credit & Collections\",\"colorCode\":\"#022F22\"}",
+			"PrimaryKeys": "DunBradstreetLegalEntityRatingIndicatorId",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

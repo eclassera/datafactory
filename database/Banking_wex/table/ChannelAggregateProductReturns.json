@@ -1,0 +1,165 @@
+{
+	"name": "ChannelAggregateProductReturns",
+	"properties": {
+		"Name": "ChannelAggregateProductReturns",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "The total Product returns expressed in terms of unit quantity and cancellations valuation for the associated timestamp.\n\nReturns represents the return of product by the customer after it has been billed and delivered.   In this case returns are summarized for a product across all customers.",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "ChannelId",
+					"Description": "The unique identifier of a Channel.",
+					"BaseAttributeReference": {
+						"Entity": "ChannelAggregateProductReturns.cdm.json/ChannelAggregateProductReturns",
+						"Name": "ChannelId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "ProductId",
+					"Description": "The unique identifier of a Product.",
+					"BaseAttributeReference": {
+						"Entity": "ChannelAggregateProductReturns.cdm.json/ChannelAggregateProductReturns",
+						"Name": "ProductId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "long",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "long"
+						}
+					}
+				},
+				{
+					"Name": "Timestamp",
+					"Description": "The timestamp that the associated information is reported, recorded or effective as-of.",
+					"BaseAttributeReference": {
+						"Entity": "ChannelAggregateProductReturns.cdm.json/ChannelAggregateProductReturns",
+						"Name": "Timestamp"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "timestamp",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"TimestampFormat": "YYYY-MM-DD HH:MM:SS.fffffffff",
+							"HIVE_TYPE_STRING": "timestamp"
+						}
+					}
+				},
+				{
+					"Name": "TotalReturnedProductUnitsQuantity",
+					"Description": "The total quantity of Product returned for the associated date.",
+					"BaseAttributeReference": {
+						"Entity": "ChannelAggregateProductReturns.cdm.json/ChannelAggregateProductReturns",
+						"Name": "TotalReturnedProductUnitsQuantity"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "decimal",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Precision": 18,
+						"Scale": 2,
+						"Properties": {
+							"HIVE_TYPE_STRING": "decimal"
+						}
+					}
+				},
+				{
+					"Name": "TotalReturnedProductUnitsValuationAmount",
+					"Description": "The total valuation of Product returned during the associated period and valued at actual invoiced price.",
+					"BaseAttributeReference": {
+						"Entity": "ChannelAggregateProductReturns.cdm.json/ChannelAggregateProductReturns",
+						"Name": "TotalReturnedProductUnitsValuationAmount"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "decimal",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Precision": 18,
+						"Scale": 2,
+						"Properties": {
+							"HIVE_TYPE_STRING": "decimal"
+						}
+					}
+				},
+				{
+					"Name": "IsoCurrencyCode",
+					"Description": "The ISO 4217 currency code.",
+					"BaseAttributeReference": {
+						"Entity": "ChannelAggregateProductReturns.cdm.json/ChannelAggregateProductReturns",
+						"Name": "IsoCurrencyCode"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 3,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/ChannelAggregateProductReturns",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/ChannelAggregateProductReturns",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"ChannelId\":{\"entity\":\"ChannelAggregateProductReturns.cdm.json/ChannelAggregateProductReturns\",\"name\":\"ChannelId\"},\"ProductId\":{\"entity\":\"ChannelAggregateProductReturns.cdm.json/ChannelAggregateProductReturns\",\"name\":\"ProductId\"},\"Timestamp\":{\"entity\":\"ChannelAggregateProductReturns.cdm.json/ChannelAggregateProductReturns\",\"name\":\"Timestamp\"},\"TotalReturnedProductUnitsQuantity\":{\"entity\":\"ChannelAggregateProductReturns.cdm.json/ChannelAggregateProductReturns\",\"name\":\"TotalReturnedProductUnitsQuantity\"},\"TotalReturnedProductUnitsValuationAmount\":{\"entity\":\"ChannelAggregateProductReturns.cdm.json/ChannelAggregateProductReturns\",\"name\":\"TotalReturnedProductUnitsValuationAmount\"},\"IsoCurrencyCode\":{\"entity\":\"ChannelAggregateProductReturns.cdm.json/ChannelAggregateProductReturns\",\"name\":\"IsoCurrencyCode\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"ChannelAggregateProductReturns\",\"path\":\"ChannelAggregateProductReturns.cdm.json/ChannelAggregateProductReturns\"},\"description\":\"The total Product returns expressed in terms of unit quantity and cancellations valuation for the associated timestamp.\\n\\nReturns represents the return of product by the customer after it has been billed and delivered.   In this case returns are summarized for a product across all customers.\",\"primaryKey\":[\"ChannelId\",\"ProductId\",\"Timestamp\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ChannelAggregateProductReturns.cdm.json/ChannelAggregateProductReturns\",\"name\":\"ChannelId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Channel.\",\"isNullable\":false,\"name\":\"ChannelId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ChannelAggregateProductReturns.cdm.json/ChannelAggregateProductReturns\",\"name\":\"ProductId\"},\"dataType\":\"long\",\"description\":\"The unique identifier of a Product.\",\"isNullable\":false,\"name\":\"ProductId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ChannelAggregateProductReturns.cdm.json/ChannelAggregateProductReturns\",\"name\":\"Timestamp\"},\"dataType\":\"timestamp\",\"description\":\"The timestamp that the associated information is reported, recorded or effective as-of.\",\"isNullable\":false,\"name\":\"Timestamp\",\"timestampFormat\":\"YYYY-MM-DD HH:MM:SS.fffffffff\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ChannelAggregateProductReturns.cdm.json/ChannelAggregateProductReturns\",\"name\":\"TotalReturnedProductUnitsQuantity\"},\"dataType\":\"decimal\",\"dataTypeLength\":18,\"description\":\"The total quantity of Product returned for the associated date.\",\"isNullable\":true,\"scale\":2,\"name\":\"TotalReturnedProductUnitsQuantity\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ChannelAggregateProductReturns.cdm.json/ChannelAggregateProductReturns\",\"name\":\"TotalReturnedProductUnitsValuationAmount\"},\"dataType\":\"decimal\",\"dataTypeLength\":18,\"description\":\"The total valuation of Product returned during the associated period and valued at actual invoiced price.\",\"isNullable\":true,\"scale\":2,\"name\":\"TotalReturnedProductUnitsValuationAmount\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ChannelAggregateProductReturns.cdm.json/ChannelAggregateProductReturns\",\"name\":\"IsoCurrencyCode\"},\"dataType\":\"string\",\"dataTypeLength\":3,\"description\":\"The ISO 4217 currency code.\",\"isNullable\":true,\"name\":\"IsoCurrencyCode\"}]}}}",
+			"Description": "The total Product returns expressed in terms of unit quantity and cancellations valuation for the associated timestamp.\n\nReturns represents the return of product by the customer after it has been billed and delivered.   In this case returns are summarized for a product across all customers.",
+			"DisplayFolderInfo": "{\"name\":\"Channel\",\"colorCode\":\"#001D3F\"}",
+			"PrimaryKeys": "ChannelId,ProductId,Timestamp",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

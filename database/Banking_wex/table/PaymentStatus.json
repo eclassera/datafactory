@@ -1,0 +1,113 @@
+{
+	"name": "PaymentStatus",
+	"properties": {
+		"Name": "PaymentStatus",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "The status of the associated payment.\n\nEx:\n- Current\n- Overdue\n- Partial Payment",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "PaymentStatusId",
+					"Description": "The unique identifier of a payment status.",
+					"BaseAttributeReference": {
+						"Entity": "PaymentStatus.cdm.json/PaymentStatus",
+						"Name": "PaymentStatusId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "PaymentStatusName",
+					"Description": "The name of a payment status.",
+					"BaseAttributeReference": {
+						"Entity": "PaymentStatus.cdm.json/PaymentStatus",
+						"Name": "PaymentStatusName"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 256,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "PaymentStatusDescription",
+					"Description": "The description of a payment status.",
+					"BaseAttributeReference": {
+						"Entity": "PaymentStatus.cdm.json/PaymentStatus",
+						"Name": "PaymentStatusDescription"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/PaymentStatus",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/PaymentStatus",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"PaymentStatusId\":{\"entity\":\"PaymentStatus.cdm.json/PaymentStatus\",\"name\":\"PaymentStatusId\"},\"PaymentStatusName\":{\"entity\":\"PaymentStatus.cdm.json/PaymentStatus\",\"name\":\"PaymentStatusName\"},\"PaymentStatusDescription\":{\"entity\":\"PaymentStatus.cdm.json/PaymentStatus\",\"name\":\"PaymentStatusDescription\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"PaymentStatus\",\"path\":\"PaymentStatus.cdm.json/PaymentStatus\"},\"description\":\"The status of the associated payment.\\n\\nEx:\\n- Current\\n- Overdue\\n- Partial Payment\",\"primaryKey\":[\"PaymentStatusId\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"PaymentStatus.cdm.json/PaymentStatus\",\"name\":\"PaymentStatusId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a payment status.\",\"isNullable\":false,\"name\":\"PaymentStatusId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"PaymentStatus.cdm.json/PaymentStatus\",\"name\":\"PaymentStatusName\"},\"dataType\":\"string\",\"dataTypeLength\":256,\"description\":\"The name of a payment status.\",\"isNullable\":true,\"name\":\"PaymentStatusName\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"PaymentStatus.cdm.json/PaymentStatus\",\"name\":\"PaymentStatusDescription\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"The description of a payment status.\",\"isNullable\":true,\"name\":\"PaymentStatusDescription\"}]}}}",
+			"Description": "The status of the associated payment.\n\nEx:\n- Current\n- Overdue\n- Partial Payment",
+			"DisplayFolderInfo": "{\"name\":\"Customer Credit & Collections\",\"colorCode\":\"#022F22\"}",
+			"PrimaryKeys": "PaymentStatusId",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

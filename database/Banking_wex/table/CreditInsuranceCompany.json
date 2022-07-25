@@ -1,0 +1,129 @@
+{
+	"name": "CreditInsuranceCompany",
+	"properties": {
+		"Name": "CreditInsuranceCompany",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "Company that provides credit Insurance that guarantees the collectability of accounts receivables.",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "CreditInsuranceCompanyId",
+					"Description": "The unique identifier of a Credit Insurance Company.",
+					"BaseAttributeReference": {
+						"Entity": "CreditInsuranceCompany.cdm.json/CreditInsuranceCompany",
+						"Name": "CreditInsuranceCompanyId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "InsuranceCompanyName",
+					"Description": "The name of the Insurance Company providing the Credit Insurance.",
+					"BaseAttributeReference": {
+						"Entity": "CreditInsuranceCompany.cdm.json/CreditInsuranceCompany",
+						"Name": "InsuranceCompanyName"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Length": 256,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "CreditInsuranceCompanyNote",
+					"Description": "A note, comment or additional information regarding the Credit Insurance Company.",
+					"BaseAttributeReference": {
+						"Entity": "CreditInsuranceCompany.cdm.json/CreditInsuranceCompany",
+						"Name": "CreditInsuranceCompanyNote"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "PartyId",
+					"Description": "The unique identifier of a Party.",
+					"BaseAttributeReference": {
+						"Entity": "CreditInsuranceCompany.cdm.json/CreditInsuranceCompany",
+						"Name": "PartyId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "long",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "long"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/CreditInsuranceCompany",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/CreditInsuranceCompany",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"CreditInsuranceCompanyId\":{\"entity\":\"CreditInsuranceCompany.cdm.json/CreditInsuranceCompany\",\"name\":\"CreditInsuranceCompanyId\"},\"InsuranceCompanyName\":{\"entity\":\"CreditInsuranceCompany.cdm.json/CreditInsuranceCompany\",\"name\":\"InsuranceCompanyName\"},\"CreditInsuranceCompanyNote\":{\"entity\":\"CreditInsuranceCompany.cdm.json/CreditInsuranceCompany\",\"name\":\"CreditInsuranceCompanyNote\"},\"PartyId\":{\"entity\":\"CreditInsuranceCompany.cdm.json/CreditInsuranceCompany\",\"name\":\"PartyId\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"CreditInsuranceCompany\",\"path\":\"CreditInsuranceCompany.cdm.json/CreditInsuranceCompany\"},\"description\":\"Company that provides credit Insurance that guarantees the collectability of accounts receivables.\",\"primaryKey\":[\"CreditInsuranceCompanyId\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CreditInsuranceCompany.cdm.json/CreditInsuranceCompany\",\"name\":\"CreditInsuranceCompanyId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Credit Insurance Company.\",\"isNullable\":false,\"name\":\"CreditInsuranceCompanyId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CreditInsuranceCompany.cdm.json/CreditInsuranceCompany\",\"name\":\"InsuranceCompanyName\"},\"dataType\":\"string\",\"dataTypeLength\":256,\"description\":\"The name of the Insurance Company providing the Credit Insurance.\",\"isNullable\":false,\"name\":\"InsuranceCompanyName\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CreditInsuranceCompany.cdm.json/CreditInsuranceCompany\",\"name\":\"CreditInsuranceCompanyNote\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"A note, comment or additional information regarding the Credit Insurance Company.\",\"isNullable\":true,\"name\":\"CreditInsuranceCompanyNote\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CreditInsuranceCompany.cdm.json/CreditInsuranceCompany\",\"name\":\"PartyId\"},\"dataType\":\"long\",\"description\":\"The unique identifier of a Party.\",\"isNullable\":false,\"name\":\"PartyId\"}]}}}",
+			"Description": "Company that provides credit Insurance that guarantees the collectability of accounts receivables.",
+			"DisplayFolderInfo": "{\"name\":\"Customer Credit & Collections\",\"colorCode\":\"#022F22\"}",
+			"PrimaryKeys": "CreditInsuranceCompanyId",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

@@ -1,0 +1,113 @@
+{
+	"name": "LanguageUsage",
+	"properties": {
+		"Name": "LanguageUsage",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "The usage of the associated Language.\n\nEx:\n- Documentation\n- Reading\n- Writing\n- Conversation\n- Business \n- Billing\n- Support / Customer Service\n- Legal \n- Business conversation\n- Household \n- Medical services\n- Processing\n- Reporting",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "LanguageUsageId",
+					"Description": "The unique identifier of the Language Usage.",
+					"BaseAttributeReference": {
+						"Entity": "LanguageUsage.cdm.json/LanguageUsage",
+						"Name": "LanguageUsageId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "LanguageUsageName",
+					"Description": "The name of the Language Usage.",
+					"BaseAttributeReference": {
+						"Entity": "LanguageUsage.cdm.json/LanguageUsage",
+						"Name": "LanguageUsageName"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 256,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "LanguageUsageDescription",
+					"Description": "The description of the Language Usage.",
+					"BaseAttributeReference": {
+						"Entity": "LanguageUsage.cdm.json/LanguageUsage",
+						"Name": "LanguageUsageDescription"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/LanguageUsage",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/LanguageUsage",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"LanguageUsageId\":{\"entity\":\"LanguageUsage.cdm.json/LanguageUsage\",\"name\":\"LanguageUsageId\"},\"LanguageUsageName\":{\"entity\":\"LanguageUsage.cdm.json/LanguageUsage\",\"name\":\"LanguageUsageName\"},\"LanguageUsageDescription\":{\"entity\":\"LanguageUsage.cdm.json/LanguageUsage\",\"name\":\"LanguageUsageDescription\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"LanguageUsage\",\"path\":\"LanguageUsage.cdm.json/LanguageUsage\"},\"description\":\"The usage of the associated Language.\\n\\nEx:\\n- Documentation\\n- Reading\\n- Writing\\n- Conversation\\n- Business \\n- Billing\\n- Support / Customer Service\\n- Legal \\n- Business conversation\\n- Household \\n- Medical services\\n- Processing\\n- Reporting\",\"primaryKey\":[\"LanguageUsageId\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"LanguageUsage.cdm.json/LanguageUsage\",\"name\":\"LanguageUsageId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of the Language Usage.\",\"isNullable\":false,\"name\":\"LanguageUsageId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"LanguageUsage.cdm.json/LanguageUsage\",\"name\":\"LanguageUsageName\"},\"dataType\":\"string\",\"dataTypeLength\":256,\"description\":\"The name of the Language Usage.\",\"isNullable\":true,\"name\":\"LanguageUsageName\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"LanguageUsage.cdm.json/LanguageUsage\",\"name\":\"LanguageUsageDescription\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"The description of the Language Usage.\",\"isNullable\":true,\"name\":\"LanguageUsageDescription\"}]}}}",
+			"Description": "The usage of the associated Language.\n\nEx:\n- Documentation\n- Reading\n- Writing\n- Conversation\n- Business \n- Billing\n- Support / Customer Service\n- Legal \n- Business conversation\n- Household \n- Medical services\n- Processing\n- Reporting",
+			"DisplayFolderInfo": "{\"name\":\"Party\",\"colorCode\":\"#00727A\"}",
+			"PrimaryKeys": "LanguageUsageId",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

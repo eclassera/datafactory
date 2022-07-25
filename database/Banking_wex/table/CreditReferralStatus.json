@@ -1,0 +1,113 @@
+{
+	"name": "CreditReferralStatus",
+	"properties": {
+		"Name": "CreditReferralStatus",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "The status of the customer referral.\n\nEx:\n-  Open\n-  Partial amount received\n-  Full amount received\n-  Customer has liens\n-  Customer filed bankruptcy\n-  Write-off recommended\n-  Write-off",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "CreditReferralStatusId",
+					"Description": "The unique identifier of the Credit Referral Status.",
+					"BaseAttributeReference": {
+						"Entity": "CreditReferralStatus.cdm.json/CreditReferralStatus",
+						"Name": "CreditReferralStatusId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "CreditReferralStatusName",
+					"Description": "The name of the Credit Referral Status.",
+					"BaseAttributeReference": {
+						"Entity": "CreditReferralStatus.cdm.json/CreditReferralStatus",
+						"Name": "CreditReferralStatusName"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 256,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "CreditReferralStatusDescription",
+					"Description": "The description of the Credit Referral Status.",
+					"BaseAttributeReference": {
+						"Entity": "CreditReferralStatus.cdm.json/CreditReferralStatus",
+						"Name": "CreditReferralStatusDescription"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/CreditReferralStatus",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/CreditReferralStatus",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"CreditReferralStatusId\":{\"entity\":\"CreditReferralStatus.cdm.json/CreditReferralStatus\",\"name\":\"CreditReferralStatusId\"},\"CreditReferralStatusName\":{\"entity\":\"CreditReferralStatus.cdm.json/CreditReferralStatus\",\"name\":\"CreditReferralStatusName\"},\"CreditReferralStatusDescription\":{\"entity\":\"CreditReferralStatus.cdm.json/CreditReferralStatus\",\"name\":\"CreditReferralStatusDescription\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"CreditReferralStatus\",\"path\":\"CreditReferralStatus.cdm.json/CreditReferralStatus\"},\"description\":\"The status of the customer referral.\\n\\nEx:\\n-  Open\\n-  Partial amount received\\n-  Full amount received\\n-  Customer has liens\\n-  Customer filed bankruptcy\\n-  Write-off recommended\\n-  Write-off\",\"primaryKey\":[\"CreditReferralStatusId\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CreditReferralStatus.cdm.json/CreditReferralStatus\",\"name\":\"CreditReferralStatusId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of the Credit Referral Status.\",\"isNullable\":false,\"name\":\"CreditReferralStatusId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CreditReferralStatus.cdm.json/CreditReferralStatus\",\"name\":\"CreditReferralStatusName\"},\"dataType\":\"string\",\"dataTypeLength\":256,\"description\":\"The name of the Credit Referral Status.\",\"isNullable\":true,\"name\":\"CreditReferralStatusName\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CreditReferralStatus.cdm.json/CreditReferralStatus\",\"name\":\"CreditReferralStatusDescription\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"The description of the Credit Referral Status.\",\"isNullable\":true,\"name\":\"CreditReferralStatusDescription\"}]}}}",
+			"Description": "The status of the customer referral.\n\nEx:\n-  Open\n-  Partial amount received\n-  Full amount received\n-  Customer has liens\n-  Customer filed bankruptcy\n-  Write-off recommended\n-  Write-off",
+			"DisplayFolderInfo": "{\"name\":\"Customer Credit & Collections\",\"colorCode\":\"#022F22\"}",
+			"PrimaryKeys": "CreditReferralStatusId",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

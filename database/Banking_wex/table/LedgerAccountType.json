@@ -1,0 +1,113 @@
+{
+	"name": "LedgerAccountType",
+	"properties": {
+		"Name": "LedgerAccountType",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "The type of account within the categorization of accounts = ASSETS, LIABILITIES and CAPITAL \n\nThere are various types of accounts that fulfill accounting functions:\n\nTEMPORARY ACCOUNT\nAccounts that are zeroes at closing.  For example, revenue and expense accounts are temporary accounts.   At the end of each accounting period, they are closed to Retained Earnings. The change in Retained Earnings during a period is Net Income.\n\nCLEARING ACCOUNT\nAn account used in the closing process to accumulate temporary items that enter into the calculation of income statement categories.\n\nCONTRA ACCOUNT\nAn account that accumulates amounts that are in fact subtractions from another account.\nFor example, Accumulated Depreciation is a deduction from the asset account Plant.\n\nPERMANENT ACCOUNT\nAn account that is not closed at the end of the accounting period. Accounts whose balances are carried forward to the next accounting period.\nAsset, liability and equity accounts are permanent accounts.\n\nNOMINAL ACCOUNT\nA revenue or expense account that is closed into retained earnings at the end of the period.\n\nREAL ACCOUNT\nA balance sheet account, which is the opposite of a nominal account.\n\nCONTRA REVENUE ACCOUNT\nAn account that is offset against a revenue account on the income statement.",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "LedgerAccountTypeId",
+					"Description": "The unique identifier of a Ledger Account Type.",
+					"BaseAttributeReference": {
+						"Entity": "LedgerAccountType.cdm.json/LedgerAccountType",
+						"Name": "LedgerAccountTypeId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "LedgerAccountTypeName",
+					"Description": "The name of a Ledger Account Type.",
+					"BaseAttributeReference": {
+						"Entity": "LedgerAccountType.cdm.json/LedgerAccountType",
+						"Name": "LedgerAccountTypeName"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 256,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "LedgerAccountTypeDescription",
+					"Description": "The description of a Ledger Account Type.",
+					"BaseAttributeReference": {
+						"Entity": "LedgerAccountType.cdm.json/LedgerAccountType",
+						"Name": "LedgerAccountTypeDescription"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/LedgerAccountType",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/LedgerAccountType",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"LedgerAccountTypeId\":{\"entity\":\"LedgerAccountType.cdm.json/LedgerAccountType\",\"name\":\"LedgerAccountTypeId\"},\"LedgerAccountTypeName\":{\"entity\":\"LedgerAccountType.cdm.json/LedgerAccountType\",\"name\":\"LedgerAccountTypeName\"},\"LedgerAccountTypeDescription\":{\"entity\":\"LedgerAccountType.cdm.json/LedgerAccountType\",\"name\":\"LedgerAccountTypeDescription\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"LedgerAccountType\",\"path\":\"LedgerAccountType.cdm.json/LedgerAccountType\"},\"description\":\"The type of account within the categorization of accounts = ASSETS, LIABILITIES and CAPITAL \\n\\nThere are various types of accounts that fulfill accounting functions:\\n\\nTEMPORARY ACCOUNT\\nAccounts that are zeroes at closing.  For example, revenue and expense accounts are temporary accounts.   At the end of each accounting period, they are closed to Retained Earnings. The change in Retained Earnings during a period is Net Income.\\n\\nCLEARING ACCOUNT\\nAn account used in the closing process to accumulate temporary items that enter into the calculation of income statement categories.\\n\\nCONTRA ACCOUNT\\nAn account that accumulates amounts that are in fact subtractions from another account.\\nFor example, Accumulated Depreciation is a deduction from the asset account Plant.\\n\\nPERMANENT ACCOUNT\\nAn account that is not closed at the end of the accounting period. Accounts whose balances are carried forward to the next accounting period.\\nAsset, liability and equity accounts are permanent accounts.\\n\\nNOMINAL ACCOUNT\\nA revenue or expense account that is closed into retained earnings at the end of the period.\\n\\nREAL ACCOUNT\\nA balance sheet account, which is the opposite of a nominal account.\\n\\nCONTRA REVENUE ACCOUNT\\nAn account that is offset against a revenue account on the income statement.\",\"primaryKey\":[\"LedgerAccountTypeId\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"LedgerAccountType.cdm.json/LedgerAccountType\",\"name\":\"LedgerAccountTypeId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Ledger Account Type.\",\"isNullable\":false,\"name\":\"LedgerAccountTypeId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"LedgerAccountType.cdm.json/LedgerAccountType\",\"name\":\"LedgerAccountTypeName\"},\"dataType\":\"string\",\"dataTypeLength\":256,\"description\":\"The name of a Ledger Account Type.\",\"isNullable\":true,\"name\":\"LedgerAccountTypeName\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"LedgerAccountType.cdm.json/LedgerAccountType\",\"name\":\"LedgerAccountTypeDescription\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"The description of a Ledger Account Type.\",\"isNullable\":true,\"name\":\"LedgerAccountTypeDescription\"}]}}}",
+			"Description": "The type of account within the categorization of accounts = ASSETS, LIABILITIES and CAPITAL \n\nThere are various types of accounts that fulfill accounting functions:\n\nTEMPORARY ACCOUNT\nAccounts that are zeroes at closing.  For example, revenue and expense accounts are temporary accounts.   At the end of each accounting period, they are closed to Retained Earnings. The change in Retained Earnings during a period is Net Income.\n\nCLEARING ACCOUNT\nAn account used in the closing process to accumulate temporary items that enter into the calculation of income statement categories.\n\nCONTRA ACCOUNT\nAn account that accumulates amounts that are in fact subtractions from another account.\nFor example, Accumulated Depreciation is a deduction from the asset account Plant.\n\nPERMANENT ACCOUNT\nAn account that is not closed at the end of the accounting period. Accounts whose balances are carried forward to the next accounting period.\nAsset, liability and equity accounts are permanent accounts.\n\nNOMINAL ACCOUNT\nA revenue or expense account that is closed into retained earnings at the end of the period.\n\nREAL ACCOUNT\nA balance sheet account, which is the opposite of a nominal account.\n\nCONTRA REVENUE ACCOUNT\nAn account that is offset against a revenue account on the income statement.",
+			"DisplayFolderInfo": "{\"name\":\"Accounting & Financial Reporting\",\"colorCode\":\"#0078D4\"}",
+			"PrimaryKeys": "LedgerAccountTypeId",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

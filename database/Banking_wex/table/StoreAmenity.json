@@ -1,0 +1,146 @@
+{
+	"name": "StoreAmenity",
+	"properties": {
+		"Name": "StoreAmenity",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "The amenity(s) provided at the associated store.",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "StoreId",
+					"Description": "The unique identifier of a Store.",
+					"BaseAttributeReference": {
+						"Entity": "StoreAmenity.cdm.json/StoreAmenity",
+						"Name": "StoreId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "StoreAmenityTypeId",
+					"Description": "The unique identifier of a store amenity type.",
+					"BaseAttributeReference": {
+						"Entity": "StoreAmenity.cdm.json/StoreAmenity",
+						"Name": "StoreAmenityTypeId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "PeriodStartDate",
+					"Description": "The period start date that the store amenity is available.",
+					"BaseAttributeReference": {
+						"Entity": "StoreAmenity.cdm.json/StoreAmenity",
+						"Name": "PeriodStartDate"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "date",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"DateFormat": "YYYY-MM-DD",
+							"HIVE_TYPE_STRING": "date"
+						}
+					}
+				},
+				{
+					"Name": "PeriodEndDate",
+					"Description": "The period end date that the store amenity is available.",
+					"BaseAttributeReference": {
+						"Entity": "StoreAmenity.cdm.json/StoreAmenity",
+						"Name": "PeriodEndDate"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "date",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"DateFormat": "YYYY-MM-DD",
+							"HIVE_TYPE_STRING": "date"
+						}
+					}
+				},
+				{
+					"Name": "StoreAmenityNote",
+					"Description": "A note, comment or additional information regarding the store amenity.",
+					"BaseAttributeReference": {
+						"Entity": "StoreAmenity.cdm.json/StoreAmenity",
+						"Name": "StoreAmenityNote"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/StoreAmenity",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/StoreAmenity",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"StoreId\":{\"entity\":\"StoreAmenity.cdm.json/StoreAmenity\",\"name\":\"StoreId\"},\"StoreAmenityTypeId\":{\"entity\":\"StoreAmenity.cdm.json/StoreAmenity\",\"name\":\"StoreAmenityTypeId\"},\"PeriodStartDate\":{\"entity\":\"StoreAmenity.cdm.json/StoreAmenity\",\"name\":\"PeriodStartDate\"},\"PeriodEndDate\":{\"entity\":\"StoreAmenity.cdm.json/StoreAmenity\",\"name\":\"PeriodEndDate\"},\"StoreAmenityNote\":{\"entity\":\"StoreAmenity.cdm.json/StoreAmenity\",\"name\":\"StoreAmenityNote\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"StoreAmenity\",\"path\":\"StoreAmenity.cdm.json/StoreAmenity\"},\"description\":\"The amenity(s) provided at the associated store.\",\"primaryKey\":[\"StoreId\",\"StoreAmenityTypeId\",\"PeriodStartDate\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"StoreAmenity.cdm.json/StoreAmenity\",\"name\":\"StoreId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Store.\",\"isNullable\":false,\"name\":\"StoreId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"StoreAmenity.cdm.json/StoreAmenity\",\"name\":\"StoreAmenityTypeId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a store amenity type.\",\"isNullable\":false,\"name\":\"StoreAmenityTypeId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"StoreAmenity.cdm.json/StoreAmenity\",\"name\":\"PeriodStartDate\"},\"dataType\":\"date\",\"dateFormat\":\"YYYY-MM-DD\",\"description\":\"The period start date that the store amenity is available.\",\"isNullable\":false,\"name\":\"PeriodStartDate\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"StoreAmenity.cdm.json/StoreAmenity\",\"name\":\"PeriodEndDate\"},\"dataType\":\"date\",\"dateFormat\":\"YYYY-MM-DD\",\"description\":\"The period end date that the store amenity is available.\",\"isNullable\":true,\"name\":\"PeriodEndDate\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"StoreAmenity.cdm.json/StoreAmenity\",\"name\":\"StoreAmenityNote\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"A note, comment or additional information regarding the store amenity.\",\"isNullable\":true,\"name\":\"StoreAmenityNote\"}]}}}",
+			"Description": "The amenity(s) provided at the associated store.",
+			"DisplayFolderInfo": "{\"name\":\"Channel\",\"colorCode\":\"#001D3F\"}",
+			"PrimaryKeys": "StoreId,StoreAmenityTypeId,PeriodStartDate",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

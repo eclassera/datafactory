@@ -1,0 +1,113 @@
+{
+	"name": "FranchiseIdentityItemType",
+	"properties": {
+		"Name": "FranchiseIdentityItemType",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "Those items (such as paper products, uniforms, point of sale materials or exterior signs) are usually required to be used in a franchisee's business. These items display the registered trademarks of the franchisor.",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "FranchiseIdentityItemTypeId",
+					"Description": "The unique identifier of a franchise identity item type.",
+					"BaseAttributeReference": {
+						"Entity": "FranchiseIdentityItemType.cdm.json/FranchiseIdentityItemType",
+						"Name": "FranchiseIdentityItemTypeId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "FranchiseIdentityItemTypeName",
+					"Description": "The name of a franchise identity item type.",
+					"BaseAttributeReference": {
+						"Entity": "FranchiseIdentityItemType.cdm.json/FranchiseIdentityItemType",
+						"Name": "FranchiseIdentityItemTypeName"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 256,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "FranchiseIdentityItemTypeDescription",
+					"Description": "The description of a franchise  identity item type.",
+					"BaseAttributeReference": {
+						"Entity": "FranchiseIdentityItemType.cdm.json/FranchiseIdentityItemType",
+						"Name": "FranchiseIdentityItemTypeDescription"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/FranchiseIdentityItemType",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/FranchiseIdentityItemType",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"FranchiseIdentityItemTypeId\":{\"entity\":\"FranchiseIdentityItemType.cdm.json/FranchiseIdentityItemType\",\"name\":\"FranchiseIdentityItemTypeId\"},\"FranchiseIdentityItemTypeName\":{\"entity\":\"FranchiseIdentityItemType.cdm.json/FranchiseIdentityItemType\",\"name\":\"FranchiseIdentityItemTypeName\"},\"FranchiseIdentityItemTypeDescription\":{\"entity\":\"FranchiseIdentityItemType.cdm.json/FranchiseIdentityItemType\",\"name\":\"FranchiseIdentityItemTypeDescription\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"FranchiseIdentityItemType\",\"path\":\"FranchiseIdentityItemType.cdm.json/FranchiseIdentityItemType\"},\"description\":\"Those items (such as paper products, uniforms, point of sale materials or exterior signs) are usually required to be used in a franchisee's business. These items display the registered trademarks of the franchisor.\",\"primaryKey\":[\"FranchiseIdentityItemTypeId\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"FranchiseIdentityItemType.cdm.json/FranchiseIdentityItemType\",\"name\":\"FranchiseIdentityItemTypeId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a franchise identity item type.\",\"isNullable\":false,\"name\":\"FranchiseIdentityItemTypeId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"FranchiseIdentityItemType.cdm.json/FranchiseIdentityItemType\",\"name\":\"FranchiseIdentityItemTypeName\"},\"dataType\":\"string\",\"dataTypeLength\":256,\"description\":\"The name of a franchise identity item type.\",\"isNullable\":true,\"name\":\"FranchiseIdentityItemTypeName\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"FranchiseIdentityItemType.cdm.json/FranchiseIdentityItemType\",\"name\":\"FranchiseIdentityItemTypeDescription\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"The description of a franchise  identity item type.\",\"isNullable\":true,\"name\":\"FranchiseIdentityItemTypeDescription\"}]}}}",
+			"Description": "Those items (such as paper products, uniforms, point of sale materials or exterior signs) are usually required to be used in a franchisee's business. These items display the registered trademarks of the franchisor.",
+			"DisplayFolderInfo": "{\"name\":\"Contract\",\"colorCode\":\"#917EDB\"}",
+			"PrimaryKeys": "FranchiseIdentityItemTypeId",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

@@ -1,0 +1,165 @@
+{
+	"name": "DunBradstreetLegalEntityIndicator",
+	"properties": {
+		"Name": "DunBradstreetLegalEntityIndicator",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "The legal entity indicator(s) associated with the business.",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "DunsNumber",
+					"Description": "Dun & Bradstreet (D&B) provides a D-U-N-S Number, a unique nine digit identification number, for each physical location of your business.",
+					"BaseAttributeReference": {
+						"Entity": "DunBradstreetLegalEntityIndicator.cdm.json/DunBradstreetLegalEntityIndicator",
+						"Name": "DunsNumber"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "decimal",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Precision": 9,
+						"Scale": 0,
+						"Properties": {
+							"HIVE_TYPE_STRING": "decimal"
+						}
+					}
+				},
+				{
+					"Name": "DunBradstreetLegalEntityRatingIndicatorId",
+					"Description": "The unique identifier of a Dun Bradstreet Legal Rating Indicator.",
+					"BaseAttributeReference": {
+						"Entity": "DunBradstreetLegalEntityIndicator.cdm.json/DunBradstreetLegalEntityIndicator",
+						"Name": "DunBradstreetLegalEntityRatingIndicatorId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "ReportPurchaseDate",
+					"Description": "The purchase date of the report.",
+					"BaseAttributeReference": {
+						"Entity": "DunBradstreetLegalEntityIndicator.cdm.json/DunBradstreetLegalEntityIndicator",
+						"Name": "ReportPurchaseDate"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "date",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"DateFormat": "YYYY-MM-DD",
+							"HIVE_TYPE_STRING": "date"
+						}
+					}
+				},
+				{
+					"Name": "PeriodStartDate",
+					"Description": "The period start date for which the indicator is defined.",
+					"BaseAttributeReference": {
+						"Entity": "DunBradstreetLegalEntityIndicator.cdm.json/DunBradstreetLegalEntityIndicator",
+						"Name": "PeriodStartDate"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "date",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"DateFormat": "YYYY-MM-DD",
+							"HIVE_TYPE_STRING": "date"
+						}
+					}
+				},
+				{
+					"Name": "PeriodEndDate",
+					"Description": "The period end date for which the indicator is defined.",
+					"BaseAttributeReference": {
+						"Entity": "DunBradstreetLegalEntityIndicator.cdm.json/DunBradstreetLegalEntityIndicator",
+						"Name": "PeriodEndDate"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "date",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"DateFormat": "YYYY-MM-DD",
+							"HIVE_TYPE_STRING": "date"
+						}
+					}
+				},
+				{
+					"Name": "LegalEntityIndicatorNote",
+					"Description": "A note, comment or additional information regarding the legal entity indicator.",
+					"BaseAttributeReference": {
+						"Entity": "DunBradstreetLegalEntityIndicator.cdm.json/DunBradstreetLegalEntityIndicator",
+						"Name": "LegalEntityIndicatorNote"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/DunBradstreetLegalEntityIndicator",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/DunBradstreetLegalEntityIndicator",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"DunsNumber\":{\"entity\":\"DunBradstreetLegalEntityIndicator.cdm.json/DunBradstreetLegalEntityIndicator\",\"name\":\"DunsNumber\"},\"DunBradstreetLegalEntityRatingIndicatorId\":{\"entity\":\"DunBradstreetLegalEntityIndicator.cdm.json/DunBradstreetLegalEntityIndicator\",\"name\":\"DunBradstreetLegalEntityRatingIndicatorId\"},\"ReportPurchaseDate\":{\"entity\":\"DunBradstreetLegalEntityIndicator.cdm.json/DunBradstreetLegalEntityIndicator\",\"name\":\"ReportPurchaseDate\"},\"PeriodStartDate\":{\"entity\":\"DunBradstreetLegalEntityIndicator.cdm.json/DunBradstreetLegalEntityIndicator\",\"name\":\"PeriodStartDate\"},\"PeriodEndDate\":{\"entity\":\"DunBradstreetLegalEntityIndicator.cdm.json/DunBradstreetLegalEntityIndicator\",\"name\":\"PeriodEndDate\"},\"LegalEntityIndicatorNote\":{\"entity\":\"DunBradstreetLegalEntityIndicator.cdm.json/DunBradstreetLegalEntityIndicator\",\"name\":\"LegalEntityIndicatorNote\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"DunBradstreetLegalEntityIndicator\",\"path\":\"DunBradstreetLegalEntityIndicator.cdm.json/DunBradstreetLegalEntityIndicator\"},\"description\":\"The legal entity indicator(s) associated with the business.\",\"primaryKey\":[\"DunsNumber\",\"DunBradstreetLegalEntityRatingIndicatorId\",\"ReportPurchaseDate\",\"PeriodStartDate\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"DunBradstreetLegalEntityIndicator.cdm.json/DunBradstreetLegalEntityIndicator\",\"name\":\"DunsNumber\"},\"dataType\":\"decimal\",\"dataTypeLength\":9,\"description\":\"Dun & Bradstreet (D&B) provides a D-U-N-S Number, a unique nine digit identification number, for each physical location of your business.\",\"isNullable\":false,\"scale\":0,\"name\":\"DunsNumber\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"DunBradstreetLegalEntityIndicator.cdm.json/DunBradstreetLegalEntityIndicator\",\"name\":\"DunBradstreetLegalEntityRatingIndicatorId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Dun Bradstreet Legal Rating Indicator.\",\"isNullable\":false,\"name\":\"DunBradstreetLegalEntityRatingIndicatorId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"DunBradstreetLegalEntityIndicator.cdm.json/DunBradstreetLegalEntityIndicator\",\"name\":\"ReportPurchaseDate\"},\"dataType\":\"date\",\"dateFormat\":\"YYYY-MM-DD\",\"description\":\"The purchase date of the report.\",\"isNullable\":false,\"name\":\"ReportPurchaseDate\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"DunBradstreetLegalEntityIndicator.cdm.json/DunBradstreetLegalEntityIndicator\",\"name\":\"PeriodStartDate\"},\"dataType\":\"date\",\"dateFormat\":\"YYYY-MM-DD\",\"description\":\"The period start date for which the indicator is defined.\",\"isNullable\":false,\"name\":\"PeriodStartDate\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"DunBradstreetLegalEntityIndicator.cdm.json/DunBradstreetLegalEntityIndicator\",\"name\":\"PeriodEndDate\"},\"dataType\":\"date\",\"dateFormat\":\"YYYY-MM-DD\",\"description\":\"The period end date for which the indicator is defined.\",\"isNullable\":true,\"name\":\"PeriodEndDate\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"DunBradstreetLegalEntityIndicator.cdm.json/DunBradstreetLegalEntityIndicator\",\"name\":\"LegalEntityIndicatorNote\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"A note, comment or additional information regarding the legal entity indicator.\",\"isNullable\":true,\"name\":\"LegalEntityIndicatorNote\"}]}}}",
+			"Description": "The legal entity indicator(s) associated with the business.",
+			"DisplayFolderInfo": "{\"name\":\"Customer Credit & Collections\",\"colorCode\":\"#022F22\"}",
+			"PrimaryKeys": "DunsNumber,DunBradstreetLegalEntityRatingIndicatorId,ReportPurchaseDate,PeriodStartDate",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

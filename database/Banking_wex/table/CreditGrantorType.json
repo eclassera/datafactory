@@ -1,0 +1,113 @@
+{
+	"name": "CreditGrantorType",
+	"properties": {
+		"Name": "CreditGrantorType",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "A category of the type of legal entity that is the credit grantor.\n\nEx:\n- Bank\n- Retail Store\n- Auto Manufacturer\n- Credit Card Company\n- Utility\n- Finance Company\n- Landlord",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "CreditGrantorTypeId",
+					"Description": "The unique identifier of a Credit Grantor Type.",
+					"BaseAttributeReference": {
+						"Entity": "CreditGrantorType.cdm.json/CreditGrantorType",
+						"Name": "CreditGrantorTypeId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "CreditGrantorTypeName",
+					"Description": "The name of a Credit Grantor Type",
+					"BaseAttributeReference": {
+						"Entity": "CreditGrantorType.cdm.json/CreditGrantorType",
+						"Name": "CreditGrantorTypeName"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 256,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "CreditGrantorTypeDescription",
+					"Description": "The description of a Credit Grantor Type",
+					"BaseAttributeReference": {
+						"Entity": "CreditGrantorType.cdm.json/CreditGrantorType",
+						"Name": "CreditGrantorTypeDescription"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/CreditGrantorType",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/CreditGrantorType",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"CreditGrantorTypeId\":{\"entity\":\"CreditGrantorType.cdm.json/CreditGrantorType\",\"name\":\"CreditGrantorTypeId\"},\"CreditGrantorTypeName\":{\"entity\":\"CreditGrantorType.cdm.json/CreditGrantorType\",\"name\":\"CreditGrantorTypeName\"},\"CreditGrantorTypeDescription\":{\"entity\":\"CreditGrantorType.cdm.json/CreditGrantorType\",\"name\":\"CreditGrantorTypeDescription\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"CreditGrantorType\",\"path\":\"CreditGrantorType.cdm.json/CreditGrantorType\"},\"description\":\"A category of the type of legal entity that is the credit grantor.\\n\\nEx:\\n- Bank\\n- Retail Store\\n- Auto Manufacturer\\n- Credit Card Company\\n- Utility\\n- Finance Company\\n- Landlord\",\"primaryKey\":[\"CreditGrantorTypeId\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CreditGrantorType.cdm.json/CreditGrantorType\",\"name\":\"CreditGrantorTypeId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Credit Grantor Type.\",\"isNullable\":false,\"name\":\"CreditGrantorTypeId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CreditGrantorType.cdm.json/CreditGrantorType\",\"name\":\"CreditGrantorTypeName\"},\"dataType\":\"string\",\"dataTypeLength\":256,\"description\":\"The name of a Credit Grantor Type\",\"isNullable\":true,\"name\":\"CreditGrantorTypeName\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CreditGrantorType.cdm.json/CreditGrantorType\",\"name\":\"CreditGrantorTypeDescription\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"The description of a Credit Grantor Type\",\"isNullable\":true,\"name\":\"CreditGrantorTypeDescription\"}]}}}",
+			"Description": "A category of the type of legal entity that is the credit grantor.\n\nEx:\n- Bank\n- Retail Store\n- Auto Manufacturer\n- Credit Card Company\n- Utility\n- Finance Company\n- Landlord",
+			"DisplayFolderInfo": "{\"name\":\"Customer Credit & Collections\",\"colorCode\":\"#022F22\"}",
+			"PrimaryKeys": "CreditGrantorTypeId",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

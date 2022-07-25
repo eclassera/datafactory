@@ -1,0 +1,213 @@
+{
+	"name": "StoreHoursOfOperation",
+	"properties": {
+		"Name": "StoreHoursOfOperation",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "The Store hours of operation on a particular date.",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "StoreId",
+					"Description": "The unique identifier of a Store.",
+					"BaseAttributeReference": {
+						"Entity": "StoreHoursOfOperation.cdm.json/StoreHoursOfOperation",
+						"Name": "StoreId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "DayOfWeekId",
+					"Description": "The unique identifier of a Day Of Week.",
+					"BaseAttributeReference": {
+						"Entity": "StoreHoursOfOperation.cdm.json/StoreHoursOfOperation",
+						"Name": "DayOfWeekId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "PeriodStartDate",
+					"Description": "The period start date for which the store hours of operation are valid.",
+					"BaseAttributeReference": {
+						"Entity": "StoreHoursOfOperation.cdm.json/StoreHoursOfOperation",
+						"Name": "PeriodStartDate"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "date",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"DateFormat": "YYYY-MM-DD",
+							"HIVE_TYPE_STRING": "date"
+						}
+					}
+				},
+				{
+					"Name": "PeriodEndDate",
+					"Description": "The period end date for which the store hours of operation are valid.",
+					"BaseAttributeReference": {
+						"Entity": "StoreHoursOfOperation.cdm.json/StoreHoursOfOperation",
+						"Name": "PeriodEndDate"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "date",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"DateFormat": "YYYY-MM-DD",
+							"HIVE_TYPE_STRING": "date"
+						}
+					}
+				},
+				{
+					"Name": "OperationStartTime",
+					"Description": "The starting or opening time of operation for the Store.",
+					"BaseAttributeReference": {
+						"Entity": "StoreHoursOfOperation.cdm.json/StoreHoursOfOperation",
+						"Name": "OperationStartTime"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Length": 256,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "OperationEndTime",
+					"Description": "The closing or ending time of operation for the Store.",
+					"BaseAttributeReference": {
+						"Entity": "StoreHoursOfOperation.cdm.json/StoreHoursOfOperation",
+						"Name": "OperationEndTime"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Length": 256,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "HolidayIndicator",
+					"Description": "Indicates that the associated date is a holiday.",
+					"BaseAttributeReference": {
+						"Entity": "StoreHoursOfOperation.cdm.json/StoreHoursOfOperation",
+						"Name": "HolidayIndicator"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "boolean",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"HIVE_TYPE_STRING": "boolean"
+						}
+					}
+				},
+				{
+					"Name": "HolidayName",
+					"Description": "The name of the associated holiday.",
+					"BaseAttributeReference": {
+						"Entity": "StoreHoursOfOperation.cdm.json/StoreHoursOfOperation",
+						"Name": "HolidayName"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 256,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "StoreHoursOfOperationNote",
+					"Description": "A note, comment or additional information regarding a store hours of operation.",
+					"BaseAttributeReference": {
+						"Entity": "StoreHoursOfOperation.cdm.json/StoreHoursOfOperation",
+						"Name": "StoreHoursOfOperationNote"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/StoreHoursOfOperation",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/StoreHoursOfOperation",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"StoreId\":{\"entity\":\"StoreHoursOfOperation.cdm.json/StoreHoursOfOperation\",\"name\":\"StoreId\"},\"DayOfWeekId\":{\"entity\":\"StoreHoursOfOperation.cdm.json/StoreHoursOfOperation\",\"name\":\"DayOfWeekId\"},\"PeriodStartDate\":{\"entity\":\"StoreHoursOfOperation.cdm.json/StoreHoursOfOperation\",\"name\":\"PeriodStartDate\"},\"PeriodEndDate\":{\"entity\":\"StoreHoursOfOperation.cdm.json/StoreHoursOfOperation\",\"name\":\"PeriodEndDate\"},\"OperationStartTime\":{\"entity\":\"StoreHoursOfOperation.cdm.json/StoreHoursOfOperation\",\"name\":\"OperationStartTime\"},\"OperationEndTime\":{\"entity\":\"StoreHoursOfOperation.cdm.json/StoreHoursOfOperation\",\"name\":\"OperationEndTime\"},\"HolidayIndicator\":{\"entity\":\"StoreHoursOfOperation.cdm.json/StoreHoursOfOperation\",\"name\":\"HolidayIndicator\"},\"HolidayName\":{\"entity\":\"StoreHoursOfOperation.cdm.json/StoreHoursOfOperation\",\"name\":\"HolidayName\"},\"StoreHoursOfOperationNote\":{\"entity\":\"StoreHoursOfOperation.cdm.json/StoreHoursOfOperation\",\"name\":\"StoreHoursOfOperationNote\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"StoreHoursOfOperation\",\"path\":\"StoreHoursOfOperation.cdm.json/StoreHoursOfOperation\"},\"description\":\"The Store hours of operation on a particular date.\",\"primaryKey\":[\"StoreId\",\"DayOfWeekId\",\"PeriodStartDate\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"StoreHoursOfOperation.cdm.json/StoreHoursOfOperation\",\"name\":\"StoreId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Store.\",\"isNullable\":false,\"name\":\"StoreId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"StoreHoursOfOperation.cdm.json/StoreHoursOfOperation\",\"name\":\"DayOfWeekId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Day Of Week.\",\"isNullable\":false,\"name\":\"DayOfWeekId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"StoreHoursOfOperation.cdm.json/StoreHoursOfOperation\",\"name\":\"PeriodStartDate\"},\"dataType\":\"date\",\"dateFormat\":\"YYYY-MM-DD\",\"description\":\"The period start date for which the store hours of operation are valid.\",\"isNullable\":false,\"name\":\"PeriodStartDate\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"StoreHoursOfOperation.cdm.json/StoreHoursOfOperation\",\"name\":\"PeriodEndDate\"},\"dataType\":\"date\",\"dateFormat\":\"YYYY-MM-DD\",\"description\":\"The period end date for which the store hours of operation are valid.\",\"isNullable\":false,\"name\":\"PeriodEndDate\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"StoreHoursOfOperation.cdm.json/StoreHoursOfOperation\",\"name\":\"OperationStartTime\"},\"dataType\":\"string\",\"dataTypeLength\":256,\"description\":\"The starting or opening time of operation for the Store.\",\"isNullable\":false,\"name\":\"OperationStartTime\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"StoreHoursOfOperation.cdm.json/StoreHoursOfOperation\",\"name\":\"OperationEndTime\"},\"dataType\":\"string\",\"dataTypeLength\":256,\"description\":\"The closing or ending time of operation for the Store.\",\"isNullable\":false,\"name\":\"OperationEndTime\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"StoreHoursOfOperation.cdm.json/StoreHoursOfOperation\",\"name\":\"HolidayIndicator\"},\"dataType\":\"boolean\",\"description\":\"Indicates that the associated date is a holiday.\",\"isNullable\":true,\"name\":\"HolidayIndicator\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"StoreHoursOfOperation.cdm.json/StoreHoursOfOperation\",\"name\":\"HolidayName\"},\"dataType\":\"string\",\"dataTypeLength\":256,\"description\":\"The name of the associated holiday.\",\"isNullable\":true,\"name\":\"HolidayName\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"StoreHoursOfOperation.cdm.json/StoreHoursOfOperation\",\"name\":\"StoreHoursOfOperationNote\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"A note, comment or additional information regarding a store hours of operation.\",\"isNullable\":true,\"name\":\"StoreHoursOfOperationNote\"}]}}}",
+			"Description": "The Store hours of operation on a particular date.",
+			"DisplayFolderInfo": "{\"name\":\"Channel\",\"colorCode\":\"#001D3F\"}",
+			"PrimaryKeys": "StoreId,DayOfWeekId,PeriodStartDate",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

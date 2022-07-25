@@ -1,0 +1,147 @@
+{
+	"name": "BudgetedIncomeStatementFixedExpense",
+	"properties": {
+		"Name": "BudgetedIncomeStatementFixedExpense",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "The fixed expenses applied to the budgeted income statement.",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "BudgetedIncomeStatementId",
+					"Description": "The unique identifier of a Budgeted Income Statement.",
+					"BaseAttributeReference": {
+						"Entity": "BudgetedIncomeStatementFixedExpense.cdm.json/BudgetedIncomeStatementFixedExpense",
+						"Name": "BudgetedIncomeStatementId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "BudgetedIncomeStatementVersionId",
+					"Description": "The unique identifier of a Budgeted Income Statement Version.",
+					"BaseAttributeReference": {
+						"Entity": "BudgetedIncomeStatementFixedExpense.cdm.json/BudgetedIncomeStatementFixedExpense",
+						"Name": "BudgetedIncomeStatementVersionId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "FixedExpenseItemId",
+					"Description": "The unique identifier of a Fixed Expense Item.",
+					"BaseAttributeReference": {
+						"Entity": "BudgetedIncomeStatementFixedExpense.cdm.json/BudgetedIncomeStatementFixedExpense",
+						"Name": "FixedExpenseItemId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "BudgetedFixedExpenseAmount",
+					"Description": "The budgeted amount of the associated fixed expense item applied to the budgeted income statement.",
+					"BaseAttributeReference": {
+						"Entity": "BudgetedIncomeStatementFixedExpense.cdm.json/BudgetedIncomeStatementFixedExpense",
+						"Name": "BudgetedFixedExpenseAmount"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "decimal",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Precision": 18,
+						"Scale": 2,
+						"Properties": {
+							"HIVE_TYPE_STRING": "decimal"
+						}
+					}
+				},
+				{
+					"Name": "ActualFixedExpenseAmount",
+					"Description": "The actual amount of the associated fixed expense item applied to the budgeted income statement.",
+					"BaseAttributeReference": {
+						"Entity": "BudgetedIncomeStatementFixedExpense.cdm.json/BudgetedIncomeStatementFixedExpense",
+						"Name": "ActualFixedExpenseAmount"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "decimal",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Precision": 18,
+						"Scale": 2,
+						"Properties": {
+							"HIVE_TYPE_STRING": "decimal"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/BudgetedIncomeStatementFixedExpense",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/BudgetedIncomeStatementFixedExpense",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"BudgetedIncomeStatementId\":{\"entity\":\"BudgetedIncomeStatementFixedExpense.cdm.json/BudgetedIncomeStatementFixedExpense\",\"name\":\"BudgetedIncomeStatementId\"},\"BudgetedIncomeStatementVersionId\":{\"entity\":\"BudgetedIncomeStatementFixedExpense.cdm.json/BudgetedIncomeStatementFixedExpense\",\"name\":\"BudgetedIncomeStatementVersionId\"},\"FixedExpenseItemId\":{\"entity\":\"BudgetedIncomeStatementFixedExpense.cdm.json/BudgetedIncomeStatementFixedExpense\",\"name\":\"FixedExpenseItemId\"},\"BudgetedFixedExpenseAmount\":{\"entity\":\"BudgetedIncomeStatementFixedExpense.cdm.json/BudgetedIncomeStatementFixedExpense\",\"name\":\"BudgetedFixedExpenseAmount\"},\"ActualFixedExpenseAmount\":{\"entity\":\"BudgetedIncomeStatementFixedExpense.cdm.json/BudgetedIncomeStatementFixedExpense\",\"name\":\"ActualFixedExpenseAmount\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"BudgetedIncomeStatementFixedExpense\",\"path\":\"BudgetedIncomeStatementFixedExpense.cdm.json/BudgetedIncomeStatementFixedExpense\"},\"description\":\"The fixed expenses applied to the budgeted income statement.\",\"primaryKey\":[\"BudgetedIncomeStatementId\",\"BudgetedIncomeStatementVersionId\",\"FixedExpenseItemId\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"BudgetedIncomeStatementFixedExpense.cdm.json/BudgetedIncomeStatementFixedExpense\",\"name\":\"BudgetedIncomeStatementId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Budgeted Income Statement.\",\"isNullable\":false,\"name\":\"BudgetedIncomeStatementId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"BudgetedIncomeStatementFixedExpense.cdm.json/BudgetedIncomeStatementFixedExpense\",\"name\":\"BudgetedIncomeStatementVersionId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Budgeted Income Statement Version.\",\"isNullable\":false,\"name\":\"BudgetedIncomeStatementVersionId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"BudgetedIncomeStatementFixedExpense.cdm.json/BudgetedIncomeStatementFixedExpense\",\"name\":\"FixedExpenseItemId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Fixed Expense Item.\",\"isNullable\":false,\"name\":\"FixedExpenseItemId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"BudgetedIncomeStatementFixedExpense.cdm.json/BudgetedIncomeStatementFixedExpense\",\"name\":\"BudgetedFixedExpenseAmount\"},\"dataType\":\"decimal\",\"dataTypeLength\":18,\"description\":\"The budgeted amount of the associated fixed expense item applied to the budgeted income statement.\",\"isNullable\":true,\"scale\":2,\"name\":\"BudgetedFixedExpenseAmount\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"BudgetedIncomeStatementFixedExpense.cdm.json/BudgetedIncomeStatementFixedExpense\",\"name\":\"ActualFixedExpenseAmount\"},\"dataType\":\"decimal\",\"dataTypeLength\":18,\"description\":\"The actual amount of the associated fixed expense item applied to the budgeted income statement.\",\"isNullable\":true,\"scale\":2,\"name\":\"ActualFixedExpenseAmount\"}]}}}",
+			"Description": "The fixed expenses applied to the budgeted income statement.",
+			"DisplayFolderInfo": "{\"name\":\"Budget & Forecasting\",\"colorCode\":\"#00188F\"}",
+			"PrimaryKeys": "BudgetedIncomeStatementId,BudgetedIncomeStatementVersionId,FixedExpenseItemId",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

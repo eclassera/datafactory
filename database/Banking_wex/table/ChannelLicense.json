@@ -1,0 +1,211 @@
+{
+	"name": "ChannelLicense",
+	"properties": {
+		"Name": "ChannelLicense",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "The license(s) held by the channel.",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "ChannelId",
+					"Description": "The unique identifier of a Channel.",
+					"BaseAttributeReference": {
+						"Entity": "ChannelLicense.cdm.json/ChannelLicense",
+						"Name": "ChannelId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "LicensingOrganizationId",
+					"Description": "The unique identifier of a Licensing Organization.",
+					"BaseAttributeReference": {
+						"Entity": "ChannelLicense.cdm.json/ChannelLicense",
+						"Name": "LicensingOrganizationId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "LicenseNumber",
+					"Description": "The license number.",
+					"BaseAttributeReference": {
+						"Entity": "ChannelLicense.cdm.json/ChannelLicense",
+						"Name": "LicenseNumber"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "LicensePeriodEndDate",
+					"Description": "The period end date for which the associated licensing is valid.",
+					"BaseAttributeReference": {
+						"Entity": "ChannelLicense.cdm.json/ChannelLicense",
+						"Name": "LicensePeriodEndDate"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "date",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"DateFormat": "YYYY-MM-DD",
+							"HIVE_TYPE_STRING": "date"
+						}
+					}
+				},
+				{
+					"Name": "LicensePeriodStartDate",
+					"Description": "The period start date for which the associated licensing is valid.",
+					"BaseAttributeReference": {
+						"Entity": "ChannelLicense.cdm.json/ChannelLicense",
+						"Name": "LicensePeriodStartDate"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "date",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"DateFormat": "YYYY-MM-DD",
+							"HIVE_TYPE_STRING": "date"
+						}
+					}
+				},
+				{
+					"Name": "LicenseApplicationDate",
+					"Description": "The date of application for the license.",
+					"BaseAttributeReference": {
+						"Entity": "ChannelLicense.cdm.json/ChannelLicense",
+						"Name": "LicenseApplicationDate"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "date",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"DateFormat": "YYYY-MM-DD",
+							"HIVE_TYPE_STRING": "date"
+						}
+					}
+				},
+				{
+					"Name": "LicenseGrantedDate",
+					"Description": "The date the license was granted.",
+					"BaseAttributeReference": {
+						"Entity": "ChannelLicense.cdm.json/ChannelLicense",
+						"Name": "LicenseGrantedDate"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "date",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"DateFormat": "YYYY-MM-DD",
+							"HIVE_TYPE_STRING": "date"
+						}
+					}
+				},
+				{
+					"Name": "StateId",
+					"Description": "The unique identifier of a State.",
+					"BaseAttributeReference": {
+						"Entity": "ChannelLicense.cdm.json/ChannelLicense",
+						"Name": "StateId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "LicenseTypeId",
+					"Description": "The unique identifier of a License Type.",
+					"BaseAttributeReference": {
+						"Entity": "ChannelLicense.cdm.json/ChannelLicense",
+						"Name": "LicenseTypeId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/ChannelLicense",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/ChannelLicense",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"ChannelId\":{\"entity\":\"ChannelLicense.cdm.json/ChannelLicense\",\"name\":\"ChannelId\"},\"LicensingOrganizationId\":{\"entity\":\"ChannelLicense.cdm.json/ChannelLicense\",\"name\":\"LicensingOrganizationId\"},\"LicenseNumber\":{\"entity\":\"ChannelLicense.cdm.json/ChannelLicense\",\"name\":\"LicenseNumber\"},\"LicensePeriodEndDate\":{\"entity\":\"ChannelLicense.cdm.json/ChannelLicense\",\"name\":\"LicensePeriodEndDate\"},\"LicensePeriodStartDate\":{\"entity\":\"ChannelLicense.cdm.json/ChannelLicense\",\"name\":\"LicensePeriodStartDate\"},\"LicenseApplicationDate\":{\"entity\":\"ChannelLicense.cdm.json/ChannelLicense\",\"name\":\"LicenseApplicationDate\"},\"LicenseGrantedDate\":{\"entity\":\"ChannelLicense.cdm.json/ChannelLicense\",\"name\":\"LicenseGrantedDate\"},\"StateId\":{\"entity\":\"ChannelLicense.cdm.json/ChannelLicense\",\"name\":\"StateId\"},\"LicenseTypeId\":{\"entity\":\"ChannelLicense.cdm.json/ChannelLicense\",\"name\":\"LicenseTypeId\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"ChannelLicense\",\"path\":\"ChannelLicense.cdm.json/ChannelLicense\"},\"description\":\"The license(s) held by the channel.\",\"primaryKey\":[\"ChannelId\",\"LicensingOrganizationId\",\"LicenseNumber\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ChannelLicense.cdm.json/ChannelLicense\",\"name\":\"ChannelId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Channel.\",\"isNullable\":false,\"name\":\"ChannelId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ChannelLicense.cdm.json/ChannelLicense\",\"name\":\"LicensingOrganizationId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Licensing Organization.\",\"isNullable\":false,\"name\":\"LicensingOrganizationId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ChannelLicense.cdm.json/ChannelLicense\",\"name\":\"LicenseNumber\"},\"dataType\":\"integer\",\"description\":\"The license number.\",\"isNullable\":false,\"name\":\"LicenseNumber\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ChannelLicense.cdm.json/ChannelLicense\",\"name\":\"LicensePeriodEndDate\"},\"dataType\":\"date\",\"dateFormat\":\"YYYY-MM-DD\",\"description\":\"The period end date for which the associated licensing is valid.\",\"isNullable\":false,\"name\":\"LicensePeriodEndDate\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ChannelLicense.cdm.json/ChannelLicense\",\"name\":\"LicensePeriodStartDate\"},\"dataType\":\"date\",\"dateFormat\":\"YYYY-MM-DD\",\"description\":\"The period start date for which the associated licensing is valid.\",\"isNullable\":false,\"name\":\"LicensePeriodStartDate\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ChannelLicense.cdm.json/ChannelLicense\",\"name\":\"LicenseApplicationDate\"},\"dataType\":\"date\",\"dateFormat\":\"YYYY-MM-DD\",\"description\":\"The date of application for the license.\",\"isNullable\":true,\"name\":\"LicenseApplicationDate\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ChannelLicense.cdm.json/ChannelLicense\",\"name\":\"LicenseGrantedDate\"},\"dataType\":\"date\",\"dateFormat\":\"YYYY-MM-DD\",\"description\":\"The date the license was granted.\",\"isNullable\":true,\"name\":\"LicenseGrantedDate\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ChannelLicense.cdm.json/ChannelLicense\",\"name\":\"StateId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a State.\",\"isNullable\":true,\"name\":\"StateId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ChannelLicense.cdm.json/ChannelLicense\",\"name\":\"LicenseTypeId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a License Type.\",\"isNullable\":true,\"name\":\"LicenseTypeId\"}]}}}",
+			"Description": "The license(s) held by the channel.",
+			"DisplayFolderInfo": "{\"name\":\"Channel\",\"colorCode\":\"#001D3F\"}",
+			"PrimaryKeys": "ChannelId,LicensingOrganizationId,LicenseNumber",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

@@ -1,0 +1,146 @@
+{
+	"name": "ExperianConsumerName",
+	"properties": {
+		"Name": "ExperianConsumerName",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "The credit report lists all of the name variations reported to Experian by your creditors, including nicknames or middle names. \n\nBy maintaining those names, Experian is able to match them to any accounts that may not have been converted yet to your current name by your lenders and include them in the credit report.",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "ExperianReportNumber",
+					"Description": "The unique identifier of an Experian consumer.",
+					"BaseAttributeReference": {
+						"Entity": "ExperianConsumerName.cdm.json/ExperianConsumerName",
+						"Name": "ExperianReportNumber"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "NameId",
+					"Description": "The name identification number is used to identify which accounts are associated with each individual name variation.",
+					"BaseAttributeReference": {
+						"Entity": "ExperianConsumerName.cdm.json/ExperianConsumerName",
+						"Name": "NameId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "ConsumerFirstName",
+					"Description": "The consumer first name.",
+					"BaseAttributeReference": {
+						"Entity": "ExperianConsumerName.cdm.json/ExperianConsumerName",
+						"Name": "ConsumerFirstName"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 256,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "ConsumerMiddleName",
+					"Description": "The consumer middle name.",
+					"BaseAttributeReference": {
+						"Entity": "ExperianConsumerName.cdm.json/ExperianConsumerName",
+						"Name": "ConsumerMiddleName"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 256,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "ConsumerLastName",
+					"Description": "The consumer last name.",
+					"BaseAttributeReference": {
+						"Entity": "ExperianConsumerName.cdm.json/ExperianConsumerName",
+						"Name": "ConsumerLastName"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 256,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/ExperianConsumerName",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/ExperianConsumerName",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"ExperianReportNumber\":{\"entity\":\"ExperianConsumerName.cdm.json/ExperianConsumerName\",\"name\":\"ExperianReportNumber\"},\"NameId\":{\"entity\":\"ExperianConsumerName.cdm.json/ExperianConsumerName\",\"name\":\"NameId\"},\"ConsumerFirstName\":{\"entity\":\"ExperianConsumerName.cdm.json/ExperianConsumerName\",\"name\":\"ConsumerFirstName\"},\"ConsumerMiddleName\":{\"entity\":\"ExperianConsumerName.cdm.json/ExperianConsumerName\",\"name\":\"ConsumerMiddleName\"},\"ConsumerLastName\":{\"entity\":\"ExperianConsumerName.cdm.json/ExperianConsumerName\",\"name\":\"ConsumerLastName\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"ExperianConsumerName\",\"path\":\"ExperianConsumerName.cdm.json/ExperianConsumerName\"},\"description\":\"The credit report lists all of the name variations reported to Experian by your creditors, including nicknames or middle names. \\n\\nBy maintaining those names, Experian is able to match them to any accounts that may not have been converted yet to your current name by your lenders and include them in the credit report.\",\"primaryKey\":[\"ExperianReportNumber\",\"NameId\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ExperianConsumerName.cdm.json/ExperianConsumerName\",\"name\":\"ExperianReportNumber\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of an Experian consumer.\",\"isNullable\":false,\"name\":\"ExperianReportNumber\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ExperianConsumerName.cdm.json/ExperianConsumerName\",\"name\":\"NameId\"},\"dataType\":\"integer\",\"description\":\"The name identification number is used to identify which accounts are associated with each individual name variation.\",\"isNullable\":false,\"name\":\"NameId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ExperianConsumerName.cdm.json/ExperianConsumerName\",\"name\":\"ConsumerFirstName\"},\"dataType\":\"string\",\"dataTypeLength\":256,\"description\":\"The consumer first name.\",\"isNullable\":true,\"name\":\"ConsumerFirstName\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ExperianConsumerName.cdm.json/ExperianConsumerName\",\"name\":\"ConsumerMiddleName\"},\"dataType\":\"string\",\"dataTypeLength\":256,\"description\":\"The consumer middle name.\",\"isNullable\":true,\"name\":\"ConsumerMiddleName\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ExperianConsumerName.cdm.json/ExperianConsumerName\",\"name\":\"ConsumerLastName\"},\"dataType\":\"string\",\"dataTypeLength\":256,\"description\":\"The consumer last name.\",\"isNullable\":true,\"name\":\"ConsumerLastName\"}]}}}",
+			"Description": "The credit report lists all of the name variations reported to Experian by your creditors, including nicknames or middle names. \n\nBy maintaining those names, Experian is able to match them to any accounts that may not have been converted yet to your current name by your lenders and include them in the credit report.",
+			"DisplayFolderInfo": "{\"name\":\"Customer Credit & Collections\",\"colorCode\":\"#022F22\"}",
+			"PrimaryKeys": "ExperianReportNumber,NameId",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

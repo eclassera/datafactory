@@ -1,0 +1,167 @@
+{
+	"name": "AssetAmortization",
+	"properties": {
+		"Name": "AssetAmortization",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "A gradual reduction of intangible assets value over time, which is valued as of a period.\n\nAmortization is a deductible expense allowed as a means of spreading the cost of an intangible asset over a period of years. \n\nIntangible Assets with a limited life are written down using straight-line depreciation over a period of time not to exceed 40 years.\n\nThe amortization entry to the accounting system is a debit amortization expense and a credit intangible asset.",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "AssetId",
+					"Description": "The unique identifier of an Asset.",
+					"BaseAttributeReference": {
+						"Entity": "AssetAmortization.cdm.json/AssetAmortization",
+						"Name": "AssetId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "long",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "long"
+						}
+					}
+				},
+				{
+					"Name": "AmortizationPeriodStartDate",
+					"Description": "The period start date for which the amortization is determined.",
+					"BaseAttributeReference": {
+						"Entity": "AssetAmortization.cdm.json/AssetAmortization",
+						"Name": "AmortizationPeriodStartDate"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "date",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"DateFormat": "YYYY-MM-DD",
+							"HIVE_TYPE_STRING": "date"
+						}
+					}
+				},
+				{
+					"Name": "AmortizationPeriodEndDate",
+					"Description": "The period end date for which the amortization is determined.",
+					"BaseAttributeReference": {
+						"Entity": "AssetAmortization.cdm.json/AssetAmortization",
+						"Name": "AmortizationPeriodEndDate"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "date",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"DateFormat": "YYYY-MM-DD",
+							"HIVE_TYPE_STRING": "date"
+						}
+					}
+				},
+				{
+					"Name": "AmortizationPeriod",
+					"Description": "The number of years used to amortize the asset.",
+					"BaseAttributeReference": {
+						"Entity": "AssetAmortization.cdm.json/AssetAmortization",
+						"Name": "AmortizationPeriod"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "decimal",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Precision": 3,
+						"Scale": 0,
+						"Properties": {
+							"HIVE_TYPE_STRING": "decimal"
+						}
+					}
+				},
+				{
+					"Name": "PeriodAmortizationAmount",
+					"Description": "The amount of amortization calculated for the associated period.",
+					"BaseAttributeReference": {
+						"Entity": "AssetAmortization.cdm.json/AssetAmortization",
+						"Name": "PeriodAmortizationAmount"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "decimal",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Precision": 18,
+						"Scale": 2,
+						"Properties": {
+							"HIVE_TYPE_STRING": "decimal"
+						}
+					}
+				},
+				{
+					"Name": "TotalAccumulatedAmortizationAmount",
+					"Description": "The total accumulated amortization.",
+					"BaseAttributeReference": {
+						"Entity": "AssetAmortization.cdm.json/AssetAmortization",
+						"Name": "TotalAccumulatedAmortizationAmount"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "decimal",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Precision": 18,
+						"Scale": 2,
+						"Properties": {
+							"HIVE_TYPE_STRING": "decimal"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/AssetAmortization",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/AssetAmortization",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"AssetId\":{\"entity\":\"AssetAmortization.cdm.json/AssetAmortization\",\"name\":\"AssetId\"},\"AmortizationPeriodStartDate\":{\"entity\":\"AssetAmortization.cdm.json/AssetAmortization\",\"name\":\"AmortizationPeriodStartDate\"},\"AmortizationPeriodEndDate\":{\"entity\":\"AssetAmortization.cdm.json/AssetAmortization\",\"name\":\"AmortizationPeriodEndDate\"},\"AmortizationPeriod\":{\"entity\":\"AssetAmortization.cdm.json/AssetAmortization\",\"name\":\"AmortizationPeriod\"},\"PeriodAmortizationAmount\":{\"entity\":\"AssetAmortization.cdm.json/AssetAmortization\",\"name\":\"PeriodAmortizationAmount\"},\"TotalAccumulatedAmortizationAmount\":{\"entity\":\"AssetAmortization.cdm.json/AssetAmortization\",\"name\":\"TotalAccumulatedAmortizationAmount\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"AssetAmortization\",\"path\":\"AssetAmortization.cdm.json/AssetAmortization\"},\"description\":\"A gradual reduction of intangible assets value over time, which is valued as of a period.\\n\\nAmortization is a deductible expense allowed as a means of spreading the cost of an intangible asset over a period of years. \\n\\nIntangible Assets with a limited life are written down using straight-line depreciation over a period of time not to exceed 40 years.\\n\\nThe amortization entry to the accounting system is a debit amortization expense and a credit intangible asset.\",\"primaryKey\":[\"AssetId\",\"AmortizationPeriodStartDate\",\"AmortizationPeriodEndDate\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"AssetAmortization.cdm.json/AssetAmortization\",\"name\":\"AssetId\"},\"dataType\":\"long\",\"description\":\"The unique identifier of an Asset.\",\"isNullable\":false,\"name\":\"AssetId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"AssetAmortization.cdm.json/AssetAmortization\",\"name\":\"AmortizationPeriodStartDate\"},\"dataType\":\"date\",\"dateFormat\":\"YYYY-MM-DD\",\"description\":\"The period start date for which the amortization is determined.\",\"isNullable\":false,\"name\":\"AmortizationPeriodStartDate\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"AssetAmortization.cdm.json/AssetAmortization\",\"name\":\"AmortizationPeriodEndDate\"},\"dataType\":\"date\",\"dateFormat\":\"YYYY-MM-DD\",\"description\":\"The period end date for which the amortization is determined.\",\"isNullable\":false,\"name\":\"AmortizationPeriodEndDate\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"AssetAmortization.cdm.json/AssetAmortization\",\"name\":\"AmortizationPeriod\"},\"dataType\":\"decimal\",\"dataTypeLength\":3,\"description\":\"The number of years used to amortize the asset.\",\"isNullable\":true,\"scale\":0,\"name\":\"AmortizationPeriod\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"AssetAmortization.cdm.json/AssetAmortization\",\"name\":\"PeriodAmortizationAmount\"},\"dataType\":\"decimal\",\"dataTypeLength\":18,\"description\":\"The amount of amortization calculated for the associated period.\",\"isNullable\":true,\"scale\":2,\"name\":\"PeriodAmortizationAmount\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"AssetAmortization.cdm.json/AssetAmortization\",\"name\":\"TotalAccumulatedAmortizationAmount\"},\"dataType\":\"decimal\",\"dataTypeLength\":18,\"description\":\"The total accumulated amortization.\",\"isNullable\":true,\"scale\":2,\"name\":\"TotalAccumulatedAmortizationAmount\"}]}}}",
+			"Description": "A gradual reduction of intangible assets value over time, which is valued as of a period.\n\nAmortization is a deductible expense allowed as a means of spreading the cost of an intangible asset over a period of years. \n\nIntangible Assets with a limited life are written down using straight-line depreciation over a period of time not to exceed 40 years.\n\nThe amortization entry to the accounting system is a debit amortization expense and a credit intangible asset.",
+			"DisplayFolderInfo": "{\"name\":\"Property & Equipment\",\"colorCode\":\"#7D0F6C\"}",
+			"PrimaryKeys": "AssetId,AmortizationPeriodStartDate,AmortizationPeriodEndDate",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

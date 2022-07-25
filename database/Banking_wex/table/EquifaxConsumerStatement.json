@@ -1,0 +1,129 @@
+{
+	"name": "EquifaxConsumerStatement",
+	"properties": {
+		"Name": "EquifaxConsumerStatement",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "A statement that the consumer asked to add to the file.",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "EquifaxReportNumber",
+					"Description": "The Equifax report number.",
+					"BaseAttributeReference": {
+						"Entity": "EquifaxConsumerStatement.cdm.json/EquifaxConsumerStatement",
+						"Name": "EquifaxReportNumber"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "EquifaxConsumerStatementId",
+					"Description": "The unique identifier of an Equifax Consumer Statement.",
+					"BaseAttributeReference": {
+						"Entity": "EquifaxConsumerStatement.cdm.json/EquifaxConsumerStatement",
+						"Name": "EquifaxConsumerStatementId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "StatementDate",
+					"Description": "The date that the statement was added to the report.",
+					"BaseAttributeReference": {
+						"Entity": "EquifaxConsumerStatement.cdm.json/EquifaxConsumerStatement",
+						"Name": "StatementDate"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "date",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"DateFormat": "YYYY-MM-DD",
+							"HIVE_TYPE_STRING": "date"
+						}
+					}
+				},
+				{
+					"Name": "ConsumerStatement",
+					"Description": "The consumer statement issued in conjunction with the Equifax report.",
+					"BaseAttributeReference": {
+						"Entity": "EquifaxConsumerStatement.cdm.json/EquifaxConsumerStatement",
+						"Name": "ConsumerStatement"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/EquifaxConsumerStatement",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/EquifaxConsumerStatement",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"EquifaxReportNumber\":{\"entity\":\"EquifaxConsumerStatement.cdm.json/EquifaxConsumerStatement\",\"name\":\"EquifaxReportNumber\"},\"EquifaxConsumerStatementId\":{\"entity\":\"EquifaxConsumerStatement.cdm.json/EquifaxConsumerStatement\",\"name\":\"EquifaxConsumerStatementId\"},\"StatementDate\":{\"entity\":\"EquifaxConsumerStatement.cdm.json/EquifaxConsumerStatement\",\"name\":\"StatementDate\"},\"ConsumerStatement\":{\"entity\":\"EquifaxConsumerStatement.cdm.json/EquifaxConsumerStatement\",\"name\":\"ConsumerStatement\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"EquifaxConsumerStatement\",\"path\":\"EquifaxConsumerStatement.cdm.json/EquifaxConsumerStatement\"},\"description\":\"A statement that the consumer asked to add to the file.\",\"primaryKey\":[\"EquifaxReportNumber\",\"EquifaxConsumerStatementId\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"EquifaxConsumerStatement.cdm.json/EquifaxConsumerStatement\",\"name\":\"EquifaxReportNumber\"},\"dataType\":\"integer\",\"description\":\"The Equifax report number.\",\"isNullable\":false,\"name\":\"EquifaxReportNumber\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"EquifaxConsumerStatement.cdm.json/EquifaxConsumerStatement\",\"name\":\"EquifaxConsumerStatementId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of an Equifax Consumer Statement.\",\"isNullable\":false,\"name\":\"EquifaxConsumerStatementId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"EquifaxConsumerStatement.cdm.json/EquifaxConsumerStatement\",\"name\":\"StatementDate\"},\"dataType\":\"date\",\"dateFormat\":\"YYYY-MM-DD\",\"description\":\"The date that the statement was added to the report.\",\"isNullable\":true,\"name\":\"StatementDate\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"EquifaxConsumerStatement.cdm.json/EquifaxConsumerStatement\",\"name\":\"ConsumerStatement\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"The consumer statement issued in conjunction with the Equifax report.\",\"isNullable\":true,\"name\":\"ConsumerStatement\"}]}}}",
+			"Description": "A statement that the consumer asked to add to the file.",
+			"DisplayFolderInfo": "{\"name\":\"Customer Credit & Collections\",\"colorCode\":\"#022F22\"}",
+			"PrimaryKeys": "EquifaxReportNumber,EquifaxConsumerStatementId",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

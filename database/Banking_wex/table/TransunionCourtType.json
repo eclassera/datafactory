@@ -1,0 +1,113 @@
+{
+	"name": "TransunionCourtType",
+	"properties": {
+		"Name": "TransunionCourtType",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "The type of court in which the action is brought.\n\nEx:\n- Municipal court",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "TransunionCourtTypeId",
+					"Description": "The unique identifier of a TransUnion Court Type.",
+					"BaseAttributeReference": {
+						"Entity": "TransunionCourtType.cdm.json/TransunionCourtType",
+						"Name": "TransunionCourtTypeId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "TransunionCourtTypeName",
+					"Description": "The name of a TransUnion Court Type.",
+					"BaseAttributeReference": {
+						"Entity": "TransunionCourtType.cdm.json/TransunionCourtType",
+						"Name": "TransunionCourtTypeName"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 256,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "TransunionCourtTypeDescription",
+					"Description": "The description of a TransUnion Court Type.",
+					"BaseAttributeReference": {
+						"Entity": "TransunionCourtType.cdm.json/TransunionCourtType",
+						"Name": "TransunionCourtTypeDescription"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/TransunionCourtType",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/TransunionCourtType",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"TransunionCourtTypeId\":{\"entity\":\"TransunionCourtType.cdm.json/TransunionCourtType\",\"name\":\"TransunionCourtTypeId\"},\"TransunionCourtTypeName\":{\"entity\":\"TransunionCourtType.cdm.json/TransunionCourtType\",\"name\":\"TransunionCourtTypeName\"},\"TransunionCourtTypeDescription\":{\"entity\":\"TransunionCourtType.cdm.json/TransunionCourtType\",\"name\":\"TransunionCourtTypeDescription\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"TransunionCourtType\",\"path\":\"TransunionCourtType.cdm.json/TransunionCourtType\"},\"description\":\"The type of court in which the action is brought.\\n\\nEx:\\n- Municipal court\",\"primaryKey\":[\"TransunionCourtTypeId\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"TransunionCourtType.cdm.json/TransunionCourtType\",\"name\":\"TransunionCourtTypeId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a TransUnion Court Type.\",\"isNullable\":false,\"name\":\"TransunionCourtTypeId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"TransunionCourtType.cdm.json/TransunionCourtType\",\"name\":\"TransunionCourtTypeName\"},\"dataType\":\"string\",\"dataTypeLength\":256,\"description\":\"The name of a TransUnion Court Type.\",\"isNullable\":true,\"name\":\"TransunionCourtTypeName\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"TransunionCourtType.cdm.json/TransunionCourtType\",\"name\":\"TransunionCourtTypeDescription\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"The description of a TransUnion Court Type.\",\"isNullable\":true,\"name\":\"TransunionCourtTypeDescription\"}]}}}",
+			"Description": "The type of court in which the action is brought.\n\nEx:\n- Municipal court",
+			"DisplayFolderInfo": "{\"name\":\"Customer Credit & Collections\",\"colorCode\":\"#022F22\"}",
+			"PrimaryKeys": "TransunionCourtTypeId",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

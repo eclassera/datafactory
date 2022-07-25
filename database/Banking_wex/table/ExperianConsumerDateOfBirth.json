@@ -1,0 +1,112 @@
+{
+	"name": "ExperianConsumerDateOfBirth",
+	"properties": {
+		"Name": "ExperianConsumerDateOfBirth",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "Your date of birth as reported by creditors.\n\nThere may be more than one date of birth reported.",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "ExperianReportNumber",
+					"Description": "The unique identifier of an Experian consumer.",
+					"BaseAttributeReference": {
+						"Entity": "ExperianConsumerDateOfBirth.cdm.json/ExperianConsumerDateOfBirth",
+						"Name": "ExperianReportNumber"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "DateOfBirthId",
+					"Description": "The unique identifier of a date of birth.",
+					"BaseAttributeReference": {
+						"Entity": "ExperianConsumerDateOfBirth.cdm.json/ExperianConsumerDateOfBirth",
+						"Name": "DateOfBirthId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "DateOfBirth",
+					"Description": "The date of birth of the consumer.",
+					"BaseAttributeReference": {
+						"Entity": "ExperianConsumerDateOfBirth.cdm.json/ExperianConsumerDateOfBirth",
+						"Name": "DateOfBirth"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "date",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"DateFormat": "YYYY-MM-DD",
+							"HIVE_TYPE_STRING": "date"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/ExperianConsumerDateOfBirth",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/ExperianConsumerDateOfBirth",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"ExperianReportNumber\":{\"entity\":\"ExperianConsumerDateOfBirth.cdm.json/ExperianConsumerDateOfBirth\",\"name\":\"ExperianReportNumber\"},\"DateOfBirthId\":{\"entity\":\"ExperianConsumerDateOfBirth.cdm.json/ExperianConsumerDateOfBirth\",\"name\":\"DateOfBirthId\"},\"DateOfBirth\":{\"entity\":\"ExperianConsumerDateOfBirth.cdm.json/ExperianConsumerDateOfBirth\",\"name\":\"DateOfBirth\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"ExperianConsumerDateOfBirth\",\"path\":\"ExperianConsumerDateOfBirth.cdm.json/ExperianConsumerDateOfBirth\"},\"description\":\"Your date of birth as reported by creditors.\\n\\nThere may be more than one date of birth reported.\",\"primaryKey\":[\"ExperianReportNumber\",\"DateOfBirthId\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ExperianConsumerDateOfBirth.cdm.json/ExperianConsumerDateOfBirth\",\"name\":\"ExperianReportNumber\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of an Experian consumer.\",\"isNullable\":false,\"name\":\"ExperianReportNumber\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ExperianConsumerDateOfBirth.cdm.json/ExperianConsumerDateOfBirth\",\"name\":\"DateOfBirthId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a date of birth.\",\"isNullable\":false,\"name\":\"DateOfBirthId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ExperianConsumerDateOfBirth.cdm.json/ExperianConsumerDateOfBirth\",\"name\":\"DateOfBirth\"},\"dataType\":\"date\",\"dateFormat\":\"YYYY-MM-DD\",\"description\":\"The date of birth of the consumer.\",\"isNullable\":true,\"name\":\"DateOfBirth\"}]}}}",
+			"Description": "Your date of birth as reported by creditors.\n\nThere may be more than one date of birth reported.",
+			"DisplayFolderInfo": "{\"name\":\"Customer Credit & Collections\",\"colorCode\":\"#022F22\"}",
+			"PrimaryKeys": "ExperianReportNumber,DateOfBirthId",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

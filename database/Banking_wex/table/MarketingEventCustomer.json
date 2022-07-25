@@ -1,0 +1,146 @@
+{
+	"name": "MarketingEventCustomer",
+	"properties": {
+		"Name": "MarketingEventCustomer",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "The Individual Customer's participation in or targeting by the Marketing Event.",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "MarketingEventId",
+					"Description": "The unique identifier of a Marketing Event.",
+					"BaseAttributeReference": {
+						"Entity": "MarketingEventCustomer.cdm.json/MarketingEventCustomer",
+						"Name": "MarketingEventId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "CustomerId",
+					"Description": "The unique identifier of a Customer.",
+					"BaseAttributeReference": {
+						"Entity": "MarketingEventCustomer.cdm.json/MarketingEventCustomer",
+						"Name": "CustomerId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "long",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "long"
+						}
+					}
+				},
+				{
+					"Name": "PeriodStartDate",
+					"Description": "The starting date of the Customer's participation in or targeting by the Marketing Event.",
+					"BaseAttributeReference": {
+						"Entity": "MarketingEventCustomer.cdm.json/MarketingEventCustomer",
+						"Name": "PeriodStartDate"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "date",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"DateFormat": "YYYY-MM-DD",
+							"HIVE_TYPE_STRING": "date"
+						}
+					}
+				},
+				{
+					"Name": "PeriodEndDate",
+					"Description": "The ending date of the Prospective Customer's participation in or targeting by the Marketing Event.",
+					"BaseAttributeReference": {
+						"Entity": "MarketingEventCustomer.cdm.json/MarketingEventCustomer",
+						"Name": "PeriodEndDate"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "date",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"DateFormat": "YYYY-MM-DD",
+							"HIVE_TYPE_STRING": "date"
+						}
+					}
+				},
+				{
+					"Name": "CustomerMarketingEventParticipationNote",
+					"Description": "A note, comment or additional information regarding the Customer's participation in or targeting by the Marketing Event.",
+					"BaseAttributeReference": {
+						"Entity": "MarketingEventCustomer.cdm.json/MarketingEventCustomer",
+						"Name": "CustomerMarketingEventParticipationNote"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/MarketingEventCustomer",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/MarketingEventCustomer",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"MarketingEventId\":{\"entity\":\"MarketingEventCustomer.cdm.json/MarketingEventCustomer\",\"name\":\"MarketingEventId\"},\"CustomerId\":{\"entity\":\"MarketingEventCustomer.cdm.json/MarketingEventCustomer\",\"name\":\"CustomerId\"},\"PeriodStartDate\":{\"entity\":\"MarketingEventCustomer.cdm.json/MarketingEventCustomer\",\"name\":\"PeriodStartDate\"},\"PeriodEndDate\":{\"entity\":\"MarketingEventCustomer.cdm.json/MarketingEventCustomer\",\"name\":\"PeriodEndDate\"},\"CustomerMarketingEventParticipationNote\":{\"entity\":\"MarketingEventCustomer.cdm.json/MarketingEventCustomer\",\"name\":\"CustomerMarketingEventParticipationNote\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"MarketingEventCustomer\",\"path\":\"MarketingEventCustomer.cdm.json/MarketingEventCustomer\"},\"description\":\"The Individual Customer's participation in or targeting by the Marketing Event.\",\"primaryKey\":[\"MarketingEventId\",\"CustomerId\",\"PeriodStartDate\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"MarketingEventCustomer.cdm.json/MarketingEventCustomer\",\"name\":\"MarketingEventId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Marketing Event.\",\"isNullable\":false,\"name\":\"MarketingEventId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"MarketingEventCustomer.cdm.json/MarketingEventCustomer\",\"name\":\"CustomerId\"},\"dataType\":\"long\",\"description\":\"The unique identifier of a Customer.\",\"isNullable\":false,\"name\":\"CustomerId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"MarketingEventCustomer.cdm.json/MarketingEventCustomer\",\"name\":\"PeriodStartDate\"},\"dataType\":\"date\",\"dateFormat\":\"YYYY-MM-DD\",\"description\":\"The starting date of the Customer's participation in or targeting by the Marketing Event.\",\"isNullable\":false,\"name\":\"PeriodStartDate\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"MarketingEventCustomer.cdm.json/MarketingEventCustomer\",\"name\":\"PeriodEndDate\"},\"dataType\":\"date\",\"dateFormat\":\"YYYY-MM-DD\",\"description\":\"The ending date of the Prospective Customer's participation in or targeting by the Marketing Event.\",\"isNullable\":false,\"name\":\"PeriodEndDate\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"MarketingEventCustomer.cdm.json/MarketingEventCustomer\",\"name\":\"CustomerMarketingEventParticipationNote\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"A note, comment or additional information regarding the Customer's participation in or targeting by the Marketing Event.\",\"isNullable\":true,\"name\":\"CustomerMarketingEventParticipationNote\"}]}}}",
+			"Description": "The Individual Customer's participation in or targeting by the Marketing Event.",
+			"DisplayFolderInfo": "{\"name\":\"Customer\",\"colorCode\":\"#4B003F\"}",
+			"PrimaryKeys": "MarketingEventId,CustomerId,PeriodStartDate",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

@@ -1,0 +1,146 @@
+{
+	"name": "CustomerLegalAction",
+	"properties": {
+		"Name": "CustomerLegalAction",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "The legal action(s) in which the customer is involved during the associated period.",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "CustomerId",
+					"Description": "The unique identifier of a Customer.",
+					"BaseAttributeReference": {
+						"Entity": "CustomerLegalAction.cdm.json/CustomerLegalAction",
+						"Name": "CustomerId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "long",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "long"
+						}
+					}
+				},
+				{
+					"Name": "LegalActionId",
+					"Description": "The unique identifier of a Legal Action.",
+					"BaseAttributeReference": {
+						"Entity": "CustomerLegalAction.cdm.json/CustomerLegalAction",
+						"Name": "LegalActionId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "PeriodStartDate",
+					"Description": "The period start date associated with the customer legal action.",
+					"BaseAttributeReference": {
+						"Entity": "CustomerLegalAction.cdm.json/CustomerLegalAction",
+						"Name": "PeriodStartDate"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "date",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"DateFormat": "YYYY-MM-DD",
+							"HIVE_TYPE_STRING": "date"
+						}
+					}
+				},
+				{
+					"Name": "PeriodEndDate",
+					"Description": "The period end date associated with the customer legal action.",
+					"BaseAttributeReference": {
+						"Entity": "CustomerLegalAction.cdm.json/CustomerLegalAction",
+						"Name": "PeriodEndDate"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "date",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"DateFormat": "YYYY-MM-DD",
+							"HIVE_TYPE_STRING": "date"
+						}
+					}
+				},
+				{
+					"Name": "CustomerLegalActionNote",
+					"Description": "A note, comment or additional information regarding the customer legal action.",
+					"BaseAttributeReference": {
+						"Entity": "CustomerLegalAction.cdm.json/CustomerLegalAction",
+						"Name": "CustomerLegalActionNote"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/CustomerLegalAction",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/CustomerLegalAction",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"CustomerId\":{\"entity\":\"CustomerLegalAction.cdm.json/CustomerLegalAction\",\"name\":\"CustomerId\"},\"LegalActionId\":{\"entity\":\"CustomerLegalAction.cdm.json/CustomerLegalAction\",\"name\":\"LegalActionId\"},\"PeriodStartDate\":{\"entity\":\"CustomerLegalAction.cdm.json/CustomerLegalAction\",\"name\":\"PeriodStartDate\"},\"PeriodEndDate\":{\"entity\":\"CustomerLegalAction.cdm.json/CustomerLegalAction\",\"name\":\"PeriodEndDate\"},\"CustomerLegalActionNote\":{\"entity\":\"CustomerLegalAction.cdm.json/CustomerLegalAction\",\"name\":\"CustomerLegalActionNote\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"CustomerLegalAction\",\"path\":\"CustomerLegalAction.cdm.json/CustomerLegalAction\"},\"description\":\"The legal action(s) in which the customer is involved during the associated period.\",\"primaryKey\":[\"CustomerId\",\"LegalActionId\",\"PeriodStartDate\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CustomerLegalAction.cdm.json/CustomerLegalAction\",\"name\":\"CustomerId\"},\"dataType\":\"long\",\"description\":\"The unique identifier of a Customer.\",\"isNullable\":false,\"name\":\"CustomerId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CustomerLegalAction.cdm.json/CustomerLegalAction\",\"name\":\"LegalActionId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Legal Action.\",\"isNullable\":false,\"name\":\"LegalActionId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CustomerLegalAction.cdm.json/CustomerLegalAction\",\"name\":\"PeriodStartDate\"},\"dataType\":\"date\",\"dateFormat\":\"YYYY-MM-DD\",\"description\":\"The period start date associated with the customer legal action.\",\"isNullable\":false,\"name\":\"PeriodStartDate\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CustomerLegalAction.cdm.json/CustomerLegalAction\",\"name\":\"PeriodEndDate\"},\"dataType\":\"date\",\"dateFormat\":\"YYYY-MM-DD\",\"description\":\"The period end date associated with the customer legal action.\",\"isNullable\":true,\"name\":\"PeriodEndDate\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CustomerLegalAction.cdm.json/CustomerLegalAction\",\"name\":\"CustomerLegalActionNote\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"A note, comment or additional information regarding the customer legal action.\",\"isNullable\":true,\"name\":\"CustomerLegalActionNote\"}]}}}",
+			"Description": "The legal action(s) in which the customer is involved during the associated period.",
+			"DisplayFolderInfo": "{\"name\":\"Customer\",\"colorCode\":\"#4B003F\"}",
+			"PrimaryKeys": "CustomerId,LegalActionId,PeriodStartDate",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

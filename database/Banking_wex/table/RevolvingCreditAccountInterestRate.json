@@ -1,0 +1,148 @@
+{
+	"name": "RevolvingCreditAccountInterestRate",
+	"properties": {
+		"Name": "RevolvingCreditAccountInterestRate",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "The revolving credit account interest rate 'history' or schedule for the associated period(s).",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "AccountNumber",
+					"Description": "The account number.",
+					"BaseAttributeReference": {
+						"Entity": "RevolvingCreditAccountInterestRate.cdm.json/RevolvingCreditAccountInterestRate",
+						"Name": "AccountNumber"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Length": 20,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "PeriodStartDate",
+					"Description": "The period start date that the associated interest rate is effective for the revolving credit account.",
+					"BaseAttributeReference": {
+						"Entity": "RevolvingCreditAccountInterestRate.cdm.json/RevolvingCreditAccountInterestRate",
+						"Name": "PeriodStartDate"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "date",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"DateFormat": "YYYY-MM-DD",
+							"HIVE_TYPE_STRING": "date"
+						}
+					}
+				},
+				{
+					"Name": "CreditGrantorId",
+					"Description": "The unique identifier of a Credit Grantor.",
+					"BaseAttributeReference": {
+						"Entity": "RevolvingCreditAccountInterestRate.cdm.json/RevolvingCreditAccountInterestRate",
+						"Name": "CreditGrantorId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "PeriodEndDate",
+					"Description": "The period start date that the associated interest rate is effective for the revolving credit account.",
+					"BaseAttributeReference": {
+						"Entity": "RevolvingCreditAccountInterestRate.cdm.json/RevolvingCreditAccountInterestRate",
+						"Name": "PeriodEndDate"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "date",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"DateFormat": "YYYY-MM-DD",
+							"HIVE_TYPE_STRING": "date"
+						}
+					}
+				},
+				{
+					"Name": "InterestRatePercentage",
+					"Description": "The interest rate charged on the revolving account for the associated period.",
+					"BaseAttributeReference": {
+						"Entity": "RevolvingCreditAccountInterestRate.cdm.json/RevolvingCreditAccountInterestRate",
+						"Name": "InterestRatePercentage"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "decimal",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Precision": 18,
+						"Scale": 8,
+						"Properties": {
+							"HIVE_TYPE_STRING": "decimal"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/RevolvingCreditAccountInterestRate",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/RevolvingCreditAccountInterestRate",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"AccountNumber\":{\"entity\":\"RevolvingCreditAccountInterestRate.cdm.json/RevolvingCreditAccountInterestRate\",\"name\":\"AccountNumber\"},\"PeriodStartDate\":{\"entity\":\"RevolvingCreditAccountInterestRate.cdm.json/RevolvingCreditAccountInterestRate\",\"name\":\"PeriodStartDate\"},\"CreditGrantorId\":{\"entity\":\"RevolvingCreditAccountInterestRate.cdm.json/RevolvingCreditAccountInterestRate\",\"name\":\"CreditGrantorId\"},\"PeriodEndDate\":{\"entity\":\"RevolvingCreditAccountInterestRate.cdm.json/RevolvingCreditAccountInterestRate\",\"name\":\"PeriodEndDate\"},\"InterestRatePercentage\":{\"entity\":\"RevolvingCreditAccountInterestRate.cdm.json/RevolvingCreditAccountInterestRate\",\"name\":\"InterestRatePercentage\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"RevolvingCreditAccountInterestRate\",\"path\":\"RevolvingCreditAccountInterestRate.cdm.json/RevolvingCreditAccountInterestRate\"},\"description\":\"The revolving credit account interest rate 'history' or schedule for the associated period(s).\",\"primaryKey\":[\"AccountNumber\",\"PeriodStartDate\",\"CreditGrantorId\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"RevolvingCreditAccountInterestRate.cdm.json/RevolvingCreditAccountInterestRate\",\"name\":\"AccountNumber\"},\"dataType\":\"string\",\"dataTypeLength\":20,\"description\":\"The account number.\",\"isNullable\":false,\"name\":\"AccountNumber\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"RevolvingCreditAccountInterestRate.cdm.json/RevolvingCreditAccountInterestRate\",\"name\":\"PeriodStartDate\"},\"dataType\":\"date\",\"dateFormat\":\"YYYY-MM-DD\",\"description\":\"The period start date that the associated interest rate is effective for the revolving credit account.\",\"isNullable\":false,\"name\":\"PeriodStartDate\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"RevolvingCreditAccountInterestRate.cdm.json/RevolvingCreditAccountInterestRate\",\"name\":\"CreditGrantorId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Credit Grantor.\",\"isNullable\":false,\"name\":\"CreditGrantorId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"RevolvingCreditAccountInterestRate.cdm.json/RevolvingCreditAccountInterestRate\",\"name\":\"PeriodEndDate\"},\"dataType\":\"date\",\"dateFormat\":\"YYYY-MM-DD\",\"description\":\"The period start date that the associated interest rate is effective for the revolving credit account.\",\"isNullable\":true,\"name\":\"PeriodEndDate\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"RevolvingCreditAccountInterestRate.cdm.json/RevolvingCreditAccountInterestRate\",\"name\":\"InterestRatePercentage\"},\"dataType\":\"decimal\",\"dataTypeLength\":18,\"description\":\"The interest rate charged on the revolving account for the associated period.\",\"isNullable\":true,\"scale\":8,\"name\":\"InterestRatePercentage\"}]}}}",
+			"Description": "The revolving credit account interest rate 'history' or schedule for the associated period(s).",
+			"DisplayFolderInfo": "{\"name\":\"Customer Credit & Collections\",\"colorCode\":\"#022F22\"}",
+			"PrimaryKeys": "AccountNumber,PeriodStartDate,CreditGrantorId",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

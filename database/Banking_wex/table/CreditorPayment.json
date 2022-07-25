@@ -1,0 +1,196 @@
+{
+	"name": "CreditorPayment",
+	"properties": {
+		"Name": "CreditorPayment",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "A payment by the creditor against the workout schedule.",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "WorkoutProceedingId",
+					"Description": "The unique identifier of a Workout Proceeding.",
+					"BaseAttributeReference": {
+						"Entity": "CreditorPayment.cdm.json/CreditorPayment",
+						"Name": "WorkoutProceedingId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "PartyId",
+					"Description": "The unique identifier of a Party.",
+					"BaseAttributeReference": {
+						"Entity": "CreditorPayment.cdm.json/CreditorPayment",
+						"Name": "PartyId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "long",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "long"
+						}
+					}
+				},
+				{
+					"Name": "Date",
+					"Description": "The date for the associated payment.",
+					"BaseAttributeReference": {
+						"Entity": "CreditorPayment.cdm.json/CreditorPayment",
+						"Name": "Date"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "date",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"DateFormat": "YYYY-MM-DD",
+							"HIVE_TYPE_STRING": "date"
+						}
+					}
+				},
+				{
+					"Name": "PaymentDate",
+					"Description": "The date of the payment.",
+					"BaseAttributeReference": {
+						"Entity": "CreditorPayment.cdm.json/CreditorPayment",
+						"Name": "PaymentDate"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "date",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"DateFormat": "YYYY-MM-DD",
+							"HIVE_TYPE_STRING": "date"
+						}
+					}
+				},
+				{
+					"Name": "PaymentByPartyId",
+					"Description": "The unique identifier of a Party making the payment.",
+					"BaseAttributeReference": {
+						"Entity": "CreditorPayment.cdm.json/CreditorPayment",
+						"Name": "PaymentByPartyId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "long",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"HIVE_TYPE_STRING": "long"
+						}
+					}
+				},
+				{
+					"Name": "PaymentAmount",
+					"Description": "The amount of the payment.",
+					"BaseAttributeReference": {
+						"Entity": "CreditorPayment.cdm.json/CreditorPayment",
+						"Name": "PaymentAmount"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "decimal",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Precision": 18,
+						"Scale": 2,
+						"Properties": {
+							"HIVE_TYPE_STRING": "decimal"
+						}
+					}
+				},
+				{
+					"Name": "PaymentNote",
+					"Description": "A note, comment or additional information regarding the payment.",
+					"BaseAttributeReference": {
+						"Entity": "CreditorPayment.cdm.json/CreditorPayment",
+						"Name": "PaymentNote"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "PaymentStatusId",
+					"Description": "The unique identifier of a payment status.",
+					"BaseAttributeReference": {
+						"Entity": "CreditorPayment.cdm.json/CreditorPayment",
+						"Name": "PaymentStatusId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/CreditorPayment",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/CreditorPayment",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"WorkoutProceedingId\":{\"entity\":\"CreditorPayment.cdm.json/CreditorPayment\",\"name\":\"WorkoutProceedingId\"},\"PartyId\":{\"entity\":\"CreditorPayment.cdm.json/CreditorPayment\",\"name\":\"PartyId\"},\"Date\":{\"entity\":\"CreditorPayment.cdm.json/CreditorPayment\",\"name\":\"Date\"},\"PaymentDate\":{\"entity\":\"CreditorPayment.cdm.json/CreditorPayment\",\"name\":\"PaymentDate\"},\"PaymentByPartyId\":{\"entity\":\"CreditorPayment.cdm.json/CreditorPayment\",\"name\":\"PaymentByPartyId\"},\"PaymentAmount\":{\"entity\":\"CreditorPayment.cdm.json/CreditorPayment\",\"name\":\"PaymentAmount\"},\"PaymentNote\":{\"entity\":\"CreditorPayment.cdm.json/CreditorPayment\",\"name\":\"PaymentNote\"},\"PaymentStatusId\":{\"entity\":\"CreditorPayment.cdm.json/CreditorPayment\",\"name\":\"PaymentStatusId\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"CreditorPayment\",\"path\":\"CreditorPayment.cdm.json/CreditorPayment\"},\"description\":\"A payment by the creditor against the workout schedule.\",\"primaryKey\":[\"WorkoutProceedingId\",\"PartyId\",\"Date\",\"PaymentDate\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CreditorPayment.cdm.json/CreditorPayment\",\"name\":\"WorkoutProceedingId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Workout Proceeding.\",\"isNullable\":false,\"name\":\"WorkoutProceedingId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CreditorPayment.cdm.json/CreditorPayment\",\"name\":\"PartyId\"},\"dataType\":\"long\",\"description\":\"The unique identifier of a Party.\",\"isNullable\":false,\"name\":\"PartyId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CreditorPayment.cdm.json/CreditorPayment\",\"name\":\"Date\"},\"dataType\":\"date\",\"dateFormat\":\"YYYY-MM-DD\",\"description\":\"The date for the associated payment.\",\"isNullable\":false,\"name\":\"Date\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CreditorPayment.cdm.json/CreditorPayment\",\"name\":\"PaymentDate\"},\"dataType\":\"date\",\"dateFormat\":\"YYYY-MM-DD\",\"description\":\"The date of the payment.\",\"isNullable\":false,\"name\":\"PaymentDate\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CreditorPayment.cdm.json/CreditorPayment\",\"name\":\"PaymentByPartyId\"},\"dataType\":\"long\",\"description\":\"The unique identifier of a Party making the payment.\",\"isNullable\":true,\"name\":\"PaymentByPartyId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CreditorPayment.cdm.json/CreditorPayment\",\"name\":\"PaymentAmount\"},\"dataType\":\"decimal\",\"dataTypeLength\":18,\"description\":\"The amount of the payment.\",\"isNullable\":true,\"scale\":2,\"name\":\"PaymentAmount\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CreditorPayment.cdm.json/CreditorPayment\",\"name\":\"PaymentNote\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"A note, comment or additional information regarding the payment.\",\"isNullable\":true,\"name\":\"PaymentNote\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CreditorPayment.cdm.json/CreditorPayment\",\"name\":\"PaymentStatusId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a payment status.\",\"isNullable\":true,\"name\":\"PaymentStatusId\"}]}}}",
+			"Description": "A payment by the creditor against the workout schedule.",
+			"DisplayFolderInfo": "{\"name\":\"Customer Credit & Collections\",\"colorCode\":\"#022F22\"}",
+			"PrimaryKeys": "WorkoutProceedingId,PartyId,Date,PaymentDate",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

@@ -1,0 +1,113 @@
+{
+	"name": "DunBradstreetPaydexQuartileRanking",
+	"properties": {
+		"Name": "DunBradstreetPaydexQuartileRanking",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "'A', 'B', 'C' and 'D' Paydex Quartiles augment Paydex metrics.\n\nA- indicates a company that pays their bills faster than the Upper Norm. \n\nB- indicates a company that pays faster than the median, but slower than the Upper Norm. \n\nC- indicates a company that pays slower than the norm, but not as slowly as the Lower Norm \n\nD- indicates a company that pays slower than the Lower Norm.",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "DunBradstreetPaydexQuartileRankingId",
+					"Description": "The unique identifier of a Dun Bradstreet Paydex Quartile Ranking.",
+					"BaseAttributeReference": {
+						"Entity": "DunBradstreetPaydexQuartileRanking.cdm.json/DunBradstreetPaydexQuartileRanking",
+						"Name": "DunBradstreetPaydexQuartileRankingId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "DunBradstreetPaydexQuartileRankingName",
+					"Description": "The name of a Dun Bradstreet Paydex Quartile Ranking.",
+					"BaseAttributeReference": {
+						"Entity": "DunBradstreetPaydexQuartileRanking.cdm.json/DunBradstreetPaydexQuartileRanking",
+						"Name": "DunBradstreetPaydexQuartileRankingName"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 256,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "DunBradstreetPaydexQuartileRankingDescription",
+					"Description": "The description of a Dun Bradstreet Paydex Quartile Ranking.",
+					"BaseAttributeReference": {
+						"Entity": "DunBradstreetPaydexQuartileRanking.cdm.json/DunBradstreetPaydexQuartileRanking",
+						"Name": "DunBradstreetPaydexQuartileRankingDescription"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/DunBradstreetPaydexQuartileRanking",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/DunBradstreetPaydexQuartileRanking",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"DunBradstreetPaydexQuartileRankingId\":{\"entity\":\"DunBradstreetPaydexQuartileRanking.cdm.json/DunBradstreetPaydexQuartileRanking\",\"name\":\"DunBradstreetPaydexQuartileRankingId\"},\"DunBradstreetPaydexQuartileRankingName\":{\"entity\":\"DunBradstreetPaydexQuartileRanking.cdm.json/DunBradstreetPaydexQuartileRanking\",\"name\":\"DunBradstreetPaydexQuartileRankingName\"},\"DunBradstreetPaydexQuartileRankingDescription\":{\"entity\":\"DunBradstreetPaydexQuartileRanking.cdm.json/DunBradstreetPaydexQuartileRanking\",\"name\":\"DunBradstreetPaydexQuartileRankingDescription\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"DunBradstreetPaydexQuartileRanking\",\"path\":\"DunBradstreetPaydexQuartileRanking.cdm.json/DunBradstreetPaydexQuartileRanking\"},\"description\":\"'A', 'B', 'C' and 'D' Paydex Quartiles augment Paydex metrics.\\n\\nA- indicates a company that pays their bills faster than the Upper Norm. \\n\\nB- indicates a company that pays faster than the median, but slower than the Upper Norm. \\n\\nC- indicates a company that pays slower than the norm, but not as slowly as the Lower Norm \\n\\nD- indicates a company that pays slower than the Lower Norm.\",\"primaryKey\":[\"DunBradstreetPaydexQuartileRankingId\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"DunBradstreetPaydexQuartileRanking.cdm.json/DunBradstreetPaydexQuartileRanking\",\"name\":\"DunBradstreetPaydexQuartileRankingId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Dun Bradstreet Paydex Quartile Ranking.\",\"isNullable\":false,\"name\":\"DunBradstreetPaydexQuartileRankingId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"DunBradstreetPaydexQuartileRanking.cdm.json/DunBradstreetPaydexQuartileRanking\",\"name\":\"DunBradstreetPaydexQuartileRankingName\"},\"dataType\":\"string\",\"dataTypeLength\":256,\"description\":\"The name of a Dun Bradstreet Paydex Quartile Ranking.\",\"isNullable\":true,\"name\":\"DunBradstreetPaydexQuartileRankingName\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"DunBradstreetPaydexQuartileRanking.cdm.json/DunBradstreetPaydexQuartileRanking\",\"name\":\"DunBradstreetPaydexQuartileRankingDescription\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"The description of a Dun Bradstreet Paydex Quartile Ranking.\",\"isNullable\":true,\"name\":\"DunBradstreetPaydexQuartileRankingDescription\"}]}}}",
+			"Description": "'A', 'B', 'C' and 'D' Paydex Quartiles augment Paydex metrics.\n\nA- indicates a company that pays their bills faster than the Upper Norm. \n\nB- indicates a company that pays faster than the median, but slower than the Upper Norm. \n\nC- indicates a company that pays slower than the norm, but not as slowly as the Lower Norm \n\nD- indicates a company that pays slower than the Lower Norm.",
+			"DisplayFolderInfo": "{\"name\":\"Customer Credit & Collections\",\"colorCode\":\"#022F22\"}",
+			"PrimaryKeys": "DunBradstreetPaydexQuartileRankingId",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

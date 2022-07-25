@@ -1,0 +1,228 @@
+{
+	"name": "RelatedFinancialStatement",
+	"properties": {
+		"Name": "RelatedFinancialStatement",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "The relationship between two or more Financial Statements.",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "LegalEntityId",
+					"Description": "The unique identifier of a Legal Entity.",
+					"BaseAttributeReference": {
+						"Entity": "RelatedFinancialStatement.cdm.json/RelatedFinancialStatement",
+						"Name": "LegalEntityId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "FinancialStatementId",
+					"Description": "The unique identifier of a Financial Statement.",
+					"BaseAttributeReference": {
+						"Entity": "RelatedFinancialStatement.cdm.json/RelatedFinancialStatement",
+						"Name": "FinancialStatementId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "PeriodStartDate",
+					"Description": "The period start date for which the financial statement is prepared.",
+					"BaseAttributeReference": {
+						"Entity": "RelatedFinancialStatement.cdm.json/RelatedFinancialStatement",
+						"Name": "PeriodStartDate"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "date",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"DateFormat": "YYYY-MM-DD",
+							"HIVE_TYPE_STRING": "date"
+						}
+					}
+				},
+				{
+					"Name": "PeriodEndDate",
+					"Description": "The period end date for which the financial statement is prepared.",
+					"BaseAttributeReference": {
+						"Entity": "RelatedFinancialStatement.cdm.json/RelatedFinancialStatement",
+						"Name": "PeriodEndDate"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "date",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"DateFormat": "YYYY-MM-DD",
+							"HIVE_TYPE_STRING": "date"
+						}
+					}
+				},
+				{
+					"Name": "RelatedLegalEntityId",
+					"Description": "The unique identifier of a Legal Entity.",
+					"BaseAttributeReference": {
+						"Entity": "RelatedFinancialStatement.cdm.json/RelatedFinancialStatement",
+						"Name": "RelatedLegalEntityId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "RelatedFinancialStatementId",
+					"Description": "The unique identifier of a Financial Statement.",
+					"BaseAttributeReference": {
+						"Entity": "RelatedFinancialStatement.cdm.json/RelatedFinancialStatement",
+						"Name": "RelatedFinancialStatementId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "RelatedPeriodStartDate",
+					"Description": "The period start date for which the financial statement is prepared.",
+					"BaseAttributeReference": {
+						"Entity": "RelatedFinancialStatement.cdm.json/RelatedFinancialStatement",
+						"Name": "RelatedPeriodStartDate"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "date",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"DateFormat": "YYYY-MM-DD",
+							"HIVE_TYPE_STRING": "date"
+						}
+					}
+				},
+				{
+					"Name": "RelatedPeriodEndDate",
+					"Description": "The period end date for which the financial statement is prepared.",
+					"BaseAttributeReference": {
+						"Entity": "RelatedFinancialStatement.cdm.json/RelatedFinancialStatement",
+						"Name": "RelatedPeriodEndDate"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "date",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"DateFormat": "YYYY-MM-DD",
+							"HIVE_TYPE_STRING": "date"
+						}
+					}
+				},
+				{
+					"Name": "FinancialStatementRelationshipTypeId",
+					"Description": "The unique identifier of a Ledger Relationship Type.",
+					"BaseAttributeReference": {
+						"Entity": "RelatedFinancialStatement.cdm.json/RelatedFinancialStatement",
+						"Name": "FinancialStatementRelationshipTypeId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "FinancialStatementRelationshipNote",
+					"Description": "A note, comment or additional information regarding the financial statement relationship.",
+					"BaseAttributeReference": {
+						"Entity": "RelatedFinancialStatement.cdm.json/RelatedFinancialStatement",
+						"Name": "FinancialStatementRelationshipNote"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/RelatedFinancialStatement",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/RelatedFinancialStatement",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"LegalEntityId\":{\"entity\":\"RelatedFinancialStatement.cdm.json/RelatedFinancialStatement\",\"name\":\"LegalEntityId\"},\"FinancialStatementId\":{\"entity\":\"RelatedFinancialStatement.cdm.json/RelatedFinancialStatement\",\"name\":\"FinancialStatementId\"},\"PeriodStartDate\":{\"entity\":\"RelatedFinancialStatement.cdm.json/RelatedFinancialStatement\",\"name\":\"PeriodStartDate\"},\"PeriodEndDate\":{\"entity\":\"RelatedFinancialStatement.cdm.json/RelatedFinancialStatement\",\"name\":\"PeriodEndDate\"},\"RelatedLegalEntityId\":{\"entity\":\"RelatedFinancialStatement.cdm.json/RelatedFinancialStatement\",\"name\":\"RelatedLegalEntityId\"},\"RelatedFinancialStatementId\":{\"entity\":\"RelatedFinancialStatement.cdm.json/RelatedFinancialStatement\",\"name\":\"RelatedFinancialStatementId\"},\"RelatedPeriodStartDate\":{\"entity\":\"RelatedFinancialStatement.cdm.json/RelatedFinancialStatement\",\"name\":\"RelatedPeriodStartDate\"},\"RelatedPeriodEndDate\":{\"entity\":\"RelatedFinancialStatement.cdm.json/RelatedFinancialStatement\",\"name\":\"RelatedPeriodEndDate\"},\"FinancialStatementRelationshipTypeId\":{\"entity\":\"RelatedFinancialStatement.cdm.json/RelatedFinancialStatement\",\"name\":\"FinancialStatementRelationshipTypeId\"},\"FinancialStatementRelationshipNote\":{\"entity\":\"RelatedFinancialStatement.cdm.json/RelatedFinancialStatement\",\"name\":\"FinancialStatementRelationshipNote\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"RelatedFinancialStatement\",\"path\":\"RelatedFinancialStatement.cdm.json/RelatedFinancialStatement\"},\"description\":\"The relationship between two or more Financial Statements.\",\"primaryKey\":[\"LegalEntityId\",\"FinancialStatementId\",\"PeriodStartDate\",\"PeriodEndDate\",\"RelatedLegalEntityId\",\"RelatedFinancialStatementId\",\"RelatedPeriodStartDate\",\"RelatedPeriodEndDate\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"RelatedFinancialStatement.cdm.json/RelatedFinancialStatement\",\"name\":\"LegalEntityId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Legal Entity.\",\"isNullable\":false,\"name\":\"LegalEntityId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"RelatedFinancialStatement.cdm.json/RelatedFinancialStatement\",\"name\":\"FinancialStatementId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Financial Statement.\",\"isNullable\":false,\"name\":\"FinancialStatementId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"RelatedFinancialStatement.cdm.json/RelatedFinancialStatement\",\"name\":\"PeriodStartDate\"},\"dataType\":\"date\",\"dateFormat\":\"YYYY-MM-DD\",\"description\":\"The period start date for which the financial statement is prepared.\",\"isNullable\":false,\"name\":\"PeriodStartDate\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"RelatedFinancialStatement.cdm.json/RelatedFinancialStatement\",\"name\":\"PeriodEndDate\"},\"dataType\":\"date\",\"dateFormat\":\"YYYY-MM-DD\",\"description\":\"The period end date for which the financial statement is prepared.\",\"isNullable\":false,\"name\":\"PeriodEndDate\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"RelatedFinancialStatement.cdm.json/RelatedFinancialStatement\",\"name\":\"RelatedLegalEntityId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Legal Entity.\",\"isNullable\":false,\"name\":\"RelatedLegalEntityId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"RelatedFinancialStatement.cdm.json/RelatedFinancialStatement\",\"name\":\"RelatedFinancialStatementId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Financial Statement.\",\"isNullable\":false,\"name\":\"RelatedFinancialStatementId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"RelatedFinancialStatement.cdm.json/RelatedFinancialStatement\",\"name\":\"RelatedPeriodStartDate\"},\"dataType\":\"date\",\"dateFormat\":\"YYYY-MM-DD\",\"description\":\"The period start date for which the financial statement is prepared.\",\"isNullable\":false,\"name\":\"RelatedPeriodStartDate\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"RelatedFinancialStatement.cdm.json/RelatedFinancialStatement\",\"name\":\"RelatedPeriodEndDate\"},\"dataType\":\"date\",\"dateFormat\":\"YYYY-MM-DD\",\"description\":\"The period end date for which the financial statement is prepared.\",\"isNullable\":false,\"name\":\"RelatedPeriodEndDate\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"RelatedFinancialStatement.cdm.json/RelatedFinancialStatement\",\"name\":\"FinancialStatementRelationshipTypeId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Ledger Relationship Type.\",\"isNullable\":true,\"name\":\"FinancialStatementRelationshipTypeId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"RelatedFinancialStatement.cdm.json/RelatedFinancialStatement\",\"name\":\"FinancialStatementRelationshipNote\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"A note, comment or additional information regarding the financial statement relationship.\",\"isNullable\":true,\"name\":\"FinancialStatementRelationshipNote\"}]}}}",
+			"Description": "The relationship between two or more Financial Statements.",
+			"DisplayFolderInfo": "{\"name\":\"Accounting & Financial Reporting\",\"colorCode\":\"#0078D4\"}",
+			"PrimaryKeys": "LegalEntityId,FinancialStatementId,PeriodStartDate,PeriodEndDate,RelatedLegalEntityId,RelatedFinancialStatementId,RelatedPeriodStartDate,RelatedPeriodEndDate",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

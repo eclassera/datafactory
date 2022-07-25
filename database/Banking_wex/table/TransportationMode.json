@@ -1,0 +1,113 @@
+{
+	"name": "TransportationMode",
+	"properties": {
+		"Name": "TransportationMode",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "The mode of transportation used for the associated transportation requirement.\n\nEx:\n- Personal Automobile\n- Rented Automobile\n- Bus\n- Train\n- Airplane\n- Foot (Walking)\n- Moving Walkway\n- Escalator\n- Elevator\n- Shuttle\n- Mixed",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "TransportationModeId",
+					"Description": "The unique identifier of a Transportation Mode.",
+					"BaseAttributeReference": {
+						"Entity": "TransportationMode.cdm.json/TransportationMode",
+						"Name": "TransportationModeId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "TransportationModeName",
+					"Description": "The name of a Transportation Mode.",
+					"BaseAttributeReference": {
+						"Entity": "TransportationMode.cdm.json/TransportationMode",
+						"Name": "TransportationModeName"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 256,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "TransportationModeDescription",
+					"Description": "The description of a Transportation Mode.",
+					"BaseAttributeReference": {
+						"Entity": "TransportationMode.cdm.json/TransportationMode",
+						"Name": "TransportationModeDescription"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/TransportationMode",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/TransportationMode",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"TransportationModeId\":{\"entity\":\"TransportationMode.cdm.json/TransportationMode\",\"name\":\"TransportationModeId\"},\"TransportationModeName\":{\"entity\":\"TransportationMode.cdm.json/TransportationMode\",\"name\":\"TransportationModeName\"},\"TransportationModeDescription\":{\"entity\":\"TransportationMode.cdm.json/TransportationMode\",\"name\":\"TransportationModeDescription\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"TransportationMode\",\"path\":\"TransportationMode.cdm.json/TransportationMode\"},\"description\":\"The mode of transportation used for the associated transportation requirement.\\n\\nEx:\\n- Personal Automobile\\n- Rented Automobile\\n- Bus\\n- Train\\n- Airplane\\n- Foot (Walking)\\n- Moving Walkway\\n- Escalator\\n- Elevator\\n- Shuttle\\n- Mixed\",\"primaryKey\":[\"TransportationModeId\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"TransportationMode.cdm.json/TransportationMode\",\"name\":\"TransportationModeId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Transportation Mode.\",\"isNullable\":false,\"name\":\"TransportationModeId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"TransportationMode.cdm.json/TransportationMode\",\"name\":\"TransportationModeName\"},\"dataType\":\"string\",\"dataTypeLength\":256,\"description\":\"The name of a Transportation Mode.\",\"isNullable\":true,\"name\":\"TransportationModeName\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"TransportationMode.cdm.json/TransportationMode\",\"name\":\"TransportationModeDescription\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"The description of a Transportation Mode.\",\"isNullable\":true,\"name\":\"TransportationModeDescription\"}]}}}",
+			"Description": "The mode of transportation used for the associated transportation requirement.\n\nEx:\n- Personal Automobile\n- Rented Automobile\n- Bus\n- Train\n- Airplane\n- Foot (Walking)\n- Moving Walkway\n- Escalator\n- Elevator\n- Shuttle\n- Mixed",
+			"DisplayFolderInfo": "{\"name\":\"Party\",\"colorCode\":\"#00727A\"}",
+			"PrimaryKeys": "TransportationModeId",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

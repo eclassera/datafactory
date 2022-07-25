@@ -1,0 +1,113 @@
+{
+	"name": "SizeClass",
+	"properties": {
+		"Name": "SizeClass",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "A categorization used to differentiate  product selections within a product group based on the number of products.",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "SizeClassId",
+					"Description": "The unique identifier of a size class.",
+					"BaseAttributeReference": {
+						"Entity": "SizeClass.cdm.json/SizeClass",
+						"Name": "SizeClassId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "SizeClassName",
+					"Description": "The name of a size class.",
+					"BaseAttributeReference": {
+						"Entity": "SizeClass.cdm.json/SizeClass",
+						"Name": "SizeClassName"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 256,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "SizeClassDescription",
+					"Description": "The description of a size class.",
+					"BaseAttributeReference": {
+						"Entity": "SizeClass.cdm.json/SizeClass",
+						"Name": "SizeClassDescription"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/SizeClass",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/SizeClass",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"SizeClassId\":{\"entity\":\"SizeClass.cdm.json/SizeClass\",\"name\":\"SizeClassId\"},\"SizeClassName\":{\"entity\":\"SizeClass.cdm.json/SizeClass\",\"name\":\"SizeClassName\"},\"SizeClassDescription\":{\"entity\":\"SizeClass.cdm.json/SizeClass\",\"name\":\"SizeClassDescription\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"SizeClass\",\"path\":\"SizeClass.cdm.json/SizeClass\"},\"description\":\"A categorization used to differentiate  product selections within a product group based on the number of products.\",\"primaryKey\":[\"SizeClassId\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"SizeClass.cdm.json/SizeClass\",\"name\":\"SizeClassId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a size class.\",\"isNullable\":false,\"name\":\"SizeClassId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"SizeClass.cdm.json/SizeClass\",\"name\":\"SizeClassName\"},\"dataType\":\"string\",\"dataTypeLength\":256,\"description\":\"The name of a size class.\",\"isNullable\":true,\"name\":\"SizeClassName\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"SizeClass.cdm.json/SizeClass\",\"name\":\"SizeClassDescription\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"The description of a size class.\",\"isNullable\":true,\"name\":\"SizeClassDescription\"}]}}}",
+			"Description": "A categorization used to differentiate  product selections within a product group based on the number of products.",
+			"DisplayFolderInfo": "{\"name\":\"Product\",\"colorCode\":\"#0E3D73\"}",
+			"PrimaryKeys": "SizeClassId",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

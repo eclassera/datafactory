@@ -1,0 +1,113 @@
+{
+	"name": "ChannelRestrictionType",
+	"properties": {
+		"Name": "ChannelRestrictionType",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "A restriction that may be applied to a Channel.\n\nEx:\n- Account applicants must meet Bank standards\n- Channel may not market outside of their geography\n- Channel may not accept account applications from outside of geography",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "ChannelRestrictionTypeId",
+					"Description": "The unique identifier of a Channel Restriction Type.",
+					"BaseAttributeReference": {
+						"Entity": "ChannelRestrictionType.cdm.json/ChannelRestrictionType",
+						"Name": "ChannelRestrictionTypeId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "ChannelRestrictionTypeName",
+					"Description": "The name of a Channel Restriction Type.",
+					"BaseAttributeReference": {
+						"Entity": "ChannelRestrictionType.cdm.json/ChannelRestrictionType",
+						"Name": "ChannelRestrictionTypeName"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 256,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "ChannelRestrictionTypeDescription",
+					"Description": "The description of a Channel Restriction Type.",
+					"BaseAttributeReference": {
+						"Entity": "ChannelRestrictionType.cdm.json/ChannelRestrictionType",
+						"Name": "ChannelRestrictionTypeDescription"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/ChannelRestrictionType",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/ChannelRestrictionType",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"ChannelRestrictionTypeId\":{\"entity\":\"ChannelRestrictionType.cdm.json/ChannelRestrictionType\",\"name\":\"ChannelRestrictionTypeId\"},\"ChannelRestrictionTypeName\":{\"entity\":\"ChannelRestrictionType.cdm.json/ChannelRestrictionType\",\"name\":\"ChannelRestrictionTypeName\"},\"ChannelRestrictionTypeDescription\":{\"entity\":\"ChannelRestrictionType.cdm.json/ChannelRestrictionType\",\"name\":\"ChannelRestrictionTypeDescription\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"ChannelRestrictionType\",\"path\":\"ChannelRestrictionType.cdm.json/ChannelRestrictionType\"},\"description\":\"A restriction that may be applied to a Channel.\\n\\nEx:\\n- Account applicants must meet Bank standards\\n- Channel may not market outside of their geography\\n- Channel may not accept account applications from outside of geography\",\"primaryKey\":[\"ChannelRestrictionTypeId\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ChannelRestrictionType.cdm.json/ChannelRestrictionType\",\"name\":\"ChannelRestrictionTypeId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Channel Restriction Type.\",\"isNullable\":false,\"name\":\"ChannelRestrictionTypeId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ChannelRestrictionType.cdm.json/ChannelRestrictionType\",\"name\":\"ChannelRestrictionTypeName\"},\"dataType\":\"string\",\"dataTypeLength\":256,\"description\":\"The name of a Channel Restriction Type.\",\"isNullable\":true,\"name\":\"ChannelRestrictionTypeName\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ChannelRestrictionType.cdm.json/ChannelRestrictionType\",\"name\":\"ChannelRestrictionTypeDescription\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"The description of a Channel Restriction Type.\",\"isNullable\":true,\"name\":\"ChannelRestrictionTypeDescription\"}]}}}",
+			"Description": "A restriction that may be applied to a Channel.\n\nEx:\n- Account applicants must meet Bank standards\n- Channel may not market outside of their geography\n- Channel may not accept account applications from outside of geography",
+			"DisplayFolderInfo": "{\"name\":\"Channel\",\"colorCode\":\"#001D3F\"}",
+			"PrimaryKeys": "ChannelRestrictionTypeId",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

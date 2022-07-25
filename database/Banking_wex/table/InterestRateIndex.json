@@ -1,0 +1,113 @@
+{
+	"name": "InterestRateIndex",
+	"properties": {
+		"Name": "InterestRateIndex",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "A regularly published rate, independent of the lending institution, that measures the prevailing cost of funds, and is used periodically with the margin to set AML accrual rates.\n\nThe index is the measure of interest rate changes that the lender uses to decide how much the interest rate on an adjustable rate mortgage will change\n\nEx:\n- LIBOR\n- Prime Rate\n- Treasury Index\n- 11th District Cost Of Funds\n- Cost Of Funds Index",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "InterestRateIndexId",
+					"Description": "The unique identifier of an Interest Rate Index.",
+					"BaseAttributeReference": {
+						"Entity": "InterestRateIndex.cdm.json/InterestRateIndex",
+						"Name": "InterestRateIndexId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "InterestRateIndexName",
+					"Description": "The name of an Interest Rate Index.",
+					"BaseAttributeReference": {
+						"Entity": "InterestRateIndex.cdm.json/InterestRateIndex",
+						"Name": "InterestRateIndexName"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 256,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "InterestRateIndexDescription",
+					"Description": "The description of an Interest Rate Index.",
+					"BaseAttributeReference": {
+						"Entity": "InterestRateIndex.cdm.json/InterestRateIndex",
+						"Name": "InterestRateIndexDescription"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/InterestRateIndex",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/InterestRateIndex",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"InterestRateIndexId\":{\"entity\":\"InterestRateIndex.cdm.json/InterestRateIndex\",\"name\":\"InterestRateIndexId\"},\"InterestRateIndexName\":{\"entity\":\"InterestRateIndex.cdm.json/InterestRateIndex\",\"name\":\"InterestRateIndexName\"},\"InterestRateIndexDescription\":{\"entity\":\"InterestRateIndex.cdm.json/InterestRateIndex\",\"name\":\"InterestRateIndexDescription\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"InterestRateIndex\",\"path\":\"InterestRateIndex.cdm.json/InterestRateIndex\"},\"description\":\"A regularly published rate, independent of the lending institution, that measures the prevailing cost of funds, and is used periodically with the margin to set AML accrual rates.\\n\\nThe index is the measure of interest rate changes that the lender uses to decide how much the interest rate on an adjustable rate mortgage will change\\n\\nEx:\\n- LIBOR\\n- Prime Rate\\n- Treasury Index\\n- 11th District Cost Of Funds\\n- Cost Of Funds Index\",\"primaryKey\":[\"InterestRateIndexId\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"InterestRateIndex.cdm.json/InterestRateIndex\",\"name\":\"InterestRateIndexId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of an Interest Rate Index.\",\"isNullable\":false,\"name\":\"InterestRateIndexId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"InterestRateIndex.cdm.json/InterestRateIndex\",\"name\":\"InterestRateIndexName\"},\"dataType\":\"string\",\"dataTypeLength\":256,\"description\":\"The name of an Interest Rate Index.\",\"isNullable\":true,\"name\":\"InterestRateIndexName\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"InterestRateIndex.cdm.json/InterestRateIndex\",\"name\":\"InterestRateIndexDescription\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"The description of an Interest Rate Index.\",\"isNullable\":true,\"name\":\"InterestRateIndexDescription\"}]}}}",
+			"Description": "A regularly published rate, independent of the lending institution, that measures the prevailing cost of funds, and is used periodically with the margin to set AML accrual rates.\n\nThe index is the measure of interest rate changes that the lender uses to decide how much the interest rate on an adjustable rate mortgage will change\n\nEx:\n- LIBOR\n- Prime Rate\n- Treasury Index\n- 11th District Cost Of Funds\n- Cost Of Funds Index",
+			"DisplayFolderInfo": "{\"name\":\"Customer Credit & Collections\",\"colorCode\":\"#022F22\"}",
+			"PrimaryKeys": "InterestRateIndexId",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

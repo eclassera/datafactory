@@ -1,0 +1,162 @@
+{
+	"name": "CustomerPhysicalCharacteristic",
+	"properties": {
+		"Name": "CustomerPhysicalCharacteristic",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "The physical characteristics that identify a customer.",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "CustomerId",
+					"Description": "The unique identifier of a Customer.",
+					"BaseAttributeReference": {
+						"Entity": "CustomerPhysicalCharacteristic.cdm.json/CustomerPhysicalCharacteristic",
+						"Name": "CustomerId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "long",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "long"
+						}
+					}
+				},
+				{
+					"Name": "PhysicalCharacteristicId",
+					"Description": "The unique identifier of a physical characteristic.",
+					"BaseAttributeReference": {
+						"Entity": "CustomerPhysicalCharacteristic.cdm.json/CustomerPhysicalCharacteristic",
+						"Name": "PhysicalCharacteristicId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "Timestamp",
+					"Description": "The timestamp that the associated information is reported, recorded or effective as-of.",
+					"BaseAttributeReference": {
+						"Entity": "CustomerPhysicalCharacteristic.cdm.json/CustomerPhysicalCharacteristic",
+						"Name": "Timestamp"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "timestamp",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"TimestampFormat": "YYYY-MM-DD HH:MM:SS.fffffffff",
+							"HIVE_TYPE_STRING": "timestamp"
+						}
+					}
+				},
+				{
+					"Name": "CustomerPhysicalCharacteristicValue",
+					"Description": "The non-numeric parameter associated with the biometric.\n\nEx:\n\nEye color = blue",
+					"BaseAttributeReference": {
+						"Entity": "CustomerPhysicalCharacteristic.cdm.json/CustomerPhysicalCharacteristic",
+						"Name": "CustomerPhysicalCharacteristicValue"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "CustomerPhysicalCharacteristicNumber",
+					"Description": "The non-numeric parameter associated with the biometric.\n\nEx:\nEye color = blue",
+					"BaseAttributeReference": {
+						"Entity": "CustomerPhysicalCharacteristic.cdm.json/CustomerPhysicalCharacteristic",
+						"Name": "CustomerPhysicalCharacteristicNumber"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "CustomerPhysicalCharacteristicNote",
+					"Description": "A note, comment or additional information regarding the customer physical characteristic.",
+					"BaseAttributeReference": {
+						"Entity": "CustomerPhysicalCharacteristic.cdm.json/CustomerPhysicalCharacteristic",
+						"Name": "CustomerPhysicalCharacteristicNote"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/CustomerPhysicalCharacteristic",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/CustomerPhysicalCharacteristic",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"CustomerId\":{\"entity\":\"CustomerPhysicalCharacteristic.cdm.json/CustomerPhysicalCharacteristic\",\"name\":\"CustomerId\"},\"PhysicalCharacteristicId\":{\"entity\":\"CustomerPhysicalCharacteristic.cdm.json/CustomerPhysicalCharacteristic\",\"name\":\"PhysicalCharacteristicId\"},\"Timestamp\":{\"entity\":\"CustomerPhysicalCharacteristic.cdm.json/CustomerPhysicalCharacteristic\",\"name\":\"Timestamp\"},\"CustomerPhysicalCharacteristicValue\":{\"entity\":\"CustomerPhysicalCharacteristic.cdm.json/CustomerPhysicalCharacteristic\",\"name\":\"CustomerPhysicalCharacteristicValue\"},\"CustomerPhysicalCharacteristicNumber\":{\"entity\":\"CustomerPhysicalCharacteristic.cdm.json/CustomerPhysicalCharacteristic\",\"name\":\"CustomerPhysicalCharacteristicNumber\"},\"CustomerPhysicalCharacteristicNote\":{\"entity\":\"CustomerPhysicalCharacteristic.cdm.json/CustomerPhysicalCharacteristic\",\"name\":\"CustomerPhysicalCharacteristicNote\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"CustomerPhysicalCharacteristic\",\"path\":\"CustomerPhysicalCharacteristic.cdm.json/CustomerPhysicalCharacteristic\"},\"description\":\"The physical characteristics that identify a customer.\",\"primaryKey\":[\"CustomerId\",\"PhysicalCharacteristicId\",\"Timestamp\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CustomerPhysicalCharacteristic.cdm.json/CustomerPhysicalCharacteristic\",\"name\":\"CustomerId\"},\"dataType\":\"long\",\"description\":\"The unique identifier of a Customer.\",\"isNullable\":false,\"name\":\"CustomerId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CustomerPhysicalCharacteristic.cdm.json/CustomerPhysicalCharacteristic\",\"name\":\"PhysicalCharacteristicId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a physical characteristic.\",\"isNullable\":false,\"name\":\"PhysicalCharacteristicId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CustomerPhysicalCharacteristic.cdm.json/CustomerPhysicalCharacteristic\",\"name\":\"Timestamp\"},\"dataType\":\"timestamp\",\"description\":\"The timestamp that the associated information is reported, recorded or effective as-of.\",\"isNullable\":false,\"name\":\"Timestamp\",\"timestampFormat\":\"YYYY-MM-DD HH:MM:SS.fffffffff\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CustomerPhysicalCharacteristic.cdm.json/CustomerPhysicalCharacteristic\",\"name\":\"CustomerPhysicalCharacteristicValue\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"The non-numeric parameter associated with the biometric.\\n\\nEx:\\n\\nEye color = blue\",\"isNullable\":true,\"name\":\"CustomerPhysicalCharacteristicValue\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CustomerPhysicalCharacteristic.cdm.json/CustomerPhysicalCharacteristic\",\"name\":\"CustomerPhysicalCharacteristicNumber\"},\"dataType\":\"integer\",\"description\":\"The non-numeric parameter associated with the biometric.\\n\\nEx:\\nEye color = blue\",\"isNullable\":true,\"name\":\"CustomerPhysicalCharacteristicNumber\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CustomerPhysicalCharacteristic.cdm.json/CustomerPhysicalCharacteristic\",\"name\":\"CustomerPhysicalCharacteristicNote\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"A note, comment or additional information regarding the customer physical characteristic.\",\"isNullable\":true,\"name\":\"CustomerPhysicalCharacteristicNote\"}]}}}",
+			"Description": "The physical characteristics that identify a customer.",
+			"DisplayFolderInfo": "{\"name\":\"Customer\",\"colorCode\":\"#4B003F\"}",
+			"PrimaryKeys": "CustomerId,PhysicalCharacteristicId,Timestamp",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

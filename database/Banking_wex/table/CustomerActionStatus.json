@@ -1,0 +1,113 @@
+{
+	"name": "CustomerActionStatus",
+	"properties": {
+		"Name": "CustomerActionStatus",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "The status of the associated Customer Action.\n\nEx:\n- Planned\n- In Progress\n- Completed",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "CustomerActionStatusId",
+					"Description": "The unique identifier of a Customer Action Status.",
+					"BaseAttributeReference": {
+						"Entity": "CustomerActionStatus.cdm.json/CustomerActionStatus",
+						"Name": "CustomerActionStatusId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "CustomerActionStatusName",
+					"Description": "The name of a Customer Action Status.",
+					"BaseAttributeReference": {
+						"Entity": "CustomerActionStatus.cdm.json/CustomerActionStatus",
+						"Name": "CustomerActionStatusName"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 256,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "CustomerActionStatusDescription",
+					"Description": "The description of a Customer Action Status.",
+					"BaseAttributeReference": {
+						"Entity": "CustomerActionStatus.cdm.json/CustomerActionStatus",
+						"Name": "CustomerActionStatusDescription"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/CustomerActionStatus",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/CustomerActionStatus",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"CustomerActionStatusId\":{\"entity\":\"CustomerActionStatus.cdm.json/CustomerActionStatus\",\"name\":\"CustomerActionStatusId\"},\"CustomerActionStatusName\":{\"entity\":\"CustomerActionStatus.cdm.json/CustomerActionStatus\",\"name\":\"CustomerActionStatusName\"},\"CustomerActionStatusDescription\":{\"entity\":\"CustomerActionStatus.cdm.json/CustomerActionStatus\",\"name\":\"CustomerActionStatusDescription\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"CustomerActionStatus\",\"path\":\"CustomerActionStatus.cdm.json/CustomerActionStatus\"},\"description\":\"The status of the associated Customer Action.\\n\\nEx:\\n- Planned\\n- In Progress\\n- Completed\",\"primaryKey\":[\"CustomerActionStatusId\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CustomerActionStatus.cdm.json/CustomerActionStatus\",\"name\":\"CustomerActionStatusId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Customer Action Status.\",\"isNullable\":false,\"name\":\"CustomerActionStatusId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CustomerActionStatus.cdm.json/CustomerActionStatus\",\"name\":\"CustomerActionStatusName\"},\"dataType\":\"string\",\"dataTypeLength\":256,\"description\":\"The name of a Customer Action Status.\",\"isNullable\":true,\"name\":\"CustomerActionStatusName\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CustomerActionStatus.cdm.json/CustomerActionStatus\",\"name\":\"CustomerActionStatusDescription\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"The description of a Customer Action Status.\",\"isNullable\":true,\"name\":\"CustomerActionStatusDescription\"}]}}}",
+			"Description": "The status of the associated Customer Action.\n\nEx:\n- Planned\n- In Progress\n- Completed",
+			"DisplayFolderInfo": "{\"name\":\"Customer\",\"colorCode\":\"#4B003F\"}",
+			"PrimaryKeys": "CustomerActionStatusId",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

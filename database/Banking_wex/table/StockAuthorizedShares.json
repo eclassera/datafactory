@@ -1,0 +1,144 @@
+{
+	"name": "StockAuthorizedShares",
+	"properties": {
+		"Name": "StockAuthorizedShares",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "Also called \"authorized stock\", it is the maximum number of shares of any class that a corporation may issue. \n\nThis amount is set at the time of incorporation and is part of the Articles of Incorporation. A corporation provides for future increases in authorized stock by the votes of stockholders. \n\nThe corporation does not have to issue all the authorized shares.",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "StockId",
+					"Description": "The unique identifier of a Financial Product.",
+					"BaseAttributeReference": {
+						"Entity": "StockAuthorizedShares.cdm.json/StockAuthorizedShares",
+						"Name": "StockId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "long",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "long"
+						}
+					}
+				},
+				{
+					"Name": "Date",
+					"Description": "The date that the authorized shares were issued.",
+					"BaseAttributeReference": {
+						"Entity": "StockAuthorizedShares.cdm.json/StockAuthorizedShares",
+						"Name": "Date"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "date",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"DateFormat": "YYYY-MM-DD",
+							"HIVE_TYPE_STRING": "date"
+						}
+					}
+				},
+				{
+					"Name": "NumberOfAuthorizedShares",
+					"Description": "The number of shares authorized for sale or issue.",
+					"BaseAttributeReference": {
+						"Entity": "StockAuthorizedShares.cdm.json/StockAuthorizedShares",
+						"Name": "NumberOfAuthorizedShares"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "NumberSharesIssued",
+					"Description": "The number of shares actually issued.",
+					"BaseAttributeReference": {
+						"Entity": "StockAuthorizedShares.cdm.json/StockAuthorizedShares",
+						"Name": "NumberSharesIssued"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "PublicFloatNumberOfShares",
+					"Description": "The portion of the issued stock not held by affiliates (insiders) of the public company.",
+					"BaseAttributeReference": {
+						"Entity": "StockAuthorizedShares.cdm.json/StockAuthorizedShares",
+						"Name": "PublicFloatNumberOfShares"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/StockAuthorizedShares",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/StockAuthorizedShares",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"StockId\":{\"entity\":\"StockAuthorizedShares.cdm.json/StockAuthorizedShares\",\"name\":\"StockId\"},\"Date\":{\"entity\":\"StockAuthorizedShares.cdm.json/StockAuthorizedShares\",\"name\":\"Date\"},\"NumberOfAuthorizedShares\":{\"entity\":\"StockAuthorizedShares.cdm.json/StockAuthorizedShares\",\"name\":\"NumberOfAuthorizedShares\"},\"NumberSharesIssued\":{\"entity\":\"StockAuthorizedShares.cdm.json/StockAuthorizedShares\",\"name\":\"NumberSharesIssued\"},\"PublicFloatNumberOfShares\":{\"entity\":\"StockAuthorizedShares.cdm.json/StockAuthorizedShares\",\"name\":\"PublicFloatNumberOfShares\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"StockAuthorizedShares\",\"path\":\"StockAuthorizedShares.cdm.json/StockAuthorizedShares\"},\"description\":\"Also called \\\"authorized stock\\\", it is the maximum number of shares of any class that a corporation may issue. \\n\\nThis amount is set at the time of incorporation and is part of the Articles of Incorporation. A corporation provides for future increases in authorized stock by the votes of stockholders. \\n\\nThe corporation does not have to issue all the authorized shares.\",\"primaryKey\":[\"StockId\",\"Date\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"StockAuthorizedShares.cdm.json/StockAuthorizedShares\",\"name\":\"StockId\"},\"dataType\":\"long\",\"description\":\"The unique identifier of a Financial Product.\",\"isNullable\":false,\"name\":\"StockId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"StockAuthorizedShares.cdm.json/StockAuthorizedShares\",\"name\":\"Date\"},\"dataType\":\"date\",\"dateFormat\":\"YYYY-MM-DD\",\"description\":\"The date that the authorized shares were issued.\",\"isNullable\":false,\"name\":\"Date\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"StockAuthorizedShares.cdm.json/StockAuthorizedShares\",\"name\":\"NumberOfAuthorizedShares\"},\"dataType\":\"integer\",\"description\":\"The number of shares authorized for sale or issue.\",\"isNullable\":true,\"name\":\"NumberOfAuthorizedShares\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"StockAuthorizedShares.cdm.json/StockAuthorizedShares\",\"name\":\"NumberSharesIssued\"},\"dataType\":\"integer\",\"description\":\"The number of shares actually issued.\",\"isNullable\":true,\"name\":\"NumberSharesIssued\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"StockAuthorizedShares.cdm.json/StockAuthorizedShares\",\"name\":\"PublicFloatNumberOfShares\"},\"dataType\":\"integer\",\"description\":\"The portion of the issued stock not held by affiliates (insiders) of the public company.\",\"isNullable\":true,\"name\":\"PublicFloatNumberOfShares\"}]}}}",
+			"Description": "Also called \"authorized stock\", it is the maximum number of shares of any class that a corporation may issue. \n\nThis amount is set at the time of incorporation and is part of the Articles of Incorporation. A corporation provides for future increases in authorized stock by the votes of stockholders. \n\nThe corporation does not have to issue all the authorized shares.",
+			"DisplayFolderInfo": "{\"name\":\"Financial Product\",\"colorCode\":\"#001475\"}",
+			"PrimaryKeys": "StockId,Date",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

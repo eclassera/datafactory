@@ -1,0 +1,372 @@
+{
+	"name": "EquifaxCompanyProfile",
+	"properties": {
+		"Name": "EquifaxCompanyProfile",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "Provides the business name and address on the returned folder which most closely matches your Equifax ePORT® inquiry information, as well as firmographic information about that location. If a legal name is available, it is also returned. Company name, address and firmographics for the registered site are also returned.\n\nThe EFX ID™ is a unique and persistent nine-digit number that identifies and tracks the business unit with which you have the credit relationship; if the EFX ID is used on the inquiry, then only the EFX ID is used to locate a folder and the business name and address associated with that EFX ID are returned.",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "EfxId",
+					"Description": "The EFX ID™ is a unique and persistent nine-digit number that identifies and tracks the business unit with which you have the credit relationship;",
+					"BaseAttributeReference": {
+						"Entity": "EquifaxCompanyProfile.cdm.json/EquifaxCompanyProfile",
+						"Name": "EfxId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "ProfileTimestamp",
+					"Description": "Provides the timestamp when the inquiry was made as recorded\nby Equifax (Eastern Time).",
+					"BaseAttributeReference": {
+						"Entity": "EquifaxCompanyProfile.cdm.json/EquifaxCompanyProfile",
+						"Name": "ProfileTimestamp"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "timestamp",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"TimestampFormat": "YYYY-MM-DD HH:MM:SS.fffffffff",
+							"HIVE_TYPE_STRING": "timestamp"
+						}
+					}
+				},
+				{
+					"Name": "CompanyName",
+					"Description": "The company name.",
+					"BaseAttributeReference": {
+						"Entity": "EquifaxCompanyProfile.cdm.json/EquifaxCompanyProfile",
+						"Name": "CompanyName"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 256,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "CompanyAddress",
+					"Description": "The 'street/po box' component of the company address.",
+					"BaseAttributeReference": {
+						"Entity": "EquifaxCompanyProfile.cdm.json/EquifaxCompanyProfile",
+						"Name": "CompanyAddress"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 512,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "CompanyCity",
+					"Description": "The city component of the company address.",
+					"BaseAttributeReference": {
+						"Entity": "EquifaxCompanyProfile.cdm.json/EquifaxCompanyProfile",
+						"Name": "CompanyCity"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 256,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "CompanyState",
+					"Description": "The 'state' component of the company address.",
+					"BaseAttributeReference": {
+						"Entity": "EquifaxCompanyProfile.cdm.json/EquifaxCompanyProfile",
+						"Name": "CompanyState"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 64,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "CompanyZipCode",
+					"Description": "The 'zip code' component of the company address.",
+					"BaseAttributeReference": {
+						"Entity": "EquifaxCompanyProfile.cdm.json/EquifaxCompanyProfile",
+						"Name": "CompanyZipCode"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "decimal",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Precision": 11,
+						"Scale": 0,
+						"Properties": {
+							"HIVE_TYPE_STRING": "decimal"
+						}
+					}
+				},
+				{
+					"Name": "CompanyTelephoneNumber",
+					"Description": "The company telephone number.",
+					"BaseAttributeReference": {
+						"Entity": "EquifaxCompanyProfile.cdm.json/EquifaxCompanyProfile",
+						"Name": "CompanyTelephoneNumber"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "decimal",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Precision": 15,
+						"Scale": 0,
+						"Properties": {
+							"HIVE_TYPE_STRING": "decimal"
+						}
+					}
+				},
+				{
+					"Name": "BusinessType",
+					"Description": "The type of business.\n\nEx:\n- Corporation",
+					"BaseAttributeReference": {
+						"Entity": "EquifaxCompanyProfile.cdm.json/EquifaxCompanyProfile",
+						"Name": "BusinessType"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 256,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "LiabilityType",
+					"Description": "The type of company liability.",
+					"BaseAttributeReference": {
+						"Entity": "EquifaxCompanyProfile.cdm.json/EquifaxCompanyProfile",
+						"Name": "LiabilityType"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 256,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "EstablishedDate",
+					"Description": "The date the company was established.",
+					"BaseAttributeReference": {
+						"Entity": "EquifaxCompanyProfile.cdm.json/EquifaxCompanyProfile",
+						"Name": "EstablishedDate"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "date",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"DateFormat": "YYYY-MM-DD",
+							"HIVE_TYPE_STRING": "date"
+						}
+					}
+				},
+				{
+					"Name": "OwnershipType",
+					"Description": "The type of company ownership.\n\nEx:\n- Private",
+					"BaseAttributeReference": {
+						"Entity": "EquifaxCompanyProfile.cdm.json/EquifaxCompanyProfile",
+						"Name": "OwnershipType"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "LocationType",
+					"Description": "The type of company location.\n\nEx:\n- Branch\n- Headquarters",
+					"BaseAttributeReference": {
+						"Entity": "EquifaxCompanyProfile.cdm.json/EquifaxCompanyProfile",
+						"Name": "LocationType"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 256,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "NumberOfEmployees",
+					"Description": "The name of employees.\n\nEx:\n10-24",
+					"BaseAttributeReference": {
+						"Entity": "EquifaxCompanyProfile.cdm.json/EquifaxCompanyProfile",
+						"Name": "NumberOfEmployees"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "AnnualSalesRangeAmount",
+					"Description": "The company annual sales range.\n\nEx:\n$500,000-$999,999",
+					"BaseAttributeReference": {
+						"Entity": "EquifaxCompanyProfile.cdm.json/EquifaxCompanyProfile",
+						"Name": "AnnualSalesRangeAmount"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "decimal",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Precision": 18,
+						"Scale": 2,
+						"Properties": {
+							"HIVE_TYPE_STRING": "decimal"
+						}
+					}
+				},
+				{
+					"Name": "SicCode",
+					"Description": "The company SIC Code.",
+					"BaseAttributeReference": {
+						"Entity": "EquifaxCompanyProfile.cdm.json/EquifaxCompanyProfile",
+						"Name": "SicCode"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "decimal",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Precision": 4,
+						"Scale": 0,
+						"Properties": {
+							"HIVE_TYPE_STRING": "decimal"
+						}
+					}
+				},
+				{
+					"Name": "NaicsCode",
+					"Description": "The company NAICS Code.",
+					"BaseAttributeReference": {
+						"Entity": "EquifaxCompanyProfile.cdm.json/EquifaxCompanyProfile",
+						"Name": "NaicsCode"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "decimal",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Precision": 6,
+						"Scale": 0,
+						"Properties": {
+							"HIVE_TYPE_STRING": "decimal"
+						}
+					}
+				},
+				{
+					"Name": "UltimateParentName",
+					"Description": "The name of the company's ultimate parent legal entity.",
+					"BaseAttributeReference": {
+						"Entity": "EquifaxCompanyProfile.cdm.json/EquifaxCompanyProfile",
+						"Name": "UltimateParentName"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 256,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/EquifaxCompanyProfile",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/EquifaxCompanyProfile",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"EfxId\":{\"entity\":\"EquifaxCompanyProfile.cdm.json/EquifaxCompanyProfile\",\"name\":\"EfxId\"},\"ProfileTimestamp\":{\"entity\":\"EquifaxCompanyProfile.cdm.json/EquifaxCompanyProfile\",\"name\":\"ProfileTimestamp\"},\"CompanyName\":{\"entity\":\"EquifaxCompanyProfile.cdm.json/EquifaxCompanyProfile\",\"name\":\"CompanyName\"},\"CompanyAddress\":{\"entity\":\"EquifaxCompanyProfile.cdm.json/EquifaxCompanyProfile\",\"name\":\"CompanyAddress\"},\"CompanyCity\":{\"entity\":\"EquifaxCompanyProfile.cdm.json/EquifaxCompanyProfile\",\"name\":\"CompanyCity\"},\"CompanyState\":{\"entity\":\"EquifaxCompanyProfile.cdm.json/EquifaxCompanyProfile\",\"name\":\"CompanyState\"},\"CompanyZipCode\":{\"entity\":\"EquifaxCompanyProfile.cdm.json/EquifaxCompanyProfile\",\"name\":\"CompanyZipCode\"},\"CompanyTelephoneNumber\":{\"entity\":\"EquifaxCompanyProfile.cdm.json/EquifaxCompanyProfile\",\"name\":\"CompanyTelephoneNumber\"},\"BusinessType\":{\"entity\":\"EquifaxCompanyProfile.cdm.json/EquifaxCompanyProfile\",\"name\":\"BusinessType\"},\"LiabilityType\":{\"entity\":\"EquifaxCompanyProfile.cdm.json/EquifaxCompanyProfile\",\"name\":\"LiabilityType\"},\"EstablishedDate\":{\"entity\":\"EquifaxCompanyProfile.cdm.json/EquifaxCompanyProfile\",\"name\":\"EstablishedDate\"},\"OwnershipType\":{\"entity\":\"EquifaxCompanyProfile.cdm.json/EquifaxCompanyProfile\",\"name\":\"OwnershipType\"},\"LocationType\":{\"entity\":\"EquifaxCompanyProfile.cdm.json/EquifaxCompanyProfile\",\"name\":\"LocationType\"},\"NumberOfEmployees\":{\"entity\":\"EquifaxCompanyProfile.cdm.json/EquifaxCompanyProfile\",\"name\":\"NumberOfEmployees\"},\"AnnualSalesRangeAmount\":{\"entity\":\"EquifaxCompanyProfile.cdm.json/EquifaxCompanyProfile\",\"name\":\"AnnualSalesRangeAmount\"},\"SicCode\":{\"entity\":\"EquifaxCompanyProfile.cdm.json/EquifaxCompanyProfile\",\"name\":\"SicCode\"},\"NaicsCode\":{\"entity\":\"EquifaxCompanyProfile.cdm.json/EquifaxCompanyProfile\",\"name\":\"NaicsCode\"},\"UltimateParentName\":{\"entity\":\"EquifaxCompanyProfile.cdm.json/EquifaxCompanyProfile\",\"name\":\"UltimateParentName\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"EquifaxCompanyProfile\",\"path\":\"EquifaxCompanyProfile.cdm.json/EquifaxCompanyProfile\"},\"description\":\"Provides the business name and address on the returned folder which most closely matches your Equifax ePORT® inquiry information, as well as firmographic information about that location. If a legal name is available, it is also returned. Company name, address and firmographics for the registered site are also returned.\\n\\nThe EFX ID™ is a unique and persistent nine-digit number that identifies and tracks the business unit with which you have the credit relationship; if the EFX ID is used on the inquiry, then only the EFX ID is used to locate a folder and the business name and address associated with that EFX ID are returned.\",\"primaryKey\":[\"EfxId\",\"ProfileTimestamp\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"EquifaxCompanyProfile.cdm.json/EquifaxCompanyProfile\",\"name\":\"EfxId\"},\"dataType\":\"integer\",\"description\":\"The EFX ID™ is a unique and persistent nine-digit number that identifies and tracks the business unit with which you have the credit relationship;\",\"isNullable\":false,\"name\":\"EfxId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"EquifaxCompanyProfile.cdm.json/EquifaxCompanyProfile\",\"name\":\"ProfileTimestamp\"},\"dataType\":\"timestamp\",\"description\":\"Provides the timestamp when the inquiry was made as recorded\\nby Equifax (Eastern Time).\",\"isNullable\":false,\"name\":\"ProfileTimestamp\",\"timestampFormat\":\"YYYY-MM-DD HH:MM:SS.fffffffff\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"EquifaxCompanyProfile.cdm.json/EquifaxCompanyProfile\",\"name\":\"CompanyName\"},\"dataType\":\"string\",\"dataTypeLength\":256,\"description\":\"The company name.\",\"isNullable\":true,\"name\":\"CompanyName\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"EquifaxCompanyProfile.cdm.json/EquifaxCompanyProfile\",\"name\":\"CompanyAddress\"},\"dataType\":\"string\",\"dataTypeLength\":512,\"description\":\"The 'street/po box' component of the company address.\",\"isNullable\":true,\"name\":\"CompanyAddress\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"EquifaxCompanyProfile.cdm.json/EquifaxCompanyProfile\",\"name\":\"CompanyCity\"},\"dataType\":\"string\",\"dataTypeLength\":256,\"description\":\"The city component of the company address.\",\"isNullable\":true,\"name\":\"CompanyCity\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"EquifaxCompanyProfile.cdm.json/EquifaxCompanyProfile\",\"name\":\"CompanyState\"},\"dataType\":\"string\",\"dataTypeLength\":64,\"description\":\"The 'state' component of the company address.\",\"isNullable\":true,\"name\":\"CompanyState\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"EquifaxCompanyProfile.cdm.json/EquifaxCompanyProfile\",\"name\":\"CompanyZipCode\"},\"dataType\":\"decimal\",\"dataTypeLength\":11,\"description\":\"The 'zip code' component of the company address.\",\"isNullable\":true,\"scale\":0,\"name\":\"CompanyZipCode\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"EquifaxCompanyProfile.cdm.json/EquifaxCompanyProfile\",\"name\":\"CompanyTelephoneNumber\"},\"dataType\":\"decimal\",\"dataTypeLength\":15,\"description\":\"The company telephone number.\",\"isNullable\":true,\"scale\":0,\"name\":\"CompanyTelephoneNumber\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"EquifaxCompanyProfile.cdm.json/EquifaxCompanyProfile\",\"name\":\"BusinessType\"},\"dataType\":\"string\",\"dataTypeLength\":256,\"description\":\"The type of business.\\n\\nEx:\\n- Corporation\",\"isNullable\":true,\"name\":\"BusinessType\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"EquifaxCompanyProfile.cdm.json/EquifaxCompanyProfile\",\"name\":\"LiabilityType\"},\"dataType\":\"string\",\"dataTypeLength\":256,\"description\":\"The type of company liability.\",\"isNullable\":true,\"name\":\"LiabilityType\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"EquifaxCompanyProfile.cdm.json/EquifaxCompanyProfile\",\"name\":\"EstablishedDate\"},\"dataType\":\"date\",\"dateFormat\":\"YYYY-MM-DD\",\"description\":\"The date the company was established.\",\"isNullable\":true,\"name\":\"EstablishedDate\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"EquifaxCompanyProfile.cdm.json/EquifaxCompanyProfile\",\"name\":\"OwnershipType\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"The type of company ownership.\\n\\nEx:\\n- Private\",\"isNullable\":true,\"name\":\"OwnershipType\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"EquifaxCompanyProfile.cdm.json/EquifaxCompanyProfile\",\"name\":\"LocationType\"},\"dataType\":\"string\",\"dataTypeLength\":256,\"description\":\"The type of company location.\\n\\nEx:\\n- Branch\\n- Headquarters\",\"isNullable\":true,\"name\":\"LocationType\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"EquifaxCompanyProfile.cdm.json/EquifaxCompanyProfile\",\"name\":\"NumberOfEmployees\"},\"dataType\":\"integer\",\"description\":\"The name of employees.\\n\\nEx:\\n10-24\",\"isNullable\":true,\"name\":\"NumberOfEmployees\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"EquifaxCompanyProfile.cdm.json/EquifaxCompanyProfile\",\"name\":\"AnnualSalesRangeAmount\"},\"dataType\":\"decimal\",\"dataTypeLength\":18,\"description\":\"The company annual sales range.\\n\\nEx:\\n$500,000-$999,999\",\"isNullable\":true,\"scale\":2,\"name\":\"AnnualSalesRangeAmount\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"EquifaxCompanyProfile.cdm.json/EquifaxCompanyProfile\",\"name\":\"SicCode\"},\"dataType\":\"decimal\",\"dataTypeLength\":4,\"description\":\"The company SIC Code.\",\"isNullable\":true,\"scale\":0,\"name\":\"SicCode\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"EquifaxCompanyProfile.cdm.json/EquifaxCompanyProfile\",\"name\":\"NaicsCode\"},\"dataType\":\"decimal\",\"dataTypeLength\":6,\"description\":\"The company NAICS Code.\",\"isNullable\":true,\"scale\":0,\"name\":\"NaicsCode\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"EquifaxCompanyProfile.cdm.json/EquifaxCompanyProfile\",\"name\":\"UltimateParentName\"},\"dataType\":\"string\",\"dataTypeLength\":256,\"description\":\"The name of the company's ultimate parent legal entity.\",\"isNullable\":true,\"name\":\"UltimateParentName\"}]}}}",
+			"Description": "Provides the business name and address on the returned folder which most closely matches your Equifax ePORT® inquiry information, as well as firmographic information about that location. If a legal name is available, it is also returned. Company name, address and firmographics for the registered site are also returned.\n\nThe EFX ID™ is a unique and persistent nine-digit number that identifies and tracks the business unit with which you have the credit relationship; if the EFX ID is used on the inquiry, then only the EFX ID is used to locate a folder and the business name and address associated with that EFX ID are returned.",
+			"DisplayFolderInfo": "{\"name\":\"Customer Credit & Collections\",\"colorCode\":\"#022F22\"}",
+			"PrimaryKeys": "EfxId,ProfileTimestamp",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

@@ -1,0 +1,215 @@
+{
+	"name": "CustomerPartyAuthorization",
+	"properties": {
+		"Name": "CustomerPartyAuthorization",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "The one or more persons/employees authorized to sign invoices on behalf of the Customer.    \n\nEx:\nA 'party' might be an attorney given Power Of Attorney on behalf of the Customer.",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "CustomerId",
+					"Description": "The unique identifier of a Customer.",
+					"BaseAttributeReference": {
+						"Entity": "CustomerPartyAuthorization.cdm.json/CustomerPartyAuthorization",
+						"Name": "CustomerId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "long",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "long"
+						}
+					}
+				},
+				{
+					"Name": "PartyId",
+					"Description": "The unique identifier of a Party.",
+					"BaseAttributeReference": {
+						"Entity": "CustomerPartyAuthorization.cdm.json/CustomerPartyAuthorization",
+						"Name": "PartyId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "long",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "long"
+						}
+					}
+				},
+				{
+					"Name": "PositionStartDate",
+					"Description": "The starting date that the person held the associated officer title.",
+					"BaseAttributeReference": {
+						"Entity": "CustomerPartyAuthorization.cdm.json/CustomerPartyAuthorization",
+						"Name": "PositionStartDate"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "date",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"DateFormat": "YYYY-MM-DD",
+							"HIVE_TYPE_STRING": "date"
+						}
+					}
+				},
+				{
+					"Name": "AuthorizationTypeId",
+					"Description": "The unique identifier of an Authorization Type.",
+					"BaseAttributeReference": {
+						"Entity": "CustomerPartyAuthorization.cdm.json/CustomerPartyAuthorization",
+						"Name": "AuthorizationTypeId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "PeriodStartDate",
+					"Description": "The period start date for which the associated authorization is granted.",
+					"BaseAttributeReference": {
+						"Entity": "CustomerPartyAuthorization.cdm.json/CustomerPartyAuthorization",
+						"Name": "PeriodStartDate"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "date",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"DateFormat": "YYYY-MM-DD",
+							"HIVE_TYPE_STRING": "date"
+						}
+					}
+				},
+				{
+					"Name": "PeriodEndDate",
+					"Description": "The period end date for which the associated authorization is granted.",
+					"BaseAttributeReference": {
+						"Entity": "CustomerPartyAuthorization.cdm.json/CustomerPartyAuthorization",
+						"Name": "PeriodEndDate"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "date",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"DateFormat": "YYYY-MM-DD",
+							"HIVE_TYPE_STRING": "date"
+						}
+					}
+				},
+				{
+					"Name": "MinimumAmount",
+					"Description": "The minimum point of the 'signing authority' for which the signer has authority.\n\nEx:\nContracts from $100- $100,000 in value\nInvoices from $0-$5,000",
+					"BaseAttributeReference": {
+						"Entity": "CustomerPartyAuthorization.cdm.json/CustomerPartyAuthorization",
+						"Name": "MinimumAmount"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "decimal",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Precision": 18,
+						"Scale": 2,
+						"Properties": {
+							"HIVE_TYPE_STRING": "decimal"
+						}
+					}
+				},
+				{
+					"Name": "MaximumAmount",
+					"Description": "The maximum point of the 'signing authority' for which the signer has authority.\n\nEx:\nContracts from $100- $100,000 in value\nInvoices from $0-$5,000",
+					"BaseAttributeReference": {
+						"Entity": "CustomerPartyAuthorization.cdm.json/CustomerPartyAuthorization",
+						"Name": "MaximumAmount"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "decimal",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Precision": 18,
+						"Scale": 2,
+						"Properties": {
+							"HIVE_TYPE_STRING": "decimal"
+						}
+					}
+				},
+				{
+					"Name": "AuthorizationNote",
+					"Description": "A note, comment or additional information regarding the associated authorization.",
+					"BaseAttributeReference": {
+						"Entity": "CustomerPartyAuthorization.cdm.json/CustomerPartyAuthorization",
+						"Name": "AuthorizationNote"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/CustomerPartyAuthorization",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/CustomerPartyAuthorization",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"CustomerId\":{\"entity\":\"CustomerPartyAuthorization.cdm.json/CustomerPartyAuthorization\",\"name\":\"CustomerId\"},\"PartyId\":{\"entity\":\"CustomerPartyAuthorization.cdm.json/CustomerPartyAuthorization\",\"name\":\"PartyId\"},\"PositionStartDate\":{\"entity\":\"CustomerPartyAuthorization.cdm.json/CustomerPartyAuthorization\",\"name\":\"PositionStartDate\"},\"AuthorizationTypeId\":{\"entity\":\"CustomerPartyAuthorization.cdm.json/CustomerPartyAuthorization\",\"name\":\"AuthorizationTypeId\"},\"PeriodStartDate\":{\"entity\":\"CustomerPartyAuthorization.cdm.json/CustomerPartyAuthorization\",\"name\":\"PeriodStartDate\"},\"PeriodEndDate\":{\"entity\":\"CustomerPartyAuthorization.cdm.json/CustomerPartyAuthorization\",\"name\":\"PeriodEndDate\"},\"MinimumAmount\":{\"entity\":\"CustomerPartyAuthorization.cdm.json/CustomerPartyAuthorization\",\"name\":\"MinimumAmount\"},\"MaximumAmount\":{\"entity\":\"CustomerPartyAuthorization.cdm.json/CustomerPartyAuthorization\",\"name\":\"MaximumAmount\"},\"AuthorizationNote\":{\"entity\":\"CustomerPartyAuthorization.cdm.json/CustomerPartyAuthorization\",\"name\":\"AuthorizationNote\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"CustomerPartyAuthorization\",\"path\":\"CustomerPartyAuthorization.cdm.json/CustomerPartyAuthorization\"},\"description\":\"The one or more persons/employees authorized to sign invoices on behalf of the Customer.    \\n\\nEx:\\nA 'party' might be an attorney given Power Of Attorney on behalf of the Customer.\",\"primaryKey\":[\"CustomerId\",\"PartyId\",\"PositionStartDate\",\"AuthorizationTypeId\",\"PeriodStartDate\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CustomerPartyAuthorization.cdm.json/CustomerPartyAuthorization\",\"name\":\"CustomerId\"},\"dataType\":\"long\",\"description\":\"The unique identifier of a Customer.\",\"isNullable\":false,\"name\":\"CustomerId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CustomerPartyAuthorization.cdm.json/CustomerPartyAuthorization\",\"name\":\"PartyId\"},\"dataType\":\"long\",\"description\":\"The unique identifier of a Party.\",\"isNullable\":false,\"name\":\"PartyId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CustomerPartyAuthorization.cdm.json/CustomerPartyAuthorization\",\"name\":\"PositionStartDate\"},\"dataType\":\"date\",\"dateFormat\":\"YYYY-MM-DD\",\"description\":\"The starting date that the person held the associated officer title.\",\"isNullable\":false,\"name\":\"PositionStartDate\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CustomerPartyAuthorization.cdm.json/CustomerPartyAuthorization\",\"name\":\"AuthorizationTypeId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of an Authorization Type.\",\"isNullable\":false,\"name\":\"AuthorizationTypeId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CustomerPartyAuthorization.cdm.json/CustomerPartyAuthorization\",\"name\":\"PeriodStartDate\"},\"dataType\":\"date\",\"dateFormat\":\"YYYY-MM-DD\",\"description\":\"The period start date for which the associated authorization is granted.\",\"isNullable\":false,\"name\":\"PeriodStartDate\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CustomerPartyAuthorization.cdm.json/CustomerPartyAuthorization\",\"name\":\"PeriodEndDate\"},\"dataType\":\"date\",\"dateFormat\":\"YYYY-MM-DD\",\"description\":\"The period end date for which the associated authorization is granted.\",\"isNullable\":false,\"name\":\"PeriodEndDate\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CustomerPartyAuthorization.cdm.json/CustomerPartyAuthorization\",\"name\":\"MinimumAmount\"},\"dataType\":\"decimal\",\"dataTypeLength\":18,\"description\":\"The minimum point of the 'signing authority' for which the signer has authority.\\n\\nEx:\\nContracts from $100- $100,000 in value\\nInvoices from $0-$5,000\",\"isNullable\":false,\"scale\":2,\"name\":\"MinimumAmount\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CustomerPartyAuthorization.cdm.json/CustomerPartyAuthorization\",\"name\":\"MaximumAmount\"},\"dataType\":\"decimal\",\"dataTypeLength\":18,\"description\":\"The maximum point of the 'signing authority' for which the signer has authority.\\n\\nEx:\\nContracts from $100- $100,000 in value\\nInvoices from $0-$5,000\",\"isNullable\":false,\"scale\":2,\"name\":\"MaximumAmount\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CustomerPartyAuthorization.cdm.json/CustomerPartyAuthorization\",\"name\":\"AuthorizationNote\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"A note, comment or additional information regarding the associated authorization.\",\"isNullable\":true,\"name\":\"AuthorizationNote\"}]}}}",
+			"Description": "The one or more persons/employees authorized to sign invoices on behalf of the Customer.    \n\nEx:\nA 'party' might be an attorney given Power Of Attorney on behalf of the Customer.",
+			"DisplayFolderInfo": "{\"name\":\"Customer\",\"colorCode\":\"#4B003F\"}",
+			"PrimaryKeys": "CustomerId,PartyId,PositionStartDate,AuthorizationTypeId,PeriodStartDate",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

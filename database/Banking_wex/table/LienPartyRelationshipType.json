@@ -1,0 +1,113 @@
+{
+	"name": "LienPartyRelationshipType",
+	"properties": {
+		"Name": "LienPartyRelationshipType",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "The nature of the lien - party relationship,\n\n Ex:\n- Creditor\n- Debtor\n- Creditor Attorney",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "LienPartyRelationshipTypeId",
+					"Description": "The unique identifier of a Lien - Party relationship type.",
+					"BaseAttributeReference": {
+						"Entity": "LienPartyRelationshipType.cdm.json/LienPartyRelationshipType",
+						"Name": "LienPartyRelationshipTypeId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "LienPartyRelationshipTypeName",
+					"Description": "The name of a Lien - Party relationship type.",
+					"BaseAttributeReference": {
+						"Entity": "LienPartyRelationshipType.cdm.json/LienPartyRelationshipType",
+						"Name": "LienPartyRelationshipTypeName"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 256,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "LienPartyRelationshipTypeDescription",
+					"Description": "The description of a Lien - Party relationship type.",
+					"BaseAttributeReference": {
+						"Entity": "LienPartyRelationshipType.cdm.json/LienPartyRelationshipType",
+						"Name": "LienPartyRelationshipTypeDescription"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/LienPartyRelationshipType",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/LienPartyRelationshipType",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"LienPartyRelationshipTypeId\":{\"entity\":\"LienPartyRelationshipType.cdm.json/LienPartyRelationshipType\",\"name\":\"LienPartyRelationshipTypeId\"},\"LienPartyRelationshipTypeName\":{\"entity\":\"LienPartyRelationshipType.cdm.json/LienPartyRelationshipType\",\"name\":\"LienPartyRelationshipTypeName\"},\"LienPartyRelationshipTypeDescription\":{\"entity\":\"LienPartyRelationshipType.cdm.json/LienPartyRelationshipType\",\"name\":\"LienPartyRelationshipTypeDescription\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"LienPartyRelationshipType\",\"path\":\"LienPartyRelationshipType.cdm.json/LienPartyRelationshipType\"},\"description\":\"The nature of the lien - party relationship,\\n\\n Ex:\\n- Creditor\\n- Debtor\\n- Creditor Attorney\",\"primaryKey\":[\"LienPartyRelationshipTypeId\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"LienPartyRelationshipType.cdm.json/LienPartyRelationshipType\",\"name\":\"LienPartyRelationshipTypeId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Lien - Party relationship type.\",\"isNullable\":false,\"name\":\"LienPartyRelationshipTypeId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"LienPartyRelationshipType.cdm.json/LienPartyRelationshipType\",\"name\":\"LienPartyRelationshipTypeName\"},\"dataType\":\"string\",\"dataTypeLength\":256,\"description\":\"The name of a Lien - Party relationship type.\",\"isNullable\":true,\"name\":\"LienPartyRelationshipTypeName\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"LienPartyRelationshipType.cdm.json/LienPartyRelationshipType\",\"name\":\"LienPartyRelationshipTypeDescription\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"The description of a Lien - Party relationship type.\",\"isNullable\":true,\"name\":\"LienPartyRelationshipTypeDescription\"}]}}}",
+			"Description": "The nature of the lien - party relationship,\n\n Ex:\n- Creditor\n- Debtor\n- Creditor Attorney",
+			"DisplayFolderInfo": "{\"name\":\"Customer Credit & Collections\",\"colorCode\":\"#022F22\"}",
+			"PrimaryKeys": "LienPartyRelationshipTypeId",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

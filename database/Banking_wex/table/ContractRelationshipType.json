@@ -1,0 +1,113 @@
+{
+	"name": "ContractRelationshipType",
+	"properties": {
+		"Name": "ContractRelationshipType",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "The nature of the relationship between two contracts.\n\nEx:\n- Master Contact\n- Assigned Contract\n- Renewed Contract",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "ContractRelationshipTypeId",
+					"Description": "The unique identifier of a Contract Relationship Type.",
+					"BaseAttributeReference": {
+						"Entity": "ContractRelationshipType.cdm.json/ContractRelationshipType",
+						"Name": "ContractRelationshipTypeId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "ContractRelationshipTypeName",
+					"Description": "The name of a Contract Relationship Type.",
+					"BaseAttributeReference": {
+						"Entity": "ContractRelationshipType.cdm.json/ContractRelationshipType",
+						"Name": "ContractRelationshipTypeName"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 256,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "ContractRelationshipTypeDescription",
+					"Description": "The description of a Contract Relationship Type.",
+					"BaseAttributeReference": {
+						"Entity": "ContractRelationshipType.cdm.json/ContractRelationshipType",
+						"Name": "ContractRelationshipTypeDescription"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/ContractRelationshipType",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/ContractRelationshipType",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"ContractRelationshipTypeId\":{\"entity\":\"ContractRelationshipType.cdm.json/ContractRelationshipType\",\"name\":\"ContractRelationshipTypeId\"},\"ContractRelationshipTypeName\":{\"entity\":\"ContractRelationshipType.cdm.json/ContractRelationshipType\",\"name\":\"ContractRelationshipTypeName\"},\"ContractRelationshipTypeDescription\":{\"entity\":\"ContractRelationshipType.cdm.json/ContractRelationshipType\",\"name\":\"ContractRelationshipTypeDescription\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"ContractRelationshipType\",\"path\":\"ContractRelationshipType.cdm.json/ContractRelationshipType\"},\"description\":\"The nature of the relationship between two contracts.\\n\\nEx:\\n- Master Contact\\n- Assigned Contract\\n- Renewed Contract\",\"primaryKey\":[\"ContractRelationshipTypeId\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ContractRelationshipType.cdm.json/ContractRelationshipType\",\"name\":\"ContractRelationshipTypeId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Contract Relationship Type.\",\"isNullable\":false,\"name\":\"ContractRelationshipTypeId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ContractRelationshipType.cdm.json/ContractRelationshipType\",\"name\":\"ContractRelationshipTypeName\"},\"dataType\":\"string\",\"dataTypeLength\":256,\"description\":\"The name of a Contract Relationship Type.\",\"isNullable\":true,\"name\":\"ContractRelationshipTypeName\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ContractRelationshipType.cdm.json/ContractRelationshipType\",\"name\":\"ContractRelationshipTypeDescription\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"The description of a Contract Relationship Type.\",\"isNullable\":true,\"name\":\"ContractRelationshipTypeDescription\"}]}}}",
+			"Description": "The nature of the relationship between two contracts.\n\nEx:\n- Master Contact\n- Assigned Contract\n- Renewed Contract",
+			"DisplayFolderInfo": "{\"name\":\"Contract\",\"colorCode\":\"#917EDB\"}",
+			"PrimaryKeys": "ContractRelationshipTypeId",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

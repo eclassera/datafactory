@@ -1,0 +1,112 @@
+{
+	"name": "ChannelCoupon",
+	"properties": {
+		"Name": "ChannelCoupon",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "The coupon(s) associated with a Channel.",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "ChannelId",
+					"Description": "The unique identifier of a Channel.",
+					"BaseAttributeReference": {
+						"Entity": "ChannelCoupon.cdm.json/ChannelCoupon",
+						"Name": "ChannelId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "CouponId",
+					"Description": "The unique identifier of a coupon.",
+					"BaseAttributeReference": {
+						"Entity": "ChannelCoupon.cdm.json/ChannelCoupon",
+						"Name": "CouponId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "ChannelCouponNote",
+					"Description": "A note, comment or additional information regarding the channel coupon.",
+					"BaseAttributeReference": {
+						"Entity": "ChannelCoupon.cdm.json/ChannelCoupon",
+						"Name": "ChannelCouponNote"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/ChannelCoupon",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/ChannelCoupon",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"ChannelId\":{\"entity\":\"ChannelCoupon.cdm.json/ChannelCoupon\",\"name\":\"ChannelId\"},\"CouponId\":{\"entity\":\"ChannelCoupon.cdm.json/ChannelCoupon\",\"name\":\"CouponId\"},\"ChannelCouponNote\":{\"entity\":\"ChannelCoupon.cdm.json/ChannelCoupon\",\"name\":\"ChannelCouponNote\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"ChannelCoupon\",\"path\":\"ChannelCoupon.cdm.json/ChannelCoupon\"},\"description\":\"The coupon(s) associated with a Channel.\",\"primaryKey\":[\"ChannelId\",\"CouponId\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ChannelCoupon.cdm.json/ChannelCoupon\",\"name\":\"ChannelId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Channel.\",\"isNullable\":false,\"name\":\"ChannelId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ChannelCoupon.cdm.json/ChannelCoupon\",\"name\":\"CouponId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a coupon.\",\"isNullable\":false,\"name\":\"CouponId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ChannelCoupon.cdm.json/ChannelCoupon\",\"name\":\"ChannelCouponNote\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"A note, comment or additional information regarding the channel coupon.\",\"isNullable\":true,\"name\":\"ChannelCouponNote\"}]}}}",
+			"Description": "The coupon(s) associated with a Channel.",
+			"DisplayFolderInfo": "{\"name\":\"Marketing & Advertising\",\"colorCode\":\"#692B0C\"}",
+			"PrimaryKeys": "ChannelId,CouponId",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

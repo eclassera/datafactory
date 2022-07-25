@@ -1,0 +1,113 @@
+{
+	"name": "ChannelCapacityType",
+	"properties": {
+		"Name": "ChannelCapacityType",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "Describes the type of channel capacity.\n\nEx:\n- Number of Transactions\n- Number of Calls\n- Number of Meetings",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "ChannelCapacityTypeId",
+					"Description": "The unique identifier of a Channel Capacity Type.",
+					"BaseAttributeReference": {
+						"Entity": "ChannelCapacityType.cdm.json/ChannelCapacityType",
+						"Name": "ChannelCapacityTypeId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "ChannelCapacityTypeName",
+					"Description": "The name of a Channel Capacity Type.",
+					"BaseAttributeReference": {
+						"Entity": "ChannelCapacityType.cdm.json/ChannelCapacityType",
+						"Name": "ChannelCapacityTypeName"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 256,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "ChannelCapacityTypeDescription",
+					"Description": "The description of a Channel Capacity Type.",
+					"BaseAttributeReference": {
+						"Entity": "ChannelCapacityType.cdm.json/ChannelCapacityType",
+						"Name": "ChannelCapacityTypeDescription"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/ChannelCapacityType",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/ChannelCapacityType",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"ChannelCapacityTypeId\":{\"entity\":\"ChannelCapacityType.cdm.json/ChannelCapacityType\",\"name\":\"ChannelCapacityTypeId\"},\"ChannelCapacityTypeName\":{\"entity\":\"ChannelCapacityType.cdm.json/ChannelCapacityType\",\"name\":\"ChannelCapacityTypeName\"},\"ChannelCapacityTypeDescription\":{\"entity\":\"ChannelCapacityType.cdm.json/ChannelCapacityType\",\"name\":\"ChannelCapacityTypeDescription\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"ChannelCapacityType\",\"path\":\"ChannelCapacityType.cdm.json/ChannelCapacityType\"},\"description\":\"Describes the type of channel capacity.\\n\\nEx:\\n- Number of Transactions\\n- Number of Calls\\n- Number of Meetings\",\"primaryKey\":[\"ChannelCapacityTypeId\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ChannelCapacityType.cdm.json/ChannelCapacityType\",\"name\":\"ChannelCapacityTypeId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Channel Capacity Type.\",\"isNullable\":false,\"name\":\"ChannelCapacityTypeId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ChannelCapacityType.cdm.json/ChannelCapacityType\",\"name\":\"ChannelCapacityTypeName\"},\"dataType\":\"string\",\"dataTypeLength\":256,\"description\":\"The name of a Channel Capacity Type.\",\"isNullable\":true,\"name\":\"ChannelCapacityTypeName\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ChannelCapacityType.cdm.json/ChannelCapacityType\",\"name\":\"ChannelCapacityTypeDescription\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"The description of a Channel Capacity Type.\",\"isNullable\":true,\"name\":\"ChannelCapacityTypeDescription\"}]}}}",
+			"Description": "Describes the type of channel capacity.\n\nEx:\n- Number of Transactions\n- Number of Calls\n- Number of Meetings",
+			"DisplayFolderInfo": "{\"name\":\"Channel\",\"colorCode\":\"#001D3F\"}",
+			"PrimaryKeys": "ChannelCapacityTypeId",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

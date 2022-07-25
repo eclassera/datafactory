@@ -1,0 +1,146 @@
+{
+	"name": "CustomerMarketSegment",
+	"properties": {
+		"Name": "CustomerMarketSegment",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "The one or more Market Segment(s) to which the customer is assigned.",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "CustomerId",
+					"Description": "The unique identifier of a Customer.",
+					"BaseAttributeReference": {
+						"Entity": "CustomerMarketSegment.cdm.json/CustomerMarketSegment",
+						"Name": "CustomerId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "long",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "long"
+						}
+					}
+				},
+				{
+					"Name": "MarketSegmentId",
+					"Description": "The unique identifier of a Market Segment.",
+					"BaseAttributeReference": {
+						"Entity": "CustomerMarketSegment.cdm.json/CustomerMarketSegment",
+						"Name": "MarketSegmentId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "PeriodStartDate",
+					"Description": "The period start date that the customer market segment relationship is defined.",
+					"BaseAttributeReference": {
+						"Entity": "CustomerMarketSegment.cdm.json/CustomerMarketSegment",
+						"Name": "PeriodStartDate"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "date",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"DateFormat": "YYYY-MM-DD",
+							"HIVE_TYPE_STRING": "date"
+						}
+					}
+				},
+				{
+					"Name": "PeriodEndDate",
+					"Description": "The period end date that the customer market segment relationship is defined.",
+					"BaseAttributeReference": {
+						"Entity": "CustomerMarketSegment.cdm.json/CustomerMarketSegment",
+						"Name": "PeriodEndDate"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "date",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"DateFormat": "YYYY-MM-DD",
+							"HIVE_TYPE_STRING": "date"
+						}
+					}
+				},
+				{
+					"Name": "CustomerMarketSegmentNote",
+					"Description": "A note, comment or additional information regarding the customer market segment.",
+					"BaseAttributeReference": {
+						"Entity": "CustomerMarketSegment.cdm.json/CustomerMarketSegment",
+						"Name": "CustomerMarketSegmentNote"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/CustomerMarketSegment",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/CustomerMarketSegment",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"CustomerId\":{\"entity\":\"CustomerMarketSegment.cdm.json/CustomerMarketSegment\",\"name\":\"CustomerId\"},\"MarketSegmentId\":{\"entity\":\"CustomerMarketSegment.cdm.json/CustomerMarketSegment\",\"name\":\"MarketSegmentId\"},\"PeriodStartDate\":{\"entity\":\"CustomerMarketSegment.cdm.json/CustomerMarketSegment\",\"name\":\"PeriodStartDate\"},\"PeriodEndDate\":{\"entity\":\"CustomerMarketSegment.cdm.json/CustomerMarketSegment\",\"name\":\"PeriodEndDate\"},\"CustomerMarketSegmentNote\":{\"entity\":\"CustomerMarketSegment.cdm.json/CustomerMarketSegment\",\"name\":\"CustomerMarketSegmentNote\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"CustomerMarketSegment\",\"path\":\"CustomerMarketSegment.cdm.json/CustomerMarketSegment\"},\"description\":\"The one or more Market Segment(s) to which the customer is assigned.\",\"primaryKey\":[\"CustomerId\",\"MarketSegmentId\",\"PeriodStartDate\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CustomerMarketSegment.cdm.json/CustomerMarketSegment\",\"name\":\"CustomerId\"},\"dataType\":\"long\",\"description\":\"The unique identifier of a Customer.\",\"isNullable\":false,\"name\":\"CustomerId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CustomerMarketSegment.cdm.json/CustomerMarketSegment\",\"name\":\"MarketSegmentId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Market Segment.\",\"isNullable\":false,\"name\":\"MarketSegmentId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CustomerMarketSegment.cdm.json/CustomerMarketSegment\",\"name\":\"PeriodStartDate\"},\"dataType\":\"date\",\"dateFormat\":\"YYYY-MM-DD\",\"description\":\"The period start date that the customer market segment relationship is defined.\",\"isNullable\":false,\"name\":\"PeriodStartDate\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CustomerMarketSegment.cdm.json/CustomerMarketSegment\",\"name\":\"PeriodEndDate\"},\"dataType\":\"date\",\"dateFormat\":\"YYYY-MM-DD\",\"description\":\"The period end date that the customer market segment relationship is defined.\",\"isNullable\":true,\"name\":\"PeriodEndDate\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CustomerMarketSegment.cdm.json/CustomerMarketSegment\",\"name\":\"CustomerMarketSegmentNote\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"A note, comment or additional information regarding the customer market segment.\",\"isNullable\":true,\"name\":\"CustomerMarketSegmentNote\"}]}}}",
+			"Description": "The one or more Market Segment(s) to which the customer is assigned.",
+			"DisplayFolderInfo": "{\"name\":\"Customer\",\"colorCode\":\"#4B003F\"}",
+			"PrimaryKeys": "CustomerId,MarketSegmentId,PeriodStartDate",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

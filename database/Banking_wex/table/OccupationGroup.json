@@ -1,0 +1,113 @@
+{
+	"name": "OccupationGroup",
+	"properties": {
+		"Name": "OccupationGroup",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "A categorization of occupations related to consumer behavior as determined by individual's type of employment.\n\nEx:\n-  Executive, Administrative, Managerial\n-  Professional Specialty\n-  Technician\n-  Sales\n-  Clerical\n-  Private Household Service\n-  Protective Service\n-  Service Occupations Except Protective and Household\n-  Farming, Forestry and Fishing\n-  Precision Production, Craft and Repair\n-  Machine Operators, Assemblers and Inspectors\n-  Transportation/Material Moving\n-  Handlers, Equipment Cleaners, Helpers, Laborers",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "OccupationGroupId",
+					"Description": "The unique identifier of an Occupation Group.",
+					"BaseAttributeReference": {
+						"Entity": "OccupationGroup.cdm.json/OccupationGroup",
+						"Name": "OccupationGroupId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "OccupationGroupName",
+					"Description": "The name of the Occupation Group.",
+					"BaseAttributeReference": {
+						"Entity": "OccupationGroup.cdm.json/OccupationGroup",
+						"Name": "OccupationGroupName"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 256,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "OccupationGroupDescription",
+					"Description": "The description of the Occupation Group.",
+					"BaseAttributeReference": {
+						"Entity": "OccupationGroup.cdm.json/OccupationGroup",
+						"Name": "OccupationGroupDescription"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/OccupationGroup",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/OccupationGroup",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"OccupationGroupId\":{\"entity\":\"OccupationGroup.cdm.json/OccupationGroup\",\"name\":\"OccupationGroupId\"},\"OccupationGroupName\":{\"entity\":\"OccupationGroup.cdm.json/OccupationGroup\",\"name\":\"OccupationGroupName\"},\"OccupationGroupDescription\":{\"entity\":\"OccupationGroup.cdm.json/OccupationGroup\",\"name\":\"OccupationGroupDescription\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"OccupationGroup\",\"path\":\"OccupationGroup.cdm.json/OccupationGroup\"},\"description\":\"A categorization of occupations related to consumer behavior as determined by individual's type of employment.\\n\\nEx:\\n-  Executive, Administrative, Managerial\\n-  Professional Specialty\\n-  Technician\\n-  Sales\\n-  Clerical\\n-  Private Household Service\\n-  Protective Service\\n-  Service Occupations Except Protective and Household\\n-  Farming, Forestry and Fishing\\n-  Precision Production, Craft and Repair\\n-  Machine Operators, Assemblers and Inspectors\\n-  Transportation/Material Moving\\n-  Handlers, Equipment Cleaners, Helpers, Laborers\",\"primaryKey\":[\"OccupationGroupId\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"OccupationGroup.cdm.json/OccupationGroup\",\"name\":\"OccupationGroupId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of an Occupation Group.\",\"isNullable\":false,\"name\":\"OccupationGroupId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"OccupationGroup.cdm.json/OccupationGroup\",\"name\":\"OccupationGroupName\"},\"dataType\":\"string\",\"dataTypeLength\":256,\"description\":\"The name of the Occupation Group.\",\"isNullable\":true,\"name\":\"OccupationGroupName\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"OccupationGroup.cdm.json/OccupationGroup\",\"name\":\"OccupationGroupDescription\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"The description of the Occupation Group.\",\"isNullable\":true,\"name\":\"OccupationGroupDescription\"}]}}}",
+			"Description": "A categorization of occupations related to consumer behavior as determined by individual's type of employment.\n\nEx:\n-  Executive, Administrative, Managerial\n-  Professional Specialty\n-  Technician\n-  Sales\n-  Clerical\n-  Private Household Service\n-  Protective Service\n-  Service Occupations Except Protective and Household\n-  Farming, Forestry and Fishing\n-  Precision Production, Craft and Repair\n-  Machine Operators, Assemblers and Inspectors\n-  Transportation/Material Moving\n-  Handlers, Equipment Cleaners, Helpers, Laborers",
+			"DisplayFolderInfo": "{\"name\":\"Party\",\"colorCode\":\"#00727A\"}",
+			"PrimaryKeys": "OccupationGroupId",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

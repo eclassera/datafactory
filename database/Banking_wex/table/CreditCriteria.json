@@ -1,0 +1,113 @@
+{
+	"name": "CreditCriteria",
+	"properties": {
+		"Name": "CreditCriteria",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "Criteria upon which a Customer may be scored to determine their overall worthiness to have credit extended to them.\n\nEx:\nINDIVIDUAL\n- Income to debt ratio\n- Outstanding fixed debts\n- Credit card debt\n- Spousal debt\n- Suits\n- Bankruptcy\n\nLEGAL ENTITY\nEx:\n- Profitability\n- Solvency Short Term\n- Efficiency\n- Debt Utilization\n- Receivables\n- Legal Entity Ability To Pay\n- Ability To Collect Receivables",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "CreditCriteriaId",
+					"Description": "The unique identifier of a Credit Criteria.",
+					"BaseAttributeReference": {
+						"Entity": "CreditCriteria.cdm.json/CreditCriteria",
+						"Name": "CreditCriteriaId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "CreditCriteriaName",
+					"Description": "The name of a Credit Criteria.",
+					"BaseAttributeReference": {
+						"Entity": "CreditCriteria.cdm.json/CreditCriteria",
+						"Name": "CreditCriteriaName"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 256,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "CreditCriteriaDescription",
+					"Description": "The description of a Credit Criteria.",
+					"BaseAttributeReference": {
+						"Entity": "CreditCriteria.cdm.json/CreditCriteria",
+						"Name": "CreditCriteriaDescription"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/CreditCriteria",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/CreditCriteria",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"CreditCriteriaId\":{\"entity\":\"CreditCriteria.cdm.json/CreditCriteria\",\"name\":\"CreditCriteriaId\"},\"CreditCriteriaName\":{\"entity\":\"CreditCriteria.cdm.json/CreditCriteria\",\"name\":\"CreditCriteriaName\"},\"CreditCriteriaDescription\":{\"entity\":\"CreditCriteria.cdm.json/CreditCriteria\",\"name\":\"CreditCriteriaDescription\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"CreditCriteria\",\"path\":\"CreditCriteria.cdm.json/CreditCriteria\"},\"description\":\"Criteria upon which a Customer may be scored to determine their overall worthiness to have credit extended to them.\\n\\nEx:\\nINDIVIDUAL\\n- Income to debt ratio\\n- Outstanding fixed debts\\n- Credit card debt\\n- Spousal debt\\n- Suits\\n- Bankruptcy\\n\\nLEGAL ENTITY\\nEx:\\n- Profitability\\n- Solvency Short Term\\n- Efficiency\\n- Debt Utilization\\n- Receivables\\n- Legal Entity Ability To Pay\\n- Ability To Collect Receivables\",\"primaryKey\":[\"CreditCriteriaId\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CreditCriteria.cdm.json/CreditCriteria\",\"name\":\"CreditCriteriaId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Credit Criteria.\",\"isNullable\":false,\"name\":\"CreditCriteriaId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CreditCriteria.cdm.json/CreditCriteria\",\"name\":\"CreditCriteriaName\"},\"dataType\":\"string\",\"dataTypeLength\":256,\"description\":\"The name of a Credit Criteria.\",\"isNullable\":true,\"name\":\"CreditCriteriaName\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CreditCriteria.cdm.json/CreditCriteria\",\"name\":\"CreditCriteriaDescription\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"The description of a Credit Criteria.\",\"isNullable\":true,\"name\":\"CreditCriteriaDescription\"}]}}}",
+			"Description": "Criteria upon which a Customer may be scored to determine their overall worthiness to have credit extended to them.\n\nEx:\nINDIVIDUAL\n- Income to debt ratio\n- Outstanding fixed debts\n- Credit card debt\n- Spousal debt\n- Suits\n- Bankruptcy\n\nLEGAL ENTITY\nEx:\n- Profitability\n- Solvency Short Term\n- Efficiency\n- Debt Utilization\n- Receivables\n- Legal Entity Ability To Pay\n- Ability To Collect Receivables",
+			"DisplayFolderInfo": "{\"name\":\"Customer Credit & Collections\",\"colorCode\":\"#022F22\"}",
+			"PrimaryKeys": "CreditCriteriaId",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

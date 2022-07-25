@@ -1,0 +1,113 @@
+{
+	"name": "ExperianPublicRecordType",
+	"properties": {
+		"Name": "ExperianPublicRecordType",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "The type of Experian public record.\n\nEx:\n- Suit",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "ExperianPublicRecordTypeId",
+					"Description": "The unique identifies of a Experian Public Record Type.",
+					"BaseAttributeReference": {
+						"Entity": "ExperianPublicRecordType.cdm.json/ExperianPublicRecordType",
+						"Name": "ExperianPublicRecordTypeId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "ExperianPublicRecordTypeName",
+					"Description": "The name of a Experian Public Record Type.",
+					"BaseAttributeReference": {
+						"Entity": "ExperianPublicRecordType.cdm.json/ExperianPublicRecordType",
+						"Name": "ExperianPublicRecordTypeName"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 256,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "ExperianPublicRecordTypeDescription",
+					"Description": "The description of a Experian Public Record Type.",
+					"BaseAttributeReference": {
+						"Entity": "ExperianPublicRecordType.cdm.json/ExperianPublicRecordType",
+						"Name": "ExperianPublicRecordTypeDescription"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/ExperianPublicRecordType",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/ExperianPublicRecordType",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"ExperianPublicRecordTypeId\":{\"entity\":\"ExperianPublicRecordType.cdm.json/ExperianPublicRecordType\",\"name\":\"ExperianPublicRecordTypeId\"},\"ExperianPublicRecordTypeName\":{\"entity\":\"ExperianPublicRecordType.cdm.json/ExperianPublicRecordType\",\"name\":\"ExperianPublicRecordTypeName\"},\"ExperianPublicRecordTypeDescription\":{\"entity\":\"ExperianPublicRecordType.cdm.json/ExperianPublicRecordType\",\"name\":\"ExperianPublicRecordTypeDescription\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"ExperianPublicRecordType\",\"path\":\"ExperianPublicRecordType.cdm.json/ExperianPublicRecordType\"},\"description\":\"The type of Experian public record.\\n\\nEx:\\n- Suit\",\"primaryKey\":[\"ExperianPublicRecordTypeId\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ExperianPublicRecordType.cdm.json/ExperianPublicRecordType\",\"name\":\"ExperianPublicRecordTypeId\"},\"dataType\":\"integer\",\"description\":\"The unique identifies of a Experian Public Record Type.\",\"isNullable\":false,\"name\":\"ExperianPublicRecordTypeId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ExperianPublicRecordType.cdm.json/ExperianPublicRecordType\",\"name\":\"ExperianPublicRecordTypeName\"},\"dataType\":\"string\",\"dataTypeLength\":256,\"description\":\"The name of a Experian Public Record Type.\",\"isNullable\":true,\"name\":\"ExperianPublicRecordTypeName\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ExperianPublicRecordType.cdm.json/ExperianPublicRecordType\",\"name\":\"ExperianPublicRecordTypeDescription\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"The description of a Experian Public Record Type.\",\"isNullable\":true,\"name\":\"ExperianPublicRecordTypeDescription\"}]}}}",
+			"Description": "The type of Experian public record.\n\nEx:\n- Suit",
+			"DisplayFolderInfo": "{\"name\":\"Customer Credit & Collections\",\"colorCode\":\"#022F22\"}",
+			"PrimaryKeys": "ExperianPublicRecordTypeId",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

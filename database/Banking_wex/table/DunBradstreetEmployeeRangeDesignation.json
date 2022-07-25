@@ -1,0 +1,114 @@
+{
+	"name": "DunBradstreetEmployeeRangeDesignation",
+	"properties": {
+		"Name": "DunBradstreetEmployeeRangeDesignation",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "Some companies do not lend themselves to a Dun & Bradstreet rating.  Instead reports on these business carry an Employee Range Designation (ER) which is indicative of size based on number of employees. \n\nER   No. of Employees \n-----------------------------------\nER1 = 1000 and above \nER2 = 500-999\nER3 = 100-499\nER4 = 50-99\nER5 = 21-49\nER6 = 10-19\nER7 = 5-9\nER8 = 1-4\nERN = Not Available",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "DunBradstreetEmployeeRangeDesignationCode",
+					"Description": "The specific Dun Bradstreet Employee Range designator code.",
+					"BaseAttributeReference": {
+						"Entity": "DunBradstreetEmployeeRangeDesignation.cdm.json/DunBradstreetEmployeeRangeDesignation",
+						"Name": "DunBradstreetEmployeeRangeDesignationCode"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Length": 3,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "DunBradstreetEmployeeRangeDesignationMinimumEmployeeRange",
+					"Description": "The minimum number of employee associated with the Dun Bradstreet designation.",
+					"BaseAttributeReference": {
+						"Entity": "DunBradstreetEmployeeRangeDesignation.cdm.json/DunBradstreetEmployeeRangeDesignation",
+						"Name": "DunBradstreetEmployeeRangeDesignationMinimumEmployeeRange"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 256,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "DunBradstreetEmployeeRangeDesignationMaximumEmployeeRange",
+					"Description": "The maximum number of employee associated with the Dun Bradstreet designation.",
+					"BaseAttributeReference": {
+						"Entity": "DunBradstreetEmployeeRangeDesignation.cdm.json/DunBradstreetEmployeeRangeDesignation",
+						"Name": "DunBradstreetEmployeeRangeDesignationMaximumEmployeeRange"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/DunBradstreetEmployeeRangeDesignation",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/DunBradstreetEmployeeRangeDesignation",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"DunBradstreetEmployeeRangeDesignationCode\":{\"entity\":\"DunBradstreetEmployeeRangeDesignation.cdm.json/DunBradstreetEmployeeRangeDesignation\",\"name\":\"DunBradstreetEmployeeRangeDesignationCode\"},\"DunBradstreetEmployeeRangeDesignationMinimumEmployeeRange\":{\"entity\":\"DunBradstreetEmployeeRangeDesignation.cdm.json/DunBradstreetEmployeeRangeDesignation\",\"name\":\"DunBradstreetEmployeeRangeDesignationMinimumEmployeeRange\"},\"DunBradstreetEmployeeRangeDesignationMaximumEmployeeRange\":{\"entity\":\"DunBradstreetEmployeeRangeDesignation.cdm.json/DunBradstreetEmployeeRangeDesignation\",\"name\":\"DunBradstreetEmployeeRangeDesignationMaximumEmployeeRange\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"DunBradstreetEmployeeRangeDesignation\",\"path\":\"DunBradstreetEmployeeRangeDesignation.cdm.json/DunBradstreetEmployeeRangeDesignation\"},\"description\":\"Some companies do not lend themselves to a Dun & Bradstreet rating.  Instead reports on these business carry an Employee Range Designation (ER) which is indicative of size based on number of employees. \\n\\nER   No. of Employees \\n-----------------------------------\\nER1 = 1000 and above \\nER2 = 500-999\\nER3 = 100-499\\nER4 = 50-99\\nER5 = 21-49\\nER6 = 10-19\\nER7 = 5-9\\nER8 = 1-4\\nERN = Not Available\",\"primaryKey\":[\"DunBradstreetEmployeeRangeDesignationCode\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"DunBradstreetEmployeeRangeDesignation.cdm.json/DunBradstreetEmployeeRangeDesignation\",\"name\":\"DunBradstreetEmployeeRangeDesignationCode\"},\"dataType\":\"string\",\"dataTypeLength\":3,\"description\":\"The specific Dun Bradstreet Employee Range designator code.\",\"isNullable\":false,\"name\":\"DunBradstreetEmployeeRangeDesignationCode\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"DunBradstreetEmployeeRangeDesignation.cdm.json/DunBradstreetEmployeeRangeDesignation\",\"name\":\"DunBradstreetEmployeeRangeDesignationMinimumEmployeeRange\"},\"dataType\":\"string\",\"dataTypeLength\":256,\"description\":\"The minimum number of employee associated with the Dun Bradstreet designation.\",\"isNullable\":true,\"name\":\"DunBradstreetEmployeeRangeDesignationMinimumEmployeeRange\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"DunBradstreetEmployeeRangeDesignation.cdm.json/DunBradstreetEmployeeRangeDesignation\",\"name\":\"DunBradstreetEmployeeRangeDesignationMaximumEmployeeRange\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"The maximum number of employee associated with the Dun Bradstreet designation.\",\"isNullable\":true,\"name\":\"DunBradstreetEmployeeRangeDesignationMaximumEmployeeRange\"}]}}}",
+			"Description": "Some companies do not lend themselves to a Dun & Bradstreet rating.  Instead reports on these business carry an Employee Range Designation (ER) which is indicative of size based on number of employees. \n\nER   No. of Employees \n-----------------------------------\nER1 = 1000 and above \nER2 = 500-999\nER3 = 100-499\nER4 = 50-99\nER5 = 21-49\nER6 = 10-19\nER7 = 5-9\nER8 = 1-4\nERN = Not Available",
+			"DisplayFolderInfo": "{\"name\":\"Customer Credit & Collections\",\"colorCode\":\"#022F22\"}",
+			"PrimaryKeys": "DunBradstreetEmployeeRangeDesignationCode",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

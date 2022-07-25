@@ -1,0 +1,146 @@
+{
+	"name": "FuelPumpProductAvailability",
+	"properties": {
+		"Name": "FuelPumpProductAvailability",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "The availability of a product at a fuel pump.",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "FuelPumpId",
+					"Description": "The unique identifier of a Fuel Pump.",
+					"BaseAttributeReference": {
+						"Entity": "FuelPumpProductAvailability.cdm.json/FuelPumpProductAvailability",
+						"Name": "FuelPumpId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "ProductId",
+					"Description": "The unique identifier of a Product.",
+					"BaseAttributeReference": {
+						"Entity": "FuelPumpProductAvailability.cdm.json/FuelPumpProductAvailability",
+						"Name": "ProductId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "long",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "long"
+						}
+					}
+				},
+				{
+					"Name": "PeriodStartTimestamp",
+					"Description": "The period start timestamp for which product is available at the fuel pump.",
+					"BaseAttributeReference": {
+						"Entity": "FuelPumpProductAvailability.cdm.json/FuelPumpProductAvailability",
+						"Name": "PeriodStartTimestamp"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "timestamp",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"TimestampFormat": "YYYY-MM-DD HH:MM:SS.fffffffff",
+							"HIVE_TYPE_STRING": "timestamp"
+						}
+					}
+				},
+				{
+					"Name": "PeriodEndTimestamp",
+					"Description": "The period end timestamp for which product is available at the fuel pump.",
+					"BaseAttributeReference": {
+						"Entity": "FuelPumpProductAvailability.cdm.json/FuelPumpProductAvailability",
+						"Name": "PeriodEndTimestamp"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "timestamp",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"TimestampFormat": "YYYY-MM-DD HH:MM:SS.fffffffff",
+							"HIVE_TYPE_STRING": "timestamp"
+						}
+					}
+				},
+				{
+					"Name": "FuelPumpProductAvailabilityNote",
+					"Description": "A note, comment or additional information regarding the Fuel Pump Product Availability.",
+					"BaseAttributeReference": {
+						"Entity": "FuelPumpProductAvailability.cdm.json/FuelPumpProductAvailability",
+						"Name": "FuelPumpProductAvailabilityNote"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/FuelPumpProductAvailability",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/FuelPumpProductAvailability",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"FuelPumpId\":{\"entity\":\"FuelPumpProductAvailability.cdm.json/FuelPumpProductAvailability\",\"name\":\"FuelPumpId\"},\"ProductId\":{\"entity\":\"FuelPumpProductAvailability.cdm.json/FuelPumpProductAvailability\",\"name\":\"ProductId\"},\"PeriodStartTimestamp\":{\"entity\":\"FuelPumpProductAvailability.cdm.json/FuelPumpProductAvailability\",\"name\":\"PeriodStartTimestamp\"},\"PeriodEndTimestamp\":{\"entity\":\"FuelPumpProductAvailability.cdm.json/FuelPumpProductAvailability\",\"name\":\"PeriodEndTimestamp\"},\"FuelPumpProductAvailabilityNote\":{\"entity\":\"FuelPumpProductAvailability.cdm.json/FuelPumpProductAvailability\",\"name\":\"FuelPumpProductAvailabilityNote\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"FuelPumpProductAvailability\",\"path\":\"FuelPumpProductAvailability.cdm.json/FuelPumpProductAvailability\"},\"description\":\"The availability of a product at a fuel pump.\",\"primaryKey\":[\"FuelPumpId\",\"ProductId\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"FuelPumpProductAvailability.cdm.json/FuelPumpProductAvailability\",\"name\":\"FuelPumpId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Fuel Pump.\",\"isNullable\":false,\"name\":\"FuelPumpId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"FuelPumpProductAvailability.cdm.json/FuelPumpProductAvailability\",\"name\":\"ProductId\"},\"dataType\":\"long\",\"description\":\"The unique identifier of a Product.\",\"isNullable\":false,\"name\":\"ProductId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"FuelPumpProductAvailability.cdm.json/FuelPumpProductAvailability\",\"name\":\"PeriodStartTimestamp\"},\"dataType\":\"timestamp\",\"description\":\"The period start timestamp for which product is available at the fuel pump.\",\"isNullable\":false,\"name\":\"PeriodStartTimestamp\",\"timestampFormat\":\"YYYY-MM-DD HH:MM:SS.fffffffff\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"FuelPumpProductAvailability.cdm.json/FuelPumpProductAvailability\",\"name\":\"PeriodEndTimestamp\"},\"dataType\":\"timestamp\",\"description\":\"The period end timestamp for which product is available at the fuel pump.\",\"isNullable\":false,\"name\":\"PeriodEndTimestamp\",\"timestampFormat\":\"YYYY-MM-DD HH:MM:SS.fffffffff\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"FuelPumpProductAvailability.cdm.json/FuelPumpProductAvailability\",\"name\":\"FuelPumpProductAvailabilityNote\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"A note, comment or additional information regarding the Fuel Pump Product Availability.\",\"isNullable\":true,\"name\":\"FuelPumpProductAvailabilityNote\"}]}}}",
+			"Description": "The availability of a product at a fuel pump.",
+			"DisplayFolderInfo": "{\"name\":\"Channel\",\"colorCode\":\"#001D3F\"}",
+			"PrimaryKeys": "FuelPumpId,ProductId",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

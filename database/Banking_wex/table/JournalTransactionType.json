@@ -1,0 +1,113 @@
+{
+	"name": "JournalTransactionType",
+	"properties": {
+		"Name": "JournalTransactionType",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "A classification of journal transaction based on common function.\n\nEx:\n- Bill From Vendor\n- Credit From Vendor\n- Payment To Vendor\n- Credit Memo To Customer\n- Credit Card Charge\n- Check\n- Bank Deposit\n- Discount\n- General Journal Entry\n- Invoice\n- Item Receipt\n- Paycheck\n- Statement Charge To Customer\n- Cash Sales Receipt\n- Sales Tax Payment\n- Transferred Funds",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "JournalTransactionTypeId",
+					"Description": "The unique identifier of a Journal Transaction Type.",
+					"BaseAttributeReference": {
+						"Entity": "JournalTransactionType.cdm.json/JournalTransactionType",
+						"Name": "JournalTransactionTypeId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "JournalTransactionTypeName",
+					"Description": "The name of a Journal Transaction Type.",
+					"BaseAttributeReference": {
+						"Entity": "JournalTransactionType.cdm.json/JournalTransactionType",
+						"Name": "JournalTransactionTypeName"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 256,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "JournalTransactionTypeDescription",
+					"Description": "The description of a Journal Transaction Type.",
+					"BaseAttributeReference": {
+						"Entity": "JournalTransactionType.cdm.json/JournalTransactionType",
+						"Name": "JournalTransactionTypeDescription"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/JournalTransactionType",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/JournalTransactionType",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"JournalTransactionTypeId\":{\"entity\":\"JournalTransactionType.cdm.json/JournalTransactionType\",\"name\":\"JournalTransactionTypeId\"},\"JournalTransactionTypeName\":{\"entity\":\"JournalTransactionType.cdm.json/JournalTransactionType\",\"name\":\"JournalTransactionTypeName\"},\"JournalTransactionTypeDescription\":{\"entity\":\"JournalTransactionType.cdm.json/JournalTransactionType\",\"name\":\"JournalTransactionTypeDescription\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"JournalTransactionType\",\"path\":\"JournalTransactionType.cdm.json/JournalTransactionType\"},\"description\":\"A classification of journal transaction based on common function.\\n\\nEx:\\n- Bill From Vendor\\n- Credit From Vendor\\n- Payment To Vendor\\n- Credit Memo To Customer\\n- Credit Card Charge\\n- Check\\n- Bank Deposit\\n- Discount\\n- General Journal Entry\\n- Invoice\\n- Item Receipt\\n- Paycheck\\n- Statement Charge To Customer\\n- Cash Sales Receipt\\n- Sales Tax Payment\\n- Transferred Funds\",\"primaryKey\":[\"JournalTransactionTypeId\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"JournalTransactionType.cdm.json/JournalTransactionType\",\"name\":\"JournalTransactionTypeId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Journal Transaction Type.\",\"isNullable\":false,\"name\":\"JournalTransactionTypeId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"JournalTransactionType.cdm.json/JournalTransactionType\",\"name\":\"JournalTransactionTypeName\"},\"dataType\":\"string\",\"dataTypeLength\":256,\"description\":\"The name of a Journal Transaction Type.\",\"isNullable\":true,\"name\":\"JournalTransactionTypeName\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"JournalTransactionType.cdm.json/JournalTransactionType\",\"name\":\"JournalTransactionTypeDescription\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"The description of a Journal Transaction Type.\",\"isNullable\":true,\"name\":\"JournalTransactionTypeDescription\"}]}}}",
+			"Description": "A classification of journal transaction based on common function.\n\nEx:\n- Bill From Vendor\n- Credit From Vendor\n- Payment To Vendor\n- Credit Memo To Customer\n- Credit Card Charge\n- Check\n- Bank Deposit\n- Discount\n- General Journal Entry\n- Invoice\n- Item Receipt\n- Paycheck\n- Statement Charge To Customer\n- Cash Sales Receipt\n- Sales Tax Payment\n- Transferred Funds",
+			"DisplayFolderInfo": "{\"name\":\"Accounting & Financial Reporting\",\"colorCode\":\"#0078D4\"}",
+			"PrimaryKeys": "JournalTransactionTypeId",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

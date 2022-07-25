@@ -1,0 +1,165 @@
+{
+	"name": "DunBradstreetReportFinancialStressScore",
+	"properties": {
+		"Name": "DunBradstreetReportFinancialStressScore",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "The Customer Dun Bradstreet Financial Stress Score for the indicated range of dates.\n\nThe Financial Stress model predicts the likelihood of a firm ceasing business without paying all creditors in full, or reorganizing or obtaining relief from creditors under state/federal law over the next twelve months. Scores were calculated using a statistically valid model derived from D&B's extensive data files.\n\nFinancial Stress Class Financial Stress Score Range Percentile Score Range Incidence of Financial Stress \n1 1377-1875 21-100 0.49% \n2 1353-1376 11-20 1.37% \n3 1303-1352 5-10 3.73% \n4 1225-1302 2-4 8.30% \n5 1001-1224 1 35.80%",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "DunsNumber",
+					"Description": "Dun & Bradstreet (D&B) provides a D-U-N-S Number, a unique nine digit identification number, for each physical location of your business.",
+					"BaseAttributeReference": {
+						"Entity": "DunBradstreetReportFinancialStressScore.cdm.json/DunBradstreetReportFinancialStressScore",
+						"Name": "DunsNumber"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "decimal",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Precision": 9,
+						"Scale": 0,
+						"Properties": {
+							"HIVE_TYPE_STRING": "decimal"
+						}
+					}
+				},
+				{
+					"Name": "ReportPurchaseDate",
+					"Description": "The purchase date of the report.",
+					"BaseAttributeReference": {
+						"Entity": "DunBradstreetReportFinancialStressScore.cdm.json/DunBradstreetReportFinancialStressScore",
+						"Name": "ReportPurchaseDate"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "date",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"DateFormat": "YYYY-MM-DD",
+							"HIVE_TYPE_STRING": "date"
+						}
+					}
+				},
+				{
+					"Name": "PeriodStartDate",
+					"Description": "The period start date for which the associated D&B data is effective or 'as-of'.",
+					"BaseAttributeReference": {
+						"Entity": "DunBradstreetReportFinancialStressScore.cdm.json/DunBradstreetReportFinancialStressScore",
+						"Name": "PeriodStartDate"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "date",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"DateFormat": "YYYY-MM-DD",
+							"HIVE_TYPE_STRING": "date"
+						}
+					}
+				},
+				{
+					"Name": "PeriodEndDate",
+					"Description": "The period end date for which the associated D&B data is effective or 'as-of'.",
+					"BaseAttributeReference": {
+						"Entity": "DunBradstreetReportFinancialStressScore.cdm.json/DunBradstreetReportFinancialStressScore",
+						"Name": "PeriodEndDate"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "date",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"DateFormat": "YYYY-MM-DD",
+							"HIVE_TYPE_STRING": "date"
+						}
+					}
+				},
+				{
+					"Name": "DunBradstreetFinancialStressScoreId",
+					"Description": "The unique identifier of a Financial Stress Score.",
+					"BaseAttributeReference": {
+						"Entity": "DunBradstreetReportFinancialStressScore.cdm.json/DunBradstreetReportFinancialStressScore",
+						"Name": "DunBradstreetFinancialStressScoreId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "CustomerFinancialStressScoreNote",
+					"Description": "Notes, comments or additional information regarding the Customer's financial stress score.",
+					"BaseAttributeReference": {
+						"Entity": "DunBradstreetReportFinancialStressScore.cdm.json/DunBradstreetReportFinancialStressScore",
+						"Name": "CustomerFinancialStressScoreNote"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/DunBradstreetReportFinancialStressScore",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/DunBradstreetReportFinancialStressScore",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"DunsNumber\":{\"entity\":\"DunBradstreetReportFinancialStressScore.cdm.json/DunBradstreetReportFinancialStressScore\",\"name\":\"DunsNumber\"},\"ReportPurchaseDate\":{\"entity\":\"DunBradstreetReportFinancialStressScore.cdm.json/DunBradstreetReportFinancialStressScore\",\"name\":\"ReportPurchaseDate\"},\"PeriodStartDate\":{\"entity\":\"DunBradstreetReportFinancialStressScore.cdm.json/DunBradstreetReportFinancialStressScore\",\"name\":\"PeriodStartDate\"},\"PeriodEndDate\":{\"entity\":\"DunBradstreetReportFinancialStressScore.cdm.json/DunBradstreetReportFinancialStressScore\",\"name\":\"PeriodEndDate\"},\"DunBradstreetFinancialStressScoreId\":{\"entity\":\"DunBradstreetReportFinancialStressScore.cdm.json/DunBradstreetReportFinancialStressScore\",\"name\":\"DunBradstreetFinancialStressScoreId\"},\"CustomerFinancialStressScoreNote\":{\"entity\":\"DunBradstreetReportFinancialStressScore.cdm.json/DunBradstreetReportFinancialStressScore\",\"name\":\"CustomerFinancialStressScoreNote\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"DunBradstreetReportFinancialStressScore\",\"path\":\"DunBradstreetReportFinancialStressScore.cdm.json/DunBradstreetReportFinancialStressScore\"},\"description\":\"The Customer Dun Bradstreet Financial Stress Score for the indicated range of dates.\\n\\nThe Financial Stress model predicts the likelihood of a firm ceasing business without paying all creditors in full, or reorganizing or obtaining relief from creditors under state/federal law over the next twelve months. Scores were calculated using a statistically valid model derived from D&B's extensive data files.\\n\\nFinancial Stress Class Financial Stress Score Range Percentile Score Range Incidence of Financial Stress \\n1 1377-1875 21-100 0.49% \\n2 1353-1376 11-20 1.37% \\n3 1303-1352 5-10 3.73% \\n4 1225-1302 2-4 8.30% \\n5 1001-1224 1 35.80%\",\"primaryKey\":[\"DunsNumber\",\"ReportPurchaseDate\",\"PeriodStartDate\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"DunBradstreetReportFinancialStressScore.cdm.json/DunBradstreetReportFinancialStressScore\",\"name\":\"DunsNumber\"},\"dataType\":\"decimal\",\"dataTypeLength\":9,\"description\":\"Dun & Bradstreet (D&B) provides a D-U-N-S Number, a unique nine digit identification number, for each physical location of your business.\",\"isNullable\":false,\"scale\":0,\"name\":\"DunsNumber\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"DunBradstreetReportFinancialStressScore.cdm.json/DunBradstreetReportFinancialStressScore\",\"name\":\"ReportPurchaseDate\"},\"dataType\":\"date\",\"dateFormat\":\"YYYY-MM-DD\",\"description\":\"The purchase date of the report.\",\"isNullable\":false,\"name\":\"ReportPurchaseDate\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"DunBradstreetReportFinancialStressScore.cdm.json/DunBradstreetReportFinancialStressScore\",\"name\":\"PeriodStartDate\"},\"dataType\":\"date\",\"dateFormat\":\"YYYY-MM-DD\",\"description\":\"The period start date for which the associated D&B data is effective or 'as-of'.\",\"isNullable\":false,\"name\":\"PeriodStartDate\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"DunBradstreetReportFinancialStressScore.cdm.json/DunBradstreetReportFinancialStressScore\",\"name\":\"PeriodEndDate\"},\"dataType\":\"date\",\"dateFormat\":\"YYYY-MM-DD\",\"description\":\"The period end date for which the associated D&B data is effective or 'as-of'.\",\"isNullable\":true,\"name\":\"PeriodEndDate\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"DunBradstreetReportFinancialStressScore.cdm.json/DunBradstreetReportFinancialStressScore\",\"name\":\"DunBradstreetFinancialStressScoreId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Financial Stress Score.\",\"isNullable\":true,\"name\":\"DunBradstreetFinancialStressScoreId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"DunBradstreetReportFinancialStressScore.cdm.json/DunBradstreetReportFinancialStressScore\",\"name\":\"CustomerFinancialStressScoreNote\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"Notes, comments or additional information regarding the Customer's financial stress score.\",\"isNullable\":true,\"name\":\"CustomerFinancialStressScoreNote\"}]}}}",
+			"Description": "The Customer Dun Bradstreet Financial Stress Score for the indicated range of dates.\n\nThe Financial Stress model predicts the likelihood of a firm ceasing business without paying all creditors in full, or reorganizing or obtaining relief from creditors under state/federal law over the next twelve months. Scores were calculated using a statistically valid model derived from D&B's extensive data files.\n\nFinancial Stress Class Financial Stress Score Range Percentile Score Range Incidence of Financial Stress \n1 1377-1875 21-100 0.49% \n2 1353-1376 11-20 1.37% \n3 1303-1352 5-10 3.73% \n4 1225-1302 2-4 8.30% \n5 1001-1224 1 35.80%",
+			"DisplayFolderInfo": "{\"name\":\"Customer Credit & Collections\",\"colorCode\":\"#022F22\"}",
+			"PrimaryKeys": "DunsNumber,ReportPurchaseDate,PeriodStartDate",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

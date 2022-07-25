@@ -1,0 +1,161 @@
+{
+	"name": "CustomerLead",
+	"properties": {
+		"Name": "CustomerLead",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "The leads(s) provided for the customer.",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "LeadSourceId",
+					"Description": "The unique identifier of a Lead Source.",
+					"BaseAttributeReference": {
+						"Entity": "CustomerLead.cdm.json/CustomerLead",
+						"Name": "LeadSourceId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "CustomerLeadId",
+					"Description": "The unique identifier of a Customer Lead.",
+					"BaseAttributeReference": {
+						"Entity": "CustomerLead.cdm.json/CustomerLead",
+						"Name": "CustomerLeadId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "LeadProvidedDate",
+					"Description": "The date that the customer lead was provided.",
+					"BaseAttributeReference": {
+						"Entity": "CustomerLead.cdm.json/CustomerLead",
+						"Name": "LeadProvidedDate"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "date",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"DateFormat": "YYYY-MM-DD",
+							"HIVE_TYPE_STRING": "date"
+						}
+					}
+				},
+				{
+					"Name": "LeadPartyId",
+					"Description": "The unique identifier of a Party.",
+					"BaseAttributeReference": {
+						"Entity": "CustomerLead.cdm.json/CustomerLead",
+						"Name": "LeadPartyId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "long",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"HIVE_TYPE_STRING": "long"
+						}
+					}
+				},
+				{
+					"Name": "CustomerId",
+					"Description": "The unique identifier of a Customer.",
+					"BaseAttributeReference": {
+						"Entity": "CustomerLead.cdm.json/CustomerLead",
+						"Name": "CustomerId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "long",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"HIVE_TYPE_STRING": "long"
+						}
+					}
+				},
+				{
+					"Name": "CustomerLeadNote",
+					"Description": "A note, comment or additional information regarding the customer lead.",
+					"BaseAttributeReference": {
+						"Entity": "CustomerLead.cdm.json/CustomerLead",
+						"Name": "CustomerLeadNote"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/CustomerLead",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/CustomerLead",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"LeadSourceId\":{\"entity\":\"CustomerLead.cdm.json/CustomerLead\",\"name\":\"LeadSourceId\"},\"CustomerLeadId\":{\"entity\":\"CustomerLead.cdm.json/CustomerLead\",\"name\":\"CustomerLeadId\"},\"LeadProvidedDate\":{\"entity\":\"CustomerLead.cdm.json/CustomerLead\",\"name\":\"LeadProvidedDate\"},\"LeadPartyId\":{\"entity\":\"CustomerLead.cdm.json/CustomerLead\",\"name\":\"LeadPartyId\"},\"CustomerId\":{\"entity\":\"CustomerLead.cdm.json/CustomerLead\",\"name\":\"CustomerId\"},\"CustomerLeadNote\":{\"entity\":\"CustomerLead.cdm.json/CustomerLead\",\"name\":\"CustomerLeadNote\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"CustomerLead\",\"path\":\"CustomerLead.cdm.json/CustomerLead\"},\"description\":\"The leads(s) provided for the customer.\",\"primaryKey\":[\"LeadSourceId\",\"CustomerLeadId\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CustomerLead.cdm.json/CustomerLead\",\"name\":\"LeadSourceId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Lead Source.\",\"isNullable\":false,\"name\":\"LeadSourceId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CustomerLead.cdm.json/CustomerLead\",\"name\":\"CustomerLeadId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Customer Lead.\",\"isNullable\":false,\"name\":\"CustomerLeadId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CustomerLead.cdm.json/CustomerLead\",\"name\":\"LeadProvidedDate\"},\"dataType\":\"date\",\"dateFormat\":\"YYYY-MM-DD\",\"description\":\"The date that the customer lead was provided.\",\"isNullable\":false,\"name\":\"LeadProvidedDate\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CustomerLead.cdm.json/CustomerLead\",\"name\":\"LeadPartyId\"},\"dataType\":\"long\",\"description\":\"The unique identifier of a Party.\",\"isNullable\":true,\"name\":\"LeadPartyId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CustomerLead.cdm.json/CustomerLead\",\"name\":\"CustomerId\"},\"dataType\":\"long\",\"description\":\"The unique identifier of a Customer.\",\"isNullable\":true,\"name\":\"CustomerId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CustomerLead.cdm.json/CustomerLead\",\"name\":\"CustomerLeadNote\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"A note, comment or additional information regarding the customer lead.\",\"isNullable\":true,\"name\":\"CustomerLeadNote\"}]}}}",
+			"Description": "The leads(s) provided for the customer.",
+			"DisplayFolderInfo": "{\"name\":\"Customer\",\"colorCode\":\"#4B003F\"}",
+			"PrimaryKeys": "LeadSourceId,CustomerLeadId",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

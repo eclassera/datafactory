@@ -1,0 +1,129 @@
+{
+	"name": "CustomerExperianCompanyProfile",
+	"properties": {
+		"Name": "CustomerExperianCompanyProfile",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "An Experian Company Profile that is associated with a customer.",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "CustomerId",
+					"Description": "The unique identifier of a Customer.",
+					"BaseAttributeReference": {
+						"Entity": "CustomerExperianCompanyProfile.cdm.json/CustomerExperianCompanyProfile",
+						"Name": "CustomerId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "long",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "long"
+						}
+					}
+				},
+				{
+					"Name": "ExperianFileNumber",
+					"Description": "The unique and persistent number that identifies and tracks the Experian company.",
+					"BaseAttributeReference": {
+						"Entity": "CustomerExperianCompanyProfile.cdm.json/CustomerExperianCompanyProfile",
+						"Name": "ExperianFileNumber"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "ProfileTimestamp",
+					"Description": "The timestamp of the Experian profile.",
+					"BaseAttributeReference": {
+						"Entity": "CustomerExperianCompanyProfile.cdm.json/CustomerExperianCompanyProfile",
+						"Name": "ProfileTimestamp"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "timestamp",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"TimestampFormat": "YYYY-MM-DD HH:MM:SS.fffffffff",
+							"HIVE_TYPE_STRING": "timestamp"
+						}
+					}
+				},
+				{
+					"Name": "CustomerExperianCompanyProfileNote",
+					"Description": "Notes, comments or additional information regarding the Customer Experian Company Profile.",
+					"BaseAttributeReference": {
+						"Entity": "CustomerExperianCompanyProfile.cdm.json/CustomerExperianCompanyProfile",
+						"Name": "CustomerExperianCompanyProfileNote"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/CustomerExperianCompanyProfile",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/CustomerExperianCompanyProfile",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"CustomerId\":{\"entity\":\"CustomerExperianCompanyProfile.cdm.json/CustomerExperianCompanyProfile\",\"name\":\"CustomerId\"},\"ExperianFileNumber\":{\"entity\":\"CustomerExperianCompanyProfile.cdm.json/CustomerExperianCompanyProfile\",\"name\":\"ExperianFileNumber\"},\"ProfileTimestamp\":{\"entity\":\"CustomerExperianCompanyProfile.cdm.json/CustomerExperianCompanyProfile\",\"name\":\"ProfileTimestamp\"},\"CustomerExperianCompanyProfileNote\":{\"entity\":\"CustomerExperianCompanyProfile.cdm.json/CustomerExperianCompanyProfile\",\"name\":\"CustomerExperianCompanyProfileNote\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"CustomerExperianCompanyProfile\",\"path\":\"CustomerExperianCompanyProfile.cdm.json/CustomerExperianCompanyProfile\"},\"description\":\"An Experian Company Profile that is associated with a customer.\",\"primaryKey\":[\"CustomerId\",\"ExperianFileNumber\",\"ProfileTimestamp\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CustomerExperianCompanyProfile.cdm.json/CustomerExperianCompanyProfile\",\"name\":\"CustomerId\"},\"dataType\":\"long\",\"description\":\"The unique identifier of a Customer.\",\"isNullable\":false,\"name\":\"CustomerId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CustomerExperianCompanyProfile.cdm.json/CustomerExperianCompanyProfile\",\"name\":\"ExperianFileNumber\"},\"dataType\":\"integer\",\"description\":\"The unique and persistent number that identifies and tracks the Experian company.\",\"isNullable\":false,\"name\":\"ExperianFileNumber\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CustomerExperianCompanyProfile.cdm.json/CustomerExperianCompanyProfile\",\"name\":\"ProfileTimestamp\"},\"dataType\":\"timestamp\",\"description\":\"The timestamp of the Experian profile.\",\"isNullable\":false,\"name\":\"ProfileTimestamp\",\"timestampFormat\":\"YYYY-MM-DD HH:MM:SS.fffffffff\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CustomerExperianCompanyProfile.cdm.json/CustomerExperianCompanyProfile\",\"name\":\"CustomerExperianCompanyProfileNote\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"Notes, comments or additional information regarding the Customer Experian Company Profile.\",\"isNullable\":true,\"name\":\"CustomerExperianCompanyProfileNote\"}]}}}",
+			"Description": "An Experian Company Profile that is associated with a customer.",
+			"DisplayFolderInfo": "{\"name\":\"Customer Credit & Collections\",\"colorCode\":\"#022F22\"}",
+			"PrimaryKeys": "CustomerId,ExperianFileNumber,ProfileTimestamp",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

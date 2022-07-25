@@ -1,0 +1,163 @@
+{
+	"name": "BondEventRisk",
+	"properties": {
+		"Name": "BondEventRisk",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "The risk that a bond will suddenly decline in credit quality and result in a lower rating because of a takeover-related event (i.e. - additional debt or recapitalization).\n\nThe risk that the ability of an issuer to make interest and principal payments will change because of (1) a natural or industrial accident or some regulatory change or (2) a takeover or corporate restructuring. \n\nEx:\n\nStandard & Poor's rates Event Risk on a range of E-1 (highest) to E-5 (lowest).\n\nThese ratings supplement the basic bond ratings.",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "BondId",
+					"Description": "The unique identifier of a Financial Product.",
+					"BaseAttributeReference": {
+						"Entity": "BondEventRisk.cdm.json/BondEventRisk",
+						"Name": "BondId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "long",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "long"
+						}
+					}
+				},
+				{
+					"Name": "CreditRatingAgencyId",
+					"Description": "The unique identifier of a Credit Rating Agency.",
+					"BaseAttributeReference": {
+						"Entity": "BondEventRisk.cdm.json/BondEventRisk",
+						"Name": "CreditRatingAgencyId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "BondRiskEventTypeId",
+					"Description": "The unique identifier of a bond event risk type.",
+					"BaseAttributeReference": {
+						"Entity": "BondEventRisk.cdm.json/BondEventRisk",
+						"Name": "BondRiskEventTypeId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "PeriodStartDate",
+					"Description": "The period start date for which the associated bond Event Risk is prepared.",
+					"BaseAttributeReference": {
+						"Entity": "BondEventRisk.cdm.json/BondEventRisk",
+						"Name": "PeriodStartDate"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "date",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"DateFormat": "YYYY-MM-DD",
+							"HIVE_TYPE_STRING": "date"
+						}
+					}
+				},
+				{
+					"Name": "PeriodEndDate",
+					"Description": "The period end date for which the associated bond Event Risk is prepared.",
+					"BaseAttributeReference": {
+						"Entity": "BondEventRisk.cdm.json/BondEventRisk",
+						"Name": "PeriodEndDate"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "date",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"DateFormat": "YYYY-MM-DD",
+							"HIVE_TYPE_STRING": "date"
+						}
+					}
+				},
+				{
+					"Name": "BondEventRiskRating",
+					"Description": "The bond Event Risk rating of the associated bond for the period defined.\n\nEx:\n\nStandard & Poor's rates Event Risk on a range of E-1 (highest) to E-5 (lowest).\n\nThese ratings supplement the basic bond ratings.",
+					"BaseAttributeReference": {
+						"Entity": "BondEventRisk.cdm.json/BondEventRisk",
+						"Name": "BondEventRiskRating"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "decimal",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Precision": 3,
+						"Scale": 0,
+						"Properties": {
+							"HIVE_TYPE_STRING": "decimal"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/BondEventRisk",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/BondEventRisk",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"BondId\":{\"entity\":\"BondEventRisk.cdm.json/BondEventRisk\",\"name\":\"BondId\"},\"CreditRatingAgencyId\":{\"entity\":\"BondEventRisk.cdm.json/BondEventRisk\",\"name\":\"CreditRatingAgencyId\"},\"BondRiskEventTypeId\":{\"entity\":\"BondEventRisk.cdm.json/BondEventRisk\",\"name\":\"BondRiskEventTypeId\"},\"PeriodStartDate\":{\"entity\":\"BondEventRisk.cdm.json/BondEventRisk\",\"name\":\"PeriodStartDate\"},\"PeriodEndDate\":{\"entity\":\"BondEventRisk.cdm.json/BondEventRisk\",\"name\":\"PeriodEndDate\"},\"BondEventRiskRating\":{\"entity\":\"BondEventRisk.cdm.json/BondEventRisk\",\"name\":\"BondEventRiskRating\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"BondEventRisk\",\"path\":\"BondEventRisk.cdm.json/BondEventRisk\"},\"description\":\"The risk that a bond will suddenly decline in credit quality and result in a lower rating because of a takeover-related event (i.e. - additional debt or recapitalization).\\n\\nThe risk that the ability of an issuer to make interest and principal payments will change because of (1) a natural or industrial accident or some regulatory change or (2) a takeover or corporate restructuring. \\n\\nEx:\\n\\nStandard & Poor's rates Event Risk on a range of E-1 (highest) to E-5 (lowest).\\n\\nThese ratings supplement the basic bond ratings.\",\"primaryKey\":[\"BondId\",\"CreditRatingAgencyId\",\"BondRiskEventTypeId\",\"PeriodStartDate\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"BondEventRisk.cdm.json/BondEventRisk\",\"name\":\"BondId\"},\"dataType\":\"long\",\"description\":\"The unique identifier of a Financial Product.\",\"isNullable\":false,\"name\":\"BondId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"BondEventRisk.cdm.json/BondEventRisk\",\"name\":\"CreditRatingAgencyId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Credit Rating Agency.\",\"isNullable\":false,\"name\":\"CreditRatingAgencyId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"BondEventRisk.cdm.json/BondEventRisk\",\"name\":\"BondRiskEventTypeId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a bond event risk type.\",\"isNullable\":false,\"name\":\"BondRiskEventTypeId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"BondEventRisk.cdm.json/BondEventRisk\",\"name\":\"PeriodStartDate\"},\"dataType\":\"date\",\"dateFormat\":\"YYYY-MM-DD\",\"description\":\"The period start date for which the associated bond Event Risk is prepared.\",\"isNullable\":false,\"name\":\"PeriodStartDate\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"BondEventRisk.cdm.json/BondEventRisk\",\"name\":\"PeriodEndDate\"},\"dataType\":\"date\",\"dateFormat\":\"YYYY-MM-DD\",\"description\":\"The period end date for which the associated bond Event Risk is prepared.\",\"isNullable\":false,\"name\":\"PeriodEndDate\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"BondEventRisk.cdm.json/BondEventRisk\",\"name\":\"BondEventRiskRating\"},\"dataType\":\"decimal\",\"dataTypeLength\":3,\"description\":\"The bond Event Risk rating of the associated bond for the period defined.\\n\\nEx:\\n\\nStandard & Poor's rates Event Risk on a range of E-1 (highest) to E-5 (lowest).\\n\\nThese ratings supplement the basic bond ratings.\",\"isNullable\":true,\"scale\":0,\"name\":\"BondEventRiskRating\"}]}}}",
+			"Description": "The risk that a bond will suddenly decline in credit quality and result in a lower rating because of a takeover-related event (i.e. - additional debt or recapitalization).\n\nThe risk that the ability of an issuer to make interest and principal payments will change because of (1) a natural or industrial accident or some regulatory change or (2) a takeover or corporate restructuring. \n\nEx:\n\nStandard & Poor's rates Event Risk on a range of E-1 (highest) to E-5 (lowest).\n\nThese ratings supplement the basic bond ratings.",
+			"DisplayFolderInfo": "{\"name\":\"Financial Product\",\"colorCode\":\"#001475\"}",
+			"PrimaryKeys": "BondId,CreditRatingAgencyId,BondRiskEventTypeId,PeriodStartDate",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

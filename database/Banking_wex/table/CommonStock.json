@@ -1,0 +1,79 @@
+{
+	"name": "CommonStock",
+	"properties": {
+		"Name": "CommonStock",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "Stock authorized by a company's charter having par value, stated value or no par value.\n\nStock owners are normally entitled to vote on the selection of directors and important matters and receive dividends for their holdings.\n\nIn the event of a corporate liquidation, the claims of secured and unsecured creditors and bond and preferred stock owners take precedence over the claims of those who own common stock.\n\nThe number and value of issued shares are normally shown plus the number of authorized shares in the balance sheet capital accounts section.",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "StockId",
+					"Description": "The unique identifier of a Financial Product.",
+					"BaseAttributeReference": {
+						"Entity": "CommonStock.cdm.json/CommonStock",
+						"Name": "StockId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "long",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "long"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/CommonStock",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/CommonStock",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"StockId\":{\"entity\":\"CommonStock.cdm.json/CommonStock\",\"name\":\"StockId\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"CommonStock\",\"path\":\"CommonStock.cdm.json/CommonStock\"},\"description\":\"Stock authorized by a company's charter having par value, stated value or no par value.\\n\\nStock owners are normally entitled to vote on the selection of directors and important matters and receive dividends for their holdings.\\n\\nIn the event of a corporate liquidation, the claims of secured and unsecured creditors and bond and preferred stock owners take precedence over the claims of those who own common stock.\\n\\nThe number and value of issued shares are normally shown plus the number of authorized shares in the balance sheet capital accounts section.\",\"primaryKey\":[\"StockId\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CommonStock.cdm.json/CommonStock\",\"name\":\"StockId\"},\"dataType\":\"long\",\"description\":\"The unique identifier of a Financial Product.\",\"isNullable\":false,\"name\":\"StockId\"}]}}}",
+			"Description": "Stock authorized by a company's charter having par value, stated value or no par value.\n\nStock owners are normally entitled to vote on the selection of directors and important matters and receive dividends for their holdings.\n\nIn the event of a corporate liquidation, the claims of secured and unsecured creditors and bond and preferred stock owners take precedence over the claims of those who own common stock.\n\nThe number and value of issued shares are normally shown plus the number of authorized shares in the balance sheet capital accounts section.",
+			"DisplayFolderInfo": "{\"name\":\"Financial Product\",\"colorCode\":\"#001475\"}",
+			"PrimaryKeys": "StockId",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

@@ -1,0 +1,162 @@
+{
+	"name": "WorkoutProceedingRelatedParty",
+	"properties": {
+		"Name": "WorkoutProceedingRelatedParty",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "A party that has a relationship with the workout proceeding over the indicated period.",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "WorkoutProceedingId",
+					"Description": "The unique identifier of a Workout Proceeding.",
+					"BaseAttributeReference": {
+						"Entity": "WorkoutProceedingRelatedParty.cdm.json/WorkoutProceedingRelatedParty",
+						"Name": "WorkoutProceedingId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "PartyId",
+					"Description": "The unique identifier of a Party.",
+					"BaseAttributeReference": {
+						"Entity": "WorkoutProceedingRelatedParty.cdm.json/WorkoutProceedingRelatedParty",
+						"Name": "PartyId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "long",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "long"
+						}
+					}
+				},
+				{
+					"Name": "WorkoutProceedingPartyRelationshipTypeId",
+					"Description": "The unique identifier of a Workout Proceeding - Party relationship type.",
+					"BaseAttributeReference": {
+						"Entity": "WorkoutProceedingRelatedParty.cdm.json/WorkoutProceedingRelatedParty",
+						"Name": "WorkoutProceedingPartyRelationshipTypeId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "PeriodStartDate",
+					"Description": "The period start date for which the associated workout proceeding - party relationship is valid or in-effect.",
+					"BaseAttributeReference": {
+						"Entity": "WorkoutProceedingRelatedParty.cdm.json/WorkoutProceedingRelatedParty",
+						"Name": "PeriodStartDate"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "date",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"DateFormat": "YYYY-MM-DD",
+							"HIVE_TYPE_STRING": "date"
+						}
+					}
+				},
+				{
+					"Name": "PeriodEndDate",
+					"Description": "The period end date for which the associated workout proceeding - party relationship is valid or in-effect.",
+					"BaseAttributeReference": {
+						"Entity": "WorkoutProceedingRelatedParty.cdm.json/WorkoutProceedingRelatedParty",
+						"Name": "PeriodEndDate"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "date",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"DateFormat": "YYYY-MM-DD",
+							"HIVE_TYPE_STRING": "date"
+						}
+					}
+				},
+				{
+					"Name": "WorkoutProceedingPartyRelationshipNote",
+					"Description": "A note, comment or additional information regarding the workout proceeding - party relationship.",
+					"BaseAttributeReference": {
+						"Entity": "WorkoutProceedingRelatedParty.cdm.json/WorkoutProceedingRelatedParty",
+						"Name": "WorkoutProceedingPartyRelationshipNote"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/WorkoutProceedingRelatedParty",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/WorkoutProceedingRelatedParty",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"WorkoutProceedingId\":{\"entity\":\"WorkoutProceedingRelatedParty.cdm.json/WorkoutProceedingRelatedParty\",\"name\":\"WorkoutProceedingId\"},\"PartyId\":{\"entity\":\"WorkoutProceedingRelatedParty.cdm.json/WorkoutProceedingRelatedParty\",\"name\":\"PartyId\"},\"WorkoutProceedingPartyRelationshipTypeId\":{\"entity\":\"WorkoutProceedingRelatedParty.cdm.json/WorkoutProceedingRelatedParty\",\"name\":\"WorkoutProceedingPartyRelationshipTypeId\"},\"PeriodStartDate\":{\"entity\":\"WorkoutProceedingRelatedParty.cdm.json/WorkoutProceedingRelatedParty\",\"name\":\"PeriodStartDate\"},\"PeriodEndDate\":{\"entity\":\"WorkoutProceedingRelatedParty.cdm.json/WorkoutProceedingRelatedParty\",\"name\":\"PeriodEndDate\"},\"WorkoutProceedingPartyRelationshipNote\":{\"entity\":\"WorkoutProceedingRelatedParty.cdm.json/WorkoutProceedingRelatedParty\",\"name\":\"WorkoutProceedingPartyRelationshipNote\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"WorkoutProceedingRelatedParty\",\"path\":\"WorkoutProceedingRelatedParty.cdm.json/WorkoutProceedingRelatedParty\"},\"description\":\"A party that has a relationship with the workout proceeding over the indicated period.\",\"primaryKey\":[\"WorkoutProceedingId\",\"PartyId\",\"WorkoutProceedingPartyRelationshipTypeId\",\"PeriodStartDate\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"WorkoutProceedingRelatedParty.cdm.json/WorkoutProceedingRelatedParty\",\"name\":\"WorkoutProceedingId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Workout Proceeding.\",\"isNullable\":false,\"name\":\"WorkoutProceedingId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"WorkoutProceedingRelatedParty.cdm.json/WorkoutProceedingRelatedParty\",\"name\":\"PartyId\"},\"dataType\":\"long\",\"description\":\"The unique identifier of a Party.\",\"isNullable\":false,\"name\":\"PartyId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"WorkoutProceedingRelatedParty.cdm.json/WorkoutProceedingRelatedParty\",\"name\":\"WorkoutProceedingPartyRelationshipTypeId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Workout Proceeding - Party relationship type.\",\"isNullable\":false,\"name\":\"WorkoutProceedingPartyRelationshipTypeId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"WorkoutProceedingRelatedParty.cdm.json/WorkoutProceedingRelatedParty\",\"name\":\"PeriodStartDate\"},\"dataType\":\"date\",\"dateFormat\":\"YYYY-MM-DD\",\"description\":\"The period start date for which the associated workout proceeding - party relationship is valid or in-effect.\",\"isNullable\":false,\"name\":\"PeriodStartDate\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"WorkoutProceedingRelatedParty.cdm.json/WorkoutProceedingRelatedParty\",\"name\":\"PeriodEndDate\"},\"dataType\":\"date\",\"dateFormat\":\"YYYY-MM-DD\",\"description\":\"The period end date for which the associated workout proceeding - party relationship is valid or in-effect.\",\"isNullable\":true,\"name\":\"PeriodEndDate\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"WorkoutProceedingRelatedParty.cdm.json/WorkoutProceedingRelatedParty\",\"name\":\"WorkoutProceedingPartyRelationshipNote\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"A note, comment or additional information regarding the workout proceeding - party relationship.\",\"isNullable\":true,\"name\":\"WorkoutProceedingPartyRelationshipNote\"}]}}}",
+			"Description": "A party that has a relationship with the workout proceeding over the indicated period.",
+			"DisplayFolderInfo": "{\"name\":\"Customer Credit & Collections\",\"colorCode\":\"#022F22\"}",
+			"PrimaryKeys": "WorkoutProceedingId,PartyId,WorkoutProceedingPartyRelationshipTypeId,PeriodStartDate",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

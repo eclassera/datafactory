@@ -1,0 +1,162 @@
+{
+	"name": "CustomerCountryTaxStatus",
+	"properties": {
+		"Name": "CustomerCountryTaxStatus",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "The status of the Customer in the associated Country.",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "CustomerId",
+					"Description": "The unique identifier of a Customer.",
+					"BaseAttributeReference": {
+						"Entity": "CustomerCountryTaxStatus.cdm.json/CustomerCountryTaxStatus",
+						"Name": "CustomerId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "long",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "long"
+						}
+					}
+				},
+				{
+					"Name": "CountryId",
+					"Description": "The unique identifier of the Country.",
+					"BaseAttributeReference": {
+						"Entity": "CustomerCountryTaxStatus.cdm.json/CustomerCountryTaxStatus",
+						"Name": "CountryId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "PeriodStartDate",
+					"Description": "The period start date for which the associated D&B data is effective or 'as-of'.",
+					"BaseAttributeReference": {
+						"Entity": "CustomerCountryTaxStatus.cdm.json/CustomerCountryTaxStatus",
+						"Name": "PeriodStartDate"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "date",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"DateFormat": "YYYY-MM-DD",
+							"HIVE_TYPE_STRING": "date"
+						}
+					}
+				},
+				{
+					"Name": "PeriodEndDate",
+					"Description": "The period end date for which the associated D&B data is effective or 'as-of'.",
+					"BaseAttributeReference": {
+						"Entity": "CustomerCountryTaxStatus.cdm.json/CustomerCountryTaxStatus",
+						"Name": "PeriodEndDate"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "date",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"DateFormat": "YYYY-MM-DD",
+							"HIVE_TYPE_STRING": "date"
+						}
+					}
+				},
+				{
+					"Name": "TaxStatusId",
+					"Description": "The unique identifier of a tax status.",
+					"BaseAttributeReference": {
+						"Entity": "CustomerCountryTaxStatus.cdm.json/CustomerCountryTaxStatus",
+						"Name": "TaxStatusId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "CustomerCountryTaxStatusNote",
+					"Description": "Notes, comments or additional information regarding the Customer Country Tax Status.",
+					"BaseAttributeReference": {
+						"Entity": "CustomerCountryTaxStatus.cdm.json/CustomerCountryTaxStatus",
+						"Name": "CustomerCountryTaxStatusNote"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/CustomerCountryTaxStatus",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/CustomerCountryTaxStatus",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"CustomerId\":{\"entity\":\"CustomerCountryTaxStatus.cdm.json/CustomerCountryTaxStatus\",\"name\":\"CustomerId\"},\"CountryId\":{\"entity\":\"CustomerCountryTaxStatus.cdm.json/CustomerCountryTaxStatus\",\"name\":\"CountryId\"},\"PeriodStartDate\":{\"entity\":\"CustomerCountryTaxStatus.cdm.json/CustomerCountryTaxStatus\",\"name\":\"PeriodStartDate\"},\"PeriodEndDate\":{\"entity\":\"CustomerCountryTaxStatus.cdm.json/CustomerCountryTaxStatus\",\"name\":\"PeriodEndDate\"},\"TaxStatusId\":{\"entity\":\"CustomerCountryTaxStatus.cdm.json/CustomerCountryTaxStatus\",\"name\":\"TaxStatusId\"},\"CustomerCountryTaxStatusNote\":{\"entity\":\"CustomerCountryTaxStatus.cdm.json/CustomerCountryTaxStatus\",\"name\":\"CustomerCountryTaxStatusNote\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"CustomerCountryTaxStatus\",\"path\":\"CustomerCountryTaxStatus.cdm.json/CustomerCountryTaxStatus\"},\"description\":\"The status of the Customer in the associated Country.\",\"primaryKey\":[\"CustomerId\",\"CountryId\",\"PeriodStartDate\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CustomerCountryTaxStatus.cdm.json/CustomerCountryTaxStatus\",\"name\":\"CustomerId\"},\"dataType\":\"long\",\"description\":\"The unique identifier of a Customer.\",\"isNullable\":false,\"name\":\"CustomerId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CustomerCountryTaxStatus.cdm.json/CustomerCountryTaxStatus\",\"name\":\"CountryId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of the Country.\",\"isNullable\":false,\"name\":\"CountryId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CustomerCountryTaxStatus.cdm.json/CustomerCountryTaxStatus\",\"name\":\"PeriodStartDate\"},\"dataType\":\"date\",\"dateFormat\":\"YYYY-MM-DD\",\"description\":\"The period start date for which the associated D&B data is effective or 'as-of'.\",\"isNullable\":false,\"name\":\"PeriodStartDate\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CustomerCountryTaxStatus.cdm.json/CustomerCountryTaxStatus\",\"name\":\"PeriodEndDate\"},\"dataType\":\"date\",\"dateFormat\":\"YYYY-MM-DD\",\"description\":\"The period end date for which the associated D&B data is effective or 'as-of'.\",\"isNullable\":true,\"name\":\"PeriodEndDate\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CustomerCountryTaxStatus.cdm.json/CustomerCountryTaxStatus\",\"name\":\"TaxStatusId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a tax status.\",\"isNullable\":false,\"name\":\"TaxStatusId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CustomerCountryTaxStatus.cdm.json/CustomerCountryTaxStatus\",\"name\":\"CustomerCountryTaxStatusNote\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"Notes, comments or additional information regarding the Customer Country Tax Status.\",\"isNullable\":true,\"name\":\"CustomerCountryTaxStatusNote\"}]}}}",
+			"Description": "The status of the Customer in the associated Country.",
+			"DisplayFolderInfo": "{\"name\":\"Customer\",\"colorCode\":\"#4B003F\"}",
+			"PrimaryKeys": "CustomerId,CountryId,PeriodStartDate",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

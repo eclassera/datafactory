@@ -1,0 +1,113 @@
+{
+	"name": "InterestRateType",
+	"properties": {
+		"Name": "InterestRateType",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "A classification of interest rate types.\n\nEx.:\n- Fixed Interest Rate\n- Variable Interest Rate\n- Payable At Maturity\n\nwhere:\nFIXED INTEREST RATE\nAn interest rate that is set at the time of offering and does not change.\n\nVARIABLE INTEREST RATE\nAn interest rate which is tied to an index, such as the Wall Street Journal Prime, and fluctuates during the life of the offering.\n\nPAYABLE AT MATURITY\nBonds that have no periodic interest payments and the investor receives a single payment at maturity equal to the purchase price + interest earned, compounded semi-annually at the original interest rate.  \n\nThese are known as Zero Coupon Bonds.",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "InterestRateTypeId",
+					"Description": "The unique identifier of an Interest Rate Type.",
+					"BaseAttributeReference": {
+						"Entity": "InterestRateType.cdm.json/InterestRateType",
+						"Name": "InterestRateTypeId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "InterestRateTypeName",
+					"Description": "The name of an Interest Rate Type.",
+					"BaseAttributeReference": {
+						"Entity": "InterestRateType.cdm.json/InterestRateType",
+						"Name": "InterestRateTypeName"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 256,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "InterestRateTypeDescription",
+					"Description": "The description of an Interest Rate Type.",
+					"BaseAttributeReference": {
+						"Entity": "InterestRateType.cdm.json/InterestRateType",
+						"Name": "InterestRateTypeDescription"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/InterestRateType",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/InterestRateType",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"InterestRateTypeId\":{\"entity\":\"InterestRateType.cdm.json/InterestRateType\",\"name\":\"InterestRateTypeId\"},\"InterestRateTypeName\":{\"entity\":\"InterestRateType.cdm.json/InterestRateType\",\"name\":\"InterestRateTypeName\"},\"InterestRateTypeDescription\":{\"entity\":\"InterestRateType.cdm.json/InterestRateType\",\"name\":\"InterestRateTypeDescription\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"InterestRateType\",\"path\":\"InterestRateType.cdm.json/InterestRateType\"},\"description\":\"A classification of interest rate types.\\n\\nEx.:\\n- Fixed Interest Rate\\n- Variable Interest Rate\\n- Payable At Maturity\\n\\nwhere:\\nFIXED INTEREST RATE\\nAn interest rate that is set at the time of offering and does not change.\\n\\nVARIABLE INTEREST RATE\\nAn interest rate which is tied to an index, such as the Wall Street Journal Prime, and fluctuates during the life of the offering.\\n\\nPAYABLE AT MATURITY\\nBonds that have no periodic interest payments and the investor receives a single payment at maturity equal to the purchase price + interest earned, compounded semi-annually at the original interest rate.  \\n\\nThese are known as Zero Coupon Bonds.\",\"primaryKey\":[\"InterestRateTypeId\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"InterestRateType.cdm.json/InterestRateType\",\"name\":\"InterestRateTypeId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of an Interest Rate Type.\",\"isNullable\":false,\"name\":\"InterestRateTypeId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"InterestRateType.cdm.json/InterestRateType\",\"name\":\"InterestRateTypeName\"},\"dataType\":\"string\",\"dataTypeLength\":256,\"description\":\"The name of an Interest Rate Type.\",\"isNullable\":true,\"name\":\"InterestRateTypeName\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"InterestRateType.cdm.json/InterestRateType\",\"name\":\"InterestRateTypeDescription\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"The description of an Interest Rate Type.\",\"isNullable\":true,\"name\":\"InterestRateTypeDescription\"}]}}}",
+			"Description": "A classification of interest rate types.\n\nEx.:\n- Fixed Interest Rate\n- Variable Interest Rate\n- Payable At Maturity\n\nwhere:\nFIXED INTEREST RATE\nAn interest rate that is set at the time of offering and does not change.\n\nVARIABLE INTEREST RATE\nAn interest rate which is tied to an index, such as the Wall Street Journal Prime, and fluctuates during the life of the offering.\n\nPAYABLE AT MATURITY\nBonds that have no periodic interest payments and the investor receives a single payment at maturity equal to the purchase price + interest earned, compounded semi-annually at the original interest rate.  \n\nThese are known as Zero Coupon Bonds.",
+			"DisplayFolderInfo": "{\"name\":\"Accounting & Financial Reporting\",\"colorCode\":\"#0078D4\"}",
+			"PrimaryKeys": "InterestRateTypeId",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

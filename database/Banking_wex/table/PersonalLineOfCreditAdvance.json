@@ -1,0 +1,149 @@
+{
+	"name": "PersonalLineOfCreditAdvance",
+	"properties": {
+		"Name": "PersonalLineOfCreditAdvance",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "An advance or draw against the personal line of credit.",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "CreditGrantorId",
+					"Description": "The unique identifier of a Credit Grantor.",
+					"BaseAttributeReference": {
+						"Entity": "PersonalLineOfCreditAdvance.cdm.json/PersonalLineOfCreditAdvance",
+						"Name": "CreditGrantorId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "LineOfCreditAccountNumber",
+					"Description": "The unique identifier of a specific Line Of Credit provided to a Customer/Customer Account.",
+					"BaseAttributeReference": {
+						"Entity": "PersonalLineOfCreditAdvance.cdm.json/PersonalLineOfCreditAdvance",
+						"Name": "LineOfCreditAccountNumber"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Length": 20,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "Timestamp",
+					"Description": "The timestamp of the Personal LOC Advance.",
+					"BaseAttributeReference": {
+						"Entity": "PersonalLineOfCreditAdvance.cdm.json/PersonalLineOfCreditAdvance",
+						"Name": "Timestamp"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "timestamp",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"TimestampFormat": "YYYY-MM-DD HH:MM:SS.fffffffff",
+							"HIVE_TYPE_STRING": "timestamp"
+						}
+					}
+				},
+				{
+					"Name": "AdvanceAmount",
+					"Description": "The amount of the advance.",
+					"BaseAttributeReference": {
+						"Entity": "PersonalLineOfCreditAdvance.cdm.json/PersonalLineOfCreditAdvance",
+						"Name": "AdvanceAmount"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "decimal",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Precision": 18,
+						"Scale": 2,
+						"Properties": {
+							"HIVE_TYPE_STRING": "decimal"
+						}
+					}
+				},
+				{
+					"Name": "LineOfCreditAmountRemaining",
+					"Description": "The amount of the original line of credit extended that remains to be drawn upon.",
+					"BaseAttributeReference": {
+						"Entity": "PersonalLineOfCreditAdvance.cdm.json/PersonalLineOfCreditAdvance",
+						"Name": "LineOfCreditAmountRemaining"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "decimal",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Precision": 18,
+						"Scale": 2,
+						"Properties": {
+							"HIVE_TYPE_STRING": "decimal"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/PersonalLineOfCreditAdvance",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/PersonalLineOfCreditAdvance",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"CreditGrantorId\":{\"entity\":\"PersonalLineOfCreditAdvance.cdm.json/PersonalLineOfCreditAdvance\",\"name\":\"CreditGrantorId\"},\"LineOfCreditAccountNumber\":{\"entity\":\"PersonalLineOfCreditAdvance.cdm.json/PersonalLineOfCreditAdvance\",\"name\":\"LineOfCreditAccountNumber\"},\"Timestamp\":{\"entity\":\"PersonalLineOfCreditAdvance.cdm.json/PersonalLineOfCreditAdvance\",\"name\":\"Timestamp\"},\"AdvanceAmount\":{\"entity\":\"PersonalLineOfCreditAdvance.cdm.json/PersonalLineOfCreditAdvance\",\"name\":\"AdvanceAmount\"},\"LineOfCreditAmountRemaining\":{\"entity\":\"PersonalLineOfCreditAdvance.cdm.json/PersonalLineOfCreditAdvance\",\"name\":\"LineOfCreditAmountRemaining\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"PersonalLineOfCreditAdvance\",\"path\":\"PersonalLineOfCreditAdvance.cdm.json/PersonalLineOfCreditAdvance\"},\"description\":\"An advance or draw against the personal line of credit.\",\"primaryKey\":[\"CreditGrantorId\",\"LineOfCreditAccountNumber\",\"Timestamp\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"PersonalLineOfCreditAdvance.cdm.json/PersonalLineOfCreditAdvance\",\"name\":\"CreditGrantorId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Credit Grantor.\",\"isNullable\":false,\"name\":\"CreditGrantorId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"PersonalLineOfCreditAdvance.cdm.json/PersonalLineOfCreditAdvance\",\"name\":\"LineOfCreditAccountNumber\"},\"dataType\":\"string\",\"dataTypeLength\":20,\"description\":\"The unique identifier of a specific Line Of Credit provided to a Customer/Customer Account.\",\"isNullable\":false,\"name\":\"LineOfCreditAccountNumber\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"PersonalLineOfCreditAdvance.cdm.json/PersonalLineOfCreditAdvance\",\"name\":\"Timestamp\"},\"dataType\":\"timestamp\",\"description\":\"The timestamp of the Personal LOC Advance.\",\"isNullable\":false,\"name\":\"Timestamp\",\"timestampFormat\":\"YYYY-MM-DD HH:MM:SS.fffffffff\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"PersonalLineOfCreditAdvance.cdm.json/PersonalLineOfCreditAdvance\",\"name\":\"AdvanceAmount\"},\"dataType\":\"decimal\",\"dataTypeLength\":18,\"description\":\"The amount of the advance.\",\"isNullable\":true,\"scale\":2,\"name\":\"AdvanceAmount\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"PersonalLineOfCreditAdvance.cdm.json/PersonalLineOfCreditAdvance\",\"name\":\"LineOfCreditAmountRemaining\"},\"dataType\":\"decimal\",\"dataTypeLength\":18,\"description\":\"The amount of the original line of credit extended that remains to be drawn upon.\",\"isNullable\":true,\"scale\":2,\"name\":\"LineOfCreditAmountRemaining\"}]}}}",
+			"Description": "An advance or draw against the personal line of credit.",
+			"DisplayFolderInfo": "{\"name\":\"Customer Credit & Collections\",\"colorCode\":\"#022F22\"}",
+			"PrimaryKeys": "CreditGrantorId,LineOfCreditAccountNumber,Timestamp",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

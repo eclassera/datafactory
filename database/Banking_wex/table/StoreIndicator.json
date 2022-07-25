@@ -1,0 +1,162 @@
+{
+	"name": "StoreIndicator",
+	"properties": {
+		"Name": "StoreIndicator",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "The Store Indicator for the Store Indicator Type.",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "StoreIndicatorTypeId",
+					"Description": "The unique identifier of a Product Indicator Type.",
+					"BaseAttributeReference": {
+						"Entity": "StoreIndicator.cdm.json/StoreIndicator",
+						"Name": "StoreIndicatorTypeId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "StoreId",
+					"Description": "The unique identifier of a Store.",
+					"BaseAttributeReference": {
+						"Entity": "StoreIndicator.cdm.json/StoreIndicator",
+						"Name": "StoreId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "StoreIndicatorPeriodStartDate",
+					"Description": "The period start date for which the associated Store Indicator is valid.",
+					"BaseAttributeReference": {
+						"Entity": "StoreIndicator.cdm.json/StoreIndicator",
+						"Name": "StoreIndicatorPeriodStartDate"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "date",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"DateFormat": "YYYY-MM-DD",
+							"HIVE_TYPE_STRING": "date"
+						}
+					}
+				},
+				{
+					"Name": "StoreIndicatorPeriodEndDate",
+					"Description": "The period end date for which the associated Store Indicator is valid.",
+					"BaseAttributeReference": {
+						"Entity": "StoreIndicator.cdm.json/StoreIndicator",
+						"Name": "StoreIndicatorPeriodEndDate"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "date",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"DateFormat": "YYYY-MM-DD",
+							"HIVE_TYPE_STRING": "date"
+						}
+					}
+				},
+				{
+					"Name": "StoreIndicator",
+					"Description": "The Store Indicator.",
+					"BaseAttributeReference": {
+						"Entity": "StoreIndicator.cdm.json/StoreIndicator",
+						"Name": "StoreIndicator"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "boolean",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "boolean"
+						}
+					}
+				},
+				{
+					"Name": "StoreIndicatorNote",
+					"Description": "A note, comment or additional information regarding the Store Indicator.",
+					"BaseAttributeReference": {
+						"Entity": "StoreIndicator.cdm.json/StoreIndicator",
+						"Name": "StoreIndicatorNote"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/StoreIndicator",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/StoreIndicator",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"StoreIndicatorTypeId\":{\"entity\":\"StoreIndicator.cdm.json/StoreIndicator\",\"name\":\"StoreIndicatorTypeId\"},\"StoreId\":{\"entity\":\"StoreIndicator.cdm.json/StoreIndicator\",\"name\":\"StoreId\"},\"StoreIndicatorPeriodStartDate\":{\"entity\":\"StoreIndicator.cdm.json/StoreIndicator\",\"name\":\"StoreIndicatorPeriodStartDate\"},\"StoreIndicatorPeriodEndDate\":{\"entity\":\"StoreIndicator.cdm.json/StoreIndicator\",\"name\":\"StoreIndicatorPeriodEndDate\"},\"StoreIndicator\":{\"entity\":\"StoreIndicator.cdm.json/StoreIndicator\",\"name\":\"StoreIndicator\"},\"StoreIndicatorNote\":{\"entity\":\"StoreIndicator.cdm.json/StoreIndicator\",\"name\":\"StoreIndicatorNote\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"StoreIndicator\",\"path\":\"StoreIndicator.cdm.json/StoreIndicator\"},\"description\":\"The Store Indicator for the Store Indicator Type.\",\"primaryKey\":[\"StoreIndicatorTypeId\",\"StoreId\",\"StoreIndicatorPeriodStartDate\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"StoreIndicator.cdm.json/StoreIndicator\",\"name\":\"StoreIndicatorTypeId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Product Indicator Type.\",\"isNullable\":false,\"name\":\"StoreIndicatorTypeId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"StoreIndicator.cdm.json/StoreIndicator\",\"name\":\"StoreId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Store.\",\"isNullable\":false,\"name\":\"StoreId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"StoreIndicator.cdm.json/StoreIndicator\",\"name\":\"StoreIndicatorPeriodStartDate\"},\"dataType\":\"date\",\"dateFormat\":\"YYYY-MM-DD\",\"description\":\"The period start date for which the associated Store Indicator is valid.\",\"isNullable\":false,\"name\":\"StoreIndicatorPeriodStartDate\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"StoreIndicator.cdm.json/StoreIndicator\",\"name\":\"StoreIndicatorPeriodEndDate\"},\"dataType\":\"date\",\"dateFormat\":\"YYYY-MM-DD\",\"description\":\"The period end date for which the associated Store Indicator is valid.\",\"isNullable\":true,\"name\":\"StoreIndicatorPeriodEndDate\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"StoreIndicator.cdm.json/StoreIndicator\",\"name\":\"StoreIndicator\"},\"dataType\":\"boolean\",\"description\":\"The Store Indicator.\",\"isNullable\":false,\"name\":\"StoreIndicator\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"StoreIndicator.cdm.json/StoreIndicator\",\"name\":\"StoreIndicatorNote\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"A note, comment or additional information regarding the Store Indicator.\",\"isNullable\":true,\"name\":\"StoreIndicatorNote\"}]}}}",
+			"Description": "The Store Indicator for the Store Indicator Type.",
+			"DisplayFolderInfo": "{\"name\":\"Channel\",\"colorCode\":\"#001D3F\"}",
+			"PrimaryKeys": "StoreIndicatorTypeId,StoreId,StoreIndicatorPeriodStartDate",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

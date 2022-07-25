@@ -1,0 +1,113 @@
+{
+	"name": "WriteOffMethod",
+	"properties": {
+		"Name": "WriteOffMethod",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "There are three methods that are used to recognize customer obligations that are uncollectible:\n\n1. - Direct Write-off Method\n2 -  Net Sales Method\n3 -  Aging of Accounts Receivable Method",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "WriteOffMethodId",
+					"Description": "The unique identifier of a write-off method.",
+					"BaseAttributeReference": {
+						"Entity": "WriteOffMethod.cdm.json/WriteOffMethod",
+						"Name": "WriteOffMethodId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "WriteOffMethodName",
+					"Description": "The name of a write-off method.",
+					"BaseAttributeReference": {
+						"Entity": "WriteOffMethod.cdm.json/WriteOffMethod",
+						"Name": "WriteOffMethodName"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 256,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "WriteOffMethodDescription",
+					"Description": "The description of a write-off method.",
+					"BaseAttributeReference": {
+						"Entity": "WriteOffMethod.cdm.json/WriteOffMethod",
+						"Name": "WriteOffMethodDescription"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/WriteOffMethod",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/WriteOffMethod",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"WriteOffMethodId\":{\"entity\":\"WriteOffMethod.cdm.json/WriteOffMethod\",\"name\":\"WriteOffMethodId\"},\"WriteOffMethodName\":{\"entity\":\"WriteOffMethod.cdm.json/WriteOffMethod\",\"name\":\"WriteOffMethodName\"},\"WriteOffMethodDescription\":{\"entity\":\"WriteOffMethod.cdm.json/WriteOffMethod\",\"name\":\"WriteOffMethodDescription\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"WriteOffMethod\",\"path\":\"WriteOffMethod.cdm.json/WriteOffMethod\"},\"description\":\"There are three methods that are used to recognize customer obligations that are uncollectible:\\n\\n1. - Direct Write-off Method\\n2 -  Net Sales Method\\n3 -  Aging of Accounts Receivable Method\",\"primaryKey\":[\"WriteOffMethodId\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"WriteOffMethod.cdm.json/WriteOffMethod\",\"name\":\"WriteOffMethodId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a write-off method.\",\"isNullable\":false,\"name\":\"WriteOffMethodId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"WriteOffMethod.cdm.json/WriteOffMethod\",\"name\":\"WriteOffMethodName\"},\"dataType\":\"string\",\"dataTypeLength\":256,\"description\":\"The name of a write-off method.\",\"isNullable\":true,\"name\":\"WriteOffMethodName\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"WriteOffMethod.cdm.json/WriteOffMethod\",\"name\":\"WriteOffMethodDescription\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"The description of a write-off method.\",\"isNullable\":true,\"name\":\"WriteOffMethodDescription\"}]}}}",
+			"Description": "There are three methods that are used to recognize customer obligations that are uncollectible:\n\n1. - Direct Write-off Method\n2 -  Net Sales Method\n3 -  Aging of Accounts Receivable Method",
+			"DisplayFolderInfo": "{\"name\":\"Accounting & Financial Reporting\",\"colorCode\":\"#0078D4\"}",
+			"PrimaryKeys": "WriteOffMethodId",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

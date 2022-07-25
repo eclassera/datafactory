@@ -1,0 +1,128 @@
+{
+	"name": "RelatedCommission",
+	"properties": {
+		"Name": "RelatedCommission",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "The relationship of two or more commissions.",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "CommissionId",
+					"Description": "The unique identifier of a Commission.",
+					"BaseAttributeReference": {
+						"Entity": "RelatedCommission.cdm.json/RelatedCommission",
+						"Name": "CommissionId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "RelatedCommissionId",
+					"Description": "The unique identifier of a Commission.",
+					"BaseAttributeReference": {
+						"Entity": "RelatedCommission.cdm.json/RelatedCommission",
+						"Name": "RelatedCommissionId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "CommissionRelationshipTypeId",
+					"Description": "The unique identifier of a Commission Relationship Type.",
+					"BaseAttributeReference": {
+						"Entity": "RelatedCommission.cdm.json/RelatedCommission",
+						"Name": "CommissionRelationshipTypeId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "CommissionRelatedNote",
+					"Description": "Notes, comments or additional information regarding related commissions.",
+					"BaseAttributeReference": {
+						"Entity": "RelatedCommission.cdm.json/RelatedCommission",
+						"Name": "CommissionRelatedNote"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/RelatedCommission",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/RelatedCommission",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"CommissionId\":{\"entity\":\"RelatedCommission.cdm.json/RelatedCommission\",\"name\":\"CommissionId\"},\"RelatedCommissionId\":{\"entity\":\"RelatedCommission.cdm.json/RelatedCommission\",\"name\":\"RelatedCommissionId\"},\"CommissionRelationshipTypeId\":{\"entity\":\"RelatedCommission.cdm.json/RelatedCommission\",\"name\":\"CommissionRelationshipTypeId\"},\"CommissionRelatedNote\":{\"entity\":\"RelatedCommission.cdm.json/RelatedCommission\",\"name\":\"CommissionRelatedNote\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"RelatedCommission\",\"path\":\"RelatedCommission.cdm.json/RelatedCommission\"},\"description\":\"The relationship of two or more commissions.\",\"primaryKey\":[\"CommissionId\",\"RelatedCommissionId\",\"CommissionRelationshipTypeId\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"RelatedCommission.cdm.json/RelatedCommission\",\"name\":\"CommissionId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Commission.\",\"isNullable\":false,\"name\":\"CommissionId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"RelatedCommission.cdm.json/RelatedCommission\",\"name\":\"RelatedCommissionId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Commission.\",\"isNullable\":false,\"name\":\"RelatedCommissionId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"RelatedCommission.cdm.json/RelatedCommission\",\"name\":\"CommissionRelationshipTypeId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Commission Relationship Type.\",\"isNullable\":false,\"name\":\"CommissionRelationshipTypeId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"RelatedCommission.cdm.json/RelatedCommission\",\"name\":\"CommissionRelatedNote\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"Notes, comments or additional information regarding related commissions.\",\"isNullable\":true,\"name\":\"CommissionRelatedNote\"}]}}}",
+			"Description": "The relationship of two or more commissions.",
+			"DisplayFolderInfo": "{\"name\":\"Transaction\",\"colorCode\":\"#823A16\"}",
+			"PrimaryKeys": "CommissionId,RelatedCommissionId,CommissionRelationshipTypeId",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

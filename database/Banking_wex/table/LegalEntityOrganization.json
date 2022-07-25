@@ -1,0 +1,162 @@
+{
+	"name": "LegalEntityOrganization",
+	"properties": {
+		"Name": "LegalEntityOrganization",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "An organization associated with a legal entity.",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "LegalEntityId",
+					"Description": "The unique identifier of a Legal Entity.",
+					"BaseAttributeReference": {
+						"Entity": "LegalEntityOrganization.cdm.json/LegalEntityOrganization",
+						"Name": "LegalEntityId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "PartyId",
+					"Description": "The unique identifier of a Party.",
+					"BaseAttributeReference": {
+						"Entity": "LegalEntityOrganization.cdm.json/LegalEntityOrganization",
+						"Name": "PartyId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "long",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "long"
+						}
+					}
+				},
+				{
+					"Name": "OrganizationId",
+					"Description": "The unique identifier of an organization.",
+					"BaseAttributeReference": {
+						"Entity": "LegalEntityOrganization.cdm.json/LegalEntityOrganization",
+						"Name": "OrganizationId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "PeriodStartTimestamp",
+					"Description": "The period start timestamp of the legal entity organization relationship.",
+					"BaseAttributeReference": {
+						"Entity": "LegalEntityOrganization.cdm.json/LegalEntityOrganization",
+						"Name": "PeriodStartTimestamp"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "timestamp",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"TimestampFormat": "YYYY-MM-DD HH:MM:SS.fffffffff",
+							"HIVE_TYPE_STRING": "timestamp"
+						}
+					}
+				},
+				{
+					"Name": "PeriodEndTimestamp",
+					"Description": "The period end timestamp of the legal entity organization relationship.",
+					"BaseAttributeReference": {
+						"Entity": "LegalEntityOrganization.cdm.json/LegalEntityOrganization",
+						"Name": "PeriodEndTimestamp"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "timestamp",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"TimestampFormat": "YYYY-MM-DD HH:MM:SS.fffffffff",
+							"HIVE_TYPE_STRING": "timestamp"
+						}
+					}
+				},
+				{
+					"Name": "LegalEntityOrganizationNote",
+					"Description": "A note, comment or additional information regarding the legal entity organization.",
+					"BaseAttributeReference": {
+						"Entity": "LegalEntityOrganization.cdm.json/LegalEntityOrganization",
+						"Name": "LegalEntityOrganizationNote"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/LegalEntityOrganization",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/LegalEntityOrganization",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"LegalEntityId\":{\"entity\":\"LegalEntityOrganization.cdm.json/LegalEntityOrganization\",\"name\":\"LegalEntityId\"},\"PartyId\":{\"entity\":\"LegalEntityOrganization.cdm.json/LegalEntityOrganization\",\"name\":\"PartyId\"},\"OrganizationId\":{\"entity\":\"LegalEntityOrganization.cdm.json/LegalEntityOrganization\",\"name\":\"OrganizationId\"},\"PeriodStartTimestamp\":{\"entity\":\"LegalEntityOrganization.cdm.json/LegalEntityOrganization\",\"name\":\"PeriodStartTimestamp\"},\"PeriodEndTimestamp\":{\"entity\":\"LegalEntityOrganization.cdm.json/LegalEntityOrganization\",\"name\":\"PeriodEndTimestamp\"},\"LegalEntityOrganizationNote\":{\"entity\":\"LegalEntityOrganization.cdm.json/LegalEntityOrganization\",\"name\":\"LegalEntityOrganizationNote\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"LegalEntityOrganization\",\"path\":\"LegalEntityOrganization.cdm.json/LegalEntityOrganization\"},\"description\":\"An organization associated with a legal entity.\",\"primaryKey\":[\"LegalEntityId\",\"PartyId\",\"OrganizationId\",\"PeriodStartTimestamp\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"LegalEntityOrganization.cdm.json/LegalEntityOrganization\",\"name\":\"LegalEntityId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Legal Entity.\",\"isNullable\":false,\"name\":\"LegalEntityId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"LegalEntityOrganization.cdm.json/LegalEntityOrganization\",\"name\":\"PartyId\"},\"dataType\":\"long\",\"description\":\"The unique identifier of a Party.\",\"isNullable\":false,\"name\":\"PartyId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"LegalEntityOrganization.cdm.json/LegalEntityOrganization\",\"name\":\"OrganizationId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of an organization.\",\"isNullable\":false,\"name\":\"OrganizationId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"LegalEntityOrganization.cdm.json/LegalEntityOrganization\",\"name\":\"PeriodStartTimestamp\"},\"dataType\":\"timestamp\",\"description\":\"The period start timestamp of the legal entity organization relationship.\",\"isNullable\":false,\"name\":\"PeriodStartTimestamp\",\"timestampFormat\":\"YYYY-MM-DD HH:MM:SS.fffffffff\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"LegalEntityOrganization.cdm.json/LegalEntityOrganization\",\"name\":\"PeriodEndTimestamp\"},\"dataType\":\"timestamp\",\"description\":\"The period end timestamp of the legal entity organization relationship.\",\"isNullable\":true,\"name\":\"PeriodEndTimestamp\",\"timestampFormat\":\"YYYY-MM-DD HH:MM:SS.fffffffff\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"LegalEntityOrganization.cdm.json/LegalEntityOrganization\",\"name\":\"LegalEntityOrganizationNote\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"A note, comment or additional information regarding the legal entity organization.\",\"isNullable\":true,\"name\":\"LegalEntityOrganizationNote\"}]}}}",
+			"Description": "An organization associated with a legal entity.",
+			"DisplayFolderInfo": "{\"name\":\"Legal Entity\",\"colorCode\":\"#630454\"}",
+			"PrimaryKeys": "LegalEntityId,PartyId,OrganizationId,PeriodStartTimestamp",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

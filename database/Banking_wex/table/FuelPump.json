@@ -1,0 +1,178 @@
+{
+	"name": "FuelPump",
+	"properties": {
+		"Name": "FuelPump",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "A Fuel Pump that is located at a Store Service Location.",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "FuelPumpId",
+					"Description": "The unique identifier of a Fuel Pump.",
+					"BaseAttributeReference": {
+						"Entity": "FuelPump.cdm.json/FuelPump",
+						"Name": "FuelPumpId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "FuelPumpName",
+					"Description": "The name of the Fuel Pump Location.",
+					"BaseAttributeReference": {
+						"Entity": "FuelPump.cdm.json/FuelPump",
+						"Name": "FuelPumpName"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 256,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "FuelPumpDescription",
+					"Description": "The description of the Fuel Pump Location.",
+					"BaseAttributeReference": {
+						"Entity": "FuelPump.cdm.json/FuelPump",
+						"Name": "FuelPumpDescription"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "AssetId",
+					"Description": "The unique identifier of an Asset.",
+					"BaseAttributeReference": {
+						"Entity": "FuelPump.cdm.json/FuelPump",
+						"Name": "AssetId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "long",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"HIVE_TYPE_STRING": "long"
+						}
+					}
+				},
+				{
+					"Name": "StoreId",
+					"Description": "The unique identifier of a Store.",
+					"BaseAttributeReference": {
+						"Entity": "FuelPump.cdm.json/FuelPump",
+						"Name": "StoreId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "ServiceLocationId",
+					"Description": "The unique identifier of a service location.",
+					"BaseAttributeReference": {
+						"Entity": "FuelPump.cdm.json/FuelPump",
+						"Name": "ServiceLocationId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "PeriodStartTimestamp",
+					"Description": "The period start timestamp of the store / service location relationship.",
+					"BaseAttributeReference": {
+						"Entity": "FuelPump.cdm.json/FuelPump",
+						"Name": "PeriodStartTimestamp"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "timestamp",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"TimestampFormat": "YYYY-MM-DD HH:MM:SS.fffffffff",
+							"HIVE_TYPE_STRING": "timestamp"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/FuelPump",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/FuelPump",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"FuelPumpId\":{\"entity\":\"FuelPump.cdm.json/FuelPump\",\"name\":\"FuelPumpId\"},\"FuelPumpName\":{\"entity\":\"FuelPump.cdm.json/FuelPump\",\"name\":\"FuelPumpName\"},\"FuelPumpDescription\":{\"entity\":\"FuelPump.cdm.json/FuelPump\",\"name\":\"FuelPumpDescription\"},\"AssetId\":{\"entity\":\"FuelPump.cdm.json/FuelPump\",\"name\":\"AssetId\"},\"StoreId\":{\"entity\":\"FuelPump.cdm.json/FuelPump\",\"name\":\"StoreId\"},\"ServiceLocationId\":{\"entity\":\"FuelPump.cdm.json/FuelPump\",\"name\":\"ServiceLocationId\"},\"PeriodStartTimestamp\":{\"entity\":\"FuelPump.cdm.json/FuelPump\",\"name\":\"PeriodStartTimestamp\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"FuelPump\",\"path\":\"FuelPump.cdm.json/FuelPump\"},\"description\":\"A Fuel Pump that is located at a Store Service Location.\",\"primaryKey\":[\"FuelPumpId\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"FuelPump.cdm.json/FuelPump\",\"name\":\"FuelPumpId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Fuel Pump.\",\"isNullable\":false,\"name\":\"FuelPumpId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"FuelPump.cdm.json/FuelPump\",\"name\":\"FuelPumpName\"},\"dataType\":\"string\",\"dataTypeLength\":256,\"description\":\"The name of the Fuel Pump Location.\",\"isNullable\":true,\"name\":\"FuelPumpName\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"FuelPump.cdm.json/FuelPump\",\"name\":\"FuelPumpDescription\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"The description of the Fuel Pump Location.\",\"isNullable\":true,\"name\":\"FuelPumpDescription\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"FuelPump.cdm.json/FuelPump\",\"name\":\"AssetId\"},\"dataType\":\"long\",\"description\":\"The unique identifier of an Asset.\",\"isNullable\":true,\"name\":\"AssetId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"FuelPump.cdm.json/FuelPump\",\"name\":\"StoreId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Store.\",\"isNullable\":true,\"name\":\"StoreId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"FuelPump.cdm.json/FuelPump\",\"name\":\"ServiceLocationId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a service location.\",\"isNullable\":true,\"name\":\"ServiceLocationId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"FuelPump.cdm.json/FuelPump\",\"name\":\"PeriodStartTimestamp\"},\"dataType\":\"timestamp\",\"description\":\"The period start timestamp of the store / service location relationship.\",\"isNullable\":true,\"name\":\"PeriodStartTimestamp\",\"timestampFormat\":\"YYYY-MM-DD HH:MM:SS.fffffffff\"}]}}}",
+			"Description": "A Fuel Pump that is located at a Store Service Location.",
+			"DisplayFolderInfo": "{\"name\":\"Channel\",\"colorCode\":\"#001D3F\"}",
+			"PrimaryKeys": "FuelPumpId",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

@@ -1,0 +1,177 @@
+{
+	"name": "JournalEntry",
+	"properties": {
+		"Name": "JournalEntry",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "The entry of a transaction into the journal or book of original entry.\n\nAll transactions are first recorded into a journal in chronological order.\n\nThis represents an adequate explanation of what has occurred before the transaction is posted to accounts.\n\nNote:\nThe transaction may be entered into one or more journals such as a general journal and a specialized journal.",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "JournalId",
+					"Description": "The unique identifier of a Journal.",
+					"BaseAttributeReference": {
+						"Entity": "JournalEntry.cdm.json/JournalEntry",
+						"Name": "JournalId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "JournalEntryId",
+					"Description": "The unique identifier of a Journal Entry.",
+					"BaseAttributeReference": {
+						"Entity": "JournalEntry.cdm.json/JournalEntry",
+						"Name": "JournalEntryId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "JournalTimestamp",
+					"Description": "The timestamp of the journal entry.",
+					"BaseAttributeReference": {
+						"Entity": "JournalEntry.cdm.json/JournalEntry",
+						"Name": "JournalTimestamp"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "timestamp",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"TimestampFormat": "YYYY-MM-DD HH:MM:SS.fffffffff",
+							"HIVE_TYPE_STRING": "timestamp"
+						}
+					}
+				},
+				{
+					"Name": "JournalEntryDescription",
+					"Description": "A description of the journal entry/transaction.",
+					"BaseAttributeReference": {
+						"Entity": "JournalEntry.cdm.json/JournalEntry",
+						"Name": "JournalEntryDescription"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "TransactionId",
+					"Description": "The unique identifier of a Transaction.",
+					"BaseAttributeReference": {
+						"Entity": "JournalEntry.cdm.json/JournalEntry",
+						"Name": "TransactionId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "long",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "long"
+						}
+					}
+				},
+				{
+					"Name": "JournalAdjustingEntryTypeId",
+					"Description": "The unique identifier of a journal adjusting entry type.",
+					"BaseAttributeReference": {
+						"Entity": "JournalEntry.cdm.json/JournalEntry",
+						"Name": "JournalAdjustingEntryTypeId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "ResponsibilityCenterId",
+					"Description": "The unique identifier of a Responsibility Center.",
+					"BaseAttributeReference": {
+						"Entity": "JournalEntry.cdm.json/JournalEntry",
+						"Name": "ResponsibilityCenterId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/JournalEntry",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/JournalEntry",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"JournalId\":{\"entity\":\"JournalEntry.cdm.json/JournalEntry\",\"name\":\"JournalId\"},\"JournalEntryId\":{\"entity\":\"JournalEntry.cdm.json/JournalEntry\",\"name\":\"JournalEntryId\"},\"JournalTimestamp\":{\"entity\":\"JournalEntry.cdm.json/JournalEntry\",\"name\":\"JournalTimestamp\"},\"JournalEntryDescription\":{\"entity\":\"JournalEntry.cdm.json/JournalEntry\",\"name\":\"JournalEntryDescription\"},\"TransactionId\":{\"entity\":\"JournalEntry.cdm.json/JournalEntry\",\"name\":\"TransactionId\"},\"JournalAdjustingEntryTypeId\":{\"entity\":\"JournalEntry.cdm.json/JournalEntry\",\"name\":\"JournalAdjustingEntryTypeId\"},\"ResponsibilityCenterId\":{\"entity\":\"JournalEntry.cdm.json/JournalEntry\",\"name\":\"ResponsibilityCenterId\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"JournalEntry\",\"path\":\"JournalEntry.cdm.json/JournalEntry\"},\"description\":\"The entry of a transaction into the journal or book of original entry.\\n\\nAll transactions are first recorded into a journal in chronological order.\\n\\nThis represents an adequate explanation of what has occurred before the transaction is posted to accounts.\\n\\nNote:\\nThe transaction may be entered into one or more journals such as a general journal and a specialized journal.\",\"primaryKey\":[\"JournalId\",\"JournalEntryId\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"JournalEntry.cdm.json/JournalEntry\",\"name\":\"JournalId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Journal.\",\"isNullable\":false,\"name\":\"JournalId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"JournalEntry.cdm.json/JournalEntry\",\"name\":\"JournalEntryId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Journal Entry.\",\"isNullable\":false,\"name\":\"JournalEntryId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"JournalEntry.cdm.json/JournalEntry\",\"name\":\"JournalTimestamp\"},\"dataType\":\"timestamp\",\"description\":\"The timestamp of the journal entry.\",\"isNullable\":true,\"name\":\"JournalTimestamp\",\"timestampFormat\":\"YYYY-MM-DD HH:MM:SS.fffffffff\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"JournalEntry.cdm.json/JournalEntry\",\"name\":\"JournalEntryDescription\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"A description of the journal entry/transaction.\",\"isNullable\":true,\"name\":\"JournalEntryDescription\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"JournalEntry.cdm.json/JournalEntry\",\"name\":\"TransactionId\"},\"dataType\":\"long\",\"description\":\"The unique identifier of a Transaction.\",\"isNullable\":false,\"name\":\"TransactionId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"JournalEntry.cdm.json/JournalEntry\",\"name\":\"JournalAdjustingEntryTypeId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a journal adjusting entry type.\",\"isNullable\":true,\"name\":\"JournalAdjustingEntryTypeId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"JournalEntry.cdm.json/JournalEntry\",\"name\":\"ResponsibilityCenterId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Responsibility Center.\",\"isNullable\":true,\"name\":\"ResponsibilityCenterId\"}]}}}",
+			"Description": "The entry of a transaction into the journal or book of original entry.\n\nAll transactions are first recorded into a journal in chronological order.\n\nThis represents an adequate explanation of what has occurred before the transaction is posted to accounts.\n\nNote:\nThe transaction may be entered into one or more journals such as a general journal and a specialized journal.",
+			"DisplayFolderInfo": "{\"name\":\"Accounting & Financial Reporting\",\"colorCode\":\"#0078D4\"}",
+			"PrimaryKeys": "JournalId,JournalEntryId",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

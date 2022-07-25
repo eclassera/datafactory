@@ -1,0 +1,113 @@
+{
+	"name": "StoreCategory",
+	"properties": {
+		"Name": "StoreCategory",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "A store category.",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "StoreCategoryId",
+					"Description": "The unique identifier of a Store Category.",
+					"BaseAttributeReference": {
+						"Entity": "StoreCategory.cdm.json/StoreCategory",
+						"Name": "StoreCategoryId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "StoreCategoryName",
+					"Description": "The name of a Store Category.",
+					"BaseAttributeReference": {
+						"Entity": "StoreCategory.cdm.json/StoreCategory",
+						"Name": "StoreCategoryName"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 256,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "StoreCategoryDescription",
+					"Description": "The description of a Store Category.",
+					"BaseAttributeReference": {
+						"Entity": "StoreCategory.cdm.json/StoreCategory",
+						"Name": "StoreCategoryDescription"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/StoreCategory",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/StoreCategory",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"StoreCategoryId\":{\"entity\":\"StoreCategory.cdm.json/StoreCategory\",\"name\":\"StoreCategoryId\"},\"StoreCategoryName\":{\"entity\":\"StoreCategory.cdm.json/StoreCategory\",\"name\":\"StoreCategoryName\"},\"StoreCategoryDescription\":{\"entity\":\"StoreCategory.cdm.json/StoreCategory\",\"name\":\"StoreCategoryDescription\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"StoreCategory\",\"path\":\"StoreCategory.cdm.json/StoreCategory\"},\"description\":\"A store category.\",\"primaryKey\":[\"StoreCategoryId\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"StoreCategory.cdm.json/StoreCategory\",\"name\":\"StoreCategoryId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Store Category.\",\"isNullable\":false,\"name\":\"StoreCategoryId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"StoreCategory.cdm.json/StoreCategory\",\"name\":\"StoreCategoryName\"},\"dataType\":\"string\",\"dataTypeLength\":256,\"description\":\"The name of a Store Category.\",\"isNullable\":true,\"name\":\"StoreCategoryName\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"StoreCategory.cdm.json/StoreCategory\",\"name\":\"StoreCategoryDescription\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"The description of a Store Category.\",\"isNullable\":true,\"name\":\"StoreCategoryDescription\"}]}}}",
+			"Description": "A store category.",
+			"DisplayFolderInfo": "{\"name\":\"Channel\",\"colorCode\":\"#001D3F\"}",
+			"PrimaryKeys": "StoreCategoryId",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

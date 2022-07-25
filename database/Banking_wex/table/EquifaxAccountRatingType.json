@@ -1,0 +1,113 @@
+{
+	"name": "EquifaxAccountRatingType",
+	"properties": {
+		"Name": "EquifaxAccountRatingType",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "The account rating type.\n\nEx:\n- Negative account \n- Account in good standing\n\nwhere:\n\nNegative account status accounts remain open for up to 10 years from last activity.",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "EquifaxAccountRatingTypeId",
+					"Description": "The unique identifier of an Equifax Account Rating Type.",
+					"BaseAttributeReference": {
+						"Entity": "EquifaxAccountRatingType.cdm.json/EquifaxAccountRatingType",
+						"Name": "EquifaxAccountRatingTypeId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "EquifaxAccountRatingTypeName",
+					"Description": "The name of an Equifax Account Rating Type.",
+					"BaseAttributeReference": {
+						"Entity": "EquifaxAccountRatingType.cdm.json/EquifaxAccountRatingType",
+						"Name": "EquifaxAccountRatingTypeName"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 256,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "EquifaxAccountRatingTypeDescription",
+					"Description": "The description of an Equifax Account Rating Type.",
+					"BaseAttributeReference": {
+						"Entity": "EquifaxAccountRatingType.cdm.json/EquifaxAccountRatingType",
+						"Name": "EquifaxAccountRatingTypeDescription"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/EquifaxAccountRatingType",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/EquifaxAccountRatingType",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"EquifaxAccountRatingTypeId\":{\"entity\":\"EquifaxAccountRatingType.cdm.json/EquifaxAccountRatingType\",\"name\":\"EquifaxAccountRatingTypeId\"},\"EquifaxAccountRatingTypeName\":{\"entity\":\"EquifaxAccountRatingType.cdm.json/EquifaxAccountRatingType\",\"name\":\"EquifaxAccountRatingTypeName\"},\"EquifaxAccountRatingTypeDescription\":{\"entity\":\"EquifaxAccountRatingType.cdm.json/EquifaxAccountRatingType\",\"name\":\"EquifaxAccountRatingTypeDescription\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"EquifaxAccountRatingType\",\"path\":\"EquifaxAccountRatingType.cdm.json/EquifaxAccountRatingType\"},\"description\":\"The account rating type.\\n\\nEx:\\n- Negative account \\n- Account in good standing\\n\\nwhere:\\n\\nNegative account status accounts remain open for up to 10 years from last activity.\",\"primaryKey\":[\"EquifaxAccountRatingTypeId\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"EquifaxAccountRatingType.cdm.json/EquifaxAccountRatingType\",\"name\":\"EquifaxAccountRatingTypeId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of an Equifax Account Rating Type.\",\"isNullable\":false,\"name\":\"EquifaxAccountRatingTypeId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"EquifaxAccountRatingType.cdm.json/EquifaxAccountRatingType\",\"name\":\"EquifaxAccountRatingTypeName\"},\"dataType\":\"string\",\"dataTypeLength\":256,\"description\":\"The name of an Equifax Account Rating Type.\",\"isNullable\":true,\"name\":\"EquifaxAccountRatingTypeName\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"EquifaxAccountRatingType.cdm.json/EquifaxAccountRatingType\",\"name\":\"EquifaxAccountRatingTypeDescription\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"The description of an Equifax Account Rating Type.\",\"isNullable\":true,\"name\":\"EquifaxAccountRatingTypeDescription\"}]}}}",
+			"Description": "The account rating type.\n\nEx:\n- Negative account \n- Account in good standing\n\nwhere:\n\nNegative account status accounts remain open for up to 10 years from last activity.",
+			"DisplayFolderInfo": "{\"name\":\"Customer Credit & Collections\",\"colorCode\":\"#022F22\"}",
+			"PrimaryKeys": "EquifaxAccountRatingTypeId",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

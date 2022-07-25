@@ -1,0 +1,177 @@
+{
+	"name": "CustomerCountryOfCitizenship",
+	"properties": {
+		"Name": "CustomerCountryOfCitizenship",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "The country of citizenship of the customer as of the associated time.\n\nThis answers the question \"What country(s) does the individual have citizenship for?\"",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "CustomerId",
+					"Description": "The unique identifier of a Customer.",
+					"BaseAttributeReference": {
+						"Entity": "CustomerCountryOfCitizenship.cdm.json/CustomerCountryOfCitizenship",
+						"Name": "CustomerId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "long",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "long"
+						}
+					}
+				},
+				{
+					"Name": "CountryId",
+					"Description": "The unique identifier of the Country.",
+					"BaseAttributeReference": {
+						"Entity": "CustomerCountryOfCitizenship.cdm.json/CustomerCountryOfCitizenship",
+						"Name": "CountryId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "PeriodStartDate",
+					"Description": "The period start date that the customer has citizenship in the associated country.",
+					"BaseAttributeReference": {
+						"Entity": "CustomerCountryOfCitizenship.cdm.json/CustomerCountryOfCitizenship",
+						"Name": "PeriodStartDate"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "date",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"DateFormat": "YYYY-MM-DD",
+							"HIVE_TYPE_STRING": "date"
+						}
+					}
+				},
+				{
+					"Name": "PeriodEndDate",
+					"Description": "The period end date that the customer has citizenship in the associated country.",
+					"BaseAttributeReference": {
+						"Entity": "CustomerCountryOfCitizenship.cdm.json/CustomerCountryOfCitizenship",
+						"Name": "PeriodEndDate"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "date",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"DateFormat": "YYYY-MM-DD",
+							"HIVE_TYPE_STRING": "date"
+						}
+					}
+				},
+				{
+					"Name": "NationalId",
+					"Description": "The unique national identifier or citizenship ID of the individual in the associated country.\n\nThe number typically consists of alphanumeric characters and is not a 'number' but rather an 'ID'.",
+					"BaseAttributeReference": {
+						"Entity": "CustomerCountryOfCitizenship.cdm.json/CustomerCountryOfCitizenship",
+						"Name": "NationalId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "PassportId",
+					"Description": "The unique passport identifier or ID of the individual in the associated country.\n\nThe number typically consists of alphanumeric characters and is not a 'number' but rather an 'ID'.",
+					"BaseAttributeReference": {
+						"Entity": "CustomerCountryOfCitizenship.cdm.json/CustomerCountryOfCitizenship",
+						"Name": "PassportId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "CitizenshipTypeId",
+					"Description": "The unique identifier of a citizenship type.",
+					"BaseAttributeReference": {
+						"Entity": "CustomerCountryOfCitizenship.cdm.json/CustomerCountryOfCitizenship",
+						"Name": "CitizenshipTypeId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/CustomerCountryOfCitizenship",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/CustomerCountryOfCitizenship",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"CustomerId\":{\"entity\":\"CustomerCountryOfCitizenship.cdm.json/CustomerCountryOfCitizenship\",\"name\":\"CustomerId\"},\"CountryId\":{\"entity\":\"CustomerCountryOfCitizenship.cdm.json/CustomerCountryOfCitizenship\",\"name\":\"CountryId\"},\"PeriodStartDate\":{\"entity\":\"CustomerCountryOfCitizenship.cdm.json/CustomerCountryOfCitizenship\",\"name\":\"PeriodStartDate\"},\"PeriodEndDate\":{\"entity\":\"CustomerCountryOfCitizenship.cdm.json/CustomerCountryOfCitizenship\",\"name\":\"PeriodEndDate\"},\"NationalId\":{\"entity\":\"CustomerCountryOfCitizenship.cdm.json/CustomerCountryOfCitizenship\",\"name\":\"NationalId\"},\"PassportId\":{\"entity\":\"CustomerCountryOfCitizenship.cdm.json/CustomerCountryOfCitizenship\",\"name\":\"PassportId\"},\"CitizenshipTypeId\":{\"entity\":\"CustomerCountryOfCitizenship.cdm.json/CustomerCountryOfCitizenship\",\"name\":\"CitizenshipTypeId\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"CustomerCountryOfCitizenship\",\"path\":\"CustomerCountryOfCitizenship.cdm.json/CustomerCountryOfCitizenship\"},\"description\":\"The country of citizenship of the customer as of the associated time.\\n\\nThis answers the question \\\"What country(s) does the individual have citizenship for?\\\"\",\"primaryKey\":[\"CustomerId\",\"CountryId\",\"PeriodStartDate\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CustomerCountryOfCitizenship.cdm.json/CustomerCountryOfCitizenship\",\"name\":\"CustomerId\"},\"dataType\":\"long\",\"description\":\"The unique identifier of a Customer.\",\"isNullable\":false,\"name\":\"CustomerId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CustomerCountryOfCitizenship.cdm.json/CustomerCountryOfCitizenship\",\"name\":\"CountryId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of the Country.\",\"isNullable\":false,\"name\":\"CountryId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CustomerCountryOfCitizenship.cdm.json/CustomerCountryOfCitizenship\",\"name\":\"PeriodStartDate\"},\"dataType\":\"date\",\"dateFormat\":\"YYYY-MM-DD\",\"description\":\"The period start date that the customer has citizenship in the associated country.\",\"isNullable\":false,\"name\":\"PeriodStartDate\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CustomerCountryOfCitizenship.cdm.json/CustomerCountryOfCitizenship\",\"name\":\"PeriodEndDate\"},\"dataType\":\"date\",\"dateFormat\":\"YYYY-MM-DD\",\"description\":\"The period end date that the customer has citizenship in the associated country.\",\"isNullable\":true,\"name\":\"PeriodEndDate\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CustomerCountryOfCitizenship.cdm.json/CustomerCountryOfCitizenship\",\"name\":\"NationalId\"},\"dataType\":\"integer\",\"description\":\"The unique national identifier or citizenship ID of the individual in the associated country.\\n\\nThe number typically consists of alphanumeric characters and is not a 'number' but rather an 'ID'.\",\"isNullable\":true,\"name\":\"NationalId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CustomerCountryOfCitizenship.cdm.json/CustomerCountryOfCitizenship\",\"name\":\"PassportId\"},\"dataType\":\"integer\",\"description\":\"The unique passport identifier or ID of the individual in the associated country.\\n\\nThe number typically consists of alphanumeric characters and is not a 'number' but rather an 'ID'.\",\"isNullable\":true,\"name\":\"PassportId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CustomerCountryOfCitizenship.cdm.json/CustomerCountryOfCitizenship\",\"name\":\"CitizenshipTypeId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a citizenship type.\",\"isNullable\":true,\"name\":\"CitizenshipTypeId\"}]}}}",
+			"Description": "The country of citizenship of the customer as of the associated time.\n\nThis answers the question \"What country(s) does the individual have citizenship for?\"",
+			"DisplayFolderInfo": "{\"name\":\"Customer\",\"colorCode\":\"#4B003F\"}",
+			"PrimaryKeys": "CustomerId,CountryId,PeriodStartDate",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

@@ -1,0 +1,113 @@
+{
+	"name": "TitleStatus",
+	"properties": {
+		"Name": "TitleStatus",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "The status of the property title.\n\nEx:\n- Clear\n- Clouded\n- Unknown",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "TitleStatusId",
+					"Description": "The unique identifier of a Title Status.",
+					"BaseAttributeReference": {
+						"Entity": "TitleStatus.cdm.json/TitleStatus",
+						"Name": "TitleStatusId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "TitleStatusName",
+					"Description": "The name of a Title Status.",
+					"BaseAttributeReference": {
+						"Entity": "TitleStatus.cdm.json/TitleStatus",
+						"Name": "TitleStatusName"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 256,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "TitleStatusDescription",
+					"Description": "The description of a Title Status.",
+					"BaseAttributeReference": {
+						"Entity": "TitleStatus.cdm.json/TitleStatus",
+						"Name": "TitleStatusDescription"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/TitleStatus",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/TitleStatus",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"TitleStatusId\":{\"entity\":\"TitleStatus.cdm.json/TitleStatus\",\"name\":\"TitleStatusId\"},\"TitleStatusName\":{\"entity\":\"TitleStatus.cdm.json/TitleStatus\",\"name\":\"TitleStatusName\"},\"TitleStatusDescription\":{\"entity\":\"TitleStatus.cdm.json/TitleStatus\",\"name\":\"TitleStatusDescription\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"TitleStatus\",\"path\":\"TitleStatus.cdm.json/TitleStatus\"},\"description\":\"The status of the property title.\\n\\nEx:\\n- Clear\\n- Clouded\\n- Unknown\",\"primaryKey\":[\"TitleStatusId\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"TitleStatus.cdm.json/TitleStatus\",\"name\":\"TitleStatusId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Title Status.\",\"isNullable\":false,\"name\":\"TitleStatusId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"TitleStatus.cdm.json/TitleStatus\",\"name\":\"TitleStatusName\"},\"dataType\":\"string\",\"dataTypeLength\":256,\"description\":\"The name of a Title Status.\",\"isNullable\":true,\"name\":\"TitleStatusName\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"TitleStatus.cdm.json/TitleStatus\",\"name\":\"TitleStatusDescription\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"The description of a Title Status.\",\"isNullable\":true,\"name\":\"TitleStatusDescription\"}]}}}",
+			"Description": "The status of the property title.\n\nEx:\n- Clear\n- Clouded\n- Unknown",
+			"DisplayFolderInfo": "{\"name\":\"Property & Equipment\",\"colorCode\":\"#7D0F6C\"}",
+			"PrimaryKeys": "TitleStatusId",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

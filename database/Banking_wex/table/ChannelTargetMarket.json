@@ -1,0 +1,146 @@
+{
+	"name": "ChannelTargetMarket",
+	"properties": {
+		"Name": "ChannelTargetMarket",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "The target market  that is the marketing target for a channel for the associated period.",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "ChannelId",
+					"Description": "The unique identifier of a Channel.",
+					"BaseAttributeReference": {
+						"Entity": "ChannelTargetMarket.cdm.json/ChannelTargetMarket",
+						"Name": "ChannelId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "MarketId",
+					"Description": "The unique identifier of a Market.",
+					"BaseAttributeReference": {
+						"Entity": "ChannelTargetMarket.cdm.json/ChannelTargetMarket",
+						"Name": "MarketId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "PeriodStartDate",
+					"Description": "The period start date of the associated relationship.",
+					"BaseAttributeReference": {
+						"Entity": "ChannelTargetMarket.cdm.json/ChannelTargetMarket",
+						"Name": "PeriodStartDate"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "date",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"DateFormat": "YYYY-MM-DD",
+							"HIVE_TYPE_STRING": "date"
+						}
+					}
+				},
+				{
+					"Name": "PeriodEndDate",
+					"Description": "The period end date of the associated relationship.",
+					"BaseAttributeReference": {
+						"Entity": "ChannelTargetMarket.cdm.json/ChannelTargetMarket",
+						"Name": "PeriodEndDate"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "date",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"DateFormat": "YYYY-MM-DD",
+							"HIVE_TYPE_STRING": "date"
+						}
+					}
+				},
+				{
+					"Name": "ChannelTargetMarketNote",
+					"Description": "A note, comment or additional information regarding the channel target market.",
+					"BaseAttributeReference": {
+						"Entity": "ChannelTargetMarket.cdm.json/ChannelTargetMarket",
+						"Name": "ChannelTargetMarketNote"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/ChannelTargetMarket",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/ChannelTargetMarket",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"ChannelId\":{\"entity\":\"ChannelTargetMarket.cdm.json/ChannelTargetMarket\",\"name\":\"ChannelId\"},\"MarketId\":{\"entity\":\"ChannelTargetMarket.cdm.json/ChannelTargetMarket\",\"name\":\"MarketId\"},\"PeriodStartDate\":{\"entity\":\"ChannelTargetMarket.cdm.json/ChannelTargetMarket\",\"name\":\"PeriodStartDate\"},\"PeriodEndDate\":{\"entity\":\"ChannelTargetMarket.cdm.json/ChannelTargetMarket\",\"name\":\"PeriodEndDate\"},\"ChannelTargetMarketNote\":{\"entity\":\"ChannelTargetMarket.cdm.json/ChannelTargetMarket\",\"name\":\"ChannelTargetMarketNote\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"ChannelTargetMarket\",\"path\":\"ChannelTargetMarket.cdm.json/ChannelTargetMarket\"},\"description\":\"The target market  that is the marketing target for a channel for the associated period.\",\"primaryKey\":[\"ChannelId\",\"MarketId\",\"PeriodStartDate\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ChannelTargetMarket.cdm.json/ChannelTargetMarket\",\"name\":\"ChannelId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Channel.\",\"isNullable\":false,\"name\":\"ChannelId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ChannelTargetMarket.cdm.json/ChannelTargetMarket\",\"name\":\"MarketId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Market.\",\"isNullable\":false,\"name\":\"MarketId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ChannelTargetMarket.cdm.json/ChannelTargetMarket\",\"name\":\"PeriodStartDate\"},\"dataType\":\"date\",\"dateFormat\":\"YYYY-MM-DD\",\"description\":\"The period start date of the associated relationship.\",\"isNullable\":false,\"name\":\"PeriodStartDate\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ChannelTargetMarket.cdm.json/ChannelTargetMarket\",\"name\":\"PeriodEndDate\"},\"dataType\":\"date\",\"dateFormat\":\"YYYY-MM-DD\",\"description\":\"The period end date of the associated relationship.\",\"isNullable\":true,\"name\":\"PeriodEndDate\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ChannelTargetMarket.cdm.json/ChannelTargetMarket\",\"name\":\"ChannelTargetMarketNote\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"A note, comment or additional information regarding the channel target market.\",\"isNullable\":true,\"name\":\"ChannelTargetMarketNote\"}]}}}",
+			"Description": "The target market  that is the marketing target for a channel for the associated period.",
+			"DisplayFolderInfo": "{\"name\":\"Channel\",\"colorCode\":\"#001D3F\"}",
+			"PrimaryKeys": "ChannelId,MarketId,PeriodStartDate",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

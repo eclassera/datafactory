@@ -1,0 +1,113 @@
+{
+	"name": "AttachedAssetStatus",
+	"properties": {
+		"Name": "AttachedAssetStatus",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "The status of the associated asset in connection with the assignment proceeding.\n\nEx:\n- Assigned \n- Liquidated\n- Pending Liquidation",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "AttachedAssetStatusId",
+					"Description": "The unique identifier of an Attached Asset Status.",
+					"BaseAttributeReference": {
+						"Entity": "AttachedAssetStatus.cdm.json/AttachedAssetStatus",
+						"Name": "AttachedAssetStatusId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "AttachedAssetStatusName",
+					"Description": "The name of an Attached Asset Status.",
+					"BaseAttributeReference": {
+						"Entity": "AttachedAssetStatus.cdm.json/AttachedAssetStatus",
+						"Name": "AttachedAssetStatusName"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 256,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "AttachedAssetStatusDescription",
+					"Description": "The description of an Attached Asset Status.",
+					"BaseAttributeReference": {
+						"Entity": "AttachedAssetStatus.cdm.json/AttachedAssetStatus",
+						"Name": "AttachedAssetStatusDescription"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/AttachedAssetStatus",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/AttachedAssetStatus",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"AttachedAssetStatusId\":{\"entity\":\"AttachedAssetStatus.cdm.json/AttachedAssetStatus\",\"name\":\"AttachedAssetStatusId\"},\"AttachedAssetStatusName\":{\"entity\":\"AttachedAssetStatus.cdm.json/AttachedAssetStatus\",\"name\":\"AttachedAssetStatusName\"},\"AttachedAssetStatusDescription\":{\"entity\":\"AttachedAssetStatus.cdm.json/AttachedAssetStatus\",\"name\":\"AttachedAssetStatusDescription\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"AttachedAssetStatus\",\"path\":\"AttachedAssetStatus.cdm.json/AttachedAssetStatus\"},\"description\":\"The status of the associated asset in connection with the assignment proceeding.\\n\\nEx:\\n- Assigned \\n- Liquidated\\n- Pending Liquidation\",\"primaryKey\":[\"AttachedAssetStatusId\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"AttachedAssetStatus.cdm.json/AttachedAssetStatus\",\"name\":\"AttachedAssetStatusId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of an Attached Asset Status.\",\"isNullable\":false,\"name\":\"AttachedAssetStatusId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"AttachedAssetStatus.cdm.json/AttachedAssetStatus\",\"name\":\"AttachedAssetStatusName\"},\"dataType\":\"string\",\"dataTypeLength\":256,\"description\":\"The name of an Attached Asset Status.\",\"isNullable\":true,\"name\":\"AttachedAssetStatusName\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"AttachedAssetStatus.cdm.json/AttachedAssetStatus\",\"name\":\"AttachedAssetStatusDescription\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"The description of an Attached Asset Status.\",\"isNullable\":true,\"name\":\"AttachedAssetStatusDescription\"}]}}}",
+			"Description": "The status of the associated asset in connection with the assignment proceeding.\n\nEx:\n- Assigned \n- Liquidated\n- Pending Liquidation",
+			"DisplayFolderInfo": "{\"name\":\"Customer Credit & Collections\",\"colorCode\":\"#022F22\"}",
+			"PrimaryKeys": "AttachedAssetStatusId",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

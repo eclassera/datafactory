@@ -1,0 +1,128 @@
+{
+	"name": "TreasuryStock",
+	"properties": {
+		"Name": "TreasuryStock",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "A corporation's own stock that has been issued, fully paid for, and reacquired by the corporation but not retired.\n\nIf the repurchased shares are not retired, they are designated as treasury stock and shown as an offsetting account in the stockholders' equity section of the balance sheet.",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "LegalEntityId",
+					"Description": "The unique identifier of a Legal Entity.\n\nIn this case it is the business, organization or legal entity whose books are being recorded and financial statements presented.",
+					"BaseAttributeReference": {
+						"Entity": "TreasuryStock.cdm.json/TreasuryStock",
+						"Name": "LegalEntityId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "StockId",
+					"Description": "The unique identifier of a Financial Product.",
+					"BaseAttributeReference": {
+						"Entity": "TreasuryStock.cdm.json/TreasuryStock",
+						"Name": "StockId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "long",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "long"
+						}
+					}
+				},
+				{
+					"Name": "Timestamp",
+					"Description": "The timestamp that the associated information is current or reported as-of.",
+					"BaseAttributeReference": {
+						"Entity": "TreasuryStock.cdm.json/TreasuryStock",
+						"Name": "Timestamp"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "timestamp",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"TimestampFormat": "YYYY-MM-DD HH:MM:SS.fffffffff",
+							"HIVE_TYPE_STRING": "timestamp"
+						}
+					}
+				},
+				{
+					"Name": "TotalNumberShares",
+					"Description": "The total number of Treasury Stock shares held by the corporation as of the associated timestamp.",
+					"BaseAttributeReference": {
+						"Entity": "TreasuryStock.cdm.json/TreasuryStock",
+						"Name": "TotalNumberShares"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/TreasuryStock",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/TreasuryStock",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"LegalEntityId\":{\"entity\":\"TreasuryStock.cdm.json/TreasuryStock\",\"name\":\"LegalEntityId\"},\"StockId\":{\"entity\":\"TreasuryStock.cdm.json/TreasuryStock\",\"name\":\"StockId\"},\"Timestamp\":{\"entity\":\"TreasuryStock.cdm.json/TreasuryStock\",\"name\":\"Timestamp\"},\"TotalNumberShares\":{\"entity\":\"TreasuryStock.cdm.json/TreasuryStock\",\"name\":\"TotalNumberShares\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"TreasuryStock\",\"path\":\"TreasuryStock.cdm.json/TreasuryStock\"},\"description\":\"A corporation's own stock that has been issued, fully paid for, and reacquired by the corporation but not retired.\\n\\nIf the repurchased shares are not retired, they are designated as treasury stock and shown as an offsetting account in the stockholders' equity section of the balance sheet.\",\"primaryKey\":[\"LegalEntityId\",\"StockId\",\"Timestamp\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"TreasuryStock.cdm.json/TreasuryStock\",\"name\":\"LegalEntityId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Legal Entity.\\n\\nIn this case it is the business, organization or legal entity whose books are being recorded and financial statements presented.\",\"isNullable\":false,\"name\":\"LegalEntityId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"TreasuryStock.cdm.json/TreasuryStock\",\"name\":\"StockId\"},\"dataType\":\"long\",\"description\":\"The unique identifier of a Financial Product.\",\"isNullable\":false,\"name\":\"StockId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"TreasuryStock.cdm.json/TreasuryStock\",\"name\":\"Timestamp\"},\"dataType\":\"timestamp\",\"description\":\"The timestamp that the associated information is current or reported as-of.\",\"isNullable\":false,\"name\":\"Timestamp\",\"timestampFormat\":\"YYYY-MM-DD HH:MM:SS.fffffffff\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"TreasuryStock.cdm.json/TreasuryStock\",\"name\":\"TotalNumberShares\"},\"dataType\":\"integer\",\"description\":\"The total number of Treasury Stock shares held by the corporation as of the associated timestamp.\",\"isNullable\":true,\"name\":\"TotalNumberShares\"}]}}}",
+			"Description": "A corporation's own stock that has been issued, fully paid for, and reacquired by the corporation but not retired.\n\nIf the repurchased shares are not retired, they are designated as treasury stock and shown as an offsetting account in the stockholders' equity section of the balance sheet.",
+			"DisplayFolderInfo": "{\"name\":\"Financial Product\",\"colorCode\":\"#001475\"}",
+			"PrimaryKeys": "LegalEntityId,StockId,Timestamp",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

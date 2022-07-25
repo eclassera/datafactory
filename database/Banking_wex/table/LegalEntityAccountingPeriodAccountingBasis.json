@@ -1,0 +1,145 @@
+{
+	"name": "LegalEntityAccountingPeriodAccountingBasis",
+	"properties": {
+		"Name": "LegalEntityAccountingPeriodAccountingBasis",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "The accounting basis used by the Legal Entity for the associated accounting period.",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "LegalEntityId",
+					"Description": "The unique identifier of a Legal Entity.\n\nIn this case it is the business, organization or legal entity whose books are being recorded and financial statements presented.",
+					"BaseAttributeReference": {
+						"Entity": "LegalEntityAccountingPeriodAccountingBasis.cdm.json/LegalEntityAccountingPeriodAccountingBasis",
+						"Name": "LegalEntityId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "AccountingPeriodStartDate",
+					"Description": "The starting date of the accounting period.",
+					"BaseAttributeReference": {
+						"Entity": "LegalEntityAccountingPeriodAccountingBasis.cdm.json/LegalEntityAccountingPeriodAccountingBasis",
+						"Name": "AccountingPeriodStartDate"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "date",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"DateFormat": "YYYY-MM-DD",
+							"HIVE_TYPE_STRING": "date"
+						}
+					}
+				},
+				{
+					"Name": "AccountingPeriodEndDate",
+					"Description": "The ending date of the accounting period.",
+					"BaseAttributeReference": {
+						"Entity": "LegalEntityAccountingPeriodAccountingBasis.cdm.json/LegalEntityAccountingPeriodAccountingBasis",
+						"Name": "AccountingPeriodEndDate"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "date",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"DateFormat": "YYYY-MM-DD",
+							"HIVE_TYPE_STRING": "date"
+						}
+					}
+				},
+				{
+					"Name": "ChangeInAccountingPrincipleIndicator",
+					"Description": "Use of an accounting principle in the current year different from the one used in the preceding year.",
+					"BaseAttributeReference": {
+						"Entity": "LegalEntityAccountingPeriodAccountingBasis.cdm.json/LegalEntityAccountingPeriodAccountingBasis",
+						"Name": "ChangeInAccountingPrincipleIndicator"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "boolean",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"HIVE_TYPE_STRING": "boolean"
+						}
+					}
+				},
+				{
+					"Name": "AccountingBasisId",
+					"Description": "The unique identifier of an Accounting Basis.",
+					"BaseAttributeReference": {
+						"Entity": "LegalEntityAccountingPeriodAccountingBasis.cdm.json/LegalEntityAccountingPeriodAccountingBasis",
+						"Name": "AccountingBasisId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/LegalEntityAccountingPeriodAccountingBasis",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/LegalEntityAccountingPeriodAccountingBasis",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"LegalEntityId\":{\"entity\":\"LegalEntityAccountingPeriodAccountingBasis.cdm.json/LegalEntityAccountingPeriodAccountingBasis\",\"name\":\"LegalEntityId\"},\"AccountingPeriodStartDate\":{\"entity\":\"LegalEntityAccountingPeriodAccountingBasis.cdm.json/LegalEntityAccountingPeriodAccountingBasis\",\"name\":\"AccountingPeriodStartDate\"},\"AccountingPeriodEndDate\":{\"entity\":\"LegalEntityAccountingPeriodAccountingBasis.cdm.json/LegalEntityAccountingPeriodAccountingBasis\",\"name\":\"AccountingPeriodEndDate\"},\"ChangeInAccountingPrincipleIndicator\":{\"entity\":\"LegalEntityAccountingPeriodAccountingBasis.cdm.json/LegalEntityAccountingPeriodAccountingBasis\",\"name\":\"ChangeInAccountingPrincipleIndicator\"},\"AccountingBasisId\":{\"entity\":\"LegalEntityAccountingPeriodAccountingBasis.cdm.json/LegalEntityAccountingPeriodAccountingBasis\",\"name\":\"AccountingBasisId\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"LegalEntityAccountingPeriodAccountingBasis\",\"path\":\"LegalEntityAccountingPeriodAccountingBasis.cdm.json/LegalEntityAccountingPeriodAccountingBasis\"},\"description\":\"The accounting basis used by the Legal Entity for the associated accounting period.\",\"primaryKey\":[\"LegalEntityId\",\"AccountingPeriodStartDate\",\"AccountingPeriodEndDate\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"LegalEntityAccountingPeriodAccountingBasis.cdm.json/LegalEntityAccountingPeriodAccountingBasis\",\"name\":\"LegalEntityId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Legal Entity.\\n\\nIn this case it is the business, organization or legal entity whose books are being recorded and financial statements presented.\",\"isNullable\":false,\"name\":\"LegalEntityId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"LegalEntityAccountingPeriodAccountingBasis.cdm.json/LegalEntityAccountingPeriodAccountingBasis\",\"name\":\"AccountingPeriodStartDate\"},\"dataType\":\"date\",\"dateFormat\":\"YYYY-MM-DD\",\"description\":\"The starting date of the accounting period.\",\"isNullable\":false,\"name\":\"AccountingPeriodStartDate\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"LegalEntityAccountingPeriodAccountingBasis.cdm.json/LegalEntityAccountingPeriodAccountingBasis\",\"name\":\"AccountingPeriodEndDate\"},\"dataType\":\"date\",\"dateFormat\":\"YYYY-MM-DD\",\"description\":\"The ending date of the accounting period.\",\"isNullable\":false,\"name\":\"AccountingPeriodEndDate\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"LegalEntityAccountingPeriodAccountingBasis.cdm.json/LegalEntityAccountingPeriodAccountingBasis\",\"name\":\"ChangeInAccountingPrincipleIndicator\"},\"dataType\":\"boolean\",\"description\":\"Use of an accounting principle in the current year different from the one used in the preceding year.\",\"isNullable\":true,\"name\":\"ChangeInAccountingPrincipleIndicator\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"LegalEntityAccountingPeriodAccountingBasis.cdm.json/LegalEntityAccountingPeriodAccountingBasis\",\"name\":\"AccountingBasisId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of an Accounting Basis.\",\"isNullable\":true,\"name\":\"AccountingBasisId\"}]}}}",
+			"Description": "The accounting basis used by the Legal Entity for the associated accounting period.",
+			"DisplayFolderInfo": "{\"name\":\"Accounting & Financial Reporting\",\"colorCode\":\"#0078D4\"}",
+			"PrimaryKeys": "LegalEntityId,AccountingPeriodStartDate,AccountingPeriodEndDate",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

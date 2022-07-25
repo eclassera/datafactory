@@ -1,0 +1,178 @@
+{
+	"name": "CustomerContactPurposeStatus",
+	"properties": {
+		"Name": "CustomerContactPurposeStatus",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "A contact method at a point in time by which the customer could be contacted regarding the intended contact purpose.",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "CustomerId",
+					"Description": "The unique identifier of a Customer.",
+					"BaseAttributeReference": {
+						"Entity": "CustomerContactPurposeStatus.cdm.json/CustomerContactPurposeStatus",
+						"Name": "CustomerId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "long",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "long"
+						}
+					}
+				},
+				{
+					"Name": "ContactPurposeId",
+					"Description": "The unique identifier of the Contact Purpose.",
+					"BaseAttributeReference": {
+						"Entity": "CustomerContactPurposeStatus.cdm.json/CustomerContactPurposeStatus",
+						"Name": "ContactPurposeId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "ContactMethodId",
+					"Description": "The unique identifier of a Contact Method.",
+					"BaseAttributeReference": {
+						"Entity": "CustomerContactPurposeStatus.cdm.json/CustomerContactPurposeStatus",
+						"Name": "ContactMethodId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "PeriodStartDate",
+					"Description": "The period start date for which the associated data is effective or 'as-of'.",
+					"BaseAttributeReference": {
+						"Entity": "CustomerContactPurposeStatus.cdm.json/CustomerContactPurposeStatus",
+						"Name": "PeriodStartDate"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "date",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"DateFormat": "YYYY-MM-DD",
+							"HIVE_TYPE_STRING": "date"
+						}
+					}
+				},
+				{
+					"Name": "PeriodEndDate",
+					"Description": "The period end date for which the associated data is effective or 'as-of'.",
+					"BaseAttributeReference": {
+						"Entity": "CustomerContactPurposeStatus.cdm.json/CustomerContactPurposeStatus",
+						"Name": "PeriodEndDate"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "date",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"DateFormat": "YYYY-MM-DD",
+							"HIVE_TYPE_STRING": "date"
+						}
+					}
+				},
+				{
+					"Name": "OptInStatusTypeId",
+					"Description": "The unique identifier of an Opt-In Status Type.",
+					"BaseAttributeReference": {
+						"Entity": "CustomerContactPurposeStatus.cdm.json/CustomerContactPurposeStatus",
+						"Name": "OptInStatusTypeId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "CustomerContactPurposeStatusNote",
+					"Description": "A note, comment or additional information regarding the customer contact purpose status.",
+					"BaseAttributeReference": {
+						"Entity": "CustomerContactPurposeStatus.cdm.json/CustomerContactPurposeStatus",
+						"Name": "CustomerContactPurposeStatusNote"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/CustomerContactPurposeStatus",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/CustomerContactPurposeStatus",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"CustomerId\":{\"entity\":\"CustomerContactPurposeStatus.cdm.json/CustomerContactPurposeStatus\",\"name\":\"CustomerId\"},\"ContactPurposeId\":{\"entity\":\"CustomerContactPurposeStatus.cdm.json/CustomerContactPurposeStatus\",\"name\":\"ContactPurposeId\"},\"ContactMethodId\":{\"entity\":\"CustomerContactPurposeStatus.cdm.json/CustomerContactPurposeStatus\",\"name\":\"ContactMethodId\"},\"PeriodStartDate\":{\"entity\":\"CustomerContactPurposeStatus.cdm.json/CustomerContactPurposeStatus\",\"name\":\"PeriodStartDate\"},\"PeriodEndDate\":{\"entity\":\"CustomerContactPurposeStatus.cdm.json/CustomerContactPurposeStatus\",\"name\":\"PeriodEndDate\"},\"OptInStatusTypeId\":{\"entity\":\"CustomerContactPurposeStatus.cdm.json/CustomerContactPurposeStatus\",\"name\":\"OptInStatusTypeId\"},\"CustomerContactPurposeStatusNote\":{\"entity\":\"CustomerContactPurposeStatus.cdm.json/CustomerContactPurposeStatus\",\"name\":\"CustomerContactPurposeStatusNote\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"CustomerContactPurposeStatus\",\"path\":\"CustomerContactPurposeStatus.cdm.json/CustomerContactPurposeStatus\"},\"description\":\"A contact method at a point in time by which the customer could be contacted regarding the intended contact purpose.\",\"primaryKey\":[\"CustomerId\",\"ContactPurposeId\",\"ContactMethodId\",\"PeriodStartDate\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CustomerContactPurposeStatus.cdm.json/CustomerContactPurposeStatus\",\"name\":\"CustomerId\"},\"dataType\":\"long\",\"description\":\"The unique identifier of a Customer.\",\"isNullable\":false,\"name\":\"CustomerId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CustomerContactPurposeStatus.cdm.json/CustomerContactPurposeStatus\",\"name\":\"ContactPurposeId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of the Contact Purpose.\",\"isNullable\":false,\"name\":\"ContactPurposeId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CustomerContactPurposeStatus.cdm.json/CustomerContactPurposeStatus\",\"name\":\"ContactMethodId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Contact Method.\",\"isNullable\":false,\"name\":\"ContactMethodId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CustomerContactPurposeStatus.cdm.json/CustomerContactPurposeStatus\",\"name\":\"PeriodStartDate\"},\"dataType\":\"date\",\"dateFormat\":\"YYYY-MM-DD\",\"description\":\"The period start date for which the associated data is effective or 'as-of'.\",\"isNullable\":false,\"name\":\"PeriodStartDate\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CustomerContactPurposeStatus.cdm.json/CustomerContactPurposeStatus\",\"name\":\"PeriodEndDate\"},\"dataType\":\"date\",\"dateFormat\":\"YYYY-MM-DD\",\"description\":\"The period end date for which the associated data is effective or 'as-of'.\",\"isNullable\":true,\"name\":\"PeriodEndDate\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CustomerContactPurposeStatus.cdm.json/CustomerContactPurposeStatus\",\"name\":\"OptInStatusTypeId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of an Opt-In Status Type.\",\"isNullable\":true,\"name\":\"OptInStatusTypeId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CustomerContactPurposeStatus.cdm.json/CustomerContactPurposeStatus\",\"name\":\"CustomerContactPurposeStatusNote\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"A note, comment or additional information regarding the customer contact purpose status.\",\"isNullable\":true,\"name\":\"CustomerContactPurposeStatusNote\"}]}}}",
+			"Description": "A contact method at a point in time by which the customer could be contacted regarding the intended contact purpose.",
+			"DisplayFolderInfo": "{\"name\":\"Customer\",\"colorCode\":\"#4B003F\"}",
+			"PrimaryKeys": "CustomerId,ContactPurposeId,ContactMethodId,PeriodStartDate",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

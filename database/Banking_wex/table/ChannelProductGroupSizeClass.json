@@ -1,0 +1,162 @@
+{
+	"name": "ChannelProductGroupSizeClass",
+	"properties": {
+		"Name": "ChannelProductGroupSizeClass",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "The Size Class selected for a Product Group by a Channel during a Period.",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "ChannelId",
+					"Description": "The unique identifier of a Channel.",
+					"BaseAttributeReference": {
+						"Entity": "ChannelProductGroupSizeClass.cdm.json/ChannelProductGroupSizeClass",
+						"Name": "ChannelId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "ProductGroupId",
+					"Description": "The unique identifier of a Product Group.",
+					"BaseAttributeReference": {
+						"Entity": "ChannelProductGroupSizeClass.cdm.json/ChannelProductGroupSizeClass",
+						"Name": "ProductGroupId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "SizeClassId",
+					"Description": "The unique identifier of a size class.",
+					"BaseAttributeReference": {
+						"Entity": "ChannelProductGroupSizeClass.cdm.json/ChannelProductGroupSizeClass",
+						"Name": "SizeClassId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "PeriodStartDate",
+					"Description": "The period start date for a Size Class selection for a Product Group by a Channel.",
+					"BaseAttributeReference": {
+						"Entity": "ChannelProductGroupSizeClass.cdm.json/ChannelProductGroupSizeClass",
+						"Name": "PeriodStartDate"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "date",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"DateFormat": "YYYY-MM-DD",
+							"HIVE_TYPE_STRING": "date"
+						}
+					}
+				},
+				{
+					"Name": "PeriodEndDate",
+					"Description": "The period end date for a Size Class selection for a Product Group by a Channel.",
+					"BaseAttributeReference": {
+						"Entity": "ChannelProductGroupSizeClass.cdm.json/ChannelProductGroupSizeClass",
+						"Name": "PeriodEndDate"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "date",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"DateFormat": "YYYY-MM-DD",
+							"HIVE_TYPE_STRING": "date"
+						}
+					}
+				},
+				{
+					"Name": "ChannelProductGroupSizeClassNote",
+					"Description": "A note about the size class selected for a product group by a store during a period of time.",
+					"BaseAttributeReference": {
+						"Entity": "ChannelProductGroupSizeClass.cdm.json/ChannelProductGroupSizeClass",
+						"Name": "ChannelProductGroupSizeClassNote"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/ChannelProductGroupSizeClass",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/ChannelProductGroupSizeClass",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"ChannelId\":{\"entity\":\"ChannelProductGroupSizeClass.cdm.json/ChannelProductGroupSizeClass\",\"name\":\"ChannelId\"},\"ProductGroupId\":{\"entity\":\"ChannelProductGroupSizeClass.cdm.json/ChannelProductGroupSizeClass\",\"name\":\"ProductGroupId\"},\"SizeClassId\":{\"entity\":\"ChannelProductGroupSizeClass.cdm.json/ChannelProductGroupSizeClass\",\"name\":\"SizeClassId\"},\"PeriodStartDate\":{\"entity\":\"ChannelProductGroupSizeClass.cdm.json/ChannelProductGroupSizeClass\",\"name\":\"PeriodStartDate\"},\"PeriodEndDate\":{\"entity\":\"ChannelProductGroupSizeClass.cdm.json/ChannelProductGroupSizeClass\",\"name\":\"PeriodEndDate\"},\"ChannelProductGroupSizeClassNote\":{\"entity\":\"ChannelProductGroupSizeClass.cdm.json/ChannelProductGroupSizeClass\",\"name\":\"ChannelProductGroupSizeClassNote\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"ChannelProductGroupSizeClass\",\"path\":\"ChannelProductGroupSizeClass.cdm.json/ChannelProductGroupSizeClass\"},\"description\":\"The Size Class selected for a Product Group by a Channel during a Period.\",\"primaryKey\":[\"ChannelId\",\"ProductGroupId\",\"SizeClassId\",\"PeriodStartDate\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ChannelProductGroupSizeClass.cdm.json/ChannelProductGroupSizeClass\",\"name\":\"ChannelId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Channel.\",\"isNullable\":false,\"name\":\"ChannelId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ChannelProductGroupSizeClass.cdm.json/ChannelProductGroupSizeClass\",\"name\":\"ProductGroupId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Product Group.\",\"isNullable\":false,\"name\":\"ProductGroupId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ChannelProductGroupSizeClass.cdm.json/ChannelProductGroupSizeClass\",\"name\":\"SizeClassId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a size class.\",\"isNullable\":false,\"name\":\"SizeClassId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ChannelProductGroupSizeClass.cdm.json/ChannelProductGroupSizeClass\",\"name\":\"PeriodStartDate\"},\"dataType\":\"date\",\"dateFormat\":\"YYYY-MM-DD\",\"description\":\"The period start date for a Size Class selection for a Product Group by a Channel.\",\"isNullable\":false,\"name\":\"PeriodStartDate\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ChannelProductGroupSizeClass.cdm.json/ChannelProductGroupSizeClass\",\"name\":\"PeriodEndDate\"},\"dataType\":\"date\",\"dateFormat\":\"YYYY-MM-DD\",\"description\":\"The period end date for a Size Class selection for a Product Group by a Channel.\",\"isNullable\":true,\"name\":\"PeriodEndDate\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ChannelProductGroupSizeClass.cdm.json/ChannelProductGroupSizeClass\",\"name\":\"ChannelProductGroupSizeClassNote\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"A note about the size class selected for a product group by a store during a period of time.\",\"isNullable\":true,\"name\":\"ChannelProductGroupSizeClassNote\"}]}}}",
+			"Description": "The Size Class selected for a Product Group by a Channel during a Period.",
+			"DisplayFolderInfo": "{\"name\":\"Channel\",\"colorCode\":\"#001D3F\"}",
+			"PrimaryKeys": "ChannelId,ProductGroupId,SizeClassId,PeriodStartDate",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

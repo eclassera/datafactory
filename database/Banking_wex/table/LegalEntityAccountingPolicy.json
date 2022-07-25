@@ -1,0 +1,161 @@
+{
+	"name": "LegalEntityAccountingPolicy",
+	"properties": {
+		"Name": "LegalEntityAccountingPolicy",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "The accounting policies in place during the specified period.",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "LegalEntityId",
+					"Description": "The unique identifier of a Legal Entity.\n\nIn this case it is the business, organization or legal entity whose books are being recorded and financial statements presented.",
+					"BaseAttributeReference": {
+						"Entity": "LegalEntityAccountingPolicy.cdm.json/LegalEntityAccountingPolicy",
+						"Name": "LegalEntityId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "PeriodStartDate",
+					"Description": "The starting date that the accounting policies were in effect.",
+					"BaseAttributeReference": {
+						"Entity": "LegalEntityAccountingPolicy.cdm.json/LegalEntityAccountingPolicy",
+						"Name": "PeriodStartDate"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "date",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"DateFormat": "YYYY-MM-DD",
+							"HIVE_TYPE_STRING": "date"
+						}
+					}
+				},
+				{
+					"Name": "PeriodEndDate",
+					"Description": "The ending date that the accounting policies were in effect.",
+					"BaseAttributeReference": {
+						"Entity": "LegalEntityAccountingPolicy.cdm.json/LegalEntityAccountingPolicy",
+						"Name": "PeriodEndDate"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "date",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"DateFormat": "YYYY-MM-DD",
+							"HIVE_TYPE_STRING": "date"
+						}
+					}
+				},
+				{
+					"Name": "InventoryValuationMethodId",
+					"Description": "The unique identifier of an Inventory Valuation Method.",
+					"BaseAttributeReference": {
+						"Entity": "LegalEntityAccountingPolicy.cdm.json/LegalEntityAccountingPolicy",
+						"Name": "InventoryValuationMethodId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "DepreciationMethodId",
+					"Description": "The unique identifier of the Depreciation Method.",
+					"BaseAttributeReference": {
+						"Entity": "LegalEntityAccountingPolicy.cdm.json/LegalEntityAccountingPolicy",
+						"Name": "DepreciationMethodId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "TaxBasisId",
+					"Description": "The unique identifier of a Tax Basis.",
+					"BaseAttributeReference": {
+						"Entity": "LegalEntityAccountingPolicy.cdm.json/LegalEntityAccountingPolicy",
+						"Name": "TaxBasisId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/LegalEntityAccountingPolicy",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/LegalEntityAccountingPolicy",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"LegalEntityId\":{\"entity\":\"LegalEntityAccountingPolicy.cdm.json/LegalEntityAccountingPolicy\",\"name\":\"LegalEntityId\"},\"PeriodStartDate\":{\"entity\":\"LegalEntityAccountingPolicy.cdm.json/LegalEntityAccountingPolicy\",\"name\":\"PeriodStartDate\"},\"PeriodEndDate\":{\"entity\":\"LegalEntityAccountingPolicy.cdm.json/LegalEntityAccountingPolicy\",\"name\":\"PeriodEndDate\"},\"InventoryValuationMethodId\":{\"entity\":\"LegalEntityAccountingPolicy.cdm.json/LegalEntityAccountingPolicy\",\"name\":\"InventoryValuationMethodId\"},\"DepreciationMethodId\":{\"entity\":\"LegalEntityAccountingPolicy.cdm.json/LegalEntityAccountingPolicy\",\"name\":\"DepreciationMethodId\"},\"TaxBasisId\":{\"entity\":\"LegalEntityAccountingPolicy.cdm.json/LegalEntityAccountingPolicy\",\"name\":\"TaxBasisId\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"LegalEntityAccountingPolicy\",\"path\":\"LegalEntityAccountingPolicy.cdm.json/LegalEntityAccountingPolicy\"},\"description\":\"The accounting policies in place during the specified period.\",\"primaryKey\":[\"LegalEntityId\",\"PeriodStartDate\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"LegalEntityAccountingPolicy.cdm.json/LegalEntityAccountingPolicy\",\"name\":\"LegalEntityId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Legal Entity.\\n\\nIn this case it is the business, organization or legal entity whose books are being recorded and financial statements presented.\",\"isNullable\":false,\"name\":\"LegalEntityId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"LegalEntityAccountingPolicy.cdm.json/LegalEntityAccountingPolicy\",\"name\":\"PeriodStartDate\"},\"dataType\":\"date\",\"dateFormat\":\"YYYY-MM-DD\",\"description\":\"The starting date that the accounting policies were in effect.\",\"isNullable\":false,\"name\":\"PeriodStartDate\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"LegalEntityAccountingPolicy.cdm.json/LegalEntityAccountingPolicy\",\"name\":\"PeriodEndDate\"},\"dataType\":\"date\",\"dateFormat\":\"YYYY-MM-DD\",\"description\":\"The ending date that the accounting policies were in effect.\",\"isNullable\":false,\"name\":\"PeriodEndDate\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"LegalEntityAccountingPolicy.cdm.json/LegalEntityAccountingPolicy\",\"name\":\"InventoryValuationMethodId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of an Inventory Valuation Method.\",\"isNullable\":true,\"name\":\"InventoryValuationMethodId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"LegalEntityAccountingPolicy.cdm.json/LegalEntityAccountingPolicy\",\"name\":\"DepreciationMethodId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of the Depreciation Method.\",\"isNullable\":true,\"name\":\"DepreciationMethodId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"LegalEntityAccountingPolicy.cdm.json/LegalEntityAccountingPolicy\",\"name\":\"TaxBasisId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Tax Basis.\",\"isNullable\":true,\"name\":\"TaxBasisId\"}]}}}",
+			"Description": "The accounting policies in place during the specified period.",
+			"DisplayFolderInfo": "{\"name\":\"Accounting & Financial Reporting\",\"colorCode\":\"#0078D4\"}",
+			"PrimaryKeys": "LegalEntityId,PeriodStartDate",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

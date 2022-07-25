@@ -1,0 +1,113 @@
+{
+	"name": "ExperianAccountResponsibilityType",
+	"properties": {
+		"Name": "ExperianAccountResponsibilityType",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "This indicates your association with the account.\n\nEx:\n- individual\n- joint\n- cosigner\n- authorized user",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "ExperianAccountResponsibilityTypeId",
+					"Description": "The unique identifier of an Experian Account Responsibility Type.",
+					"BaseAttributeReference": {
+						"Entity": "ExperianAccountResponsibilityType.cdm.json/ExperianAccountResponsibilityType",
+						"Name": "ExperianAccountResponsibilityTypeId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "ExperianAccountResponsibilityTypeName",
+					"Description": "The name of an Experian Account Responsibility Type.",
+					"BaseAttributeReference": {
+						"Entity": "ExperianAccountResponsibilityType.cdm.json/ExperianAccountResponsibilityType",
+						"Name": "ExperianAccountResponsibilityTypeName"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 256,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "ExperianAccountResponsibilityTypeDescription",
+					"Description": "The description of an Experian Account Responsibility Type.",
+					"BaseAttributeReference": {
+						"Entity": "ExperianAccountResponsibilityType.cdm.json/ExperianAccountResponsibilityType",
+						"Name": "ExperianAccountResponsibilityTypeDescription"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/ExperianAccountResponsibilityType",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/ExperianAccountResponsibilityType",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"ExperianAccountResponsibilityTypeId\":{\"entity\":\"ExperianAccountResponsibilityType.cdm.json/ExperianAccountResponsibilityType\",\"name\":\"ExperianAccountResponsibilityTypeId\"},\"ExperianAccountResponsibilityTypeName\":{\"entity\":\"ExperianAccountResponsibilityType.cdm.json/ExperianAccountResponsibilityType\",\"name\":\"ExperianAccountResponsibilityTypeName\"},\"ExperianAccountResponsibilityTypeDescription\":{\"entity\":\"ExperianAccountResponsibilityType.cdm.json/ExperianAccountResponsibilityType\",\"name\":\"ExperianAccountResponsibilityTypeDescription\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"ExperianAccountResponsibilityType\",\"path\":\"ExperianAccountResponsibilityType.cdm.json/ExperianAccountResponsibilityType\"},\"description\":\"This indicates your association with the account.\\n\\nEx:\\n- individual\\n- joint\\n- cosigner\\n- authorized user\",\"primaryKey\":[\"ExperianAccountResponsibilityTypeId\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ExperianAccountResponsibilityType.cdm.json/ExperianAccountResponsibilityType\",\"name\":\"ExperianAccountResponsibilityTypeId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of an Experian Account Responsibility Type.\",\"isNullable\":false,\"name\":\"ExperianAccountResponsibilityTypeId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ExperianAccountResponsibilityType.cdm.json/ExperianAccountResponsibilityType\",\"name\":\"ExperianAccountResponsibilityTypeName\"},\"dataType\":\"string\",\"dataTypeLength\":256,\"description\":\"The name of an Experian Account Responsibility Type.\",\"isNullable\":true,\"name\":\"ExperianAccountResponsibilityTypeName\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ExperianAccountResponsibilityType.cdm.json/ExperianAccountResponsibilityType\",\"name\":\"ExperianAccountResponsibilityTypeDescription\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"The description of an Experian Account Responsibility Type.\",\"isNullable\":true,\"name\":\"ExperianAccountResponsibilityTypeDescription\"}]}}}",
+			"Description": "This indicates your association with the account.\n\nEx:\n- individual\n- joint\n- cosigner\n- authorized user",
+			"DisplayFolderInfo": "{\"name\":\"Customer Credit & Collections\",\"colorCode\":\"#022F22\"}",
+			"PrimaryKeys": "ExperianAccountResponsibilityTypeId",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

@@ -1,0 +1,113 @@
+{
+	"name": "CreditCriteriaRating",
+	"properties": {
+		"Name": "CreditCriteriaRating",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "The rating that is applied to a specific Credit Criteria.",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "CreditCriteriaRatingId",
+					"Description": "The unique identifier of a Credit Criteria Rating.",
+					"BaseAttributeReference": {
+						"Entity": "CreditCriteriaRating.cdm.json/CreditCriteriaRating",
+						"Name": "CreditCriteriaRatingId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "CreditCriteriaRatingName",
+					"Description": "The name of the Credit Criteria Rating.",
+					"BaseAttributeReference": {
+						"Entity": "CreditCriteriaRating.cdm.json/CreditCriteriaRating",
+						"Name": "CreditCriteriaRatingName"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 256,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "CreditCriteriaRatingDescription",
+					"Description": "The description of the Credit Criteria Rating.",
+					"BaseAttributeReference": {
+						"Entity": "CreditCriteriaRating.cdm.json/CreditCriteriaRating",
+						"Name": "CreditCriteriaRatingDescription"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/CreditCriteriaRating",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/CreditCriteriaRating",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"CreditCriteriaRatingId\":{\"entity\":\"CreditCriteriaRating.cdm.json/CreditCriteriaRating\",\"name\":\"CreditCriteriaRatingId\"},\"CreditCriteriaRatingName\":{\"entity\":\"CreditCriteriaRating.cdm.json/CreditCriteriaRating\",\"name\":\"CreditCriteriaRatingName\"},\"CreditCriteriaRatingDescription\":{\"entity\":\"CreditCriteriaRating.cdm.json/CreditCriteriaRating\",\"name\":\"CreditCriteriaRatingDescription\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"CreditCriteriaRating\",\"path\":\"CreditCriteriaRating.cdm.json/CreditCriteriaRating\"},\"description\":\"The rating that is applied to a specific Credit Criteria.\",\"primaryKey\":[\"CreditCriteriaRatingId\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CreditCriteriaRating.cdm.json/CreditCriteriaRating\",\"name\":\"CreditCriteriaRatingId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Credit Criteria Rating.\",\"isNullable\":false,\"name\":\"CreditCriteriaRatingId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CreditCriteriaRating.cdm.json/CreditCriteriaRating\",\"name\":\"CreditCriteriaRatingName\"},\"dataType\":\"string\",\"dataTypeLength\":256,\"description\":\"The name of the Credit Criteria Rating.\",\"isNullable\":true,\"name\":\"CreditCriteriaRatingName\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CreditCriteriaRating.cdm.json/CreditCriteriaRating\",\"name\":\"CreditCriteriaRatingDescription\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"The description of the Credit Criteria Rating.\",\"isNullable\":true,\"name\":\"CreditCriteriaRatingDescription\"}]}}}",
+			"Description": "The rating that is applied to a specific Credit Criteria.",
+			"DisplayFolderInfo": "{\"name\":\"Customer Credit & Collections\",\"colorCode\":\"#022F22\"}",
+			"PrimaryKeys": "CreditCriteriaRatingId",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

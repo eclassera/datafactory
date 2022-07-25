@@ -1,0 +1,113 @@
+{
+	"name": "EquifaxOccupationType",
+	"properties": {
+		"Name": "EquifaxOccupationType",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "The Equifax occupation type.\n\nEx:\n- Manager",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "EquifaxOccupationTypeId",
+					"Description": "The unique identifier of an Equifax occupation type.",
+					"BaseAttributeReference": {
+						"Entity": "EquifaxOccupationType.cdm.json/EquifaxOccupationType",
+						"Name": "EquifaxOccupationTypeId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "EquifaxOccupationTypeName",
+					"Description": "The name of an Equifax occupation type.",
+					"BaseAttributeReference": {
+						"Entity": "EquifaxOccupationType.cdm.json/EquifaxOccupationType",
+						"Name": "EquifaxOccupationTypeName"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 256,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "EquifaxOccupationTypeDescription",
+					"Description": "The description of an Equifax occupation type.",
+					"BaseAttributeReference": {
+						"Entity": "EquifaxOccupationType.cdm.json/EquifaxOccupationType",
+						"Name": "EquifaxOccupationTypeDescription"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/EquifaxOccupationType",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/EquifaxOccupationType",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"EquifaxOccupationTypeId\":{\"entity\":\"EquifaxOccupationType.cdm.json/EquifaxOccupationType\",\"name\":\"EquifaxOccupationTypeId\"},\"EquifaxOccupationTypeName\":{\"entity\":\"EquifaxOccupationType.cdm.json/EquifaxOccupationType\",\"name\":\"EquifaxOccupationTypeName\"},\"EquifaxOccupationTypeDescription\":{\"entity\":\"EquifaxOccupationType.cdm.json/EquifaxOccupationType\",\"name\":\"EquifaxOccupationTypeDescription\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"EquifaxOccupationType\",\"path\":\"EquifaxOccupationType.cdm.json/EquifaxOccupationType\"},\"description\":\"The Equifax occupation type.\\n\\nEx:\\n- Manager\",\"primaryKey\":[\"EquifaxOccupationTypeId\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"EquifaxOccupationType.cdm.json/EquifaxOccupationType\",\"name\":\"EquifaxOccupationTypeId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of an Equifax occupation type.\",\"isNullable\":false,\"name\":\"EquifaxOccupationTypeId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"EquifaxOccupationType.cdm.json/EquifaxOccupationType\",\"name\":\"EquifaxOccupationTypeName\"},\"dataType\":\"string\",\"dataTypeLength\":256,\"description\":\"The name of an Equifax occupation type.\",\"isNullable\":true,\"name\":\"EquifaxOccupationTypeName\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"EquifaxOccupationType.cdm.json/EquifaxOccupationType\",\"name\":\"EquifaxOccupationTypeDescription\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"The description of an Equifax occupation type.\",\"isNullable\":true,\"name\":\"EquifaxOccupationTypeDescription\"}]}}}",
+			"Description": "The Equifax occupation type.\n\nEx:\n- Manager",
+			"DisplayFolderInfo": "{\"name\":\"Customer Credit & Collections\",\"colorCode\":\"#022F22\"}",
+			"PrimaryKeys": "EquifaxOccupationTypeId",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

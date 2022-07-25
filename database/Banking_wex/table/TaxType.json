@@ -1,0 +1,129 @@
+{
+	"name": "TaxType",
+	"properties": {
+		"Name": "TaxType",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "A categorization or classification of Taxes based upon common characteristics, attributes or functionality.\n\nEx:\n- VAT\n- GST\n- HST\n- City\n- Local tax\n- State/Local tax\n- State\n- Provincial\n- Federal\n- Resident Withholding Tax (Savings, checking accounts)\n- Mortgage Recording Tax\n- The Securities Transaction Tax (STT)\n- Overusage tax\n- Sales and Excise Taxes : 5% of monthly utility bill sales and excise tax City Of Alexandria VA\n- Utility Tax Each purchaser of utility service in the City of Fairfax, VA is levied a tax based on the total amount of monthly utility usage.\n- State Utility Tax",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "TaxTypeId",
+					"Description": "The unique identifier of a Tax Type.",
+					"BaseAttributeReference": {
+						"Entity": "TaxType.cdm.json/TaxType",
+						"Name": "TaxTypeId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "TaxTypeName",
+					"Description": "The common name or business name by which a Tax Type is known.",
+					"BaseAttributeReference": {
+						"Entity": "TaxType.cdm.json/TaxType",
+						"Name": "TaxTypeName"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 256,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "TaxTypeDescription",
+					"Description": "The description of the Tax Type.",
+					"BaseAttributeReference": {
+						"Entity": "TaxType.cdm.json/TaxType",
+						"Name": "TaxTypeDescription"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "TaxingAuthorityPartyId",
+					"Description": "The unique identifier of a Party.",
+					"BaseAttributeReference": {
+						"Entity": "TaxType.cdm.json/TaxType",
+						"Name": "TaxingAuthorityPartyId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "long",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"HIVE_TYPE_STRING": "long"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/TaxType",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/TaxType",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"TaxTypeId\":{\"entity\":\"TaxType.cdm.json/TaxType\",\"name\":\"TaxTypeId\"},\"TaxTypeName\":{\"entity\":\"TaxType.cdm.json/TaxType\",\"name\":\"TaxTypeName\"},\"TaxTypeDescription\":{\"entity\":\"TaxType.cdm.json/TaxType\",\"name\":\"TaxTypeDescription\"},\"TaxingAuthorityPartyId\":{\"entity\":\"TaxType.cdm.json/TaxType\",\"name\":\"TaxingAuthorityPartyId\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"TaxType\",\"path\":\"TaxType.cdm.json/TaxType\"},\"description\":\"A categorization or classification of Taxes based upon common characteristics, attributes or functionality.\\n\\nEx:\\n- VAT\\n- GST\\n- HST\\n- City\\n- Local tax\\n- State/Local tax\\n- State\\n- Provincial\\n- Federal\\n- Resident Withholding Tax (Savings, checking accounts)\\n- Mortgage Recording Tax\\n- The Securities Transaction Tax (STT)\\n- Overusage tax\\n- Sales and Excise Taxes : 5% of monthly utility bill sales and excise tax City Of Alexandria VA\\n- Utility Tax Each purchaser of utility service in the City of Fairfax, VA is levied a tax based on the total amount of monthly utility usage.\\n- State Utility Tax\",\"primaryKey\":[\"TaxTypeId\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"TaxType.cdm.json/TaxType\",\"name\":\"TaxTypeId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Tax Type.\",\"isNullable\":false,\"name\":\"TaxTypeId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"TaxType.cdm.json/TaxType\",\"name\":\"TaxTypeName\"},\"dataType\":\"string\",\"dataTypeLength\":256,\"description\":\"The common name or business name by which a Tax Type is known.\",\"isNullable\":true,\"name\":\"TaxTypeName\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"TaxType.cdm.json/TaxType\",\"name\":\"TaxTypeDescription\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"The description of the Tax Type.\",\"isNullable\":true,\"name\":\"TaxTypeDescription\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"TaxType.cdm.json/TaxType\",\"name\":\"TaxingAuthorityPartyId\"},\"dataType\":\"long\",\"description\":\"The unique identifier of a Party.\",\"isNullable\":true,\"name\":\"TaxingAuthorityPartyId\"}]}}}",
+			"Description": "A categorization or classification of Taxes based upon common characteristics, attributes or functionality.\n\nEx:\n- VAT\n- GST\n- HST\n- City\n- Local tax\n- State/Local tax\n- State\n- Provincial\n- Federal\n- Resident Withholding Tax (Savings, checking accounts)\n- Mortgage Recording Tax\n- The Securities Transaction Tax (STT)\n- Overusage tax\n- Sales and Excise Taxes : 5% of monthly utility bill sales and excise tax City Of Alexandria VA\n- Utility Tax Each purchaser of utility service in the City of Fairfax, VA is levied a tax based on the total amount of monthly utility usage.\n- State Utility Tax",
+			"DisplayFolderInfo": "{\"name\":\"Transaction\",\"colorCode\":\"#823A16\"}",
+			"PrimaryKeys": "TaxTypeId",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

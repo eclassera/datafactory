@@ -1,0 +1,370 @@
+{
+	"name": "DunBradstreetCompanyRating",
+	"properties": {
+		"Name": "DunBradstreetCompanyRating",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "Dun Bradstreet-defined business ratings.",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "DunsNumber",
+					"Description": "Dun & Bradstreet (D&B) provides a D-U-N-S Number, a unique nine digit identification number, for each physical location of your business.",
+					"BaseAttributeReference": {
+						"Entity": "DunBradstreetCompanyRating.cdm.json/DunBradstreetCompanyRating",
+						"Name": "DunsNumber"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "decimal",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Precision": 9,
+						"Scale": 0,
+						"Properties": {
+							"HIVE_TYPE_STRING": "decimal"
+						}
+					}
+				},
+				{
+					"Name": "ReportPurchaseDate",
+					"Description": "The purchase date of the report.",
+					"BaseAttributeReference": {
+						"Entity": "DunBradstreetCompanyRating.cdm.json/DunBradstreetCompanyRating",
+						"Name": "ReportPurchaseDate"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "date",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"DateFormat": "YYYY-MM-DD",
+							"HIVE_TYPE_STRING": "date"
+						}
+					}
+				},
+				{
+					"Name": "DBRating",
+					"Description": "The Dun and Bradstreet Rating consists of two parts : (a) Financial Strength Indicator (shown in the example as 5A) (b) Condition Code or Risk Indicator (shown in the example as 4)",
+					"BaseAttributeReference": {
+						"Entity": "DunBradstreetCompanyRating.cdm.json/DunBradstreetCompanyRating",
+						"Name": "DBRating"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "CompositeCreditAppraisal",
+					"Description": "he Composite Credit Appraisal is a rating system running from numbers 1 through 4 which makes up the second half of a company's rating and reflects D&B's overall assessment of that firm's creditworthiness. The Composite Credit Appraisal is based on D&B's analysis of company payments, financial information, public records, business age and other important factors (when available).\n\nNote: A \"2\" is the highest Composite Credit Appraisal possible for a company that does not supply D&B with current financial information. The \"1R\" and \"2R\" Rating categories reflect company size based upon the total number of employees for a business. These ratings are assigned to company files which lack current financial statements.",
+					"BaseAttributeReference": {
+						"Entity": "DunBradstreetCompanyRating.cdm.json/DunBradstreetCompanyRating",
+						"Name": "CompositeCreditAppraisal"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "UpTo24MonthDbIndex",
+					"Description": "The DB index for a 24 month period.",
+					"BaseAttributeReference": {
+						"Entity": "DunBradstreetCompanyRating.cdm.json/DunBradstreetCompanyRating",
+						"Name": "UpTo24MonthDbIndex"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "UpTo3MonthPaydex",
+					"Description": "The Paydex score for the latest 3 month period.",
+					"BaseAttributeReference": {
+						"Entity": "DunBradstreetCompanyRating.cdm.json/DunBradstreetCompanyRating",
+						"Name": "UpTo3MonthPaydex"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "FinancialStressClass",
+					"Description": "A \"Class\" of 1 - 5, which is a segmentation of the scoreable universe into five distinct risk groups where a one (1) represents businesses that have the lowest probability of financial stress, and a five (5) represents businesses with the highest probability of financial stress.",
+					"BaseAttributeReference": {
+						"Entity": "DunBradstreetCompanyRating.cdm.json/DunBradstreetCompanyRating",
+						"Name": "FinancialStressClass"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "FinancialStressScore",
+					"Description": "D&B 's Financial Stress Score (FSS) predicts a company's potential for failure. It's designed to predict the likelihood that a company will obtain legal relief from creditors or cease operations without paying all creditors in full over the next 12 months. The score uses the full range of D&B information, including financials, comparative financial ratios, payment trends, public filings, demographic data and more.\n\nD&B defines a financially stressed company as one that:\n\n- Ceased operations following assignment or bankruptcy,\n- Ceased operations with loss to creditors,\n- Voluntarily withdrew from business operation leaving unpaid obligations, or\n- Is in receivership, reorganization or has made an arrangement for the benefit of creditors.",
+					"BaseAttributeReference": {
+						"Entity": "DunBradstreetCompanyRating.cdm.json/DunBradstreetCompanyRating",
+						"Name": "FinancialStressScore"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "HighestRiskScore",
+					"Description": "The highest risk score of the business.",
+					"BaseAttributeReference": {
+						"Entity": "DunBradstreetCompanyRating.cdm.json/DunBradstreetCompanyRating",
+						"Name": "HighestRiskScore"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "LowestRiskScore",
+					"Description": "The lowest risk score of the business.",
+					"BaseAttributeReference": {
+						"Entity": "DunBradstreetCompanyRating.cdm.json/DunBradstreetCompanyRating",
+						"Name": "LowestRiskScore"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "CreditScoreClass",
+					"Description": "Assesses the company's probable payment habits. A 1 to 5 Credit Score Class indicated the likelihood of an account becoming delinquent within the next 12 months. A 1 denotes low risk, 5 denotes high risk, and 0 denotes open bankruptcy and/or out of business at this location.",
+					"BaseAttributeReference": {
+						"Entity": "DunBradstreetCompanyRating.cdm.json/DunBradstreetCompanyRating",
+						"Name": "CreditScoreClass"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "ViabilityScore",
+					"Description": "Assesses the probability that a company will no longer be in business, within the next 12 months, compared to all businesses in the same country within the D&B database. Going out of business is defined as:\n\n- Voluntary or involuntary close of business\n\n-  Becoming dormant or inactive\n\n- Filing for bankruptcy/insolvency\n\nEx:\n- 2",
+					"BaseAttributeReference": {
+						"Entity": "DunBradstreetCompanyRating.cdm.json/DunBradstreetCompanyRating",
+						"Name": "ViabilityScore"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "PortfolioComparisonScore",
+					"Description": "Portfolio Comparison is the second of four components within the D&B Viability Rating. Portfolio Comparison is a more detailed risk indicator that assesses the viability of a company compared to similar businesses within the same model segment which are determined by the amount and type of data available. A business is no longer viable when it goes out of business, becomes dormant/ inactive or files for bankruptcy. Every business within the D&B database falls into 1 of the following 4 profile segments:\n\n    Available Financial Data\n    Established Trade Payments\n    Limited Trade Payments\n    Firmographics and Business Activity\n\nThe Portfolio Comparison ranking ranges from 1 to 9 where 9 reflects the highest probability of becoming no longer viable and 1 reflects the lowest probability.",
+					"BaseAttributeReference": {
+						"Entity": "DunBradstreetCompanyRating.cdm.json/DunBradstreetCompanyRating",
+						"Name": "PortfolioComparisonScore"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "DataDepthIndicator",
+					"Description": "Presents the level of predictive data available on a business that was used to score its viability. Data depth includes how much business intelligence is known about a business based on the availability of predictive information such as:\n\n- Commercial trading activity\n- Financial attributes\n- Firmographic data\n\nEx: \n- A",
+					"BaseAttributeReference": {
+						"Entity": "DunBradstreetCompanyRating.cdm.json/DunBradstreetCompanyRating",
+						"Name": "DataDepthIndicator"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "boolean",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"HIVE_TYPE_STRING": "boolean"
+						}
+					}
+				},
+				{
+					"Name": "PaydexScore",
+					"Description": "The PAYDEX is a dollar-weighted numerical score that reflects a company's payment\nperformance as reported to D&B.\n\nA score of 80 denotes that payments reported to D&B have generally been made within terms.\n\nScores over 80 indicate that payments reported to D&B generally have been made earlier than terms.",
+					"BaseAttributeReference": {
+						"Entity": "DunBradstreetCompanyRating.cdm.json/DunBradstreetCompanyRating",
+						"Name": "PaydexScore"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "FinancialStrengthScore",
+					"Description": "An alpha-numerical code (e.g. 5A) is assigned based on the net worth.",
+					"BaseAttributeReference": {
+						"Entity": "DunBradstreetCompanyRating.cdm.json/DunBradstreetCompanyRating",
+						"Name": "FinancialStrengthScore"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "RiskAssessmentScore",
+					"Description": "Company's credit worthiness which is often displayed as company's financial strength added with a risk indicator.",
+					"BaseAttributeReference": {
+						"Entity": "DunBradstreetCompanyRating.cdm.json/DunBradstreetCompanyRating",
+						"Name": "RiskAssessmentScore"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "DelinquencyScore",
+					"Description": "The D&B Delinquency Score is a statistically modelled score indicating the risk of severely delinquent payments based on the information in D&B's file. The higher the\n\nDelinquency Score the lower the probability of payment delinquency.",
+					"BaseAttributeReference": {
+						"Entity": "DunBradstreetCompanyRating.cdm.json/DunBradstreetCompanyRating",
+						"Name": "DelinquencyScore"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "FailureRiskScore",
+					"Description": "Failure Risk Score describes company's risk of failure.",
+					"BaseAttributeReference": {
+						"Entity": "DunBradstreetCompanyRating.cdm.json/DunBradstreetCompanyRating",
+						"Name": "FailureRiskScore"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/DunBradstreetCompanyRating",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/DunBradstreetCompanyRating",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"DunsNumber\":{\"entity\":\"DunBradstreetCompanyRating.cdm.json/DunBradstreetCompanyRating\",\"name\":\"DunsNumber\"},\"ReportPurchaseDate\":{\"entity\":\"DunBradstreetCompanyRating.cdm.json/DunBradstreetCompanyRating\",\"name\":\"ReportPurchaseDate\"},\"DBRating\":{\"entity\":\"DunBradstreetCompanyRating.cdm.json/DunBradstreetCompanyRating\",\"name\":\"DBRating\"},\"CompositeCreditAppraisal\":{\"entity\":\"DunBradstreetCompanyRating.cdm.json/DunBradstreetCompanyRating\",\"name\":\"CompositeCreditAppraisal\"},\"UpTo24MonthDbIndex\":{\"entity\":\"DunBradstreetCompanyRating.cdm.json/DunBradstreetCompanyRating\",\"name\":\"UpTo24MonthDbIndex\"},\"UpTo3MonthPaydex\":{\"entity\":\"DunBradstreetCompanyRating.cdm.json/DunBradstreetCompanyRating\",\"name\":\"UpTo3MonthPaydex\"},\"FinancialStressClass\":{\"entity\":\"DunBradstreetCompanyRating.cdm.json/DunBradstreetCompanyRating\",\"name\":\"FinancialStressClass\"},\"FinancialStressScore\":{\"entity\":\"DunBradstreetCompanyRating.cdm.json/DunBradstreetCompanyRating\",\"name\":\"FinancialStressScore\"},\"HighestRiskScore\":{\"entity\":\"DunBradstreetCompanyRating.cdm.json/DunBradstreetCompanyRating\",\"name\":\"HighestRiskScore\"},\"LowestRiskScore\":{\"entity\":\"DunBradstreetCompanyRating.cdm.json/DunBradstreetCompanyRating\",\"name\":\"LowestRiskScore\"},\"CreditScoreClass\":{\"entity\":\"DunBradstreetCompanyRating.cdm.json/DunBradstreetCompanyRating\",\"name\":\"CreditScoreClass\"},\"ViabilityScore\":{\"entity\":\"DunBradstreetCompanyRating.cdm.json/DunBradstreetCompanyRating\",\"name\":\"ViabilityScore\"},\"PortfolioComparisonScore\":{\"entity\":\"DunBradstreetCompanyRating.cdm.json/DunBradstreetCompanyRating\",\"name\":\"PortfolioComparisonScore\"},\"DataDepthIndicator\":{\"entity\":\"DunBradstreetCompanyRating.cdm.json/DunBradstreetCompanyRating\",\"name\":\"DataDepthIndicator\"},\"PaydexScore\":{\"entity\":\"DunBradstreetCompanyRating.cdm.json/DunBradstreetCompanyRating\",\"name\":\"PaydexScore\"},\"FinancialStrengthScore\":{\"entity\":\"DunBradstreetCompanyRating.cdm.json/DunBradstreetCompanyRating\",\"name\":\"FinancialStrengthScore\"},\"RiskAssessmentScore\":{\"entity\":\"DunBradstreetCompanyRating.cdm.json/DunBradstreetCompanyRating\",\"name\":\"RiskAssessmentScore\"},\"DelinquencyScore\":{\"entity\":\"DunBradstreetCompanyRating.cdm.json/DunBradstreetCompanyRating\",\"name\":\"DelinquencyScore\"},\"FailureRiskScore\":{\"entity\":\"DunBradstreetCompanyRating.cdm.json/DunBradstreetCompanyRating\",\"name\":\"FailureRiskScore\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"DunBradstreetCompanyRating\",\"path\":\"DunBradstreetCompanyRating.cdm.json/DunBradstreetCompanyRating\"},\"description\":\"Dun Bradstreet-defined business ratings.\",\"primaryKey\":[\"DunsNumber\",\"ReportPurchaseDate\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"DunBradstreetCompanyRating.cdm.json/DunBradstreetCompanyRating\",\"name\":\"DunsNumber\"},\"dataType\":\"decimal\",\"dataTypeLength\":9,\"description\":\"Dun & Bradstreet (D&B) provides a D-U-N-S Number, a unique nine digit identification number, for each physical location of your business.\",\"isNullable\":false,\"scale\":0,\"name\":\"DunsNumber\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"DunBradstreetCompanyRating.cdm.json/DunBradstreetCompanyRating\",\"name\":\"ReportPurchaseDate\"},\"dataType\":\"date\",\"dateFormat\":\"YYYY-MM-DD\",\"description\":\"The purchase date of the report.\",\"isNullable\":false,\"name\":\"ReportPurchaseDate\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"DunBradstreetCompanyRating.cdm.json/DunBradstreetCompanyRating\",\"name\":\"DBRating\"},\"dataType\":\"integer\",\"description\":\"The Dun and Bradstreet Rating consists of two parts : (a) Financial Strength Indicator (shown in the example as 5A) (b) Condition Code or Risk Indicator (shown in the example as 4)\",\"isNullable\":true,\"name\":\"DBRating\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"DunBradstreetCompanyRating.cdm.json/DunBradstreetCompanyRating\",\"name\":\"CompositeCreditAppraisal\"},\"dataType\":\"integer\",\"description\":\"he Composite Credit Appraisal is a rating system running from numbers 1 through 4 which makes up the second half of a company's rating and reflects D&B's overall assessment of that firm's creditworthiness. The Composite Credit Appraisal is based on D&B's analysis of company payments, financial information, public records, business age and other important factors (when available).\\n\\nNote: A \\\"2\\\" is the highest Composite Credit Appraisal possible for a company that does not supply D&B with current financial information. The \\\"1R\\\" and \\\"2R\\\" Rating categories reflect company size based upon the total number of employees for a business. These ratings are assigned to company files which lack current financial statements.\",\"isNullable\":true,\"name\":\"CompositeCreditAppraisal\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"DunBradstreetCompanyRating.cdm.json/DunBradstreetCompanyRating\",\"name\":\"UpTo24MonthDbIndex\"},\"dataType\":\"integer\",\"description\":\"The DB index for a 24 month period.\",\"isNullable\":true,\"name\":\"UpTo24MonthDbIndex\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"DunBradstreetCompanyRating.cdm.json/DunBradstreetCompanyRating\",\"name\":\"UpTo3MonthPaydex\"},\"dataType\":\"integer\",\"description\":\"The Paydex score for the latest 3 month period.\",\"isNullable\":true,\"name\":\"UpTo3MonthPaydex\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"DunBradstreetCompanyRating.cdm.json/DunBradstreetCompanyRating\",\"name\":\"FinancialStressClass\"},\"dataType\":\"integer\",\"description\":\"A \\\"Class\\\" of 1 - 5, which is a segmentation of the scoreable universe into five distinct risk groups where a one (1) represents businesses that have the lowest probability of financial stress, and a five (5) represents businesses with the highest probability of financial stress.\",\"isNullable\":true,\"name\":\"FinancialStressClass\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"DunBradstreetCompanyRating.cdm.json/DunBradstreetCompanyRating\",\"name\":\"FinancialStressScore\"},\"dataType\":\"integer\",\"description\":\"D&B 's Financial Stress Score (FSS) predicts a company's potential for failure. It's designed to predict the likelihood that a company will obtain legal relief from creditors or cease operations without paying all creditors in full over the next 12 months. The score uses the full range of D&B information, including financials, comparative financial ratios, payment trends, public filings, demographic data and more.\\n\\nD&B defines a financially stressed company as one that:\\n\\n- Ceased operations following assignment or bankruptcy,\\n- Ceased operations with loss to creditors,\\n- Voluntarily withdrew from business operation leaving unpaid obligations, or\\n- Is in receivership, reorganization or has made an arrangement for the benefit of creditors.\",\"isNullable\":true,\"name\":\"FinancialStressScore\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"DunBradstreetCompanyRating.cdm.json/DunBradstreetCompanyRating\",\"name\":\"HighestRiskScore\"},\"dataType\":\"integer\",\"description\":\"The highest risk score of the business.\",\"isNullable\":true,\"name\":\"HighestRiskScore\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"DunBradstreetCompanyRating.cdm.json/DunBradstreetCompanyRating\",\"name\":\"LowestRiskScore\"},\"dataType\":\"integer\",\"description\":\"The lowest risk score of the business.\",\"isNullable\":true,\"name\":\"LowestRiskScore\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"DunBradstreetCompanyRating.cdm.json/DunBradstreetCompanyRating\",\"name\":\"CreditScoreClass\"},\"dataType\":\"integer\",\"description\":\"Assesses the company's probable payment habits. A 1 to 5 Credit Score Class indicated the likelihood of an account becoming delinquent within the next 12 months. A 1 denotes low risk, 5 denotes high risk, and 0 denotes open bankruptcy and/or out of business at this location.\",\"isNullable\":true,\"name\":\"CreditScoreClass\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"DunBradstreetCompanyRating.cdm.json/DunBradstreetCompanyRating\",\"name\":\"ViabilityScore\"},\"dataType\":\"integer\",\"description\":\"Assesses the probability that a company will no longer be in business, within the next 12 months, compared to all businesses in the same country within the D&B database. Going out of business is defined as:\\n\\n- Voluntary or involuntary close of business\\n\\n-  Becoming dormant or inactive\\n\\n- Filing for bankruptcy/insolvency\\n\\nEx:\\n- 2\",\"isNullable\":true,\"name\":\"ViabilityScore\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"DunBradstreetCompanyRating.cdm.json/DunBradstreetCompanyRating\",\"name\":\"PortfolioComparisonScore\"},\"dataType\":\"integer\",\"description\":\"Portfolio Comparison is the second of four components within the D&B Viability Rating. Portfolio Comparison is a more detailed risk indicator that assesses the viability of a company compared to similar businesses within the same model segment which are determined by the amount and type of data available. A business is no longer viable when it goes out of business, becomes dormant/ inactive or files for bankruptcy. Every business within the D&B database falls into 1 of the following 4 profile segments:\\n\\n    Available Financial Data\\n    Established Trade Payments\\n    Limited Trade Payments\\n    Firmographics and Business Activity\\n\\nThe Portfolio Comparison ranking ranges from 1 to 9 where 9 reflects the highest probability of becoming no longer viable and 1 reflects the lowest probability.\",\"isNullable\":true,\"name\":\"PortfolioComparisonScore\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"DunBradstreetCompanyRating.cdm.json/DunBradstreetCompanyRating\",\"name\":\"DataDepthIndicator\"},\"dataType\":\"boolean\",\"description\":\"Presents the level of predictive data available on a business that was used to score its viability. Data depth includes how much business intelligence is known about a business based on the availability of predictive information such as:\\n\\n- Commercial trading activity\\n- Financial attributes\\n- Firmographic data\\n\\nEx: \\n- A\",\"isNullable\":true,\"name\":\"DataDepthIndicator\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"DunBradstreetCompanyRating.cdm.json/DunBradstreetCompanyRating\",\"name\":\"PaydexScore\"},\"dataType\":\"integer\",\"description\":\"The PAYDEX is a dollar-weighted numerical score that reflects a company's payment\\nperformance as reported to D&B.\\n\\nA score of 80 denotes that payments reported to D&B have generally been made within terms.\\n\\nScores over 80 indicate that payments reported to D&B generally have been made earlier than terms.\",\"isNullable\":true,\"name\":\"PaydexScore\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"DunBradstreetCompanyRating.cdm.json/DunBradstreetCompanyRating\",\"name\":\"FinancialStrengthScore\"},\"dataType\":\"integer\",\"description\":\"An alpha-numerical code (e.g. 5A) is assigned based on the net worth.\",\"isNullable\":true,\"name\":\"FinancialStrengthScore\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"DunBradstreetCompanyRating.cdm.json/DunBradstreetCompanyRating\",\"name\":\"RiskAssessmentScore\"},\"dataType\":\"integer\",\"description\":\"Company's credit worthiness which is often displayed as company's financial strength added with a risk indicator.\",\"isNullable\":true,\"name\":\"RiskAssessmentScore\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"DunBradstreetCompanyRating.cdm.json/DunBradstreetCompanyRating\",\"name\":\"DelinquencyScore\"},\"dataType\":\"integer\",\"description\":\"The D&B Delinquency Score is a statistically modelled score indicating the risk of severely delinquent payments based on the information in D&B's file. The higher the\\n\\nDelinquency Score the lower the probability of payment delinquency.\",\"isNullable\":true,\"name\":\"DelinquencyScore\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"DunBradstreetCompanyRating.cdm.json/DunBradstreetCompanyRating\",\"name\":\"FailureRiskScore\"},\"dataType\":\"integer\",\"description\":\"Failure Risk Score describes company's risk of failure.\",\"isNullable\":true,\"name\":\"FailureRiskScore\"}]}}}",
+			"Description": "Dun Bradstreet-defined business ratings.",
+			"DisplayFolderInfo": "{\"name\":\"Customer Credit & Collections\",\"colorCode\":\"#022F22\"}",
+			"PrimaryKeys": "DunsNumber,ReportPurchaseDate",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

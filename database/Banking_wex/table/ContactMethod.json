@@ -1,0 +1,113 @@
+{
+	"name": "ContactMethod",
+	"properties": {
+		"Name": "ContactMethod",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "The means by which contact is initiated.\n\nEx:\n- Telephone\n- Email\n- Mail to Location\n- All",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "ContactMethodId",
+					"Description": "The unique identifier of a Contact Method.",
+					"BaseAttributeReference": {
+						"Entity": "ContactMethod.cdm.json/ContactMethod",
+						"Name": "ContactMethodId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "ContactMethodName",
+					"Description": "The name of the Contact Method.",
+					"BaseAttributeReference": {
+						"Entity": "ContactMethod.cdm.json/ContactMethod",
+						"Name": "ContactMethodName"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 256,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "ContactMethodDescription",
+					"Description": "The description of the Contact Method.",
+					"BaseAttributeReference": {
+						"Entity": "ContactMethod.cdm.json/ContactMethod",
+						"Name": "ContactMethodDescription"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/ContactMethod",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/ContactMethod",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"ContactMethodId\":{\"entity\":\"ContactMethod.cdm.json/ContactMethod\",\"name\":\"ContactMethodId\"},\"ContactMethodName\":{\"entity\":\"ContactMethod.cdm.json/ContactMethod\",\"name\":\"ContactMethodName\"},\"ContactMethodDescription\":{\"entity\":\"ContactMethod.cdm.json/ContactMethod\",\"name\":\"ContactMethodDescription\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"ContactMethod\",\"path\":\"ContactMethod.cdm.json/ContactMethod\"},\"description\":\"The means by which contact is initiated.\\n\\nEx:\\n- Telephone\\n- Email\\n- Mail to Location\\n- All\",\"primaryKey\":[\"ContactMethodId\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ContactMethod.cdm.json/ContactMethod\",\"name\":\"ContactMethodId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Contact Method.\",\"isNullable\":false,\"name\":\"ContactMethodId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ContactMethod.cdm.json/ContactMethod\",\"name\":\"ContactMethodName\"},\"dataType\":\"string\",\"dataTypeLength\":256,\"description\":\"The name of the Contact Method.\",\"isNullable\":true,\"name\":\"ContactMethodName\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ContactMethod.cdm.json/ContactMethod\",\"name\":\"ContactMethodDescription\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"The description of the Contact Method.\",\"isNullable\":true,\"name\":\"ContactMethodDescription\"}]}}}",
+			"Description": "The means by which contact is initiated.\n\nEx:\n- Telephone\n- Email\n- Mail to Location\n- All",
+			"DisplayFolderInfo": "{\"name\":\"Party\",\"colorCode\":\"#00727A\"}",
+			"PrimaryKeys": "ContactMethodId",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

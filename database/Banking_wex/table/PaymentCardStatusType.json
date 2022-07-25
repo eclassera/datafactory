@@ -1,0 +1,113 @@
+{
+	"name": "PaymentCardStatusType",
+	"properties": {
+		"Name": "PaymentCardStatusType",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "A type of status that may be associated with a  Payment Card for a period of time.\n\nEx:\n- Active\n- Current\n- Dormant\n- Blocked\n- Frozen\n- Suspended\n- Delinquent\n- In Default\n- Unknown",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "PaymentCardStatusTypeId",
+					"Description": "The unique identifier of a Payment Card Status Type.",
+					"BaseAttributeReference": {
+						"Entity": "PaymentCardStatusType.cdm.json/PaymentCardStatusType",
+						"Name": "PaymentCardStatusTypeId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "PaymentCardStatusTypeName",
+					"Description": "The name of a Payment Card Status Type.",
+					"BaseAttributeReference": {
+						"Entity": "PaymentCardStatusType.cdm.json/PaymentCardStatusType",
+						"Name": "PaymentCardStatusTypeName"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 256,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "PaymentCardStatusTypeDescription",
+					"Description": "The description of a Payment Card Status Type.",
+					"BaseAttributeReference": {
+						"Entity": "PaymentCardStatusType.cdm.json/PaymentCardStatusType",
+						"Name": "PaymentCardStatusTypeDescription"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/PaymentCardStatusType",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/PaymentCardStatusType",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"PaymentCardStatusTypeId\":{\"entity\":\"PaymentCardStatusType.cdm.json/PaymentCardStatusType\",\"name\":\"PaymentCardStatusTypeId\"},\"PaymentCardStatusTypeName\":{\"entity\":\"PaymentCardStatusType.cdm.json/PaymentCardStatusType\",\"name\":\"PaymentCardStatusTypeName\"},\"PaymentCardStatusTypeDescription\":{\"entity\":\"PaymentCardStatusType.cdm.json/PaymentCardStatusType\",\"name\":\"PaymentCardStatusTypeDescription\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"PaymentCardStatusType\",\"path\":\"PaymentCardStatusType.cdm.json/PaymentCardStatusType\"},\"description\":\"A type of status that may be associated with a  Payment Card for a period of time.\\n\\nEx:\\n- Active\\n- Current\\n- Dormant\\n- Blocked\\n- Frozen\\n- Suspended\\n- Delinquent\\n- In Default\\n- Unknown\",\"primaryKey\":[\"PaymentCardStatusTypeId\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"PaymentCardStatusType.cdm.json/PaymentCardStatusType\",\"name\":\"PaymentCardStatusTypeId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Payment Card Status Type.\",\"isNullable\":false,\"name\":\"PaymentCardStatusTypeId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"PaymentCardStatusType.cdm.json/PaymentCardStatusType\",\"name\":\"PaymentCardStatusTypeName\"},\"dataType\":\"string\",\"dataTypeLength\":256,\"description\":\"The name of a Payment Card Status Type.\",\"isNullable\":true,\"name\":\"PaymentCardStatusTypeName\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"PaymentCardStatusType.cdm.json/PaymentCardStatusType\",\"name\":\"PaymentCardStatusTypeDescription\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"The description of a Payment Card Status Type.\",\"isNullable\":true,\"name\":\"PaymentCardStatusTypeDescription\"}]}}}",
+			"Description": "A type of status that may be associated with a  Payment Card for a period of time.\n\nEx:\n- Active\n- Current\n- Dormant\n- Blocked\n- Frozen\n- Suspended\n- Delinquent\n- In Default\n- Unknown",
+			"DisplayFolderInfo": "{\"name\":\"Customer Account\",\"colorCode\":\"#E3008C\"}",
+			"PrimaryKeys": "PaymentCardStatusTypeId",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

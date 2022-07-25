@@ -1,0 +1,113 @@
+{
+	"name": "LeadSourceType",
+	"properties": {
+		"Name": "LeadSourceType",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "The categorization of Lead Sources based upon common characteristics or objectives.\n\nEx:\n-  Mailing list \n-  Agent \n-  Existing customer referral\n-  Walk-in\n-  Reference\n-  Ad referral\n-  Cold call\n-  Association membership list\n-  Business directory\n-  Magazine rental list",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "LeadSourceTypeId",
+					"Description": "The unique identifier of a Lead Source Type.",
+					"BaseAttributeReference": {
+						"Entity": "LeadSourceType.cdm.json/LeadSourceType",
+						"Name": "LeadSourceTypeId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "LeadSourceTypeName",
+					"Description": "The name of a Lead Source Type.",
+					"BaseAttributeReference": {
+						"Entity": "LeadSourceType.cdm.json/LeadSourceType",
+						"Name": "LeadSourceTypeName"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 256,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "LeadSourceTypeDescription",
+					"Description": "The description of a Lead Source Type.",
+					"BaseAttributeReference": {
+						"Entity": "LeadSourceType.cdm.json/LeadSourceType",
+						"Name": "LeadSourceTypeDescription"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/LeadSourceType",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/LeadSourceType",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"LeadSourceTypeId\":{\"entity\":\"LeadSourceType.cdm.json/LeadSourceType\",\"name\":\"LeadSourceTypeId\"},\"LeadSourceTypeName\":{\"entity\":\"LeadSourceType.cdm.json/LeadSourceType\",\"name\":\"LeadSourceTypeName\"},\"LeadSourceTypeDescription\":{\"entity\":\"LeadSourceType.cdm.json/LeadSourceType\",\"name\":\"LeadSourceTypeDescription\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"LeadSourceType\",\"path\":\"LeadSourceType.cdm.json/LeadSourceType\"},\"description\":\"The categorization of Lead Sources based upon common characteristics or objectives.\\n\\nEx:\\n-  Mailing list \\n-  Agent \\n-  Existing customer referral\\n-  Walk-in\\n-  Reference\\n-  Ad referral\\n-  Cold call\\n-  Association membership list\\n-  Business directory\\n-  Magazine rental list\",\"primaryKey\":[\"LeadSourceTypeId\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"LeadSourceType.cdm.json/LeadSourceType\",\"name\":\"LeadSourceTypeId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Lead Source Type.\",\"isNullable\":false,\"name\":\"LeadSourceTypeId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"LeadSourceType.cdm.json/LeadSourceType\",\"name\":\"LeadSourceTypeName\"},\"dataType\":\"string\",\"dataTypeLength\":256,\"description\":\"The name of a Lead Source Type.\",\"isNullable\":true,\"name\":\"LeadSourceTypeName\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"LeadSourceType.cdm.json/LeadSourceType\",\"name\":\"LeadSourceTypeDescription\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"The description of a Lead Source Type.\",\"isNullable\":true,\"name\":\"LeadSourceTypeDescription\"}]}}}",
+			"Description": "The categorization of Lead Sources based upon common characteristics or objectives.\n\nEx:\n-  Mailing list \n-  Agent \n-  Existing customer referral\n-  Walk-in\n-  Reference\n-  Ad referral\n-  Cold call\n-  Association membership list\n-  Business directory\n-  Magazine rental list",
+			"DisplayFolderInfo": "{\"name\":\"Customer\",\"colorCode\":\"#4B003F\"}",
+			"PrimaryKeys": "LeadSourceTypeId",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

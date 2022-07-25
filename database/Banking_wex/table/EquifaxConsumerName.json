@@ -1,0 +1,162 @@
+{
+	"name": "EquifaxConsumerName",
+	"properties": {
+		"Name": "EquifaxConsumerName",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "Other names that correspond to your credit file.",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "EquifaxReportNumber",
+					"Description": "The Equifax report number.",
+					"BaseAttributeReference": {
+						"Entity": "EquifaxConsumerName.cdm.json/EquifaxConsumerName",
+						"Name": "EquifaxReportNumber"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "EquifaxConsumerNameId",
+					"Description": "The unique identifier of an Equifax Consumer Name.",
+					"BaseAttributeReference": {
+						"Entity": "EquifaxConsumerName.cdm.json/EquifaxConsumerName",
+						"Name": "EquifaxConsumerNameId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "ConsumerFirstName",
+					"Description": "The consumer's first name.",
+					"BaseAttributeReference": {
+						"Entity": "EquifaxConsumerName.cdm.json/EquifaxConsumerName",
+						"Name": "ConsumerFirstName"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 256,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "ConsumerMiddleName",
+					"Description": "The consumer's middle name.",
+					"BaseAttributeReference": {
+						"Entity": "EquifaxConsumerName.cdm.json/EquifaxConsumerName",
+						"Name": "ConsumerMiddleName"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 256,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "ConsumerLastName",
+					"Description": "The consumer's last name.",
+					"BaseAttributeReference": {
+						"Entity": "EquifaxConsumerName.cdm.json/EquifaxConsumerName",
+						"Name": "ConsumerLastName"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 256,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "EquifaxConsumerNameTypeId",
+					"Description": "The unique identifier of an Equifax Consumer Name Type.",
+					"BaseAttributeReference": {
+						"Entity": "EquifaxConsumerName.cdm.json/EquifaxConsumerName",
+						"Name": "EquifaxConsumerNameTypeId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/EquifaxConsumerName",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/EquifaxConsumerName",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"EquifaxReportNumber\":{\"entity\":\"EquifaxConsumerName.cdm.json/EquifaxConsumerName\",\"name\":\"EquifaxReportNumber\"},\"EquifaxConsumerNameId\":{\"entity\":\"EquifaxConsumerName.cdm.json/EquifaxConsumerName\",\"name\":\"EquifaxConsumerNameId\"},\"ConsumerFirstName\":{\"entity\":\"EquifaxConsumerName.cdm.json/EquifaxConsumerName\",\"name\":\"ConsumerFirstName\"},\"ConsumerMiddleName\":{\"entity\":\"EquifaxConsumerName.cdm.json/EquifaxConsumerName\",\"name\":\"ConsumerMiddleName\"},\"ConsumerLastName\":{\"entity\":\"EquifaxConsumerName.cdm.json/EquifaxConsumerName\",\"name\":\"ConsumerLastName\"},\"EquifaxConsumerNameTypeId\":{\"entity\":\"EquifaxConsumerName.cdm.json/EquifaxConsumerName\",\"name\":\"EquifaxConsumerNameTypeId\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"EquifaxConsumerName\",\"path\":\"EquifaxConsumerName.cdm.json/EquifaxConsumerName\"},\"description\":\"Other names that correspond to your credit file.\",\"primaryKey\":[\"EquifaxReportNumber\",\"EquifaxConsumerNameId\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"EquifaxConsumerName.cdm.json/EquifaxConsumerName\",\"name\":\"EquifaxReportNumber\"},\"dataType\":\"integer\",\"description\":\"The Equifax report number.\",\"isNullable\":false,\"name\":\"EquifaxReportNumber\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"EquifaxConsumerName.cdm.json/EquifaxConsumerName\",\"name\":\"EquifaxConsumerNameId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of an Equifax Consumer Name.\",\"isNullable\":false,\"name\":\"EquifaxConsumerNameId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"EquifaxConsumerName.cdm.json/EquifaxConsumerName\",\"name\":\"ConsumerFirstName\"},\"dataType\":\"string\",\"dataTypeLength\":256,\"description\":\"The consumer's first name.\",\"isNullable\":true,\"name\":\"ConsumerFirstName\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"EquifaxConsumerName.cdm.json/EquifaxConsumerName\",\"name\":\"ConsumerMiddleName\"},\"dataType\":\"string\",\"dataTypeLength\":256,\"description\":\"The consumer's middle name.\",\"isNullable\":true,\"name\":\"ConsumerMiddleName\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"EquifaxConsumerName.cdm.json/EquifaxConsumerName\",\"name\":\"ConsumerLastName\"},\"dataType\":\"string\",\"dataTypeLength\":256,\"description\":\"The consumer's last name.\",\"isNullable\":true,\"name\":\"ConsumerLastName\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"EquifaxConsumerName.cdm.json/EquifaxConsumerName\",\"name\":\"EquifaxConsumerNameTypeId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of an Equifax Consumer Name Type.\",\"isNullable\":true,\"name\":\"EquifaxConsumerNameTypeId\"}]}}}",
+			"Description": "Other names that correspond to your credit file.",
+			"DisplayFolderInfo": "{\"name\":\"Customer Credit & Collections\",\"colorCode\":\"#022F22\"}",
+			"PrimaryKeys": "EquifaxReportNumber,EquifaxConsumerNameId",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

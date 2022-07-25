@@ -1,0 +1,178 @@
+{
+	"name": "ChannelProgramProductRelationship",
+	"properties": {
+		"Name": "ChannelProgramProductRelationship",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "The nature of the relationship between a product, program and channel during the associated period.",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "ChannelId",
+					"Description": "The unique identifier of a Channel.",
+					"BaseAttributeReference": {
+						"Entity": "ChannelProgramProductRelationship.cdm.json/ChannelProgramProductRelationship",
+						"Name": "ChannelId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "MarketingProgramId",
+					"Description": "The unique identifier of a Marketing Program.",
+					"BaseAttributeReference": {
+						"Entity": "ChannelProgramProductRelationship.cdm.json/ChannelProgramProductRelationship",
+						"Name": "MarketingProgramId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "ProductId",
+					"Description": "The unique identifier of a Product.",
+					"BaseAttributeReference": {
+						"Entity": "ChannelProgramProductRelationship.cdm.json/ChannelProgramProductRelationship",
+						"Name": "ProductId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "long",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "long"
+						}
+					}
+				},
+				{
+					"Name": "ProgramProductRelationshipTypeId",
+					"Description": "The unique identifier of a Program Product Relationship Type.",
+					"BaseAttributeReference": {
+						"Entity": "ChannelProgramProductRelationship.cdm.json/ChannelProgramProductRelationship",
+						"Name": "ProgramProductRelationshipTypeId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "PeriodStartDate",
+					"Description": "The period start date for which the associated relationship exists.",
+					"BaseAttributeReference": {
+						"Entity": "ChannelProgramProductRelationship.cdm.json/ChannelProgramProductRelationship",
+						"Name": "PeriodStartDate"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "date",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"DateFormat": "YYYY-MM-DD",
+							"HIVE_TYPE_STRING": "date"
+						}
+					}
+				},
+				{
+					"Name": "PeriodEndDate",
+					"Description": "The period end date for which the associated relationship exists.",
+					"BaseAttributeReference": {
+						"Entity": "ChannelProgramProductRelationship.cdm.json/ChannelProgramProductRelationship",
+						"Name": "PeriodEndDate"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "date",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"DateFormat": "YYYY-MM-DD",
+							"HIVE_TYPE_STRING": "date"
+						}
+					}
+				},
+				{
+					"Name": "ChannelProgramProductRelationshipNote",
+					"Description": "A note, comment or additional information regarding a channel program product.",
+					"BaseAttributeReference": {
+						"Entity": "ChannelProgramProductRelationship.cdm.json/ChannelProgramProductRelationship",
+						"Name": "ChannelProgramProductRelationshipNote"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/ChannelProgramProductRelationship",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/ChannelProgramProductRelationship",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"ChannelId\":{\"entity\":\"ChannelProgramProductRelationship.cdm.json/ChannelProgramProductRelationship\",\"name\":\"ChannelId\"},\"MarketingProgramId\":{\"entity\":\"ChannelProgramProductRelationship.cdm.json/ChannelProgramProductRelationship\",\"name\":\"MarketingProgramId\"},\"ProductId\":{\"entity\":\"ChannelProgramProductRelationship.cdm.json/ChannelProgramProductRelationship\",\"name\":\"ProductId\"},\"ProgramProductRelationshipTypeId\":{\"entity\":\"ChannelProgramProductRelationship.cdm.json/ChannelProgramProductRelationship\",\"name\":\"ProgramProductRelationshipTypeId\"},\"PeriodStartDate\":{\"entity\":\"ChannelProgramProductRelationship.cdm.json/ChannelProgramProductRelationship\",\"name\":\"PeriodStartDate\"},\"PeriodEndDate\":{\"entity\":\"ChannelProgramProductRelationship.cdm.json/ChannelProgramProductRelationship\",\"name\":\"PeriodEndDate\"},\"ChannelProgramProductRelationshipNote\":{\"entity\":\"ChannelProgramProductRelationship.cdm.json/ChannelProgramProductRelationship\",\"name\":\"ChannelProgramProductRelationshipNote\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"ChannelProgramProductRelationship\",\"path\":\"ChannelProgramProductRelationship.cdm.json/ChannelProgramProductRelationship\"},\"description\":\"The nature of the relationship between a product, program and channel during the associated period.\",\"primaryKey\":[\"ChannelId\",\"MarketingProgramId\",\"ProductId\",\"ProgramProductRelationshipTypeId\",\"PeriodStartDate\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ChannelProgramProductRelationship.cdm.json/ChannelProgramProductRelationship\",\"name\":\"ChannelId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Channel.\",\"isNullable\":false,\"name\":\"ChannelId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ChannelProgramProductRelationship.cdm.json/ChannelProgramProductRelationship\",\"name\":\"MarketingProgramId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Marketing Program.\",\"isNullable\":false,\"name\":\"MarketingProgramId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ChannelProgramProductRelationship.cdm.json/ChannelProgramProductRelationship\",\"name\":\"ProductId\"},\"dataType\":\"long\",\"description\":\"The unique identifier of a Product.\",\"isNullable\":false,\"name\":\"ProductId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ChannelProgramProductRelationship.cdm.json/ChannelProgramProductRelationship\",\"name\":\"ProgramProductRelationshipTypeId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Program Product Relationship Type.\",\"isNullable\":false,\"name\":\"ProgramProductRelationshipTypeId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ChannelProgramProductRelationship.cdm.json/ChannelProgramProductRelationship\",\"name\":\"PeriodStartDate\"},\"dataType\":\"date\",\"dateFormat\":\"YYYY-MM-DD\",\"description\":\"The period start date for which the associated relationship exists.\",\"isNullable\":false,\"name\":\"PeriodStartDate\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ChannelProgramProductRelationship.cdm.json/ChannelProgramProductRelationship\",\"name\":\"PeriodEndDate\"},\"dataType\":\"date\",\"dateFormat\":\"YYYY-MM-DD\",\"description\":\"The period end date for which the associated relationship exists.\",\"isNullable\":true,\"name\":\"PeriodEndDate\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ChannelProgramProductRelationship.cdm.json/ChannelProgramProductRelationship\",\"name\":\"ChannelProgramProductRelationshipNote\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"A note, comment or additional information regarding a channel program product.\",\"isNullable\":true,\"name\":\"ChannelProgramProductRelationshipNote\"}]}}}",
+			"Description": "The nature of the relationship between a product, program and channel during the associated period.",
+			"DisplayFolderInfo": "{\"name\":\"Channel\",\"colorCode\":\"#001D3F\"}",
+			"PrimaryKeys": "ChannelId,MarketingProgramId,ProductId,ProgramProductRelationshipTypeId,PeriodStartDate",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

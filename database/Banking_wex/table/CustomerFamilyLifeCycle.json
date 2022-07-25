@@ -1,0 +1,146 @@
+{
+	"name": "CustomerFamilyLifeCycle",
+	"properties": {
+		"Name": "CustomerFamilyLifeCycle",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "The Individual Customer Family Life Cycle characteristic.\n\nThese criteria can change over a period of time and are represented with 'period start date/period end date' qualifications, which represented the best case for knowing this information. If the data is only randomly sampled or recorded then you could use a single 'date' to identify its recording or effective as-of date.\n\nExamples:\n\n- Bachelor \n- Newly married \n- Full nest I\n- Full nest II\n- Empty nest I\n- Empty nest II\n- Solitary survivor/working\n- Solitary survivor/retired\n- Retired",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "CustomerId",
+					"Description": "The unique identifier of a Customer.",
+					"BaseAttributeReference": {
+						"Entity": "CustomerFamilyLifeCycle.cdm.json/CustomerFamilyLifeCycle",
+						"Name": "CustomerId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "long",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "long"
+						}
+					}
+				},
+				{
+					"Name": "FamilyLifeCycleId",
+					"Description": "The unique identifier of a Family Life Cycle.",
+					"BaseAttributeReference": {
+						"Entity": "CustomerFamilyLifeCycle.cdm.json/CustomerFamilyLifeCycle",
+						"Name": "FamilyLifeCycleId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "PeriodStartDate",
+					"Description": "The period start date for which the associated data is effective or 'as-of'.",
+					"BaseAttributeReference": {
+						"Entity": "CustomerFamilyLifeCycle.cdm.json/CustomerFamilyLifeCycle",
+						"Name": "PeriodStartDate"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "date",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"DateFormat": "YYYY-MM-DD",
+							"HIVE_TYPE_STRING": "date"
+						}
+					}
+				},
+				{
+					"Name": "PeriodEndDate",
+					"Description": "The period end date for which the associated data is effective or 'as-of'.",
+					"BaseAttributeReference": {
+						"Entity": "CustomerFamilyLifeCycle.cdm.json/CustomerFamilyLifeCycle",
+						"Name": "PeriodEndDate"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "date",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"DateFormat": "YYYY-MM-DD",
+							"HIVE_TYPE_STRING": "date"
+						}
+					}
+				},
+				{
+					"Name": "CustomerFamilyLifeCycleNote",
+					"Description": "A note, comment or additional information regarding the Customer Family Life Cycle relationship.",
+					"BaseAttributeReference": {
+						"Entity": "CustomerFamilyLifeCycle.cdm.json/CustomerFamilyLifeCycle",
+						"Name": "CustomerFamilyLifeCycleNote"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/CustomerFamilyLifeCycle",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/CustomerFamilyLifeCycle",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"CustomerId\":{\"entity\":\"CustomerFamilyLifeCycle.cdm.json/CustomerFamilyLifeCycle\",\"name\":\"CustomerId\"},\"FamilyLifeCycleId\":{\"entity\":\"CustomerFamilyLifeCycle.cdm.json/CustomerFamilyLifeCycle\",\"name\":\"FamilyLifeCycleId\"},\"PeriodStartDate\":{\"entity\":\"CustomerFamilyLifeCycle.cdm.json/CustomerFamilyLifeCycle\",\"name\":\"PeriodStartDate\"},\"PeriodEndDate\":{\"entity\":\"CustomerFamilyLifeCycle.cdm.json/CustomerFamilyLifeCycle\",\"name\":\"PeriodEndDate\"},\"CustomerFamilyLifeCycleNote\":{\"entity\":\"CustomerFamilyLifeCycle.cdm.json/CustomerFamilyLifeCycle\",\"name\":\"CustomerFamilyLifeCycleNote\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"CustomerFamilyLifeCycle\",\"path\":\"CustomerFamilyLifeCycle.cdm.json/CustomerFamilyLifeCycle\"},\"description\":\"The Individual Customer Family Life Cycle characteristic.\\n\\nThese criteria can change over a period of time and are represented with 'period start date/period end date' qualifications, which represented the best case for knowing this information. If the data is only randomly sampled or recorded then you could use a single 'date' to identify its recording or effective as-of date.\\n\\nExamples:\\n\\n- Bachelor \\n- Newly married \\n- Full nest I\\n- Full nest II\\n- Empty nest I\\n- Empty nest II\\n- Solitary survivor/working\\n- Solitary survivor/retired\\n- Retired\",\"primaryKey\":[\"CustomerId\",\"FamilyLifeCycleId\",\"PeriodStartDate\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CustomerFamilyLifeCycle.cdm.json/CustomerFamilyLifeCycle\",\"name\":\"CustomerId\"},\"dataType\":\"long\",\"description\":\"The unique identifier of a Customer.\",\"isNullable\":false,\"name\":\"CustomerId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CustomerFamilyLifeCycle.cdm.json/CustomerFamilyLifeCycle\",\"name\":\"FamilyLifeCycleId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Family Life Cycle.\",\"isNullable\":false,\"name\":\"FamilyLifeCycleId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CustomerFamilyLifeCycle.cdm.json/CustomerFamilyLifeCycle\",\"name\":\"PeriodStartDate\"},\"dataType\":\"date\",\"dateFormat\":\"YYYY-MM-DD\",\"description\":\"The period start date for which the associated data is effective or 'as-of'.\",\"isNullable\":false,\"name\":\"PeriodStartDate\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CustomerFamilyLifeCycle.cdm.json/CustomerFamilyLifeCycle\",\"name\":\"PeriodEndDate\"},\"dataType\":\"date\",\"dateFormat\":\"YYYY-MM-DD\",\"description\":\"The period end date for which the associated data is effective or 'as-of'.\",\"isNullable\":true,\"name\":\"PeriodEndDate\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CustomerFamilyLifeCycle.cdm.json/CustomerFamilyLifeCycle\",\"name\":\"CustomerFamilyLifeCycleNote\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"A note, comment or additional information regarding the Customer Family Life Cycle relationship.\",\"isNullable\":true,\"name\":\"CustomerFamilyLifeCycleNote\"}]}}}",
+			"Description": "The Individual Customer Family Life Cycle characteristic.\n\nThese criteria can change over a period of time and are represented with 'period start date/period end date' qualifications, which represented the best case for knowing this information. If the data is only randomly sampled or recorded then you could use a single 'date' to identify its recording or effective as-of date.\n\nExamples:\n\n- Bachelor \n- Newly married \n- Full nest I\n- Full nest II\n- Empty nest I\n- Empty nest II\n- Solitary survivor/working\n- Solitary survivor/retired\n- Retired",
+			"DisplayFolderInfo": "{\"name\":\"Customer\",\"colorCode\":\"#4B003F\"}",
+			"PrimaryKeys": "CustomerId,FamilyLifeCycleId,PeriodStartDate",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

@@ -1,0 +1,162 @@
+{
+	"name": "ProductDistributionChannel",
+	"properties": {
+		"Name": "ProductDistributionChannel",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "The channels by which the product is distributed during the associated period.",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "ProductId",
+					"Description": "The unique identifier of a Product.",
+					"BaseAttributeReference": {
+						"Entity": "ProductDistributionChannel.cdm.json/ProductDistributionChannel",
+						"Name": "ProductId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "long",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "long"
+						}
+					}
+				},
+				{
+					"Name": "ChannelId",
+					"Description": "The unique identifier of a Channel.",
+					"BaseAttributeReference": {
+						"Entity": "ProductDistributionChannel.cdm.json/ProductDistributionChannel",
+						"Name": "ChannelId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "CountryId",
+					"Description": "The unique identifier of the Country.",
+					"BaseAttributeReference": {
+						"Entity": "ProductDistributionChannel.cdm.json/ProductDistributionChannel",
+						"Name": "CountryId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "PeriodStartDate",
+					"Description": "The period start date for which the product is distributed in the associated channel.",
+					"BaseAttributeReference": {
+						"Entity": "ProductDistributionChannel.cdm.json/ProductDistributionChannel",
+						"Name": "PeriodStartDate"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "date",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"DateFormat": "YYYY-MM-DD",
+							"HIVE_TYPE_STRING": "date"
+						}
+					}
+				},
+				{
+					"Name": "PeriodEndDate",
+					"Description": "The period end date for which the product is distributed in the associated channel.",
+					"BaseAttributeReference": {
+						"Entity": "ProductDistributionChannel.cdm.json/ProductDistributionChannel",
+						"Name": "PeriodEndDate"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "date",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"DateFormat": "YYYY-MM-DD",
+							"HIVE_TYPE_STRING": "date"
+						}
+					}
+				},
+				{
+					"Name": "ProductDistributionChannelNote",
+					"Description": "A note, comment or additional information regarding the product distribution channel.",
+					"BaseAttributeReference": {
+						"Entity": "ProductDistributionChannel.cdm.json/ProductDistributionChannel",
+						"Name": "ProductDistributionChannelNote"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/ProductDistributionChannel",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/ProductDistributionChannel",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"ProductId\":{\"entity\":\"ProductDistributionChannel.cdm.json/ProductDistributionChannel\",\"name\":\"ProductId\"},\"ChannelId\":{\"entity\":\"ProductDistributionChannel.cdm.json/ProductDistributionChannel\",\"name\":\"ChannelId\"},\"CountryId\":{\"entity\":\"ProductDistributionChannel.cdm.json/ProductDistributionChannel\",\"name\":\"CountryId\"},\"PeriodStartDate\":{\"entity\":\"ProductDistributionChannel.cdm.json/ProductDistributionChannel\",\"name\":\"PeriodStartDate\"},\"PeriodEndDate\":{\"entity\":\"ProductDistributionChannel.cdm.json/ProductDistributionChannel\",\"name\":\"PeriodEndDate\"},\"ProductDistributionChannelNote\":{\"entity\":\"ProductDistributionChannel.cdm.json/ProductDistributionChannel\",\"name\":\"ProductDistributionChannelNote\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"ProductDistributionChannel\",\"path\":\"ProductDistributionChannel.cdm.json/ProductDistributionChannel\"},\"description\":\"The channels by which the product is distributed during the associated period.\",\"primaryKey\":[\"ProductId\",\"ChannelId\",\"CountryId\",\"PeriodStartDate\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ProductDistributionChannel.cdm.json/ProductDistributionChannel\",\"name\":\"ProductId\"},\"dataType\":\"long\",\"description\":\"The unique identifier of a Product.\",\"isNullable\":false,\"name\":\"ProductId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ProductDistributionChannel.cdm.json/ProductDistributionChannel\",\"name\":\"ChannelId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Channel.\",\"isNullable\":false,\"name\":\"ChannelId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ProductDistributionChannel.cdm.json/ProductDistributionChannel\",\"name\":\"CountryId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of the Country.\",\"isNullable\":false,\"name\":\"CountryId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ProductDistributionChannel.cdm.json/ProductDistributionChannel\",\"name\":\"PeriodStartDate\"},\"dataType\":\"date\",\"dateFormat\":\"YYYY-MM-DD\",\"description\":\"The period start date for which the product is distributed in the associated channel.\",\"isNullable\":false,\"name\":\"PeriodStartDate\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ProductDistributionChannel.cdm.json/ProductDistributionChannel\",\"name\":\"PeriodEndDate\"},\"dataType\":\"date\",\"dateFormat\":\"YYYY-MM-DD\",\"description\":\"The period end date for which the product is distributed in the associated channel.\",\"isNullable\":true,\"name\":\"PeriodEndDate\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ProductDistributionChannel.cdm.json/ProductDistributionChannel\",\"name\":\"ProductDistributionChannelNote\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"A note, comment or additional information regarding the product distribution channel.\",\"isNullable\":true,\"name\":\"ProductDistributionChannelNote\"}]}}}",
+			"Description": "The channels by which the product is distributed during the associated period.",
+			"DisplayFolderInfo": "{\"name\":\"Channel\",\"colorCode\":\"#001D3F\"}",
+			"PrimaryKeys": "ProductId,ChannelId,CountryId,PeriodStartDate",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

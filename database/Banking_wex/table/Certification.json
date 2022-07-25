@@ -1,0 +1,162 @@
+{
+	"name": "Certification",
+	"properties": {
+		"Name": "Certification",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "A process by which an organization validates whether certain qualifications and/or knowledge have been met based upon predetermined standards. Certifications can be applied to individuals, organizations, processes and equipment. \n\nEx:\n- GDPR\nWhile a GDPR certification does not actually exist yet, one should come soon.\n- ISO 27001\nInformation Security Management Systems\n- ISO 9001\nQuality Management Systems\n- ISO 14001\nEnvironmental Management Systems\n- OHSAS 18001\nOccupational Health and Safety Management Systems\n- PAS 43\nSafe Working of Vehicle Breakdown & Recovery Operators\n- NHSS 17\nQuality Management for Vehicle Recovery at Highway Construction Sites\n- NHSS 17b\nQuality Management for Vehicle Recovery & Removal on Controlled Roads\n- PAS 80\nAutomotive Garage Services - Service and Repair of Vehicles\n- HACCP\nHazard Analysis and Critical Control Point Systems\nASME Code Section VIII, Division 1, Pressure Vessels and Heat\nExchangers;\n- ANSI B31.3 Petroleum Refinery Piping;\n-  FM Requirements for Burner Control;\n- API-RP520, Parts I and II, Design and Installation of Pressure Relieving\nSystems in Refineries; and\n- API-500A Classification of Areas for Electrical Equipment in Petroleum\nRefineries (Class 1, Group D, Division 2) on the process end of the skid\n- ISO 13443:1996\nNatural gas -- Standard reference conditions\n- ISO 13686:2013\nNatural gas -- Quality designation\n- ISO 28300:2008\nPetroleum, petrochemical and natural gas industries -- Venting of atmospheric and low-pressure storage tanks\n- ISO/DIS 16812 [Under development]\nPetroleum, petrochemical and natural gas industries -- Shell-and-tube heat exchangers\n- ISO 15649:2001\nPetroleum and natural gas industries -- Piping\n- ISO 13734:2013\nNatural gas -- Organic components used as odorants\n- ISO 15970:2008\nNatural gas -- Measurement of properties\n- ISO/TR 22302:2014\nNatural gas -- Calculation of methane number\n\nNote:\nWhile a GDPR certification does not actually exist yet, one should come soon. In the interim it is advisable to at least track some form of GDPR compliance whether it be that proof of compliance was provided or that compliance was validated in some other way.",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "CertificationId",
+					"Description": "The unique identifier of a Certification.",
+					"BaseAttributeReference": {
+						"Entity": "Certification.cdm.json/Certification",
+						"Name": "CertificationId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "CertificationName",
+					"Description": "The name of the Certification.",
+					"BaseAttributeReference": {
+						"Entity": "Certification.cdm.json/Certification",
+						"Name": "CertificationName"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 256,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "CertificationDescription",
+					"Description": "The description of the Certification.",
+					"BaseAttributeReference": {
+						"Entity": "Certification.cdm.json/Certification",
+						"Name": "CertificationDescription"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "CertificationRequirements",
+					"Description": "The description of the Certification Requirements.",
+					"BaseAttributeReference": {
+						"Entity": "Certification.cdm.json/Certification",
+						"Name": "CertificationRequirements"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "CertificationTypeId",
+					"Description": "The unique identifier of a Certification Type.",
+					"BaseAttributeReference": {
+						"Entity": "Certification.cdm.json/Certification",
+						"Name": "CertificationTypeId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "CertificationBodyPartyId",
+					"Description": "The unique identifier of a Party.",
+					"BaseAttributeReference": {
+						"Entity": "Certification.cdm.json/Certification",
+						"Name": "CertificationBodyPartyId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "long",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"HIVE_TYPE_STRING": "long"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/Certification",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/Certification",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"CertificationId\":{\"entity\":\"Certification.cdm.json/Certification\",\"name\":\"CertificationId\"},\"CertificationName\":{\"entity\":\"Certification.cdm.json/Certification\",\"name\":\"CertificationName\"},\"CertificationDescription\":{\"entity\":\"Certification.cdm.json/Certification\",\"name\":\"CertificationDescription\"},\"CertificationRequirements\":{\"entity\":\"Certification.cdm.json/Certification\",\"name\":\"CertificationRequirements\"},\"CertificationTypeId\":{\"entity\":\"Certification.cdm.json/Certification\",\"name\":\"CertificationTypeId\"},\"CertificationBodyPartyId\":{\"entity\":\"Certification.cdm.json/Certification\",\"name\":\"CertificationBodyPartyId\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"Certification\",\"path\":\"Certification.cdm.json/Certification\"},\"description\":\"A process by which an organization validates whether certain qualifications and/or knowledge have been met based upon predetermined standards. Certifications can be applied to individuals, organizations, processes and equipment. \\n\\nEx:\\n- GDPR\\nWhile a GDPR certification does not actually exist yet, one should come soon.\\n- ISO 27001\\nInformation Security Management Systems\\n- ISO 9001\\nQuality Management Systems\\n- ISO 14001\\nEnvironmental Management Systems\\n- OHSAS 18001\\nOccupational Health and Safety Management Systems\\n- PAS 43\\nSafe Working of Vehicle Breakdown & Recovery Operators\\n- NHSS 17\\nQuality Management for Vehicle Recovery at Highway Construction Sites\\n- NHSS 17b\\nQuality Management for Vehicle Recovery & Removal on Controlled Roads\\n- PAS 80\\nAutomotive Garage Services - Service and Repair of Vehicles\\n- HACCP\\nHazard Analysis and Critical Control Point Systems\\nASME Code Section VIII, Division 1, Pressure Vessels and Heat\\nExchangers;\\n- ANSI B31.3 Petroleum Refinery Piping;\\n-  FM Requirements for Burner Control;\\n- API-RP520, Parts I and II, Design and Installation of Pressure Relieving\\nSystems in Refineries; and\\n- API-500A Classification of Areas for Electrical Equipment in Petroleum\\nRefineries (Class 1, Group D, Division 2) on the process end of the skid\\n- ISO 13443:1996\\nNatural gas -- Standard reference conditions\\n- ISO 13686:2013\\nNatural gas -- Quality designation\\n- ISO 28300:2008\\nPetroleum, petrochemical and natural gas industries -- Venting of atmospheric and low-pressure storage tanks\\n- ISO/DIS 16812 [Under development]\\nPetroleum, petrochemical and natural gas industries -- Shell-and-tube heat exchangers\\n- ISO 15649:2001\\nPetroleum and natural gas industries -- Piping\\n- ISO 13734:2013\\nNatural gas -- Organic components used as odorants\\n- ISO 15970:2008\\nNatural gas -- Measurement of properties\\n- ISO/TR 22302:2014\\nNatural gas -- Calculation of methane number\\n\\nNote:\\nWhile a GDPR certification does not actually exist yet, one should come soon. In the interim it is advisable to at least track some form of GDPR compliance whether it be that proof of compliance was provided or that compliance was validated in some other way.\",\"primaryKey\":[\"CertificationId\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"Certification.cdm.json/Certification\",\"name\":\"CertificationId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Certification.\",\"isNullable\":false,\"name\":\"CertificationId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"Certification.cdm.json/Certification\",\"name\":\"CertificationName\"},\"dataType\":\"string\",\"dataTypeLength\":256,\"description\":\"The name of the Certification.\",\"isNullable\":true,\"name\":\"CertificationName\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"Certification.cdm.json/Certification\",\"name\":\"CertificationDescription\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"The description of the Certification.\",\"isNullable\":true,\"name\":\"CertificationDescription\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"Certification.cdm.json/Certification\",\"name\":\"CertificationRequirements\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"The description of the Certification Requirements.\",\"isNullable\":true,\"name\":\"CertificationRequirements\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"Certification.cdm.json/Certification\",\"name\":\"CertificationTypeId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Certification Type.\",\"isNullable\":true,\"name\":\"CertificationTypeId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"Certification.cdm.json/Certification\",\"name\":\"CertificationBodyPartyId\"},\"dataType\":\"long\",\"description\":\"The unique identifier of a Party.\",\"isNullable\":true,\"name\":\"CertificationBodyPartyId\"}]}}}",
+			"Description": "A process by which an organization validates whether certain qualifications and/or knowledge have been met based upon predetermined standards. Certifications can be applied to individuals, organizations, processes and equipment. \n\nEx:\n- GDPR\nWhile a GDPR certification does not actually exist yet, one should come soon.\n- ISO 27001\nInformation Security Management Systems\n- ISO 9001\nQuality Management Systems\n- ISO 14001\nEnvironmental Management Systems\n- OHSAS 18001\nOccupational Health and Safety Management Systems\n- PAS 43\nSafe Working of Vehicle Breakdown & Recovery Operators\n- NHSS 17\nQuality Management for Vehicle Recovery at Highway Construction Sites\n- NHSS 17b\nQuality Management for Vehicle Recovery & Removal on Controlled Roads\n- PAS 80\nAutomotive Garage Services - Service and Repair of Vehicles\n- HACCP\nHazard Analysis and Critical Control Point Systems\nASME Code Section VIII, Division 1, Pressure Vessels and Heat\nExchangers;\n- ANSI B31.3 Petroleum Refinery Piping;\n-  FM Requirements for Burner Control;\n- API-RP520, Parts I and II, Design and Installation of Pressure Relieving\nSystems in Refineries; and\n- API-500A Classification of Areas for Electrical Equipment in Petroleum\nRefineries (Class 1, Group D, Division 2) on the process end of the skid\n- ISO 13443:1996\nNatural gas -- Standard reference conditions\n- ISO 13686:2013\nNatural gas -- Quality designation\n- ISO 28300:2008\nPetroleum, petrochemical and natural gas industries -- Venting of atmospheric and low-pressure storage tanks\n- ISO/DIS 16812 [Under development]\nPetroleum, petrochemical and natural gas industries -- Shell-and-tube heat exchangers\n- ISO 15649:2001\nPetroleum and natural gas industries -- Piping\n- ISO 13734:2013\nNatural gas -- Organic components used as odorants\n- ISO 15970:2008\nNatural gas -- Measurement of properties\n- ISO/TR 22302:2014\nNatural gas -- Calculation of methane number\n\nNote:\nWhile a GDPR certification does not actually exist yet, one should come soon. In the interim it is advisable to at least track some form of GDPR compliance whether it be that proof of compliance was provided or that compliance was validated in some other way.",
+			"DisplayFolderInfo": "{\"name\":\"Human Resources & Payroll\",\"colorCode\":\"#042C59\"}",
+			"PrimaryKeys": "CertificationId",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

@@ -1,0 +1,113 @@
+{
+	"name": "ContractType",
+	"properties": {
+		"Name": "ContractType",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "A categorization of Contracts based upon common characteristics, attributes or functions served.\n\nEx:\n- Sales\n- Service\n- Employment\n- Lease \n- Equipment Lease\n- Land Lease\n- Mineral Lease\n- Oil & Gas Lease\n- Leasehold Interest\n- Distributor\n- Financial\n- Security\n- Utilities\n- Royalty\n- Royalty Deed\n- Landowner's Royalty\n- Tenure\n- Turnkey\n- Joint Operating Agreement\n- Joint Venture Agreement\n- Drilling\n- Dry hole agreement\n- Farmout",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "ContractTypeId",
+					"Description": "The unique identifier of a Contract Type.",
+					"BaseAttributeReference": {
+						"Entity": "ContractType.cdm.json/ContractType",
+						"Name": "ContractTypeId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "ContractTypeName",
+					"Description": "The name of the Contract Type.",
+					"BaseAttributeReference": {
+						"Entity": "ContractType.cdm.json/ContractType",
+						"Name": "ContractTypeName"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 256,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "ContractTypeDescription",
+					"Description": "The description of the Contract Type.",
+					"BaseAttributeReference": {
+						"Entity": "ContractType.cdm.json/ContractType",
+						"Name": "ContractTypeDescription"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/ContractType",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/ContractType",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"ContractTypeId\":{\"entity\":\"ContractType.cdm.json/ContractType\",\"name\":\"ContractTypeId\"},\"ContractTypeName\":{\"entity\":\"ContractType.cdm.json/ContractType\",\"name\":\"ContractTypeName\"},\"ContractTypeDescription\":{\"entity\":\"ContractType.cdm.json/ContractType\",\"name\":\"ContractTypeDescription\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"ContractType\",\"path\":\"ContractType.cdm.json/ContractType\"},\"description\":\"A categorization of Contracts based upon common characteristics, attributes or functions served.\\n\\nEx:\\n- Sales\\n- Service\\n- Employment\\n- Lease \\n- Equipment Lease\\n- Land Lease\\n- Mineral Lease\\n- Oil & Gas Lease\\n- Leasehold Interest\\n- Distributor\\n- Financial\\n- Security\\n- Utilities\\n- Royalty\\n- Royalty Deed\\n- Landowner's Royalty\\n- Tenure\\n- Turnkey\\n- Joint Operating Agreement\\n- Joint Venture Agreement\\n- Drilling\\n- Dry hole agreement\\n- Farmout\",\"primaryKey\":[\"ContractTypeId\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ContractType.cdm.json/ContractType\",\"name\":\"ContractTypeId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Contract Type.\",\"isNullable\":false,\"name\":\"ContractTypeId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ContractType.cdm.json/ContractType\",\"name\":\"ContractTypeName\"},\"dataType\":\"string\",\"dataTypeLength\":256,\"description\":\"The name of the Contract Type.\",\"isNullable\":true,\"name\":\"ContractTypeName\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ContractType.cdm.json/ContractType\",\"name\":\"ContractTypeDescription\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"The description of the Contract Type.\",\"isNullable\":true,\"name\":\"ContractTypeDescription\"}]}}}",
+			"Description": "A categorization of Contracts based upon common characteristics, attributes or functions served.\n\nEx:\n- Sales\n- Service\n- Employment\n- Lease \n- Equipment Lease\n- Land Lease\n- Mineral Lease\n- Oil & Gas Lease\n- Leasehold Interest\n- Distributor\n- Financial\n- Security\n- Utilities\n- Royalty\n- Royalty Deed\n- Landowner's Royalty\n- Tenure\n- Turnkey\n- Joint Operating Agreement\n- Joint Venture Agreement\n- Drilling\n- Dry hole agreement\n- Farmout",
+			"DisplayFolderInfo": "{\"name\":\"Contract\",\"colorCode\":\"#917EDB\"}",
+			"PrimaryKeys": "ContractTypeId",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

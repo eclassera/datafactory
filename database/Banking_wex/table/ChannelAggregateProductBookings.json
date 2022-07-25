@@ -1,0 +1,165 @@
+{
+	"name": "ChannelAggregateProductBookings",
+	"properties": {
+		"Name": "ChannelAggregateProductBookings",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "The total Product bookings expressed in terms of unit quantity and booked valuation for the associated timestamp.\n\nBookings are field sales reports of anticipated sales that must be planned for in terms of inventory and also provide management with anticipated sales revenues.    In this case bookings are summarized for a product across all customers.",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "ChannelId",
+					"Description": "The unique identifier of a Channel.",
+					"BaseAttributeReference": {
+						"Entity": "ChannelAggregateProductBookings.cdm.json/ChannelAggregateProductBookings",
+						"Name": "ChannelId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "ProductId",
+					"Description": "The unique identifier of a Product.",
+					"BaseAttributeReference": {
+						"Entity": "ChannelAggregateProductBookings.cdm.json/ChannelAggregateProductBookings",
+						"Name": "ProductId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "long",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "long"
+						}
+					}
+				},
+				{
+					"Name": "Timestamp",
+					"Description": "The timestamp that the associated information is reported, recorded or effective as-of.",
+					"BaseAttributeReference": {
+						"Entity": "ChannelAggregateProductBookings.cdm.json/ChannelAggregateProductBookings",
+						"Name": "Timestamp"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "timestamp",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"TimestampFormat": "YYYY-MM-DD HH:MM:SS.fffffffff",
+							"HIVE_TYPE_STRING": "timestamp"
+						}
+					}
+				},
+				{
+					"Name": "TotalBookedProductUnitsQuantity",
+					"Description": "The total quantity of Product booked for the associated date.",
+					"BaseAttributeReference": {
+						"Entity": "ChannelAggregateProductBookings.cdm.json/ChannelAggregateProductBookings",
+						"Name": "TotalBookedProductUnitsQuantity"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "decimal",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Precision": 18,
+						"Scale": 2,
+						"Properties": {
+							"HIVE_TYPE_STRING": "decimal"
+						}
+					}
+				},
+				{
+					"Name": "TotalBookedProductUnitsInvoicedAmount",
+					"Description": "The total valuation of Product booked during the associated period and valued at actual invoiced values as of the associated date.",
+					"BaseAttributeReference": {
+						"Entity": "ChannelAggregateProductBookings.cdm.json/ChannelAggregateProductBookings",
+						"Name": "TotalBookedProductUnitsInvoicedAmount"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "decimal",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Precision": 18,
+						"Scale": 2,
+						"Properties": {
+							"HIVE_TYPE_STRING": "decimal"
+						}
+					}
+				},
+				{
+					"Name": "IsoCurrencyCode",
+					"Description": "The ISO 4217 currency code.\n\nEx:\nCurrency Code = AED\nCurrency Name = Dirham\nCountry Name = United Arab Emirates",
+					"BaseAttributeReference": {
+						"Entity": "ChannelAggregateProductBookings.cdm.json/ChannelAggregateProductBookings",
+						"Name": "IsoCurrencyCode"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 3,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/ChannelAggregateProductBookings",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/ChannelAggregateProductBookings",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"ChannelId\":{\"entity\":\"ChannelAggregateProductBookings.cdm.json/ChannelAggregateProductBookings\",\"name\":\"ChannelId\"},\"ProductId\":{\"entity\":\"ChannelAggregateProductBookings.cdm.json/ChannelAggregateProductBookings\",\"name\":\"ProductId\"},\"Timestamp\":{\"entity\":\"ChannelAggregateProductBookings.cdm.json/ChannelAggregateProductBookings\",\"name\":\"Timestamp\"},\"TotalBookedProductUnitsQuantity\":{\"entity\":\"ChannelAggregateProductBookings.cdm.json/ChannelAggregateProductBookings\",\"name\":\"TotalBookedProductUnitsQuantity\"},\"TotalBookedProductUnitsInvoicedAmount\":{\"entity\":\"ChannelAggregateProductBookings.cdm.json/ChannelAggregateProductBookings\",\"name\":\"TotalBookedProductUnitsInvoicedAmount\"},\"IsoCurrencyCode\":{\"entity\":\"ChannelAggregateProductBookings.cdm.json/ChannelAggregateProductBookings\",\"name\":\"IsoCurrencyCode\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"ChannelAggregateProductBookings\",\"path\":\"ChannelAggregateProductBookings.cdm.json/ChannelAggregateProductBookings\"},\"description\":\"The total Product bookings expressed in terms of unit quantity and booked valuation for the associated timestamp.\\n\\nBookings are field sales reports of anticipated sales that must be planned for in terms of inventory and also provide management with anticipated sales revenues.    In this case bookings are summarized for a product across all customers.\",\"primaryKey\":[\"ChannelId\",\"ProductId\",\"Timestamp\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ChannelAggregateProductBookings.cdm.json/ChannelAggregateProductBookings\",\"name\":\"ChannelId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Channel.\",\"isNullable\":false,\"name\":\"ChannelId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ChannelAggregateProductBookings.cdm.json/ChannelAggregateProductBookings\",\"name\":\"ProductId\"},\"dataType\":\"long\",\"description\":\"The unique identifier of a Product.\",\"isNullable\":false,\"name\":\"ProductId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ChannelAggregateProductBookings.cdm.json/ChannelAggregateProductBookings\",\"name\":\"Timestamp\"},\"dataType\":\"timestamp\",\"description\":\"The timestamp that the associated information is reported, recorded or effective as-of.\",\"isNullable\":false,\"name\":\"Timestamp\",\"timestampFormat\":\"YYYY-MM-DD HH:MM:SS.fffffffff\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ChannelAggregateProductBookings.cdm.json/ChannelAggregateProductBookings\",\"name\":\"TotalBookedProductUnitsQuantity\"},\"dataType\":\"decimal\",\"dataTypeLength\":18,\"description\":\"The total quantity of Product booked for the associated date.\",\"isNullable\":true,\"scale\":2,\"name\":\"TotalBookedProductUnitsQuantity\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ChannelAggregateProductBookings.cdm.json/ChannelAggregateProductBookings\",\"name\":\"TotalBookedProductUnitsInvoicedAmount\"},\"dataType\":\"decimal\",\"dataTypeLength\":18,\"description\":\"The total valuation of Product booked during the associated period and valued at actual invoiced values as of the associated date.\",\"isNullable\":true,\"scale\":2,\"name\":\"TotalBookedProductUnitsInvoicedAmount\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ChannelAggregateProductBookings.cdm.json/ChannelAggregateProductBookings\",\"name\":\"IsoCurrencyCode\"},\"dataType\":\"string\",\"dataTypeLength\":3,\"description\":\"The ISO 4217 currency code.\\n\\nEx:\\nCurrency Code = AED\\nCurrency Name = Dirham\\nCountry Name = United Arab Emirates\",\"isNullable\":true,\"name\":\"IsoCurrencyCode\"}]}}}",
+			"Description": "The total Product bookings expressed in terms of unit quantity and booked valuation for the associated timestamp.\n\nBookings are field sales reports of anticipated sales that must be planned for in terms of inventory and also provide management with anticipated sales revenues.    In this case bookings are summarized for a product across all customers.",
+			"DisplayFolderInfo": "{\"name\":\"Channel\",\"colorCode\":\"#001D3F\"}",
+			"PrimaryKeys": "ChannelId,ProductId,Timestamp",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

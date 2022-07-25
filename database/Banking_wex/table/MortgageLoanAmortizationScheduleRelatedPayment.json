@@ -1,0 +1,163 @@
+{
+	"name": "MortgageLoanAmortizationScheduleRelatedPayment",
+	"properties": {
+		"Name": "MortgageLoanAmortizationScheduleRelatedPayment",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "The original mortgage schedule payment that the associated actual payment is related to.",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "CreditGrantorId",
+					"Description": "The unique identifier of a Credit Grantor.",
+					"BaseAttributeReference": {
+						"Entity": "MortgageLoanAmortizationScheduleRelatedPayment.cdm.json/MortgageLoanAmortizationScheduleRelatedPayment",
+						"Name": "CreditGrantorId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "MortgageLoanAccountNumber",
+					"Description": "The unique identifier of a Customer Account.",
+					"BaseAttributeReference": {
+						"Entity": "MortgageLoanAmortizationScheduleRelatedPayment.cdm.json/MortgageLoanAmortizationScheduleRelatedPayment",
+						"Name": "MortgageLoanAccountNumber"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Length": 20,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "AppliedAgainstPaymentNumber",
+					"Description": "The payment number.",
+					"BaseAttributeReference": {
+						"Entity": "MortgageLoanAmortizationScheduleRelatedPayment.cdm.json/MortgageLoanAmortizationScheduleRelatedPayment",
+						"Name": "AppliedAgainstPaymentNumber"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "TransactionId",
+					"Description": "The unique identifier of a Transaction.",
+					"BaseAttributeReference": {
+						"Entity": "MortgageLoanAmortizationScheduleRelatedPayment.cdm.json/MortgageLoanAmortizationScheduleRelatedPayment",
+						"Name": "TransactionId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "long",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "long"
+						}
+					}
+				},
+				{
+					"Name": "AmountAppliedToLoanAmortizationSchedulePayment",
+					"Description": "The amount of the associated mortgage payment that is applied to the original amortization scheduled payment indicated.",
+					"BaseAttributeReference": {
+						"Entity": "MortgageLoanAmortizationScheduleRelatedPayment.cdm.json/MortgageLoanAmortizationScheduleRelatedPayment",
+						"Name": "AmountAppliedToLoanAmortizationSchedulePayment"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "decimal",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Precision": 18,
+						"Scale": 2,
+						"Properties": {
+							"HIVE_TYPE_STRING": "decimal"
+						}
+					}
+				},
+				{
+					"Name": "MortgagePaymentNote",
+					"Description": "A note, comment or additional information regarding the mortgage payment as it relates to the original amortization schedule payment indicated.",
+					"BaseAttributeReference": {
+						"Entity": "MortgageLoanAmortizationScheduleRelatedPayment.cdm.json/MortgageLoanAmortizationScheduleRelatedPayment",
+						"Name": "MortgagePaymentNote"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/MortgageLoanAmortizationScheduleRelatedPayment",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/MortgageLoanAmortizationScheduleRelatedPayment",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"CreditGrantorId\":{\"entity\":\"MortgageLoanAmortizationScheduleRelatedPayment.cdm.json/MortgageLoanAmortizationScheduleRelatedPayment\",\"name\":\"CreditGrantorId\"},\"MortgageLoanAccountNumber\":{\"entity\":\"MortgageLoanAmortizationScheduleRelatedPayment.cdm.json/MortgageLoanAmortizationScheduleRelatedPayment\",\"name\":\"MortgageLoanAccountNumber\"},\"AppliedAgainstPaymentNumber\":{\"entity\":\"MortgageLoanAmortizationScheduleRelatedPayment.cdm.json/MortgageLoanAmortizationScheduleRelatedPayment\",\"name\":\"AppliedAgainstPaymentNumber\"},\"TransactionId\":{\"entity\":\"MortgageLoanAmortizationScheduleRelatedPayment.cdm.json/MortgageLoanAmortizationScheduleRelatedPayment\",\"name\":\"TransactionId\"},\"AmountAppliedToLoanAmortizationSchedulePayment\":{\"entity\":\"MortgageLoanAmortizationScheduleRelatedPayment.cdm.json/MortgageLoanAmortizationScheduleRelatedPayment\",\"name\":\"AmountAppliedToLoanAmortizationSchedulePayment\"},\"MortgagePaymentNote\":{\"entity\":\"MortgageLoanAmortizationScheduleRelatedPayment.cdm.json/MortgageLoanAmortizationScheduleRelatedPayment\",\"name\":\"MortgagePaymentNote\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"MortgageLoanAmortizationScheduleRelatedPayment\",\"path\":\"MortgageLoanAmortizationScheduleRelatedPayment.cdm.json/MortgageLoanAmortizationScheduleRelatedPayment\"},\"description\":\"The original mortgage schedule payment that the associated actual payment is related to.\",\"primaryKey\":[\"CreditGrantorId\",\"MortgageLoanAccountNumber\",\"AppliedAgainstPaymentNumber\",\"TransactionId\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"MortgageLoanAmortizationScheduleRelatedPayment.cdm.json/MortgageLoanAmortizationScheduleRelatedPayment\",\"name\":\"CreditGrantorId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Credit Grantor.\",\"isNullable\":false,\"name\":\"CreditGrantorId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"MortgageLoanAmortizationScheduleRelatedPayment.cdm.json/MortgageLoanAmortizationScheduleRelatedPayment\",\"name\":\"MortgageLoanAccountNumber\"},\"dataType\":\"string\",\"dataTypeLength\":20,\"description\":\"The unique identifier of a Customer Account.\",\"isNullable\":false,\"name\":\"MortgageLoanAccountNumber\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"MortgageLoanAmortizationScheduleRelatedPayment.cdm.json/MortgageLoanAmortizationScheduleRelatedPayment\",\"name\":\"AppliedAgainstPaymentNumber\"},\"dataType\":\"integer\",\"description\":\"The payment number.\",\"isNullable\":false,\"name\":\"AppliedAgainstPaymentNumber\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"MortgageLoanAmortizationScheduleRelatedPayment.cdm.json/MortgageLoanAmortizationScheduleRelatedPayment\",\"name\":\"TransactionId\"},\"dataType\":\"long\",\"description\":\"The unique identifier of a Transaction.\",\"isNullable\":false,\"name\":\"TransactionId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"MortgageLoanAmortizationScheduleRelatedPayment.cdm.json/MortgageLoanAmortizationScheduleRelatedPayment\",\"name\":\"AmountAppliedToLoanAmortizationSchedulePayment\"},\"dataType\":\"decimal\",\"dataTypeLength\":18,\"description\":\"The amount of the associated mortgage payment that is applied to the original amortization scheduled payment indicated.\",\"isNullable\":true,\"scale\":2,\"name\":\"AmountAppliedToLoanAmortizationSchedulePayment\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"MortgageLoanAmortizationScheduleRelatedPayment.cdm.json/MortgageLoanAmortizationScheduleRelatedPayment\",\"name\":\"MortgagePaymentNote\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"A note, comment or additional information regarding the mortgage payment as it relates to the original amortization schedule payment indicated.\",\"isNullable\":true,\"name\":\"MortgagePaymentNote\"}]}}}",
+			"Description": "The original mortgage schedule payment that the associated actual payment is related to.",
+			"DisplayFolderInfo": "{\"name\":\"Customer Credit & Collections\",\"colorCode\":\"#022F22\"}",
+			"PrimaryKeys": "CreditGrantorId,MortgageLoanAccountNumber,AppliedAgainstPaymentNumber,TransactionId",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

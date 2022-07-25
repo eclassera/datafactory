@@ -1,0 +1,128 @@
+{
+	"name": "StoreFloor",
+	"properties": {
+		"Name": "StoreFloor",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "A grocery store/department row is divided into Shelves that are stored at tier level.\n\nTier is the height of the location (shelf or bin) from floor level, measured in storage locations where the floor is tier 1 (not 0).\n\nThe level above ground of the shelf or bin.",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "StoreId",
+					"Description": "The unique identifier of a Store.",
+					"BaseAttributeReference": {
+						"Entity": "StoreFloor.cdm.json/StoreFloor",
+						"Name": "StoreId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "FloorId",
+					"Description": "The unique identifier of a Floor.",
+					"BaseAttributeReference": {
+						"Entity": "StoreFloor.cdm.json/StoreFloor",
+						"Name": "FloorId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "FloorName",
+					"Description": "The name of the Floor.",
+					"BaseAttributeReference": {
+						"Entity": "StoreFloor.cdm.json/StoreFloor",
+						"Name": "FloorName"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 256,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "TotalFloorSpace",
+					"Description": "The total floor space of the floor measured in the unit of measure specified by the Unit of Measure ID.",
+					"BaseAttributeReference": {
+						"Entity": "StoreFloor.cdm.json/StoreFloor",
+						"Name": "TotalFloorSpace"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/StoreFloor",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/StoreFloor",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"StoreId\":{\"entity\":\"StoreFloor.cdm.json/StoreFloor\",\"name\":\"StoreId\"},\"FloorId\":{\"entity\":\"StoreFloor.cdm.json/StoreFloor\",\"name\":\"FloorId\"},\"FloorName\":{\"entity\":\"StoreFloor.cdm.json/StoreFloor\",\"name\":\"FloorName\"},\"TotalFloorSpace\":{\"entity\":\"StoreFloor.cdm.json/StoreFloor\",\"name\":\"TotalFloorSpace\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"StoreFloor\",\"path\":\"StoreFloor.cdm.json/StoreFloor\"},\"description\":\"A grocery store/department row is divided into Shelves that are stored at tier level.\\n\\nTier is the height of the location (shelf or bin) from floor level, measured in storage locations where the floor is tier 1 (not 0).\\n\\nThe level above ground of the shelf or bin.\",\"primaryKey\":[\"StoreId\",\"FloorId\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"StoreFloor.cdm.json/StoreFloor\",\"name\":\"StoreId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Store.\",\"isNullable\":false,\"name\":\"StoreId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"StoreFloor.cdm.json/StoreFloor\",\"name\":\"FloorId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Floor.\",\"isNullable\":false,\"name\":\"FloorId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"StoreFloor.cdm.json/StoreFloor\",\"name\":\"FloorName\"},\"dataType\":\"string\",\"dataTypeLength\":256,\"description\":\"The name of the Floor.\",\"isNullable\":true,\"name\":\"FloorName\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"StoreFloor.cdm.json/StoreFloor\",\"name\":\"TotalFloorSpace\"},\"dataType\":\"integer\",\"description\":\"The total floor space of the floor measured in the unit of measure specified by the Unit of Measure ID.\",\"isNullable\":true,\"name\":\"TotalFloorSpace\"}]}}}",
+			"Description": "A grocery store/department row is divided into Shelves that are stored at tier level.\n\nTier is the height of the location (shelf or bin) from floor level, measured in storage locations where the floor is tier 1 (not 0).\n\nThe level above ground of the shelf or bin.",
+			"DisplayFolderInfo": "{\"name\":\"Channel\",\"colorCode\":\"#001D3F\"}",
+			"PrimaryKeys": "StoreId,FloorId",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

@@ -1,0 +1,112 @@
+{
+	"name": "ExperianFraudAlert",
+	"properties": {
+		"Name": "ExperianFraudAlert",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "There are three types of alerts you can place on your file.\n\nEx:\n- Initial fraud alert\n- Extended fraud alert\n- Active duty military alert",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "ExperianReportNumber",
+					"Description": "The unique identifier of an Experian consumer.",
+					"BaseAttributeReference": {
+						"Entity": "ExperianFraudAlert.cdm.json/ExperianFraudAlert",
+						"Name": "ExperianReportNumber"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "AlertId",
+					"Description": "The unique identifier of an Alert.",
+					"BaseAttributeReference": {
+						"Entity": "ExperianFraudAlert.cdm.json/ExperianFraudAlert",
+						"Name": "AlertId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "AlertStatement",
+					"Description": "The alert statement.",
+					"BaseAttributeReference": {
+						"Entity": "ExperianFraudAlert.cdm.json/ExperianFraudAlert",
+						"Name": "AlertStatement"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/ExperianFraudAlert",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/ExperianFraudAlert",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"ExperianReportNumber\":{\"entity\":\"ExperianFraudAlert.cdm.json/ExperianFraudAlert\",\"name\":\"ExperianReportNumber\"},\"AlertId\":{\"entity\":\"ExperianFraudAlert.cdm.json/ExperianFraudAlert\",\"name\":\"AlertId\"},\"AlertStatement\":{\"entity\":\"ExperianFraudAlert.cdm.json/ExperianFraudAlert\",\"name\":\"AlertStatement\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"ExperianFraudAlert\",\"path\":\"ExperianFraudAlert.cdm.json/ExperianFraudAlert\"},\"description\":\"There are three types of alerts you can place on your file.\\n\\nEx:\\n- Initial fraud alert\\n- Extended fraud alert\\n- Active duty military alert\",\"primaryKey\":[\"ExperianReportNumber\",\"AlertId\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ExperianFraudAlert.cdm.json/ExperianFraudAlert\",\"name\":\"ExperianReportNumber\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of an Experian consumer.\",\"isNullable\":false,\"name\":\"ExperianReportNumber\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ExperianFraudAlert.cdm.json/ExperianFraudAlert\",\"name\":\"AlertId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of an Alert.\",\"isNullable\":false,\"name\":\"AlertId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ExperianFraudAlert.cdm.json/ExperianFraudAlert\",\"name\":\"AlertStatement\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"The alert statement.\",\"isNullable\":true,\"name\":\"AlertStatement\"}]}}}",
+			"Description": "There are three types of alerts you can place on your file.\n\nEx:\n- Initial fraud alert\n- Extended fraud alert\n- Active duty military alert",
+			"DisplayFolderInfo": "{\"name\":\"Customer Credit & Collections\",\"colorCode\":\"#022F22\"}",
+			"PrimaryKeys": "ExperianReportNumber,AlertId",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

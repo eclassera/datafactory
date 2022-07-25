@@ -1,0 +1,113 @@
+{
+	"name": "ContractPartyRelationshipType",
+	"properties": {
+		"Name": "ContractPartyRelationshipType",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "The nature of the relationship between the party and the contract or contractual process over the indicated period.\n\n Ex:\n- Notice-To Party\n- Party-to-Agreement Organization\n- Party-to-Agreement Signature Party\n- Contract Assigned-To Party\n- Deliver-Contract-To Party\n- Execution-Required-By Party\n- Contract - Maintenance Party\n- Contract - Negotiated-By Party\n- Assignee\n- Assignor\n- Grantor\n- Grantee\n\nwhere:\n\nGRANTOR: A person who grants or conveys lands, minerals, etc.\n\nGRANTEE: The person receiving the grant of lands, minerals, etc.",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "ContractPartyRelationshipTypeId",
+					"Description": "The unique identifier of a contract party relationship type.",
+					"BaseAttributeReference": {
+						"Entity": "ContractPartyRelationshipType.cdm.json/ContractPartyRelationshipType",
+						"Name": "ContractPartyRelationshipTypeId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "ContractPartyRelationshipTypeName",
+					"Description": "The name of a contract party relationship type.",
+					"BaseAttributeReference": {
+						"Entity": "ContractPartyRelationshipType.cdm.json/ContractPartyRelationshipType",
+						"Name": "ContractPartyRelationshipTypeName"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 256,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "ContractPartyRelationshipTypeDescription",
+					"Description": "The description of a contract party relationship type.",
+					"BaseAttributeReference": {
+						"Entity": "ContractPartyRelationshipType.cdm.json/ContractPartyRelationshipType",
+						"Name": "ContractPartyRelationshipTypeDescription"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/ContractPartyRelationshipType",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/ContractPartyRelationshipType",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"ContractPartyRelationshipTypeId\":{\"entity\":\"ContractPartyRelationshipType.cdm.json/ContractPartyRelationshipType\",\"name\":\"ContractPartyRelationshipTypeId\"},\"ContractPartyRelationshipTypeName\":{\"entity\":\"ContractPartyRelationshipType.cdm.json/ContractPartyRelationshipType\",\"name\":\"ContractPartyRelationshipTypeName\"},\"ContractPartyRelationshipTypeDescription\":{\"entity\":\"ContractPartyRelationshipType.cdm.json/ContractPartyRelationshipType\",\"name\":\"ContractPartyRelationshipTypeDescription\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"ContractPartyRelationshipType\",\"path\":\"ContractPartyRelationshipType.cdm.json/ContractPartyRelationshipType\"},\"description\":\"The nature of the relationship between the party and the contract or contractual process over the indicated period.\\n\\n Ex:\\n- Notice-To Party\\n- Party-to-Agreement Organization\\n- Party-to-Agreement Signature Party\\n- Contract Assigned-To Party\\n- Deliver-Contract-To Party\\n- Execution-Required-By Party\\n- Contract - Maintenance Party\\n- Contract - Negotiated-By Party\\n- Assignee\\n- Assignor\\n- Grantor\\n- Grantee\\n\\nwhere:\\n\\nGRANTOR: A person who grants or conveys lands, minerals, etc.\\n\\nGRANTEE: The person receiving the grant of lands, minerals, etc.\",\"primaryKey\":[\"ContractPartyRelationshipTypeId\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ContractPartyRelationshipType.cdm.json/ContractPartyRelationshipType\",\"name\":\"ContractPartyRelationshipTypeId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a contract party relationship type.\",\"isNullable\":false,\"name\":\"ContractPartyRelationshipTypeId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ContractPartyRelationshipType.cdm.json/ContractPartyRelationshipType\",\"name\":\"ContractPartyRelationshipTypeName\"},\"dataType\":\"string\",\"dataTypeLength\":256,\"description\":\"The name of a contract party relationship type.\",\"isNullable\":true,\"name\":\"ContractPartyRelationshipTypeName\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ContractPartyRelationshipType.cdm.json/ContractPartyRelationshipType\",\"name\":\"ContractPartyRelationshipTypeDescription\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"The description of a contract party relationship type.\",\"isNullable\":true,\"name\":\"ContractPartyRelationshipTypeDescription\"}]}}}",
+			"Description": "The nature of the relationship between the party and the contract or contractual process over the indicated period.\n\n Ex:\n- Notice-To Party\n- Party-to-Agreement Organization\n- Party-to-Agreement Signature Party\n- Contract Assigned-To Party\n- Deliver-Contract-To Party\n- Execution-Required-By Party\n- Contract - Maintenance Party\n- Contract - Negotiated-By Party\n- Assignee\n- Assignor\n- Grantor\n- Grantee\n\nwhere:\n\nGRANTOR: A person who grants or conveys lands, minerals, etc.\n\nGRANTEE: The person receiving the grant of lands, minerals, etc.",
+			"DisplayFolderInfo": "{\"name\":\"Contract\",\"colorCode\":\"#917EDB\"}",
+			"PrimaryKeys": "ContractPartyRelationshipTypeId",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

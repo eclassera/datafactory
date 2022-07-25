@@ -1,0 +1,216 @@
+{
+	"name": "ChannelOrderCommission",
+	"properties": {
+		"Name": "ChannelOrderCommission",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "Commissions that are assigned or awarded to Channels in conjunction with the associated Order.\n\nNote:\nBoth a sales and distribution channel may receive commissions upon the same order, which is why both Order ID and Channel ID are part of the key.",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "ChannelId",
+					"Description": "The unique identifier of a Channel.",
+					"BaseAttributeReference": {
+						"Entity": "ChannelOrderCommission.cdm.json/ChannelOrderCommission",
+						"Name": "ChannelId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "TransactionId",
+					"Description": "The unique identifier of a Transaction.",
+					"BaseAttributeReference": {
+						"Entity": "ChannelOrderCommission.cdm.json/ChannelOrderCommission",
+						"Name": "TransactionId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "long",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "long"
+						}
+					}
+				},
+				{
+					"Name": "CommissionAwardedDate",
+					"Description": "The assignment or crediting date of the Commissions.",
+					"BaseAttributeReference": {
+						"Entity": "ChannelOrderCommission.cdm.json/ChannelOrderCommission",
+						"Name": "CommissionAwardedDate"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "date",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"DateFormat": "YYYY-MM-DD",
+							"HIVE_TYPE_STRING": "date"
+						}
+					}
+				},
+				{
+					"Name": "CommissionDueDate",
+					"Description": "The date that the Commissions are due to the Employee.",
+					"BaseAttributeReference": {
+						"Entity": "ChannelOrderCommission.cdm.json/ChannelOrderCommission",
+						"Name": "CommissionDueDate"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "date",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"DateFormat": "YYYY-MM-DD",
+							"HIVE_TYPE_STRING": "date"
+						}
+					}
+				},
+				{
+					"Name": "OrderCommissionBasisAmount",
+					"Description": "The amount upon which the Commission is calculated.",
+					"BaseAttributeReference": {
+						"Entity": "ChannelOrderCommission.cdm.json/ChannelOrderCommission",
+						"Name": "OrderCommissionBasisAmount"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "decimal",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Precision": 18,
+						"Scale": 2,
+						"Properties": {
+							"HIVE_TYPE_STRING": "decimal"
+						}
+					}
+				},
+				{
+					"Name": "OrderCommissionPercentage",
+					"Description": "The percentage used to calculate the Commission.",
+					"BaseAttributeReference": {
+						"Entity": "ChannelOrderCommission.cdm.json/ChannelOrderCommission",
+						"Name": "OrderCommissionPercentage"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "decimal",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Precision": 18,
+						"Scale": 8,
+						"Properties": {
+							"HIVE_TYPE_STRING": "decimal"
+						}
+					}
+				},
+				{
+					"Name": "OrderCommissionAmount",
+					"Description": "The amount of the Commission.",
+					"BaseAttributeReference": {
+						"Entity": "ChannelOrderCommission.cdm.json/ChannelOrderCommission",
+						"Name": "OrderCommissionAmount"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "decimal",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Precision": 18,
+						"Scale": 2,
+						"Properties": {
+							"HIVE_TYPE_STRING": "decimal"
+						}
+					}
+				},
+				{
+					"Name": "SplitCommissionIndicator",
+					"Description": "Indicates that the Commissions are split between two or more Employees.",
+					"BaseAttributeReference": {
+						"Entity": "ChannelOrderCommission.cdm.json/ChannelOrderCommission",
+						"Name": "SplitCommissionIndicator"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "boolean",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"HIVE_TYPE_STRING": "boolean"
+						}
+					}
+				},
+				{
+					"Name": "IsoCurrencyCode",
+					"Description": "The ISO 4217 currency code.",
+					"BaseAttributeReference": {
+						"Entity": "ChannelOrderCommission.cdm.json/ChannelOrderCommission",
+						"Name": "IsoCurrencyCode"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 3,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/ChannelOrderCommission",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/ChannelOrderCommission",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"ChannelId\":{\"entity\":\"ChannelOrderCommission.cdm.json/ChannelOrderCommission\",\"name\":\"ChannelId\"},\"TransactionId\":{\"entity\":\"ChannelOrderCommission.cdm.json/ChannelOrderCommission\",\"name\":\"TransactionId\"},\"CommissionAwardedDate\":{\"entity\":\"ChannelOrderCommission.cdm.json/ChannelOrderCommission\",\"name\":\"CommissionAwardedDate\"},\"CommissionDueDate\":{\"entity\":\"ChannelOrderCommission.cdm.json/ChannelOrderCommission\",\"name\":\"CommissionDueDate\"},\"OrderCommissionBasisAmount\":{\"entity\":\"ChannelOrderCommission.cdm.json/ChannelOrderCommission\",\"name\":\"OrderCommissionBasisAmount\"},\"OrderCommissionPercentage\":{\"entity\":\"ChannelOrderCommission.cdm.json/ChannelOrderCommission\",\"name\":\"OrderCommissionPercentage\"},\"OrderCommissionAmount\":{\"entity\":\"ChannelOrderCommission.cdm.json/ChannelOrderCommission\",\"name\":\"OrderCommissionAmount\"},\"SplitCommissionIndicator\":{\"entity\":\"ChannelOrderCommission.cdm.json/ChannelOrderCommission\",\"name\":\"SplitCommissionIndicator\"},\"IsoCurrencyCode\":{\"entity\":\"ChannelOrderCommission.cdm.json/ChannelOrderCommission\",\"name\":\"IsoCurrencyCode\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"ChannelOrderCommission\",\"path\":\"ChannelOrderCommission.cdm.json/ChannelOrderCommission\"},\"description\":\"Commissions that are assigned or awarded to Channels in conjunction with the associated Order.\\n\\nNote:\\nBoth a sales and distribution channel may receive commissions upon the same order, which is why both Order ID and Channel ID are part of the key.\",\"primaryKey\":[\"ChannelId\",\"TransactionId\",\"CommissionAwardedDate\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ChannelOrderCommission.cdm.json/ChannelOrderCommission\",\"name\":\"ChannelId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Channel.\",\"isNullable\":false,\"name\":\"ChannelId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ChannelOrderCommission.cdm.json/ChannelOrderCommission\",\"name\":\"TransactionId\"},\"dataType\":\"long\",\"description\":\"The unique identifier of a Transaction.\",\"isNullable\":false,\"name\":\"TransactionId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ChannelOrderCommission.cdm.json/ChannelOrderCommission\",\"name\":\"CommissionAwardedDate\"},\"dataType\":\"date\",\"dateFormat\":\"YYYY-MM-DD\",\"description\":\"The assignment or crediting date of the Commissions.\",\"isNullable\":false,\"name\":\"CommissionAwardedDate\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ChannelOrderCommission.cdm.json/ChannelOrderCommission\",\"name\":\"CommissionDueDate\"},\"dataType\":\"date\",\"dateFormat\":\"YYYY-MM-DD\",\"description\":\"The date that the Commissions are due to the Employee.\",\"isNullable\":true,\"name\":\"CommissionDueDate\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ChannelOrderCommission.cdm.json/ChannelOrderCommission\",\"name\":\"OrderCommissionBasisAmount\"},\"dataType\":\"decimal\",\"dataTypeLength\":18,\"description\":\"The amount upon which the Commission is calculated.\",\"isNullable\":true,\"scale\":2,\"name\":\"OrderCommissionBasisAmount\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ChannelOrderCommission.cdm.json/ChannelOrderCommission\",\"name\":\"OrderCommissionPercentage\"},\"dataType\":\"decimal\",\"dataTypeLength\":18,\"description\":\"The percentage used to calculate the Commission.\",\"isNullable\":true,\"scale\":8,\"name\":\"OrderCommissionPercentage\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ChannelOrderCommission.cdm.json/ChannelOrderCommission\",\"name\":\"OrderCommissionAmount\"},\"dataType\":\"decimal\",\"dataTypeLength\":18,\"description\":\"The amount of the Commission.\",\"isNullable\":true,\"scale\":2,\"name\":\"OrderCommissionAmount\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ChannelOrderCommission.cdm.json/ChannelOrderCommission\",\"name\":\"SplitCommissionIndicator\"},\"dataType\":\"boolean\",\"description\":\"Indicates that the Commissions are split between two or more Employees.\",\"isNullable\":true,\"name\":\"SplitCommissionIndicator\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ChannelOrderCommission.cdm.json/ChannelOrderCommission\",\"name\":\"IsoCurrencyCode\"},\"dataType\":\"string\",\"dataTypeLength\":3,\"description\":\"The ISO 4217 currency code.\",\"isNullable\":true,\"name\":\"IsoCurrencyCode\"}]}}}",
+			"Description": "Commissions that are assigned or awarded to Channels in conjunction with the associated Order.\n\nNote:\nBoth a sales and distribution channel may receive commissions upon the same order, which is why both Order ID and Channel ID are part of the key.",
+			"DisplayFolderInfo": "{\"name\":\"Channel\",\"colorCode\":\"#001D3F\"}",
+			"PrimaryKeys": "ChannelId,TransactionId,CommissionAwardedDate",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

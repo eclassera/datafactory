@@ -1,0 +1,236 @@
+{
+	"name": "Coupon",
+	"properties": {
+		"Name": "Coupon",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "A ticket or document or physical collateral that may be exchanged for a product either in full, discounted amount or discounted percentage. Sometimes referred to as a voucher.",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "CouponId",
+					"Description": "The unique identifier of a coupon.",
+					"BaseAttributeReference": {
+						"Entity": "Coupon.cdm.json/Coupon",
+						"Name": "CouponId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "CouponName",
+					"Description": "The name of a coupon.",
+					"BaseAttributeReference": {
+						"Entity": "Coupon.cdm.json/Coupon",
+						"Name": "CouponName"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 256,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "CouponDescription",
+					"Description": "The description of a coupon.",
+					"BaseAttributeReference": {
+						"Entity": "Coupon.cdm.json/Coupon",
+						"Name": "CouponDescription"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "CouponStartDate",
+					"Description": "The period start date for which the coupon is effective.",
+					"BaseAttributeReference": {
+						"Entity": "Coupon.cdm.json/Coupon",
+						"Name": "CouponStartDate"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "date",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"DateFormat": "YYYY-MM-DD",
+							"HIVE_TYPE_STRING": "date"
+						}
+					}
+				},
+				{
+					"Name": "CouponEndDate",
+					"Description": "The period end date for which the coupon is effective.",
+					"BaseAttributeReference": {
+						"Entity": "Coupon.cdm.json/Coupon",
+						"Name": "CouponEndDate"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "date",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"DateFormat": "YYYY-MM-DD",
+							"HIVE_TYPE_STRING": "date"
+						}
+					}
+				},
+				{
+					"Name": "CouponDiscountPercent",
+					"Description": "The percent discount that is offered when the coupon is utilized.",
+					"BaseAttributeReference": {
+						"Entity": "Coupon.cdm.json/Coupon",
+						"Name": "CouponDiscountPercent"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "decimal",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Precision": 18,
+						"Scale": 8,
+						"Properties": {
+							"HIVE_TYPE_STRING": "decimal"
+						}
+					}
+				},
+				{
+					"Name": "CouponMaximumDiscountValue",
+					"Description": "The maximum discount value that can be achieved by using the coupon.",
+					"BaseAttributeReference": {
+						"Entity": "Coupon.cdm.json/Coupon",
+						"Name": "CouponMaximumDiscountValue"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "decimal",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Precision": 18,
+						"Scale": 2,
+						"Properties": {
+							"HIVE_TYPE_STRING": "decimal"
+						}
+					}
+				},
+				{
+					"Name": "CouponFaceValue",
+					"Description": "The face value of the coupon.",
+					"BaseAttributeReference": {
+						"Entity": "Coupon.cdm.json/Coupon",
+						"Name": "CouponFaceValue"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "decimal",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Precision": 18,
+						"Scale": 2,
+						"Properties": {
+							"HIVE_TYPE_STRING": "decimal"
+						}
+					}
+				},
+				{
+					"Name": "GlobalCouponNumber",
+					"Description": "The Global Coupon Number (GCN) is used to identify coupon offers and if needed the individually issued coupons via the optional serial component. The GCN is part of the GS1 system of standards.",
+					"BaseAttributeReference": {
+						"Entity": "Coupon.cdm.json/Coupon",
+						"Name": "GlobalCouponNumber"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "decimal",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Precision": 25,
+						"Scale": 0,
+						"Properties": {
+							"HIVE_TYPE_STRING": "decimal"
+						}
+					}
+				},
+				{
+					"Name": "CouponNote",
+					"Description": "A note, comment or additional information regarding the coupon.",
+					"BaseAttributeReference": {
+						"Entity": "Coupon.cdm.json/Coupon",
+						"Name": "CouponNote"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/Coupon",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/Coupon",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"CouponId\":{\"entity\":\"Coupon.cdm.json/Coupon\",\"name\":\"CouponId\"},\"CouponName\":{\"entity\":\"Coupon.cdm.json/Coupon\",\"name\":\"CouponName\"},\"CouponDescription\":{\"entity\":\"Coupon.cdm.json/Coupon\",\"name\":\"CouponDescription\"},\"CouponStartDate\":{\"entity\":\"Coupon.cdm.json/Coupon\",\"name\":\"CouponStartDate\"},\"CouponEndDate\":{\"entity\":\"Coupon.cdm.json/Coupon\",\"name\":\"CouponEndDate\"},\"CouponDiscountPercent\":{\"entity\":\"Coupon.cdm.json/Coupon\",\"name\":\"CouponDiscountPercent\"},\"CouponMaximumDiscountValue\":{\"entity\":\"Coupon.cdm.json/Coupon\",\"name\":\"CouponMaximumDiscountValue\"},\"CouponFaceValue\":{\"entity\":\"Coupon.cdm.json/Coupon\",\"name\":\"CouponFaceValue\"},\"GlobalCouponNumber\":{\"entity\":\"Coupon.cdm.json/Coupon\",\"name\":\"GlobalCouponNumber\"},\"CouponNote\":{\"entity\":\"Coupon.cdm.json/Coupon\",\"name\":\"CouponNote\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"Coupon\",\"path\":\"Coupon.cdm.json/Coupon\"},\"description\":\"A ticket or document or physical collateral that may be exchanged for a product either in full, discounted amount or discounted percentage. Sometimes referred to as a voucher.\",\"primaryKey\":[\"CouponId\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"Coupon.cdm.json/Coupon\",\"name\":\"CouponId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a coupon.\",\"isNullable\":false,\"name\":\"CouponId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"Coupon.cdm.json/Coupon\",\"name\":\"CouponName\"},\"dataType\":\"string\",\"dataTypeLength\":256,\"description\":\"The name of a coupon.\",\"isNullable\":true,\"name\":\"CouponName\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"Coupon.cdm.json/Coupon\",\"name\":\"CouponDescription\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"The description of a coupon.\",\"isNullable\":true,\"name\":\"CouponDescription\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"Coupon.cdm.json/Coupon\",\"name\":\"CouponStartDate\"},\"dataType\":\"date\",\"dateFormat\":\"YYYY-MM-DD\",\"description\":\"The period start date for which the coupon is effective.\",\"isNullable\":false,\"name\":\"CouponStartDate\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"Coupon.cdm.json/Coupon\",\"name\":\"CouponEndDate\"},\"dataType\":\"date\",\"dateFormat\":\"YYYY-MM-DD\",\"description\":\"The period end date for which the coupon is effective.\",\"isNullable\":true,\"name\":\"CouponEndDate\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"Coupon.cdm.json/Coupon\",\"name\":\"CouponDiscountPercent\"},\"dataType\":\"decimal\",\"dataTypeLength\":18,\"description\":\"The percent discount that is offered when the coupon is utilized.\",\"isNullable\":true,\"scale\":8,\"name\":\"CouponDiscountPercent\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"Coupon.cdm.json/Coupon\",\"name\":\"CouponMaximumDiscountValue\"},\"dataType\":\"decimal\",\"dataTypeLength\":18,\"description\":\"The maximum discount value that can be achieved by using the coupon.\",\"isNullable\":true,\"scale\":2,\"name\":\"CouponMaximumDiscountValue\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"Coupon.cdm.json/Coupon\",\"name\":\"CouponFaceValue\"},\"dataType\":\"decimal\",\"dataTypeLength\":18,\"description\":\"The face value of the coupon.\",\"isNullable\":true,\"scale\":2,\"name\":\"CouponFaceValue\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"Coupon.cdm.json/Coupon\",\"name\":\"GlobalCouponNumber\"},\"dataType\":\"decimal\",\"dataTypeLength\":25,\"description\":\"The Global Coupon Number (GCN) is used to identify coupon offers and if needed the individually issued coupons via the optional serial component. The GCN is part of the GS1 system of standards.\",\"isNullable\":true,\"scale\":0,\"name\":\"GlobalCouponNumber\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"Coupon.cdm.json/Coupon\",\"name\":\"CouponNote\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"A note, comment or additional information regarding the coupon.\",\"isNullable\":true,\"name\":\"CouponNote\"}]}}}",
+			"Description": "A ticket or document or physical collateral that may be exchanged for a product either in full, discounted amount or discounted percentage. Sometimes referred to as a voucher.",
+			"DisplayFolderInfo": "{\"name\":\"Marketing & Advertising\",\"colorCode\":\"#692B0C\"}",
+			"PrimaryKeys": "CouponId",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

@@ -1,0 +1,113 @@
+{
+	"name": "EquifaxCreditInquiryType",
+	"properties": {
+		"Name": "EquifaxCreditInquiryType",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "The Equifax credit inquiry type.\n\nEx:\n\nPRM - inquiries were given to a credit grantor to provide a firm offer of credit or insurance.    It remains for 12 months.\n\nAM or AR = inquiries indicated a periodic review of credit history by a creditor.\n\nEMPL = inquiry related to an employment inquiry.\n\nEFX = inquiries indicates an Equifax activity in response to a contact for a copy of credit file.\n\nNO = inquiry that do not display to credit grantors.\n\nNo MR = inquiries that indicate the reissue of a mortgage credit report in connection with a mortgage loan.\n\nPR = inquiry indicates that a creditor reviewed your account as part of a portfolio they are purchasing.",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "EquifaxCreditInquiryTypeId",
+					"Description": "The unique identifier of an Equifax Credit Inquiry Type.",
+					"BaseAttributeReference": {
+						"Entity": "EquifaxCreditInquiryType.cdm.json/EquifaxCreditInquiryType",
+						"Name": "EquifaxCreditInquiryTypeId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "EquifaxCreditInquiryTypeName",
+					"Description": "The name of an Equifax Credit Inquiry Type.",
+					"BaseAttributeReference": {
+						"Entity": "EquifaxCreditInquiryType.cdm.json/EquifaxCreditInquiryType",
+						"Name": "EquifaxCreditInquiryTypeName"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 256,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "EquifaxCreditInquiryTypeDescription",
+					"Description": "The description of an Equifax Credit Inquiry Type.",
+					"BaseAttributeReference": {
+						"Entity": "EquifaxCreditInquiryType.cdm.json/EquifaxCreditInquiryType",
+						"Name": "EquifaxCreditInquiryTypeDescription"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/EquifaxCreditInquiryType",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/EquifaxCreditInquiryType",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"EquifaxCreditInquiryTypeId\":{\"entity\":\"EquifaxCreditInquiryType.cdm.json/EquifaxCreditInquiryType\",\"name\":\"EquifaxCreditInquiryTypeId\"},\"EquifaxCreditInquiryTypeName\":{\"entity\":\"EquifaxCreditInquiryType.cdm.json/EquifaxCreditInquiryType\",\"name\":\"EquifaxCreditInquiryTypeName\"},\"EquifaxCreditInquiryTypeDescription\":{\"entity\":\"EquifaxCreditInquiryType.cdm.json/EquifaxCreditInquiryType\",\"name\":\"EquifaxCreditInquiryTypeDescription\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"EquifaxCreditInquiryType\",\"path\":\"EquifaxCreditInquiryType.cdm.json/EquifaxCreditInquiryType\"},\"description\":\"The Equifax credit inquiry type.\\n\\nEx:\\n\\nPRM - inquiries were given to a credit grantor to provide a firm offer of credit or insurance.    It remains for 12 months.\\n\\nAM or AR = inquiries indicated a periodic review of credit history by a creditor.\\n\\nEMPL = inquiry related to an employment inquiry.\\n\\nEFX = inquiries indicates an Equifax activity in response to a contact for a copy of credit file.\\n\\nNO = inquiry that do not display to credit grantors.\\n\\nNo MR = inquiries that indicate the reissue of a mortgage credit report in connection with a mortgage loan.\\n\\nPR = inquiry indicates that a creditor reviewed your account as part of a portfolio they are purchasing.\",\"primaryKey\":[\"EquifaxCreditInquiryTypeId\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"EquifaxCreditInquiryType.cdm.json/EquifaxCreditInquiryType\",\"name\":\"EquifaxCreditInquiryTypeId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of an Equifax Credit Inquiry Type.\",\"isNullable\":false,\"name\":\"EquifaxCreditInquiryTypeId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"EquifaxCreditInquiryType.cdm.json/EquifaxCreditInquiryType\",\"name\":\"EquifaxCreditInquiryTypeName\"},\"dataType\":\"string\",\"dataTypeLength\":256,\"description\":\"The name of an Equifax Credit Inquiry Type.\",\"isNullable\":true,\"name\":\"EquifaxCreditInquiryTypeName\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"EquifaxCreditInquiryType.cdm.json/EquifaxCreditInquiryType\",\"name\":\"EquifaxCreditInquiryTypeDescription\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"The description of an Equifax Credit Inquiry Type.\",\"isNullable\":true,\"name\":\"EquifaxCreditInquiryTypeDescription\"}]}}}",
+			"Description": "The Equifax credit inquiry type.\n\nEx:\n\nPRM - inquiries were given to a credit grantor to provide a firm offer of credit or insurance.    It remains for 12 months.\n\nAM or AR = inquiries indicated a periodic review of credit history by a creditor.\n\nEMPL = inquiry related to an employment inquiry.\n\nEFX = inquiries indicates an Equifax activity in response to a contact for a copy of credit file.\n\nNO = inquiry that do not display to credit grantors.\n\nNo MR = inquiries that indicate the reissue of a mortgage credit report in connection with a mortgage loan.\n\nPR = inquiry indicates that a creditor reviewed your account as part of a portfolio they are purchasing.",
+			"DisplayFolderInfo": "{\"name\":\"Customer Credit & Collections\",\"colorCode\":\"#022F22\"}",
+			"PrimaryKeys": "EquifaxCreditInquiryTypeId",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

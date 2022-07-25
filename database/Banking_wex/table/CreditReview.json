@@ -1,0 +1,212 @@
+{
+	"name": "CreditReview",
+	"properties": {
+		"Name": "CreditReview",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "A one-time, follow-up or regularly scheduled review of Customer credit by a Credit Rating Agency.",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "CreditReviewCaseId",
+					"Description": "The unique identifier of the Credit Review.",
+					"BaseAttributeReference": {
+						"Entity": "CreditReview.cdm.json/CreditReview",
+						"Name": "CreditReviewCaseId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "CustomerId",
+					"Description": "The unique identifier of a Customer.",
+					"BaseAttributeReference": {
+						"Entity": "CreditReview.cdm.json/CreditReview",
+						"Name": "CustomerId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "long",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"HIVE_TYPE_STRING": "long"
+						}
+					}
+				},
+				{
+					"Name": "CreditRatingAgencyId",
+					"Description": "The unique identifier of a Credit Rating Agency.",
+					"BaseAttributeReference": {
+						"Entity": "CreditReview.cdm.json/CreditReview",
+						"Name": "CreditRatingAgencyId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "CreditReviewCasePeriodStartDate",
+					"Description": "The period starting date for which the associated Credit Review is performed.",
+					"BaseAttributeReference": {
+						"Entity": "CreditReview.cdm.json/CreditReview",
+						"Name": "CreditReviewCasePeriodStartDate"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "date",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"DateFormat": "YYYY-MM-DD",
+							"HIVE_TYPE_STRING": "date"
+						}
+					}
+				},
+				{
+					"Name": "CreditReviewCasePeriodEndDate",
+					"Description": "The period ending date for which the associated Credit Review is performed.",
+					"BaseAttributeReference": {
+						"Entity": "CreditReview.cdm.json/CreditReview",
+						"Name": "CreditReviewCasePeriodEndDate"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "date",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"DateFormat": "YYYY-MM-DD",
+							"HIVE_TYPE_STRING": "date"
+						}
+					}
+				},
+				{
+					"Name": "CreditReviewCaseCompletedDate",
+					"Description": "The date that the Credit Review Case was completed.",
+					"BaseAttributeReference": {
+						"Entity": "CreditReview.cdm.json/CreditReview",
+						"Name": "CreditReviewCaseCompletedDate"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "date",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"DateFormat": "YYYY-MM-DD",
+							"HIVE_TYPE_STRING": "date"
+						}
+					}
+				},
+				{
+					"Name": "PerformedByName",
+					"Description": "The name of the individual performing or responsible for the Credit Review.",
+					"BaseAttributeReference": {
+						"Entity": "CreditReview.cdm.json/CreditReview",
+						"Name": "PerformedByName"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 256,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "CreditReviewResultsCommentary",
+					"Description": "Notes or comments regarding the Credit Review.",
+					"BaseAttributeReference": {
+						"Entity": "CreditReview.cdm.json/CreditReview",
+						"Name": "CreditReviewResultsCommentary"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "CreditRiskId",
+					"Description": "The unique identifier of a Credit Risk.",
+					"BaseAttributeReference": {
+						"Entity": "CreditReview.cdm.json/CreditReview",
+						"Name": "CreditRiskId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/CreditReview",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/CreditReview",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"CreditReviewCaseId\":{\"entity\":\"CreditReview.cdm.json/CreditReview\",\"name\":\"CreditReviewCaseId\"},\"CustomerId\":{\"entity\":\"CreditReview.cdm.json/CreditReview\",\"name\":\"CustomerId\"},\"CreditRatingAgencyId\":{\"entity\":\"CreditReview.cdm.json/CreditReview\",\"name\":\"CreditRatingAgencyId\"},\"CreditReviewCasePeriodStartDate\":{\"entity\":\"CreditReview.cdm.json/CreditReview\",\"name\":\"CreditReviewCasePeriodStartDate\"},\"CreditReviewCasePeriodEndDate\":{\"entity\":\"CreditReview.cdm.json/CreditReview\",\"name\":\"CreditReviewCasePeriodEndDate\"},\"CreditReviewCaseCompletedDate\":{\"entity\":\"CreditReview.cdm.json/CreditReview\",\"name\":\"CreditReviewCaseCompletedDate\"},\"PerformedByName\":{\"entity\":\"CreditReview.cdm.json/CreditReview\",\"name\":\"PerformedByName\"},\"CreditReviewResultsCommentary\":{\"entity\":\"CreditReview.cdm.json/CreditReview\",\"name\":\"CreditReviewResultsCommentary\"},\"CreditRiskId\":{\"entity\":\"CreditReview.cdm.json/CreditReview\",\"name\":\"CreditRiskId\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"CreditReview\",\"path\":\"CreditReview.cdm.json/CreditReview\"},\"description\":\"A one-time, follow-up or regularly scheduled review of Customer credit by a Credit Rating Agency.\",\"primaryKey\":[\"CreditReviewCaseId\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CreditReview.cdm.json/CreditReview\",\"name\":\"CreditReviewCaseId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of the Credit Review.\",\"isNullable\":false,\"name\":\"CreditReviewCaseId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CreditReview.cdm.json/CreditReview\",\"name\":\"CustomerId\"},\"dataType\":\"long\",\"description\":\"The unique identifier of a Customer.\",\"isNullable\":true,\"name\":\"CustomerId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CreditReview.cdm.json/CreditReview\",\"name\":\"CreditRatingAgencyId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Credit Rating Agency.\",\"isNullable\":false,\"name\":\"CreditRatingAgencyId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CreditReview.cdm.json/CreditReview\",\"name\":\"CreditReviewCasePeriodStartDate\"},\"dataType\":\"date\",\"dateFormat\":\"YYYY-MM-DD\",\"description\":\"The period starting date for which the associated Credit Review is performed.\",\"isNullable\":true,\"name\":\"CreditReviewCasePeriodStartDate\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CreditReview.cdm.json/CreditReview\",\"name\":\"CreditReviewCasePeriodEndDate\"},\"dataType\":\"date\",\"dateFormat\":\"YYYY-MM-DD\",\"description\":\"The period ending date for which the associated Credit Review is performed.\",\"isNullable\":true,\"name\":\"CreditReviewCasePeriodEndDate\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CreditReview.cdm.json/CreditReview\",\"name\":\"CreditReviewCaseCompletedDate\"},\"dataType\":\"date\",\"dateFormat\":\"YYYY-MM-DD\",\"description\":\"The date that the Credit Review Case was completed.\",\"isNullable\":true,\"name\":\"CreditReviewCaseCompletedDate\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CreditReview.cdm.json/CreditReview\",\"name\":\"PerformedByName\"},\"dataType\":\"string\",\"dataTypeLength\":256,\"description\":\"The name of the individual performing or responsible for the Credit Review.\",\"isNullable\":true,\"name\":\"PerformedByName\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CreditReview.cdm.json/CreditReview\",\"name\":\"CreditReviewResultsCommentary\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"Notes or comments regarding the Credit Review.\",\"isNullable\":true,\"name\":\"CreditReviewResultsCommentary\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CreditReview.cdm.json/CreditReview\",\"name\":\"CreditRiskId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Credit Risk.\",\"isNullable\":true,\"name\":\"CreditRiskId\"}]}}}",
+			"Description": "A one-time, follow-up or regularly scheduled review of Customer credit by a Credit Rating Agency.",
+			"DisplayFolderInfo": "{\"name\":\"Customer Credit & Collections\",\"colorCode\":\"#022F22\"}",
+			"PrimaryKeys": "CreditReviewCaseId",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

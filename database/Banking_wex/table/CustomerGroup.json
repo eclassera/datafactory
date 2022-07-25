@@ -1,0 +1,129 @@
+{
+	"name": "CustomerGroup",
+	"properties": {
+		"Name": "CustomerGroup",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "An arbitrary grouping of Customers.\n\nEx:\n- Sales\n- Volume\n- Geography",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "CustomerGroupId",
+					"Description": "The unique identifier of a Customer Group.",
+					"BaseAttributeReference": {
+						"Entity": "CustomerGroup.cdm.json/CustomerGroup",
+						"Name": "CustomerGroupId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "CustomerGroupName",
+					"Description": "The name of a Customer Group.",
+					"BaseAttributeReference": {
+						"Entity": "CustomerGroup.cdm.json/CustomerGroup",
+						"Name": "CustomerGroupName"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 256,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "CustomerGroupDescription",
+					"Description": "The description of a Customer Group.",
+					"BaseAttributeReference": {
+						"Entity": "CustomerGroup.cdm.json/CustomerGroup",
+						"Name": "CustomerGroupDescription"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "ClassificationAgencyPartyId",
+					"Description": "The unique identifier of a party.",
+					"BaseAttributeReference": {
+						"Entity": "CustomerGroup.cdm.json/CustomerGroup",
+						"Name": "ClassificationAgencyPartyId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "long",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"HIVE_TYPE_STRING": "long"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/CustomerGroup",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/CustomerGroup",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"CustomerGroupId\":{\"entity\":\"CustomerGroup.cdm.json/CustomerGroup\",\"name\":\"CustomerGroupId\"},\"CustomerGroupName\":{\"entity\":\"CustomerGroup.cdm.json/CustomerGroup\",\"name\":\"CustomerGroupName\"},\"CustomerGroupDescription\":{\"entity\":\"CustomerGroup.cdm.json/CustomerGroup\",\"name\":\"CustomerGroupDescription\"},\"ClassificationAgencyPartyId\":{\"entity\":\"CustomerGroup.cdm.json/CustomerGroup\",\"name\":\"ClassificationAgencyPartyId\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"CustomerGroup\",\"path\":\"CustomerGroup.cdm.json/CustomerGroup\"},\"description\":\"An arbitrary grouping of Customers.\\n\\nEx:\\n- Sales\\n- Volume\\n- Geography\",\"primaryKey\":[\"CustomerGroupId\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CustomerGroup.cdm.json/CustomerGroup\",\"name\":\"CustomerGroupId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Customer Group.\",\"isNullable\":false,\"name\":\"CustomerGroupId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CustomerGroup.cdm.json/CustomerGroup\",\"name\":\"CustomerGroupName\"},\"dataType\":\"string\",\"dataTypeLength\":256,\"description\":\"The name of a Customer Group.\",\"isNullable\":true,\"name\":\"CustomerGroupName\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CustomerGroup.cdm.json/CustomerGroup\",\"name\":\"CustomerGroupDescription\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"The description of a Customer Group.\",\"isNullable\":true,\"name\":\"CustomerGroupDescription\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CustomerGroup.cdm.json/CustomerGroup\",\"name\":\"ClassificationAgencyPartyId\"},\"dataType\":\"long\",\"description\":\"The unique identifier of a party.\",\"isNullable\":true,\"name\":\"ClassificationAgencyPartyId\"}]}}}",
+			"Description": "An arbitrary grouping of Customers.\n\nEx:\n- Sales\n- Volume\n- Geography",
+			"DisplayFolderInfo": "{\"name\":\"Customer\",\"colorCode\":\"#4B003F\"}",
+			"PrimaryKeys": "CustomerGroupId",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

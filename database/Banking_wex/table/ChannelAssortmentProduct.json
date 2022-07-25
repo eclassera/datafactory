@@ -1,0 +1,194 @@
+{
+	"name": "ChannelAssortmentProduct",
+	"properties": {
+		"Name": "ChannelAssortmentProduct",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "The Products contained within an Assortment for a specific Channel during a period of time.",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "ChannelId",
+					"Description": "The unique identifier of a Channel.",
+					"BaseAttributeReference": {
+						"Entity": "ChannelAssortmentProduct.cdm.json/ChannelAssortmentProduct",
+						"Name": "ChannelId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "AssortmentTypeId",
+					"Description": "The unique identifier of an Assortment Type.",
+					"BaseAttributeReference": {
+						"Entity": "ChannelAssortmentProduct.cdm.json/ChannelAssortmentProduct",
+						"Name": "AssortmentTypeId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "SizeClassId",
+					"Description": "The unique identifier of a size class.",
+					"BaseAttributeReference": {
+						"Entity": "ChannelAssortmentProduct.cdm.json/ChannelAssortmentProduct",
+						"Name": "SizeClassId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "ProductId",
+					"Description": "The unique identifier of a Product.",
+					"BaseAttributeReference": {
+						"Entity": "ChannelAssortmentProduct.cdm.json/ChannelAssortmentProduct",
+						"Name": "ProductId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "long",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "long"
+						}
+					}
+				},
+				{
+					"Name": "AssortmentPeriodStartDate",
+					"Description": "The date when a Product is first included in a Channel Assortment.",
+					"BaseAttributeReference": {
+						"Entity": "ChannelAssortmentProduct.cdm.json/ChannelAssortmentProduct",
+						"Name": "AssortmentPeriodStartDate"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "date",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"DateFormat": "YYYY-MM-DD",
+							"HIVE_TYPE_STRING": "date"
+						}
+					}
+				},
+				{
+					"Name": "ReplacedProductId",
+					"Description": "The unique identifier of a Product.",
+					"BaseAttributeReference": {
+						"Entity": "ChannelAssortmentProduct.cdm.json/ChannelAssortmentProduct",
+						"Name": "ReplacedProductId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "long",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"HIVE_TYPE_STRING": "long"
+						}
+					}
+				},
+				{
+					"Name": "AssortmentPeriodEndDate",
+					"Description": "The ending date when a Product is included in a Channel Assortment.",
+					"BaseAttributeReference": {
+						"Entity": "ChannelAssortmentProduct.cdm.json/ChannelAssortmentProduct",
+						"Name": "AssortmentPeriodEndDate"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "date",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"DateFormat": "YYYY-MM-DD",
+							"HIVE_TYPE_STRING": "date"
+						}
+					}
+				},
+				{
+					"Name": "ChannelAssortmentProductNote",
+					"Description": "A note about a Product included in a Channel Assortment.",
+					"BaseAttributeReference": {
+						"Entity": "ChannelAssortmentProduct.cdm.json/ChannelAssortmentProduct",
+						"Name": "ChannelAssortmentProductNote"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/ChannelAssortmentProduct",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/ChannelAssortmentProduct",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"ChannelId\":{\"entity\":\"ChannelAssortmentProduct.cdm.json/ChannelAssortmentProduct\",\"name\":\"ChannelId\"},\"AssortmentTypeId\":{\"entity\":\"ChannelAssortmentProduct.cdm.json/ChannelAssortmentProduct\",\"name\":\"AssortmentTypeId\"},\"SizeClassId\":{\"entity\":\"ChannelAssortmentProduct.cdm.json/ChannelAssortmentProduct\",\"name\":\"SizeClassId\"},\"ProductId\":{\"entity\":\"ChannelAssortmentProduct.cdm.json/ChannelAssortmentProduct\",\"name\":\"ProductId\"},\"AssortmentPeriodStartDate\":{\"entity\":\"ChannelAssortmentProduct.cdm.json/ChannelAssortmentProduct\",\"name\":\"AssortmentPeriodStartDate\"},\"ReplacedProductId\":{\"entity\":\"ChannelAssortmentProduct.cdm.json/ChannelAssortmentProduct\",\"name\":\"ReplacedProductId\"},\"AssortmentPeriodEndDate\":{\"entity\":\"ChannelAssortmentProduct.cdm.json/ChannelAssortmentProduct\",\"name\":\"AssortmentPeriodEndDate\"},\"ChannelAssortmentProductNote\":{\"entity\":\"ChannelAssortmentProduct.cdm.json/ChannelAssortmentProduct\",\"name\":\"ChannelAssortmentProductNote\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"ChannelAssortmentProduct\",\"path\":\"ChannelAssortmentProduct.cdm.json/ChannelAssortmentProduct\"},\"description\":\"The Products contained within an Assortment for a specific Channel during a period of time.\",\"primaryKey\":[\"ChannelId\",\"AssortmentTypeId\",\"SizeClassId\",\"ProductId\",\"AssortmentPeriodStartDate\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ChannelAssortmentProduct.cdm.json/ChannelAssortmentProduct\",\"name\":\"ChannelId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Channel.\",\"isNullable\":false,\"name\":\"ChannelId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ChannelAssortmentProduct.cdm.json/ChannelAssortmentProduct\",\"name\":\"AssortmentTypeId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of an Assortment Type.\",\"isNullable\":false,\"name\":\"AssortmentTypeId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ChannelAssortmentProduct.cdm.json/ChannelAssortmentProduct\",\"name\":\"SizeClassId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a size class.\",\"isNullable\":false,\"name\":\"SizeClassId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ChannelAssortmentProduct.cdm.json/ChannelAssortmentProduct\",\"name\":\"ProductId\"},\"dataType\":\"long\",\"description\":\"The unique identifier of a Product.\",\"isNullable\":false,\"name\":\"ProductId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ChannelAssortmentProduct.cdm.json/ChannelAssortmentProduct\",\"name\":\"AssortmentPeriodStartDate\"},\"dataType\":\"date\",\"dateFormat\":\"YYYY-MM-DD\",\"description\":\"The date when a Product is first included in a Channel Assortment.\",\"isNullable\":false,\"name\":\"AssortmentPeriodStartDate\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ChannelAssortmentProduct.cdm.json/ChannelAssortmentProduct\",\"name\":\"ReplacedProductId\"},\"dataType\":\"long\",\"description\":\"The unique identifier of a Product.\",\"isNullable\":true,\"name\":\"ReplacedProductId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ChannelAssortmentProduct.cdm.json/ChannelAssortmentProduct\",\"name\":\"AssortmentPeriodEndDate\"},\"dataType\":\"date\",\"dateFormat\":\"YYYY-MM-DD\",\"description\":\"The ending date when a Product is included in a Channel Assortment.\",\"isNullable\":true,\"name\":\"AssortmentPeriodEndDate\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ChannelAssortmentProduct.cdm.json/ChannelAssortmentProduct\",\"name\":\"ChannelAssortmentProductNote\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"A note about a Product included in a Channel Assortment.\",\"isNullable\":true,\"name\":\"ChannelAssortmentProductNote\"}]}}}",
+			"Description": "The Products contained within an Assortment for a specific Channel during a period of time.",
+			"DisplayFolderInfo": "{\"name\":\"Channel\",\"colorCode\":\"#001D3F\"}",
+			"PrimaryKeys": "ChannelId,AssortmentTypeId,SizeClassId,ProductId,AssortmentPeriodStartDate",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

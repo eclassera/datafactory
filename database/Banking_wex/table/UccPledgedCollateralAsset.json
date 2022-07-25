@@ -1,0 +1,178 @@
+{
+	"name": "UccPledgedCollateralAsset",
+	"properties": {
+		"Name": "UccPledgedCollateralAsset",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "The asset(s) pledged as collateral in conjunction with the state UCC filing.",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "UccFilingNumber",
+					"Description": "The unique identifier of the UCC filing.",
+					"BaseAttributeReference": {
+						"Entity": "UccPledgedCollateralAsset.cdm.json/UccPledgedCollateralAsset",
+						"Name": "UccFilingNumber"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "AssetId",
+					"Description": "The unique identifier of an Asset.",
+					"BaseAttributeReference": {
+						"Entity": "UccPledgedCollateralAsset.cdm.json/UccPledgedCollateralAsset",
+						"Name": "AssetId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "long",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "long"
+						}
+					}
+				},
+				{
+					"Name": "PeriodStartDate",
+					"Description": "The period start date that the asset is pledged to the lien.",
+					"BaseAttributeReference": {
+						"Entity": "UccPledgedCollateralAsset.cdm.json/UccPledgedCollateralAsset",
+						"Name": "PeriodStartDate"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "date",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"DateFormat": "YYYY-MM-DD",
+							"HIVE_TYPE_STRING": "date"
+						}
+					}
+				},
+				{
+					"Name": "PeriodEndDate",
+					"Description": "The period end date that the asset is pledged to the lien.",
+					"BaseAttributeReference": {
+						"Entity": "UccPledgedCollateralAsset.cdm.json/UccPledgedCollateralAsset",
+						"Name": "PeriodEndDate"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "date",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"DateFormat": "YYYY-MM-DD",
+							"HIVE_TYPE_STRING": "date"
+						}
+					}
+				},
+				{
+					"Name": "UccPledgedAssetNote",
+					"Description": "A note, comment or additional information related to a UCC pledged asset.",
+					"BaseAttributeReference": {
+						"Entity": "UccPledgedCollateralAsset.cdm.json/UccPledgedCollateralAsset",
+						"Name": "UccPledgedAssetNote"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "PriorityPartyId",
+					"Description": "The unique identifier of a Party.",
+					"BaseAttributeReference": {
+						"Entity": "UccPledgedCollateralAsset.cdm.json/UccPledgedCollateralAsset",
+						"Name": "PriorityPartyId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "long",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"HIVE_TYPE_STRING": "long"
+						}
+					}
+				},
+				{
+					"Name": "AttachedAssetStatusId",
+					"Description": "The unique identifier of an Attached Asset Status.",
+					"BaseAttributeReference": {
+						"Entity": "UccPledgedCollateralAsset.cdm.json/UccPledgedCollateralAsset",
+						"Name": "AttachedAssetStatusId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/UccPledgedCollateralAsset",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/UccPledgedCollateralAsset",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"UccFilingNumber\":{\"entity\":\"UccPledgedCollateralAsset.cdm.json/UccPledgedCollateralAsset\",\"name\":\"UccFilingNumber\"},\"AssetId\":{\"entity\":\"UccPledgedCollateralAsset.cdm.json/UccPledgedCollateralAsset\",\"name\":\"AssetId\"},\"PeriodStartDate\":{\"entity\":\"UccPledgedCollateralAsset.cdm.json/UccPledgedCollateralAsset\",\"name\":\"PeriodStartDate\"},\"PeriodEndDate\":{\"entity\":\"UccPledgedCollateralAsset.cdm.json/UccPledgedCollateralAsset\",\"name\":\"PeriodEndDate\"},\"UccPledgedAssetNote\":{\"entity\":\"UccPledgedCollateralAsset.cdm.json/UccPledgedCollateralAsset\",\"name\":\"UccPledgedAssetNote\"},\"PriorityPartyId\":{\"entity\":\"UccPledgedCollateralAsset.cdm.json/UccPledgedCollateralAsset\",\"name\":\"PriorityPartyId\"},\"AttachedAssetStatusId\":{\"entity\":\"UccPledgedCollateralAsset.cdm.json/UccPledgedCollateralAsset\",\"name\":\"AttachedAssetStatusId\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"UccPledgedCollateralAsset\",\"path\":\"UccPledgedCollateralAsset.cdm.json/UccPledgedCollateralAsset\"},\"description\":\"The asset(s) pledged as collateral in conjunction with the state UCC filing.\",\"primaryKey\":[\"UccFilingNumber\",\"AssetId\",\"PeriodStartDate\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"UccPledgedCollateralAsset.cdm.json/UccPledgedCollateralAsset\",\"name\":\"UccFilingNumber\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of the UCC filing.\",\"isNullable\":false,\"name\":\"UccFilingNumber\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"UccPledgedCollateralAsset.cdm.json/UccPledgedCollateralAsset\",\"name\":\"AssetId\"},\"dataType\":\"long\",\"description\":\"The unique identifier of an Asset.\",\"isNullable\":false,\"name\":\"AssetId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"UccPledgedCollateralAsset.cdm.json/UccPledgedCollateralAsset\",\"name\":\"PeriodStartDate\"},\"dataType\":\"date\",\"dateFormat\":\"YYYY-MM-DD\",\"description\":\"The period start date that the asset is pledged to the lien.\",\"isNullable\":false,\"name\":\"PeriodStartDate\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"UccPledgedCollateralAsset.cdm.json/UccPledgedCollateralAsset\",\"name\":\"PeriodEndDate\"},\"dataType\":\"date\",\"dateFormat\":\"YYYY-MM-DD\",\"description\":\"The period end date that the asset is pledged to the lien.\",\"isNullable\":true,\"name\":\"PeriodEndDate\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"UccPledgedCollateralAsset.cdm.json/UccPledgedCollateralAsset\",\"name\":\"UccPledgedAssetNote\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"A note, comment or additional information related to a UCC pledged asset.\",\"isNullable\":true,\"name\":\"UccPledgedAssetNote\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"UccPledgedCollateralAsset.cdm.json/UccPledgedCollateralAsset\",\"name\":\"PriorityPartyId\"},\"dataType\":\"long\",\"description\":\"The unique identifier of a Party.\",\"isNullable\":true,\"name\":\"PriorityPartyId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"UccPledgedCollateralAsset.cdm.json/UccPledgedCollateralAsset\",\"name\":\"AttachedAssetStatusId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of an Attached Asset Status.\",\"isNullable\":true,\"name\":\"AttachedAssetStatusId\"}]}}}",
+			"Description": "The asset(s) pledged as collateral in conjunction with the state UCC filing.",
+			"DisplayFolderInfo": "{\"name\":\"Customer Credit & Collections\",\"colorCode\":\"#022F22\"}",
+			"PrimaryKeys": "UccFilingNumber,AssetId,PeriodStartDate",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

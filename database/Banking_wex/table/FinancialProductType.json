@@ -1,0 +1,113 @@
+{
+	"name": "FinancialProductType",
+	"properties": {
+		"Name": "FinancialProductType",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "A type or classification of Financial Product(s) based upon common characteristics, objectives or financial components:\n\nEx:\n- Cash equivalent\n- Stock / Equity\n- Stock / High Tech Stock\n- Stock / Financial Service Stock\n- Bond\n- Bond / Government Bond\n- Bond / Municipal Bond\n- Bond / Junk Bond\n- Credit Card\n- Payment Card\n- Line Of Credit\n- Loan\n- Fixed-income investment\n- Real estate\n- Precious metals\n- Base Financial Product (ex.: stock, bond, option)\n- Building Block Financial Product (ex.: index, weather, season - used for reference or to construction complex financial products)\n- Transaction-Oriented Financial Product (ex.: swap, repo - a financial product that is actually implemented as a transaction based on a class of similar or 'template' transaction-oriented financial products.\n- Asset Backed Security\n- Bankers Acceptance\n- CD\n- Commercial Paper\n- Commodity (ex. precious metals) \n- Currency\n- Equity / Stock\n- Forward Contract\n- Futures Contract\n- Mortgage Security\n- Mutual Fund\n- Fund Share Class\n- Option \n- Swaps\n- Treasury Security\n- Warrant",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "FinancialProductTypeId",
+					"Description": "The unique identifier of a Financial Product Type.",
+					"BaseAttributeReference": {
+						"Entity": "FinancialProductType.cdm.json/FinancialProductType",
+						"Name": "FinancialProductTypeId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "FinancialProductTypeName",
+					"Description": "The name of a Financial Product Type.",
+					"BaseAttributeReference": {
+						"Entity": "FinancialProductType.cdm.json/FinancialProductType",
+						"Name": "FinancialProductTypeName"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 256,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "FinancialProductTypeDescription",
+					"Description": "The description of a Financial Product Type.",
+					"BaseAttributeReference": {
+						"Entity": "FinancialProductType.cdm.json/FinancialProductType",
+						"Name": "FinancialProductTypeDescription"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/FinancialProductType",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/FinancialProductType",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"FinancialProductTypeId\":{\"entity\":\"FinancialProductType.cdm.json/FinancialProductType\",\"name\":\"FinancialProductTypeId\"},\"FinancialProductTypeName\":{\"entity\":\"FinancialProductType.cdm.json/FinancialProductType\",\"name\":\"FinancialProductTypeName\"},\"FinancialProductTypeDescription\":{\"entity\":\"FinancialProductType.cdm.json/FinancialProductType\",\"name\":\"FinancialProductTypeDescription\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"FinancialProductType\",\"path\":\"FinancialProductType.cdm.json/FinancialProductType\"},\"description\":\"A type or classification of Financial Product(s) based upon common characteristics, objectives or financial components:\\n\\nEx:\\n- Cash equivalent\\n- Stock / Equity\\n- Stock / High Tech Stock\\n- Stock / Financial Service Stock\\n- Bond\\n- Bond / Government Bond\\n- Bond / Municipal Bond\\n- Bond / Junk Bond\\n- Credit Card\\n- Payment Card\\n- Line Of Credit\\n- Loan\\n- Fixed-income investment\\n- Real estate\\n- Precious metals\\n- Base Financial Product (ex.: stock, bond, option)\\n- Building Block Financial Product (ex.: index, weather, season - used for reference or to construction complex financial products)\\n- Transaction-Oriented Financial Product (ex.: swap, repo - a financial product that is actually implemented as a transaction based on a class of similar or 'template' transaction-oriented financial products.\\n- Asset Backed Security\\n- Bankers Acceptance\\n- CD\\n- Commercial Paper\\n- Commodity (ex. precious metals) \\n- Currency\\n- Equity / Stock\\n- Forward Contract\\n- Futures Contract\\n- Mortgage Security\\n- Mutual Fund\\n- Fund Share Class\\n- Option \\n- Swaps\\n- Treasury Security\\n- Warrant\",\"primaryKey\":[\"FinancialProductTypeId\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"FinancialProductType.cdm.json/FinancialProductType\",\"name\":\"FinancialProductTypeId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Financial Product Type.\",\"isNullable\":false,\"name\":\"FinancialProductTypeId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"FinancialProductType.cdm.json/FinancialProductType\",\"name\":\"FinancialProductTypeName\"},\"dataType\":\"string\",\"dataTypeLength\":256,\"description\":\"The name of a Financial Product Type.\",\"isNullable\":true,\"name\":\"FinancialProductTypeName\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"FinancialProductType.cdm.json/FinancialProductType\",\"name\":\"FinancialProductTypeDescription\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"The description of a Financial Product Type.\",\"isNullable\":true,\"name\":\"FinancialProductTypeDescription\"}]}}}",
+			"Description": "A type or classification of Financial Product(s) based upon common characteristics, objectives or financial components:\n\nEx:\n- Cash equivalent\n- Stock / Equity\n- Stock / High Tech Stock\n- Stock / Financial Service Stock\n- Bond\n- Bond / Government Bond\n- Bond / Municipal Bond\n- Bond / Junk Bond\n- Credit Card\n- Payment Card\n- Line Of Credit\n- Loan\n- Fixed-income investment\n- Real estate\n- Precious metals\n- Base Financial Product (ex.: stock, bond, option)\n- Building Block Financial Product (ex.: index, weather, season - used for reference or to construction complex financial products)\n- Transaction-Oriented Financial Product (ex.: swap, repo - a financial product that is actually implemented as a transaction based on a class of similar or 'template' transaction-oriented financial products.\n- Asset Backed Security\n- Bankers Acceptance\n- CD\n- Commercial Paper\n- Commodity (ex. precious metals) \n- Currency\n- Equity / Stock\n- Forward Contract\n- Futures Contract\n- Mortgage Security\n- Mutual Fund\n- Fund Share Class\n- Option \n- Swaps\n- Treasury Security\n- Warrant",
+			"DisplayFolderInfo": "{\"name\":\"Financial Product\",\"colorCode\":\"#001475\"}",
+			"PrimaryKeys": "FinancialProductTypeId",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

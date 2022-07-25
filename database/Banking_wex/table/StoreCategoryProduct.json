@@ -1,0 +1,112 @@
+{
+	"name": "StoreCategoryProduct",
+	"properties": {
+		"Name": "StoreCategoryProduct",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "The store type that can sell the product.",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "StoreCategoryId",
+					"Description": "The unique identifier of a Store Category.",
+					"BaseAttributeReference": {
+						"Entity": "StoreCategoryProduct.cdm.json/StoreCategoryProduct",
+						"Name": "StoreCategoryId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "ProductId",
+					"Description": "The unique identifier of a Product.",
+					"BaseAttributeReference": {
+						"Entity": "StoreCategoryProduct.cdm.json/StoreCategoryProduct",
+						"Name": "ProductId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "long",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "long"
+						}
+					}
+				},
+				{
+					"Name": "StoreCategoryProductNote",
+					"Description": "A note, comment or additional information regarding the store category product.",
+					"BaseAttributeReference": {
+						"Entity": "StoreCategoryProduct.cdm.json/StoreCategoryProduct",
+						"Name": "StoreCategoryProductNote"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/StoreCategoryProduct",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/StoreCategoryProduct",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"StoreCategoryId\":{\"entity\":\"StoreCategoryProduct.cdm.json/StoreCategoryProduct\",\"name\":\"StoreCategoryId\"},\"ProductId\":{\"entity\":\"StoreCategoryProduct.cdm.json/StoreCategoryProduct\",\"name\":\"ProductId\"},\"StoreCategoryProductNote\":{\"entity\":\"StoreCategoryProduct.cdm.json/StoreCategoryProduct\",\"name\":\"StoreCategoryProductNote\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"StoreCategoryProduct\",\"path\":\"StoreCategoryProduct.cdm.json/StoreCategoryProduct\"},\"description\":\"The store type that can sell the product.\",\"primaryKey\":[\"StoreCategoryId\",\"ProductId\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"StoreCategoryProduct.cdm.json/StoreCategoryProduct\",\"name\":\"StoreCategoryId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Store Category.\",\"isNullable\":false,\"name\":\"StoreCategoryId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"StoreCategoryProduct.cdm.json/StoreCategoryProduct\",\"name\":\"ProductId\"},\"dataType\":\"long\",\"description\":\"The unique identifier of a Product.\",\"isNullable\":false,\"name\":\"ProductId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"StoreCategoryProduct.cdm.json/StoreCategoryProduct\",\"name\":\"StoreCategoryProductNote\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"A note, comment or additional information regarding the store category product.\",\"isNullable\":true,\"name\":\"StoreCategoryProductNote\"}]}}}",
+			"Description": "The store type that can sell the product.",
+			"DisplayFolderInfo": "{\"name\":\"Channel\",\"colorCode\":\"#001D3F\"}",
+			"PrimaryKeys": "StoreCategoryId,ProductId",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

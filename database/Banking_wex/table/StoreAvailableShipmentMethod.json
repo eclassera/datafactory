@@ -1,0 +1,162 @@
+{
+	"name": "StoreAvailableShipmentMethod",
+	"properties": {
+		"Name": "StoreAvailableShipmentMethod",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "The shipment methods available from the store.",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "StoreId",
+					"Description": "The unique identifier of a Store.",
+					"BaseAttributeReference": {
+						"Entity": "StoreAvailableShipmentMethod.cdm.json/StoreAvailableShipmentMethod",
+						"Name": "StoreId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "ShipmentMethodId",
+					"Description": "The unique identifier of a Shipment Method.",
+					"BaseAttributeReference": {
+						"Entity": "StoreAvailableShipmentMethod.cdm.json/StoreAvailableShipmentMethod",
+						"Name": "ShipmentMethodId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "PeriodStartTimestamp",
+					"Description": "The period start timestamp that the information is valid or effective as of.",
+					"BaseAttributeReference": {
+						"Entity": "StoreAvailableShipmentMethod.cdm.json/StoreAvailableShipmentMethod",
+						"Name": "PeriodStartTimestamp"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "timestamp",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"TimestampFormat": "YYYY-MM-DD HH:MM:SS.fffffffff",
+							"HIVE_TYPE_STRING": "timestamp"
+						}
+					}
+				},
+				{
+					"Name": "PeriodEndTimestamp",
+					"Description": "The period end timestamp that the information is valid or effective as of.",
+					"BaseAttributeReference": {
+						"Entity": "StoreAvailableShipmentMethod.cdm.json/StoreAvailableShipmentMethod",
+						"Name": "PeriodEndTimestamp"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "timestamp",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"TimestampFormat": "YYYY-MM-DD HH:MM:SS.fffffffff",
+							"HIVE_TYPE_STRING": "timestamp"
+						}
+					}
+				},
+				{
+					"Name": "PreferenceId",
+					"Description": "The unique identifier of a Preference.",
+					"BaseAttributeReference": {
+						"Entity": "StoreAvailableShipmentMethod.cdm.json/StoreAvailableShipmentMethod",
+						"Name": "PreferenceId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "ChannelLanguageUsageNote",
+					"Description": "A note, comment or additional information regarding the Customer Language Usage.",
+					"BaseAttributeReference": {
+						"Entity": "StoreAvailableShipmentMethod.cdm.json/StoreAvailableShipmentMethod",
+						"Name": "ChannelLanguageUsageNote"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/StoreAvailableShipmentMethod",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/StoreAvailableShipmentMethod",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"StoreId\":{\"entity\":\"StoreAvailableShipmentMethod.cdm.json/StoreAvailableShipmentMethod\",\"name\":\"StoreId\"},\"ShipmentMethodId\":{\"entity\":\"StoreAvailableShipmentMethod.cdm.json/StoreAvailableShipmentMethod\",\"name\":\"ShipmentMethodId\"},\"PeriodStartTimestamp\":{\"entity\":\"StoreAvailableShipmentMethod.cdm.json/StoreAvailableShipmentMethod\",\"name\":\"PeriodStartTimestamp\"},\"PeriodEndTimestamp\":{\"entity\":\"StoreAvailableShipmentMethod.cdm.json/StoreAvailableShipmentMethod\",\"name\":\"PeriodEndTimestamp\"},\"PreferenceId\":{\"entity\":\"StoreAvailableShipmentMethod.cdm.json/StoreAvailableShipmentMethod\",\"name\":\"PreferenceId\"},\"ChannelLanguageUsageNote\":{\"entity\":\"StoreAvailableShipmentMethod.cdm.json/StoreAvailableShipmentMethod\",\"name\":\"ChannelLanguageUsageNote\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"StoreAvailableShipmentMethod\",\"path\":\"StoreAvailableShipmentMethod.cdm.json/StoreAvailableShipmentMethod\"},\"description\":\"The shipment methods available from the store.\",\"primaryKey\":[\"StoreId\",\"ShipmentMethodId\",\"PeriodStartTimestamp\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"StoreAvailableShipmentMethod.cdm.json/StoreAvailableShipmentMethod\",\"name\":\"StoreId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Store.\",\"isNullable\":false,\"name\":\"StoreId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"StoreAvailableShipmentMethod.cdm.json/StoreAvailableShipmentMethod\",\"name\":\"ShipmentMethodId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Shipment Method.\",\"isNullable\":false,\"name\":\"ShipmentMethodId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"StoreAvailableShipmentMethod.cdm.json/StoreAvailableShipmentMethod\",\"name\":\"PeriodStartTimestamp\"},\"dataType\":\"timestamp\",\"description\":\"The period start timestamp that the information is valid or effective as of.\",\"isNullable\":false,\"name\":\"PeriodStartTimestamp\",\"timestampFormat\":\"YYYY-MM-DD HH:MM:SS.fffffffff\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"StoreAvailableShipmentMethod.cdm.json/StoreAvailableShipmentMethod\",\"name\":\"PeriodEndTimestamp\"},\"dataType\":\"timestamp\",\"description\":\"The period end timestamp that the information is valid or effective as of.\",\"isNullable\":true,\"name\":\"PeriodEndTimestamp\",\"timestampFormat\":\"YYYY-MM-DD HH:MM:SS.fffffffff\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"StoreAvailableShipmentMethod.cdm.json/StoreAvailableShipmentMethod\",\"name\":\"PreferenceId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Preference.\",\"isNullable\":false,\"name\":\"PreferenceId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"StoreAvailableShipmentMethod.cdm.json/StoreAvailableShipmentMethod\",\"name\":\"ChannelLanguageUsageNote\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"A note, comment or additional information regarding the Customer Language Usage.\",\"isNullable\":true,\"name\":\"ChannelLanguageUsageNote\"}]}}}",
+			"Description": "The shipment methods available from the store.",
+			"DisplayFolderInfo": "{\"name\":\"Channel\",\"colorCode\":\"#001D3F\"}",
+			"PrimaryKeys": "StoreId,ShipmentMethodId,PeriodStartTimestamp",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

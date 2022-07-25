@@ -1,0 +1,180 @@
+{
+	"name": "CustomerFraud",
+	"properties": {
+		"Name": "CustomerFraud",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "Credit fraud committed by a customer.",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "CustomerId",
+					"Description": "The unique identifier of a Customer.",
+					"BaseAttributeReference": {
+						"Entity": "CustomerFraud.cdm.json/CustomerFraud",
+						"Name": "CustomerId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "long",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "long"
+						}
+					}
+				},
+				{
+					"Name": "CreditFraudTypeId",
+					"Description": "The unique identifier of a Fraud Type.",
+					"BaseAttributeReference": {
+						"Entity": "CustomerFraud.cdm.json/CustomerFraud",
+						"Name": "CreditFraudTypeId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "FraudDate",
+					"Description": "The date that the fraud was committed.",
+					"BaseAttributeReference": {
+						"Entity": "CustomerFraud.cdm.json/CustomerFraud",
+						"Name": "FraudDate"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "date",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"DateFormat": "YYYY-MM-DD",
+							"HIVE_TYPE_STRING": "date"
+						}
+					}
+				},
+				{
+					"Name": "FraudLossAmount",
+					"Description": "The amount resulting from the fraud.",
+					"BaseAttributeReference": {
+						"Entity": "CustomerFraud.cdm.json/CustomerFraud",
+						"Name": "FraudLossAmount"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "decimal",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Precision": 18,
+						"Scale": 2,
+						"Properties": {
+							"HIVE_TYPE_STRING": "decimal"
+						}
+					}
+				},
+				{
+					"Name": "LegalActionIndicator",
+					"Description": "Indicates that legal action was taken against the member.",
+					"BaseAttributeReference": {
+						"Entity": "CustomerFraud.cdm.json/CustomerFraud",
+						"Name": "LegalActionIndicator"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "boolean",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"HIVE_TYPE_STRING": "boolean"
+						}
+					}
+				},
+				{
+					"Name": "LegalOutcomeStatement",
+					"Description": "A statement describing the results or outcome of the legal action against the member for fraud.",
+					"BaseAttributeReference": {
+						"Entity": "CustomerFraud.cdm.json/CustomerFraud",
+						"Name": "LegalOutcomeStatement"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "FraudNote",
+					"Description": "A note, comment or additional information regarding the Fraud.",
+					"BaseAttributeReference": {
+						"Entity": "CustomerFraud.cdm.json/CustomerFraud",
+						"Name": "FraudNote"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/CustomerFraud",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/CustomerFraud",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"CustomerId\":{\"entity\":\"CustomerFraud.cdm.json/CustomerFraud\",\"name\":\"CustomerId\"},\"CreditFraudTypeId\":{\"entity\":\"CustomerFraud.cdm.json/CustomerFraud\",\"name\":\"CreditFraudTypeId\"},\"FraudDate\":{\"entity\":\"CustomerFraud.cdm.json/CustomerFraud\",\"name\":\"FraudDate\"},\"FraudLossAmount\":{\"entity\":\"CustomerFraud.cdm.json/CustomerFraud\",\"name\":\"FraudLossAmount\"},\"LegalActionIndicator\":{\"entity\":\"CustomerFraud.cdm.json/CustomerFraud\",\"name\":\"LegalActionIndicator\"},\"LegalOutcomeStatement\":{\"entity\":\"CustomerFraud.cdm.json/CustomerFraud\",\"name\":\"LegalOutcomeStatement\"},\"FraudNote\":{\"entity\":\"CustomerFraud.cdm.json/CustomerFraud\",\"name\":\"FraudNote\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"CustomerFraud\",\"path\":\"CustomerFraud.cdm.json/CustomerFraud\"},\"description\":\"Credit fraud committed by a customer.\",\"primaryKey\":[\"CustomerId\",\"CreditFraudTypeId\",\"FraudDate\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CustomerFraud.cdm.json/CustomerFraud\",\"name\":\"CustomerId\"},\"dataType\":\"long\",\"description\":\"The unique identifier of a Customer.\",\"isNullable\":false,\"name\":\"CustomerId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CustomerFraud.cdm.json/CustomerFraud\",\"name\":\"CreditFraudTypeId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Fraud Type.\",\"isNullable\":false,\"name\":\"CreditFraudTypeId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CustomerFraud.cdm.json/CustomerFraud\",\"name\":\"FraudDate\"},\"dataType\":\"date\",\"dateFormat\":\"YYYY-MM-DD\",\"description\":\"The date that the fraud was committed.\",\"isNullable\":false,\"name\":\"FraudDate\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CustomerFraud.cdm.json/CustomerFraud\",\"name\":\"FraudLossAmount\"},\"dataType\":\"decimal\",\"dataTypeLength\":18,\"description\":\"The amount resulting from the fraud.\",\"isNullable\":true,\"scale\":2,\"name\":\"FraudLossAmount\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CustomerFraud.cdm.json/CustomerFraud\",\"name\":\"LegalActionIndicator\"},\"dataType\":\"boolean\",\"description\":\"Indicates that legal action was taken against the member.\",\"isNullable\":true,\"name\":\"LegalActionIndicator\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CustomerFraud.cdm.json/CustomerFraud\",\"name\":\"LegalOutcomeStatement\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"A statement describing the results or outcome of the legal action against the member for fraud.\",\"isNullable\":true,\"name\":\"LegalOutcomeStatement\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CustomerFraud.cdm.json/CustomerFraud\",\"name\":\"FraudNote\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"A note, comment or additional information regarding the Fraud.\",\"isNullable\":true,\"name\":\"FraudNote\"}]}}}",
+			"Description": "Credit fraud committed by a customer.",
+			"DisplayFolderInfo": "{\"name\":\"Customer Credit & Collections\",\"colorCode\":\"#022F22\"}",
+			"PrimaryKeys": "CustomerId,CreditFraudTypeId,FraudDate",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

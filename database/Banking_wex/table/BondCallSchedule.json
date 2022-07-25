@@ -1,0 +1,132 @@
+{
+	"name": "BondCallSchedule",
+	"properties": {
+		"Name": "BondCallSchedule",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "When a bond is issued, the issuer may have the option to call (redeem) the bond on specified dates and prices prior to maturity.  \n\nA call schedule is a list of the dates that a bond can be called, together with the corresponding price for each call date.",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "BondId",
+					"Description": "The unique identifier of a Financial Product.",
+					"BaseAttributeReference": {
+						"Entity": "BondCallSchedule.cdm.json/BondCallSchedule",
+						"Name": "BondId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "long",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "long"
+						}
+					}
+				},
+				{
+					"Name": "CallDate",
+					"Description": "A specific bond call date.\n\nWhen a bond is issued, the issuer may have the option to call (redeem) the bond on specified dates and prices prior to maturity. The list of dates on which a specified bond can be called is shown in a call schedule.",
+					"BaseAttributeReference": {
+						"Entity": "BondCallSchedule.cdm.json/BondCallSchedule",
+						"Name": "CallDate"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "date",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"DateFormat": "YYYY-MM-DD",
+							"HIVE_TYPE_STRING": "date"
+						}
+					}
+				},
+				{
+					"Name": "CallPremiumPercentage",
+					"Description": "The dollar amount, normally stated as a percentage of principal amount, paid by the issuer as a penalty for the exercise of the call provision.",
+					"BaseAttributeReference": {
+						"Entity": "BondCallSchedule.cdm.json/BondCallSchedule",
+						"Name": "CallPremiumPercentage"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "decimal",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Precision": 18,
+						"Scale": 8,
+						"Properties": {
+							"HIVE_TYPE_STRING": "decimal"
+						}
+					}
+				},
+				{
+					"Name": "CallPriceAmount",
+					"Description": "The amount for which the bond may be called.",
+					"BaseAttributeReference": {
+						"Entity": "BondCallSchedule.cdm.json/BondCallSchedule",
+						"Name": "CallPriceAmount"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "decimal",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Precision": 18,
+						"Scale": 2,
+						"Properties": {
+							"HIVE_TYPE_STRING": "decimal"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/BondCallSchedule",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/BondCallSchedule",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"BondId\":{\"entity\":\"BondCallSchedule.cdm.json/BondCallSchedule\",\"name\":\"BondId\"},\"CallDate\":{\"entity\":\"BondCallSchedule.cdm.json/BondCallSchedule\",\"name\":\"CallDate\"},\"CallPremiumPercentage\":{\"entity\":\"BondCallSchedule.cdm.json/BondCallSchedule\",\"name\":\"CallPremiumPercentage\"},\"CallPriceAmount\":{\"entity\":\"BondCallSchedule.cdm.json/BondCallSchedule\",\"name\":\"CallPriceAmount\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"BondCallSchedule\",\"path\":\"BondCallSchedule.cdm.json/BondCallSchedule\"},\"description\":\"When a bond is issued, the issuer may have the option to call (redeem) the bond on specified dates and prices prior to maturity.  \\n\\nA call schedule is a list of the dates that a bond can be called, together with the corresponding price for each call date.\",\"primaryKey\":[\"BondId\",\"CallDate\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"BondCallSchedule.cdm.json/BondCallSchedule\",\"name\":\"BondId\"},\"dataType\":\"long\",\"description\":\"The unique identifier of a Financial Product.\",\"isNullable\":false,\"name\":\"BondId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"BondCallSchedule.cdm.json/BondCallSchedule\",\"name\":\"CallDate\"},\"dataType\":\"date\",\"dateFormat\":\"YYYY-MM-DD\",\"description\":\"A specific bond call date.\\n\\nWhen a bond is issued, the issuer may have the option to call (redeem) the bond on specified dates and prices prior to maturity. The list of dates on which a specified bond can be called is shown in a call schedule.\",\"isNullable\":false,\"name\":\"CallDate\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"BondCallSchedule.cdm.json/BondCallSchedule\",\"name\":\"CallPremiumPercentage\"},\"dataType\":\"decimal\",\"dataTypeLength\":18,\"description\":\"The dollar amount, normally stated as a percentage of principal amount, paid by the issuer as a penalty for the exercise of the call provision.\",\"isNullable\":true,\"scale\":8,\"name\":\"CallPremiumPercentage\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"BondCallSchedule.cdm.json/BondCallSchedule\",\"name\":\"CallPriceAmount\"},\"dataType\":\"decimal\",\"dataTypeLength\":18,\"description\":\"The amount for which the bond may be called.\",\"isNullable\":true,\"scale\":2,\"name\":\"CallPriceAmount\"}]}}}",
+			"Description": "When a bond is issued, the issuer may have the option to call (redeem) the bond on specified dates and prices prior to maturity.  \n\nA call schedule is a list of the dates that a bond can be called, together with the corresponding price for each call date.",
+			"DisplayFolderInfo": "{\"name\":\"Financial Product\",\"colorCode\":\"#001475\"}",
+			"PrimaryKeys": "BondId,CallDate",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

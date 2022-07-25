@@ -1,0 +1,113 @@
+{
+	"name": "QuestionSubject",
+	"properties": {
+		"Name": "QuestionSubject",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "The subject or general category of Question.\n\nEx:\n- Product performance\n- Customer service\n- Product support\n- Quality Control\n- Pricing\n- Social Media Usage\n- Occupation\n- Activities\n- Residence\n- Finances\n- Military Service",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "QuestionSubjectId",
+					"Description": "The unique identifier of a Question Subject.",
+					"BaseAttributeReference": {
+						"Entity": "QuestionSubject.cdm.json/QuestionSubject",
+						"Name": "QuestionSubjectId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "QuestionSubjectName",
+					"Description": "The name of the Question Subject.",
+					"BaseAttributeReference": {
+						"Entity": "QuestionSubject.cdm.json/QuestionSubject",
+						"Name": "QuestionSubjectName"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 256,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "QuestionSubjectDescription",
+					"Description": "The description of the Question Subject.",
+					"BaseAttributeReference": {
+						"Entity": "QuestionSubject.cdm.json/QuestionSubject",
+						"Name": "QuestionSubjectDescription"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/QuestionSubject",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/QuestionSubject",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"QuestionSubjectId\":{\"entity\":\"QuestionSubject.cdm.json/QuestionSubject\",\"name\":\"QuestionSubjectId\"},\"QuestionSubjectName\":{\"entity\":\"QuestionSubject.cdm.json/QuestionSubject\",\"name\":\"QuestionSubjectName\"},\"QuestionSubjectDescription\":{\"entity\":\"QuestionSubject.cdm.json/QuestionSubject\",\"name\":\"QuestionSubjectDescription\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"QuestionSubject\",\"path\":\"QuestionSubject.cdm.json/QuestionSubject\"},\"description\":\"The subject or general category of Question.\\n\\nEx:\\n- Product performance\\n- Customer service\\n- Product support\\n- Quality Control\\n- Pricing\\n- Social Media Usage\\n- Occupation\\n- Activities\\n- Residence\\n- Finances\\n- Military Service\",\"primaryKey\":[\"QuestionSubjectId\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"QuestionSubject.cdm.json/QuestionSubject\",\"name\":\"QuestionSubjectId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Question Subject.\",\"isNullable\":false,\"name\":\"QuestionSubjectId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"QuestionSubject.cdm.json/QuestionSubject\",\"name\":\"QuestionSubjectName\"},\"dataType\":\"string\",\"dataTypeLength\":256,\"description\":\"The name of the Question Subject.\",\"isNullable\":true,\"name\":\"QuestionSubjectName\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"QuestionSubject.cdm.json/QuestionSubject\",\"name\":\"QuestionSubjectDescription\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"The description of the Question Subject.\",\"isNullable\":true,\"name\":\"QuestionSubjectDescription\"}]}}}",
+			"Description": "The subject or general category of Question.\n\nEx:\n- Product performance\n- Customer service\n- Product support\n- Quality Control\n- Pricing\n- Social Media Usage\n- Occupation\n- Activities\n- Residence\n- Finances\n- Military Service",
+			"DisplayFolderInfo": "{\"name\":\"Customer Service & Contact Management\",\"colorCode\":\"#Ef6950\"}",
+			"PrimaryKeys": "QuestionSubjectId",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

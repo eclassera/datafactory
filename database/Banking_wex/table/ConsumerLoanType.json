@@ -1,0 +1,113 @@
+{
+	"name": "ConsumerLoanType",
+	"properties": {
+		"Name": "ConsumerLoanType",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "The type of consumer loan.\n\nEx:\n- Auto\n- Boat\n- Manufactured Home\n- Home Equity Loan\n- Home Equity Line Of Credit\n- Signature Loan\n- Signature Line Of Credit\n- Recreational Vehicle",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "ConsumerLoanTypeId",
+					"Description": "The unique identifier of a type of consumer loan.",
+					"BaseAttributeReference": {
+						"Entity": "ConsumerLoanType.cdm.json/ConsumerLoanType",
+						"Name": "ConsumerLoanTypeId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "ConsumerLoanTypeName",
+					"Description": "The name of a type of consumer loan.",
+					"BaseAttributeReference": {
+						"Entity": "ConsumerLoanType.cdm.json/ConsumerLoanType",
+						"Name": "ConsumerLoanTypeName"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 256,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "ConsumerLoanTypeDescription",
+					"Description": "The description of a type of consumer loan.",
+					"BaseAttributeReference": {
+						"Entity": "ConsumerLoanType.cdm.json/ConsumerLoanType",
+						"Name": "ConsumerLoanTypeDescription"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/ConsumerLoanType",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/ConsumerLoanType",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"ConsumerLoanTypeId\":{\"entity\":\"ConsumerLoanType.cdm.json/ConsumerLoanType\",\"name\":\"ConsumerLoanTypeId\"},\"ConsumerLoanTypeName\":{\"entity\":\"ConsumerLoanType.cdm.json/ConsumerLoanType\",\"name\":\"ConsumerLoanTypeName\"},\"ConsumerLoanTypeDescription\":{\"entity\":\"ConsumerLoanType.cdm.json/ConsumerLoanType\",\"name\":\"ConsumerLoanTypeDescription\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"ConsumerLoanType\",\"path\":\"ConsumerLoanType.cdm.json/ConsumerLoanType\"},\"description\":\"The type of consumer loan.\\n\\nEx:\\n- Auto\\n- Boat\\n- Manufactured Home\\n- Home Equity Loan\\n- Home Equity Line Of Credit\\n- Signature Loan\\n- Signature Line Of Credit\\n- Recreational Vehicle\",\"primaryKey\":[\"ConsumerLoanTypeId\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ConsumerLoanType.cdm.json/ConsumerLoanType\",\"name\":\"ConsumerLoanTypeId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a type of consumer loan.\",\"isNullable\":false,\"name\":\"ConsumerLoanTypeId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ConsumerLoanType.cdm.json/ConsumerLoanType\",\"name\":\"ConsumerLoanTypeName\"},\"dataType\":\"string\",\"dataTypeLength\":256,\"description\":\"The name of a type of consumer loan.\",\"isNullable\":true,\"name\":\"ConsumerLoanTypeName\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ConsumerLoanType.cdm.json/ConsumerLoanType\",\"name\":\"ConsumerLoanTypeDescription\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"The description of a type of consumer loan.\",\"isNullable\":true,\"name\":\"ConsumerLoanTypeDescription\"}]}}}",
+			"Description": "The type of consumer loan.\n\nEx:\n- Auto\n- Boat\n- Manufactured Home\n- Home Equity Loan\n- Home Equity Line Of Credit\n- Signature Loan\n- Signature Line Of Credit\n- Recreational Vehicle",
+			"DisplayFolderInfo": "{\"name\":\"Customer Credit & Collections\",\"colorCode\":\"#022F22\"}",
+			"PrimaryKeys": "ConsumerLoanTypeId",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

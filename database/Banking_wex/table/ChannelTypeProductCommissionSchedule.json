@@ -1,0 +1,162 @@
+{
+	"name": "ChannelTypeProductCommissionSchedule",
+	"properties": {
+		"Name": "ChannelTypeProductCommissionSchedule",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "The Commission Schedule associated with a Channel Type / Product combination.",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "ChannelTypeId",
+					"Description": "The unique identifier of a Channel Type.",
+					"BaseAttributeReference": {
+						"Entity": "ChannelTypeProductCommissionSchedule.cdm.json/ChannelTypeProductCommissionSchedule",
+						"Name": "ChannelTypeId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "ProductId",
+					"Description": "The unique identifier of a Product.",
+					"BaseAttributeReference": {
+						"Entity": "ChannelTypeProductCommissionSchedule.cdm.json/ChannelTypeProductCommissionSchedule",
+						"Name": "ProductId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "long",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "long"
+						}
+					}
+				},
+				{
+					"Name": "CommissionScheduleId",
+					"Description": "The unique identifier of a Commission Schedule.",
+					"BaseAttributeReference": {
+						"Entity": "ChannelTypeProductCommissionSchedule.cdm.json/ChannelTypeProductCommissionSchedule",
+						"Name": "CommissionScheduleId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "ChannelTypeProductCommissionScheduleStartDate",
+					"Description": "The effective start date or first date that the Channel Type Product Commission Schedule is in effect.",
+					"BaseAttributeReference": {
+						"Entity": "ChannelTypeProductCommissionSchedule.cdm.json/ChannelTypeProductCommissionSchedule",
+						"Name": "ChannelTypeProductCommissionScheduleStartDate"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "date",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"DateFormat": "YYYY-MM-DD",
+							"HIVE_TYPE_STRING": "date"
+						}
+					}
+				},
+				{
+					"Name": "ChannelTypeProductCommissionScheduleEndDate",
+					"Description": "The effective end date or last date that the Channel Type Product Commission Schedule is in effect.",
+					"BaseAttributeReference": {
+						"Entity": "ChannelTypeProductCommissionSchedule.cdm.json/ChannelTypeProductCommissionSchedule",
+						"Name": "ChannelTypeProductCommissionScheduleEndDate"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "date",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"DateFormat": "YYYY-MM-DD",
+							"HIVE_TYPE_STRING": "date"
+						}
+					}
+				},
+				{
+					"Name": "ChannelTypeProductCommissionScheduleNote",
+					"Description": "Notes, comments or additional information regarding the Channel Type Product Commission Schedule.",
+					"BaseAttributeReference": {
+						"Entity": "ChannelTypeProductCommissionSchedule.cdm.json/ChannelTypeProductCommissionSchedule",
+						"Name": "ChannelTypeProductCommissionScheduleNote"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/ChannelTypeProductCommissionSchedule",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/ChannelTypeProductCommissionSchedule",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"ChannelTypeId\":{\"entity\":\"ChannelTypeProductCommissionSchedule.cdm.json/ChannelTypeProductCommissionSchedule\",\"name\":\"ChannelTypeId\"},\"ProductId\":{\"entity\":\"ChannelTypeProductCommissionSchedule.cdm.json/ChannelTypeProductCommissionSchedule\",\"name\":\"ProductId\"},\"CommissionScheduleId\":{\"entity\":\"ChannelTypeProductCommissionSchedule.cdm.json/ChannelTypeProductCommissionSchedule\",\"name\":\"CommissionScheduleId\"},\"ChannelTypeProductCommissionScheduleStartDate\":{\"entity\":\"ChannelTypeProductCommissionSchedule.cdm.json/ChannelTypeProductCommissionSchedule\",\"name\":\"ChannelTypeProductCommissionScheduleStartDate\"},\"ChannelTypeProductCommissionScheduleEndDate\":{\"entity\":\"ChannelTypeProductCommissionSchedule.cdm.json/ChannelTypeProductCommissionSchedule\",\"name\":\"ChannelTypeProductCommissionScheduleEndDate\"},\"ChannelTypeProductCommissionScheduleNote\":{\"entity\":\"ChannelTypeProductCommissionSchedule.cdm.json/ChannelTypeProductCommissionSchedule\",\"name\":\"ChannelTypeProductCommissionScheduleNote\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"ChannelTypeProductCommissionSchedule\",\"path\":\"ChannelTypeProductCommissionSchedule.cdm.json/ChannelTypeProductCommissionSchedule\"},\"description\":\"The Commission Schedule associated with a Channel Type / Product combination.\",\"primaryKey\":[\"ChannelTypeId\",\"ProductId\",\"CommissionScheduleId\",\"ChannelTypeProductCommissionScheduleStartDate\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ChannelTypeProductCommissionSchedule.cdm.json/ChannelTypeProductCommissionSchedule\",\"name\":\"ChannelTypeId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Channel Type.\",\"isNullable\":false,\"name\":\"ChannelTypeId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ChannelTypeProductCommissionSchedule.cdm.json/ChannelTypeProductCommissionSchedule\",\"name\":\"ProductId\"},\"dataType\":\"long\",\"description\":\"The unique identifier of a Product.\",\"isNullable\":false,\"name\":\"ProductId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ChannelTypeProductCommissionSchedule.cdm.json/ChannelTypeProductCommissionSchedule\",\"name\":\"CommissionScheduleId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Commission Schedule.\",\"isNullable\":false,\"name\":\"CommissionScheduleId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ChannelTypeProductCommissionSchedule.cdm.json/ChannelTypeProductCommissionSchedule\",\"name\":\"ChannelTypeProductCommissionScheduleStartDate\"},\"dataType\":\"date\",\"dateFormat\":\"YYYY-MM-DD\",\"description\":\"The effective start date or first date that the Channel Type Product Commission Schedule is in effect.\",\"isNullable\":false,\"name\":\"ChannelTypeProductCommissionScheduleStartDate\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ChannelTypeProductCommissionSchedule.cdm.json/ChannelTypeProductCommissionSchedule\",\"name\":\"ChannelTypeProductCommissionScheduleEndDate\"},\"dataType\":\"date\",\"dateFormat\":\"YYYY-MM-DD\",\"description\":\"The effective end date or last date that the Channel Type Product Commission Schedule is in effect.\",\"isNullable\":true,\"name\":\"ChannelTypeProductCommissionScheduleEndDate\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ChannelTypeProductCommissionSchedule.cdm.json/ChannelTypeProductCommissionSchedule\",\"name\":\"ChannelTypeProductCommissionScheduleNote\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"Notes, comments or additional information regarding the Channel Type Product Commission Schedule.\",\"isNullable\":true,\"name\":\"ChannelTypeProductCommissionScheduleNote\"}]}}}",
+			"Description": "The Commission Schedule associated with a Channel Type / Product combination.",
+			"DisplayFolderInfo": "{\"name\":\"Channel\",\"colorCode\":\"#001D3F\"}",
+			"PrimaryKeys": "ChannelTypeId,ProductId,CommissionScheduleId,ChannelTypeProductCommissionScheduleStartDate",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

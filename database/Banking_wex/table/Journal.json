@@ -1,0 +1,144 @@
+{
+	"name": "Journal",
+	"properties": {
+		"Name": "Journal",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "The journal or 'day book' is the book of 'original entry' for accounting data.  \n\nData is subsequently transferred or posted to the ledger from the journal as the book of 'subsequent or secondary entry'.\n\nThere are different journals that may be used by a business that can be categorized as either:\n\n1.  The general journal\n2.  Specialized journal(s)\n\nSpecialized journals are used where there is a large number of repetitive transactions or function-specific transactions.\n\nThe entry of a transaction into a journal is the starting point for its record within the financial accounting system.\n\nThe journal entry represents a chronological record of the transaction with the date of the transaction, and explanation of the transaction, the accounts affected and the amounts affected within each account.\n\nThe net amount of any journal entry will be zero so it's application to a specific journal entry is applied as a debit or credit.",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "JournalId",
+					"Description": "The unique identifier of a Journal.",
+					"BaseAttributeReference": {
+						"Entity": "Journal.cdm.json/Journal",
+						"Name": "JournalId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "JournalName",
+					"Description": "The name of the journal.",
+					"BaseAttributeReference": {
+						"Entity": "Journal.cdm.json/Journal",
+						"Name": "JournalName"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 256,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "LegalEntityId",
+					"Description": "The unique identifier of a Legal Entity.",
+					"BaseAttributeReference": {
+						"Entity": "Journal.cdm.json/Journal",
+						"Name": "LegalEntityId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "SpecialJournalIndicator",
+					"Description": "Special journals divide the labor required.    They are books of original entry (journals) that are specifically designed for the purpose of recording similar transactions.\n\nSpecial journals take the place of the general journal.\n\nThis is primarily a result of the volume of transactions that are recorded by the business.   A large volume of transaction may require that special journals be defined so that work can be segmented among staff to address the special/volume requirements.",
+					"BaseAttributeReference": {
+						"Entity": "Journal.cdm.json/Journal",
+						"Name": "SpecialJournalIndicator"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "boolean",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"HIVE_TYPE_STRING": "boolean"
+						}
+					}
+				},
+				{
+					"Name": "JournalTypeId",
+					"Description": "The unique identifier of a Journal Type.",
+					"BaseAttributeReference": {
+						"Entity": "Journal.cdm.json/Journal",
+						"Name": "JournalTypeId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/Journal",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/Journal",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"JournalId\":{\"entity\":\"Journal.cdm.json/Journal\",\"name\":\"JournalId\"},\"JournalName\":{\"entity\":\"Journal.cdm.json/Journal\",\"name\":\"JournalName\"},\"LegalEntityId\":{\"entity\":\"Journal.cdm.json/Journal\",\"name\":\"LegalEntityId\"},\"SpecialJournalIndicator\":{\"entity\":\"Journal.cdm.json/Journal\",\"name\":\"SpecialJournalIndicator\"},\"JournalTypeId\":{\"entity\":\"Journal.cdm.json/Journal\",\"name\":\"JournalTypeId\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"Journal\",\"path\":\"Journal.cdm.json/Journal\"},\"description\":\"The journal or 'day book' is the book of 'original entry' for accounting data.  \\n\\nData is subsequently transferred or posted to the ledger from the journal as the book of 'subsequent or secondary entry'.\\n\\nThere are different journals that may be used by a business that can be categorized as either:\\n\\n1.  The general journal\\n2.  Specialized journal(s)\\n\\nSpecialized journals are used where there is a large number of repetitive transactions or function-specific transactions.\\n\\nThe entry of a transaction into a journal is the starting point for its record within the financial accounting system.\\n\\nThe journal entry represents a chronological record of the transaction with the date of the transaction, and explanation of the transaction, the accounts affected and the amounts affected within each account.\\n\\nThe net amount of any journal entry will be zero so it's application to a specific journal entry is applied as a debit or credit.\",\"primaryKey\":[\"JournalId\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"Journal.cdm.json/Journal\",\"name\":\"JournalId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Journal.\",\"isNullable\":false,\"name\":\"JournalId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"Journal.cdm.json/Journal\",\"name\":\"JournalName\"},\"dataType\":\"string\",\"dataTypeLength\":256,\"description\":\"The name of the journal.\",\"isNullable\":true,\"name\":\"JournalName\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"Journal.cdm.json/Journal\",\"name\":\"LegalEntityId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Legal Entity.\",\"isNullable\":true,\"name\":\"LegalEntityId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"Journal.cdm.json/Journal\",\"name\":\"SpecialJournalIndicator\"},\"dataType\":\"boolean\",\"description\":\"Special journals divide the labor required.    They are books of original entry (journals) that are specifically designed for the purpose of recording similar transactions.\\n\\nSpecial journals take the place of the general journal.\\n\\nThis is primarily a result of the volume of transactions that are recorded by the business.   A large volume of transaction may require that special journals be defined so that work can be segmented among staff to address the special/volume requirements.\",\"isNullable\":true,\"name\":\"SpecialJournalIndicator\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"Journal.cdm.json/Journal\",\"name\":\"JournalTypeId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Journal Type.\",\"isNullable\":true,\"name\":\"JournalTypeId\"}]}}}",
+			"Description": "The journal or 'day book' is the book of 'original entry' for accounting data.  \n\nData is subsequently transferred or posted to the ledger from the journal as the book of 'subsequent or secondary entry'.\n\nThere are different journals that may be used by a business that can be categorized as either:\n\n1.  The general journal\n2.  Specialized journal(s)\n\nSpecialized journals are used where there is a large number of repetitive transactions or function-specific transactions.\n\nThe entry of a transaction into a journal is the starting point for its record within the financial accounting system.\n\nThe journal entry represents a chronological record of the transaction with the date of the transaction, and explanation of the transaction, the accounts affected and the amounts affected within each account.\n\nThe net amount of any journal entry will be zero so it's application to a specific journal entry is applied as a debit or credit.",
+			"DisplayFolderInfo": "{\"name\":\"Accounting & Financial Reporting\",\"colorCode\":\"#0078D4\"}",
+			"PrimaryKeys": "JournalId",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

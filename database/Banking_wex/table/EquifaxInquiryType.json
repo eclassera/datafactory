@@ -1,0 +1,113 @@
+{
+	"name": "EquifaxInquiryType",
+	"properties": {
+		"Name": "EquifaxInquiryType",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "The type of Equifax inquiry.\n\nEx:\n- Non-Financial\n- Financial",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "EquifaxInquiryTypeId",
+					"Description": "The unique identifier of an Equifax Inquiry Type.",
+					"BaseAttributeReference": {
+						"Entity": "EquifaxInquiryType.cdm.json/EquifaxInquiryType",
+						"Name": "EquifaxInquiryTypeId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "EquifaxInquiryTypeName",
+					"Description": "The name of an Equifax Inquiry Type.",
+					"BaseAttributeReference": {
+						"Entity": "EquifaxInquiryType.cdm.json/EquifaxInquiryType",
+						"Name": "EquifaxInquiryTypeName"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 256,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "EquifaxInquiryTypeDescription",
+					"Description": "The description of an Equifax Inquiry Type.",
+					"BaseAttributeReference": {
+						"Entity": "EquifaxInquiryType.cdm.json/EquifaxInquiryType",
+						"Name": "EquifaxInquiryTypeDescription"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/EquifaxInquiryType",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/EquifaxInquiryType",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"EquifaxInquiryTypeId\":{\"entity\":\"EquifaxInquiryType.cdm.json/EquifaxInquiryType\",\"name\":\"EquifaxInquiryTypeId\"},\"EquifaxInquiryTypeName\":{\"entity\":\"EquifaxInquiryType.cdm.json/EquifaxInquiryType\",\"name\":\"EquifaxInquiryTypeName\"},\"EquifaxInquiryTypeDescription\":{\"entity\":\"EquifaxInquiryType.cdm.json/EquifaxInquiryType\",\"name\":\"EquifaxInquiryTypeDescription\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"EquifaxInquiryType\",\"path\":\"EquifaxInquiryType.cdm.json/EquifaxInquiryType\"},\"description\":\"The type of Equifax inquiry.\\n\\nEx:\\n- Non-Financial\\n- Financial\",\"primaryKey\":[\"EquifaxInquiryTypeId\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"EquifaxInquiryType.cdm.json/EquifaxInquiryType\",\"name\":\"EquifaxInquiryTypeId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of an Equifax Inquiry Type.\",\"isNullable\":false,\"name\":\"EquifaxInquiryTypeId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"EquifaxInquiryType.cdm.json/EquifaxInquiryType\",\"name\":\"EquifaxInquiryTypeName\"},\"dataType\":\"string\",\"dataTypeLength\":256,\"description\":\"The name of an Equifax Inquiry Type.\",\"isNullable\":true,\"name\":\"EquifaxInquiryTypeName\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"EquifaxInquiryType.cdm.json/EquifaxInquiryType\",\"name\":\"EquifaxInquiryTypeDescription\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"The description of an Equifax Inquiry Type.\",\"isNullable\":true,\"name\":\"EquifaxInquiryTypeDescription\"}]}}}",
+			"Description": "The type of Equifax inquiry.\n\nEx:\n- Non-Financial\n- Financial",
+			"DisplayFolderInfo": "{\"name\":\"Customer Credit & Collections\",\"colorCode\":\"#022F22\"}",
+			"PrimaryKeys": "EquifaxInquiryTypeId",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

@@ -1,0 +1,113 @@
+{
+	"name": "LineOfCreditStatusType",
+	"properties": {
+		"Name": "LineOfCreditStatusType",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "The Line Of Credit status of the personal Line Of Credit.\n\nEx:\nCURRENT\nLine Of Credit payments are current and paid.\n\nDELINQUENT\nLine Of Credit payments are delinquent or unpaid.\n\nIN-DEFAULT\nThe Line Of Credit is in default due to unpaid payments or failure to comply with the terms and conditions of the Line Of Credit.",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "LineOfCreditStatusTypeId",
+					"Description": "The unique identifier of a Line Of Credit Status Type.",
+					"BaseAttributeReference": {
+						"Entity": "LineOfCreditStatusType.cdm.json/LineOfCreditStatusType",
+						"Name": "LineOfCreditStatusTypeId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "LineOfCreditStatusTypeName",
+					"Description": "The name of a Line Of Credit Status Type.",
+					"BaseAttributeReference": {
+						"Entity": "LineOfCreditStatusType.cdm.json/LineOfCreditStatusType",
+						"Name": "LineOfCreditStatusTypeName"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 256,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "LineOfCreditStatusTypeDescription",
+					"Description": "The description of a Line Of Credit Status Type.",
+					"BaseAttributeReference": {
+						"Entity": "LineOfCreditStatusType.cdm.json/LineOfCreditStatusType",
+						"Name": "LineOfCreditStatusTypeDescription"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/LineOfCreditStatusType",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/LineOfCreditStatusType",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"LineOfCreditStatusTypeId\":{\"entity\":\"LineOfCreditStatusType.cdm.json/LineOfCreditStatusType\",\"name\":\"LineOfCreditStatusTypeId\"},\"LineOfCreditStatusTypeName\":{\"entity\":\"LineOfCreditStatusType.cdm.json/LineOfCreditStatusType\",\"name\":\"LineOfCreditStatusTypeName\"},\"LineOfCreditStatusTypeDescription\":{\"entity\":\"LineOfCreditStatusType.cdm.json/LineOfCreditStatusType\",\"name\":\"LineOfCreditStatusTypeDescription\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"LineOfCreditStatusType\",\"path\":\"LineOfCreditStatusType.cdm.json/LineOfCreditStatusType\"},\"description\":\"The Line Of Credit status of the personal Line Of Credit.\\n\\nEx:\\nCURRENT\\nLine Of Credit payments are current and paid.\\n\\nDELINQUENT\\nLine Of Credit payments are delinquent or unpaid.\\n\\nIN-DEFAULT\\nThe Line Of Credit is in default due to unpaid payments or failure to comply with the terms and conditions of the Line Of Credit.\",\"primaryKey\":[\"LineOfCreditStatusTypeId\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"LineOfCreditStatusType.cdm.json/LineOfCreditStatusType\",\"name\":\"LineOfCreditStatusTypeId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Line Of Credit Status Type.\",\"isNullable\":false,\"name\":\"LineOfCreditStatusTypeId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"LineOfCreditStatusType.cdm.json/LineOfCreditStatusType\",\"name\":\"LineOfCreditStatusTypeName\"},\"dataType\":\"string\",\"dataTypeLength\":256,\"description\":\"The name of a Line Of Credit Status Type.\",\"isNullable\":true,\"name\":\"LineOfCreditStatusTypeName\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"LineOfCreditStatusType.cdm.json/LineOfCreditStatusType\",\"name\":\"LineOfCreditStatusTypeDescription\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"The description of a Line Of Credit Status Type.\",\"isNullable\":true,\"name\":\"LineOfCreditStatusTypeDescription\"}]}}}",
+			"Description": "The Line Of Credit status of the personal Line Of Credit.\n\nEx:\nCURRENT\nLine Of Credit payments are current and paid.\n\nDELINQUENT\nLine Of Credit payments are delinquent or unpaid.\n\nIN-DEFAULT\nThe Line Of Credit is in default due to unpaid payments or failure to comply with the terms and conditions of the Line Of Credit.",
+			"DisplayFolderInfo": "{\"name\":\"Customer Credit & Collections\",\"colorCode\":\"#022F22\"}",
+			"PrimaryKeys": "LineOfCreditStatusTypeId",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

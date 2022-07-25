@@ -1,0 +1,113 @@
+{
+	"name": "TransunionAccountType",
+	"properties": {
+		"Name": "TransunionAccountType",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "The type of TransUnion account.\n\nEx:\n- O Open Account (30, 60 or 90 days)\n- R Revolving or Option\n- I Installment\n- M Mortgage\n- A Automobile\n- C Check credit (line of credit)",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "TransunionAccountTypeId",
+					"Description": "The unique identifier of a TransUnion account type.",
+					"BaseAttributeReference": {
+						"Entity": "TransunionAccountType.cdm.json/TransunionAccountType",
+						"Name": "TransunionAccountTypeId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "TransunionAccountTypeName",
+					"Description": "The name of a TransUnion account type.",
+					"BaseAttributeReference": {
+						"Entity": "TransunionAccountType.cdm.json/TransunionAccountType",
+						"Name": "TransunionAccountTypeName"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 256,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "TransunionAccountTypeDescription",
+					"Description": "The description of a TransUnion account type.",
+					"BaseAttributeReference": {
+						"Entity": "TransunionAccountType.cdm.json/TransunionAccountType",
+						"Name": "TransunionAccountTypeDescription"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/TransunionAccountType",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/TransunionAccountType",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"TransunionAccountTypeId\":{\"entity\":\"TransunionAccountType.cdm.json/TransunionAccountType\",\"name\":\"TransunionAccountTypeId\"},\"TransunionAccountTypeName\":{\"entity\":\"TransunionAccountType.cdm.json/TransunionAccountType\",\"name\":\"TransunionAccountTypeName\"},\"TransunionAccountTypeDescription\":{\"entity\":\"TransunionAccountType.cdm.json/TransunionAccountType\",\"name\":\"TransunionAccountTypeDescription\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"TransunionAccountType\",\"path\":\"TransunionAccountType.cdm.json/TransunionAccountType\"},\"description\":\"The type of TransUnion account.\\n\\nEx:\\n- O Open Account (30, 60 or 90 days)\\n- R Revolving or Option\\n- I Installment\\n- M Mortgage\\n- A Automobile\\n- C Check credit (line of credit)\",\"primaryKey\":[\"TransunionAccountTypeId\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"TransunionAccountType.cdm.json/TransunionAccountType\",\"name\":\"TransunionAccountTypeId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a TransUnion account type.\",\"isNullable\":false,\"name\":\"TransunionAccountTypeId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"TransunionAccountType.cdm.json/TransunionAccountType\",\"name\":\"TransunionAccountTypeName\"},\"dataType\":\"string\",\"dataTypeLength\":256,\"description\":\"The name of a TransUnion account type.\",\"isNullable\":true,\"name\":\"TransunionAccountTypeName\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"TransunionAccountType.cdm.json/TransunionAccountType\",\"name\":\"TransunionAccountTypeDescription\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"The description of a TransUnion account type.\",\"isNullable\":true,\"name\":\"TransunionAccountTypeDescription\"}]}}}",
+			"Description": "The type of TransUnion account.\n\nEx:\n- O Open Account (30, 60 or 90 days)\n- R Revolving or Option\n- I Installment\n- M Mortgage\n- A Automobile\n- C Check credit (line of credit)",
+			"DisplayFolderInfo": "{\"name\":\"Customer Credit & Collections\",\"colorCode\":\"#022F22\"}",
+			"PrimaryKeys": "TransunionAccountTypeId",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

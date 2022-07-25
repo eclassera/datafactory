@@ -1,0 +1,96 @@
+{
+	"name": "DunBradstreetPaymentIndex",
+	"properties": {
+		"Name": "DunBradstreetPaymentIndex",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "The Dun And Bradstreet Payment Index gives an objective assessment of the speed with which a company pays its invoices. \n\nThe Index corresponds to the average number of days after the due date (or the number of days beyond agreed terms) for the company. The payment performance forms the basis of the Payment Index. \n\nD&B Payment Index  =  Payment behavior  [in days beyond agreed terms]\n----------------------------------------------------------------- \n100 = Anticipating\n90 = With discount\n80 = On time\n70 =15 days delayed\n60 = 22 days delayed\n50 = 30 days delayed\n40 = 60 days delayed\n30 = 90 days delayed\n20 = 120 days delayed\nUN = Not available",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "DunBradstreetPaymentIndexId",
+					"Description": "The unique identifier of a Dun Bradstreet Payment Index.",
+					"BaseAttributeReference": {
+						"Entity": "DunBradstreetPaymentIndex.cdm.json/DunBradstreetPaymentIndex",
+						"Name": "DunBradstreetPaymentIndexId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "DunBradstreetPaymentIndexDescription",
+					"Description": "The description of the Dun Bradstreet Payment Index.",
+					"BaseAttributeReference": {
+						"Entity": "DunBradstreetPaymentIndex.cdm.json/DunBradstreetPaymentIndex",
+						"Name": "DunBradstreetPaymentIndexDescription"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/DunBradstreetPaymentIndex",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/DunBradstreetPaymentIndex",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"DunBradstreetPaymentIndexId\":{\"entity\":\"DunBradstreetPaymentIndex.cdm.json/DunBradstreetPaymentIndex\",\"name\":\"DunBradstreetPaymentIndexId\"},\"DunBradstreetPaymentIndexDescription\":{\"entity\":\"DunBradstreetPaymentIndex.cdm.json/DunBradstreetPaymentIndex\",\"name\":\"DunBradstreetPaymentIndexDescription\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"DunBradstreetPaymentIndex\",\"path\":\"DunBradstreetPaymentIndex.cdm.json/DunBradstreetPaymentIndex\"},\"description\":\"The Dun And Bradstreet Payment Index gives an objective assessment of the speed with which a company pays its invoices. \\n\\nThe Index corresponds to the average number of days after the due date (or the number of days beyond agreed terms) for the company. The payment performance forms the basis of the Payment Index. \\n\\nD&B Payment Index  =  Payment behavior  [in days beyond agreed terms]\\n----------------------------------------------------------------- \\n100 = Anticipating\\n90 = With discount\\n80 = On time\\n70 =15 days delayed\\n60 = 22 days delayed\\n50 = 30 days delayed\\n40 = 60 days delayed\\n30 = 90 days delayed\\n20 = 120 days delayed\\nUN = Not available\",\"primaryKey\":[\"DunBradstreetPaymentIndexId\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"DunBradstreetPaymentIndex.cdm.json/DunBradstreetPaymentIndex\",\"name\":\"DunBradstreetPaymentIndexId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Dun Bradstreet Payment Index.\",\"isNullable\":false,\"name\":\"DunBradstreetPaymentIndexId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"DunBradstreetPaymentIndex.cdm.json/DunBradstreetPaymentIndex\",\"name\":\"DunBradstreetPaymentIndexDescription\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"The description of the Dun Bradstreet Payment Index.\",\"isNullable\":true,\"name\":\"DunBradstreetPaymentIndexDescription\"}]}}}",
+			"Description": "The Dun And Bradstreet Payment Index gives an objective assessment of the speed with which a company pays its invoices. \n\nThe Index corresponds to the average number of days after the due date (or the number of days beyond agreed terms) for the company. The payment performance forms the basis of the Payment Index. \n\nD&B Payment Index  =  Payment behavior  [in days beyond agreed terms]\n----------------------------------------------------------------- \n100 = Anticipating\n90 = With discount\n80 = On time\n70 =15 days delayed\n60 = 22 days delayed\n50 = 30 days delayed\n40 = 60 days delayed\n30 = 90 days delayed\n20 = 120 days delayed\nUN = Not available",
+			"DisplayFolderInfo": "{\"name\":\"Customer Credit & Collections\",\"colorCode\":\"#022F22\"}",
+			"PrimaryKeys": "DunBradstreetPaymentIndexId",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

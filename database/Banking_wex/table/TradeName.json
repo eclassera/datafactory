@@ -1,0 +1,164 @@
+{
+	"name": "TradeName",
+	"properties": {
+		"Name": "TradeName",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "A trade name(s) or commercial name(s) is any individual name, surname, firm name and name used by manufacturers, industrialists, merchants, agriculturists, or others to identify their business, vocation, or occupation. They are names or titles lawfully adopted and used by persons, firms, associations, corporations, companies, unions, and any manufacturing, industrial, commercial, agricultural, or other organization engaged in trade or commerce. A trade name may be any name used by a person to identify his or her business or vocation.\n\nA trade name/commercial name symbolizes the reputation of a person's business/vocation or occupation as a whole. By comparison, a trademark/mark identifies a person's goods or services.  \n\nLike a trademark or service mark, a trade name is protected by law against infringement. A trade name that has been used for at least 6 months can be recorded with the Customs Bureau, and any infringing imports will be barred. \n\nBusinesses use trade names mostly to help market their products or promote their brand. Trade name is generally considered the name a business uses for advertising and sales purposes that is different from the legal name in its articles of incorporation or other organizing documents. \n\nExamples:\n\nIBM has more than one trade name (IBM, International Business Machines)\n\nTrade names may or may not be unique depending on the jurisdiction.   For example, they may be unique in a state but not nationally in the US.",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "TradeNameId",
+					"Description": "The unique identifier of a Trade Name.",
+					"BaseAttributeReference": {
+						"Entity": "TradeName.cdm.json/TradeName",
+						"Name": "TradeNameId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "TradeName",
+					"Description": "Other names under which the Legal Entity bills products or services.",
+					"BaseAttributeReference": {
+						"Entity": "TradeName.cdm.json/TradeName",
+						"Name": "TradeName"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 256,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "TradeNameDescription",
+					"Description": "A description of the Trade Name.",
+					"BaseAttributeReference": {
+						"Entity": "TradeName.cdm.json/TradeName",
+						"Name": "TradeNameDescription"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "TradeNameEstablishedDate",
+					"Description": "The date that the Trade Name was established.",
+					"BaseAttributeReference": {
+						"Entity": "TradeName.cdm.json/TradeName",
+						"Name": "TradeNameEstablishedDate"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "date",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"DateFormat": "YYYY-MM-DD",
+							"HIVE_TYPE_STRING": "date"
+						}
+					}
+				},
+				{
+					"Name": "TradeNameFirstUsedDate",
+					"Description": "The date that the Trade Name was first used.",
+					"BaseAttributeReference": {
+						"Entity": "TradeName.cdm.json/TradeName",
+						"Name": "TradeNameFirstUsedDate"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "date",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"DateFormat": "YYYY-MM-DD",
+							"HIVE_TYPE_STRING": "date"
+						}
+					}
+				},
+				{
+					"Name": "TradeNameNote",
+					"Description": "Notes, comments or additional information regarding the Trade Name.",
+					"BaseAttributeReference": {
+						"Entity": "TradeName.cdm.json/TradeName",
+						"Name": "TradeNameNote"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/TradeName",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/TradeName",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"TradeNameId\":{\"entity\":\"TradeName.cdm.json/TradeName\",\"name\":\"TradeNameId\"},\"TradeName\":{\"entity\":\"TradeName.cdm.json/TradeName\",\"name\":\"TradeName\"},\"TradeNameDescription\":{\"entity\":\"TradeName.cdm.json/TradeName\",\"name\":\"TradeNameDescription\"},\"TradeNameEstablishedDate\":{\"entity\":\"TradeName.cdm.json/TradeName\",\"name\":\"TradeNameEstablishedDate\"},\"TradeNameFirstUsedDate\":{\"entity\":\"TradeName.cdm.json/TradeName\",\"name\":\"TradeNameFirstUsedDate\"},\"TradeNameNote\":{\"entity\":\"TradeName.cdm.json/TradeName\",\"name\":\"TradeNameNote\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"TradeName\",\"path\":\"TradeName.cdm.json/TradeName\"},\"description\":\"A trade name(s) or commercial name(s) is any individual name, surname, firm name and name used by manufacturers, industrialists, merchants, agriculturists, or others to identify their business, vocation, or occupation. They are names or titles lawfully adopted and used by persons, firms, associations, corporations, companies, unions, and any manufacturing, industrial, commercial, agricultural, or other organization engaged in trade or commerce. A trade name may be any name used by a person to identify his or her business or vocation.\\n\\nA trade name/commercial name symbolizes the reputation of a person's business/vocation or occupation as a whole. By comparison, a trademark/mark identifies a person's goods or services.  \\n\\nLike a trademark or service mark, a trade name is protected by law against infringement. A trade name that has been used for at least 6 months can be recorded with the Customs Bureau, and any infringing imports will be barred. \\n\\nBusinesses use trade names mostly to help market their products or promote their brand. Trade name is generally considered the name a business uses for advertising and sales purposes that is different from the legal name in its articles of incorporation or other organizing documents. \\n\\nExamples:\\n\\nIBM has more than one trade name (IBM, International Business Machines)\\n\\nTrade names may or may not be unique depending on the jurisdiction.   For example, they may be unique in a state but not nationally in the US.\",\"primaryKey\":[\"TradeNameId\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"TradeName.cdm.json/TradeName\",\"name\":\"TradeNameId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Trade Name.\",\"isNullable\":false,\"name\":\"TradeNameId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"TradeName.cdm.json/TradeName\",\"name\":\"TradeName\"},\"dataType\":\"string\",\"dataTypeLength\":256,\"description\":\"Other names under which the Legal Entity bills products or services.\",\"isNullable\":true,\"name\":\"TradeName\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"TradeName.cdm.json/TradeName\",\"name\":\"TradeNameDescription\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"A description of the Trade Name.\",\"isNullable\":true,\"name\":\"TradeNameDescription\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"TradeName.cdm.json/TradeName\",\"name\":\"TradeNameEstablishedDate\"},\"dataType\":\"date\",\"dateFormat\":\"YYYY-MM-DD\",\"description\":\"The date that the Trade Name was established.\",\"isNullable\":true,\"name\":\"TradeNameEstablishedDate\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"TradeName.cdm.json/TradeName\",\"name\":\"TradeNameFirstUsedDate\"},\"dataType\":\"date\",\"dateFormat\":\"YYYY-MM-DD\",\"description\":\"The date that the Trade Name was first used.\",\"isNullable\":true,\"name\":\"TradeNameFirstUsedDate\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"TradeName.cdm.json/TradeName\",\"name\":\"TradeNameNote\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"Notes, comments or additional information regarding the Trade Name.\",\"isNullable\":true,\"name\":\"TradeNameNote\"}]}}}",
+			"Description": "A trade name(s) or commercial name(s) is any individual name, surname, firm name and name used by manufacturers, industrialists, merchants, agriculturists, or others to identify their business, vocation, or occupation. They are names or titles lawfully adopted and used by persons, firms, associations, corporations, companies, unions, and any manufacturing, industrial, commercial, agricultural, or other organization engaged in trade or commerce. A trade name may be any name used by a person to identify his or her business or vocation.\n\nA trade name/commercial name symbolizes the reputation of a person's business/vocation or occupation as a whole. By comparison, a trademark/mark identifies a person's goods or services.  \n\nLike a trademark or service mark, a trade name is protected by law against infringement. A trade name that has been used for at least 6 months can be recorded with the Customs Bureau, and any infringing imports will be barred. \n\nBusinesses use trade names mostly to help market their products or promote their brand. Trade name is generally considered the name a business uses for advertising and sales purposes that is different from the legal name in its articles of incorporation or other organizing documents. \n\nExamples:\n\nIBM has more than one trade name (IBM, International Business Machines)\n\nTrade names may or may not be unique depending on the jurisdiction.   For example, they may be unique in a state but not nationally in the US.",
+			"DisplayFolderInfo": "{\"name\":\"Party\",\"colorCode\":\"#00727A\"}",
+			"PrimaryKeys": "TradeNameId",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

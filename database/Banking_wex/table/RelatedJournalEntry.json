@@ -1,0 +1,160 @@
+{
+	"name": "RelatedJournalEntry",
+	"properties": {
+		"Name": "RelatedJournalEntry",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "The relationship of two or more journal entries.",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "JournalId",
+					"Description": "The unique identifier of a Journal.",
+					"BaseAttributeReference": {
+						"Entity": "RelatedJournalEntry.cdm.json/RelatedJournalEntry",
+						"Name": "JournalId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "JournalEntryId",
+					"Description": "The unique identifier of a Journal Entry.",
+					"BaseAttributeReference": {
+						"Entity": "RelatedJournalEntry.cdm.json/RelatedJournalEntry",
+						"Name": "JournalEntryId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "RelatedJournalId",
+					"Description": "The unique identifier of a Journal.",
+					"BaseAttributeReference": {
+						"Entity": "RelatedJournalEntry.cdm.json/RelatedJournalEntry",
+						"Name": "RelatedJournalId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "RelatedJournalEntryId",
+					"Description": "The unique identifier of a Journal Entry.",
+					"BaseAttributeReference": {
+						"Entity": "RelatedJournalEntry.cdm.json/RelatedJournalEntry",
+						"Name": "RelatedJournalEntryId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "RelatedJournalEntryRelationshipDescription",
+					"Description": "A description of the relationship between the journal entries.",
+					"BaseAttributeReference": {
+						"Entity": "RelatedJournalEntry.cdm.json/RelatedJournalEntry",
+						"Name": "RelatedJournalEntryRelationshipDescription"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "JournalEntryRelationshipTypeId",
+					"Description": "The unique identifier of an Account Relationship Type.",
+					"BaseAttributeReference": {
+						"Entity": "RelatedJournalEntry.cdm.json/RelatedJournalEntry",
+						"Name": "JournalEntryRelationshipTypeId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/RelatedJournalEntry",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/RelatedJournalEntry",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"JournalId\":{\"entity\":\"RelatedJournalEntry.cdm.json/RelatedJournalEntry\",\"name\":\"JournalId\"},\"JournalEntryId\":{\"entity\":\"RelatedJournalEntry.cdm.json/RelatedJournalEntry\",\"name\":\"JournalEntryId\"},\"RelatedJournalId\":{\"entity\":\"RelatedJournalEntry.cdm.json/RelatedJournalEntry\",\"name\":\"RelatedJournalId\"},\"RelatedJournalEntryId\":{\"entity\":\"RelatedJournalEntry.cdm.json/RelatedJournalEntry\",\"name\":\"RelatedJournalEntryId\"},\"RelatedJournalEntryRelationshipDescription\":{\"entity\":\"RelatedJournalEntry.cdm.json/RelatedJournalEntry\",\"name\":\"RelatedJournalEntryRelationshipDescription\"},\"JournalEntryRelationshipTypeId\":{\"entity\":\"RelatedJournalEntry.cdm.json/RelatedJournalEntry\",\"name\":\"JournalEntryRelationshipTypeId\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"RelatedJournalEntry\",\"path\":\"RelatedJournalEntry.cdm.json/RelatedJournalEntry\"},\"description\":\"The relationship of two or more journal entries.\",\"primaryKey\":[\"JournalId\",\"JournalEntryId\",\"RelatedJournalId\",\"RelatedJournalEntryId\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"RelatedJournalEntry.cdm.json/RelatedJournalEntry\",\"name\":\"JournalId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Journal.\",\"isNullable\":false,\"name\":\"JournalId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"RelatedJournalEntry.cdm.json/RelatedJournalEntry\",\"name\":\"JournalEntryId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Journal Entry.\",\"isNullable\":false,\"name\":\"JournalEntryId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"RelatedJournalEntry.cdm.json/RelatedJournalEntry\",\"name\":\"RelatedJournalId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Journal.\",\"isNullable\":false,\"name\":\"RelatedJournalId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"RelatedJournalEntry.cdm.json/RelatedJournalEntry\",\"name\":\"RelatedJournalEntryId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Journal Entry.\",\"isNullable\":false,\"name\":\"RelatedJournalEntryId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"RelatedJournalEntry.cdm.json/RelatedJournalEntry\",\"name\":\"RelatedJournalEntryRelationshipDescription\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"A description of the relationship between the journal entries.\",\"isNullable\":true,\"name\":\"RelatedJournalEntryRelationshipDescription\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"RelatedJournalEntry.cdm.json/RelatedJournalEntry\",\"name\":\"JournalEntryRelationshipTypeId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of an Account Relationship Type.\",\"isNullable\":true,\"name\":\"JournalEntryRelationshipTypeId\"}]}}}",
+			"Description": "The relationship of two or more journal entries.",
+			"DisplayFolderInfo": "{\"name\":\"Accounting & Financial Reporting\",\"colorCode\":\"#0078D4\"}",
+			"PrimaryKeys": "JournalId,JournalEntryId,RelatedJournalId,RelatedJournalEntryId",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

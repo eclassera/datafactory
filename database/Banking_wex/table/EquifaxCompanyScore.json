@@ -1,0 +1,293 @@
+{
+	"name": "EquifaxCompanyScore",
+	"properties": {
+		"Name": "EquifaxCompanyScore",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "Equifax scores available for the company.",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "EfxId",
+					"Description": "The EFX ID™ is a unique and persistent nine-digit number that identifies and tracks the business unit with which you have the credit relationship;",
+					"BaseAttributeReference": {
+						"Entity": "EquifaxCompanyScore.cdm.json/EquifaxCompanyScore",
+						"Name": "EfxId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "ProfileTimestamp",
+					"Description": "Provides the timestamp when the inquiry was made as recorded\nby Equifax (Eastern Time).",
+					"BaseAttributeReference": {
+						"Entity": "EquifaxCompanyScore.cdm.json/EquifaxCompanyScore",
+						"Name": "ProfileTimestamp"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "timestamp",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"TimestampFormat": "YYYY-MM-DD HH:MM:SS.fffffffff",
+							"HIVE_TYPE_STRING": "timestamp"
+						}
+					}
+				},
+				{
+					"Name": "SmallBusinessCreditRiskScore",
+					"Description": "Predicts delinquency on supplier accounts by predicting the probability of a new or existing small business customer becoming seriously delinquent on supplier accounts or bankrupt within a 12 month period.\n\nProvides a score between 101-816 with a lower score indicating a higher risk for serious delinquency.",
+					"BaseAttributeReference": {
+						"Entity": "EquifaxCompanyScore.cdm.json/EquifaxCompanyScore",
+						"Name": "SmallBusinessCreditRiskScore"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "BusinessFailureRiskScore",
+					"Description": "Predicts the likelihood that a business will fail within a 12 month period.\n\nA score of 1000-1880 indicates a higher probability for a business failure.\n\nA score of 0 indicates a bankruptcy on file.",
+					"BaseAttributeReference": {
+						"Entity": "EquifaxCompanyScore.cdm.json/EquifaxCompanyScore",
+						"Name": "BusinessFailureRiskScore"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "TotalCreditLimitAmount",
+					"Description": "Illustrates available credit line dollars which could be used for meeting other financial obligations. Credit line dollars based on revolving financial accounts; excludes term loans, leases, and charged-off accounts; includes open, revolving accounts and closed accounts still owing a balance.",
+					"BaseAttributeReference": {
+						"Entity": "EquifaxCompanyScore.cdm.json/EquifaxCompanyScore",
+						"Name": "TotalCreditLimitAmount"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "decimal",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Precision": 18,
+						"Scale": 2,
+						"Properties": {
+							"HIVE_TYPE_STRING": "decimal"
+						}
+					}
+				},
+				{
+					"Name": "RecentTrend",
+					"Description": "The average days beyond terms calculated within the last 120-150 days from the date of inquiry.",
+					"BaseAttributeReference": {
+						"Entity": "EquifaxCompanyScore.cdm.json/EquifaxCompanyScore",
+						"Name": "RecentTrend"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "PaymentIndex",
+					"Description": "A dollar-weighted indicator of a business's past and current payment performance based on the total number of financial and non-financial payment experiences in the Equifax Commercial database. \n\nThe median Payment Index for the inquired business's industry is also returned for benchmark purposes, provided there is enough information in the Equifax Commercial database on that particular industry to ensure a statistically valid value. The chart below provides a suggested interpretation of the Payment Index value:\n \nEx:\n90+       Paid As Agreed\n80-89    1-30 Days Past Due\n60-79    31-60 Days Past Due\n40-59    61-90 Days Past Due\n20-39    91-120 Days Past Due\n1-19      120+ Days Past Due",
+					"BaseAttributeReference": {
+						"Entity": "EquifaxCompanyScore.cdm.json/EquifaxCompanyScore",
+						"Name": "PaymentIndex"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "AverageDaysBeyondTerms",
+					"Description": "Average Days Beyond Terms calculated within the last 120 to 150 days from the date of inquiry.",
+					"BaseAttributeReference": {
+						"Entity": "EquifaxCompanyScore.cdm.json/EquifaxCompanyScore",
+						"Name": "AverageDaysBeyondTerms"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "BusinessCreditRiskClass",
+					"Description": "Predicts the likelihood that the business will incur severe delinquency (greater than 90 days) or charge-off on any account, or bankruptcy, over the next 12 months. The score assigns a 1-5 risk class category. No reason codes are provided.",
+					"BaseAttributeReference": {
+						"Entity": "EquifaxCompanyScore.cdm.json/EquifaxCompanyScore",
+						"Name": "BusinessCreditRiskClass"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "EarlyDefaultScore",
+					"Description": "An account acquisition score that predicts the likelihood that an applicant will not pay within the first four months after booking.\n\nSpecifically, the score predicts the likelihood that an applicant will have a balance, greater than $10, which either increases or stays the same for the first four consecutive months after the booked date. score ranging from 1- 100, with a score of 100 indicating the highest probability of non-payment within the first 120 days. Up to four reason codes are returned.*",
+					"BaseAttributeReference": {
+						"Entity": "EquifaxCompanyScore.cdm.json/EquifaxCompanyScore",
+						"Name": "EarlyDefaultScore"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "BusinessFailureRiskLevel",
+					"Description": "Predicts the likelihood of a business failure (formal or informal bankruptcies) within a 12-month period. Output includes a red, yellow or green code. No reason codes are provided.",
+					"BaseAttributeReference": {
+						"Entity": "EquifaxCompanyScore.cdm.json/EquifaxCompanyScore",
+						"Name": "BusinessFailureRiskLevel"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "BusinessFailureRiskRating",
+					"Description": "Predicts the likelihood of\na business failure (formal or informal bankruptcies) within\na 12-month period. The score assigns a 1-9 risk level\ncategory. No reason codes are provided.",
+					"BaseAttributeReference": {
+						"Entity": "EquifaxCompanyScore.cdm.json/EquifaxCompanyScore",
+						"Name": "BusinessFailureRiskRating"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "decimal",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Precision": 3,
+						"Scale": 0,
+						"Properties": {
+							"HIVE_TYPE_STRING": "decimal"
+						}
+					}
+				},
+				{
+					"Name": "CompanyPaymentIndex",
+					"Description": "The payment index is a dollar-weighted indicator of a business's past and current payment performance based on the total number of financial and non-financial payment experiences in the Equifax Commercial database.\n\n100 means all financial obligations have been paid within terms.",
+					"BaseAttributeReference": {
+						"Entity": "EquifaxCompanyScore.cdm.json/EquifaxCompanyScore",
+						"Name": "CompanyPaymentIndex"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "IndustryPaymentIndex",
+					"Description": "The payment index for the industry in which the company is categorized.",
+					"BaseAttributeReference": {
+						"Entity": "EquifaxCompanyScore.cdm.json/EquifaxCompanyScore",
+						"Name": "IndustryPaymentIndex"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/EquifaxCompanyScore",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/EquifaxCompanyScore",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"EfxId\":{\"entity\":\"EquifaxCompanyScore.cdm.json/EquifaxCompanyScore\",\"name\":\"EfxId\"},\"ProfileTimestamp\":{\"entity\":\"EquifaxCompanyScore.cdm.json/EquifaxCompanyScore\",\"name\":\"ProfileTimestamp\"},\"SmallBusinessCreditRiskScore\":{\"entity\":\"EquifaxCompanyScore.cdm.json/EquifaxCompanyScore\",\"name\":\"SmallBusinessCreditRiskScore\"},\"BusinessFailureRiskScore\":{\"entity\":\"EquifaxCompanyScore.cdm.json/EquifaxCompanyScore\",\"name\":\"BusinessFailureRiskScore\"},\"TotalCreditLimitAmount\":{\"entity\":\"EquifaxCompanyScore.cdm.json/EquifaxCompanyScore\",\"name\":\"TotalCreditLimitAmount\"},\"RecentTrend\":{\"entity\":\"EquifaxCompanyScore.cdm.json/EquifaxCompanyScore\",\"name\":\"RecentTrend\"},\"PaymentIndex\":{\"entity\":\"EquifaxCompanyScore.cdm.json/EquifaxCompanyScore\",\"name\":\"PaymentIndex\"},\"AverageDaysBeyondTerms\":{\"entity\":\"EquifaxCompanyScore.cdm.json/EquifaxCompanyScore\",\"name\":\"AverageDaysBeyondTerms\"},\"BusinessCreditRiskClass\":{\"entity\":\"EquifaxCompanyScore.cdm.json/EquifaxCompanyScore\",\"name\":\"BusinessCreditRiskClass\"},\"EarlyDefaultScore\":{\"entity\":\"EquifaxCompanyScore.cdm.json/EquifaxCompanyScore\",\"name\":\"EarlyDefaultScore\"},\"BusinessFailureRiskLevel\":{\"entity\":\"EquifaxCompanyScore.cdm.json/EquifaxCompanyScore\",\"name\":\"BusinessFailureRiskLevel\"},\"BusinessFailureRiskRating\":{\"entity\":\"EquifaxCompanyScore.cdm.json/EquifaxCompanyScore\",\"name\":\"BusinessFailureRiskRating\"},\"CompanyPaymentIndex\":{\"entity\":\"EquifaxCompanyScore.cdm.json/EquifaxCompanyScore\",\"name\":\"CompanyPaymentIndex\"},\"IndustryPaymentIndex\":{\"entity\":\"EquifaxCompanyScore.cdm.json/EquifaxCompanyScore\",\"name\":\"IndustryPaymentIndex\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"EquifaxCompanyScore\",\"path\":\"EquifaxCompanyScore.cdm.json/EquifaxCompanyScore\"},\"description\":\"Equifax scores available for the company.\",\"primaryKey\":[\"EfxId\",\"ProfileTimestamp\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"EquifaxCompanyScore.cdm.json/EquifaxCompanyScore\",\"name\":\"EfxId\"},\"dataType\":\"integer\",\"description\":\"The EFX ID™ is a unique and persistent nine-digit number that identifies and tracks the business unit with which you have the credit relationship;\",\"isNullable\":false,\"name\":\"EfxId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"EquifaxCompanyScore.cdm.json/EquifaxCompanyScore\",\"name\":\"ProfileTimestamp\"},\"dataType\":\"timestamp\",\"description\":\"Provides the timestamp when the inquiry was made as recorded\\nby Equifax (Eastern Time).\",\"isNullable\":false,\"name\":\"ProfileTimestamp\",\"timestampFormat\":\"YYYY-MM-DD HH:MM:SS.fffffffff\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"EquifaxCompanyScore.cdm.json/EquifaxCompanyScore\",\"name\":\"SmallBusinessCreditRiskScore\"},\"dataType\":\"integer\",\"description\":\"Predicts delinquency on supplier accounts by predicting the probability of a new or existing small business customer becoming seriously delinquent on supplier accounts or bankrupt within a 12 month period.\\n\\nProvides a score between 101-816 with a lower score indicating a higher risk for serious delinquency.\",\"isNullable\":true,\"name\":\"SmallBusinessCreditRiskScore\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"EquifaxCompanyScore.cdm.json/EquifaxCompanyScore\",\"name\":\"BusinessFailureRiskScore\"},\"dataType\":\"integer\",\"description\":\"Predicts the likelihood that a business will fail within a 12 month period.\\n\\nA score of 1000-1880 indicates a higher probability for a business failure.\\n\\nA score of 0 indicates a bankruptcy on file.\",\"isNullable\":true,\"name\":\"BusinessFailureRiskScore\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"EquifaxCompanyScore.cdm.json/EquifaxCompanyScore\",\"name\":\"TotalCreditLimitAmount\"},\"dataType\":\"decimal\",\"dataTypeLength\":18,\"description\":\"Illustrates available credit line dollars which could be used for meeting other financial obligations. Credit line dollars based on revolving financial accounts; excludes term loans, leases, and charged-off accounts; includes open, revolving accounts and closed accounts still owing a balance.\",\"isNullable\":true,\"scale\":2,\"name\":\"TotalCreditLimitAmount\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"EquifaxCompanyScore.cdm.json/EquifaxCompanyScore\",\"name\":\"RecentTrend\"},\"dataType\":\"integer\",\"description\":\"The average days beyond terms calculated within the last 120-150 days from the date of inquiry.\",\"isNullable\":true,\"name\":\"RecentTrend\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"EquifaxCompanyScore.cdm.json/EquifaxCompanyScore\",\"name\":\"PaymentIndex\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"A dollar-weighted indicator of a business's past and current payment performance based on the total number of financial and non-financial payment experiences in the Equifax Commercial database. \\n\\nThe median Payment Index for the inquired business's industry is also returned for benchmark purposes, provided there is enough information in the Equifax Commercial database on that particular industry to ensure a statistically valid value. The chart below provides a suggested interpretation of the Payment Index value:\\n \\nEx:\\n90+       Paid As Agreed\\n80-89    1-30 Days Past Due\\n60-79    31-60 Days Past Due\\n40-59    61-90 Days Past Due\\n20-39    91-120 Days Past Due\\n1-19      120+ Days Past Due\",\"isNullable\":true,\"name\":\"PaymentIndex\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"EquifaxCompanyScore.cdm.json/EquifaxCompanyScore\",\"name\":\"AverageDaysBeyondTerms\"},\"dataType\":\"integer\",\"description\":\"Average Days Beyond Terms calculated within the last 120 to 150 days from the date of inquiry.\",\"isNullable\":true,\"name\":\"AverageDaysBeyondTerms\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"EquifaxCompanyScore.cdm.json/EquifaxCompanyScore\",\"name\":\"BusinessCreditRiskClass\"},\"dataType\":\"integer\",\"description\":\"Predicts the likelihood that the business will incur severe delinquency (greater than 90 days) or charge-off on any account, or bankruptcy, over the next 12 months. The score assigns a 1-5 risk class category. No reason codes are provided.\",\"isNullable\":true,\"name\":\"BusinessCreditRiskClass\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"EquifaxCompanyScore.cdm.json/EquifaxCompanyScore\",\"name\":\"EarlyDefaultScore\"},\"dataType\":\"integer\",\"description\":\"An account acquisition score that predicts the likelihood that an applicant will not pay within the first four months after booking.\\n\\nSpecifically, the score predicts the likelihood that an applicant will have a balance, greater than $10, which either increases or stays the same for the first four consecutive months after the booked date. score ranging from 1- 100, with a score of 100 indicating the highest probability of non-payment within the first 120 days. Up to four reason codes are returned.*\",\"isNullable\":true,\"name\":\"EarlyDefaultScore\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"EquifaxCompanyScore.cdm.json/EquifaxCompanyScore\",\"name\":\"BusinessFailureRiskLevel\"},\"dataType\":\"integer\",\"description\":\"Predicts the likelihood of a business failure (formal or informal bankruptcies) within a 12-month period. Output includes a red, yellow or green code. No reason codes are provided.\",\"isNullable\":true,\"name\":\"BusinessFailureRiskLevel\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"EquifaxCompanyScore.cdm.json/EquifaxCompanyScore\",\"name\":\"BusinessFailureRiskRating\"},\"dataType\":\"decimal\",\"dataTypeLength\":3,\"description\":\"Predicts the likelihood of\\na business failure (formal or informal bankruptcies) within\\na 12-month period. The score assigns a 1-9 risk level\\ncategory. No reason codes are provided.\",\"isNullable\":true,\"scale\":0,\"name\":\"BusinessFailureRiskRating\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"EquifaxCompanyScore.cdm.json/EquifaxCompanyScore\",\"name\":\"CompanyPaymentIndex\"},\"dataType\":\"integer\",\"description\":\"The payment index is a dollar-weighted indicator of a business's past and current payment performance based on the total number of financial and non-financial payment experiences in the Equifax Commercial database.\\n\\n100 means all financial obligations have been paid within terms.\",\"isNullable\":true,\"name\":\"CompanyPaymentIndex\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"EquifaxCompanyScore.cdm.json/EquifaxCompanyScore\",\"name\":\"IndustryPaymentIndex\"},\"dataType\":\"integer\",\"description\":\"The payment index for the industry in which the company is categorized.\",\"isNullable\":true,\"name\":\"IndustryPaymentIndex\"}]}}}",
+			"Description": "Equifax scores available for the company.",
+			"DisplayFolderInfo": "{\"name\":\"Customer Credit & Collections\",\"colorCode\":\"#022F22\"}",
+			"PrimaryKeys": "EfxId,ProfileTimestamp",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

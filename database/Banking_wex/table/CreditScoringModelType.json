@@ -1,0 +1,113 @@
+{
+	"name": "CreditScoringModelType",
+	"properties": {
+		"Name": "CreditScoringModelType",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "A type of credit scoring model used for determining credit scores.\n\nEx:\n- FICO\n- FICO Auto\n- FICO Bankcard\n- Vantage\n- Experian\n- Equifax\n- TransUnion\n- Internal",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "CreditScoringModelTypeId",
+					"Description": "The unique identifier of a Credit Scoring Model Type.",
+					"BaseAttributeReference": {
+						"Entity": "CreditScoringModelType.cdm.json/CreditScoringModelType",
+						"Name": "CreditScoringModelTypeId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "CreditScoringModelTypeName",
+					"Description": "The name of a Credit Scoring Model Type.",
+					"BaseAttributeReference": {
+						"Entity": "CreditScoringModelType.cdm.json/CreditScoringModelType",
+						"Name": "CreditScoringModelTypeName"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 256,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "CreditScoringModelTypeDescription",
+					"Description": "The description of a Credit Scoring Model Type.",
+					"BaseAttributeReference": {
+						"Entity": "CreditScoringModelType.cdm.json/CreditScoringModelType",
+						"Name": "CreditScoringModelTypeDescription"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/CreditScoringModelType",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/CreditScoringModelType",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"CreditScoringModelTypeId\":{\"entity\":\"CreditScoringModelType.cdm.json/CreditScoringModelType\",\"name\":\"CreditScoringModelTypeId\"},\"CreditScoringModelTypeName\":{\"entity\":\"CreditScoringModelType.cdm.json/CreditScoringModelType\",\"name\":\"CreditScoringModelTypeName\"},\"CreditScoringModelTypeDescription\":{\"entity\":\"CreditScoringModelType.cdm.json/CreditScoringModelType\",\"name\":\"CreditScoringModelTypeDescription\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"CreditScoringModelType\",\"path\":\"CreditScoringModelType.cdm.json/CreditScoringModelType\"},\"description\":\"A type of credit scoring model used for determining credit scores.\\n\\nEx:\\n- FICO\\n- FICO Auto\\n- FICO Bankcard\\n- Vantage\\n- Experian\\n- Equifax\\n- TransUnion\\n- Internal\",\"primaryKey\":[\"CreditScoringModelTypeId\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CreditScoringModelType.cdm.json/CreditScoringModelType\",\"name\":\"CreditScoringModelTypeId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Credit Scoring Model Type.\",\"isNullable\":false,\"name\":\"CreditScoringModelTypeId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CreditScoringModelType.cdm.json/CreditScoringModelType\",\"name\":\"CreditScoringModelTypeName\"},\"dataType\":\"string\",\"dataTypeLength\":256,\"description\":\"The name of a Credit Scoring Model Type.\",\"isNullable\":true,\"name\":\"CreditScoringModelTypeName\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CreditScoringModelType.cdm.json/CreditScoringModelType\",\"name\":\"CreditScoringModelTypeDescription\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"The description of a Credit Scoring Model Type.\",\"isNullable\":true,\"name\":\"CreditScoringModelTypeDescription\"}]}}}",
+			"Description": "A type of credit scoring model used for determining credit scores.\n\nEx:\n- FICO\n- FICO Auto\n- FICO Bankcard\n- Vantage\n- Experian\n- Equifax\n- TransUnion\n- Internal",
+			"DisplayFolderInfo": "{\"name\":\"Customer Credit & Collections\",\"colorCode\":\"#022F22\"}",
+			"PrimaryKeys": "CreditScoringModelTypeId",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

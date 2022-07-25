@@ -1,0 +1,113 @@
+{
+	"name": "LienStatusType",
+	"properties": {
+		"Name": "LienStatusType",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "A classification of legal action status that may be applied to or used to identify a Lien Proceeding.\n\nEx:\n- Filed\n- In Court\n- Discharged\n- Dismissed \n- Imposed",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "LienStatusTypeId",
+					"Description": "The unique identifier of a Lien Status Type.",
+					"BaseAttributeReference": {
+						"Entity": "LienStatusType.cdm.json/LienStatusType",
+						"Name": "LienStatusTypeId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "LienStatusTypeName",
+					"Description": "The name of a Lien Status Type.",
+					"BaseAttributeReference": {
+						"Entity": "LienStatusType.cdm.json/LienStatusType",
+						"Name": "LienStatusTypeName"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 256,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "LienStatusTypeDescription",
+					"Description": "The description of a Lien Status Type.",
+					"BaseAttributeReference": {
+						"Entity": "LienStatusType.cdm.json/LienStatusType",
+						"Name": "LienStatusTypeDescription"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/LienStatusType",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/LienStatusType",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"LienStatusTypeId\":{\"entity\":\"LienStatusType.cdm.json/LienStatusType\",\"name\":\"LienStatusTypeId\"},\"LienStatusTypeName\":{\"entity\":\"LienStatusType.cdm.json/LienStatusType\",\"name\":\"LienStatusTypeName\"},\"LienStatusTypeDescription\":{\"entity\":\"LienStatusType.cdm.json/LienStatusType\",\"name\":\"LienStatusTypeDescription\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"LienStatusType\",\"path\":\"LienStatusType.cdm.json/LienStatusType\"},\"description\":\"A classification of legal action status that may be applied to or used to identify a Lien Proceeding.\\n\\nEx:\\n- Filed\\n- In Court\\n- Discharged\\n- Dismissed \\n- Imposed\",\"primaryKey\":[\"LienStatusTypeId\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"LienStatusType.cdm.json/LienStatusType\",\"name\":\"LienStatusTypeId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Lien Status Type.\",\"isNullable\":false,\"name\":\"LienStatusTypeId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"LienStatusType.cdm.json/LienStatusType\",\"name\":\"LienStatusTypeName\"},\"dataType\":\"string\",\"dataTypeLength\":256,\"description\":\"The name of a Lien Status Type.\",\"isNullable\":true,\"name\":\"LienStatusTypeName\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"LienStatusType.cdm.json/LienStatusType\",\"name\":\"LienStatusTypeDescription\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"The description of a Lien Status Type.\",\"isNullable\":true,\"name\":\"LienStatusTypeDescription\"}]}}}",
+			"Description": "A classification of legal action status that may be applied to or used to identify a Lien Proceeding.\n\nEx:\n- Filed\n- In Court\n- Discharged\n- Dismissed \n- Imposed",
+			"DisplayFolderInfo": "{\"name\":\"Customer Credit & Collections\",\"colorCode\":\"#022F22\"}",
+			"PrimaryKeys": "LienStatusTypeId",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

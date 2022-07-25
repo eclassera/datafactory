@@ -1,0 +1,129 @@
+{
+	"name": "ShipmentMethod",
+	"properties": {
+		"Name": "ShipmentMethod",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "The method by which the shipment is to be shipped.\n\nEx:\n- Air - general air cargo\n- Air - next day air\n- Air - overnight air\n- Barge\n- Fast Freight\n- Piggyback Service\n- Pipeline\n- Rail\n- Ship\n- Tanker\n- Truck\n- Transloading Privilege\n- Vessel",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "ShipmentMethodId",
+					"Description": "The unique identifier of a Shipment Method.",
+					"BaseAttributeReference": {
+						"Entity": "ShipmentMethod.cdm.json/ShipmentMethod",
+						"Name": "ShipmentMethodId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "ShipmentMethodName",
+					"Description": "The name of a Shipment Method.",
+					"BaseAttributeReference": {
+						"Entity": "ShipmentMethod.cdm.json/ShipmentMethod",
+						"Name": "ShipmentMethodName"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 256,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "ShipmentMethodDescription",
+					"Description": "The description of a Shipment Method.",
+					"BaseAttributeReference": {
+						"Entity": "ShipmentMethod.cdm.json/ShipmentMethod",
+						"Name": "ShipmentMethodDescription"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "ExpressShipmentMethodIndicator",
+					"Description": "Indicates whether the shipment method is considered to be an express shipment method.",
+					"BaseAttributeReference": {
+						"Entity": "ShipmentMethod.cdm.json/ShipmentMethod",
+						"Name": "ExpressShipmentMethodIndicator"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "boolean",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"HIVE_TYPE_STRING": "boolean"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/ShipmentMethod",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/ShipmentMethod",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"ShipmentMethodId\":{\"entity\":\"ShipmentMethod.cdm.json/ShipmentMethod\",\"name\":\"ShipmentMethodId\"},\"ShipmentMethodName\":{\"entity\":\"ShipmentMethod.cdm.json/ShipmentMethod\",\"name\":\"ShipmentMethodName\"},\"ShipmentMethodDescription\":{\"entity\":\"ShipmentMethod.cdm.json/ShipmentMethod\",\"name\":\"ShipmentMethodDescription\"},\"ExpressShipmentMethodIndicator\":{\"entity\":\"ShipmentMethod.cdm.json/ShipmentMethod\",\"name\":\"ExpressShipmentMethodIndicator\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"ShipmentMethod\",\"path\":\"ShipmentMethod.cdm.json/ShipmentMethod\"},\"description\":\"The method by which the shipment is to be shipped.\\n\\nEx:\\n- Air - general air cargo\\n- Air - next day air\\n- Air - overnight air\\n- Barge\\n- Fast Freight\\n- Piggyback Service\\n- Pipeline\\n- Rail\\n- Ship\\n- Tanker\\n- Truck\\n- Transloading Privilege\\n- Vessel\",\"primaryKey\":[\"ShipmentMethodId\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ShipmentMethod.cdm.json/ShipmentMethod\",\"name\":\"ShipmentMethodId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Shipment Method.\",\"isNullable\":false,\"name\":\"ShipmentMethodId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ShipmentMethod.cdm.json/ShipmentMethod\",\"name\":\"ShipmentMethodName\"},\"dataType\":\"string\",\"dataTypeLength\":256,\"description\":\"The name of a Shipment Method.\",\"isNullable\":true,\"name\":\"ShipmentMethodName\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ShipmentMethod.cdm.json/ShipmentMethod\",\"name\":\"ShipmentMethodDescription\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"The description of a Shipment Method.\",\"isNullable\":true,\"name\":\"ShipmentMethodDescription\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ShipmentMethod.cdm.json/ShipmentMethod\",\"name\":\"ExpressShipmentMethodIndicator\"},\"dataType\":\"boolean\",\"description\":\"Indicates whether the shipment method is considered to be an express shipment method.\",\"isNullable\":true,\"name\":\"ExpressShipmentMethodIndicator\"}]}}}",
+			"Description": "The method by which the shipment is to be shipped.\n\nEx:\n- Air - general air cargo\n- Air - next day air\n- Air - overnight air\n- Barge\n- Fast Freight\n- Piggyback Service\n- Pipeline\n- Rail\n- Ship\n- Tanker\n- Truck\n- Transloading Privilege\n- Vessel",
+			"DisplayFolderInfo": "{\"name\":\"Shipping\",\"colorCode\":\"#0C614C\"}",
+			"PrimaryKeys": "ShipmentMethodId",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

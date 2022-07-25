@@ -1,0 +1,212 @@
+{
+	"name": "AtmService",
+	"properties": {
+		"Name": "AtmService",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "The one ore more ATM Services that are offered at a specific ATM site/location.",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "AtmId",
+					"Description": "The unique identifier of an ATM.",
+					"BaseAttributeReference": {
+						"Entity": "AtmService.cdm.json/AtmService",
+						"Name": "AtmId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "AtmServiceTypeId",
+					"Description": "The unique identifier of an ATM Service.",
+					"BaseAttributeReference": {
+						"Entity": "AtmService.cdm.json/AtmService",
+						"Name": "AtmServiceTypeId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "PeriodStartDate",
+					"Description": "The period start date that the ATM Service is offered at the Site.",
+					"BaseAttributeReference": {
+						"Entity": "AtmService.cdm.json/AtmService",
+						"Name": "PeriodStartDate"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "date",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"DateFormat": "YYYY-MM-DD",
+							"HIVE_TYPE_STRING": "date"
+						}
+					}
+				},
+				{
+					"Name": "PeriodEndDate",
+					"Description": "The period end date that the ATM Service is offered at the Site.",
+					"BaseAttributeReference": {
+						"Entity": "AtmService.cdm.json/AtmService",
+						"Name": "PeriodEndDate"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "date",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"DateFormat": "YYYY-MM-DD",
+							"HIVE_TYPE_STRING": "date"
+						}
+					}
+				},
+				{
+					"Name": "AtmServiceFirstOfferedDate",
+					"Description": "The first date that the ATM Service was offered at the ATM Site.",
+					"BaseAttributeReference": {
+						"Entity": "AtmService.cdm.json/AtmService",
+						"Name": "AtmServiceFirstOfferedDate"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "date",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"DateFormat": "YYYY-MM-DD",
+							"HIVE_TYPE_STRING": "date"
+						}
+					}
+				},
+				{
+					"Name": "AtmServicePlannedAbandonmentDate",
+					"Description": "The planned abandonment date of the ATM Service at the ATM Site.",
+					"BaseAttributeReference": {
+						"Entity": "AtmService.cdm.json/AtmService",
+						"Name": "AtmServicePlannedAbandonmentDate"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "date",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"DateFormat": "YYYY-MM-DD",
+							"HIVE_TYPE_STRING": "date"
+						}
+					}
+				},
+				{
+					"Name": "LimitedAccessIndicator",
+					"Description": "Limited access allows certain types of parties to make deposits and check balances at the ATM, but does not permit withdrawals.",
+					"BaseAttributeReference": {
+						"Entity": "AtmService.cdm.json/AtmService",
+						"Name": "LimitedAccessIndicator"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "boolean",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"HIVE_TYPE_STRING": "boolean"
+						}
+					}
+				},
+				{
+					"Name": "FullAccessIndicator",
+					"Description": "Full ATM access offers the complete range of transactions including withdrawals and transfers between accounts.",
+					"BaseAttributeReference": {
+						"Entity": "AtmService.cdm.json/AtmService",
+						"Name": "FullAccessIndicator"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "boolean",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"HIVE_TYPE_STRING": "boolean"
+						}
+					}
+				},
+				{
+					"Name": "AtmServiceNote",
+					"Description": "A note, comment or additional information regarding the ATM Service.",
+					"BaseAttributeReference": {
+						"Entity": "AtmService.cdm.json/AtmService",
+						"Name": "AtmServiceNote"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/AtmService",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/AtmService",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"AtmId\":{\"entity\":\"AtmService.cdm.json/AtmService\",\"name\":\"AtmId\"},\"AtmServiceTypeId\":{\"entity\":\"AtmService.cdm.json/AtmService\",\"name\":\"AtmServiceTypeId\"},\"PeriodStartDate\":{\"entity\":\"AtmService.cdm.json/AtmService\",\"name\":\"PeriodStartDate\"},\"PeriodEndDate\":{\"entity\":\"AtmService.cdm.json/AtmService\",\"name\":\"PeriodEndDate\"},\"AtmServiceFirstOfferedDate\":{\"entity\":\"AtmService.cdm.json/AtmService\",\"name\":\"AtmServiceFirstOfferedDate\"},\"AtmServicePlannedAbandonmentDate\":{\"entity\":\"AtmService.cdm.json/AtmService\",\"name\":\"AtmServicePlannedAbandonmentDate\"},\"LimitedAccessIndicator\":{\"entity\":\"AtmService.cdm.json/AtmService\",\"name\":\"LimitedAccessIndicator\"},\"FullAccessIndicator\":{\"entity\":\"AtmService.cdm.json/AtmService\",\"name\":\"FullAccessIndicator\"},\"AtmServiceNote\":{\"entity\":\"AtmService.cdm.json/AtmService\",\"name\":\"AtmServiceNote\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"AtmService\",\"path\":\"AtmService.cdm.json/AtmService\"},\"description\":\"The one ore more ATM Services that are offered at a specific ATM site/location.\",\"primaryKey\":[\"AtmId\",\"AtmServiceTypeId\",\"PeriodStartDate\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"AtmService.cdm.json/AtmService\",\"name\":\"AtmId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of an ATM.\",\"isNullable\":false,\"name\":\"AtmId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"AtmService.cdm.json/AtmService\",\"name\":\"AtmServiceTypeId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of an ATM Service.\",\"isNullable\":false,\"name\":\"AtmServiceTypeId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"AtmService.cdm.json/AtmService\",\"name\":\"PeriodStartDate\"},\"dataType\":\"date\",\"dateFormat\":\"YYYY-MM-DD\",\"description\":\"The period start date that the ATM Service is offered at the Site.\",\"isNullable\":false,\"name\":\"PeriodStartDate\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"AtmService.cdm.json/AtmService\",\"name\":\"PeriodEndDate\"},\"dataType\":\"date\",\"dateFormat\":\"YYYY-MM-DD\",\"description\":\"The period end date that the ATM Service is offered at the Site.\",\"isNullable\":false,\"name\":\"PeriodEndDate\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"AtmService.cdm.json/AtmService\",\"name\":\"AtmServiceFirstOfferedDate\"},\"dataType\":\"date\",\"dateFormat\":\"YYYY-MM-DD\",\"description\":\"The first date that the ATM Service was offered at the ATM Site.\",\"isNullable\":true,\"name\":\"AtmServiceFirstOfferedDate\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"AtmService.cdm.json/AtmService\",\"name\":\"AtmServicePlannedAbandonmentDate\"},\"dataType\":\"date\",\"dateFormat\":\"YYYY-MM-DD\",\"description\":\"The planned abandonment date of the ATM Service at the ATM Site.\",\"isNullable\":true,\"name\":\"AtmServicePlannedAbandonmentDate\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"AtmService.cdm.json/AtmService\",\"name\":\"LimitedAccessIndicator\"},\"dataType\":\"boolean\",\"description\":\"Limited access allows certain types of parties to make deposits and check balances at the ATM, but does not permit withdrawals.\",\"isNullable\":true,\"name\":\"LimitedAccessIndicator\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"AtmService.cdm.json/AtmService\",\"name\":\"FullAccessIndicator\"},\"dataType\":\"boolean\",\"description\":\"Full ATM access offers the complete range of transactions including withdrawals and transfers between accounts.\",\"isNullable\":true,\"name\":\"FullAccessIndicator\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"AtmService.cdm.json/AtmService\",\"name\":\"AtmServiceNote\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"A note, comment or additional information regarding the ATM Service.\",\"isNullable\":true,\"name\":\"AtmServiceNote\"}]}}}",
+			"Description": "The one ore more ATM Services that are offered at a specific ATM site/location.",
+			"DisplayFolderInfo": "{\"name\":\"Channel\",\"colorCode\":\"#001D3F\"}",
+			"PrimaryKeys": "AtmId,AtmServiceTypeId,PeriodStartDate",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

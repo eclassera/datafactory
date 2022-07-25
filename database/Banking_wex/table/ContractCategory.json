@@ -1,0 +1,113 @@
+{
+	"name": "ContractCategory",
+	"properties": {
+		"Name": "ContractCategory",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "A categorization of contracts based on the relationship of the party(s) to the contract.\n\nEx:\nCONTRACT OF ADHESION\nA contract of adhesion is a contract that is submitted to the other party on a take-it or leave-it basis. There is no bargaining of terms; either you accept the agreement or you do not accept it. Many consumer contracts are contracts of adhesion. Some contracts of adhesion contain onerous or unfair terms, which may not be enforceable. If a court determines that a contract is a contract of adhesion, then the court reviews the contract and may delete the unfair term or terms.\n\nTHIRD PARTY BENEFICIARY CONTRACT\nThird party beneficiary contracts are made specifically for the benefit of a person different from one of the two contracting parties. This other person is called a third party beneficiary of the contract. The simplest example is a life insurance contract.\n\nUNILATERAL CONTRACT\nA unilateral contract is one in which a person promises to do something on specified terms.\n\nBILATERAL CONTRACT\nA bilateral contract is an exchange of promises.",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "ContractCategoryId",
+					"Description": "The unique identifier of a contract category.",
+					"BaseAttributeReference": {
+						"Entity": "ContractCategory.cdm.json/ContractCategory",
+						"Name": "ContractCategoryId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "ContractCategoryName",
+					"Description": "The name of a contract category.",
+					"BaseAttributeReference": {
+						"Entity": "ContractCategory.cdm.json/ContractCategory",
+						"Name": "ContractCategoryName"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 256,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "ContractCategoryDescription",
+					"Description": "The description of a contract category.",
+					"BaseAttributeReference": {
+						"Entity": "ContractCategory.cdm.json/ContractCategory",
+						"Name": "ContractCategoryDescription"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/ContractCategory",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/ContractCategory",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"ContractCategoryId\":{\"entity\":\"ContractCategory.cdm.json/ContractCategory\",\"name\":\"ContractCategoryId\"},\"ContractCategoryName\":{\"entity\":\"ContractCategory.cdm.json/ContractCategory\",\"name\":\"ContractCategoryName\"},\"ContractCategoryDescription\":{\"entity\":\"ContractCategory.cdm.json/ContractCategory\",\"name\":\"ContractCategoryDescription\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"ContractCategory\",\"path\":\"ContractCategory.cdm.json/ContractCategory\"},\"description\":\"A categorization of contracts based on the relationship of the party(s) to the contract.\\n\\nEx:\\nCONTRACT OF ADHESION\\nA contract of adhesion is a contract that is submitted to the other party on a take-it or leave-it basis. There is no bargaining of terms; either you accept the agreement or you do not accept it. Many consumer contracts are contracts of adhesion. Some contracts of adhesion contain onerous or unfair terms, which may not be enforceable. If a court determines that a contract is a contract of adhesion, then the court reviews the contract and may delete the unfair term or terms.\\n\\nTHIRD PARTY BENEFICIARY CONTRACT\\nThird party beneficiary contracts are made specifically for the benefit of a person different from one of the two contracting parties. This other person is called a third party beneficiary of the contract. The simplest example is a life insurance contract.\\n\\nUNILATERAL CONTRACT\\nA unilateral contract is one in which a person promises to do something on specified terms.\\n\\nBILATERAL CONTRACT\\nA bilateral contract is an exchange of promises.\",\"primaryKey\":[\"ContractCategoryId\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ContractCategory.cdm.json/ContractCategory\",\"name\":\"ContractCategoryId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a contract category.\",\"isNullable\":false,\"name\":\"ContractCategoryId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ContractCategory.cdm.json/ContractCategory\",\"name\":\"ContractCategoryName\"},\"dataType\":\"string\",\"dataTypeLength\":256,\"description\":\"The name of a contract category.\",\"isNullable\":true,\"name\":\"ContractCategoryName\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ContractCategory.cdm.json/ContractCategory\",\"name\":\"ContractCategoryDescription\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"The description of a contract category.\",\"isNullable\":true,\"name\":\"ContractCategoryDescription\"}]}}}",
+			"Description": "A categorization of contracts based on the relationship of the party(s) to the contract.\n\nEx:\nCONTRACT OF ADHESION\nA contract of adhesion is a contract that is submitted to the other party on a take-it or leave-it basis. There is no bargaining of terms; either you accept the agreement or you do not accept it. Many consumer contracts are contracts of adhesion. Some contracts of adhesion contain onerous or unfair terms, which may not be enforceable. If a court determines that a contract is a contract of adhesion, then the court reviews the contract and may delete the unfair term or terms.\n\nTHIRD PARTY BENEFICIARY CONTRACT\nThird party beneficiary contracts are made specifically for the benefit of a person different from one of the two contracting parties. This other person is called a third party beneficiary of the contract. The simplest example is a life insurance contract.\n\nUNILATERAL CONTRACT\nA unilateral contract is one in which a person promises to do something on specified terms.\n\nBILATERAL CONTRACT\nA bilateral contract is an exchange of promises.",
+			"DisplayFolderInfo": "{\"name\":\"Contract\",\"colorCode\":\"#917EDB\"}",
+			"PrimaryKeys": "ContractCategoryId",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

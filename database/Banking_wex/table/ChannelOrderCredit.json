@@ -1,0 +1,162 @@
+{
+	"name": "ChannelOrderCredit",
+	"properties": {
+		"Name": "ChannelOrderCredit",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "Credit that are assigned or awarded to channel(s) in conjunction with the associated Order but are not commissions.    \n\nCredits may be for assisting in a certain volume of sales or in regard to marketing programs, specific product sales, sales to specific customers etc.\n\nNote:\nBoth a sales and distribution channel may receive credits upon the same order, which is why both Order ID and Channel ID are part of the key.",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "ChannelId",
+					"Description": "The unique identifier of a Channel.",
+					"BaseAttributeReference": {
+						"Entity": "ChannelOrderCredit.cdm.json/ChannelOrderCredit",
+						"Name": "ChannelId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "TransactionId",
+					"Description": "The unique identifier of a Transaction.",
+					"BaseAttributeReference": {
+						"Entity": "ChannelOrderCredit.cdm.json/ChannelOrderCredit",
+						"Name": "TransactionId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "long",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "long"
+						}
+					}
+				},
+				{
+					"Name": "CreditAssignmentDate",
+					"Description": "The assignment or crediting date of the Credits.",
+					"BaseAttributeReference": {
+						"Entity": "ChannelOrderCredit.cdm.json/ChannelOrderCredit",
+						"Name": "CreditAssignmentDate"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "date",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"DateFormat": "YYYY-MM-DD",
+							"HIVE_TYPE_STRING": "date"
+						}
+					}
+				},
+				{
+					"Name": "RevenueNonRevenueCreditIndicator",
+					"Description": "Indicates whether the Credits are revenue or non-revenue based.\n\nRevenue credits are based on the invoice line items.   Non-Revenue credits are based on other things such as participating in a sale, program etc.",
+					"BaseAttributeReference": {
+						"Entity": "ChannelOrderCredit.cdm.json/ChannelOrderCredit",
+						"Name": "RevenueNonRevenueCreditIndicator"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "boolean",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"HIVE_TYPE_STRING": "boolean"
+						}
+					}
+				},
+				{
+					"Name": "NumberOfCreditsAwarded",
+					"Description": "The number of Credits awarded or assigned to the Employee.",
+					"BaseAttributeReference": {
+						"Entity": "ChannelOrderCredit.cdm.json/ChannelOrderCredit",
+						"Name": "NumberOfCreditsAwarded"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "AmountOfCreditsAwarded",
+					"Description": "The amount of Credits awarded or assigned to the Employee.",
+					"BaseAttributeReference": {
+						"Entity": "ChannelOrderCredit.cdm.json/ChannelOrderCredit",
+						"Name": "AmountOfCreditsAwarded"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "decimal",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Precision": 18,
+						"Scale": 2,
+						"Properties": {
+							"HIVE_TYPE_STRING": "decimal"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/ChannelOrderCredit",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/ChannelOrderCredit",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"ChannelId\":{\"entity\":\"ChannelOrderCredit.cdm.json/ChannelOrderCredit\",\"name\":\"ChannelId\"},\"TransactionId\":{\"entity\":\"ChannelOrderCredit.cdm.json/ChannelOrderCredit\",\"name\":\"TransactionId\"},\"CreditAssignmentDate\":{\"entity\":\"ChannelOrderCredit.cdm.json/ChannelOrderCredit\",\"name\":\"CreditAssignmentDate\"},\"RevenueNonRevenueCreditIndicator\":{\"entity\":\"ChannelOrderCredit.cdm.json/ChannelOrderCredit\",\"name\":\"RevenueNonRevenueCreditIndicator\"},\"NumberOfCreditsAwarded\":{\"entity\":\"ChannelOrderCredit.cdm.json/ChannelOrderCredit\",\"name\":\"NumberOfCreditsAwarded\"},\"AmountOfCreditsAwarded\":{\"entity\":\"ChannelOrderCredit.cdm.json/ChannelOrderCredit\",\"name\":\"AmountOfCreditsAwarded\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"ChannelOrderCredit\",\"path\":\"ChannelOrderCredit.cdm.json/ChannelOrderCredit\"},\"description\":\"Credit that are assigned or awarded to channel(s) in conjunction with the associated Order but are not commissions.    \\n\\nCredits may be for assisting in a certain volume of sales or in regard to marketing programs, specific product sales, sales to specific customers etc.\\n\\nNote:\\nBoth a sales and distribution channel may receive credits upon the same order, which is why both Order ID and Channel ID are part of the key.\",\"primaryKey\":[\"ChannelId\",\"TransactionId\",\"CreditAssignmentDate\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ChannelOrderCredit.cdm.json/ChannelOrderCredit\",\"name\":\"ChannelId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Channel.\",\"isNullable\":false,\"name\":\"ChannelId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ChannelOrderCredit.cdm.json/ChannelOrderCredit\",\"name\":\"TransactionId\"},\"dataType\":\"long\",\"description\":\"The unique identifier of a Transaction.\",\"isNullable\":false,\"name\":\"TransactionId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ChannelOrderCredit.cdm.json/ChannelOrderCredit\",\"name\":\"CreditAssignmentDate\"},\"dataType\":\"date\",\"dateFormat\":\"YYYY-MM-DD\",\"description\":\"The assignment or crediting date of the Credits.\",\"isNullable\":false,\"name\":\"CreditAssignmentDate\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ChannelOrderCredit.cdm.json/ChannelOrderCredit\",\"name\":\"RevenueNonRevenueCreditIndicator\"},\"dataType\":\"boolean\",\"description\":\"Indicates whether the Credits are revenue or non-revenue based.\\n\\nRevenue credits are based on the invoice line items.   Non-Revenue credits are based on other things such as participating in a sale, program etc.\",\"isNullable\":true,\"name\":\"RevenueNonRevenueCreditIndicator\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ChannelOrderCredit.cdm.json/ChannelOrderCredit\",\"name\":\"NumberOfCreditsAwarded\"},\"dataType\":\"integer\",\"description\":\"The number of Credits awarded or assigned to the Employee.\",\"isNullable\":true,\"name\":\"NumberOfCreditsAwarded\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ChannelOrderCredit.cdm.json/ChannelOrderCredit\",\"name\":\"AmountOfCreditsAwarded\"},\"dataType\":\"decimal\",\"dataTypeLength\":18,\"description\":\"The amount of Credits awarded or assigned to the Employee.\",\"isNullable\":true,\"scale\":2,\"name\":\"AmountOfCreditsAwarded\"}]}}}",
+			"Description": "Credit that are assigned or awarded to channel(s) in conjunction with the associated Order but are not commissions.    \n\nCredits may be for assisting in a certain volume of sales or in regard to marketing programs, specific product sales, sales to specific customers etc.\n\nNote:\nBoth a sales and distribution channel may receive credits upon the same order, which is why both Order ID and Channel ID are part of the key.",
+			"DisplayFolderInfo": "{\"name\":\"Channel\",\"colorCode\":\"#001D3F\"}",
+			"PrimaryKeys": "ChannelId,TransactionId,CreditAssignmentDate",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

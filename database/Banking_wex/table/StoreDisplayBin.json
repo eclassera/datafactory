@@ -1,0 +1,194 @@
+{
+	"name": "StoreDisplayBin",
+	"properties": {
+		"Name": "StoreDisplayBin",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "A storage device designed to hold small, discrete parts.",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "StoreId",
+					"Description": "The unique identifier of a Store.",
+					"BaseAttributeReference": {
+						"Entity": "StoreDisplayBin.cdm.json/StoreDisplayBin",
+						"Name": "StoreId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "BinId",
+					"Description": "The unique identifier of a Bin.",
+					"BaseAttributeReference": {
+						"Entity": "StoreDisplayBin.cdm.json/StoreDisplayBin",
+						"Name": "BinId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "ShelfId",
+					"Description": "The unique identifier of a Shelf.",
+					"BaseAttributeReference": {
+						"Entity": "StoreDisplayBin.cdm.json/StoreDisplayBin",
+						"Name": "ShelfId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "LocationAddress",
+					"Description": "A unique address within a Warehouse that may identify a Building, Storeroom, Area, Aisle, Shelf, Tier, Bin etc.",
+					"BaseAttributeReference": {
+						"Entity": "StoreDisplayBin.cdm.json/StoreDisplayBin",
+						"Name": "LocationAddress"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Length": 512,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "FloorLocationXCoordinate",
+					"Description": "The floor location x-coordinate of the Bin.",
+					"BaseAttributeReference": {
+						"Entity": "StoreDisplayBin.cdm.json/StoreDisplayBin",
+						"Name": "FloorLocationXCoordinate"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "FloorLocationYCoordinate",
+					"Description": "The floor location y-coordinate of the Bin.",
+					"BaseAttributeReference": {
+						"Entity": "StoreDisplayBin.cdm.json/StoreDisplayBin",
+						"Name": "FloorLocationYCoordinate"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "FloorLocationZCoordinate",
+					"Description": "The floor location z-coordinate of the Bin.",
+					"BaseAttributeReference": {
+						"Entity": "StoreDisplayBin.cdm.json/StoreDisplayBin",
+						"Name": "FloorLocationZCoordinate"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "BinStorageVolume",
+					"Description": "The storage volume of the bin measured in the unit of measure specified by the Unit of Measure ID.",
+					"BaseAttributeReference": {
+						"Entity": "StoreDisplayBin.cdm.json/StoreDisplayBin",
+						"Name": "BinStorageVolume"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "decimal",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Precision": 18,
+						"Scale": 8,
+						"Properties": {
+							"HIVE_TYPE_STRING": "decimal"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/StoreDisplayBin",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/StoreDisplayBin",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"StoreId\":{\"entity\":\"StoreDisplayBin.cdm.json/StoreDisplayBin\",\"name\":\"StoreId\"},\"BinId\":{\"entity\":\"StoreDisplayBin.cdm.json/StoreDisplayBin\",\"name\":\"BinId\"},\"ShelfId\":{\"entity\":\"StoreDisplayBin.cdm.json/StoreDisplayBin\",\"name\":\"ShelfId\"},\"LocationAddress\":{\"entity\":\"StoreDisplayBin.cdm.json/StoreDisplayBin\",\"name\":\"LocationAddress\"},\"FloorLocationXCoordinate\":{\"entity\":\"StoreDisplayBin.cdm.json/StoreDisplayBin\",\"name\":\"FloorLocationXCoordinate\"},\"FloorLocationYCoordinate\":{\"entity\":\"StoreDisplayBin.cdm.json/StoreDisplayBin\",\"name\":\"FloorLocationYCoordinate\"},\"FloorLocationZCoordinate\":{\"entity\":\"StoreDisplayBin.cdm.json/StoreDisplayBin\",\"name\":\"FloorLocationZCoordinate\"},\"BinStorageVolume\":{\"entity\":\"StoreDisplayBin.cdm.json/StoreDisplayBin\",\"name\":\"BinStorageVolume\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"StoreDisplayBin\",\"path\":\"StoreDisplayBin.cdm.json/StoreDisplayBin\"},\"description\":\"A storage device designed to hold small, discrete parts.\",\"primaryKey\":[\"StoreId\",\"BinId\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"StoreDisplayBin.cdm.json/StoreDisplayBin\",\"name\":\"StoreId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Store.\",\"isNullable\":false,\"name\":\"StoreId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"StoreDisplayBin.cdm.json/StoreDisplayBin\",\"name\":\"BinId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Bin.\",\"isNullable\":false,\"name\":\"BinId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"StoreDisplayBin.cdm.json/StoreDisplayBin\",\"name\":\"ShelfId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Shelf.\",\"isNullable\":false,\"name\":\"ShelfId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"StoreDisplayBin.cdm.json/StoreDisplayBin\",\"name\":\"LocationAddress\"},\"dataType\":\"string\",\"dataTypeLength\":512,\"description\":\"A unique address within a Warehouse that may identify a Building, Storeroom, Area, Aisle, Shelf, Tier, Bin etc.\",\"isNullable\":false,\"name\":\"LocationAddress\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"StoreDisplayBin.cdm.json/StoreDisplayBin\",\"name\":\"FloorLocationXCoordinate\"},\"dataType\":\"integer\",\"description\":\"The floor location x-coordinate of the Bin.\",\"isNullable\":true,\"name\":\"FloorLocationXCoordinate\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"StoreDisplayBin.cdm.json/StoreDisplayBin\",\"name\":\"FloorLocationYCoordinate\"},\"dataType\":\"integer\",\"description\":\"The floor location y-coordinate of the Bin.\",\"isNullable\":true,\"name\":\"FloorLocationYCoordinate\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"StoreDisplayBin.cdm.json/StoreDisplayBin\",\"name\":\"FloorLocationZCoordinate\"},\"dataType\":\"integer\",\"description\":\"The floor location z-coordinate of the Bin.\",\"isNullable\":true,\"name\":\"FloorLocationZCoordinate\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"StoreDisplayBin.cdm.json/StoreDisplayBin\",\"name\":\"BinStorageVolume\"},\"dataType\":\"decimal\",\"dataTypeLength\":18,\"description\":\"The storage volume of the bin measured in the unit of measure specified by the Unit of Measure ID.\",\"isNullable\":true,\"scale\":8,\"name\":\"BinStorageVolume\"}]}}}",
+			"Description": "A storage device designed to hold small, discrete parts.",
+			"DisplayFolderInfo": "{\"name\":\"Channel\",\"colorCode\":\"#001D3F\"}",
+			"PrimaryKeys": "StoreId,BinId",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

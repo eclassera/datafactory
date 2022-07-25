@@ -1,0 +1,113 @@
+{
+	"name": "VariableExpenseItem",
+	"properties": {
+		"Name": "VariableExpenseItem",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "A variable expense item that is applied to the Budgeted Income Statement.\n\nEx:\n- Variable cost of good sold\n- Variable selling and administration",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "VariableExpenseItemId",
+					"Description": "The unique identifier of a Variable Expense Item.",
+					"BaseAttributeReference": {
+						"Entity": "VariableExpenseItem.cdm.json/VariableExpenseItem",
+						"Name": "VariableExpenseItemId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "VariableExpenseItemName",
+					"Description": "The name of a Variable Expense Item.",
+					"BaseAttributeReference": {
+						"Entity": "VariableExpenseItem.cdm.json/VariableExpenseItem",
+						"Name": "VariableExpenseItemName"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 256,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "VariableExpenseItemDescription",
+					"Description": "The description of a Variable Expense Item.",
+					"BaseAttributeReference": {
+						"Entity": "VariableExpenseItem.cdm.json/VariableExpenseItem",
+						"Name": "VariableExpenseItemDescription"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/VariableExpenseItem",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/VariableExpenseItem",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"VariableExpenseItemId\":{\"entity\":\"VariableExpenseItem.cdm.json/VariableExpenseItem\",\"name\":\"VariableExpenseItemId\"},\"VariableExpenseItemName\":{\"entity\":\"VariableExpenseItem.cdm.json/VariableExpenseItem\",\"name\":\"VariableExpenseItemName\"},\"VariableExpenseItemDescription\":{\"entity\":\"VariableExpenseItem.cdm.json/VariableExpenseItem\",\"name\":\"VariableExpenseItemDescription\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"VariableExpenseItem\",\"path\":\"VariableExpenseItem.cdm.json/VariableExpenseItem\"},\"description\":\"A variable expense item that is applied to the Budgeted Income Statement.\\n\\nEx:\\n- Variable cost of good sold\\n- Variable selling and administration\",\"primaryKey\":[\"VariableExpenseItemId\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"VariableExpenseItem.cdm.json/VariableExpenseItem\",\"name\":\"VariableExpenseItemId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Variable Expense Item.\",\"isNullable\":false,\"name\":\"VariableExpenseItemId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"VariableExpenseItem.cdm.json/VariableExpenseItem\",\"name\":\"VariableExpenseItemName\"},\"dataType\":\"string\",\"dataTypeLength\":256,\"description\":\"The name of a Variable Expense Item.\",\"isNullable\":true,\"name\":\"VariableExpenseItemName\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"VariableExpenseItem.cdm.json/VariableExpenseItem\",\"name\":\"VariableExpenseItemDescription\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"The description of a Variable Expense Item.\",\"isNullable\":true,\"name\":\"VariableExpenseItemDescription\"}]}}}",
+			"Description": "A variable expense item that is applied to the Budgeted Income Statement.\n\nEx:\n- Variable cost of good sold\n- Variable selling and administration",
+			"DisplayFolderInfo": "{\"name\":\"Budget & Forecasting\",\"colorCode\":\"#00188F\"}",
+			"PrimaryKeys": "VariableExpenseItemId",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

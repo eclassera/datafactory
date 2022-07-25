@@ -1,0 +1,113 @@
+{
+	"name": "TransunionResponsibilityType",
+	"properties": {
+		"Name": "TransunionResponsibilityType",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "The type of TransUnion responsibility associated with the data.\n\nEx:\n- A Authorized user of shared account\n- C Joint contractual liability\n- I Individual account for sole use of customer\n- M Account for which subject is liable but co-signer has liability if the maker defaults\n- P Participant in shared account which cannot be distinguished as C or A\n- S Account for which subject is co-signer and becomes liable if maker defaults\n- T Relationship with account terminated\n- U Undesignated\n- X Deceased",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "TransunionResponsibilityTypeId",
+					"Description": "The unique identifier of a TransUnion Responsibility Type.",
+					"BaseAttributeReference": {
+						"Entity": "TransunionResponsibilityType.cdm.json/TransunionResponsibilityType",
+						"Name": "TransunionResponsibilityTypeId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "TransunionResponsibilityTypeName",
+					"Description": "The name of a TransUnion Responsibility Type.",
+					"BaseAttributeReference": {
+						"Entity": "TransunionResponsibilityType.cdm.json/TransunionResponsibilityType",
+						"Name": "TransunionResponsibilityTypeName"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 256,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "TransunionResponsibilityTypeDescription",
+					"Description": "The description of a TransUnion Responsibility Type.",
+					"BaseAttributeReference": {
+						"Entity": "TransunionResponsibilityType.cdm.json/TransunionResponsibilityType",
+						"Name": "TransunionResponsibilityTypeDescription"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/TransunionResponsibilityType",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/TransunionResponsibilityType",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"TransunionResponsibilityTypeId\":{\"entity\":\"TransunionResponsibilityType.cdm.json/TransunionResponsibilityType\",\"name\":\"TransunionResponsibilityTypeId\"},\"TransunionResponsibilityTypeName\":{\"entity\":\"TransunionResponsibilityType.cdm.json/TransunionResponsibilityType\",\"name\":\"TransunionResponsibilityTypeName\"},\"TransunionResponsibilityTypeDescription\":{\"entity\":\"TransunionResponsibilityType.cdm.json/TransunionResponsibilityType\",\"name\":\"TransunionResponsibilityTypeDescription\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"TransunionResponsibilityType\",\"path\":\"TransunionResponsibilityType.cdm.json/TransunionResponsibilityType\"},\"description\":\"The type of TransUnion responsibility associated with the data.\\n\\nEx:\\n- A Authorized user of shared account\\n- C Joint contractual liability\\n- I Individual account for sole use of customer\\n- M Account for which subject is liable but co-signer has liability if the maker defaults\\n- P Participant in shared account which cannot be distinguished as C or A\\n- S Account for which subject is co-signer and becomes liable if maker defaults\\n- T Relationship with account terminated\\n- U Undesignated\\n- X Deceased\",\"primaryKey\":[\"TransunionResponsibilityTypeId\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"TransunionResponsibilityType.cdm.json/TransunionResponsibilityType\",\"name\":\"TransunionResponsibilityTypeId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a TransUnion Responsibility Type.\",\"isNullable\":false,\"name\":\"TransunionResponsibilityTypeId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"TransunionResponsibilityType.cdm.json/TransunionResponsibilityType\",\"name\":\"TransunionResponsibilityTypeName\"},\"dataType\":\"string\",\"dataTypeLength\":256,\"description\":\"The name of a TransUnion Responsibility Type.\",\"isNullable\":true,\"name\":\"TransunionResponsibilityTypeName\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"TransunionResponsibilityType.cdm.json/TransunionResponsibilityType\",\"name\":\"TransunionResponsibilityTypeDescription\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"The description of a TransUnion Responsibility Type.\",\"isNullable\":true,\"name\":\"TransunionResponsibilityTypeDescription\"}]}}}",
+			"Description": "The type of TransUnion responsibility associated with the data.\n\nEx:\n- A Authorized user of shared account\n- C Joint contractual liability\n- I Individual account for sole use of customer\n- M Account for which subject is liable but co-signer has liability if the maker defaults\n- P Participant in shared account which cannot be distinguished as C or A\n- S Account for which subject is co-signer and becomes liable if maker defaults\n- T Relationship with account terminated\n- U Undesignated\n- X Deceased",
+			"DisplayFolderInfo": "{\"name\":\"Customer Credit & Collections\",\"colorCode\":\"#022F22\"}",
+			"PrimaryKeys": "TransunionResponsibilityTypeId",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

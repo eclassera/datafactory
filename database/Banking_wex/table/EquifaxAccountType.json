@@ -1,0 +1,113 @@
+{
+	"name": "EquifaxAccountType",
+	"properties": {
+		"Name": "EquifaxAccountType",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "The Equifax account type.\n\nEx:\na) Auto\nb) Lease\nc) Auto Lease\nd) Unsecured\ne) Credit Card\nf) Home Improvement\ng) Mortgage Identification Number (if real estate)\nh) Debt Buyer Account\ni) Charge Account\nj) Education Loan",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "EquifaxAccountTypeId",
+					"Description": "The unique identifier of an Equifax account type.",
+					"BaseAttributeReference": {
+						"Entity": "EquifaxAccountType.cdm.json/EquifaxAccountType",
+						"Name": "EquifaxAccountTypeId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "EquifaxAccountTypeName",
+					"Description": "The name of an Equifax account type.",
+					"BaseAttributeReference": {
+						"Entity": "EquifaxAccountType.cdm.json/EquifaxAccountType",
+						"Name": "EquifaxAccountTypeName"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 256,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "EquifaxAccountTypeDescription",
+					"Description": "The description of an Equifax account type.",
+					"BaseAttributeReference": {
+						"Entity": "EquifaxAccountType.cdm.json/EquifaxAccountType",
+						"Name": "EquifaxAccountTypeDescription"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/EquifaxAccountType",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/EquifaxAccountType",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"EquifaxAccountTypeId\":{\"entity\":\"EquifaxAccountType.cdm.json/EquifaxAccountType\",\"name\":\"EquifaxAccountTypeId\"},\"EquifaxAccountTypeName\":{\"entity\":\"EquifaxAccountType.cdm.json/EquifaxAccountType\",\"name\":\"EquifaxAccountTypeName\"},\"EquifaxAccountTypeDescription\":{\"entity\":\"EquifaxAccountType.cdm.json/EquifaxAccountType\",\"name\":\"EquifaxAccountTypeDescription\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"EquifaxAccountType\",\"path\":\"EquifaxAccountType.cdm.json/EquifaxAccountType\"},\"description\":\"The Equifax account type.\\n\\nEx:\\na) Auto\\nb) Lease\\nc) Auto Lease\\nd) Unsecured\\ne) Credit Card\\nf) Home Improvement\\ng) Mortgage Identification Number (if real estate)\\nh) Debt Buyer Account\\ni) Charge Account\\nj) Education Loan\",\"primaryKey\":[\"EquifaxAccountTypeId\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"EquifaxAccountType.cdm.json/EquifaxAccountType\",\"name\":\"EquifaxAccountTypeId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of an Equifax account type.\",\"isNullable\":false,\"name\":\"EquifaxAccountTypeId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"EquifaxAccountType.cdm.json/EquifaxAccountType\",\"name\":\"EquifaxAccountTypeName\"},\"dataType\":\"string\",\"dataTypeLength\":256,\"description\":\"The name of an Equifax account type.\",\"isNullable\":true,\"name\":\"EquifaxAccountTypeName\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"EquifaxAccountType.cdm.json/EquifaxAccountType\",\"name\":\"EquifaxAccountTypeDescription\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"The description of an Equifax account type.\",\"isNullable\":true,\"name\":\"EquifaxAccountTypeDescription\"}]}}}",
+			"Description": "The Equifax account type.\n\nEx:\na) Auto\nb) Lease\nc) Auto Lease\nd) Unsecured\ne) Credit Card\nf) Home Improvement\ng) Mortgage Identification Number (if real estate)\nh) Debt Buyer Account\ni) Charge Account\nj) Education Loan",
+			"DisplayFolderInfo": "{\"name\":\"Customer Credit & Collections\",\"colorCode\":\"#022F22\"}",
+			"PrimaryKeys": "EquifaxAccountTypeId",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

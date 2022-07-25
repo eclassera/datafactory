@@ -1,0 +1,215 @@
+{
+	"name": "CreditRatingAgency",
+	"properties": {
+		"Name": "CreditRatingAgency",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "An independent third-party agency that investigates risk associated with holding a financial instrument, or a Customer/Applicant credit history.\n\nEx:\n-  Moody's Investor Service\n-  Standard & Poor's\n-  Duff & Phelps\n-  Fitch Investors Service\n-  Bloomberg\n-  STN Money Markets\n-  Reuters\n-  Telerate\n-  TRW Information Services\n-  Trans Union Credit Information Company\n-  CSC/Equifax\n-  Dun & Bradstreet\n-  Equifax\n-  Experian\n-  Internal",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "CreditRatingAgencyId",
+					"Description": "The unique identifier of a Credit Rating Agency.",
+					"BaseAttributeReference": {
+						"Entity": "CreditRatingAgency.cdm.json/CreditRatingAgency",
+						"Name": "CreditRatingAgencyId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "CreditRatingAgencyName",
+					"Description": "The business name of the Credit Rating Agency.",
+					"BaseAttributeReference": {
+						"Entity": "CreditRatingAgency.cdm.json/CreditRatingAgency",
+						"Name": "CreditRatingAgencyName"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 256,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "CreditRatingAgencyDescription",
+					"Description": "The description of the Credit Rating Agency.",
+					"BaseAttributeReference": {
+						"Entity": "CreditRatingAgency.cdm.json/CreditRatingAgency",
+						"Name": "CreditRatingAgencyDescription"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "LocationId",
+					"Description": "The unique identifier of a Location.",
+					"BaseAttributeReference": {
+						"Entity": "CreditRatingAgency.cdm.json/CreditRatingAgency",
+						"Name": "LocationId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "FaxNumber",
+					"Description": "The fax number of the Credit Rating Agency",
+					"BaseAttributeReference": {
+						"Entity": "CreditRatingAgency.cdm.json/CreditRatingAgency",
+						"Name": "FaxNumber"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "decimal",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Precision": 15,
+						"Scale": 0,
+						"Properties": {
+							"HIVE_TYPE_STRING": "decimal"
+						}
+					}
+				},
+				{
+					"Name": "TelephoneNumber",
+					"Description": "The telephone number of the Credit Rating Agency",
+					"BaseAttributeReference": {
+						"Entity": "CreditRatingAgency.cdm.json/CreditRatingAgency",
+						"Name": "TelephoneNumber"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "decimal",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Precision": 15,
+						"Scale": 0,
+						"Properties": {
+							"HIVE_TYPE_STRING": "decimal"
+						}
+					}
+				},
+				{
+					"Name": "PrimaryContactName",
+					"Description": "The name of the primary contact for the reviewer at the Credit Rating Agency.",
+					"BaseAttributeReference": {
+						"Entity": "CreditRatingAgency.cdm.json/CreditRatingAgency",
+						"Name": "PrimaryContactName"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 256,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "AlternateContactName",
+					"Description": "The name of the alternate contact at the Credit Rating Agency.",
+					"BaseAttributeReference": {
+						"Entity": "CreditRatingAgency.cdm.json/CreditRatingAgency",
+						"Name": "AlternateContactName"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 256,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "PartyId",
+					"Description": "The unique identifier of a Party.",
+					"BaseAttributeReference": {
+						"Entity": "CreditRatingAgency.cdm.json/CreditRatingAgency",
+						"Name": "PartyId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "long",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"HIVE_TYPE_STRING": "long"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/CreditRatingAgency",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/CreditRatingAgency",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"CreditRatingAgencyId\":{\"entity\":\"CreditRatingAgency.cdm.json/CreditRatingAgency\",\"name\":\"CreditRatingAgencyId\"},\"CreditRatingAgencyName\":{\"entity\":\"CreditRatingAgency.cdm.json/CreditRatingAgency\",\"name\":\"CreditRatingAgencyName\"},\"CreditRatingAgencyDescription\":{\"entity\":\"CreditRatingAgency.cdm.json/CreditRatingAgency\",\"name\":\"CreditRatingAgencyDescription\"},\"LocationId\":{\"entity\":\"CreditRatingAgency.cdm.json/CreditRatingAgency\",\"name\":\"LocationId\"},\"FaxNumber\":{\"entity\":\"CreditRatingAgency.cdm.json/CreditRatingAgency\",\"name\":\"FaxNumber\"},\"TelephoneNumber\":{\"entity\":\"CreditRatingAgency.cdm.json/CreditRatingAgency\",\"name\":\"TelephoneNumber\"},\"PrimaryContactName\":{\"entity\":\"CreditRatingAgency.cdm.json/CreditRatingAgency\",\"name\":\"PrimaryContactName\"},\"AlternateContactName\":{\"entity\":\"CreditRatingAgency.cdm.json/CreditRatingAgency\",\"name\":\"AlternateContactName\"},\"PartyId\":{\"entity\":\"CreditRatingAgency.cdm.json/CreditRatingAgency\",\"name\":\"PartyId\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"CreditRatingAgency\",\"path\":\"CreditRatingAgency.cdm.json/CreditRatingAgency\"},\"description\":\"An independent third-party agency that investigates risk associated with holding a financial instrument, or a Customer/Applicant credit history.\\n\\nEx:\\n-  Moody's Investor Service\\n-  Standard & Poor's\\n-  Duff & Phelps\\n-  Fitch Investors Service\\n-  Bloomberg\\n-  STN Money Markets\\n-  Reuters\\n-  Telerate\\n-  TRW Information Services\\n-  Trans Union Credit Information Company\\n-  CSC/Equifax\\n-  Dun & Bradstreet\\n-  Equifax\\n-  Experian\\n-  Internal\",\"primaryKey\":[\"CreditRatingAgencyId\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CreditRatingAgency.cdm.json/CreditRatingAgency\",\"name\":\"CreditRatingAgencyId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Credit Rating Agency.\",\"isNullable\":false,\"name\":\"CreditRatingAgencyId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CreditRatingAgency.cdm.json/CreditRatingAgency\",\"name\":\"CreditRatingAgencyName\"},\"dataType\":\"string\",\"dataTypeLength\":256,\"description\":\"The business name of the Credit Rating Agency.\",\"isNullable\":true,\"name\":\"CreditRatingAgencyName\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CreditRatingAgency.cdm.json/CreditRatingAgency\",\"name\":\"CreditRatingAgencyDescription\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"The description of the Credit Rating Agency.\",\"isNullable\":true,\"name\":\"CreditRatingAgencyDescription\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CreditRatingAgency.cdm.json/CreditRatingAgency\",\"name\":\"LocationId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Location.\",\"isNullable\":true,\"name\":\"LocationId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CreditRatingAgency.cdm.json/CreditRatingAgency\",\"name\":\"FaxNumber\"},\"dataType\":\"decimal\",\"dataTypeLength\":15,\"description\":\"The fax number of the Credit Rating Agency\",\"isNullable\":true,\"scale\":0,\"name\":\"FaxNumber\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CreditRatingAgency.cdm.json/CreditRatingAgency\",\"name\":\"TelephoneNumber\"},\"dataType\":\"decimal\",\"dataTypeLength\":15,\"description\":\"The telephone number of the Credit Rating Agency\",\"isNullable\":true,\"scale\":0,\"name\":\"TelephoneNumber\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CreditRatingAgency.cdm.json/CreditRatingAgency\",\"name\":\"PrimaryContactName\"},\"dataType\":\"string\",\"dataTypeLength\":256,\"description\":\"The name of the primary contact for the reviewer at the Credit Rating Agency.\",\"isNullable\":true,\"name\":\"PrimaryContactName\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CreditRatingAgency.cdm.json/CreditRatingAgency\",\"name\":\"AlternateContactName\"},\"dataType\":\"string\",\"dataTypeLength\":256,\"description\":\"The name of the alternate contact at the Credit Rating Agency.\",\"isNullable\":true,\"name\":\"AlternateContactName\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CreditRatingAgency.cdm.json/CreditRatingAgency\",\"name\":\"PartyId\"},\"dataType\":\"long\",\"description\":\"The unique identifier of a Party.\",\"isNullable\":true,\"name\":\"PartyId\"}]}}}",
+			"Description": "An independent third-party agency that investigates risk associated with holding a financial instrument, or a Customer/Applicant credit history.\n\nEx:\n-  Moody's Investor Service\n-  Standard & Poor's\n-  Duff & Phelps\n-  Fitch Investors Service\n-  Bloomberg\n-  STN Money Markets\n-  Reuters\n-  Telerate\n-  TRW Information Services\n-  Trans Union Credit Information Company\n-  CSC/Equifax\n-  Dun & Bradstreet\n-  Equifax\n-  Experian\n-  Internal",
+			"DisplayFolderInfo": "{\"name\":\"Customer Credit & Collections\",\"colorCode\":\"#022F22\"}",
+			"PrimaryKeys": "CreditRatingAgencyId",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

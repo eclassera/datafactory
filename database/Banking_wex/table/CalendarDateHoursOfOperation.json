@@ -1,0 +1,181 @@
+{
+	"name": "CalendarDateHoursOfOperation",
+	"properties": {
+		"Name": "CalendarDateHoursOfOperation",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "The hours of operation for a calendar date.",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "CalendarId",
+					"Description": "The unique identifier of a Calendar.",
+					"BaseAttributeReference": {
+						"Entity": "CalendarDateHoursOfOperation.cdm.json/CalendarDateHoursOfOperation",
+						"Name": "CalendarId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "Date",
+					"Description": "The date of the associated calendar.",
+					"BaseAttributeReference": {
+						"Entity": "CalendarDateHoursOfOperation.cdm.json/CalendarDateHoursOfOperation",
+						"Name": "Date"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "date",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"DateFormat": "YYYY-MM-DD",
+							"HIVE_TYPE_STRING": "date"
+						}
+					}
+				},
+				{
+					"Name": "PeriodStartDate",
+					"Description": "The period start date for which the calendar date hours of operation are valid.",
+					"BaseAttributeReference": {
+						"Entity": "CalendarDateHoursOfOperation.cdm.json/CalendarDateHoursOfOperation",
+						"Name": "PeriodStartDate"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "date",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"DateFormat": "YYYY-MM-DD",
+							"HIVE_TYPE_STRING": "date"
+						}
+					}
+				},
+				{
+					"Name": "PeriodEndDate",
+					"Description": "The period end date for which the calendar date hours of operation are valid.",
+					"BaseAttributeReference": {
+						"Entity": "CalendarDateHoursOfOperation.cdm.json/CalendarDateHoursOfOperation",
+						"Name": "PeriodEndDate"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "date",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"DateFormat": "YYYY-MM-DD",
+							"HIVE_TYPE_STRING": "date"
+						}
+					}
+				},
+				{
+					"Name": "OperationStartTime",
+					"Description": "The starting or opening time of operation for the calendar date.",
+					"BaseAttributeReference": {
+						"Entity": "CalendarDateHoursOfOperation.cdm.json/CalendarDateHoursOfOperation",
+						"Name": "OperationStartTime"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Length": 256,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "OperationEndTime",
+					"Description": "The closing or ending time of operation for the calendar date.",
+					"BaseAttributeReference": {
+						"Entity": "CalendarDateHoursOfOperation.cdm.json/CalendarDateHoursOfOperation",
+						"Name": "OperationEndTime"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Length": 256,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "CalendarDateHoursOfOperationNote",
+					"Description": "A note, comment or additional information regarding a calendar date hours of operation.",
+					"BaseAttributeReference": {
+						"Entity": "CalendarDateHoursOfOperation.cdm.json/CalendarDateHoursOfOperation",
+						"Name": "CalendarDateHoursOfOperationNote"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/CalendarDateHoursOfOperation",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/CalendarDateHoursOfOperation",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"CalendarId\":{\"entity\":\"CalendarDateHoursOfOperation.cdm.json/CalendarDateHoursOfOperation\",\"name\":\"CalendarId\"},\"Date\":{\"entity\":\"CalendarDateHoursOfOperation.cdm.json/CalendarDateHoursOfOperation\",\"name\":\"Date\"},\"PeriodStartDate\":{\"entity\":\"CalendarDateHoursOfOperation.cdm.json/CalendarDateHoursOfOperation\",\"name\":\"PeriodStartDate\"},\"PeriodEndDate\":{\"entity\":\"CalendarDateHoursOfOperation.cdm.json/CalendarDateHoursOfOperation\",\"name\":\"PeriodEndDate\"},\"OperationStartTime\":{\"entity\":\"CalendarDateHoursOfOperation.cdm.json/CalendarDateHoursOfOperation\",\"name\":\"OperationStartTime\"},\"OperationEndTime\":{\"entity\":\"CalendarDateHoursOfOperation.cdm.json/CalendarDateHoursOfOperation\",\"name\":\"OperationEndTime\"},\"CalendarDateHoursOfOperationNote\":{\"entity\":\"CalendarDateHoursOfOperation.cdm.json/CalendarDateHoursOfOperation\",\"name\":\"CalendarDateHoursOfOperationNote\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"CalendarDateHoursOfOperation\",\"path\":\"CalendarDateHoursOfOperation.cdm.json/CalendarDateHoursOfOperation\"},\"description\":\"The hours of operation for a calendar date.\",\"primaryKey\":[\"CalendarId\",\"Date\",\"PeriodStartDate\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CalendarDateHoursOfOperation.cdm.json/CalendarDateHoursOfOperation\",\"name\":\"CalendarId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Calendar.\",\"isNullable\":false,\"name\":\"CalendarId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CalendarDateHoursOfOperation.cdm.json/CalendarDateHoursOfOperation\",\"name\":\"Date\"},\"dataType\":\"date\",\"dateFormat\":\"YYYY-MM-DD\",\"description\":\"The date of the associated calendar.\",\"isNullable\":false,\"name\":\"Date\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CalendarDateHoursOfOperation.cdm.json/CalendarDateHoursOfOperation\",\"name\":\"PeriodStartDate\"},\"dataType\":\"date\",\"dateFormat\":\"YYYY-MM-DD\",\"description\":\"The period start date for which the calendar date hours of operation are valid.\",\"isNullable\":false,\"name\":\"PeriodStartDate\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CalendarDateHoursOfOperation.cdm.json/CalendarDateHoursOfOperation\",\"name\":\"PeriodEndDate\"},\"dataType\":\"date\",\"dateFormat\":\"YYYY-MM-DD\",\"description\":\"The period end date for which the calendar date hours of operation are valid.\",\"isNullable\":false,\"name\":\"PeriodEndDate\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CalendarDateHoursOfOperation.cdm.json/CalendarDateHoursOfOperation\",\"name\":\"OperationStartTime\"},\"dataType\":\"string\",\"dataTypeLength\":256,\"description\":\"The starting or opening time of operation for the calendar date.\",\"isNullable\":false,\"name\":\"OperationStartTime\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CalendarDateHoursOfOperation.cdm.json/CalendarDateHoursOfOperation\",\"name\":\"OperationEndTime\"},\"dataType\":\"string\",\"dataTypeLength\":256,\"description\":\"The closing or ending time of operation for the calendar date.\",\"isNullable\":false,\"name\":\"OperationEndTime\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CalendarDateHoursOfOperation.cdm.json/CalendarDateHoursOfOperation\",\"name\":\"CalendarDateHoursOfOperationNote\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"A note, comment or additional information regarding a calendar date hours of operation.\",\"isNullable\":true,\"name\":\"CalendarDateHoursOfOperationNote\"}]}}}",
+			"Description": "The hours of operation for a calendar date.",
+			"DisplayFolderInfo": "{\"name\":\"Human Resources & Payroll\",\"colorCode\":\"#042C59\"}",
+			"PrimaryKeys": "CalendarId,Date,PeriodStartDate",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

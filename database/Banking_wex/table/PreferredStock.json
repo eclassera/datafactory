@@ -1,0 +1,113 @@
+{
+	"name": "PreferredStock",
+	"properties": {
+		"Name": "PreferredStock",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "Capital stock that provides a specific dividend that is paid before any dividends are paid to common stock holders and takes precedence over common stocks in the event of liquidation.\n\nA class of stock that pays a specified dividend set when it is issued.\n\nPreferred stock normally pays less income than bonds of the same company and do not have the price appreciation potential of common stock.\n\nPreferred stockholders do not have any vote for management or on  key issues.   However, they do receive dividends before common stockholders receive their dividends.",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "StockId",
+					"Description": "The unique identifier of a Financial Product.",
+					"BaseAttributeReference": {
+						"Entity": "PreferredStock.cdm.json/PreferredStock",
+						"Name": "StockId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "long",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "long"
+						}
+					}
+				},
+				{
+					"Name": "ConvertibleStockRatio",
+					"Description": "The ratio at which preferred stock can be converted into a specified amount of common stock at the holder's option.",
+					"BaseAttributeReference": {
+						"Entity": "PreferredStock.cdm.json/PreferredStock",
+						"Name": "ConvertibleStockRatio"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "decimal",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Precision": 18,
+						"Scale": 8,
+						"Properties": {
+							"HIVE_TYPE_STRING": "decimal"
+						}
+					}
+				},
+				{
+					"Name": "PreferredStockTypeId",
+					"Description": "The unique identifier of a Preferred Stock Type.",
+					"BaseAttributeReference": {
+						"Entity": "PreferredStock.cdm.json/PreferredStock",
+						"Name": "PreferredStockTypeId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/PreferredStock",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/PreferredStock",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"StockId\":{\"entity\":\"PreferredStock.cdm.json/PreferredStock\",\"name\":\"StockId\"},\"ConvertibleStockRatio\":{\"entity\":\"PreferredStock.cdm.json/PreferredStock\",\"name\":\"ConvertibleStockRatio\"},\"PreferredStockTypeId\":{\"entity\":\"PreferredStock.cdm.json/PreferredStock\",\"name\":\"PreferredStockTypeId\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"PreferredStock\",\"path\":\"PreferredStock.cdm.json/PreferredStock\"},\"description\":\"Capital stock that provides a specific dividend that is paid before any dividends are paid to common stock holders and takes precedence over common stocks in the event of liquidation.\\n\\nA class of stock that pays a specified dividend set when it is issued.\\n\\nPreferred stock normally pays less income than bonds of the same company and do not have the price appreciation potential of common stock.\\n\\nPreferred stockholders do not have any vote for management or on  key issues.   However, they do receive dividends before common stockholders receive their dividends.\",\"primaryKey\":[\"StockId\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"PreferredStock.cdm.json/PreferredStock\",\"name\":\"StockId\"},\"dataType\":\"long\",\"description\":\"The unique identifier of a Financial Product.\",\"isNullable\":false,\"name\":\"StockId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"PreferredStock.cdm.json/PreferredStock\",\"name\":\"ConvertibleStockRatio\"},\"dataType\":\"decimal\",\"dataTypeLength\":18,\"description\":\"The ratio at which preferred stock can be converted into a specified amount of common stock at the holder's option.\",\"isNullable\":true,\"scale\":8,\"name\":\"ConvertibleStockRatio\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"PreferredStock.cdm.json/PreferredStock\",\"name\":\"PreferredStockTypeId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Preferred Stock Type.\",\"isNullable\":true,\"name\":\"PreferredStockTypeId\"}]}}}",
+			"Description": "Capital stock that provides a specific dividend that is paid before any dividends are paid to common stock holders and takes precedence over common stocks in the event of liquidation.\n\nA class of stock that pays a specified dividend set when it is issued.\n\nPreferred stock normally pays less income than bonds of the same company and do not have the price appreciation potential of common stock.\n\nPreferred stockholders do not have any vote for management or on  key issues.   However, they do receive dividends before common stockholders receive their dividends.",
+			"DisplayFolderInfo": "{\"name\":\"Financial Product\",\"colorCode\":\"#001475\"}",
+			"PrimaryKeys": "StockId",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

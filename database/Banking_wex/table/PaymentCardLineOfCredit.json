@@ -1,0 +1,131 @@
+{
+	"name": "PaymentCardLineOfCredit",
+	"properties": {
+		"Name": "PaymentCardLineOfCredit",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "The line of credit associated with the Payment Card for the associated period.",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "PaymentCardId",
+					"Description": "Primary Account Number (PAN) = The number that is embossed, encoded, or both, on a plastic card that identifies the issuer and the particular cardholder account.\n\nThe account number on the card, which is unique to every cardholder. The card number is used to identify the purchaser for authorization and billing purposes.",
+					"BaseAttributeReference": {
+						"Entity": "PaymentCardLineOfCredit.cdm.json/PaymentCardLineOfCredit",
+						"Name": "PaymentCardId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "PeriodStartDate",
+					"Description": "The line of credit period start date.",
+					"BaseAttributeReference": {
+						"Entity": "PaymentCardLineOfCredit.cdm.json/PaymentCardLineOfCredit",
+						"Name": "PeriodStartDate"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "date",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"DateFormat": "YYYY-MM-DD",
+							"HIVE_TYPE_STRING": "date"
+						}
+					}
+				},
+				{
+					"Name": "PeriodEndDate",
+					"Description": "The line of credit period end date.",
+					"BaseAttributeReference": {
+						"Entity": "PaymentCardLineOfCredit.cdm.json/PaymentCardLineOfCredit",
+						"Name": "PeriodEndDate"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "date",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"DateFormat": "YYYY-MM-DD",
+							"HIVE_TYPE_STRING": "date"
+						}
+					}
+				},
+				{
+					"Name": "LineOfCreditAmount",
+					"Description": "The amount of the line of credit.",
+					"BaseAttributeReference": {
+						"Entity": "PaymentCardLineOfCredit.cdm.json/PaymentCardLineOfCredit",
+						"Name": "LineOfCreditAmount"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "decimal",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Precision": 18,
+						"Scale": 2,
+						"Properties": {
+							"HIVE_TYPE_STRING": "decimal"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/PaymentCardLineOfCredit",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/PaymentCardLineOfCredit",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"PaymentCardId\":{\"entity\":\"PaymentCardLineOfCredit.cdm.json/PaymentCardLineOfCredit\",\"name\":\"PaymentCardId\"},\"PeriodStartDate\":{\"entity\":\"PaymentCardLineOfCredit.cdm.json/PaymentCardLineOfCredit\",\"name\":\"PeriodStartDate\"},\"PeriodEndDate\":{\"entity\":\"PaymentCardLineOfCredit.cdm.json/PaymentCardLineOfCredit\",\"name\":\"PeriodEndDate\"},\"LineOfCreditAmount\":{\"entity\":\"PaymentCardLineOfCredit.cdm.json/PaymentCardLineOfCredit\",\"name\":\"LineOfCreditAmount\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"PaymentCardLineOfCredit\",\"path\":\"PaymentCardLineOfCredit.cdm.json/PaymentCardLineOfCredit\"},\"description\":\"The line of credit associated with the Payment Card for the associated period.\",\"primaryKey\":[\"PaymentCardId\",\"PeriodStartDate\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"PaymentCardLineOfCredit.cdm.json/PaymentCardLineOfCredit\",\"name\":\"PaymentCardId\"},\"dataType\":\"integer\",\"description\":\"Primary Account Number (PAN) = The number that is embossed, encoded, or both, on a plastic card that identifies the issuer and the particular cardholder account.\\n\\nThe account number on the card, which is unique to every cardholder. The card number is used to identify the purchaser for authorization and billing purposes.\",\"isNullable\":false,\"name\":\"PaymentCardId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"PaymentCardLineOfCredit.cdm.json/PaymentCardLineOfCredit\",\"name\":\"PeriodStartDate\"},\"dataType\":\"date\",\"dateFormat\":\"YYYY-MM-DD\",\"description\":\"The line of credit period start date.\",\"isNullable\":false,\"name\":\"PeriodStartDate\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"PaymentCardLineOfCredit.cdm.json/PaymentCardLineOfCredit\",\"name\":\"PeriodEndDate\"},\"dataType\":\"date\",\"dateFormat\":\"YYYY-MM-DD\",\"description\":\"The line of credit period end date.\",\"isNullable\":false,\"name\":\"PeriodEndDate\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"PaymentCardLineOfCredit.cdm.json/PaymentCardLineOfCredit\",\"name\":\"LineOfCreditAmount\"},\"dataType\":\"decimal\",\"dataTypeLength\":18,\"description\":\"The amount of the line of credit.\",\"isNullable\":true,\"scale\":2,\"name\":\"LineOfCreditAmount\"}]}}}",
+			"Description": "The line of credit associated with the Payment Card for the associated period.",
+			"DisplayFolderInfo": "{\"name\":\"Customer Credit & Collections\",\"colorCode\":\"#022F22\"}",
+			"PrimaryKeys": "PaymentCardId,PeriodStartDate",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

@@ -1,0 +1,165 @@
+{
+	"name": "DunBradstreetReportSupplierRiskScore",
+	"properties": {
+		"Name": "DunBradstreetReportSupplierRiskScore",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "The Customer Dun Bradstreet Supplier Risk for the indicated range of dates.",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "DunsNumber",
+					"Description": "Dun & Bradstreet (D&B) provides a D-U-N-S Number, a unique nine digit identification number, for each physical location of your business.",
+					"BaseAttributeReference": {
+						"Entity": "DunBradstreetReportSupplierRiskScore.cdm.json/DunBradstreetReportSupplierRiskScore",
+						"Name": "DunsNumber"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "decimal",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Precision": 9,
+						"Scale": 0,
+						"Properties": {
+							"HIVE_TYPE_STRING": "decimal"
+						}
+					}
+				},
+				{
+					"Name": "ReportPurchaseDate",
+					"Description": "The purchase date of the report.",
+					"BaseAttributeReference": {
+						"Entity": "DunBradstreetReportSupplierRiskScore.cdm.json/DunBradstreetReportSupplierRiskScore",
+						"Name": "ReportPurchaseDate"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "date",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"DateFormat": "YYYY-MM-DD",
+							"HIVE_TYPE_STRING": "date"
+						}
+					}
+				},
+				{
+					"Name": "PeriodStartDate",
+					"Description": "The period start date for which the associated D&B data is effective or 'as-of'.",
+					"BaseAttributeReference": {
+						"Entity": "DunBradstreetReportSupplierRiskScore.cdm.json/DunBradstreetReportSupplierRiskScore",
+						"Name": "PeriodStartDate"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "date",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"DateFormat": "YYYY-MM-DD",
+							"HIVE_TYPE_STRING": "date"
+						}
+					}
+				},
+				{
+					"Name": "PeriodEndDate",
+					"Description": "The period end date for which the associated D&B data is effective or 'as-of'.",
+					"BaseAttributeReference": {
+						"Entity": "DunBradstreetReportSupplierRiskScore.cdm.json/DunBradstreetReportSupplierRiskScore",
+						"Name": "PeriodEndDate"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "date",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"DateFormat": "YYYY-MM-DD",
+							"HIVE_TYPE_STRING": "date"
+						}
+					}
+				},
+				{
+					"Name": "DunBradstreetSupplierRiskScoreId",
+					"Description": "The unique identifier of the Supplier Risk.",
+					"BaseAttributeReference": {
+						"Entity": "DunBradstreetReportSupplierRiskScore.cdm.json/DunBradstreetReportSupplierRiskScore",
+						"Name": "DunBradstreetSupplierRiskScoreId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "CustomerSupplierRiskCommentary",
+					"Description": "A note, comment or additional information regarding the Customer Supplier Risk for the associated period.\n\nEx:\nRISK COMMENTARY\n  - Evidence of bankruptcy proceedings, receivership, settlement with creditors\n    (composition or \"workout\") - see SPECIAL EVENTS, HISTORY, PUBLIC FILINGS,\n    sections.\n  - Suits, Liens, and/or Judgments are present - see PUBLIC FILINGS section.\n  - Net worth for the Fiscal year ending DEC, 1996 is Down by 5.4%.\n  - History indicates business or management.  See HISTORY, PUBLIC FILINGS or\n    SPECIAL EVENTS section.\n  - Average Payments are  19 day(s) beyond terms.\n  - Average Industry Payments are   5 day(s) beyond terms.\n  - UCC Filings present - See PUBLIC FILINGS section.\n  - Financing secured - See BANK/PUBLIC FILINGS sections.\n  - Financial Appraisal Ranking is 3 based on a scale of 1 (Highest)\n    to 4 (Lowest) compared to the industry.  The appraisal is a calculated\n    average based on the firm's quartile ranking.\n  - Under present management control 15 years.",
+					"BaseAttributeReference": {
+						"Entity": "DunBradstreetReportSupplierRiskScore.cdm.json/DunBradstreetReportSupplierRiskScore",
+						"Name": "CustomerSupplierRiskCommentary"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/DunBradstreetReportSupplierRiskScore",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/DunBradstreetReportSupplierRiskScore",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"DunsNumber\":{\"entity\":\"DunBradstreetReportSupplierRiskScore.cdm.json/DunBradstreetReportSupplierRiskScore\",\"name\":\"DunsNumber\"},\"ReportPurchaseDate\":{\"entity\":\"DunBradstreetReportSupplierRiskScore.cdm.json/DunBradstreetReportSupplierRiskScore\",\"name\":\"ReportPurchaseDate\"},\"PeriodStartDate\":{\"entity\":\"DunBradstreetReportSupplierRiskScore.cdm.json/DunBradstreetReportSupplierRiskScore\",\"name\":\"PeriodStartDate\"},\"PeriodEndDate\":{\"entity\":\"DunBradstreetReportSupplierRiskScore.cdm.json/DunBradstreetReportSupplierRiskScore\",\"name\":\"PeriodEndDate\"},\"DunBradstreetSupplierRiskScoreId\":{\"entity\":\"DunBradstreetReportSupplierRiskScore.cdm.json/DunBradstreetReportSupplierRiskScore\",\"name\":\"DunBradstreetSupplierRiskScoreId\"},\"CustomerSupplierRiskCommentary\":{\"entity\":\"DunBradstreetReportSupplierRiskScore.cdm.json/DunBradstreetReportSupplierRiskScore\",\"name\":\"CustomerSupplierRiskCommentary\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"DunBradstreetReportSupplierRiskScore\",\"path\":\"DunBradstreetReportSupplierRiskScore.cdm.json/DunBradstreetReportSupplierRiskScore\"},\"description\":\"The Customer Dun Bradstreet Supplier Risk for the indicated range of dates.\",\"primaryKey\":[\"DunsNumber\",\"ReportPurchaseDate\",\"PeriodStartDate\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"DunBradstreetReportSupplierRiskScore.cdm.json/DunBradstreetReportSupplierRiskScore\",\"name\":\"DunsNumber\"},\"dataType\":\"decimal\",\"dataTypeLength\":9,\"description\":\"Dun & Bradstreet (D&B) provides a D-U-N-S Number, a unique nine digit identification number, for each physical location of your business.\",\"isNullable\":false,\"scale\":0,\"name\":\"DunsNumber\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"DunBradstreetReportSupplierRiskScore.cdm.json/DunBradstreetReportSupplierRiskScore\",\"name\":\"ReportPurchaseDate\"},\"dataType\":\"date\",\"dateFormat\":\"YYYY-MM-DD\",\"description\":\"The purchase date of the report.\",\"isNullable\":false,\"name\":\"ReportPurchaseDate\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"DunBradstreetReportSupplierRiskScore.cdm.json/DunBradstreetReportSupplierRiskScore\",\"name\":\"PeriodStartDate\"},\"dataType\":\"date\",\"dateFormat\":\"YYYY-MM-DD\",\"description\":\"The period start date for which the associated D&B data is effective or 'as-of'.\",\"isNullable\":false,\"name\":\"PeriodStartDate\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"DunBradstreetReportSupplierRiskScore.cdm.json/DunBradstreetReportSupplierRiskScore\",\"name\":\"PeriodEndDate\"},\"dataType\":\"date\",\"dateFormat\":\"YYYY-MM-DD\",\"description\":\"The period end date for which the associated D&B data is effective or 'as-of'.\",\"isNullable\":true,\"name\":\"PeriodEndDate\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"DunBradstreetReportSupplierRiskScore.cdm.json/DunBradstreetReportSupplierRiskScore\",\"name\":\"DunBradstreetSupplierRiskScoreId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of the Supplier Risk.\",\"isNullable\":true,\"name\":\"DunBradstreetSupplierRiskScoreId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"DunBradstreetReportSupplierRiskScore.cdm.json/DunBradstreetReportSupplierRiskScore\",\"name\":\"CustomerSupplierRiskCommentary\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"A note, comment or additional information regarding the Customer Supplier Risk for the associated period.\\n\\nEx:\\nRISK COMMENTARY\\n  - Evidence of bankruptcy proceedings, receivership, settlement with creditors\\n    (composition or \\\"workout\\\") - see SPECIAL EVENTS, HISTORY, PUBLIC FILINGS,\\n    sections.\\n  - Suits, Liens, and/or Judgments are present - see PUBLIC FILINGS section.\\n  - Net worth for the Fiscal year ending DEC, 1996 is Down by 5.4%.\\n  - History indicates business or management.  See HISTORY, PUBLIC FILINGS or\\n    SPECIAL EVENTS section.\\n  - Average Payments are  19 day(s) beyond terms.\\n  - Average Industry Payments are   5 day(s) beyond terms.\\n  - UCC Filings present - See PUBLIC FILINGS section.\\n  - Financing secured - See BANK/PUBLIC FILINGS sections.\\n  - Financial Appraisal Ranking is 3 based on a scale of 1 (Highest)\\n    to 4 (Lowest) compared to the industry.  The appraisal is a calculated\\n    average based on the firm's quartile ranking.\\n  - Under present management control 15 years.\",\"isNullable\":true,\"name\":\"CustomerSupplierRiskCommentary\"}]}}}",
+			"Description": "The Customer Dun Bradstreet Supplier Risk for the indicated range of dates.",
+			"DisplayFolderInfo": "{\"name\":\"Customer Credit & Collections\",\"colorCode\":\"#022F22\"}",
+			"PrimaryKeys": "DunsNumber,ReportPurchaseDate,PeriodStartDate",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

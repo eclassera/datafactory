@@ -1,0 +1,162 @@
+{
+	"name": "CustomerName",
+	"properties": {
+		"Name": "CustomerName",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "The names by which the customer is known in various contexts or usages.",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "CustomerId",
+					"Description": "The unique identifier of a Customer.",
+					"BaseAttributeReference": {
+						"Entity": "CustomerName.cdm.json/CustomerName",
+						"Name": "CustomerId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "long",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "long"
+						}
+					}
+				},
+				{
+					"Name": "CustomerNameId",
+					"Description": "The unique identifier of a Customer Name.",
+					"BaseAttributeReference": {
+						"Entity": "CustomerName.cdm.json/CustomerName",
+						"Name": "CustomerNameId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "NameUsageId",
+					"Description": "The unique identifier of a name usage.",
+					"BaseAttributeReference": {
+						"Entity": "CustomerName.cdm.json/CustomerName",
+						"Name": "NameUsageId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "StartDate",
+					"Description": "The start date for which the name is effective or 'as-of'.",
+					"BaseAttributeReference": {
+						"Entity": "CustomerName.cdm.json/CustomerName",
+						"Name": "StartDate"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "date",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"DateFormat": "YYYY-MM-DD",
+							"HIVE_TYPE_STRING": "date"
+						}
+					}
+				},
+				{
+					"Name": "EndDate",
+					"Description": "The end date for which the name is effective or 'as-of'.",
+					"BaseAttributeReference": {
+						"Entity": "CustomerName.cdm.json/CustomerName",
+						"Name": "EndDate"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "date",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"DateFormat": "YYYY-MM-DD",
+							"HIVE_TYPE_STRING": "date"
+						}
+					}
+				},
+				{
+					"Name": "CustomerNameNote",
+					"Description": "A note, comment or additional information regarding the customer name.",
+					"BaseAttributeReference": {
+						"Entity": "CustomerName.cdm.json/CustomerName",
+						"Name": "CustomerNameNote"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/CustomerName",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/CustomerName",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"CustomerId\":{\"entity\":\"CustomerName.cdm.json/CustomerName\",\"name\":\"CustomerId\"},\"CustomerNameId\":{\"entity\":\"CustomerName.cdm.json/CustomerName\",\"name\":\"CustomerNameId\"},\"NameUsageId\":{\"entity\":\"CustomerName.cdm.json/CustomerName\",\"name\":\"NameUsageId\"},\"StartDate\":{\"entity\":\"CustomerName.cdm.json/CustomerName\",\"name\":\"StartDate\"},\"EndDate\":{\"entity\":\"CustomerName.cdm.json/CustomerName\",\"name\":\"EndDate\"},\"CustomerNameNote\":{\"entity\":\"CustomerName.cdm.json/CustomerName\",\"name\":\"CustomerNameNote\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"CustomerName\",\"path\":\"CustomerName.cdm.json/CustomerName\"},\"description\":\"The names by which the customer is known in various contexts or usages.\",\"primaryKey\":[\"CustomerId\",\"CustomerNameId\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CustomerName.cdm.json/CustomerName\",\"name\":\"CustomerId\"},\"dataType\":\"long\",\"description\":\"The unique identifier of a Customer.\",\"isNullable\":false,\"name\":\"CustomerId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CustomerName.cdm.json/CustomerName\",\"name\":\"CustomerNameId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Customer Name.\",\"isNullable\":false,\"name\":\"CustomerNameId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CustomerName.cdm.json/CustomerName\",\"name\":\"NameUsageId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a name usage.\",\"isNullable\":false,\"name\":\"NameUsageId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CustomerName.cdm.json/CustomerName\",\"name\":\"StartDate\"},\"dataType\":\"date\",\"dateFormat\":\"YYYY-MM-DD\",\"description\":\"The start date for which the name is effective or 'as-of'.\",\"isNullable\":true,\"name\":\"StartDate\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CustomerName.cdm.json/CustomerName\",\"name\":\"EndDate\"},\"dataType\":\"date\",\"dateFormat\":\"YYYY-MM-DD\",\"description\":\"The end date for which the name is effective or 'as-of'.\",\"isNullable\":true,\"name\":\"EndDate\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CustomerName.cdm.json/CustomerName\",\"name\":\"CustomerNameNote\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"A note, comment or additional information regarding the customer name.\",\"isNullable\":true,\"name\":\"CustomerNameNote\"}]}}}",
+			"Description": "The names by which the customer is known in various contexts or usages.",
+			"DisplayFolderInfo": "{\"name\":\"Customer\",\"colorCode\":\"#4B003F\"}",
+			"PrimaryKeys": "CustomerId,CustomerNameId",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

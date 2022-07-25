@@ -1,0 +1,181 @@
+{
+	"name": "PartyEarnedCommission",
+	"properties": {
+		"Name": "PartyEarnedCommission",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "The portion of a commission that is earned by or attributed to a party.",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "PartyId",
+					"Description": "The unique identifier of a Party.",
+					"BaseAttributeReference": {
+						"Entity": "PartyEarnedCommission.cdm.json/PartyEarnedCommission",
+						"Name": "PartyId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "long",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "long"
+						}
+					}
+				},
+				{
+					"Name": "CommissionId",
+					"Description": "The unique identifier of a Commission.",
+					"BaseAttributeReference": {
+						"Entity": "PartyEarnedCommission.cdm.json/PartyEarnedCommission",
+						"Name": "CommissionId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "PartyEarnedCommissionAmount",
+					"Description": "The amount of the commission earned by and to be paid to the party.",
+					"BaseAttributeReference": {
+						"Entity": "PartyEarnedCommission.cdm.json/PartyEarnedCommission",
+						"Name": "PartyEarnedCommissionAmount"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "decimal",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Precision": 18,
+						"Scale": 2,
+						"Properties": {
+							"HIVE_TYPE_STRING": "decimal"
+						}
+					}
+				},
+				{
+					"Name": "PartyEarnedCommissionEarnedDate",
+					"Description": "The date that the party earned commission is earned.",
+					"BaseAttributeReference": {
+						"Entity": "PartyEarnedCommission.cdm.json/PartyEarnedCommission",
+						"Name": "PartyEarnedCommissionEarnedDate"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "date",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"DateFormat": "YYYY-MM-DD",
+							"HIVE_TYPE_STRING": "date"
+						}
+					}
+				},
+				{
+					"Name": "PartyEarnedCommissionDueDate",
+					"Description": "The date that the party earned commission is due to be paid.",
+					"BaseAttributeReference": {
+						"Entity": "PartyEarnedCommission.cdm.json/PartyEarnedCommission",
+						"Name": "PartyEarnedCommissionDueDate"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "date",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"DateFormat": "YYYY-MM-DD",
+							"HIVE_TYPE_STRING": "date"
+						}
+					}
+				},
+				{
+					"Name": "PartyEarnedCommissionPaidDate",
+					"Description": "The date that the party earned commission is actually paid.",
+					"BaseAttributeReference": {
+						"Entity": "PartyEarnedCommission.cdm.json/PartyEarnedCommission",
+						"Name": "PartyEarnedCommissionPaidDate"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "date",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"DateFormat": "YYYY-MM-DD",
+							"HIVE_TYPE_STRING": "date"
+						}
+					}
+				},
+				{
+					"Name": "PartyEarnedCommissionNote",
+					"Description": "Notes, comments or additional information regarding the Party Earned Commission.",
+					"BaseAttributeReference": {
+						"Entity": "PartyEarnedCommission.cdm.json/PartyEarnedCommission",
+						"Name": "PartyEarnedCommissionNote"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/PartyEarnedCommission",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/PartyEarnedCommission",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"PartyId\":{\"entity\":\"PartyEarnedCommission.cdm.json/PartyEarnedCommission\",\"name\":\"PartyId\"},\"CommissionId\":{\"entity\":\"PartyEarnedCommission.cdm.json/PartyEarnedCommission\",\"name\":\"CommissionId\"},\"PartyEarnedCommissionAmount\":{\"entity\":\"PartyEarnedCommission.cdm.json/PartyEarnedCommission\",\"name\":\"PartyEarnedCommissionAmount\"},\"PartyEarnedCommissionEarnedDate\":{\"entity\":\"PartyEarnedCommission.cdm.json/PartyEarnedCommission\",\"name\":\"PartyEarnedCommissionEarnedDate\"},\"PartyEarnedCommissionDueDate\":{\"entity\":\"PartyEarnedCommission.cdm.json/PartyEarnedCommission\",\"name\":\"PartyEarnedCommissionDueDate\"},\"PartyEarnedCommissionPaidDate\":{\"entity\":\"PartyEarnedCommission.cdm.json/PartyEarnedCommission\",\"name\":\"PartyEarnedCommissionPaidDate\"},\"PartyEarnedCommissionNote\":{\"entity\":\"PartyEarnedCommission.cdm.json/PartyEarnedCommission\",\"name\":\"PartyEarnedCommissionNote\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"PartyEarnedCommission\",\"path\":\"PartyEarnedCommission.cdm.json/PartyEarnedCommission\"},\"description\":\"The portion of a commission that is earned by or attributed to a party.\",\"primaryKey\":[\"PartyId\",\"CommissionId\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"PartyEarnedCommission.cdm.json/PartyEarnedCommission\",\"name\":\"PartyId\"},\"dataType\":\"long\",\"description\":\"The unique identifier of a Party.\",\"isNullable\":false,\"name\":\"PartyId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"PartyEarnedCommission.cdm.json/PartyEarnedCommission\",\"name\":\"CommissionId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Commission.\",\"isNullable\":false,\"name\":\"CommissionId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"PartyEarnedCommission.cdm.json/PartyEarnedCommission\",\"name\":\"PartyEarnedCommissionAmount\"},\"dataType\":\"decimal\",\"dataTypeLength\":18,\"description\":\"The amount of the commission earned by and to be paid to the party.\",\"isNullable\":true,\"scale\":2,\"name\":\"PartyEarnedCommissionAmount\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"PartyEarnedCommission.cdm.json/PartyEarnedCommission\",\"name\":\"PartyEarnedCommissionEarnedDate\"},\"dataType\":\"date\",\"dateFormat\":\"YYYY-MM-DD\",\"description\":\"The date that the party earned commission is earned.\",\"isNullable\":true,\"name\":\"PartyEarnedCommissionEarnedDate\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"PartyEarnedCommission.cdm.json/PartyEarnedCommission\",\"name\":\"PartyEarnedCommissionDueDate\"},\"dataType\":\"date\",\"dateFormat\":\"YYYY-MM-DD\",\"description\":\"The date that the party earned commission is due to be paid.\",\"isNullable\":true,\"name\":\"PartyEarnedCommissionDueDate\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"PartyEarnedCommission.cdm.json/PartyEarnedCommission\",\"name\":\"PartyEarnedCommissionPaidDate\"},\"dataType\":\"date\",\"dateFormat\":\"YYYY-MM-DD\",\"description\":\"The date that the party earned commission is actually paid.\",\"isNullable\":true,\"name\":\"PartyEarnedCommissionPaidDate\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"PartyEarnedCommission.cdm.json/PartyEarnedCommission\",\"name\":\"PartyEarnedCommissionNote\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"Notes, comments or additional information regarding the Party Earned Commission.\",\"isNullable\":true,\"name\":\"PartyEarnedCommissionNote\"}]}}}",
+			"Description": "The portion of a commission that is earned by or attributed to a party.",
+			"DisplayFolderInfo": "{\"name\":\"Transaction\",\"colorCode\":\"#823A16\"}",
+			"PrimaryKeys": "PartyId,CommissionId",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

@@ -1,0 +1,233 @@
+{
+	"name": "Dividend",
+	"properties": {
+		"Name": "Dividend",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "The distribution of earnings to shareholders and paid in the form of money, stock, scrip or company products or property (rarely).\n\nA dividend is a portion of a company's profit paid to common and preferred shareholders.\n\nThe amount is decided by the board of directors and is paid on the Dividend Period.",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "StockId",
+					"Description": "The unique identifier of a Financial Product.",
+					"BaseAttributeReference": {
+						"Entity": "Dividend.cdm.json/Dividend",
+						"Name": "StockId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "long",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "long"
+						}
+					}
+				},
+				{
+					"Name": "DividendTypeId",
+					"Description": "The unique identifier of a Dividend Type.",
+					"BaseAttributeReference": {
+						"Entity": "Dividend.cdm.json/Dividend",
+						"Name": "DividendTypeId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "DividendDeclarationDate",
+					"Description": "The date upon which a company announces the amount and date of its next dividend payment.",
+					"BaseAttributeReference": {
+						"Entity": "Dividend.cdm.json/Dividend",
+						"Name": "DividendDeclarationDate"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "date",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"DateFormat": "YYYY-MM-DD",
+							"HIVE_TYPE_STRING": "date"
+						}
+					}
+				},
+				{
+					"Name": "DateOfRecord",
+					"Description": "The date by which the shareholder must officially own shares to be entitled to the dividend.\n\nThe period of time between the Declaration Date and the Data of Record is known as the Distribution Period.\n\nDate by which a shareholder must officially own shares in order to be entitled to a dividend. For example, a firm might declare a dividend on Nov 1, payable Dec 1 to holders of record Nov 15.\nOnce a trade is executed an investor becomes the \"owner of record\" on settlement, which currently takes 5 business days for securities, and one business day for mutual funds. Stocks\ntrade ex-dividend the fourth day before the record date, since the seller will still be the owner of\nrecord and is thus entitled to the dividend.",
+					"BaseAttributeReference": {
+						"Entity": "Dividend.cdm.json/Dividend",
+						"Name": "DateOfRecord"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "date",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"DateFormat": "YYYY-MM-DD",
+							"HIVE_TYPE_STRING": "date"
+						}
+					}
+				},
+				{
+					"Name": "ExDividendDate",
+					"Description": "The date on which a stock goes ex-dividend.\n\nShares listed on the NYSE go ex-dividend four business days before the record date.\n\nThe first day of trading when the seller, rather than the buyer, of a stock will be entitled to the most recently announced dividend payment. This date set by the NYSE (and generally followed on other US exchanges) is currently two business days before the record date. A stock that has gone ex-dividend is marked with an X in newspaper listings on that date.",
+					"BaseAttributeReference": {
+						"Entity": "Dividend.cdm.json/Dividend",
+						"Name": "ExDividendDate"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "date",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"DateFormat": "YYYY-MM-DD",
+							"HIVE_TYPE_STRING": "date"
+						}
+					}
+				},
+				{
+					"Name": "DividendDistributionDate",
+					"Description": "The date that the dividend is actually distributed to eligible parties.",
+					"BaseAttributeReference": {
+						"Entity": "Dividend.cdm.json/Dividend",
+						"Name": "DividendDistributionDate"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "date",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"DateFormat": "YYYY-MM-DD",
+							"HIVE_TYPE_STRING": "date"
+						}
+					}
+				},
+				{
+					"Name": "DividendAmountPerShare",
+					"Description": "The amount of dividend per share of stock owned as of the record date.",
+					"BaseAttributeReference": {
+						"Entity": "Dividend.cdm.json/Dividend",
+						"Name": "DividendAmountPerShare"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "decimal",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Precision": 18,
+						"Scale": 2,
+						"Properties": {
+							"HIVE_TYPE_STRING": "decimal"
+						}
+					}
+				},
+				{
+					"Name": "DividendNonTaxableAmountPerShare",
+					"Description": "The amount per share that is non-taxable.",
+					"BaseAttributeReference": {
+						"Entity": "Dividend.cdm.json/Dividend",
+						"Name": "DividendNonTaxableAmountPerShare"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "decimal",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Precision": 18,
+						"Scale": 2,
+						"Properties": {
+							"HIVE_TYPE_STRING": "decimal"
+						}
+					}
+				},
+				{
+					"Name": "DividendCapitalGainsAmountPerShare",
+					"Description": "The amount of dividend per share that attributable to capital gains.",
+					"BaseAttributeReference": {
+						"Entity": "Dividend.cdm.json/Dividend",
+						"Name": "DividendCapitalGainsAmountPerShare"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "decimal",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Precision": 18,
+						"Scale": 2,
+						"Properties": {
+							"HIVE_TYPE_STRING": "decimal"
+						}
+					}
+				},
+				{
+					"Name": "DividendPeriodId",
+					"Description": "The unique identifier of a Dividend Period.",
+					"BaseAttributeReference": {
+						"Entity": "Dividend.cdm.json/Dividend",
+						"Name": "DividendPeriodId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/Dividend",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/Dividend",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"StockId\":{\"entity\":\"Dividend.cdm.json/Dividend\",\"name\":\"StockId\"},\"DividendTypeId\":{\"entity\":\"Dividend.cdm.json/Dividend\",\"name\":\"DividendTypeId\"},\"DividendDeclarationDate\":{\"entity\":\"Dividend.cdm.json/Dividend\",\"name\":\"DividendDeclarationDate\"},\"DateOfRecord\":{\"entity\":\"Dividend.cdm.json/Dividend\",\"name\":\"DateOfRecord\"},\"ExDividendDate\":{\"entity\":\"Dividend.cdm.json/Dividend\",\"name\":\"ExDividendDate\"},\"DividendDistributionDate\":{\"entity\":\"Dividend.cdm.json/Dividend\",\"name\":\"DividendDistributionDate\"},\"DividendAmountPerShare\":{\"entity\":\"Dividend.cdm.json/Dividend\",\"name\":\"DividendAmountPerShare\"},\"DividendNonTaxableAmountPerShare\":{\"entity\":\"Dividend.cdm.json/Dividend\",\"name\":\"DividendNonTaxableAmountPerShare\"},\"DividendCapitalGainsAmountPerShare\":{\"entity\":\"Dividend.cdm.json/Dividend\",\"name\":\"DividendCapitalGainsAmountPerShare\"},\"DividendPeriodId\":{\"entity\":\"Dividend.cdm.json/Dividend\",\"name\":\"DividendPeriodId\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"Dividend\",\"path\":\"Dividend.cdm.json/Dividend\"},\"description\":\"The distribution of earnings to shareholders and paid in the form of money, stock, scrip or company products or property (rarely).\\n\\nA dividend is a portion of a company's profit paid to common and preferred shareholders.\\n\\nThe amount is decided by the board of directors and is paid on the Dividend Period.\",\"primaryKey\":[\"StockId\",\"DividendTypeId\",\"DividendDeclarationDate\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"Dividend.cdm.json/Dividend\",\"name\":\"StockId\"},\"dataType\":\"long\",\"description\":\"The unique identifier of a Financial Product.\",\"isNullable\":false,\"name\":\"StockId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"Dividend.cdm.json/Dividend\",\"name\":\"DividendTypeId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Dividend Type.\",\"isNullable\":false,\"name\":\"DividendTypeId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"Dividend.cdm.json/Dividend\",\"name\":\"DividendDeclarationDate\"},\"dataType\":\"date\",\"dateFormat\":\"YYYY-MM-DD\",\"description\":\"The date upon which a company announces the amount and date of its next dividend payment.\",\"isNullable\":false,\"name\":\"DividendDeclarationDate\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"Dividend.cdm.json/Dividend\",\"name\":\"DateOfRecord\"},\"dataType\":\"date\",\"dateFormat\":\"YYYY-MM-DD\",\"description\":\"The date by which the shareholder must officially own shares to be entitled to the dividend.\\n\\nThe period of time between the Declaration Date and the Data of Record is known as the Distribution Period.\\n\\nDate by which a shareholder must officially own shares in order to be entitled to a dividend. For example, a firm might declare a dividend on Nov 1, payable Dec 1 to holders of record Nov 15.\\nOnce a trade is executed an investor becomes the \\\"owner of record\\\" on settlement, which currently takes 5 business days for securities, and one business day for mutual funds. Stocks\\ntrade ex-dividend the fourth day before the record date, since the seller will still be the owner of\\nrecord and is thus entitled to the dividend.\",\"isNullable\":false,\"name\":\"DateOfRecord\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"Dividend.cdm.json/Dividend\",\"name\":\"ExDividendDate\"},\"dataType\":\"date\",\"dateFormat\":\"YYYY-MM-DD\",\"description\":\"The date on which a stock goes ex-dividend.\\n\\nShares listed on the NYSE go ex-dividend four business days before the record date.\\n\\nThe first day of trading when the seller, rather than the buyer, of a stock will be entitled to the most recently announced dividend payment. This date set by the NYSE (and generally followed on other US exchanges) is currently two business days before the record date. A stock that has gone ex-dividend is marked with an X in newspaper listings on that date.\",\"isNullable\":true,\"name\":\"ExDividendDate\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"Dividend.cdm.json/Dividend\",\"name\":\"DividendDistributionDate\"},\"dataType\":\"date\",\"dateFormat\":\"YYYY-MM-DD\",\"description\":\"The date that the dividend is actually distributed to eligible parties.\",\"isNullable\":true,\"name\":\"DividendDistributionDate\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"Dividend.cdm.json/Dividend\",\"name\":\"DividendAmountPerShare\"},\"dataType\":\"decimal\",\"dataTypeLength\":18,\"description\":\"The amount of dividend per share of stock owned as of the record date.\",\"isNullable\":true,\"scale\":2,\"name\":\"DividendAmountPerShare\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"Dividend.cdm.json/Dividend\",\"name\":\"DividendNonTaxableAmountPerShare\"},\"dataType\":\"decimal\",\"dataTypeLength\":18,\"description\":\"The amount per share that is non-taxable.\",\"isNullable\":true,\"scale\":2,\"name\":\"DividendNonTaxableAmountPerShare\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"Dividend.cdm.json/Dividend\",\"name\":\"DividendCapitalGainsAmountPerShare\"},\"dataType\":\"decimal\",\"dataTypeLength\":18,\"description\":\"The amount of dividend per share that attributable to capital gains.\",\"isNullable\":true,\"scale\":2,\"name\":\"DividendCapitalGainsAmountPerShare\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"Dividend.cdm.json/Dividend\",\"name\":\"DividendPeriodId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Dividend Period.\",\"isNullable\":true,\"name\":\"DividendPeriodId\"}]}}}",
+			"Description": "The distribution of earnings to shareholders and paid in the form of money, stock, scrip or company products or property (rarely).\n\nA dividend is a portion of a company's profit paid to common and preferred shareholders.\n\nThe amount is decided by the board of directors and is paid on the Dividend Period.",
+			"DisplayFolderInfo": "{\"name\":\"Financial Product\",\"colorCode\":\"#001475\"}",
+			"PrimaryKeys": "StockId,DividendTypeId,DividendDeclarationDate",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

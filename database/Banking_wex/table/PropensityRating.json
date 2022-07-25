@@ -1,0 +1,113 @@
+{
+	"name": "PropensityRating",
+	"properties": {
+		"Name": "PropensityRating",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "A rating or ranking that is associated with a propensity or likelihood to do something.\n\nEx:\n-  0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10\n-  Low, Medium, High\n-  A Percentage",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "PropensityRatingId",
+					"Description": "The unique identifier of a Question Response Rating.",
+					"BaseAttributeReference": {
+						"Entity": "PropensityRating.cdm.json/PropensityRating",
+						"Name": "PropensityRatingId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "PropensityRatingName",
+					"Description": "The name of the Question Response Rating.",
+					"BaseAttributeReference": {
+						"Entity": "PropensityRating.cdm.json/PropensityRating",
+						"Name": "PropensityRatingName"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 256,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "PropensityRatingDescription",
+					"Description": "The description of a Question Response Rating.",
+					"BaseAttributeReference": {
+						"Entity": "PropensityRating.cdm.json/PropensityRating",
+						"Name": "PropensityRatingDescription"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/PropensityRating",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/PropensityRating",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"PropensityRatingId\":{\"entity\":\"PropensityRating.cdm.json/PropensityRating\",\"name\":\"PropensityRatingId\"},\"PropensityRatingName\":{\"entity\":\"PropensityRating.cdm.json/PropensityRating\",\"name\":\"PropensityRatingName\"},\"PropensityRatingDescription\":{\"entity\":\"PropensityRating.cdm.json/PropensityRating\",\"name\":\"PropensityRatingDescription\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"PropensityRating\",\"path\":\"PropensityRating.cdm.json/PropensityRating\"},\"description\":\"A rating or ranking that is associated with a propensity or likelihood to do something.\\n\\nEx:\\n-  0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10\\n-  Low, Medium, High\\n-  A Percentage\",\"primaryKey\":[\"PropensityRatingId\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"PropensityRating.cdm.json/PropensityRating\",\"name\":\"PropensityRatingId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Question Response Rating.\",\"isNullable\":false,\"name\":\"PropensityRatingId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"PropensityRating.cdm.json/PropensityRating\",\"name\":\"PropensityRatingName\"},\"dataType\":\"string\",\"dataTypeLength\":256,\"description\":\"The name of the Question Response Rating.\",\"isNullable\":true,\"name\":\"PropensityRatingName\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"PropensityRating.cdm.json/PropensityRating\",\"name\":\"PropensityRatingDescription\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"The description of a Question Response Rating.\",\"isNullable\":true,\"name\":\"PropensityRatingDescription\"}]}}}",
+			"Description": "A rating or ranking that is associated with a propensity or likelihood to do something.\n\nEx:\n-  0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10\n-  Low, Medium, High\n-  A Percentage",
+			"DisplayFolderInfo": "{\"name\":\"Party\",\"colorCode\":\"#00727A\"}",
+			"PrimaryKeys": "PropensityRatingId",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

@@ -1,0 +1,147 @@
+{
+	"name": "ExperianCreditSummary",
+	"properties": {
+		"Name": "ExperianCreditSummary",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "The Experian consumer credit summary.",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "ExperianReportNumber",
+					"Description": "The unique identifier of an Experian consumer.",
+					"BaseAttributeReference": {
+						"Entity": "ExperianCreditSummary.cdm.json/ExperianCreditSummary",
+						"Name": "ExperianReportNumber"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "ExperianAccountTypeId",
+					"Description": "The unique identifier of an Experian Account Type.",
+					"BaseAttributeReference": {
+						"Entity": "ExperianCreditSummary.cdm.json/ExperianCreditSummary",
+						"Name": "ExperianAccountTypeId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "NumberOfAccounts",
+					"Description": "The number of the associated type of account reported.",
+					"BaseAttributeReference": {
+						"Entity": "ExperianCreditSummary.cdm.json/ExperianCreditSummary",
+						"Name": "NumberOfAccounts"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "BalanceAmount",
+					"Description": "The balance of the associated type of account reported.",
+					"BaseAttributeReference": {
+						"Entity": "ExperianCreditSummary.cdm.json/ExperianCreditSummary",
+						"Name": "BalanceAmount"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "decimal",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Precision": 18,
+						"Scale": 2,
+						"Properties": {
+							"HIVE_TYPE_STRING": "decimal"
+						}
+					}
+				},
+				{
+					"Name": "DelinquentAmount",
+					"Description": "The delinquent amount of the type of account reported.",
+					"BaseAttributeReference": {
+						"Entity": "ExperianCreditSummary.cdm.json/ExperianCreditSummary",
+						"Name": "DelinquentAmount"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "decimal",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Precision": 18,
+						"Scale": 2,
+						"Properties": {
+							"HIVE_TYPE_STRING": "decimal"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/ExperianCreditSummary",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/ExperianCreditSummary",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"ExperianReportNumber\":{\"entity\":\"ExperianCreditSummary.cdm.json/ExperianCreditSummary\",\"name\":\"ExperianReportNumber\"},\"ExperianAccountTypeId\":{\"entity\":\"ExperianCreditSummary.cdm.json/ExperianCreditSummary\",\"name\":\"ExperianAccountTypeId\"},\"NumberOfAccounts\":{\"entity\":\"ExperianCreditSummary.cdm.json/ExperianCreditSummary\",\"name\":\"NumberOfAccounts\"},\"BalanceAmount\":{\"entity\":\"ExperianCreditSummary.cdm.json/ExperianCreditSummary\",\"name\":\"BalanceAmount\"},\"DelinquentAmount\":{\"entity\":\"ExperianCreditSummary.cdm.json/ExperianCreditSummary\",\"name\":\"DelinquentAmount\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"ExperianCreditSummary\",\"path\":\"ExperianCreditSummary.cdm.json/ExperianCreditSummary\"},\"description\":\"The Experian consumer credit summary.\",\"primaryKey\":[\"ExperianReportNumber\",\"ExperianAccountTypeId\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ExperianCreditSummary.cdm.json/ExperianCreditSummary\",\"name\":\"ExperianReportNumber\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of an Experian consumer.\",\"isNullable\":false,\"name\":\"ExperianReportNumber\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ExperianCreditSummary.cdm.json/ExperianCreditSummary\",\"name\":\"ExperianAccountTypeId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of an Experian Account Type.\",\"isNullable\":false,\"name\":\"ExperianAccountTypeId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ExperianCreditSummary.cdm.json/ExperianCreditSummary\",\"name\":\"NumberOfAccounts\"},\"dataType\":\"integer\",\"description\":\"The number of the associated type of account reported.\",\"isNullable\":true,\"name\":\"NumberOfAccounts\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ExperianCreditSummary.cdm.json/ExperianCreditSummary\",\"name\":\"BalanceAmount\"},\"dataType\":\"decimal\",\"dataTypeLength\":18,\"description\":\"The balance of the associated type of account reported.\",\"isNullable\":true,\"scale\":2,\"name\":\"BalanceAmount\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ExperianCreditSummary.cdm.json/ExperianCreditSummary\",\"name\":\"DelinquentAmount\"},\"dataType\":\"decimal\",\"dataTypeLength\":18,\"description\":\"The delinquent amount of the type of account reported.\",\"isNullable\":true,\"scale\":2,\"name\":\"DelinquentAmount\"}]}}}",
+			"Description": "The Experian consumer credit summary.",
+			"DisplayFolderInfo": "{\"name\":\"Customer Credit & Collections\",\"colorCode\":\"#022F22\"}",
+			"PrimaryKeys": "ExperianReportNumber,ExperianAccountTypeId",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

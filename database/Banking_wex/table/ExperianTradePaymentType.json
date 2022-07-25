@@ -1,0 +1,113 @@
+{
+	"name": "ExperianTradePaymentType",
+	"properties": {
+		"Name": "ExperianTradePaymentType",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "The type of Experian trade payment.\n\nEx:\n- Continuously Reported \n-Newly Reported",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "ExperianTradePaymentTypeId",
+					"Description": "The unique identifier of an Experian trade payment type.",
+					"BaseAttributeReference": {
+						"Entity": "ExperianTradePaymentType.cdm.json/ExperianTradePaymentType",
+						"Name": "ExperianTradePaymentTypeId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "ExperianTradePaymentTypeName",
+					"Description": "The name of an Experian trade payment type.",
+					"BaseAttributeReference": {
+						"Entity": "ExperianTradePaymentType.cdm.json/ExperianTradePaymentType",
+						"Name": "ExperianTradePaymentTypeName"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 256,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "ExperianTradePaymentTypeDescription",
+					"Description": "The description of an Experian trade payment type.",
+					"BaseAttributeReference": {
+						"Entity": "ExperianTradePaymentType.cdm.json/ExperianTradePaymentType",
+						"Name": "ExperianTradePaymentTypeDescription"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/ExperianTradePaymentType",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/ExperianTradePaymentType",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"ExperianTradePaymentTypeId\":{\"entity\":\"ExperianTradePaymentType.cdm.json/ExperianTradePaymentType\",\"name\":\"ExperianTradePaymentTypeId\"},\"ExperianTradePaymentTypeName\":{\"entity\":\"ExperianTradePaymentType.cdm.json/ExperianTradePaymentType\",\"name\":\"ExperianTradePaymentTypeName\"},\"ExperianTradePaymentTypeDescription\":{\"entity\":\"ExperianTradePaymentType.cdm.json/ExperianTradePaymentType\",\"name\":\"ExperianTradePaymentTypeDescription\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"ExperianTradePaymentType\",\"path\":\"ExperianTradePaymentType.cdm.json/ExperianTradePaymentType\"},\"description\":\"The type of Experian trade payment.\\n\\nEx:\\n- Continuously Reported \\n-Newly Reported\",\"primaryKey\":[\"ExperianTradePaymentTypeId\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ExperianTradePaymentType.cdm.json/ExperianTradePaymentType\",\"name\":\"ExperianTradePaymentTypeId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of an Experian trade payment type.\",\"isNullable\":false,\"name\":\"ExperianTradePaymentTypeId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ExperianTradePaymentType.cdm.json/ExperianTradePaymentType\",\"name\":\"ExperianTradePaymentTypeName\"},\"dataType\":\"string\",\"dataTypeLength\":256,\"description\":\"The name of an Experian trade payment type.\",\"isNullable\":true,\"name\":\"ExperianTradePaymentTypeName\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ExperianTradePaymentType.cdm.json/ExperianTradePaymentType\",\"name\":\"ExperianTradePaymentTypeDescription\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"The description of an Experian trade payment type.\",\"isNullable\":true,\"name\":\"ExperianTradePaymentTypeDescription\"}]}}}",
+			"Description": "The type of Experian trade payment.\n\nEx:\n- Continuously Reported \n-Newly Reported",
+			"DisplayFolderInfo": "{\"name\":\"Customer Credit & Collections\",\"colorCode\":\"#022F22\"}",
+			"PrimaryKeys": "ExperianTradePaymentTypeId",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

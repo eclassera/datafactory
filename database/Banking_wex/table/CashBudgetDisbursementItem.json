@@ -1,0 +1,113 @@
+{
+	"name": "CashBudgetDisbursementItem",
+	"properties": {
+		"Name": "CashBudgetDisbursementItem",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "An item that may be aggregated to the cash budget disbursements section.\n\nEx:\n- Direct Material\n- Office Overhead\n- Sales and Administration\n- Equipment Purchase\n- Income Tax\n- Direct Labor",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "CashBudgetDisbursementItemId",
+					"Description": "The unique identifier of a Cash Budget Disbursement Item.",
+					"BaseAttributeReference": {
+						"Entity": "CashBudgetDisbursementItem.cdm.json/CashBudgetDisbursementItem",
+						"Name": "CashBudgetDisbursementItemId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "CashBudgetDisbursementItemName",
+					"Description": "The name of a Cash Budget Disbursement Item.",
+					"BaseAttributeReference": {
+						"Entity": "CashBudgetDisbursementItem.cdm.json/CashBudgetDisbursementItem",
+						"Name": "CashBudgetDisbursementItemName"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 256,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "CashBudgetDisbursementItemDescription",
+					"Description": "The description of a Cash Budget Disbursement Item.",
+					"BaseAttributeReference": {
+						"Entity": "CashBudgetDisbursementItem.cdm.json/CashBudgetDisbursementItem",
+						"Name": "CashBudgetDisbursementItemDescription"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/CashBudgetDisbursementItem",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/CashBudgetDisbursementItem",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"CashBudgetDisbursementItemId\":{\"entity\":\"CashBudgetDisbursementItem.cdm.json/CashBudgetDisbursementItem\",\"name\":\"CashBudgetDisbursementItemId\"},\"CashBudgetDisbursementItemName\":{\"entity\":\"CashBudgetDisbursementItem.cdm.json/CashBudgetDisbursementItem\",\"name\":\"CashBudgetDisbursementItemName\"},\"CashBudgetDisbursementItemDescription\":{\"entity\":\"CashBudgetDisbursementItem.cdm.json/CashBudgetDisbursementItem\",\"name\":\"CashBudgetDisbursementItemDescription\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"CashBudgetDisbursementItem\",\"path\":\"CashBudgetDisbursementItem.cdm.json/CashBudgetDisbursementItem\"},\"description\":\"An item that may be aggregated to the cash budget disbursements section.\\n\\nEx:\\n- Direct Material\\n- Office Overhead\\n- Sales and Administration\\n- Equipment Purchase\\n- Income Tax\\n- Direct Labor\",\"primaryKey\":[\"CashBudgetDisbursementItemId\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CashBudgetDisbursementItem.cdm.json/CashBudgetDisbursementItem\",\"name\":\"CashBudgetDisbursementItemId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Cash Budget Disbursement Item.\",\"isNullable\":false,\"name\":\"CashBudgetDisbursementItemId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CashBudgetDisbursementItem.cdm.json/CashBudgetDisbursementItem\",\"name\":\"CashBudgetDisbursementItemName\"},\"dataType\":\"string\",\"dataTypeLength\":256,\"description\":\"The name of a Cash Budget Disbursement Item.\",\"isNullable\":true,\"name\":\"CashBudgetDisbursementItemName\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CashBudgetDisbursementItem.cdm.json/CashBudgetDisbursementItem\",\"name\":\"CashBudgetDisbursementItemDescription\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"The description of a Cash Budget Disbursement Item.\",\"isNullable\":true,\"name\":\"CashBudgetDisbursementItemDescription\"}]}}}",
+			"Description": "An item that may be aggregated to the cash budget disbursements section.\n\nEx:\n- Direct Material\n- Office Overhead\n- Sales and Administration\n- Equipment Purchase\n- Income Tax\n- Direct Labor",
+			"DisplayFolderInfo": "{\"name\":\"Budget & Forecasting\",\"colorCode\":\"#00188F\"}",
+			"PrimaryKeys": "CashBudgetDisbursementItemId",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

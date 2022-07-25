@@ -1,0 +1,129 @@
+{
+	"name": "CustomerUccFiling",
+	"properties": {
+		"Name": "CustomerUccFiling",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "UCC filing are reports filed at the state level that indicate assets that are pledged as collateral by the Customer.\n\nCollateral goods must abide by state law.\n\nThe security interest is legalized by filing a document with the state called a UCC Form 1/UCC Form 2, Financing Statement.   This details that the seller will have priority to the collateral over competing claims by other creditors or government.",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "UccFilingNumber",
+					"Description": "The unique identifier of the UCC filing.",
+					"BaseAttributeReference": {
+						"Entity": "CustomerUccFiling.cdm.json/CustomerUccFiling",
+						"Name": "UccFilingNumber"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "DateFiled",
+					"Description": "The date that the filing was made.",
+					"BaseAttributeReference": {
+						"Entity": "CustomerUccFiling.cdm.json/CustomerUccFiling",
+						"Name": "DateFiled"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "date",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"DateFormat": "YYYY-MM-DD",
+							"HIVE_TYPE_STRING": "date"
+						}
+					}
+				},
+				{
+					"Name": "FinancingStatement",
+					"Description": "The formal financing statement associated with the UCC Filing.",
+					"BaseAttributeReference": {
+						"Entity": "CustomerUccFiling.cdm.json/CustomerUccFiling",
+						"Name": "FinancingStatement"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "CustomerId",
+					"Description": "The unique identifier of a Customer.",
+					"BaseAttributeReference": {
+						"Entity": "CustomerUccFiling.cdm.json/CustomerUccFiling",
+						"Name": "CustomerId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "long",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"HIVE_TYPE_STRING": "long"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/CustomerUccFiling",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/CustomerUccFiling",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"UccFilingNumber\":{\"entity\":\"CustomerUccFiling.cdm.json/CustomerUccFiling\",\"name\":\"UccFilingNumber\"},\"DateFiled\":{\"entity\":\"CustomerUccFiling.cdm.json/CustomerUccFiling\",\"name\":\"DateFiled\"},\"FinancingStatement\":{\"entity\":\"CustomerUccFiling.cdm.json/CustomerUccFiling\",\"name\":\"FinancingStatement\"},\"CustomerId\":{\"entity\":\"CustomerUccFiling.cdm.json/CustomerUccFiling\",\"name\":\"CustomerId\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"CustomerUccFiling\",\"path\":\"CustomerUccFiling.cdm.json/CustomerUccFiling\"},\"description\":\"UCC filing are reports filed at the state level that indicate assets that are pledged as collateral by the Customer.\\n\\nCollateral goods must abide by state law.\\n\\nThe security interest is legalized by filing a document with the state called a UCC Form 1/UCC Form 2, Financing Statement.   This details that the seller will have priority to the collateral over competing claims by other creditors or government.\",\"primaryKey\":[\"UccFilingNumber\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CustomerUccFiling.cdm.json/CustomerUccFiling\",\"name\":\"UccFilingNumber\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of the UCC filing.\",\"isNullable\":false,\"name\":\"UccFilingNumber\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CustomerUccFiling.cdm.json/CustomerUccFiling\",\"name\":\"DateFiled\"},\"dataType\":\"date\",\"dateFormat\":\"YYYY-MM-DD\",\"description\":\"The date that the filing was made.\",\"isNullable\":true,\"name\":\"DateFiled\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CustomerUccFiling.cdm.json/CustomerUccFiling\",\"name\":\"FinancingStatement\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"The formal financing statement associated with the UCC Filing.\",\"isNullable\":true,\"name\":\"FinancingStatement\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CustomerUccFiling.cdm.json/CustomerUccFiling\",\"name\":\"CustomerId\"},\"dataType\":\"long\",\"description\":\"The unique identifier of a Customer.\",\"isNullable\":true,\"name\":\"CustomerId\"}]}}}",
+			"Description": "UCC filing are reports filed at the state level that indicate assets that are pledged as collateral by the Customer.\n\nCollateral goods must abide by state law.\n\nThe security interest is legalized by filing a document with the state called a UCC Form 1/UCC Form 2, Financing Statement.   This details that the seller will have priority to the collateral over competing claims by other creditors or government.",
+			"DisplayFolderInfo": "{\"name\":\"Customer Credit & Collections\",\"colorCode\":\"#022F22\"}",
+			"PrimaryKeys": "UccFilingNumber",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

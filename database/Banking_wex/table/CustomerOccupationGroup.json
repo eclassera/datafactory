@@ -1,0 +1,146 @@
+{
+	"name": "CustomerOccupationGroup",
+	"properties": {
+		"Name": "CustomerOccupationGroup",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "The Individual Customer Occupation Group.\n\nThese criteria can change over a period of time and are represented with 'period start date/period end date' qualifications, which represented the best case for knowing this information.    If the data is only randomly sampled or recorded then you could use a single 'date' to identify its recording or effective as-of date.\n\nExamples:\n\n-  Executive, Administrative, Managerial\n-  Professional Specialty\n-  Technician\n-  Sales\n-  Clerical\n-  Private Household Service\n-  Protective Service\n-  Service Occupations Except Protective and Household\n-  Farming, Forestry and Fishing\n-  Precision Production, Craft and Repair\n-  Machine Operators, Assemblers and Inspectors\n-  Transportation/Material Moving\n-  Handlers, Equipment Cleaners, Helpers, Laborers",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "CustomerId",
+					"Description": "The unique identifier of a Customer.",
+					"BaseAttributeReference": {
+						"Entity": "CustomerOccupationGroup.cdm.json/CustomerOccupationGroup",
+						"Name": "CustomerId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "long",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "long"
+						}
+					}
+				},
+				{
+					"Name": "OccupationGroupId",
+					"Description": "The unique identifier of an Occupation Group.",
+					"BaseAttributeReference": {
+						"Entity": "CustomerOccupationGroup.cdm.json/CustomerOccupationGroup",
+						"Name": "OccupationGroupId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "PeriodStartDate",
+					"Description": "The period start date for which the associated data is effective or 'as-of'.",
+					"BaseAttributeReference": {
+						"Entity": "CustomerOccupationGroup.cdm.json/CustomerOccupationGroup",
+						"Name": "PeriodStartDate"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "date",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"DateFormat": "YYYY-MM-DD",
+							"HIVE_TYPE_STRING": "date"
+						}
+					}
+				},
+				{
+					"Name": "PeriodEndDate",
+					"Description": "The period end date for which the associated data is effective or 'as-of'.",
+					"BaseAttributeReference": {
+						"Entity": "CustomerOccupationGroup.cdm.json/CustomerOccupationGroup",
+						"Name": "PeriodEndDate"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "date",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"DateFormat": "YYYY-MM-DD",
+							"HIVE_TYPE_STRING": "date"
+						}
+					}
+				},
+				{
+					"Name": "CustomerOccupationGroupNote",
+					"Description": "A note, comment or additional information regarding the Customer Occupation Group relationship.",
+					"BaseAttributeReference": {
+						"Entity": "CustomerOccupationGroup.cdm.json/CustomerOccupationGroup",
+						"Name": "CustomerOccupationGroupNote"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/CustomerOccupationGroup",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/CustomerOccupationGroup",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"CustomerId\":{\"entity\":\"CustomerOccupationGroup.cdm.json/CustomerOccupationGroup\",\"name\":\"CustomerId\"},\"OccupationGroupId\":{\"entity\":\"CustomerOccupationGroup.cdm.json/CustomerOccupationGroup\",\"name\":\"OccupationGroupId\"},\"PeriodStartDate\":{\"entity\":\"CustomerOccupationGroup.cdm.json/CustomerOccupationGroup\",\"name\":\"PeriodStartDate\"},\"PeriodEndDate\":{\"entity\":\"CustomerOccupationGroup.cdm.json/CustomerOccupationGroup\",\"name\":\"PeriodEndDate\"},\"CustomerOccupationGroupNote\":{\"entity\":\"CustomerOccupationGroup.cdm.json/CustomerOccupationGroup\",\"name\":\"CustomerOccupationGroupNote\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"CustomerOccupationGroup\",\"path\":\"CustomerOccupationGroup.cdm.json/CustomerOccupationGroup\"},\"description\":\"The Individual Customer Occupation Group.\\n\\nThese criteria can change over a period of time and are represented with 'period start date/period end date' qualifications, which represented the best case for knowing this information.    If the data is only randomly sampled or recorded then you could use a single 'date' to identify its recording or effective as-of date.\\n\\nExamples:\\n\\n-  Executive, Administrative, Managerial\\n-  Professional Specialty\\n-  Technician\\n-  Sales\\n-  Clerical\\n-  Private Household Service\\n-  Protective Service\\n-  Service Occupations Except Protective and Household\\n-  Farming, Forestry and Fishing\\n-  Precision Production, Craft and Repair\\n-  Machine Operators, Assemblers and Inspectors\\n-  Transportation/Material Moving\\n-  Handlers, Equipment Cleaners, Helpers, Laborers\",\"primaryKey\":[\"CustomerId\",\"OccupationGroupId\",\"PeriodStartDate\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CustomerOccupationGroup.cdm.json/CustomerOccupationGroup\",\"name\":\"CustomerId\"},\"dataType\":\"long\",\"description\":\"The unique identifier of a Customer.\",\"isNullable\":false,\"name\":\"CustomerId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CustomerOccupationGroup.cdm.json/CustomerOccupationGroup\",\"name\":\"OccupationGroupId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of an Occupation Group.\",\"isNullable\":false,\"name\":\"OccupationGroupId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CustomerOccupationGroup.cdm.json/CustomerOccupationGroup\",\"name\":\"PeriodStartDate\"},\"dataType\":\"date\",\"dateFormat\":\"YYYY-MM-DD\",\"description\":\"The period start date for which the associated data is effective or 'as-of'.\",\"isNullable\":false,\"name\":\"PeriodStartDate\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CustomerOccupationGroup.cdm.json/CustomerOccupationGroup\",\"name\":\"PeriodEndDate\"},\"dataType\":\"date\",\"dateFormat\":\"YYYY-MM-DD\",\"description\":\"The period end date for which the associated data is effective or 'as-of'.\",\"isNullable\":true,\"name\":\"PeriodEndDate\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CustomerOccupationGroup.cdm.json/CustomerOccupationGroup\",\"name\":\"CustomerOccupationGroupNote\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"A note, comment or additional information regarding the Customer Occupation Group relationship.\",\"isNullable\":true,\"name\":\"CustomerOccupationGroupNote\"}]}}}",
+			"Description": "The Individual Customer Occupation Group.\n\nThese criteria can change over a period of time and are represented with 'period start date/period end date' qualifications, which represented the best case for knowing this information.    If the data is only randomly sampled or recorded then you could use a single 'date' to identify its recording or effective as-of date.\n\nExamples:\n\n-  Executive, Administrative, Managerial\n-  Professional Specialty\n-  Technician\n-  Sales\n-  Clerical\n-  Private Household Service\n-  Protective Service\n-  Service Occupations Except Protective and Household\n-  Farming, Forestry and Fishing\n-  Precision Production, Craft and Repair\n-  Machine Operators, Assemblers and Inspectors\n-  Transportation/Material Moving\n-  Handlers, Equipment Cleaners, Helpers, Laborers",
+			"DisplayFolderInfo": "{\"name\":\"Customer\",\"colorCode\":\"#4B003F\"}",
+			"PrimaryKeys": "CustomerId,OccupationGroupId,PeriodStartDate",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

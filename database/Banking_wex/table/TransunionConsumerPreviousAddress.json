@@ -1,0 +1,165 @@
+{
+	"name": "TransunionConsumerPreviousAddress",
+	"properties": {
+		"Name": "TransunionConsumerPreviousAddress",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "TransUnion reported previous consumer addresses.",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "TransunionReferenceNumber",
+					"Description": "The TransUnion file number.",
+					"BaseAttributeReference": {
+						"Entity": "TransunionConsumerPreviousAddress.cdm.json/TransunionConsumerPreviousAddress",
+						"Name": "TransunionReferenceNumber"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "AddressReportedDate",
+					"Description": "The date that the address was reported to TransUnion.",
+					"BaseAttributeReference": {
+						"Entity": "TransunionConsumerPreviousAddress.cdm.json/TransunionConsumerPreviousAddress",
+						"Name": "AddressReportedDate"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "date",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"DateFormat": "YYYY-MM-DD",
+							"HIVE_TYPE_STRING": "date"
+						}
+					}
+				},
+				{
+					"Name": "FormerAddress",
+					"Description": "The 'street/po box' component of the consumer's  former address.",
+					"BaseAttributeReference": {
+						"Entity": "TransunionConsumerPreviousAddress.cdm.json/TransunionConsumerPreviousAddress",
+						"Name": "FormerAddress"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Length": 512,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "FormerCity",
+					"Description": "The 'city' component of the consumer's  former address.",
+					"BaseAttributeReference": {
+						"Entity": "TransunionConsumerPreviousAddress.cdm.json/TransunionConsumerPreviousAddress",
+						"Name": "FormerCity"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 256,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "FormerState",
+					"Description": "The 'state' component of the consumer's former address.",
+					"BaseAttributeReference": {
+						"Entity": "TransunionConsumerPreviousAddress.cdm.json/TransunionConsumerPreviousAddress",
+						"Name": "FormerState"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 64,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "FormerZipCode",
+					"Description": "The 'zip code' component of the consumer's former address.",
+					"BaseAttributeReference": {
+						"Entity": "TransunionConsumerPreviousAddress.cdm.json/TransunionConsumerPreviousAddress",
+						"Name": "FormerZipCode"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "decimal",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Precision": 11,
+						"Scale": 0,
+						"Properties": {
+							"HIVE_TYPE_STRING": "decimal"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/TransunionConsumerPreviousAddress",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/TransunionConsumerPreviousAddress",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"TransunionReferenceNumber\":{\"entity\":\"TransunionConsumerPreviousAddress.cdm.json/TransunionConsumerPreviousAddress\",\"name\":\"TransunionReferenceNumber\"},\"AddressReportedDate\":{\"entity\":\"TransunionConsumerPreviousAddress.cdm.json/TransunionConsumerPreviousAddress\",\"name\":\"AddressReportedDate\"},\"FormerAddress\":{\"entity\":\"TransunionConsumerPreviousAddress.cdm.json/TransunionConsumerPreviousAddress\",\"name\":\"FormerAddress\"},\"FormerCity\":{\"entity\":\"TransunionConsumerPreviousAddress.cdm.json/TransunionConsumerPreviousAddress\",\"name\":\"FormerCity\"},\"FormerState\":{\"entity\":\"TransunionConsumerPreviousAddress.cdm.json/TransunionConsumerPreviousAddress\",\"name\":\"FormerState\"},\"FormerZipCode\":{\"entity\":\"TransunionConsumerPreviousAddress.cdm.json/TransunionConsumerPreviousAddress\",\"name\":\"FormerZipCode\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"TransunionConsumerPreviousAddress\",\"path\":\"TransunionConsumerPreviousAddress.cdm.json/TransunionConsumerPreviousAddress\"},\"description\":\"TransUnion reported previous consumer addresses.\",\"primaryKey\":[\"TransunionReferenceNumber\",\"AddressReportedDate\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"TransunionConsumerPreviousAddress.cdm.json/TransunionConsumerPreviousAddress\",\"name\":\"TransunionReferenceNumber\"},\"dataType\":\"integer\",\"description\":\"The TransUnion file number.\",\"isNullable\":false,\"name\":\"TransunionReferenceNumber\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"TransunionConsumerPreviousAddress.cdm.json/TransunionConsumerPreviousAddress\",\"name\":\"AddressReportedDate\"},\"dataType\":\"date\",\"dateFormat\":\"YYYY-MM-DD\",\"description\":\"The date that the address was reported to TransUnion.\",\"isNullable\":false,\"name\":\"AddressReportedDate\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"TransunionConsumerPreviousAddress.cdm.json/TransunionConsumerPreviousAddress\",\"name\":\"FormerAddress\"},\"dataType\":\"string\",\"dataTypeLength\":512,\"description\":\"The 'street/po box' component of the consumer's  former address.\",\"isNullable\":false,\"name\":\"FormerAddress\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"TransunionConsumerPreviousAddress.cdm.json/TransunionConsumerPreviousAddress\",\"name\":\"FormerCity\"},\"dataType\":\"string\",\"dataTypeLength\":256,\"description\":\"The 'city' component of the consumer's  former address.\",\"isNullable\":true,\"name\":\"FormerCity\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"TransunionConsumerPreviousAddress.cdm.json/TransunionConsumerPreviousAddress\",\"name\":\"FormerState\"},\"dataType\":\"string\",\"dataTypeLength\":64,\"description\":\"The 'state' component of the consumer's former address.\",\"isNullable\":true,\"name\":\"FormerState\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"TransunionConsumerPreviousAddress.cdm.json/TransunionConsumerPreviousAddress\",\"name\":\"FormerZipCode\"},\"dataType\":\"decimal\",\"dataTypeLength\":11,\"description\":\"The 'zip code' component of the consumer's former address.\",\"isNullable\":true,\"scale\":0,\"name\":\"FormerZipCode\"}]}}}",
+			"Description": "TransUnion reported previous consumer addresses.",
+			"DisplayFolderInfo": "{\"name\":\"Customer Credit & Collections\",\"colorCode\":\"#022F22\"}",
+			"PrimaryKeys": "TransunionReferenceNumber,AddressReportedDate",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

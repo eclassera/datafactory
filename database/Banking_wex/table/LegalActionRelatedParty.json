@@ -1,0 +1,162 @@
+{
+	"name": "LegalActionRelatedParty",
+	"properties": {
+		"Name": "LegalActionRelatedParty",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "A party having a relationship with the legal action.\n\nEx:\n- Defendant\n- Plaintiff",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "LegalActionId",
+					"Description": "The unique identifier of a Legal Action.",
+					"BaseAttributeReference": {
+						"Entity": "LegalActionRelatedParty.cdm.json/LegalActionRelatedParty",
+						"Name": "LegalActionId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "PartyId",
+					"Description": "The unique identifier of a Party.",
+					"BaseAttributeReference": {
+						"Entity": "LegalActionRelatedParty.cdm.json/LegalActionRelatedParty",
+						"Name": "PartyId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "long",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "long"
+						}
+					}
+				},
+				{
+					"Name": "LegalActionPartyRelationshipTypeId",
+					"Description": "The unique identifier of a Legal Action Party Relationship Type.",
+					"BaseAttributeReference": {
+						"Entity": "LegalActionRelatedParty.cdm.json/LegalActionRelatedParty",
+						"Name": "LegalActionPartyRelationshipTypeId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "PeriodStartDate",
+					"Description": "The period start date for which the legal action party relationship is in effect.",
+					"BaseAttributeReference": {
+						"Entity": "LegalActionRelatedParty.cdm.json/LegalActionRelatedParty",
+						"Name": "PeriodStartDate"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "date",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"DateFormat": "YYYY-MM-DD",
+							"HIVE_TYPE_STRING": "date"
+						}
+					}
+				},
+				{
+					"Name": "PeriodEndDate",
+					"Description": "The period end date for which the legal action party relationship is in effect.",
+					"BaseAttributeReference": {
+						"Entity": "LegalActionRelatedParty.cdm.json/LegalActionRelatedParty",
+						"Name": "PeriodEndDate"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "date",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"DateFormat": "YYYY-MM-DD",
+							"HIVE_TYPE_STRING": "date"
+						}
+					}
+				},
+				{
+					"Name": "LegalActionRelatedPartyNote",
+					"Description": "A note, comment or additional information regarding the legal action related party.",
+					"BaseAttributeReference": {
+						"Entity": "LegalActionRelatedParty.cdm.json/LegalActionRelatedParty",
+						"Name": "LegalActionRelatedPartyNote"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/LegalActionRelatedParty",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/LegalActionRelatedParty",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"LegalActionId\":{\"entity\":\"LegalActionRelatedParty.cdm.json/LegalActionRelatedParty\",\"name\":\"LegalActionId\"},\"PartyId\":{\"entity\":\"LegalActionRelatedParty.cdm.json/LegalActionRelatedParty\",\"name\":\"PartyId\"},\"LegalActionPartyRelationshipTypeId\":{\"entity\":\"LegalActionRelatedParty.cdm.json/LegalActionRelatedParty\",\"name\":\"LegalActionPartyRelationshipTypeId\"},\"PeriodStartDate\":{\"entity\":\"LegalActionRelatedParty.cdm.json/LegalActionRelatedParty\",\"name\":\"PeriodStartDate\"},\"PeriodEndDate\":{\"entity\":\"LegalActionRelatedParty.cdm.json/LegalActionRelatedParty\",\"name\":\"PeriodEndDate\"},\"LegalActionRelatedPartyNote\":{\"entity\":\"LegalActionRelatedParty.cdm.json/LegalActionRelatedParty\",\"name\":\"LegalActionRelatedPartyNote\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"LegalActionRelatedParty\",\"path\":\"LegalActionRelatedParty.cdm.json/LegalActionRelatedParty\"},\"description\":\"A party having a relationship with the legal action.\\n\\nEx:\\n- Defendant\\n- Plaintiff\",\"primaryKey\":[\"LegalActionId\",\"PartyId\",\"LegalActionPartyRelationshipTypeId\",\"PeriodStartDate\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"LegalActionRelatedParty.cdm.json/LegalActionRelatedParty\",\"name\":\"LegalActionId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Legal Action.\",\"isNullable\":false,\"name\":\"LegalActionId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"LegalActionRelatedParty.cdm.json/LegalActionRelatedParty\",\"name\":\"PartyId\"},\"dataType\":\"long\",\"description\":\"The unique identifier of a Party.\",\"isNullable\":false,\"name\":\"PartyId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"LegalActionRelatedParty.cdm.json/LegalActionRelatedParty\",\"name\":\"LegalActionPartyRelationshipTypeId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Legal Action Party Relationship Type.\",\"isNullable\":false,\"name\":\"LegalActionPartyRelationshipTypeId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"LegalActionRelatedParty.cdm.json/LegalActionRelatedParty\",\"name\":\"PeriodStartDate\"},\"dataType\":\"date\",\"dateFormat\":\"YYYY-MM-DD\",\"description\":\"The period start date for which the legal action party relationship is in effect.\",\"isNullable\":false,\"name\":\"PeriodStartDate\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"LegalActionRelatedParty.cdm.json/LegalActionRelatedParty\",\"name\":\"PeriodEndDate\"},\"dataType\":\"date\",\"dateFormat\":\"YYYY-MM-DD\",\"description\":\"The period end date for which the legal action party relationship is in effect.\",\"isNullable\":true,\"name\":\"PeriodEndDate\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"LegalActionRelatedParty.cdm.json/LegalActionRelatedParty\",\"name\":\"LegalActionRelatedPartyNote\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"A note, comment or additional information regarding the legal action related party.\",\"isNullable\":true,\"name\":\"LegalActionRelatedPartyNote\"}]}}}",
+			"Description": "A party having a relationship with the legal action.\n\nEx:\n- Defendant\n- Plaintiff",
+			"DisplayFolderInfo": "{\"name\":\"Party\",\"colorCode\":\"#00727A\"}",
+			"PrimaryKeys": "LegalActionId,PartyId,LegalActionPartyRelationshipTypeId,PeriodStartDate",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

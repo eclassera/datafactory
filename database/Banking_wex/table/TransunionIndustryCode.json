@@ -1,0 +1,113 @@
+{
+	"name": "TransunionIndustryCode",
+	"properties": {
+		"Name": "TransunionIndustryCode",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "The reporting subscriber's kind of business.\n\nEx:\nA Automotive\nB Banks and S&L\nC Clothing\nD Department, Variety,\nretail\nE Education\nF Finance, personal\nG Groceries\nH Home Furnishings\nI Insurance\nJ Jewelry, Cameras, Computers\nK Contractors\nL Lumber, Bldg. Mat., Hardware\nM Medical and Health\nN Credit card, travel, entertainment\nO Oil Companies\nP Personal Services (non medical)\nQ Finance, other than personal\nR Real Estate, Hotels etc.\nS Sporting Goods\nT Farm and Garden Supplies\nU Utilities and Fuel\nV Government\nW Wholesale\nX Advertising\nY Collection Services",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "TransunionIndustryCodeId",
+					"Description": "The unique identifier of a TransUnion Industry Code.",
+					"BaseAttributeReference": {
+						"Entity": "TransunionIndustryCode.cdm.json/TransunionIndustryCode",
+						"Name": "TransunionIndustryCodeId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "TransunionIndustryCodeName",
+					"Description": "The name of a TransUnion Industry Code.",
+					"BaseAttributeReference": {
+						"Entity": "TransunionIndustryCode.cdm.json/TransunionIndustryCode",
+						"Name": "TransunionIndustryCodeName"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 256,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "TransunionIndustryCodeDescription",
+					"Description": "The description of a TransUnion Industry Code.",
+					"BaseAttributeReference": {
+						"Entity": "TransunionIndustryCode.cdm.json/TransunionIndustryCode",
+						"Name": "TransunionIndustryCodeDescription"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/TransunionIndustryCode",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/TransunionIndustryCode",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"TransunionIndustryCodeId\":{\"entity\":\"TransunionIndustryCode.cdm.json/TransunionIndustryCode\",\"name\":\"TransunionIndustryCodeId\"},\"TransunionIndustryCodeName\":{\"entity\":\"TransunionIndustryCode.cdm.json/TransunionIndustryCode\",\"name\":\"TransunionIndustryCodeName\"},\"TransunionIndustryCodeDescription\":{\"entity\":\"TransunionIndustryCode.cdm.json/TransunionIndustryCode\",\"name\":\"TransunionIndustryCodeDescription\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"TransunionIndustryCode\",\"path\":\"TransunionIndustryCode.cdm.json/TransunionIndustryCode\"},\"description\":\"The reporting subscriber's kind of business.\\n\\nEx:\\nA Automotive\\nB Banks and S&L\\nC Clothing\\nD Department, Variety,\\nretail\\nE Education\\nF Finance, personal\\nG Groceries\\nH Home Furnishings\\nI Insurance\\nJ Jewelry, Cameras, Computers\\nK Contractors\\nL Lumber, Bldg. Mat., Hardware\\nM Medical and Health\\nN Credit card, travel, entertainment\\nO Oil Companies\\nP Personal Services (non medical)\\nQ Finance, other than personal\\nR Real Estate, Hotels etc.\\nS Sporting Goods\\nT Farm and Garden Supplies\\nU Utilities and Fuel\\nV Government\\nW Wholesale\\nX Advertising\\nY Collection Services\",\"primaryKey\":[\"TransunionIndustryCodeId\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"TransunionIndustryCode.cdm.json/TransunionIndustryCode\",\"name\":\"TransunionIndustryCodeId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a TransUnion Industry Code.\",\"isNullable\":false,\"name\":\"TransunionIndustryCodeId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"TransunionIndustryCode.cdm.json/TransunionIndustryCode\",\"name\":\"TransunionIndustryCodeName\"},\"dataType\":\"string\",\"dataTypeLength\":256,\"description\":\"The name of a TransUnion Industry Code.\",\"isNullable\":true,\"name\":\"TransunionIndustryCodeName\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"TransunionIndustryCode.cdm.json/TransunionIndustryCode\",\"name\":\"TransunionIndustryCodeDescription\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"The description of a TransUnion Industry Code.\",\"isNullable\":true,\"name\":\"TransunionIndustryCodeDescription\"}]}}}",
+			"Description": "The reporting subscriber's kind of business.\n\nEx:\nA Automotive\nB Banks and S&L\nC Clothing\nD Department, Variety,\nretail\nE Education\nF Finance, personal\nG Groceries\nH Home Furnishings\nI Insurance\nJ Jewelry, Cameras, Computers\nK Contractors\nL Lumber, Bldg. Mat., Hardware\nM Medical and Health\nN Credit card, travel, entertainment\nO Oil Companies\nP Personal Services (non medical)\nQ Finance, other than personal\nR Real Estate, Hotels etc.\nS Sporting Goods\nT Farm and Garden Supplies\nU Utilities and Fuel\nV Government\nW Wholesale\nX Advertising\nY Collection Services",
+			"DisplayFolderInfo": "{\"name\":\"Customer Credit & Collections\",\"colorCode\":\"#022F22\"}",
+			"PrimaryKeys": "TransunionIndustryCodeId",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

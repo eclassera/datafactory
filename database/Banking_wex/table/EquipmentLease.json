@@ -1,0 +1,557 @@
+{
+	"name": "EquipmentLease",
+	"properties": {
+		"Name": "EquipmentLease",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "An Equipment Lease is used to lease property between two parties in  return for lease payments.",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "ContractId",
+					"Description": "The unique identifier of a Contract.",
+					"BaseAttributeReference": {
+						"Entity": "EquipmentLease.cdm.json/EquipmentLease",
+						"Name": "ContractId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "LeaseStartDate",
+					"Description": "The date that the lease is to begin.",
+					"BaseAttributeReference": {
+						"Entity": "EquipmentLease.cdm.json/EquipmentLease",
+						"Name": "LeaseStartDate"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "date",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"DateFormat": "YYYY-MM-DD",
+							"HIVE_TYPE_STRING": "date"
+						}
+					}
+				},
+				{
+					"Name": "LeaseEndDate",
+					"Description": "The date that the lease is to end.",
+					"BaseAttributeReference": {
+						"Entity": "EquipmentLease.cdm.json/EquipmentLease",
+						"Name": "LeaseEndDate"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "date",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"DateFormat": "YYYY-MM-DD",
+							"HIVE_TYPE_STRING": "date"
+						}
+					}
+				},
+				{
+					"Name": "LeaseLengthMonths",
+					"Description": "The length of the lease expressed in months, if other than that defined by start date/end date.",
+					"BaseAttributeReference": {
+						"Entity": "EquipmentLease.cdm.json/EquipmentLease",
+						"Name": "LeaseLengthMonths"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "LeaseSection",
+					"Description": "This section identifies this transaction to be a lease and identifies the Equipment to be leased (see LEASE EQUIPMENT).",
+					"BaseAttributeReference": {
+						"Entity": "EquipmentLease.cdm.json/EquipmentLease",
+						"Name": "LeaseSection"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "TermSection",
+					"Description": "This section defines when the lease shall start and end.",
+					"BaseAttributeReference": {
+						"Entity": "EquipmentLease.cdm.json/EquipmentLease",
+						"Name": "TermSection"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "ShippingSection",
+					"Description": "This section identifies who will pay the cost of moving the equipment from the Lessor's location to the Lessee's location.",
+					"BaseAttributeReference": {
+						"Entity": "EquipmentLease.cdm.json/EquipmentLease",
+						"Name": "ShippingSection"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "RentAndDepositSection",
+					"Description": "This section defines the amount of rent and deposit on the equipment.",
+					"BaseAttributeReference": {
+						"Entity": "EquipmentLease.cdm.json/EquipmentLease",
+						"Name": "RentAndDepositSection"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "LeaseLatePaymentPercentage",
+					"Description": "A percentage of the monthly lease payment that is collected from the Lessee for late payment.",
+					"BaseAttributeReference": {
+						"Entity": "EquipmentLease.cdm.json/EquipmentLease",
+						"Name": "LeaseLatePaymentPercentage"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "decimal",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Precision": 18,
+						"Scale": 8,
+						"Properties": {
+							"HIVE_TYPE_STRING": "decimal"
+						}
+					}
+				},
+				{
+					"Name": "MonthlyLeasePayment",
+					"Description": "The monthly lease for the equipment to be paid by the Lessee to the Lessor.",
+					"BaseAttributeReference": {
+						"Entity": "EquipmentLease.cdm.json/EquipmentLease",
+						"Name": "MonthlyLeasePayment"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "decimal",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Precision": 18,
+						"Scale": 2,
+						"Properties": {
+							"HIVE_TYPE_STRING": "decimal"
+						}
+					}
+				},
+				{
+					"Name": "FirstPaymentDate",
+					"Description": "The date when the first installment payment will be made by the Lessee to the Lessor.",
+					"BaseAttributeReference": {
+						"Entity": "EquipmentLease.cdm.json/EquipmentLease",
+						"Name": "FirstPaymentDate"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "date",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"DateFormat": "YYYY-MM-DD",
+							"HIVE_TYPE_STRING": "date"
+						}
+					}
+				},
+				{
+					"Name": "DepositAmount",
+					"Description": "The amount that the Lessee shall pay the Lessor as a security deposit against loss or damage to the equipment to insure that the Lessee fulfills the obligations of the lease.",
+					"BaseAttributeReference": {
+						"Entity": "EquipmentLease.cdm.json/EquipmentLease",
+						"Name": "DepositAmount"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "decimal",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Precision": 18,
+						"Scale": 2,
+						"Properties": {
+							"HIVE_TYPE_STRING": "decimal"
+						}
+					}
+				},
+				{
+					"Name": "UseSection",
+					"Description": "This section identifies and describes the standards for the use of the equipment.\n\nIt's purpose is to both prevent damage to the equipment and reduce the legal liability of the Lessor.\n\nThis section also defines any other restrictions regarding the use of the equipment.",
+					"BaseAttributeReference": {
+						"Entity": "EquipmentLease.cdm.json/EquipmentLease",
+						"Name": "UseSection"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "WarrantyOptionsSection",
+					"Description": "This section defines the type of warranty to be provided with the equipment by the Lessor.\n\nExamples:\n\n-  No Warranty \n-  Limited Warranty",
+					"BaseAttributeReference": {
+						"Entity": "EquipmentLease.cdm.json/EquipmentLease",
+						"Name": "WarrantyOptionsSection"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "RepairsSection",
+					"Description": "This section identifies who is responsible for maintaining the equipment in good repair.",
+					"BaseAttributeReference": {
+						"Entity": "EquipmentLease.cdm.json/EquipmentLease",
+						"Name": "RepairsSection"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "LossAndDamageSection",
+					"Description": "This section identifies who is responsible for any loss of or damage to the equipment and includes options in the event that such events occur:\n\n(1)  Repair equipment\n(2)  Replace equipment\n(3)  Pay Lessor some amount to replace or repair equipment",
+					"BaseAttributeReference": {
+						"Entity": "EquipmentLease.cdm.json/EquipmentLease",
+						"Name": "LossAndDamageSection"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "SurrenderSection",
+					"Description": "The terms by which the Lessee will return equipment to the Lessor including transportation charges and locations of pick-up and delivery.",
+					"BaseAttributeReference": {
+						"Entity": "EquipmentLease.cdm.json/EquipmentLease",
+						"Name": "SurrenderSection"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "InsuranceSection",
+					"Description": "This section identifies the types and amounts of insurance coverage to be provided by the Lessee.\n\nThis is intended to protect the Lessor if the equipment is damaged or destroyed and protect the Lessor if a third party is injured or suffers a loss as a result of the Lessee's use of the equipment.",
+					"BaseAttributeReference": {
+						"Entity": "EquipmentLease.cdm.json/EquipmentLease",
+						"Name": "InsuranceSection"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "TaxesSection",
+					"Description": "This section identifies who is responsible for any taxes or charges associated with the equipment including property taxes, sales taxes and use taxes.",
+					"BaseAttributeReference": {
+						"Entity": "EquipmentLease.cdm.json/EquipmentLease",
+						"Name": "TaxesSection"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "LessorPaymentSection",
+					"Description": "This section describes how the Lessor may pay insurance premiums, taxes and other required fees if the Lessee fails to and that the Lessor can then charge the Lessee replacement or compensating fees.",
+					"BaseAttributeReference": {
+						"Entity": "EquipmentLease.cdm.json/EquipmentLease",
+						"Name": "LessorPaymentSection"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "IndemnitySection",
+					"Description": "This sections describes the obligations should a third party sue the Lessor as a result of use or operation of the equipment by the Lessee.",
+					"BaseAttributeReference": {
+						"Entity": "EquipmentLease.cdm.json/EquipmentLease",
+						"Name": "IndemnitySection"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "DefaultSection",
+					"Description": "This section establishes the actions that the Lessor may take against the Lessee in case of default or failure to pay monthly payments.",
+					"BaseAttributeReference": {
+						"Entity": "EquipmentLease.cdm.json/EquipmentLease",
+						"Name": "DefaultSection"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "BankruptcySection",
+					"Description": "This section covers the equipment in case of Bankruptcy proceeding by either the Lessor or Lessee during the period of the Lease.",
+					"BaseAttributeReference": {
+						"Entity": "EquipmentLease.cdm.json/EquipmentLease",
+						"Name": "BankruptcySection"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "OwnershipSection",
+					"Description": "This section makes it clear that the Equipment is owned by and belongs to the Lessor and nothing in the Lease transfers any ownership to the Lessee.",
+					"BaseAttributeReference": {
+						"Entity": "EquipmentLease.cdm.json/EquipmentLease",
+						"Name": "OwnershipSection"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "AdditionalDocumentsSection",
+					"Description": "This section requires the Lessee to sign certain additional documents for public record if requested by the Lessor.\n\nAn example is a UCC Form 1 Financing Statement.",
+					"BaseAttributeReference": {
+						"Entity": "EquipmentLease.cdm.json/EquipmentLease",
+						"Name": "AdditionalDocumentsSection"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "EntireAgreementSection",
+					"Description": "This section makes it clear that this is the final agreement between parties and replaces or supersedes any prior discussions or agreements.    Any amendments to this agreement must be made in writing.",
+					"BaseAttributeReference": {
+						"Entity": "EquipmentLease.cdm.json/EquipmentLease",
+						"Name": "EntireAgreementSection"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "NoticesSection",
+					"Description": "This section establishes how each party is to formally notify each other in matters related to the agreement.",
+					"BaseAttributeReference": {
+						"Entity": "EquipmentLease.cdm.json/EquipmentLease",
+						"Name": "NoticesSection"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "AssignmentSection",
+					"Description": "This section identifies whether either party may assign its rights in the contract to someone else.",
+					"BaseAttributeReference": {
+						"Entity": "EquipmentLease.cdm.json/EquipmentLease",
+						"Name": "AssignmentSection"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "GoverningLawSection",
+					"Description": "This section specifies which state's laws will be used to interpret and enforce the agreement.",
+					"BaseAttributeReference": {
+						"Entity": "EquipmentLease.cdm.json/EquipmentLease",
+						"Name": "GoverningLawSection"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/EquipmentLease",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/EquipmentLease",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"ContractId\":{\"entity\":\"EquipmentLease.cdm.json/EquipmentLease\",\"name\":\"ContractId\"},\"LeaseStartDate\":{\"entity\":\"EquipmentLease.cdm.json/EquipmentLease\",\"name\":\"LeaseStartDate\"},\"LeaseEndDate\":{\"entity\":\"EquipmentLease.cdm.json/EquipmentLease\",\"name\":\"LeaseEndDate\"},\"LeaseLengthMonths\":{\"entity\":\"EquipmentLease.cdm.json/EquipmentLease\",\"name\":\"LeaseLengthMonths\"},\"LeaseSection\":{\"entity\":\"EquipmentLease.cdm.json/EquipmentLease\",\"name\":\"LeaseSection\"},\"TermSection\":{\"entity\":\"EquipmentLease.cdm.json/EquipmentLease\",\"name\":\"TermSection\"},\"ShippingSection\":{\"entity\":\"EquipmentLease.cdm.json/EquipmentLease\",\"name\":\"ShippingSection\"},\"RentAndDepositSection\":{\"entity\":\"EquipmentLease.cdm.json/EquipmentLease\",\"name\":\"RentAndDepositSection\"},\"LeaseLatePaymentPercentage\":{\"entity\":\"EquipmentLease.cdm.json/EquipmentLease\",\"name\":\"LeaseLatePaymentPercentage\"},\"MonthlyLeasePayment\":{\"entity\":\"EquipmentLease.cdm.json/EquipmentLease\",\"name\":\"MonthlyLeasePayment\"},\"FirstPaymentDate\":{\"entity\":\"EquipmentLease.cdm.json/EquipmentLease\",\"name\":\"FirstPaymentDate\"},\"DepositAmount\":{\"entity\":\"EquipmentLease.cdm.json/EquipmentLease\",\"name\":\"DepositAmount\"},\"UseSection\":{\"entity\":\"EquipmentLease.cdm.json/EquipmentLease\",\"name\":\"UseSection\"},\"WarrantyOptionsSection\":{\"entity\":\"EquipmentLease.cdm.json/EquipmentLease\",\"name\":\"WarrantyOptionsSection\"},\"RepairsSection\":{\"entity\":\"EquipmentLease.cdm.json/EquipmentLease\",\"name\":\"RepairsSection\"},\"LossAndDamageSection\":{\"entity\":\"EquipmentLease.cdm.json/EquipmentLease\",\"name\":\"LossAndDamageSection\"},\"SurrenderSection\":{\"entity\":\"EquipmentLease.cdm.json/EquipmentLease\",\"name\":\"SurrenderSection\"},\"InsuranceSection\":{\"entity\":\"EquipmentLease.cdm.json/EquipmentLease\",\"name\":\"InsuranceSection\"},\"TaxesSection\":{\"entity\":\"EquipmentLease.cdm.json/EquipmentLease\",\"name\":\"TaxesSection\"},\"LessorPaymentSection\":{\"entity\":\"EquipmentLease.cdm.json/EquipmentLease\",\"name\":\"LessorPaymentSection\"},\"IndemnitySection\":{\"entity\":\"EquipmentLease.cdm.json/EquipmentLease\",\"name\":\"IndemnitySection\"},\"DefaultSection\":{\"entity\":\"EquipmentLease.cdm.json/EquipmentLease\",\"name\":\"DefaultSection\"},\"BankruptcySection\":{\"entity\":\"EquipmentLease.cdm.json/EquipmentLease\",\"name\":\"BankruptcySection\"},\"OwnershipSection\":{\"entity\":\"EquipmentLease.cdm.json/EquipmentLease\",\"name\":\"OwnershipSection\"},\"AdditionalDocumentsSection\":{\"entity\":\"EquipmentLease.cdm.json/EquipmentLease\",\"name\":\"AdditionalDocumentsSection\"},\"EntireAgreementSection\":{\"entity\":\"EquipmentLease.cdm.json/EquipmentLease\",\"name\":\"EntireAgreementSection\"},\"NoticesSection\":{\"entity\":\"EquipmentLease.cdm.json/EquipmentLease\",\"name\":\"NoticesSection\"},\"AssignmentSection\":{\"entity\":\"EquipmentLease.cdm.json/EquipmentLease\",\"name\":\"AssignmentSection\"},\"GoverningLawSection\":{\"entity\":\"EquipmentLease.cdm.json/EquipmentLease\",\"name\":\"GoverningLawSection\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"EquipmentLease\",\"path\":\"EquipmentLease.cdm.json/EquipmentLease\"},\"description\":\"An Equipment Lease is used to lease property between two parties in  return for lease payments.\",\"primaryKey\":[\"ContractId\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"EquipmentLease.cdm.json/EquipmentLease\",\"name\":\"ContractId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Contract.\",\"isNullable\":false,\"name\":\"ContractId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"EquipmentLease.cdm.json/EquipmentLease\",\"name\":\"LeaseStartDate\"},\"dataType\":\"date\",\"dateFormat\":\"YYYY-MM-DD\",\"description\":\"The date that the lease is to begin.\",\"isNullable\":true,\"name\":\"LeaseStartDate\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"EquipmentLease.cdm.json/EquipmentLease\",\"name\":\"LeaseEndDate\"},\"dataType\":\"date\",\"dateFormat\":\"YYYY-MM-DD\",\"description\":\"The date that the lease is to end.\",\"isNullable\":true,\"name\":\"LeaseEndDate\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"EquipmentLease.cdm.json/EquipmentLease\",\"name\":\"LeaseLengthMonths\"},\"dataType\":\"integer\",\"description\":\"The length of the lease expressed in months, if other than that defined by start date/end date.\",\"isNullable\":true,\"name\":\"LeaseLengthMonths\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"EquipmentLease.cdm.json/EquipmentLease\",\"name\":\"LeaseSection\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"This section identifies this transaction to be a lease and identifies the Equipment to be leased (see LEASE EQUIPMENT).\",\"isNullable\":true,\"name\":\"LeaseSection\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"EquipmentLease.cdm.json/EquipmentLease\",\"name\":\"TermSection\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"This section defines when the lease shall start and end.\",\"isNullable\":true,\"name\":\"TermSection\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"EquipmentLease.cdm.json/EquipmentLease\",\"name\":\"ShippingSection\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"This section identifies who will pay the cost of moving the equipment from the Lessor's location to the Lessee's location.\",\"isNullable\":true,\"name\":\"ShippingSection\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"EquipmentLease.cdm.json/EquipmentLease\",\"name\":\"RentAndDepositSection\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"This section defines the amount of rent and deposit on the equipment.\",\"isNullable\":true,\"name\":\"RentAndDepositSection\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"EquipmentLease.cdm.json/EquipmentLease\",\"name\":\"LeaseLatePaymentPercentage\"},\"dataType\":\"decimal\",\"dataTypeLength\":18,\"description\":\"A percentage of the monthly lease payment that is collected from the Lessee for late payment.\",\"isNullable\":true,\"scale\":8,\"name\":\"LeaseLatePaymentPercentage\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"EquipmentLease.cdm.json/EquipmentLease\",\"name\":\"MonthlyLeasePayment\"},\"dataType\":\"decimal\",\"dataTypeLength\":18,\"description\":\"The monthly lease for the equipment to be paid by the Lessee to the Lessor.\",\"isNullable\":true,\"scale\":2,\"name\":\"MonthlyLeasePayment\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"EquipmentLease.cdm.json/EquipmentLease\",\"name\":\"FirstPaymentDate\"},\"dataType\":\"date\",\"dateFormat\":\"YYYY-MM-DD\",\"description\":\"The date when the first installment payment will be made by the Lessee to the Lessor.\",\"isNullable\":true,\"name\":\"FirstPaymentDate\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"EquipmentLease.cdm.json/EquipmentLease\",\"name\":\"DepositAmount\"},\"dataType\":\"decimal\",\"dataTypeLength\":18,\"description\":\"The amount that the Lessee shall pay the Lessor as a security deposit against loss or damage to the equipment to insure that the Lessee fulfills the obligations of the lease.\",\"isNullable\":true,\"scale\":2,\"name\":\"DepositAmount\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"EquipmentLease.cdm.json/EquipmentLease\",\"name\":\"UseSection\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"This section identifies and describes the standards for the use of the equipment.\\n\\nIt's purpose is to both prevent damage to the equipment and reduce the legal liability of the Lessor.\\n\\nThis section also defines any other restrictions regarding the use of the equipment.\",\"isNullable\":true,\"name\":\"UseSection\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"EquipmentLease.cdm.json/EquipmentLease\",\"name\":\"WarrantyOptionsSection\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"This section defines the type of warranty to be provided with the equipment by the Lessor.\\n\\nExamples:\\n\\n-  No Warranty \\n-  Limited Warranty\",\"isNullable\":true,\"name\":\"WarrantyOptionsSection\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"EquipmentLease.cdm.json/EquipmentLease\",\"name\":\"RepairsSection\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"This section identifies who is responsible for maintaining the equipment in good repair.\",\"isNullable\":true,\"name\":\"RepairsSection\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"EquipmentLease.cdm.json/EquipmentLease\",\"name\":\"LossAndDamageSection\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"This section identifies who is responsible for any loss of or damage to the equipment and includes options in the event that such events occur:\\n\\n(1)  Repair equipment\\n(2)  Replace equipment\\n(3)  Pay Lessor some amount to replace or repair equipment\",\"isNullable\":true,\"name\":\"LossAndDamageSection\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"EquipmentLease.cdm.json/EquipmentLease\",\"name\":\"SurrenderSection\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"The terms by which the Lessee will return equipment to the Lessor including transportation charges and locations of pick-up and delivery.\",\"isNullable\":true,\"name\":\"SurrenderSection\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"EquipmentLease.cdm.json/EquipmentLease\",\"name\":\"InsuranceSection\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"This section identifies the types and amounts of insurance coverage to be provided by the Lessee.\\n\\nThis is intended to protect the Lessor if the equipment is damaged or destroyed and protect the Lessor if a third party is injured or suffers a loss as a result of the Lessee's use of the equipment.\",\"isNullable\":true,\"name\":\"InsuranceSection\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"EquipmentLease.cdm.json/EquipmentLease\",\"name\":\"TaxesSection\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"This section identifies who is responsible for any taxes or charges associated with the equipment including property taxes, sales taxes and use taxes.\",\"isNullable\":true,\"name\":\"TaxesSection\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"EquipmentLease.cdm.json/EquipmentLease\",\"name\":\"LessorPaymentSection\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"This section describes how the Lessor may pay insurance premiums, taxes and other required fees if the Lessee fails to and that the Lessor can then charge the Lessee replacement or compensating fees.\",\"isNullable\":true,\"name\":\"LessorPaymentSection\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"EquipmentLease.cdm.json/EquipmentLease\",\"name\":\"IndemnitySection\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"This sections describes the obligations should a third party sue the Lessor as a result of use or operation of the equipment by the Lessee.\",\"isNullable\":true,\"name\":\"IndemnitySection\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"EquipmentLease.cdm.json/EquipmentLease\",\"name\":\"DefaultSection\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"This section establishes the actions that the Lessor may take against the Lessee in case of default or failure to pay monthly payments.\",\"isNullable\":true,\"name\":\"DefaultSection\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"EquipmentLease.cdm.json/EquipmentLease\",\"name\":\"BankruptcySection\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"This section covers the equipment in case of Bankruptcy proceeding by either the Lessor or Lessee during the period of the Lease.\",\"isNullable\":true,\"name\":\"BankruptcySection\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"EquipmentLease.cdm.json/EquipmentLease\",\"name\":\"OwnershipSection\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"This section makes it clear that the Equipment is owned by and belongs to the Lessor and nothing in the Lease transfers any ownership to the Lessee.\",\"isNullable\":true,\"name\":\"OwnershipSection\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"EquipmentLease.cdm.json/EquipmentLease\",\"name\":\"AdditionalDocumentsSection\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"This section requires the Lessee to sign certain additional documents for public record if requested by the Lessor.\\n\\nAn example is a UCC Form 1 Financing Statement.\",\"isNullable\":true,\"name\":\"AdditionalDocumentsSection\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"EquipmentLease.cdm.json/EquipmentLease\",\"name\":\"EntireAgreementSection\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"This section makes it clear that this is the final agreement between parties and replaces or supersedes any prior discussions or agreements.    Any amendments to this agreement must be made in writing.\",\"isNullable\":true,\"name\":\"EntireAgreementSection\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"EquipmentLease.cdm.json/EquipmentLease\",\"name\":\"NoticesSection\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"This section establishes how each party is to formally notify each other in matters related to the agreement.\",\"isNullable\":true,\"name\":\"NoticesSection\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"EquipmentLease.cdm.json/EquipmentLease\",\"name\":\"AssignmentSection\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"This section identifies whether either party may assign its rights in the contract to someone else.\",\"isNullable\":true,\"name\":\"AssignmentSection\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"EquipmentLease.cdm.json/EquipmentLease\",\"name\":\"GoverningLawSection\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"This section specifies which state's laws will be used to interpret and enforce the agreement.\",\"isNullable\":true,\"name\":\"GoverningLawSection\"}]}}}",
+			"Description": "An Equipment Lease is used to lease property between two parties in  return for lease payments.",
+			"DisplayFolderInfo": "{\"name\":\"Contract\",\"colorCode\":\"#917EDB\"}",
+			"PrimaryKeys": "ContractId",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

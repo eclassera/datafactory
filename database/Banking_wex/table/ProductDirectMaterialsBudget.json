@@ -1,0 +1,179 @@
+{
+	"name": "ProductDirectMaterialsBudget",
+	"properties": {
+		"Name": "ProductDirectMaterialsBudget",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "The Direct Materials Budget details the cost items that must be purchased to fulfill the production, sales, inventory or support requirements of a specific product or service.",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "ProductDirectMaterialsBudgetId",
+					"Description": "The unique identifier of a Product Direct Materials Budget.",
+					"BaseAttributeReference": {
+						"Entity": "ProductDirectMaterialsBudget.cdm.json/ProductDirectMaterialsBudget",
+						"Name": "ProductDirectMaterialsBudgetId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "ProductDirectMaterialsBudgetVersionId",
+					"Description": "The unique identifier of a Product Direct Materials Budget Version.",
+					"BaseAttributeReference": {
+						"Entity": "ProductDirectMaterialsBudget.cdm.json/ProductDirectMaterialsBudget",
+						"Name": "ProductDirectMaterialsBudgetVersionId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "ProductId",
+					"Description": "The unique identifier of a Product.",
+					"BaseAttributeReference": {
+						"Entity": "ProductDirectMaterialsBudget.cdm.json/ProductDirectMaterialsBudget",
+						"Name": "ProductId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "long",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "long"
+						}
+					}
+				},
+				{
+					"Name": "OperatingBudgetId",
+					"Description": "The unique identifier of a Product/Service Operating Budget.",
+					"BaseAttributeReference": {
+						"Entity": "ProductDirectMaterialsBudget.cdm.json/ProductDirectMaterialsBudget",
+						"Name": "OperatingBudgetId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "OperatingBudgetVersionId",
+					"Description": "The unique identifier of an Operating Budget Version.",
+					"BaseAttributeReference": {
+						"Entity": "ProductDirectMaterialsBudget.cdm.json/ProductDirectMaterialsBudget",
+						"Name": "OperatingBudgetVersionId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "BudgetedDirectMaterialsCostsAmount",
+					"Description": "The planned direct materials costs for the associated period and product/service budget.",
+					"BaseAttributeReference": {
+						"Entity": "ProductDirectMaterialsBudget.cdm.json/ProductDirectMaterialsBudget",
+						"Name": "BudgetedDirectMaterialsCostsAmount"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "decimal",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Precision": 18,
+						"Scale": 2,
+						"Properties": {
+							"HIVE_TYPE_STRING": "decimal"
+						}
+					}
+				},
+				{
+					"Name": "ActualDirectMaterialsCostsAmount",
+					"Description": "The actual direct materials costs for the associated period and product/service budget.",
+					"BaseAttributeReference": {
+						"Entity": "ProductDirectMaterialsBudget.cdm.json/ProductDirectMaterialsBudget",
+						"Name": "ActualDirectMaterialsCostsAmount"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "decimal",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Precision": 18,
+						"Scale": 2,
+						"Properties": {
+							"HIVE_TYPE_STRING": "decimal"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/ProductDirectMaterialsBudget",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/ProductDirectMaterialsBudget",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"ProductDirectMaterialsBudgetId\":{\"entity\":\"ProductDirectMaterialsBudget.cdm.json/ProductDirectMaterialsBudget\",\"name\":\"ProductDirectMaterialsBudgetId\"},\"ProductDirectMaterialsBudgetVersionId\":{\"entity\":\"ProductDirectMaterialsBudget.cdm.json/ProductDirectMaterialsBudget\",\"name\":\"ProductDirectMaterialsBudgetVersionId\"},\"ProductId\":{\"entity\":\"ProductDirectMaterialsBudget.cdm.json/ProductDirectMaterialsBudget\",\"name\":\"ProductId\"},\"OperatingBudgetId\":{\"entity\":\"ProductDirectMaterialsBudget.cdm.json/ProductDirectMaterialsBudget\",\"name\":\"OperatingBudgetId\"},\"OperatingBudgetVersionId\":{\"entity\":\"ProductDirectMaterialsBudget.cdm.json/ProductDirectMaterialsBudget\",\"name\":\"OperatingBudgetVersionId\"},\"BudgetedDirectMaterialsCostsAmount\":{\"entity\":\"ProductDirectMaterialsBudget.cdm.json/ProductDirectMaterialsBudget\",\"name\":\"BudgetedDirectMaterialsCostsAmount\"},\"ActualDirectMaterialsCostsAmount\":{\"entity\":\"ProductDirectMaterialsBudget.cdm.json/ProductDirectMaterialsBudget\",\"name\":\"ActualDirectMaterialsCostsAmount\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"ProductDirectMaterialsBudget\",\"path\":\"ProductDirectMaterialsBudget.cdm.json/ProductDirectMaterialsBudget\"},\"description\":\"The Direct Materials Budget details the cost items that must be purchased to fulfill the production, sales, inventory or support requirements of a specific product or service.\",\"primaryKey\":[\"ProductDirectMaterialsBudgetId\",\"ProductDirectMaterialsBudgetVersionId\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ProductDirectMaterialsBudget.cdm.json/ProductDirectMaterialsBudget\",\"name\":\"ProductDirectMaterialsBudgetId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Product Direct Materials Budget.\",\"isNullable\":false,\"name\":\"ProductDirectMaterialsBudgetId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ProductDirectMaterialsBudget.cdm.json/ProductDirectMaterialsBudget\",\"name\":\"ProductDirectMaterialsBudgetVersionId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Product Direct Materials Budget Version.\",\"isNullable\":false,\"name\":\"ProductDirectMaterialsBudgetVersionId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ProductDirectMaterialsBudget.cdm.json/ProductDirectMaterialsBudget\",\"name\":\"ProductId\"},\"dataType\":\"long\",\"description\":\"The unique identifier of a Product.\",\"isNullable\":false,\"name\":\"ProductId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ProductDirectMaterialsBudget.cdm.json/ProductDirectMaterialsBudget\",\"name\":\"OperatingBudgetId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Product/Service Operating Budget.\",\"isNullable\":false,\"name\":\"OperatingBudgetId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ProductDirectMaterialsBudget.cdm.json/ProductDirectMaterialsBudget\",\"name\":\"OperatingBudgetVersionId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of an Operating Budget Version.\",\"isNullable\":false,\"name\":\"OperatingBudgetVersionId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ProductDirectMaterialsBudget.cdm.json/ProductDirectMaterialsBudget\",\"name\":\"BudgetedDirectMaterialsCostsAmount\"},\"dataType\":\"decimal\",\"dataTypeLength\":18,\"description\":\"The planned direct materials costs for the associated period and product/service budget.\",\"isNullable\":true,\"scale\":2,\"name\":\"BudgetedDirectMaterialsCostsAmount\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ProductDirectMaterialsBudget.cdm.json/ProductDirectMaterialsBudget\",\"name\":\"ActualDirectMaterialsCostsAmount\"},\"dataType\":\"decimal\",\"dataTypeLength\":18,\"description\":\"The actual direct materials costs for the associated period and product/service budget.\",\"isNullable\":true,\"scale\":2,\"name\":\"ActualDirectMaterialsCostsAmount\"}]}}}",
+			"Description": "The Direct Materials Budget details the cost items that must be purchased to fulfill the production, sales, inventory or support requirements of a specific product or service.",
+			"DisplayFolderInfo": "{\"name\":\"Budget & Forecasting\",\"colorCode\":\"#00188F\"}",
+			"PrimaryKeys": "ProductDirectMaterialsBudgetId,ProductDirectMaterialsBudgetVersionId",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

@@ -1,0 +1,298 @@
+{
+	"name": "CreditCardPayment",
+	"properties": {
+		"Name": "CreditCardPayment",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "A payment made by the consumer upon the associated credit card account.",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "PaymentCardId",
+					"Description": "Primary Account Number (PAN) = The number that is embossed, encoded, or both, on a plastic card that identifies the issuer and the particular cardholder account.\n\nThe account number on the card, which is unique to every cardholder. The card number is used to identify the purchaser for authorization and billing purposes.",
+					"BaseAttributeReference": {
+						"Entity": "CreditCardPayment.cdm.json/CreditCardPayment",
+						"Name": "PaymentCardId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "CreditCardPaymentDate",
+					"Description": "The date that the credit card payment was made.",
+					"BaseAttributeReference": {
+						"Entity": "CreditCardPayment.cdm.json/CreditCardPayment",
+						"Name": "CreditCardPaymentDate"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "date",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"DateFormat": "YYYY-MM-DD",
+							"HIVE_TYPE_STRING": "date"
+						}
+					}
+				},
+				{
+					"Name": "PaymentDueDate",
+					"Description": "The date that the payment is due.",
+					"BaseAttributeReference": {
+						"Entity": "CreditCardPayment.cdm.json/CreditCardPayment",
+						"Name": "PaymentDueDate"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "date",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"DateFormat": "YYYY-MM-DD",
+							"HIVE_TYPE_STRING": "date"
+						}
+					}
+				},
+				{
+					"Name": "CreditCardTotalOutstandingAmount",
+					"Description": "The amount of outstanding balance on the credit card as of the payment date.",
+					"BaseAttributeReference": {
+						"Entity": "CreditCardPayment.cdm.json/CreditCardPayment",
+						"Name": "CreditCardTotalOutstandingAmount"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "decimal",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Precision": 18,
+						"Scale": 2,
+						"Properties": {
+							"HIVE_TYPE_STRING": "decimal"
+						}
+					}
+				},
+				{
+					"Name": "CreditCardMinimumPaymentDueAmount",
+					"Description": "The amount of minimum payment that must be made on the credit card as of the payment date.",
+					"BaseAttributeReference": {
+						"Entity": "CreditCardPayment.cdm.json/CreditCardPayment",
+						"Name": "CreditCardMinimumPaymentDueAmount"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "decimal",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Precision": 18,
+						"Scale": 2,
+						"Properties": {
+							"HIVE_TYPE_STRING": "decimal"
+						}
+					}
+				},
+				{
+					"Name": "CreditCardPaymentAmount",
+					"Description": "The amount of payment made on the associated date.",
+					"BaseAttributeReference": {
+						"Entity": "CreditCardPayment.cdm.json/CreditCardPayment",
+						"Name": "CreditCardPaymentAmount"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "decimal",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Precision": 18,
+						"Scale": 2,
+						"Properties": {
+							"HIVE_TYPE_STRING": "decimal"
+						}
+					}
+				},
+				{
+					"Name": "PaymentPeriodStartDate",
+					"Description": "The period starting date for which the associated payment is applied.",
+					"BaseAttributeReference": {
+						"Entity": "CreditCardPayment.cdm.json/CreditCardPayment",
+						"Name": "PaymentPeriodStartDate"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "date",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"DateFormat": "YYYY-MM-DD",
+							"HIVE_TYPE_STRING": "date"
+						}
+					}
+				},
+				{
+					"Name": "PaymentPeriodEndDate",
+					"Description": "The period ending date for which the associated payment is applied.",
+					"BaseAttributeReference": {
+						"Entity": "CreditCardPayment.cdm.json/CreditCardPayment",
+						"Name": "PaymentPeriodEndDate"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "date",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"DateFormat": "YYYY-MM-DD",
+							"HIVE_TYPE_STRING": "date"
+						}
+					}
+				},
+				{
+					"Name": "PaymentStatusId",
+					"Description": "The unique identifier of a payment status.",
+					"BaseAttributeReference": {
+						"Entity": "CreditCardPayment.cdm.json/CreditCardPayment",
+						"Name": "PaymentStatusId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "BillingCycleId",
+					"Description": "The unique identifier of a Billing Cycle.",
+					"BaseAttributeReference": {
+						"Entity": "CreditCardPayment.cdm.json/CreditCardPayment",
+						"Name": "BillingCycleId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "AccountStatusIdPriorToPayment",
+					"Description": "The unique identifier of an Account Status prior to payment.",
+					"BaseAttributeReference": {
+						"Entity": "CreditCardPayment.cdm.json/CreditCardPayment",
+						"Name": "AccountStatusIdPriorToPayment"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "AccountStatusIdPriorAfterPayment",
+					"Description": "The unique identifier of an Account Status after payment.",
+					"BaseAttributeReference": {
+						"Entity": "CreditCardPayment.cdm.json/CreditCardPayment",
+						"Name": "AccountStatusIdPriorAfterPayment"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "PaymentTypeId",
+					"Description": "The unique identifier of a Payment Type.",
+					"BaseAttributeReference": {
+						"Entity": "CreditCardPayment.cdm.json/CreditCardPayment",
+						"Name": "PaymentTypeId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "IsoCurrencyCode",
+					"Description": "The ISO 4217 currency code.",
+					"BaseAttributeReference": {
+						"Entity": "CreditCardPayment.cdm.json/CreditCardPayment",
+						"Name": "IsoCurrencyCode"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 3,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/CreditCardPayment",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/CreditCardPayment",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"PaymentCardId\":{\"entity\":\"CreditCardPayment.cdm.json/CreditCardPayment\",\"name\":\"PaymentCardId\"},\"CreditCardPaymentDate\":{\"entity\":\"CreditCardPayment.cdm.json/CreditCardPayment\",\"name\":\"CreditCardPaymentDate\"},\"PaymentDueDate\":{\"entity\":\"CreditCardPayment.cdm.json/CreditCardPayment\",\"name\":\"PaymentDueDate\"},\"CreditCardTotalOutstandingAmount\":{\"entity\":\"CreditCardPayment.cdm.json/CreditCardPayment\",\"name\":\"CreditCardTotalOutstandingAmount\"},\"CreditCardMinimumPaymentDueAmount\":{\"entity\":\"CreditCardPayment.cdm.json/CreditCardPayment\",\"name\":\"CreditCardMinimumPaymentDueAmount\"},\"CreditCardPaymentAmount\":{\"entity\":\"CreditCardPayment.cdm.json/CreditCardPayment\",\"name\":\"CreditCardPaymentAmount\"},\"PaymentPeriodStartDate\":{\"entity\":\"CreditCardPayment.cdm.json/CreditCardPayment\",\"name\":\"PaymentPeriodStartDate\"},\"PaymentPeriodEndDate\":{\"entity\":\"CreditCardPayment.cdm.json/CreditCardPayment\",\"name\":\"PaymentPeriodEndDate\"},\"PaymentStatusId\":{\"entity\":\"CreditCardPayment.cdm.json/CreditCardPayment\",\"name\":\"PaymentStatusId\"},\"BillingCycleId\":{\"entity\":\"CreditCardPayment.cdm.json/CreditCardPayment\",\"name\":\"BillingCycleId\"},\"AccountStatusIdPriorToPayment\":{\"entity\":\"CreditCardPayment.cdm.json/CreditCardPayment\",\"name\":\"AccountStatusIdPriorToPayment\"},\"AccountStatusIdPriorAfterPayment\":{\"entity\":\"CreditCardPayment.cdm.json/CreditCardPayment\",\"name\":\"AccountStatusIdPriorAfterPayment\"},\"PaymentTypeId\":{\"entity\":\"CreditCardPayment.cdm.json/CreditCardPayment\",\"name\":\"PaymentTypeId\"},\"IsoCurrencyCode\":{\"entity\":\"CreditCardPayment.cdm.json/CreditCardPayment\",\"name\":\"IsoCurrencyCode\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"CreditCardPayment\",\"path\":\"CreditCardPayment.cdm.json/CreditCardPayment\"},\"description\":\"A payment made by the consumer upon the associated credit card account.\",\"primaryKey\":[\"PaymentCardId\",\"CreditCardPaymentDate\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CreditCardPayment.cdm.json/CreditCardPayment\",\"name\":\"PaymentCardId\"},\"dataType\":\"integer\",\"description\":\"Primary Account Number (PAN) = The number that is embossed, encoded, or both, on a plastic card that identifies the issuer and the particular cardholder account.\\n\\nThe account number on the card, which is unique to every cardholder. The card number is used to identify the purchaser for authorization and billing purposes.\",\"isNullable\":false,\"name\":\"PaymentCardId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CreditCardPayment.cdm.json/CreditCardPayment\",\"name\":\"CreditCardPaymentDate\"},\"dataType\":\"date\",\"dateFormat\":\"YYYY-MM-DD\",\"description\":\"The date that the credit card payment was made.\",\"isNullable\":false,\"name\":\"CreditCardPaymentDate\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CreditCardPayment.cdm.json/CreditCardPayment\",\"name\":\"PaymentDueDate\"},\"dataType\":\"date\",\"dateFormat\":\"YYYY-MM-DD\",\"description\":\"The date that the payment is due.\",\"isNullable\":false,\"name\":\"PaymentDueDate\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CreditCardPayment.cdm.json/CreditCardPayment\",\"name\":\"CreditCardTotalOutstandingAmount\"},\"dataType\":\"decimal\",\"dataTypeLength\":18,\"description\":\"The amount of outstanding balance on the credit card as of the payment date.\",\"isNullable\":true,\"scale\":2,\"name\":\"CreditCardTotalOutstandingAmount\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CreditCardPayment.cdm.json/CreditCardPayment\",\"name\":\"CreditCardMinimumPaymentDueAmount\"},\"dataType\":\"decimal\",\"dataTypeLength\":18,\"description\":\"The amount of minimum payment that must be made on the credit card as of the payment date.\",\"isNullable\":true,\"scale\":2,\"name\":\"CreditCardMinimumPaymentDueAmount\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CreditCardPayment.cdm.json/CreditCardPayment\",\"name\":\"CreditCardPaymentAmount\"},\"dataType\":\"decimal\",\"dataTypeLength\":18,\"description\":\"The amount of payment made on the associated date.\",\"isNullable\":true,\"scale\":2,\"name\":\"CreditCardPaymentAmount\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CreditCardPayment.cdm.json/CreditCardPayment\",\"name\":\"PaymentPeriodStartDate\"},\"dataType\":\"date\",\"dateFormat\":\"YYYY-MM-DD\",\"description\":\"The period starting date for which the associated payment is applied.\",\"isNullable\":true,\"name\":\"PaymentPeriodStartDate\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CreditCardPayment.cdm.json/CreditCardPayment\",\"name\":\"PaymentPeriodEndDate\"},\"dataType\":\"date\",\"dateFormat\":\"YYYY-MM-DD\",\"description\":\"The period ending date for which the associated payment is applied.\",\"isNullable\":true,\"name\":\"PaymentPeriodEndDate\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CreditCardPayment.cdm.json/CreditCardPayment\",\"name\":\"PaymentStatusId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a payment status.\",\"isNullable\":true,\"name\":\"PaymentStatusId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CreditCardPayment.cdm.json/CreditCardPayment\",\"name\":\"BillingCycleId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Billing Cycle.\",\"isNullable\":true,\"name\":\"BillingCycleId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CreditCardPayment.cdm.json/CreditCardPayment\",\"name\":\"AccountStatusIdPriorToPayment\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of an Account Status prior to payment.\",\"isNullable\":true,\"name\":\"AccountStatusIdPriorToPayment\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CreditCardPayment.cdm.json/CreditCardPayment\",\"name\":\"AccountStatusIdPriorAfterPayment\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of an Account Status after payment.\",\"isNullable\":true,\"name\":\"AccountStatusIdPriorAfterPayment\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CreditCardPayment.cdm.json/CreditCardPayment\",\"name\":\"PaymentTypeId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Payment Type.\",\"isNullable\":true,\"name\":\"PaymentTypeId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CreditCardPayment.cdm.json/CreditCardPayment\",\"name\":\"IsoCurrencyCode\"},\"dataType\":\"string\",\"dataTypeLength\":3,\"description\":\"The ISO 4217 currency code.\",\"isNullable\":true,\"name\":\"IsoCurrencyCode\"}]}}}",
+			"Description": "A payment made by the consumer upon the associated credit card account.",
+			"DisplayFolderInfo": "{\"name\":\"Customer Credit & Collections\",\"colorCode\":\"#022F22\"}",
+			"PrimaryKeys": "PaymentCardId,CreditCardPaymentDate",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

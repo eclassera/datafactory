@@ -1,0 +1,144 @@
+{
+	"name": "CustomerNamePrefix",
+	"properties": {
+		"Name": "CustomerNamePrefix",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "The customer name prefix(s) and it's ordering.",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "CustomerId",
+					"Description": "The unique identifier of a Customer.",
+					"BaseAttributeReference": {
+						"Entity": "CustomerNamePrefix.cdm.json/CustomerNamePrefix",
+						"Name": "CustomerId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "long",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "long"
+						}
+					}
+				},
+				{
+					"Name": "CustomerNameId",
+					"Description": "The unique identifier of a Customer Name.",
+					"BaseAttributeReference": {
+						"Entity": "CustomerNamePrefix.cdm.json/CustomerNamePrefix",
+						"Name": "CustomerNameId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "NamePrefixId",
+					"Description": "The unique identifier of a Prefix.",
+					"BaseAttributeReference": {
+						"Entity": "CustomerNamePrefix.cdm.json/CustomerNamePrefix",
+						"Name": "NamePrefixId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "PrefixOrderNumber",
+					"Description": "The ordering of the associated prefix.",
+					"BaseAttributeReference": {
+						"Entity": "CustomerNamePrefix.cdm.json/CustomerNamePrefix",
+						"Name": "PrefixOrderNumber"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "CustomerNamePrefixNote",
+					"Description": "A note, comment or additional information regarding the customer name prefix.",
+					"BaseAttributeReference": {
+						"Entity": "CustomerNamePrefix.cdm.json/CustomerNamePrefix",
+						"Name": "CustomerNamePrefixNote"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/CustomerNamePrefix",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/CustomerNamePrefix",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"CustomerId\":{\"entity\":\"CustomerNamePrefix.cdm.json/CustomerNamePrefix\",\"name\":\"CustomerId\"},\"CustomerNameId\":{\"entity\":\"CustomerNamePrefix.cdm.json/CustomerNamePrefix\",\"name\":\"CustomerNameId\"},\"NamePrefixId\":{\"entity\":\"CustomerNamePrefix.cdm.json/CustomerNamePrefix\",\"name\":\"NamePrefixId\"},\"PrefixOrderNumber\":{\"entity\":\"CustomerNamePrefix.cdm.json/CustomerNamePrefix\",\"name\":\"PrefixOrderNumber\"},\"CustomerNamePrefixNote\":{\"entity\":\"CustomerNamePrefix.cdm.json/CustomerNamePrefix\",\"name\":\"CustomerNamePrefixNote\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"CustomerNamePrefix\",\"path\":\"CustomerNamePrefix.cdm.json/CustomerNamePrefix\"},\"description\":\"The customer name prefix(s) and it's ordering.\",\"primaryKey\":[\"CustomerId\",\"CustomerNameId\",\"NamePrefixId\",\"PrefixOrderNumber\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CustomerNamePrefix.cdm.json/CustomerNamePrefix\",\"name\":\"CustomerId\"},\"dataType\":\"long\",\"description\":\"The unique identifier of a Customer.\",\"isNullable\":false,\"name\":\"CustomerId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CustomerNamePrefix.cdm.json/CustomerNamePrefix\",\"name\":\"CustomerNameId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Customer Name.\",\"isNullable\":false,\"name\":\"CustomerNameId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CustomerNamePrefix.cdm.json/CustomerNamePrefix\",\"name\":\"NamePrefixId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Prefix.\",\"isNullable\":false,\"name\":\"NamePrefixId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CustomerNamePrefix.cdm.json/CustomerNamePrefix\",\"name\":\"PrefixOrderNumber\"},\"dataType\":\"integer\",\"description\":\"The ordering of the associated prefix.\",\"isNullable\":false,\"name\":\"PrefixOrderNumber\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CustomerNamePrefix.cdm.json/CustomerNamePrefix\",\"name\":\"CustomerNamePrefixNote\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"A note, comment or additional information regarding the customer name prefix.\",\"isNullable\":true,\"name\":\"CustomerNamePrefixNote\"}]}}}",
+			"Description": "The customer name prefix(s) and it's ordering.",
+			"DisplayFolderInfo": "{\"name\":\"Customer\",\"colorCode\":\"#4B003F\"}",
+			"PrimaryKeys": "CustomerId,CustomerNameId,NamePrefixId,PrefixOrderNumber",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

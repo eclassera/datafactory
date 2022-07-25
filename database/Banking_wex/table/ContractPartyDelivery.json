@@ -1,0 +1,162 @@
+{
+	"name": "ContractPartyDelivery",
+	"properties": {
+		"Name": "ContractPartyDelivery",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "The date each party received a copy of the signed agreement, which is part of the contract process and should be tracked.",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "ContractId",
+					"Description": "The unique identifier of a Contract.",
+					"BaseAttributeReference": {
+						"Entity": "ContractPartyDelivery.cdm.json/ContractPartyDelivery",
+						"Name": "ContractId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "PartyId",
+					"Description": "The unique identifier of a Party.",
+					"BaseAttributeReference": {
+						"Entity": "ContractPartyDelivery.cdm.json/ContractPartyDelivery",
+						"Name": "PartyId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "long",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "long"
+						}
+					}
+				},
+				{
+					"Name": "DeliveryTimestamp",
+					"Description": "The date that the contract was delivered to the party.",
+					"BaseAttributeReference": {
+						"Entity": "ContractPartyDelivery.cdm.json/ContractPartyDelivery",
+						"Name": "DeliveryTimestamp"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "timestamp",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"TimestampFormat": "YYYY-MM-DD HH:MM:SS.fffffffff",
+							"HIVE_TYPE_STRING": "timestamp"
+						}
+					}
+				},
+				{
+					"Name": "DeliveryConfirmationTimestamp",
+					"Description": "The timestamp that the contract delivery to the party was confirmed.",
+					"BaseAttributeReference": {
+						"Entity": "ContractPartyDelivery.cdm.json/ContractPartyDelivery",
+						"Name": "DeliveryConfirmationTimestamp"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "timestamp",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"TimestampFormat": "YYYY-MM-DD HH:MM:SS.fffffffff",
+							"HIVE_TYPE_STRING": "timestamp"
+						}
+					}
+				},
+				{
+					"Name": "DeliveryNote",
+					"Description": "A note, comment or additional information regarding the contract delivery to the party.",
+					"BaseAttributeReference": {
+						"Entity": "ContractPartyDelivery.cdm.json/ContractPartyDelivery",
+						"Name": "DeliveryNote"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "ContractDeliveryMethodId",
+					"Description": "The unique identifier of a contract delivery method.",
+					"BaseAttributeReference": {
+						"Entity": "ContractPartyDelivery.cdm.json/ContractPartyDelivery",
+						"Name": "ContractDeliveryMethodId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/ContractPartyDelivery",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/ContractPartyDelivery",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"ContractId\":{\"entity\":\"ContractPartyDelivery.cdm.json/ContractPartyDelivery\",\"name\":\"ContractId\"},\"PartyId\":{\"entity\":\"ContractPartyDelivery.cdm.json/ContractPartyDelivery\",\"name\":\"PartyId\"},\"DeliveryTimestamp\":{\"entity\":\"ContractPartyDelivery.cdm.json/ContractPartyDelivery\",\"name\":\"DeliveryTimestamp\"},\"DeliveryConfirmationTimestamp\":{\"entity\":\"ContractPartyDelivery.cdm.json/ContractPartyDelivery\",\"name\":\"DeliveryConfirmationTimestamp\"},\"DeliveryNote\":{\"entity\":\"ContractPartyDelivery.cdm.json/ContractPartyDelivery\",\"name\":\"DeliveryNote\"},\"ContractDeliveryMethodId\":{\"entity\":\"ContractPartyDelivery.cdm.json/ContractPartyDelivery\",\"name\":\"ContractDeliveryMethodId\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"ContractPartyDelivery\",\"path\":\"ContractPartyDelivery.cdm.json/ContractPartyDelivery\"},\"description\":\"The date each party received a copy of the signed agreement, which is part of the contract process and should be tracked.\",\"primaryKey\":[\"ContractId\",\"PartyId\",\"DeliveryTimestamp\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ContractPartyDelivery.cdm.json/ContractPartyDelivery\",\"name\":\"ContractId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Contract.\",\"isNullable\":false,\"name\":\"ContractId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ContractPartyDelivery.cdm.json/ContractPartyDelivery\",\"name\":\"PartyId\"},\"dataType\":\"long\",\"description\":\"The unique identifier of a Party.\",\"isNullable\":false,\"name\":\"PartyId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ContractPartyDelivery.cdm.json/ContractPartyDelivery\",\"name\":\"DeliveryTimestamp\"},\"dataType\":\"timestamp\",\"description\":\"The date that the contract was delivered to the party.\",\"isNullable\":false,\"name\":\"DeliveryTimestamp\",\"timestampFormat\":\"YYYY-MM-DD HH:MM:SS.fffffffff\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ContractPartyDelivery.cdm.json/ContractPartyDelivery\",\"name\":\"DeliveryConfirmationTimestamp\"},\"dataType\":\"timestamp\",\"description\":\"The timestamp that the contract delivery to the party was confirmed.\",\"isNullable\":true,\"name\":\"DeliveryConfirmationTimestamp\",\"timestampFormat\":\"YYYY-MM-DD HH:MM:SS.fffffffff\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ContractPartyDelivery.cdm.json/ContractPartyDelivery\",\"name\":\"DeliveryNote\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"A note, comment or additional information regarding the contract delivery to the party.\",\"isNullable\":true,\"name\":\"DeliveryNote\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ContractPartyDelivery.cdm.json/ContractPartyDelivery\",\"name\":\"ContractDeliveryMethodId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a contract delivery method.\",\"isNullable\":true,\"name\":\"ContractDeliveryMethodId\"}]}}}",
+			"Description": "The date each party received a copy of the signed agreement, which is part of the contract process and should be tracked.",
+			"DisplayFolderInfo": "{\"name\":\"Contract\",\"colorCode\":\"#917EDB\"}",
+			"PrimaryKeys": "ContractId,PartyId,DeliveryTimestamp",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

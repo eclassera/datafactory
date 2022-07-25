@@ -1,0 +1,161 @@
+{
+	"name": "CustomerSurveyQuestionResponse",
+	"properties": {
+		"Name": "CustomerSurveyQuestionResponse",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "The customer response to the survey question.",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "CustomerId",
+					"Description": "The unique identifier of a Customer.",
+					"BaseAttributeReference": {
+						"Entity": "CustomerSurveyQuestionResponse.cdm.json/CustomerSurveyQuestionResponse",
+						"Name": "CustomerId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "long",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "long"
+						}
+					}
+				},
+				{
+					"Name": "SurveyId",
+					"Description": "The unique identifier of a Survey.",
+					"BaseAttributeReference": {
+						"Entity": "CustomerSurveyQuestionResponse.cdm.json/CustomerSurveyQuestionResponse",
+						"Name": "SurveyId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "QuestionId",
+					"Description": "The unique identifier of a Question.",
+					"BaseAttributeReference": {
+						"Entity": "CustomerSurveyQuestionResponse.cdm.json/CustomerSurveyQuestionResponse",
+						"Name": "QuestionId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "DateResponded",
+					"Description": "The date of the response to the Survey Question.",
+					"BaseAttributeReference": {
+						"Entity": "CustomerSurveyQuestionResponse.cdm.json/CustomerSurveyQuestionResponse",
+						"Name": "DateResponded"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "date",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"DateFormat": "YYYY-MM-DD",
+							"HIVE_TYPE_STRING": "date"
+						}
+					}
+				},
+				{
+					"Name": "QuestionResponseText",
+					"Description": "A Customer response to the associated question that cannot be addressed by a simple Question Response Rating and requires some amount of text that must be individually interpreted.\n\nAn example is a statement made in response to a Question as opposed to a standard \"Yes/No\" or scaled rating.",
+					"BaseAttributeReference": {
+						"Entity": "CustomerSurveyQuestionResponse.cdm.json/CustomerSurveyQuestionResponse",
+						"Name": "QuestionResponseText"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "QuestionResponseRatingId",
+					"Description": "The unique identifier of a Question Response Rating.",
+					"BaseAttributeReference": {
+						"Entity": "CustomerSurveyQuestionResponse.cdm.json/CustomerSurveyQuestionResponse",
+						"Name": "QuestionResponseRatingId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/CustomerSurveyQuestionResponse",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/CustomerSurveyQuestionResponse",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"CustomerId\":{\"entity\":\"CustomerSurveyQuestionResponse.cdm.json/CustomerSurveyQuestionResponse\",\"name\":\"CustomerId\"},\"SurveyId\":{\"entity\":\"CustomerSurveyQuestionResponse.cdm.json/CustomerSurveyQuestionResponse\",\"name\":\"SurveyId\"},\"QuestionId\":{\"entity\":\"CustomerSurveyQuestionResponse.cdm.json/CustomerSurveyQuestionResponse\",\"name\":\"QuestionId\"},\"DateResponded\":{\"entity\":\"CustomerSurveyQuestionResponse.cdm.json/CustomerSurveyQuestionResponse\",\"name\":\"DateResponded\"},\"QuestionResponseText\":{\"entity\":\"CustomerSurveyQuestionResponse.cdm.json/CustomerSurveyQuestionResponse\",\"name\":\"QuestionResponseText\"},\"QuestionResponseRatingId\":{\"entity\":\"CustomerSurveyQuestionResponse.cdm.json/CustomerSurveyQuestionResponse\",\"name\":\"QuestionResponseRatingId\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"CustomerSurveyQuestionResponse\",\"path\":\"CustomerSurveyQuestionResponse.cdm.json/CustomerSurveyQuestionResponse\"},\"description\":\"The customer response to the survey question.\",\"primaryKey\":[\"CustomerId\",\"SurveyId\",\"QuestionId\",\"DateResponded\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CustomerSurveyQuestionResponse.cdm.json/CustomerSurveyQuestionResponse\",\"name\":\"CustomerId\"},\"dataType\":\"long\",\"description\":\"The unique identifier of a Customer.\",\"isNullable\":false,\"name\":\"CustomerId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CustomerSurveyQuestionResponse.cdm.json/CustomerSurveyQuestionResponse\",\"name\":\"SurveyId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Survey.\",\"isNullable\":false,\"name\":\"SurveyId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CustomerSurveyQuestionResponse.cdm.json/CustomerSurveyQuestionResponse\",\"name\":\"QuestionId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Question.\",\"isNullable\":false,\"name\":\"QuestionId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CustomerSurveyQuestionResponse.cdm.json/CustomerSurveyQuestionResponse\",\"name\":\"DateResponded\"},\"dataType\":\"date\",\"dateFormat\":\"YYYY-MM-DD\",\"description\":\"The date of the response to the Survey Question.\",\"isNullable\":false,\"name\":\"DateResponded\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CustomerSurveyQuestionResponse.cdm.json/CustomerSurveyQuestionResponse\",\"name\":\"QuestionResponseText\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"A Customer response to the associated question that cannot be addressed by a simple Question Response Rating and requires some amount of text that must be individually interpreted.\\n\\nAn example is a statement made in response to a Question as opposed to a standard \\\"Yes/No\\\" or scaled rating.\",\"isNullable\":true,\"name\":\"QuestionResponseText\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CustomerSurveyQuestionResponse.cdm.json/CustomerSurveyQuestionResponse\",\"name\":\"QuestionResponseRatingId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Question Response Rating.\",\"isNullable\":true,\"name\":\"QuestionResponseRatingId\"}]}}}",
+			"Description": "The customer response to the survey question.",
+			"DisplayFolderInfo": "{\"name\":\"Customer\",\"colorCode\":\"#4B003F\"}",
+			"PrimaryKeys": "CustomerId,SurveyId,QuestionId,DateResponded",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

@@ -1,0 +1,113 @@
+{
+	"name": "IndustryPreference",
+	"properties": {
+		"Name": "IndustryPreference",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "The preference associated with the associated industry preference.\n\nEx:\n- Preferred\n- Secondary\n- Tertiary\n- Alternate Preference",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "IndustryPreferenceId",
+					"Description": "The unique identifier of an Industry Preference.",
+					"BaseAttributeReference": {
+						"Entity": "IndustryPreference.cdm.json/IndustryPreference",
+						"Name": "IndustryPreferenceId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "IndustryPreferenceName",
+					"Description": "The name of an Industry Preference.",
+					"BaseAttributeReference": {
+						"Entity": "IndustryPreference.cdm.json/IndustryPreference",
+						"Name": "IndustryPreferenceName"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 256,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "IndustryPreferenceDescription",
+					"Description": "The description of an Industry  Preference.",
+					"BaseAttributeReference": {
+						"Entity": "IndustryPreference.cdm.json/IndustryPreference",
+						"Name": "IndustryPreferenceDescription"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/IndustryPreference",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/IndustryPreference",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"IndustryPreferenceId\":{\"entity\":\"IndustryPreference.cdm.json/IndustryPreference\",\"name\":\"IndustryPreferenceId\"},\"IndustryPreferenceName\":{\"entity\":\"IndustryPreference.cdm.json/IndustryPreference\",\"name\":\"IndustryPreferenceName\"},\"IndustryPreferenceDescription\":{\"entity\":\"IndustryPreference.cdm.json/IndustryPreference\",\"name\":\"IndustryPreferenceDescription\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"IndustryPreference\",\"path\":\"IndustryPreference.cdm.json/IndustryPreference\"},\"description\":\"The preference associated with the associated industry preference.\\n\\nEx:\\n- Preferred\\n- Secondary\\n- Tertiary\\n- Alternate Preference\",\"primaryKey\":[\"IndustryPreferenceId\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"IndustryPreference.cdm.json/IndustryPreference\",\"name\":\"IndustryPreferenceId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of an Industry Preference.\",\"isNullable\":false,\"name\":\"IndustryPreferenceId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"IndustryPreference.cdm.json/IndustryPreference\",\"name\":\"IndustryPreferenceName\"},\"dataType\":\"string\",\"dataTypeLength\":256,\"description\":\"The name of an Industry Preference.\",\"isNullable\":true,\"name\":\"IndustryPreferenceName\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"IndustryPreference.cdm.json/IndustryPreference\",\"name\":\"IndustryPreferenceDescription\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"The description of an Industry  Preference.\",\"isNullable\":true,\"name\":\"IndustryPreferenceDescription\"}]}}}",
+			"Description": "The preference associated with the associated industry preference.\n\nEx:\n- Preferred\n- Secondary\n- Tertiary\n- Alternate Preference",
+			"DisplayFolderInfo": "{\"name\":\"Party\",\"colorCode\":\"#00727A\"}",
+			"PrimaryKeys": "IndustryPreferenceId",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

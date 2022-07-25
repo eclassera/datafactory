@@ -1,0 +1,164 @@
+{
+	"name": "ExperianCompanyInsuranceBondRelationship",
+	"properties": {
+		"Name": "ExperianCompanyInsuranceBondRelationship",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "The relationship of the Experian company to a bonding company.",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "ExperianFileNumber",
+					"Description": "The unique and persistent number that identifies and tracks the Experian company.",
+					"BaseAttributeReference": {
+						"Entity": "ExperianCompanyInsuranceBondRelationship.cdm.json/ExperianCompanyInsuranceBondRelationship",
+						"Name": "ExperianFileNumber"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "ProfileTimestamp",
+					"Description": "The timestamp of the Experian profile.",
+					"BaseAttributeReference": {
+						"Entity": "ExperianCompanyInsuranceBondRelationship.cdm.json/ExperianCompanyInsuranceBondRelationship",
+						"Name": "ProfileTimestamp"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "timestamp",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"TimestampFormat": "YYYY-MM-DD HH:MM:SS.fffffffff",
+							"HIVE_TYPE_STRING": "timestamp"
+						}
+					}
+				},
+				{
+					"Name": "ExperianBondRelationshipTypeId",
+					"Description": "The unique identifier of an Experian bond relationship type.",
+					"BaseAttributeReference": {
+						"Entity": "ExperianCompanyInsuranceBondRelationship.cdm.json/ExperianCompanyInsuranceBondRelationship",
+						"Name": "ExperianBondRelationshipTypeId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "BondingCompanyName",
+					"Description": "The name of the bonding company.",
+					"BaseAttributeReference": {
+						"Entity": "ExperianCompanyInsuranceBondRelationship.cdm.json/ExperianCompanyInsuranceBondRelationship",
+						"Name": "BondingCompanyName"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 256,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "BondingCompanyAddress",
+					"Description": "The address of the bonding company.",
+					"BaseAttributeReference": {
+						"Entity": "ExperianCompanyInsuranceBondRelationship.cdm.json/ExperianCompanyInsuranceBondRelationship",
+						"Name": "BondingCompanyAddress"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 512,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "BondingCompanyTelephoneNumber",
+					"Description": "The bonding company telephone number.",
+					"BaseAttributeReference": {
+						"Entity": "ExperianCompanyInsuranceBondRelationship.cdm.json/ExperianCompanyInsuranceBondRelationship",
+						"Name": "BondingCompanyTelephoneNumber"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "decimal",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Precision": 15,
+						"Scale": 0,
+						"Properties": {
+							"HIVE_TYPE_STRING": "decimal"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/ExperianCompanyInsuranceBondRelationship",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/ExperianCompanyInsuranceBondRelationship",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"ExperianFileNumber\":{\"entity\":\"ExperianCompanyInsuranceBondRelationship.cdm.json/ExperianCompanyInsuranceBondRelationship\",\"name\":\"ExperianFileNumber\"},\"ProfileTimestamp\":{\"entity\":\"ExperianCompanyInsuranceBondRelationship.cdm.json/ExperianCompanyInsuranceBondRelationship\",\"name\":\"ProfileTimestamp\"},\"ExperianBondRelationshipTypeId\":{\"entity\":\"ExperianCompanyInsuranceBondRelationship.cdm.json/ExperianCompanyInsuranceBondRelationship\",\"name\":\"ExperianBondRelationshipTypeId\"},\"BondingCompanyName\":{\"entity\":\"ExperianCompanyInsuranceBondRelationship.cdm.json/ExperianCompanyInsuranceBondRelationship\",\"name\":\"BondingCompanyName\"},\"BondingCompanyAddress\":{\"entity\":\"ExperianCompanyInsuranceBondRelationship.cdm.json/ExperianCompanyInsuranceBondRelationship\",\"name\":\"BondingCompanyAddress\"},\"BondingCompanyTelephoneNumber\":{\"entity\":\"ExperianCompanyInsuranceBondRelationship.cdm.json/ExperianCompanyInsuranceBondRelationship\",\"name\":\"BondingCompanyTelephoneNumber\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"ExperianCompanyInsuranceBondRelationship\",\"path\":\"ExperianCompanyInsuranceBondRelationship.cdm.json/ExperianCompanyInsuranceBondRelationship\"},\"description\":\"The relationship of the Experian company to a bonding company.\",\"primaryKey\":[\"ExperianFileNumber\",\"ProfileTimestamp\",\"ExperianBondRelationshipTypeId\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ExperianCompanyInsuranceBondRelationship.cdm.json/ExperianCompanyInsuranceBondRelationship\",\"name\":\"ExperianFileNumber\"},\"dataType\":\"integer\",\"description\":\"The unique and persistent number that identifies and tracks the Experian company.\",\"isNullable\":false,\"name\":\"ExperianFileNumber\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ExperianCompanyInsuranceBondRelationship.cdm.json/ExperianCompanyInsuranceBondRelationship\",\"name\":\"ProfileTimestamp\"},\"dataType\":\"timestamp\",\"description\":\"The timestamp of the Experian profile.\",\"isNullable\":false,\"name\":\"ProfileTimestamp\",\"timestampFormat\":\"YYYY-MM-DD HH:MM:SS.fffffffff\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ExperianCompanyInsuranceBondRelationship.cdm.json/ExperianCompanyInsuranceBondRelationship\",\"name\":\"ExperianBondRelationshipTypeId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of an Experian bond relationship type.\",\"isNullable\":false,\"name\":\"ExperianBondRelationshipTypeId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ExperianCompanyInsuranceBondRelationship.cdm.json/ExperianCompanyInsuranceBondRelationship\",\"name\":\"BondingCompanyName\"},\"dataType\":\"string\",\"dataTypeLength\":256,\"description\":\"The name of the bonding company.\",\"isNullable\":true,\"name\":\"BondingCompanyName\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ExperianCompanyInsuranceBondRelationship.cdm.json/ExperianCompanyInsuranceBondRelationship\",\"name\":\"BondingCompanyAddress\"},\"dataType\":\"string\",\"dataTypeLength\":512,\"description\":\"The address of the bonding company.\",\"isNullable\":true,\"name\":\"BondingCompanyAddress\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ExperianCompanyInsuranceBondRelationship.cdm.json/ExperianCompanyInsuranceBondRelationship\",\"name\":\"BondingCompanyTelephoneNumber\"},\"dataType\":\"decimal\",\"dataTypeLength\":15,\"description\":\"The bonding company telephone number.\",\"isNullable\":true,\"scale\":0,\"name\":\"BondingCompanyTelephoneNumber\"}]}}}",
+			"Description": "The relationship of the Experian company to a bonding company.",
+			"DisplayFolderInfo": "{\"name\":\"Customer Credit & Collections\",\"colorCode\":\"#022F22\"}",
+			"PrimaryKeys": "ExperianFileNumber,ProfileTimestamp,ExperianBondRelationshipTypeId",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

@@ -1,0 +1,113 @@
+{
+	"name": "Cluster",
+	"properties": {
+		"Name": "Cluster",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "An arbitrary grouping based upon convenience, purpose or some similar objective.",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "ClusterId",
+					"Description": "The unique identifier of a Cluster.",
+					"BaseAttributeReference": {
+						"Entity": "Cluster.cdm.json/Cluster",
+						"Name": "ClusterId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "ClusterName",
+					"Description": "The name of the Cluster.",
+					"BaseAttributeReference": {
+						"Entity": "Cluster.cdm.json/Cluster",
+						"Name": "ClusterName"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 256,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "ClusterDescription",
+					"Description": "The description of the Cluster.",
+					"BaseAttributeReference": {
+						"Entity": "Cluster.cdm.json/Cluster",
+						"Name": "ClusterDescription"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/Cluster",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/Cluster",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"ClusterId\":{\"entity\":\"Cluster.cdm.json/Cluster\",\"name\":\"ClusterId\"},\"ClusterName\":{\"entity\":\"Cluster.cdm.json/Cluster\",\"name\":\"ClusterName\"},\"ClusterDescription\":{\"entity\":\"Cluster.cdm.json/Cluster\",\"name\":\"ClusterDescription\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"Cluster\",\"path\":\"Cluster.cdm.json/Cluster\"},\"description\":\"An arbitrary grouping based upon convenience, purpose or some similar objective.\",\"primaryKey\":[\"ClusterId\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"Cluster.cdm.json/Cluster\",\"name\":\"ClusterId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Cluster.\",\"isNullable\":false,\"name\":\"ClusterId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"Cluster.cdm.json/Cluster\",\"name\":\"ClusterName\"},\"dataType\":\"string\",\"dataTypeLength\":256,\"description\":\"The name of the Cluster.\",\"isNullable\":true,\"name\":\"ClusterName\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"Cluster.cdm.json/Cluster\",\"name\":\"ClusterDescription\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"The description of the Cluster.\",\"isNullable\":true,\"name\":\"ClusterDescription\"}]}}}",
+			"Description": "An arbitrary grouping based upon convenience, purpose or some similar objective.",
+			"DisplayFolderInfo": "{\"name\":\"Party\",\"colorCode\":\"#00727A\"}",
+			"PrimaryKeys": "ClusterId",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

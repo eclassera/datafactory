@@ -1,0 +1,113 @@
+{
+	"name": "ExperianMajorLifeEvent",
+	"properties": {
+		"Name": "ExperianMajorLifeEvent",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "A major change or event in life than can affect the credit or an individual.\n\nExperian defines Major Life Events that are tracked.\n\nEx:\n- Marriage\n- Divorce\n- Opening Small Business\n- New College Student\n- New To America",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "ExperianMajorLifeEventId",
+					"Description": "The unique identifier of a Experian Major Life Event.",
+					"BaseAttributeReference": {
+						"Entity": "ExperianMajorLifeEvent.cdm.json/ExperianMajorLifeEvent",
+						"Name": "ExperianMajorLifeEventId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "ExperianMajorLifeName",
+					"Description": "The name of a Experian Major Life Event.",
+					"BaseAttributeReference": {
+						"Entity": "ExperianMajorLifeEvent.cdm.json/ExperianMajorLifeEvent",
+						"Name": "ExperianMajorLifeName"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 256,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "ExperianMajorLifeDescription",
+					"Description": "The description of a Experian Major Life Event.",
+					"BaseAttributeReference": {
+						"Entity": "ExperianMajorLifeEvent.cdm.json/ExperianMajorLifeEvent",
+						"Name": "ExperianMajorLifeDescription"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/ExperianMajorLifeEvent",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/ExperianMajorLifeEvent",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"ExperianMajorLifeEventId\":{\"entity\":\"ExperianMajorLifeEvent.cdm.json/ExperianMajorLifeEvent\",\"name\":\"ExperianMajorLifeEventId\"},\"ExperianMajorLifeName\":{\"entity\":\"ExperianMajorLifeEvent.cdm.json/ExperianMajorLifeEvent\",\"name\":\"ExperianMajorLifeName\"},\"ExperianMajorLifeDescription\":{\"entity\":\"ExperianMajorLifeEvent.cdm.json/ExperianMajorLifeEvent\",\"name\":\"ExperianMajorLifeDescription\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"ExperianMajorLifeEvent\",\"path\":\"ExperianMajorLifeEvent.cdm.json/ExperianMajorLifeEvent\"},\"description\":\"A major change or event in life than can affect the credit or an individual.\\n\\nExperian defines Major Life Events that are tracked.\\n\\nEx:\\n- Marriage\\n- Divorce\\n- Opening Small Business\\n- New College Student\\n- New To America\",\"primaryKey\":[\"ExperianMajorLifeEventId\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ExperianMajorLifeEvent.cdm.json/ExperianMajorLifeEvent\",\"name\":\"ExperianMajorLifeEventId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Experian Major Life Event.\",\"isNullable\":false,\"name\":\"ExperianMajorLifeEventId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ExperianMajorLifeEvent.cdm.json/ExperianMajorLifeEvent\",\"name\":\"ExperianMajorLifeName\"},\"dataType\":\"string\",\"dataTypeLength\":256,\"description\":\"The name of a Experian Major Life Event.\",\"isNullable\":true,\"name\":\"ExperianMajorLifeName\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ExperianMajorLifeEvent.cdm.json/ExperianMajorLifeEvent\",\"name\":\"ExperianMajorLifeDescription\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"The description of a Experian Major Life Event.\",\"isNullable\":true,\"name\":\"ExperianMajorLifeDescription\"}]}}}",
+			"Description": "A major change or event in life than can affect the credit or an individual.\n\nExperian defines Major Life Events that are tracked.\n\nEx:\n- Marriage\n- Divorce\n- Opening Small Business\n- New College Student\n- New To America",
+			"DisplayFolderInfo": "{\"name\":\"Customer Credit & Collections\",\"colorCode\":\"#022F22\"}",
+			"PrimaryKeys": "ExperianMajorLifeEventId",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

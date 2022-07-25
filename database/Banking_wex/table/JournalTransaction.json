@@ -1,0 +1,324 @@
+{
+	"name": "JournalTransaction",
+	"properties": {
+		"Name": "JournalTransaction",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "A Transaction records the economic events of the enterprise recorded by accountants to accounts.\n\nTransactions are activities that affect what a business owns, what a business owes and the ownership of the business.   \n\nTransactions are recorded in account(s).     The purpose of the account is to record the information about each business transaction.     \n\nEach part of the transaction will have an effect on a specific ledger account.\n\nEach business transaction involves changes to at least two accounts in a double entry account system.  For any transaction, debits must equal credits.\n\nEach transaction causes at least two changes on the balance sheet.\nTransactions must be reported consistently in the same way from period to period.\n\nThere are two parties involved in each transaction:   The legal entity recording the transaction (RECORD-KEEPING LEGAL ENTITY) and the other party involved (PARTY).     The other party can also be a legal entity so \"Reporting Legal Entity\" makes it clear that is the business keeping the books.\n\nEach transaction is first entered into a journal or 'day book' and then posted to a ledger.\n\nNote:\nNot all events are transactions.  For example, a change in value of an asset such as land is an example.\n\nBanking Example:\nWhen you deposit a check the bank credits your checking account and debits their cash position.\n\nNote:  Related Transactions are handled by the source document rather than an explicit RELATED TRANSACTION entity.   If the customer feels that this isn't sufficient then a RELATED TRANSACTION entity can be added.",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "TransactionId",
+					"Description": "The unique identifier of a Transaction.",
+					"BaseAttributeReference": {
+						"Entity": "JournalTransaction.cdm.json/JournalTransaction",
+						"Name": "TransactionId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "long",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "long"
+						}
+					}
+				},
+				{
+					"Name": "TransactionTimestamp",
+					"Description": "The timestamp of a Transaction.",
+					"BaseAttributeReference": {
+						"Entity": "JournalTransaction.cdm.json/JournalTransaction",
+						"Name": "TransactionTimestamp"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "timestamp",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"TimestampFormat": "YYYY-MM-DD HH:MM:SS.fffffffff",
+							"HIVE_TYPE_STRING": "timestamp"
+						}
+					}
+				},
+				{
+					"Name": "TransactionDescription",
+					"Description": "The description of a transaction.",
+					"BaseAttributeReference": {
+						"Entity": "JournalTransaction.cdm.json/JournalTransaction",
+						"Name": "TransactionDescription"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "TransactionAmount",
+					"Description": "The amount of the transaction.",
+					"BaseAttributeReference": {
+						"Entity": "JournalTransaction.cdm.json/JournalTransaction",
+						"Name": "TransactionAmount"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "decimal",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Precision": 18,
+						"Scale": 2,
+						"Properties": {
+							"HIVE_TYPE_STRING": "decimal"
+						}
+					}
+				},
+				{
+					"Name": "JournalTransactionTypeId",
+					"Description": "The unique identifier of a Transaction Type.",
+					"BaseAttributeReference": {
+						"Entity": "JournalTransaction.cdm.json/JournalTransaction",
+						"Name": "JournalTransactionTypeId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "RecordKeepingLegalEntityId",
+					"Description": "The unique identifier of the book-keeping or reporting Legal Entity.",
+					"BaseAttributeReference": {
+						"Entity": "JournalTransaction.cdm.json/JournalTransaction",
+						"Name": "RecordKeepingLegalEntityId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "TransactionCounterPartyId",
+					"Description": "The unique identifier of a Party.",
+					"BaseAttributeReference": {
+						"Entity": "JournalTransaction.cdm.json/JournalTransaction",
+						"Name": "TransactionCounterPartyId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "long",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"HIVE_TYPE_STRING": "long"
+						}
+					}
+				},
+				{
+					"Name": "IntercompanyTransactionIndicator",
+					"Description": "Indicates that the transaction is between affiliated companies",
+					"BaseAttributeReference": {
+						"Entity": "JournalTransaction.cdm.json/JournalTransaction",
+						"Name": "IntercompanyTransactionIndicator"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "boolean",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"HIVE_TYPE_STRING": "boolean"
+						}
+					}
+				},
+				{
+					"Name": "SourceDocumentId",
+					"Description": "The unique identifier of a source document involved in a transaction.",
+					"BaseAttributeReference": {
+						"Entity": "JournalTransaction.cdm.json/JournalTransaction",
+						"Name": "SourceDocumentId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "long",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"HIVE_TYPE_STRING": "long"
+						}
+					}
+				},
+				{
+					"Name": "ExtraordinaryTransactionIndicator",
+					"Description": "A transaction that meets two conditions: \n\n(1) unusual in nature\n\n(2) infrequent in occurrence",
+					"BaseAttributeReference": {
+						"Entity": "JournalTransaction.cdm.json/JournalTransaction",
+						"Name": "ExtraordinaryTransactionIndicator"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "boolean",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"HIVE_TYPE_STRING": "boolean"
+						}
+					}
+				},
+				{
+					"Name": "AccountingProcedureTypeId",
+					"Description": "The unique identifier of an Accounting Procedure Type.",
+					"BaseAttributeReference": {
+						"Entity": "JournalTransaction.cdm.json/JournalTransaction",
+						"Name": "AccountingProcedureTypeId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "IsoCurrencyCode",
+					"Description": "The ISO 4217 currency code.",
+					"BaseAttributeReference": {
+						"Entity": "JournalTransaction.cdm.json/JournalTransaction",
+						"Name": "IsoCurrencyCode"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 3,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "ResponsibilityCenterId",
+					"Description": "The unique identifier of a Responsibility Center.",
+					"BaseAttributeReference": {
+						"Entity": "JournalTransaction.cdm.json/JournalTransaction",
+						"Name": "ResponsibilityCenterId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "ProjectId",
+					"Description": "The unique identifier of a Project.",
+					"BaseAttributeReference": {
+						"Entity": "JournalTransaction.cdm.json/JournalTransaction",
+						"Name": "ProjectId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "WorkOrderId",
+					"Description": "The unique identifier of a Work Order.",
+					"BaseAttributeReference": {
+						"Entity": "JournalTransaction.cdm.json/JournalTransaction",
+						"Name": "WorkOrderId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "CustomerAccountId",
+					"Description": "The unique identifier of a Customer Account.",
+					"BaseAttributeReference": {
+						"Entity": "JournalTransaction.cdm.json/JournalTransaction",
+						"Name": "CustomerAccountId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "long",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "long"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/JournalTransaction",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/JournalTransaction",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"TransactionId\":{\"entity\":\"JournalTransaction.cdm.json/JournalTransaction\",\"name\":\"TransactionId\"},\"TransactionTimestamp\":{\"entity\":\"JournalTransaction.cdm.json/JournalTransaction\",\"name\":\"TransactionTimestamp\"},\"TransactionDescription\":{\"entity\":\"JournalTransaction.cdm.json/JournalTransaction\",\"name\":\"TransactionDescription\"},\"TransactionAmount\":{\"entity\":\"JournalTransaction.cdm.json/JournalTransaction\",\"name\":\"TransactionAmount\"},\"JournalTransactionTypeId\":{\"entity\":\"JournalTransaction.cdm.json/JournalTransaction\",\"name\":\"JournalTransactionTypeId\"},\"RecordKeepingLegalEntityId\":{\"entity\":\"JournalTransaction.cdm.json/JournalTransaction\",\"name\":\"RecordKeepingLegalEntityId\"},\"TransactionCounterPartyId\":{\"entity\":\"JournalTransaction.cdm.json/JournalTransaction\",\"name\":\"TransactionCounterPartyId\"},\"IntercompanyTransactionIndicator\":{\"entity\":\"JournalTransaction.cdm.json/JournalTransaction\",\"name\":\"IntercompanyTransactionIndicator\"},\"SourceDocumentId\":{\"entity\":\"JournalTransaction.cdm.json/JournalTransaction\",\"name\":\"SourceDocumentId\"},\"ExtraordinaryTransactionIndicator\":{\"entity\":\"JournalTransaction.cdm.json/JournalTransaction\",\"name\":\"ExtraordinaryTransactionIndicator\"},\"AccountingProcedureTypeId\":{\"entity\":\"JournalTransaction.cdm.json/JournalTransaction\",\"name\":\"AccountingProcedureTypeId\"},\"IsoCurrencyCode\":{\"entity\":\"JournalTransaction.cdm.json/JournalTransaction\",\"name\":\"IsoCurrencyCode\"},\"ResponsibilityCenterId\":{\"entity\":\"JournalTransaction.cdm.json/JournalTransaction\",\"name\":\"ResponsibilityCenterId\"},\"ProjectId\":{\"entity\":\"JournalTransaction.cdm.json/JournalTransaction\",\"name\":\"ProjectId\"},\"WorkOrderId\":{\"entity\":\"JournalTransaction.cdm.json/JournalTransaction\",\"name\":\"WorkOrderId\"},\"CustomerAccountId\":{\"entity\":\"JournalTransaction.cdm.json/JournalTransaction\",\"name\":\"CustomerAccountId\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"JournalTransaction\",\"path\":\"JournalTransaction.cdm.json/JournalTransaction\"},\"description\":\"A Transaction records the economic events of the enterprise recorded by accountants to accounts.\\n\\nTransactions are activities that affect what a business owns, what a business owes and the ownership of the business.   \\n\\nTransactions are recorded in account(s).     The purpose of the account is to record the information about each business transaction.     \\n\\nEach part of the transaction will have an effect on a specific ledger account.\\n\\nEach business transaction involves changes to at least two accounts in a double entry account system.  For any transaction, debits must equal credits.\\n\\nEach transaction causes at least two changes on the balance sheet.\\nTransactions must be reported consistently in the same way from period to period.\\n\\nThere are two parties involved in each transaction:   The legal entity recording the transaction (RECORD-KEEPING LEGAL ENTITY) and the other party involved (PARTY).     The other party can also be a legal entity so \\\"Reporting Legal Entity\\\" makes it clear that is the business keeping the books.\\n\\nEach transaction is first entered into a journal or 'day book' and then posted to a ledger.\\n\\nNote:\\nNot all events are transactions.  For example, a change in value of an asset such as land is an example.\\n\\nBanking Example:\\nWhen you deposit a check the bank credits your checking account and debits their cash position.\\n\\nNote:  Related Transactions are handled by the source document rather than an explicit RELATED TRANSACTION entity.   If the customer feels that this isn't sufficient then a RELATED TRANSACTION entity can be added.\",\"primaryKey\":[\"TransactionId\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"JournalTransaction.cdm.json/JournalTransaction\",\"name\":\"TransactionId\"},\"dataType\":\"long\",\"description\":\"The unique identifier of a Transaction.\",\"isNullable\":false,\"name\":\"TransactionId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"JournalTransaction.cdm.json/JournalTransaction\",\"name\":\"TransactionTimestamp\"},\"dataType\":\"timestamp\",\"description\":\"The timestamp of a Transaction.\",\"isNullable\":true,\"name\":\"TransactionTimestamp\",\"timestampFormat\":\"YYYY-MM-DD HH:MM:SS.fffffffff\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"JournalTransaction.cdm.json/JournalTransaction\",\"name\":\"TransactionDescription\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"The description of a transaction.\",\"isNullable\":true,\"name\":\"TransactionDescription\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"JournalTransaction.cdm.json/JournalTransaction\",\"name\":\"TransactionAmount\"},\"dataType\":\"decimal\",\"dataTypeLength\":18,\"description\":\"The amount of the transaction.\",\"isNullable\":true,\"scale\":2,\"name\":\"TransactionAmount\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"JournalTransaction.cdm.json/JournalTransaction\",\"name\":\"JournalTransactionTypeId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Transaction Type.\",\"isNullable\":true,\"name\":\"JournalTransactionTypeId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"JournalTransaction.cdm.json/JournalTransaction\",\"name\":\"RecordKeepingLegalEntityId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of the book-keeping or reporting Legal Entity.\",\"isNullable\":true,\"name\":\"RecordKeepingLegalEntityId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"JournalTransaction.cdm.json/JournalTransaction\",\"name\":\"TransactionCounterPartyId\"},\"dataType\":\"long\",\"description\":\"The unique identifier of a Party.\",\"isNullable\":true,\"name\":\"TransactionCounterPartyId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"JournalTransaction.cdm.json/JournalTransaction\",\"name\":\"IntercompanyTransactionIndicator\"},\"dataType\":\"boolean\",\"description\":\"Indicates that the transaction is between affiliated companies\",\"isNullable\":true,\"name\":\"IntercompanyTransactionIndicator\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"JournalTransaction.cdm.json/JournalTransaction\",\"name\":\"SourceDocumentId\"},\"dataType\":\"long\",\"description\":\"The unique identifier of a source document involved in a transaction.\",\"isNullable\":true,\"name\":\"SourceDocumentId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"JournalTransaction.cdm.json/JournalTransaction\",\"name\":\"ExtraordinaryTransactionIndicator\"},\"dataType\":\"boolean\",\"description\":\"A transaction that meets two conditions: \\n\\n(1) unusual in nature\\n\\n(2) infrequent in occurrence\",\"isNullable\":true,\"name\":\"ExtraordinaryTransactionIndicator\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"JournalTransaction.cdm.json/JournalTransaction\",\"name\":\"AccountingProcedureTypeId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of an Accounting Procedure Type.\",\"isNullable\":true,\"name\":\"AccountingProcedureTypeId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"JournalTransaction.cdm.json/JournalTransaction\",\"name\":\"IsoCurrencyCode\"},\"dataType\":\"string\",\"dataTypeLength\":3,\"description\":\"The ISO 4217 currency code.\",\"isNullable\":true,\"name\":\"IsoCurrencyCode\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"JournalTransaction.cdm.json/JournalTransaction\",\"name\":\"ResponsibilityCenterId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Responsibility Center.\",\"isNullable\":true,\"name\":\"ResponsibilityCenterId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"JournalTransaction.cdm.json/JournalTransaction\",\"name\":\"ProjectId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Project.\",\"isNullable\":false,\"name\":\"ProjectId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"JournalTransaction.cdm.json/JournalTransaction\",\"name\":\"WorkOrderId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Work Order.\",\"isNullable\":false,\"name\":\"WorkOrderId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"JournalTransaction.cdm.json/JournalTransaction\",\"name\":\"CustomerAccountId\"},\"dataType\":\"long\",\"description\":\"The unique identifier of a Customer Account.\",\"isNullable\":false,\"name\":\"CustomerAccountId\"}]}}}",
+			"Description": "A Transaction records the economic events of the enterprise recorded by accountants to accounts.\n\nTransactions are activities that affect what a business owns, what a business owes and the ownership of the business.   \n\nTransactions are recorded in account(s).     The purpose of the account is to record the information about each business transaction.     \n\nEach part of the transaction will have an effect on a specific ledger account.\n\nEach business transaction involves changes to at least two accounts in a double entry account system.  For any transaction, debits must equal credits.\n\nEach transaction causes at least two changes on the balance sheet.\nTransactions must be reported consistently in the same way from period to period.\n\nThere are two parties involved in each transaction:   The legal entity recording the transaction (RECORD-KEEPING LEGAL ENTITY) and the other party involved (PARTY).     The other party can also be a legal entity so \"Reporting Legal Entity\" makes it clear that is the business keeping the books.\n\nEach transaction is first entered into a journal or 'day book' and then posted to a ledger.\n\nNote:\nNot all events are transactions.  For example, a change in value of an asset such as land is an example.\n\nBanking Example:\nWhen you deposit a check the bank credits your checking account and debits their cash position.\n\nNote:  Related Transactions are handled by the source document rather than an explicit RELATED TRANSACTION entity.   If the customer feels that this isn't sufficient then a RELATED TRANSACTION entity can be added.",
+			"DisplayFolderInfo": "{\"name\":\"Accounting & Financial Reporting\",\"colorCode\":\"#0078D4\"}",
+			"PrimaryKeys": "TransactionId",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

@@ -1,0 +1,146 @@
+{
+	"name": "ExperianCompanyAlert",
+	"properties": {
+		"Name": "ExperianCompanyAlert",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "An email alert is sent out if key changes to the business profile are detected on your selected company.",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "ExperianFileNumber",
+					"Description": "The unique and persistent number that identifies and tracks the Experian company.",
+					"BaseAttributeReference": {
+						"Entity": "ExperianCompanyAlert.cdm.json/ExperianCompanyAlert",
+						"Name": "ExperianFileNumber"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "ProfileTimestamp",
+					"Description": "The timestamp of the Experian profile.",
+					"BaseAttributeReference": {
+						"Entity": "ExperianCompanyAlert.cdm.json/ExperianCompanyAlert",
+						"Name": "ProfileTimestamp"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "timestamp",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"TimestampFormat": "YYYY-MM-DD HH:MM:SS.fffffffff",
+							"HIVE_TYPE_STRING": "timestamp"
+						}
+					}
+				},
+				{
+					"Name": "AlertTimestamp",
+					"Description": "The timestamp of the alert.",
+					"BaseAttributeReference": {
+						"Entity": "ExperianCompanyAlert.cdm.json/ExperianCompanyAlert",
+						"Name": "AlertTimestamp"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "timestamp",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"TimestampFormat": "YYYY-MM-DD HH:MM:SS.fffffffff",
+							"HIVE_TYPE_STRING": "timestamp"
+						}
+					}
+				},
+				{
+					"Name": "AlertStatement",
+					"Description": "The contents of the alert.",
+					"BaseAttributeReference": {
+						"Entity": "ExperianCompanyAlert.cdm.json/ExperianCompanyAlert",
+						"Name": "AlertStatement"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "ExperianAlertTypeId",
+					"Description": "The unique identifier of an Experian Alert Type.",
+					"BaseAttributeReference": {
+						"Entity": "ExperianCompanyAlert.cdm.json/ExperianCompanyAlert",
+						"Name": "ExperianAlertTypeId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/ExperianCompanyAlert",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/ExperianCompanyAlert",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"ExperianFileNumber\":{\"entity\":\"ExperianCompanyAlert.cdm.json/ExperianCompanyAlert\",\"name\":\"ExperianFileNumber\"},\"ProfileTimestamp\":{\"entity\":\"ExperianCompanyAlert.cdm.json/ExperianCompanyAlert\",\"name\":\"ProfileTimestamp\"},\"AlertTimestamp\":{\"entity\":\"ExperianCompanyAlert.cdm.json/ExperianCompanyAlert\",\"name\":\"AlertTimestamp\"},\"AlertStatement\":{\"entity\":\"ExperianCompanyAlert.cdm.json/ExperianCompanyAlert\",\"name\":\"AlertStatement\"},\"ExperianAlertTypeId\":{\"entity\":\"ExperianCompanyAlert.cdm.json/ExperianCompanyAlert\",\"name\":\"ExperianAlertTypeId\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"ExperianCompanyAlert\",\"path\":\"ExperianCompanyAlert.cdm.json/ExperianCompanyAlert\"},\"description\":\"An email alert is sent out if key changes to the business profile are detected on your selected company.\",\"primaryKey\":[\"ExperianFileNumber\",\"ProfileTimestamp\",\"AlertTimestamp\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ExperianCompanyAlert.cdm.json/ExperianCompanyAlert\",\"name\":\"ExperianFileNumber\"},\"dataType\":\"integer\",\"description\":\"The unique and persistent number that identifies and tracks the Experian company.\",\"isNullable\":false,\"name\":\"ExperianFileNumber\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ExperianCompanyAlert.cdm.json/ExperianCompanyAlert\",\"name\":\"ProfileTimestamp\"},\"dataType\":\"timestamp\",\"description\":\"The timestamp of the Experian profile.\",\"isNullable\":false,\"name\":\"ProfileTimestamp\",\"timestampFormat\":\"YYYY-MM-DD HH:MM:SS.fffffffff\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ExperianCompanyAlert.cdm.json/ExperianCompanyAlert\",\"name\":\"AlertTimestamp\"},\"dataType\":\"timestamp\",\"description\":\"The timestamp of the alert.\",\"isNullable\":false,\"name\":\"AlertTimestamp\",\"timestampFormat\":\"YYYY-MM-DD HH:MM:SS.fffffffff\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ExperianCompanyAlert.cdm.json/ExperianCompanyAlert\",\"name\":\"AlertStatement\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"The contents of the alert.\",\"isNullable\":true,\"name\":\"AlertStatement\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ExperianCompanyAlert.cdm.json/ExperianCompanyAlert\",\"name\":\"ExperianAlertTypeId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of an Experian Alert Type.\",\"isNullable\":true,\"name\":\"ExperianAlertTypeId\"}]}}}",
+			"Description": "An email alert is sent out if key changes to the business profile are detected on your selected company.",
+			"DisplayFolderInfo": "{\"name\":\"Customer Credit & Collections\",\"colorCode\":\"#022F22\"}",
+			"PrimaryKeys": "ExperianFileNumber,ProfileTimestamp,AlertTimestamp",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

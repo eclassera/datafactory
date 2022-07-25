@@ -1,0 +1,162 @@
+{
+	"name": "CustomerRelatedParty",
+	"properties": {
+		"Name": "CustomerRelatedParty",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "A party that has a relationship with the customer over the indicated period.",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "CustomerId",
+					"Description": "The unique identifier of a Customer.",
+					"BaseAttributeReference": {
+						"Entity": "CustomerRelatedParty.cdm.json/CustomerRelatedParty",
+						"Name": "CustomerId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "long",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "long"
+						}
+					}
+				},
+				{
+					"Name": "PartyId",
+					"Description": "The unique identifier of a Party.",
+					"BaseAttributeReference": {
+						"Entity": "CustomerRelatedParty.cdm.json/CustomerRelatedParty",
+						"Name": "PartyId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "long",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "long"
+						}
+					}
+				},
+				{
+					"Name": "CustomerPartyRelationshipTypeId",
+					"Description": "The unique identifier of a customer relationship type.",
+					"BaseAttributeReference": {
+						"Entity": "CustomerRelatedParty.cdm.json/CustomerRelatedParty",
+						"Name": "CustomerPartyRelationshipTypeId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "PeriodStartTimestamp",
+					"Description": "The period start timestamp for which the associated customer - party relationship is valid or in-effect.",
+					"BaseAttributeReference": {
+						"Entity": "CustomerRelatedParty.cdm.json/CustomerRelatedParty",
+						"Name": "PeriodStartTimestamp"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "timestamp",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"TimestampFormat": "YYYY-MM-DD HH:MM:SS.fffffffff",
+							"HIVE_TYPE_STRING": "timestamp"
+						}
+					}
+				},
+				{
+					"Name": "PeriodEndTimestamp",
+					"Description": "The period end timestamp for which the associated customer - party relationship is valid or in-effect.",
+					"BaseAttributeReference": {
+						"Entity": "CustomerRelatedParty.cdm.json/CustomerRelatedParty",
+						"Name": "PeriodEndTimestamp"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "timestamp",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"TimestampFormat": "YYYY-MM-DD HH:MM:SS.fffffffff",
+							"HIVE_TYPE_STRING": "timestamp"
+						}
+					}
+				},
+				{
+					"Name": "CustomerRelatedPartyNote",
+					"Description": "A note, comment or additional information regarding the customer - party relationship.",
+					"BaseAttributeReference": {
+						"Entity": "CustomerRelatedParty.cdm.json/CustomerRelatedParty",
+						"Name": "CustomerRelatedPartyNote"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/CustomerRelatedParty",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/CustomerRelatedParty",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"CustomerId\":{\"entity\":\"CustomerRelatedParty.cdm.json/CustomerRelatedParty\",\"name\":\"CustomerId\"},\"PartyId\":{\"entity\":\"CustomerRelatedParty.cdm.json/CustomerRelatedParty\",\"name\":\"PartyId\"},\"CustomerPartyRelationshipTypeId\":{\"entity\":\"CustomerRelatedParty.cdm.json/CustomerRelatedParty\",\"name\":\"CustomerPartyRelationshipTypeId\"},\"PeriodStartTimestamp\":{\"entity\":\"CustomerRelatedParty.cdm.json/CustomerRelatedParty\",\"name\":\"PeriodStartTimestamp\"},\"PeriodEndTimestamp\":{\"entity\":\"CustomerRelatedParty.cdm.json/CustomerRelatedParty\",\"name\":\"PeriodEndTimestamp\"},\"CustomerRelatedPartyNote\":{\"entity\":\"CustomerRelatedParty.cdm.json/CustomerRelatedParty\",\"name\":\"CustomerRelatedPartyNote\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"CustomerRelatedParty\",\"path\":\"CustomerRelatedParty.cdm.json/CustomerRelatedParty\"},\"description\":\"A party that has a relationship with the customer over the indicated period.\",\"primaryKey\":[\"CustomerId\",\"PartyId\",\"CustomerPartyRelationshipTypeId\",\"PeriodStartTimestamp\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CustomerRelatedParty.cdm.json/CustomerRelatedParty\",\"name\":\"CustomerId\"},\"dataType\":\"long\",\"description\":\"The unique identifier of a Customer.\",\"isNullable\":false,\"name\":\"CustomerId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CustomerRelatedParty.cdm.json/CustomerRelatedParty\",\"name\":\"PartyId\"},\"dataType\":\"long\",\"description\":\"The unique identifier of a Party.\",\"isNullable\":false,\"name\":\"PartyId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CustomerRelatedParty.cdm.json/CustomerRelatedParty\",\"name\":\"CustomerPartyRelationshipTypeId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a customer relationship type.\",\"isNullable\":false,\"name\":\"CustomerPartyRelationshipTypeId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CustomerRelatedParty.cdm.json/CustomerRelatedParty\",\"name\":\"PeriodStartTimestamp\"},\"dataType\":\"timestamp\",\"description\":\"The period start timestamp for which the associated customer - party relationship is valid or in-effect.\",\"isNullable\":false,\"name\":\"PeriodStartTimestamp\",\"timestampFormat\":\"YYYY-MM-DD HH:MM:SS.fffffffff\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CustomerRelatedParty.cdm.json/CustomerRelatedParty\",\"name\":\"PeriodEndTimestamp\"},\"dataType\":\"timestamp\",\"description\":\"The period end timestamp for which the associated customer - party relationship is valid or in-effect.\",\"isNullable\":true,\"name\":\"PeriodEndTimestamp\",\"timestampFormat\":\"YYYY-MM-DD HH:MM:SS.fffffffff\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CustomerRelatedParty.cdm.json/CustomerRelatedParty\",\"name\":\"CustomerRelatedPartyNote\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"A note, comment or additional information regarding the customer - party relationship.\",\"isNullable\":true,\"name\":\"CustomerRelatedPartyNote\"}]}}}",
+			"Description": "A party that has a relationship with the customer over the indicated period.",
+			"DisplayFolderInfo": "{\"name\":\"Customer\",\"colorCode\":\"#4B003F\"}",
+			"PrimaryKeys": "CustomerId,PartyId,CustomerPartyRelationshipTypeId,PeriodStartTimestamp",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

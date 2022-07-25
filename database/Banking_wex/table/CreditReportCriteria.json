@@ -1,0 +1,111 @@
+{
+	"name": "CreditReportCriteria",
+	"properties": {
+		"Name": "CreditReportCriteria",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "The individual credit criteria used to prepare the credit report.",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "CreditReportId",
+					"Description": "The unique identifier of the Credit Report.",
+					"BaseAttributeReference": {
+						"Entity": "CreditReportCriteria.cdm.json/CreditReportCriteria",
+						"Name": "CreditReportId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "CreditCriteriaId",
+					"Description": "The unique identifier of a Credit Criteria.",
+					"BaseAttributeReference": {
+						"Entity": "CreditReportCriteria.cdm.json/CreditReportCriteria",
+						"Name": "CreditCriteriaId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "CreditRiskId",
+					"Description": "The unique identifier of a Credit Risk.",
+					"BaseAttributeReference": {
+						"Entity": "CreditReportCriteria.cdm.json/CreditReportCriteria",
+						"Name": "CreditRiskId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/CreditReportCriteria",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/CreditReportCriteria",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"CreditReportId\":{\"entity\":\"CreditReportCriteria.cdm.json/CreditReportCriteria\",\"name\":\"CreditReportId\"},\"CreditCriteriaId\":{\"entity\":\"CreditReportCriteria.cdm.json/CreditReportCriteria\",\"name\":\"CreditCriteriaId\"},\"CreditRiskId\":{\"entity\":\"CreditReportCriteria.cdm.json/CreditReportCriteria\",\"name\":\"CreditRiskId\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"CreditReportCriteria\",\"path\":\"CreditReportCriteria.cdm.json/CreditReportCriteria\"},\"description\":\"The individual credit criteria used to prepare the credit report.\",\"primaryKey\":[\"CreditReportId\",\"CreditCriteriaId\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CreditReportCriteria.cdm.json/CreditReportCriteria\",\"name\":\"CreditReportId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of the Credit Report.\",\"isNullable\":false,\"name\":\"CreditReportId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CreditReportCriteria.cdm.json/CreditReportCriteria\",\"name\":\"CreditCriteriaId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Credit Criteria.\",\"isNullable\":false,\"name\":\"CreditCriteriaId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CreditReportCriteria.cdm.json/CreditReportCriteria\",\"name\":\"CreditRiskId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Credit Risk.\",\"isNullable\":true,\"name\":\"CreditRiskId\"}]}}}",
+			"Description": "The individual credit criteria used to prepare the credit report.",
+			"DisplayFolderInfo": "{\"name\":\"Customer Credit & Collections\",\"colorCode\":\"#022F22\"}",
+			"PrimaryKeys": "CreditReportId,CreditCriteriaId",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

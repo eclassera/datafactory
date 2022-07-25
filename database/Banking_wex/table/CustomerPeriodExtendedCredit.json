@@ -1,0 +1,114 @@
+{
+	"name": "CustomerPeriodExtendedCredit",
+	"properties": {
+		"Name": "CustomerPeriodExtendedCredit",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "The total credit amount extended to the Customer as of the associated timestamp.",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "CustomerId",
+					"Description": "The unique identifier of a Customer.",
+					"BaseAttributeReference": {
+						"Entity": "CustomerPeriodExtendedCredit.cdm.json/CustomerPeriodExtendedCredit",
+						"Name": "CustomerId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "long",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "long"
+						}
+					}
+				},
+				{
+					"Name": "Timestamp",
+					"Description": "The timestamp for which the associated credit extended information is presented.",
+					"BaseAttributeReference": {
+						"Entity": "CustomerPeriodExtendedCredit.cdm.json/CustomerPeriodExtendedCredit",
+						"Name": "Timestamp"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "timestamp",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"TimestampFormat": "YYYY-MM-DD HH:MM:SS.fffffffff",
+							"HIVE_TYPE_STRING": "timestamp"
+						}
+					}
+				},
+				{
+					"Name": "TotalExtendedCreditAmount",
+					"Description": "The total amount of credit extended to the Customer as of the associated date.\n\n'Period' credit can be averaged, meaned and calculated by using multiple dates.",
+					"BaseAttributeReference": {
+						"Entity": "CustomerPeriodExtendedCredit.cdm.json/CustomerPeriodExtendedCredit",
+						"Name": "TotalExtendedCreditAmount"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "decimal",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Precision": 18,
+						"Scale": 2,
+						"Properties": {
+							"HIVE_TYPE_STRING": "decimal"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/CustomerPeriodExtendedCredit",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/CustomerPeriodExtendedCredit",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"CustomerId\":{\"entity\":\"CustomerPeriodExtendedCredit.cdm.json/CustomerPeriodExtendedCredit\",\"name\":\"CustomerId\"},\"Timestamp\":{\"entity\":\"CustomerPeriodExtendedCredit.cdm.json/CustomerPeriodExtendedCredit\",\"name\":\"Timestamp\"},\"TotalExtendedCreditAmount\":{\"entity\":\"CustomerPeriodExtendedCredit.cdm.json/CustomerPeriodExtendedCredit\",\"name\":\"TotalExtendedCreditAmount\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"CustomerPeriodExtendedCredit\",\"path\":\"CustomerPeriodExtendedCredit.cdm.json/CustomerPeriodExtendedCredit\"},\"description\":\"The total credit amount extended to the Customer as of the associated timestamp.\",\"primaryKey\":[\"CustomerId\",\"Timestamp\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CustomerPeriodExtendedCredit.cdm.json/CustomerPeriodExtendedCredit\",\"name\":\"CustomerId\"},\"dataType\":\"long\",\"description\":\"The unique identifier of a Customer.\",\"isNullable\":false,\"name\":\"CustomerId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CustomerPeriodExtendedCredit.cdm.json/CustomerPeriodExtendedCredit\",\"name\":\"Timestamp\"},\"dataType\":\"timestamp\",\"description\":\"The timestamp for which the associated credit extended information is presented.\",\"isNullable\":false,\"name\":\"Timestamp\",\"timestampFormat\":\"YYYY-MM-DD HH:MM:SS.fffffffff\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CustomerPeriodExtendedCredit.cdm.json/CustomerPeriodExtendedCredit\",\"name\":\"TotalExtendedCreditAmount\"},\"dataType\":\"decimal\",\"dataTypeLength\":18,\"description\":\"The total amount of credit extended to the Customer as of the associated date.\\n\\n'Period' credit can be averaged, meaned and calculated by using multiple dates.\",\"isNullable\":true,\"scale\":2,\"name\":\"TotalExtendedCreditAmount\"}]}}}",
+			"Description": "The total credit amount extended to the Customer as of the associated timestamp.",
+			"DisplayFolderInfo": "{\"name\":\"Customer Credit & Collections\",\"colorCode\":\"#022F22\"}",
+			"PrimaryKeys": "CustomerId,Timestamp",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

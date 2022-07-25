@@ -1,0 +1,113 @@
+{
+	"name": "EquifaxTaxCreditorType",
+	"properties": {
+		"Name": "EquifaxTaxCreditorType",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "The type of company reporting the tax lien.\n\nEx:\n- City government\n- State government",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "EquifaxTaxCreditorTypeId",
+					"Description": "The unique identifier of a Tax Creditor Type.",
+					"BaseAttributeReference": {
+						"Entity": "EquifaxTaxCreditorType.cdm.json/EquifaxTaxCreditorType",
+						"Name": "EquifaxTaxCreditorTypeId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "EquifaxTaxCreditorTypeName",
+					"Description": "The name of a Tax Creditor Type.",
+					"BaseAttributeReference": {
+						"Entity": "EquifaxTaxCreditorType.cdm.json/EquifaxTaxCreditorType",
+						"Name": "EquifaxTaxCreditorTypeName"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 256,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "EquifaxTaxCreditorTypeDescription",
+					"Description": "The description of a Tax Creditor Type.",
+					"BaseAttributeReference": {
+						"Entity": "EquifaxTaxCreditorType.cdm.json/EquifaxTaxCreditorType",
+						"Name": "EquifaxTaxCreditorTypeDescription"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/EquifaxTaxCreditorType",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/EquifaxTaxCreditorType",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"EquifaxTaxCreditorTypeId\":{\"entity\":\"EquifaxTaxCreditorType.cdm.json/EquifaxTaxCreditorType\",\"name\":\"EquifaxTaxCreditorTypeId\"},\"EquifaxTaxCreditorTypeName\":{\"entity\":\"EquifaxTaxCreditorType.cdm.json/EquifaxTaxCreditorType\",\"name\":\"EquifaxTaxCreditorTypeName\"},\"EquifaxTaxCreditorTypeDescription\":{\"entity\":\"EquifaxTaxCreditorType.cdm.json/EquifaxTaxCreditorType\",\"name\":\"EquifaxTaxCreditorTypeDescription\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"EquifaxTaxCreditorType\",\"path\":\"EquifaxTaxCreditorType.cdm.json/EquifaxTaxCreditorType\"},\"description\":\"The type of company reporting the tax lien.\\n\\nEx:\\n- City government\\n- State government\",\"primaryKey\":[\"EquifaxTaxCreditorTypeId\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"EquifaxTaxCreditorType.cdm.json/EquifaxTaxCreditorType\",\"name\":\"EquifaxTaxCreditorTypeId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Tax Creditor Type.\",\"isNullable\":false,\"name\":\"EquifaxTaxCreditorTypeId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"EquifaxTaxCreditorType.cdm.json/EquifaxTaxCreditorType\",\"name\":\"EquifaxTaxCreditorTypeName\"},\"dataType\":\"string\",\"dataTypeLength\":256,\"description\":\"The name of a Tax Creditor Type.\",\"isNullable\":true,\"name\":\"EquifaxTaxCreditorTypeName\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"EquifaxTaxCreditorType.cdm.json/EquifaxTaxCreditorType\",\"name\":\"EquifaxTaxCreditorTypeDescription\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"The description of a Tax Creditor Type.\",\"isNullable\":true,\"name\":\"EquifaxTaxCreditorTypeDescription\"}]}}}",
+			"Description": "The type of company reporting the tax lien.\n\nEx:\n- City government\n- State government",
+			"DisplayFolderInfo": "{\"name\":\"Customer Credit & Collections\",\"colorCode\":\"#022F22\"}",
+			"PrimaryKeys": "EquifaxTaxCreditorTypeId",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

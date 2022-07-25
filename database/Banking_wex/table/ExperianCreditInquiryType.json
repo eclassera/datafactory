@@ -1,0 +1,113 @@
+{
+	"name": "ExperianCreditInquiryType",
+	"properties": {
+		"Name": "ExperianCreditInquiryType",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "The type of credit inquiry type.\n\nE:\n- Inquiries Shared With Others\n- Inquiries Shared Only With You\n\nInquiries Shared With Others\nThe section lists all of the companies that have requested your credit information as a result of an action you took, such as applying for credit or financing or as a result of a collection. The inquiries in this section are shared with companies that receive your credit history. Examples of inquiries shared with others or \"hard\" inquiries include:\n\n        a real estate loan\n        a home mortgage loan\n        an auto loan\n        an application for credit\n\nInquiries Shared Only With You\nSoft inquiries include pre-screened credit offers, employment, insurance, account reviews from creditors you already have a relationship with, and your own requests for your credit report. Those inquiries appear only on your personal credit report. They are not shared with anyone else and don't affect your credit scores.",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "ExperianCreditInquiryTypeId",
+					"Description": "The unique identifier of an Experian Credit Inquiry Type.",
+					"BaseAttributeReference": {
+						"Entity": "ExperianCreditInquiryType.cdm.json/ExperianCreditInquiryType",
+						"Name": "ExperianCreditInquiryTypeId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "ExperianCreditInquiryTypeName",
+					"Description": "The name of  an Experian Credit Inquiry Type.",
+					"BaseAttributeReference": {
+						"Entity": "ExperianCreditInquiryType.cdm.json/ExperianCreditInquiryType",
+						"Name": "ExperianCreditInquiryTypeName"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 256,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "ExperianCreditInquiryTypeDescription",
+					"Description": "The description of an Experian Credit Inquiry Type.",
+					"BaseAttributeReference": {
+						"Entity": "ExperianCreditInquiryType.cdm.json/ExperianCreditInquiryType",
+						"Name": "ExperianCreditInquiryTypeDescription"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/ExperianCreditInquiryType",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/ExperianCreditInquiryType",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"ExperianCreditInquiryTypeId\":{\"entity\":\"ExperianCreditInquiryType.cdm.json/ExperianCreditInquiryType\",\"name\":\"ExperianCreditInquiryTypeId\"},\"ExperianCreditInquiryTypeName\":{\"entity\":\"ExperianCreditInquiryType.cdm.json/ExperianCreditInquiryType\",\"name\":\"ExperianCreditInquiryTypeName\"},\"ExperianCreditInquiryTypeDescription\":{\"entity\":\"ExperianCreditInquiryType.cdm.json/ExperianCreditInquiryType\",\"name\":\"ExperianCreditInquiryTypeDescription\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"ExperianCreditInquiryType\",\"path\":\"ExperianCreditInquiryType.cdm.json/ExperianCreditInquiryType\"},\"description\":\"The type of credit inquiry type.\\n\\nE:\\n- Inquiries Shared With Others\\n- Inquiries Shared Only With You\\n\\nInquiries Shared With Others\\nThe section lists all of the companies that have requested your credit information as a result of an action you took, such as applying for credit or financing or as a result of a collection. The inquiries in this section are shared with companies that receive your credit history. Examples of inquiries shared with others or \\\"hard\\\" inquiries include:\\n\\n        a real estate loan\\n        a home mortgage loan\\n        an auto loan\\n        an application for credit\\n\\nInquiries Shared Only With You\\nSoft inquiries include pre-screened credit offers, employment, insurance, account reviews from creditors you already have a relationship with, and your own requests for your credit report. Those inquiries appear only on your personal credit report. They are not shared with anyone else and don't affect your credit scores.\",\"primaryKey\":[\"ExperianCreditInquiryTypeId\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ExperianCreditInquiryType.cdm.json/ExperianCreditInquiryType\",\"name\":\"ExperianCreditInquiryTypeId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of an Experian Credit Inquiry Type.\",\"isNullable\":false,\"name\":\"ExperianCreditInquiryTypeId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ExperianCreditInquiryType.cdm.json/ExperianCreditInquiryType\",\"name\":\"ExperianCreditInquiryTypeName\"},\"dataType\":\"string\",\"dataTypeLength\":256,\"description\":\"The name of  an Experian Credit Inquiry Type.\",\"isNullable\":true,\"name\":\"ExperianCreditInquiryTypeName\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ExperianCreditInquiryType.cdm.json/ExperianCreditInquiryType\",\"name\":\"ExperianCreditInquiryTypeDescription\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"The description of an Experian Credit Inquiry Type.\",\"isNullable\":true,\"name\":\"ExperianCreditInquiryTypeDescription\"}]}}}",
+			"Description": "The type of credit inquiry type.\n\nE:\n- Inquiries Shared With Others\n- Inquiries Shared Only With You\n\nInquiries Shared With Others\nThe section lists all of the companies that have requested your credit information as a result of an action you took, such as applying for credit or financing or as a result of a collection. The inquiries in this section are shared with companies that receive your credit history. Examples of inquiries shared with others or \"hard\" inquiries include:\n\n        a real estate loan\n        a home mortgage loan\n        an auto loan\n        an application for credit\n\nInquiries Shared Only With You\nSoft inquiries include pre-screened credit offers, employment, insurance, account reviews from creditors you already have a relationship with, and your own requests for your credit report. Those inquiries appear only on your personal credit report. They are not shared with anyone else and don't affect your credit scores.",
+			"DisplayFolderInfo": "{\"name\":\"Customer Credit & Collections\",\"colorCode\":\"#022F22\"}",
+			"PrimaryKeys": "ExperianCreditInquiryTypeId",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

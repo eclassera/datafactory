@@ -1,0 +1,213 @@
+{
+	"name": "ExperianJudgment",
+	"properties": {
+		"Name": "ExperianJudgment",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "Judgment flings are court decisions directing a business (who are the defendant) to make payments to a plaintiff. \n\nJudgments are therefore debts that can be an indication of trouble. \n\nAll Fling types are counted (including vacated judgments and releases), and retained for six years and nine months.",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "ExperianFileNumber",
+					"Description": "The unique and persistent number that identifies and tracks the Experian company.",
+					"BaseAttributeReference": {
+						"Entity": "ExperianJudgment.cdm.json/ExperianJudgment",
+						"Name": "ExperianFileNumber"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "ProfileTimestamp",
+					"Description": "The timestamp of the Experian profile.",
+					"BaseAttributeReference": {
+						"Entity": "ExperianJudgment.cdm.json/ExperianJudgment",
+						"Name": "ProfileTimestamp"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "timestamp",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"TimestampFormat": "YYYY-MM-DD HH:MM:SS.fffffffff",
+							"HIVE_TYPE_STRING": "timestamp"
+						}
+					}
+				},
+				{
+					"Name": "FilingNumber",
+					"Description": "The number of the filing.",
+					"BaseAttributeReference": {
+						"Entity": "ExperianJudgment.cdm.json/ExperianJudgment",
+						"Name": "FilingNumber"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "FilingDate",
+					"Description": "The date of the filing.",
+					"BaseAttributeReference": {
+						"Entity": "ExperianJudgment.cdm.json/ExperianJudgment",
+						"Name": "FilingDate"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "date",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"DateFormat": "YYYY-MM-DD",
+							"HIVE_TYPE_STRING": "date"
+						}
+					}
+				},
+				{
+					"Name": "PlaintiffName",
+					"Description": "The name of the plaintiff to the judgment.",
+					"BaseAttributeReference": {
+						"Entity": "ExperianJudgment.cdm.json/ExperianJudgment",
+						"Name": "PlaintiffName"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 256,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "JudgmentJurisdiction",
+					"Description": "The jurisdiction of the judgment.",
+					"BaseAttributeReference": {
+						"Entity": "ExperianJudgment.cdm.json/ExperianJudgment",
+						"Name": "JudgmentJurisdiction"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 256,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "JudgmentAmount",
+					"Description": "The amount of the judgment.",
+					"BaseAttributeReference": {
+						"Entity": "ExperianJudgment.cdm.json/ExperianJudgment",
+						"Name": "JudgmentAmount"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "decimal",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Precision": 18,
+						"Scale": 2,
+						"Properties": {
+							"HIVE_TYPE_STRING": "decimal"
+						}
+					}
+				},
+				{
+					"Name": "ExperianJudgmentFilingTypeId",
+					"Description": "The unique identifier of an Experian judgment filing type.",
+					"BaseAttributeReference": {
+						"Entity": "ExperianJudgment.cdm.json/ExperianJudgment",
+						"Name": "ExperianJudgmentFilingTypeId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "ExperianJudgmentStatusTypeId",
+					"Description": "The unique identifier of an Experian judgment status type.",
+					"BaseAttributeReference": {
+						"Entity": "ExperianJudgment.cdm.json/ExperianJudgment",
+						"Name": "ExperianJudgmentStatusTypeId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/ExperianJudgment",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/ExperianJudgment",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"ExperianFileNumber\":{\"entity\":\"ExperianJudgment.cdm.json/ExperianJudgment\",\"name\":\"ExperianFileNumber\"},\"ProfileTimestamp\":{\"entity\":\"ExperianJudgment.cdm.json/ExperianJudgment\",\"name\":\"ProfileTimestamp\"},\"FilingNumber\":{\"entity\":\"ExperianJudgment.cdm.json/ExperianJudgment\",\"name\":\"FilingNumber\"},\"FilingDate\":{\"entity\":\"ExperianJudgment.cdm.json/ExperianJudgment\",\"name\":\"FilingDate\"},\"PlaintiffName\":{\"entity\":\"ExperianJudgment.cdm.json/ExperianJudgment\",\"name\":\"PlaintiffName\"},\"JudgmentJurisdiction\":{\"entity\":\"ExperianJudgment.cdm.json/ExperianJudgment\",\"name\":\"JudgmentJurisdiction\"},\"JudgmentAmount\":{\"entity\":\"ExperianJudgment.cdm.json/ExperianJudgment\",\"name\":\"JudgmentAmount\"},\"ExperianJudgmentFilingTypeId\":{\"entity\":\"ExperianJudgment.cdm.json/ExperianJudgment\",\"name\":\"ExperianJudgmentFilingTypeId\"},\"ExperianJudgmentStatusTypeId\":{\"entity\":\"ExperianJudgment.cdm.json/ExperianJudgment\",\"name\":\"ExperianJudgmentStatusTypeId\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"ExperianJudgment\",\"path\":\"ExperianJudgment.cdm.json/ExperianJudgment\"},\"description\":\"Judgment flings are court decisions directing a business (who are the defendant) to make payments to a plaintiff. \\n\\nJudgments are therefore debts that can be an indication of trouble. \\n\\nAll Fling types are counted (including vacated judgments and releases), and retained for six years and nine months.\",\"primaryKey\":[\"ExperianFileNumber\",\"ProfileTimestamp\",\"FilingNumber\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ExperianJudgment.cdm.json/ExperianJudgment\",\"name\":\"ExperianFileNumber\"},\"dataType\":\"integer\",\"description\":\"The unique and persistent number that identifies and tracks the Experian company.\",\"isNullable\":false,\"name\":\"ExperianFileNumber\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ExperianJudgment.cdm.json/ExperianJudgment\",\"name\":\"ProfileTimestamp\"},\"dataType\":\"timestamp\",\"description\":\"The timestamp of the Experian profile.\",\"isNullable\":false,\"name\":\"ProfileTimestamp\",\"timestampFormat\":\"YYYY-MM-DD HH:MM:SS.fffffffff\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ExperianJudgment.cdm.json/ExperianJudgment\",\"name\":\"FilingNumber\"},\"dataType\":\"integer\",\"description\":\"The number of the filing.\",\"isNullable\":false,\"name\":\"FilingNumber\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ExperianJudgment.cdm.json/ExperianJudgment\",\"name\":\"FilingDate\"},\"dataType\":\"date\",\"dateFormat\":\"YYYY-MM-DD\",\"description\":\"The date of the filing.\",\"isNullable\":true,\"name\":\"FilingDate\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ExperianJudgment.cdm.json/ExperianJudgment\",\"name\":\"PlaintiffName\"},\"dataType\":\"string\",\"dataTypeLength\":256,\"description\":\"The name of the plaintiff to the judgment.\",\"isNullable\":true,\"name\":\"PlaintiffName\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ExperianJudgment.cdm.json/ExperianJudgment\",\"name\":\"JudgmentJurisdiction\"},\"dataType\":\"string\",\"dataTypeLength\":256,\"description\":\"The jurisdiction of the judgment.\",\"isNullable\":true,\"name\":\"JudgmentJurisdiction\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ExperianJudgment.cdm.json/ExperianJudgment\",\"name\":\"JudgmentAmount\"},\"dataType\":\"decimal\",\"dataTypeLength\":18,\"description\":\"The amount of the judgment.\",\"isNullable\":true,\"scale\":2,\"name\":\"JudgmentAmount\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ExperianJudgment.cdm.json/ExperianJudgment\",\"name\":\"ExperianJudgmentFilingTypeId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of an Experian judgment filing type.\",\"isNullable\":true,\"name\":\"ExperianJudgmentFilingTypeId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ExperianJudgment.cdm.json/ExperianJudgment\",\"name\":\"ExperianJudgmentStatusTypeId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of an Experian judgment status type.\",\"isNullable\":true,\"name\":\"ExperianJudgmentStatusTypeId\"}]}}}",
+			"Description": "Judgment flings are court decisions directing a business (who are the defendant) to make payments to a plaintiff. \n\nJudgments are therefore debts that can be an indication of trouble. \n\nAll Fling types are counted (including vacated judgments and releases), and retained for six years and nine months.",
+			"DisplayFolderInfo": "{\"name\":\"Customer Credit & Collections\",\"colorCode\":\"#022F22\"}",
+			"PrimaryKeys": "ExperianFileNumber,ProfileTimestamp,FilingNumber",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

@@ -1,0 +1,130 @@
+{
+	"name": "SocialMediaPlatform",
+	"properties": {
+		"Name": "SocialMediaPlatform",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "A social media platform is a type of software or technology that enables users to build, integrate or facilitate community interaction and user-generated content. \n\nEx:\n- Facebook\n- LinkedIn\n- Twitter",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "SocialMediaPlatformId",
+					"Description": "The unique identifier of a Social Media Platform.",
+					"BaseAttributeReference": {
+						"Entity": "SocialMediaPlatform.cdm.json/SocialMediaPlatform",
+						"Name": "SocialMediaPlatformId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "SocialMediaPlatformName",
+					"Description": "The name of the Social Media Platform.",
+					"BaseAttributeReference": {
+						"Entity": "SocialMediaPlatform.cdm.json/SocialMediaPlatform",
+						"Name": "SocialMediaPlatformName"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 256,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "SocialMediaPlatformDescription",
+					"Description": "The description of the Social Media Platform.",
+					"BaseAttributeReference": {
+						"Entity": "SocialMediaPlatform.cdm.json/SocialMediaPlatform",
+						"Name": "SocialMediaPlatformDescription"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "HomePageUrl",
+					"Description": "The home page URL for the associated social media platform.",
+					"BaseAttributeReference": {
+						"Entity": "SocialMediaPlatform.cdm.json/SocialMediaPlatform",
+						"Name": "HomePageUrl"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2083,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/SocialMediaPlatform",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/SocialMediaPlatform",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"SocialMediaPlatformId\":{\"entity\":\"SocialMediaPlatform.cdm.json/SocialMediaPlatform\",\"name\":\"SocialMediaPlatformId\"},\"SocialMediaPlatformName\":{\"entity\":\"SocialMediaPlatform.cdm.json/SocialMediaPlatform\",\"name\":\"SocialMediaPlatformName\"},\"SocialMediaPlatformDescription\":{\"entity\":\"SocialMediaPlatform.cdm.json/SocialMediaPlatform\",\"name\":\"SocialMediaPlatformDescription\"},\"HomePageUrl\":{\"entity\":\"SocialMediaPlatform.cdm.json/SocialMediaPlatform\",\"name\":\"HomePageUrl\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"SocialMediaPlatform\",\"path\":\"SocialMediaPlatform.cdm.json/SocialMediaPlatform\"},\"description\":\"A social media platform is a type of software or technology that enables users to build, integrate or facilitate community interaction and user-generated content. \\n\\nEx:\\n- Facebook\\n- LinkedIn\\n- Twitter\",\"primaryKey\":[\"SocialMediaPlatformId\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"SocialMediaPlatform.cdm.json/SocialMediaPlatform\",\"name\":\"SocialMediaPlatformId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Social Media Platform.\",\"isNullable\":false,\"name\":\"SocialMediaPlatformId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"SocialMediaPlatform.cdm.json/SocialMediaPlatform\",\"name\":\"SocialMediaPlatformName\"},\"dataType\":\"string\",\"dataTypeLength\":256,\"description\":\"The name of the Social Media Platform.\",\"isNullable\":true,\"name\":\"SocialMediaPlatformName\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"SocialMediaPlatform.cdm.json/SocialMediaPlatform\",\"name\":\"SocialMediaPlatformDescription\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"The description of the Social Media Platform.\",\"isNullable\":true,\"name\":\"SocialMediaPlatformDescription\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"SocialMediaPlatform.cdm.json/SocialMediaPlatform\",\"name\":\"HomePageUrl\"},\"dataType\":\"string\",\"dataTypeLength\":2083,\"description\":\"The home page URL for the associated social media platform.\",\"isNullable\":true,\"name\":\"HomePageUrl\"}]}}}",
+			"Description": "A social media platform is a type of software or technology that enables users to build, integrate or facilitate community interaction and user-generated content. \n\nEx:\n- Facebook\n- LinkedIn\n- Twitter",
+			"DisplayFolderInfo": "{\"name\":\"Customer Service & Contact Management\",\"colorCode\":\"#Ef6950\"}",
+			"PrimaryKeys": "SocialMediaPlatformId",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

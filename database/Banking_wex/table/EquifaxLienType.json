@@ -1,0 +1,113 @@
+{
+	"name": "EquifaxLienType",
+	"properties": {
+		"Name": "EquifaxLienType",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "The Equifax type of lien.\n\nEx:\n- Sales\n- Tax",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "EquifaxLienTypeId",
+					"Description": "The unique identifier of an Equifax Lien Type.",
+					"BaseAttributeReference": {
+						"Entity": "EquifaxLienType.cdm.json/EquifaxLienType",
+						"Name": "EquifaxLienTypeId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "EquifaxLienTypeName",
+					"Description": "The name of an Equifax Lien Type.",
+					"BaseAttributeReference": {
+						"Entity": "EquifaxLienType.cdm.json/EquifaxLienType",
+						"Name": "EquifaxLienTypeName"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 256,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "EquifaxLienTypeDescription",
+					"Description": "The description of an Equifax Lien Type.",
+					"BaseAttributeReference": {
+						"Entity": "EquifaxLienType.cdm.json/EquifaxLienType",
+						"Name": "EquifaxLienTypeDescription"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/EquifaxLienType",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/EquifaxLienType",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"EquifaxLienTypeId\":{\"entity\":\"EquifaxLienType.cdm.json/EquifaxLienType\",\"name\":\"EquifaxLienTypeId\"},\"EquifaxLienTypeName\":{\"entity\":\"EquifaxLienType.cdm.json/EquifaxLienType\",\"name\":\"EquifaxLienTypeName\"},\"EquifaxLienTypeDescription\":{\"entity\":\"EquifaxLienType.cdm.json/EquifaxLienType\",\"name\":\"EquifaxLienTypeDescription\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"EquifaxLienType\",\"path\":\"EquifaxLienType.cdm.json/EquifaxLienType\"},\"description\":\"The Equifax type of lien.\\n\\nEx:\\n- Sales\\n- Tax\",\"primaryKey\":[\"EquifaxLienTypeId\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"EquifaxLienType.cdm.json/EquifaxLienType\",\"name\":\"EquifaxLienTypeId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of an Equifax Lien Type.\",\"isNullable\":false,\"name\":\"EquifaxLienTypeId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"EquifaxLienType.cdm.json/EquifaxLienType\",\"name\":\"EquifaxLienTypeName\"},\"dataType\":\"string\",\"dataTypeLength\":256,\"description\":\"The name of an Equifax Lien Type.\",\"isNullable\":true,\"name\":\"EquifaxLienTypeName\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"EquifaxLienType.cdm.json/EquifaxLienType\",\"name\":\"EquifaxLienTypeDescription\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"The description of an Equifax Lien Type.\",\"isNullable\":true,\"name\":\"EquifaxLienTypeDescription\"}]}}}",
+			"Description": "The Equifax type of lien.\n\nEx:\n- Sales\n- Tax",
+			"DisplayFolderInfo": "{\"name\":\"Customer Credit & Collections\",\"colorCode\":\"#022F22\"}",
+			"PrimaryKeys": "EquifaxLienTypeId",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

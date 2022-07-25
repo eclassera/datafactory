@@ -1,0 +1,146 @@
+{
+	"name": "ChannelRestriction",
+	"properties": {
+		"Name": "ChannelRestriction",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "The one or more Restriction(s) applicable to a Channel for the associated period.",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "ChannelId",
+					"Description": "The unique identifier of a Channel.",
+					"BaseAttributeReference": {
+						"Entity": "ChannelRestriction.cdm.json/ChannelRestriction",
+						"Name": "ChannelId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "ChannelRestrictionTypeId",
+					"Description": "The unique identifier of a Restriction.",
+					"BaseAttributeReference": {
+						"Entity": "ChannelRestriction.cdm.json/ChannelRestriction",
+						"Name": "ChannelRestrictionTypeId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "PeriodStartDate",
+					"Description": "The period start date for which the associated restriction is effective.",
+					"BaseAttributeReference": {
+						"Entity": "ChannelRestriction.cdm.json/ChannelRestriction",
+						"Name": "PeriodStartDate"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "date",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"DateFormat": "YYYY-MM-DD",
+							"HIVE_TYPE_STRING": "date"
+						}
+					}
+				},
+				{
+					"Name": "PeriodEndDate",
+					"Description": "The period end date for which the associated restriction is effective.",
+					"BaseAttributeReference": {
+						"Entity": "ChannelRestriction.cdm.json/ChannelRestriction",
+						"Name": "PeriodEndDate"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "date",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"DateFormat": "YYYY-MM-DD",
+							"HIVE_TYPE_STRING": "date"
+						}
+					}
+				},
+				{
+					"Name": "RestrictionNote",
+					"Description": "A note, comment or additional information regarding the restriction.",
+					"BaseAttributeReference": {
+						"Entity": "ChannelRestriction.cdm.json/ChannelRestriction",
+						"Name": "RestrictionNote"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/ChannelRestriction",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/ChannelRestriction",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"ChannelId\":{\"entity\":\"ChannelRestriction.cdm.json/ChannelRestriction\",\"name\":\"ChannelId\"},\"ChannelRestrictionTypeId\":{\"entity\":\"ChannelRestriction.cdm.json/ChannelRestriction\",\"name\":\"ChannelRestrictionTypeId\"},\"PeriodStartDate\":{\"entity\":\"ChannelRestriction.cdm.json/ChannelRestriction\",\"name\":\"PeriodStartDate\"},\"PeriodEndDate\":{\"entity\":\"ChannelRestriction.cdm.json/ChannelRestriction\",\"name\":\"PeriodEndDate\"},\"RestrictionNote\":{\"entity\":\"ChannelRestriction.cdm.json/ChannelRestriction\",\"name\":\"RestrictionNote\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"ChannelRestriction\",\"path\":\"ChannelRestriction.cdm.json/ChannelRestriction\"},\"description\":\"The one or more Restriction(s) applicable to a Channel for the associated period.\",\"primaryKey\":[\"ChannelId\",\"ChannelRestrictionTypeId\",\"PeriodStartDate\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ChannelRestriction.cdm.json/ChannelRestriction\",\"name\":\"ChannelId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Channel.\",\"isNullable\":false,\"name\":\"ChannelId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ChannelRestriction.cdm.json/ChannelRestriction\",\"name\":\"ChannelRestrictionTypeId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Restriction.\",\"isNullable\":false,\"name\":\"ChannelRestrictionTypeId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ChannelRestriction.cdm.json/ChannelRestriction\",\"name\":\"PeriodStartDate\"},\"dataType\":\"date\",\"dateFormat\":\"YYYY-MM-DD\",\"description\":\"The period start date for which the associated restriction is effective.\",\"isNullable\":false,\"name\":\"PeriodStartDate\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ChannelRestriction.cdm.json/ChannelRestriction\",\"name\":\"PeriodEndDate\"},\"dataType\":\"date\",\"dateFormat\":\"YYYY-MM-DD\",\"description\":\"The period end date for which the associated restriction is effective.\",\"isNullable\":true,\"name\":\"PeriodEndDate\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ChannelRestriction.cdm.json/ChannelRestriction\",\"name\":\"RestrictionNote\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"A note, comment or additional information regarding the restriction.\",\"isNullable\":true,\"name\":\"RestrictionNote\"}]}}}",
+			"Description": "The one or more Restriction(s) applicable to a Channel for the associated period.",
+			"DisplayFolderInfo": "{\"name\":\"Channel\",\"colorCode\":\"#001D3F\"}",
+			"PrimaryKeys": "ChannelId,ChannelRestrictionTypeId,PeriodStartDate",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

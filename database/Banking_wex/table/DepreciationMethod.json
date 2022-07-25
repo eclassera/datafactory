@@ -1,0 +1,113 @@
+{
+	"name": "DepreciationMethod",
+	"properties": {
+		"Name": "DepreciationMethod",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "An accounting method for spreading out the original cost over the estimated life of the fixed assets.\n\nDepreciation expense is listed in the Income Statement and reduces the net income for that year.\n\nPopular Depreciation Methods are:\n\nDECLINING BALANCE\nDeclining Balance  is an accelerated depreciation method in which an asset's book value is multiplied by a constant depreciation rate (such as double the straight-line percentage, in the case of double-declining-balance.). \n\nThis depreciation method is allowed by the U.S. tax code and gives a larger depreciation in the early years of an asset. Unlike the straight line and the sum of the digits methods, both of which use the original basis to calculate the depreciation each year, the double declining balance uses a fixed percentage of the prior year's basis to calculate depreciation. The percentage rate is 2/N where N is the life of the asset. \n\nWith this method, the basis never becomes zero. Consequently, it is standard practice to switch to another depreciation method as the basis decreases. Usually the taxpayer will convert to the straight line method when the annual depreciation from the declining balance becomes less than the straight line.\n\nSTRAIGHT-LINE\nThe straight-line method of depreciation charges equal amounts of depreciation to each period over the useful life of the asset. It is determined by subtracting the residual value from the initial cost and dividing it by the number of the years of estimated life.  Due to its simplicity, it is the most widely used method.\n\nACCELERATED\nA method of depreciation that recognizes higher amounts of depreciation in the earlier years and lower amounts in the later years of a fixed asset's life.  Greater tax benefits are taken in the earlier years.   Over an extended period of time as depreciation moves down the maintenance costs increase and tend to even out the charges to income.\n\nACCELERATED (ACRS)\nA system of depreciation for tax purposes as mandated by the Economic Recovery Act (ERA) of 1981 and modified by the Tax Reform Act of 1986.  Fixed Assets are identified by class and depreciation is determined by this class as opposed to statutory tables. A taxpayer may make an irrevocable decision to treat all property in one of the classes.  The purpose of ACRS is to encourage capital investments by business by permitting a faster recovery of the asset cost, which provides larger tax benefits in the earlier years.\n\nPERCENTAGE OF COMPLETION\nPERCENTAGE OF COMPLETION METHOD OF ACCOUNTING is instituted if your revenues exceed $10,000,000 (3-year average) or your contracts will not be completed within a two-year period, you are generally required to use the percentage of completion accounting for contracts. There are many advantages to using to percentage of completion method including:  It is the best measurement of income. Percentage of completion normally needs to be computed for financial statement purposes eliminating confusing timing differences from tax to financial statements. \n\nUNITS-OF-PRODUCTION\nThe units-of-production method determines depreciation expense based on the amount the asset is used. The length of life of an asset is expressed in a form of productive capacity. The initial cost less any residual value is divided by productive capacity to determine a rate of unit-of-production depreciation per units of usage. Units of usage c\ncan be expressed in quantity of goods produced, hours used, number of cuttings, miles driven or tons hauled, for instance. The depreciation expense of a period is determined by multiplying usage by a fixed unit-of-production rate of usage. This depreciation method is commonly used when asset usage varies from year-to-year.\n\nSUM-OF-YEARS-DIGITS\nThe sum-of-the-years-digits method is an another form of accelerated depreciation. The annual depreciation is calculated by subtracting salvage value from original cost, and multiplying this figure by a fractional rate of depreciation. The denominator of the fraction is the sum of the years of useful life; for a life of 5 years, the denominator is = 1 + 2 + 3 + 4 + 5 = 15. The numerator is the year in reverse order. For the first year, the numerator is 5 and the fraction is 5/15.\n\nMODIFIED ACCELERATED COST RECOVERY (MACRS)\nA method of accelerated depreciation which classifies depreciable assets into a specific recovery period, each of which has a designated allowable depreciation method.\n\nMODIFIED ACCELERATED COST RECOVERY SYSTEM (MACRS) is a system used in accounting to define the rate and method under which a fixed asset will be depreciated for tax purposes.\n\nDOUBLE DECLINING BALANCE\nAn accelerated depreciation method in which a percentage factor of twice the straight-line rate is multiplied each year by the declining balance of the asset's book value.   To determine the annual depreciation expense, the asset's book value at the beginning of the period is multiplied by the double declining rate.",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "DepreciationMethodId",
+					"Description": "The unique identifier of the Depreciation Method.",
+					"BaseAttributeReference": {
+						"Entity": "DepreciationMethod.cdm.json/DepreciationMethod",
+						"Name": "DepreciationMethodId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "DepreciationMethodName",
+					"Description": "The name of the Depreciation Method.",
+					"BaseAttributeReference": {
+						"Entity": "DepreciationMethod.cdm.json/DepreciationMethod",
+						"Name": "DepreciationMethodName"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 256,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "DepreciationMethodDescription",
+					"Description": "The description of the Depreciation Method.",
+					"BaseAttributeReference": {
+						"Entity": "DepreciationMethod.cdm.json/DepreciationMethod",
+						"Name": "DepreciationMethodDescription"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/DepreciationMethod",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/DepreciationMethod",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"DepreciationMethodId\":{\"entity\":\"DepreciationMethod.cdm.json/DepreciationMethod\",\"name\":\"DepreciationMethodId\"},\"DepreciationMethodName\":{\"entity\":\"DepreciationMethod.cdm.json/DepreciationMethod\",\"name\":\"DepreciationMethodName\"},\"DepreciationMethodDescription\":{\"entity\":\"DepreciationMethod.cdm.json/DepreciationMethod\",\"name\":\"DepreciationMethodDescription\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"DepreciationMethod\",\"path\":\"DepreciationMethod.cdm.json/DepreciationMethod\"},\"description\":\"An accounting method for spreading out the original cost over the estimated life of the fixed assets.\\n\\nDepreciation expense is listed in the Income Statement and reduces the net income for that year.\\n\\nPopular Depreciation Methods are:\\n\\nDECLINING BALANCE\\nDeclining Balance  is an accelerated depreciation method in which an asset's book value is multiplied by a constant depreciation rate (such as double the straight-line percentage, in the case of double-declining-balance.). \\n\\nThis depreciation method is allowed by the U.S. tax code and gives a larger depreciation in the early years of an asset. Unlike the straight line and the sum of the digits methods, both of which use the original basis to calculate the depreciation each year, the double declining balance uses a fixed percentage of the prior year's basis to calculate depreciation. The percentage rate is 2/N where N is the life of the asset. \\n\\nWith this method, the basis never becomes zero. Consequently, it is standard practice to switch to another depreciation method as the basis decreases. Usually the taxpayer will convert to the straight line method when the annual depreciation from the declining balance becomes less than the straight line.\\n\\nSTRAIGHT-LINE\\nThe straight-line method of depreciation charges equal amounts of depreciation to each period over the useful life of the asset. It is determined by subtracting the residual value from the initial cost and dividing it by the number of the years of estimated life.  Due to its simplicity, it is the most widely used method.\\n\\nACCELERATED\\nA method of depreciation that recognizes higher amounts of depreciation in the earlier years and lower amounts in the later years of a fixed asset's life.  Greater tax benefits are taken in the earlier years.   Over an extended period of time as depreciation moves down the maintenance costs increase and tend to even out the charges to income.\\n\\nACCELERATED (ACRS)\\nA system of depreciation for tax purposes as mandated by the Economic Recovery Act (ERA) of 1981 and modified by the Tax Reform Act of 1986.  Fixed Assets are identified by class and depreciation is determined by this class as opposed to statutory tables. A taxpayer may make an irrevocable decision to treat all property in one of the classes.  The purpose of ACRS is to encourage capital investments by business by permitting a faster recovery of the asset cost, which provides larger tax benefits in the earlier years.\\n\\nPERCENTAGE OF COMPLETION\\nPERCENTAGE OF COMPLETION METHOD OF ACCOUNTING is instituted if your revenues exceed $10,000,000 (3-year average) or your contracts will not be completed within a two-year period, you are generally required to use the percentage of completion accounting for contracts. There are many advantages to using to percentage of completion method including:  It is the best measurement of income. Percentage of completion normally needs to be computed for financial statement purposes eliminating confusing timing differences from tax to financial statements. \\n\\nUNITS-OF-PRODUCTION\\nThe units-of-production method determines depreciation expense based on the amount the asset is used. The length of life of an asset is expressed in a form of productive capacity. The initial cost less any residual value is divided by productive capacity to determine a rate of unit-of-production depreciation per units of usage. Units of usage c\\ncan be expressed in quantity of goods produced, hours used, number of cuttings, miles driven or tons hauled, for instance. The depreciation expense of a period is determined by multiplying usage by a fixed unit-of-production rate of usage. This depreciation method is commonly used when asset usage varies from year-to-year.\\n\\nSUM-OF-YEARS-DIGITS\\nThe sum-of-the-years-digits method is an another form of accelerated depreciation. The annual depreciation is calculated by subtracting salvage value from original cost, and multiplying this figure by a fractional rate of depreciation. The denominator of the fraction is the sum of the years of useful life; for a life of 5 years, the denominator is = 1 + 2 + 3 + 4 + 5 = 15. The numerator is the year in reverse order. For the first year, the numerator is 5 and the fraction is 5/15.\\n\\nMODIFIED ACCELERATED COST RECOVERY (MACRS)\\nA method of accelerated depreciation which classifies depreciable assets into a specific recovery period, each of which has a designated allowable depreciation method.\\n\\nMODIFIED ACCELERATED COST RECOVERY SYSTEM (MACRS) is a system used in accounting to define the rate and method under which a fixed asset will be depreciated for tax purposes.\\n\\nDOUBLE DECLINING BALANCE\\nAn accelerated depreciation method in which a percentage factor of twice the straight-line rate is multiplied each year by the declining balance of the asset's book value.   To determine the annual depreciation expense, the asset's book value at the beginning of the period is multiplied by the double declining rate.\",\"primaryKey\":[\"DepreciationMethodId\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"DepreciationMethod.cdm.json/DepreciationMethod\",\"name\":\"DepreciationMethodId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of the Depreciation Method.\",\"isNullable\":false,\"name\":\"DepreciationMethodId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"DepreciationMethod.cdm.json/DepreciationMethod\",\"name\":\"DepreciationMethodName\"},\"dataType\":\"string\",\"dataTypeLength\":256,\"description\":\"The name of the Depreciation Method.\",\"isNullable\":true,\"name\":\"DepreciationMethodName\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"DepreciationMethod.cdm.json/DepreciationMethod\",\"name\":\"DepreciationMethodDescription\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"The description of the Depreciation Method.\",\"isNullable\":true,\"name\":\"DepreciationMethodDescription\"}]}}}",
+			"Description": "An accounting method for spreading out the original cost over the estimated life of the fixed assets.\n\nDepreciation expense is listed in the Income Statement and reduces the net income for that year.\n\nPopular Depreciation Methods are:\n\nDECLINING BALANCE\nDeclining Balance  is an accelerated depreciation method in which an asset's book value is multiplied by a constant depreciation rate (such as double the straight-line percentage, in the case of double-declining-balance.). \n\nThis depreciation method is allowed by the U.S. tax code and gives a larger depreciation in the early years of an asset. Unlike the straight line and the sum of the digits methods, both of which use the original basis to calculate the depreciation each year, the double declining balance uses a fixed percentage of the prior year's basis to calculate depreciation. The percentage rate is 2/N where N is the life of the asset. \n\nWith this method, the basis never becomes zero. Consequently, it is standard practice to switch to another depreciation method as the basis decreases. Usually the taxpayer will convert to the straight line method when the annual depreciation from the declining balance becomes less than the straight line.\n\nSTRAIGHT-LINE\nThe straight-line method of depreciation charges equal amounts of depreciation to each period over the useful life of the asset. It is determined by subtracting the residual value from the initial cost and dividing it by the number of the years of estimated life.  Due to its simplicity, it is the most widely used method.\n\nACCELERATED\nA method of depreciation that recognizes higher amounts of depreciation in the earlier years and lower amounts in the later years of a fixed asset's life.  Greater tax benefits are taken in the earlier years.   Over an extended period of time as depreciation moves down the maintenance costs increase and tend to even out the charges to income.\n\nACCELERATED (ACRS)\nA system of depreciation for tax purposes as mandated by the Economic Recovery Act (ERA) of 1981 and modified by the Tax Reform Act of 1986.  Fixed Assets are identified by class and depreciation is determined by this class as opposed to statutory tables. A taxpayer may make an irrevocable decision to treat all property in one of the classes.  The purpose of ACRS is to encourage capital investments by business by permitting a faster recovery of the asset cost, which provides larger tax benefits in the earlier years.\n\nPERCENTAGE OF COMPLETION\nPERCENTAGE OF COMPLETION METHOD OF ACCOUNTING is instituted if your revenues exceed $10,000,000 (3-year average) or your contracts will not be completed within a two-year period, you are generally required to use the percentage of completion accounting for contracts. There are many advantages to using to percentage of completion method including:  It is the best measurement of income. Percentage of completion normally needs to be computed for financial statement purposes eliminating confusing timing differences from tax to financial statements. \n\nUNITS-OF-PRODUCTION\nThe units-of-production method determines depreciation expense based on the amount the asset is used. The length of life of an asset is expressed in a form of productive capacity. The initial cost less any residual value is divided by productive capacity to determine a rate of unit-of-production depreciation per units of usage. Units of usage c\ncan be expressed in quantity of goods produced, hours used, number of cuttings, miles driven or tons hauled, for instance. The depreciation expense of a period is determined by multiplying usage by a fixed unit-of-production rate of usage. This depreciation method is commonly used when asset usage varies from year-to-year.\n\nSUM-OF-YEARS-DIGITS\nThe sum-of-the-years-digits method is an another form of accelerated depreciation. The annual depreciation is calculated by subtracting salvage value from original cost, and multiplying this figure by a fractional rate of depreciation. The denominator of the fraction is the sum of the years of useful life; for a life of 5 years, the denominator is = 1 + 2 + 3 + 4 + 5 = 15. The numerator is the year in reverse order. For the first year, the numerator is 5 and the fraction is 5/15.\n\nMODIFIED ACCELERATED COST RECOVERY (MACRS)\nA method of accelerated depreciation which classifies depreciable assets into a specific recovery period, each of which has a designated allowable depreciation method.\n\nMODIFIED ACCELERATED COST RECOVERY SYSTEM (MACRS) is a system used in accounting to define the rate and method under which a fixed asset will be depreciated for tax purposes.\n\nDOUBLE DECLINING BALANCE\nAn accelerated depreciation method in which a percentage factor of twice the straight-line rate is multiplied each year by the declining balance of the asset's book value.   To determine the annual depreciation expense, the asset's book value at the beginning of the period is multiplied by the double declining rate.",
+			"DisplayFolderInfo": "{\"name\":\"Accounting & Financial Reporting\",\"colorCode\":\"#0078D4\"}",
+			"PrimaryKeys": "DepreciationMethodId",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

@@ -1,0 +1,113 @@
+{
+	"name": "EquifaxCreditorClassificationType",
+	"properties": {
+		"Name": "EquifaxCreditorClassificationType",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "The creditor classification type.\n\nEx:\n- Bank\n- Store\n- Car Dealership\n- Credit card",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "EquifaxCreditorClassificationTypeId",
+					"Description": "The unique identifier of an Equifax Creditor Classification Type.",
+					"BaseAttributeReference": {
+						"Entity": "EquifaxCreditorClassificationType.cdm.json/EquifaxCreditorClassificationType",
+						"Name": "EquifaxCreditorClassificationTypeId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "EquifaxCreditorClassificationTypeName",
+					"Description": "The name of an Equifax Creditor Classification Type.",
+					"BaseAttributeReference": {
+						"Entity": "EquifaxCreditorClassificationType.cdm.json/EquifaxCreditorClassificationType",
+						"Name": "EquifaxCreditorClassificationTypeName"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 256,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "EquifaxCreditorClassificationTypeDescription",
+					"Description": "The description of an Equifax Creditor Classification Type.",
+					"BaseAttributeReference": {
+						"Entity": "EquifaxCreditorClassificationType.cdm.json/EquifaxCreditorClassificationType",
+						"Name": "EquifaxCreditorClassificationTypeDescription"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/EquifaxCreditorClassificationType",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/EquifaxCreditorClassificationType",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"EquifaxCreditorClassificationTypeId\":{\"entity\":\"EquifaxCreditorClassificationType.cdm.json/EquifaxCreditorClassificationType\",\"name\":\"EquifaxCreditorClassificationTypeId\"},\"EquifaxCreditorClassificationTypeName\":{\"entity\":\"EquifaxCreditorClassificationType.cdm.json/EquifaxCreditorClassificationType\",\"name\":\"EquifaxCreditorClassificationTypeName\"},\"EquifaxCreditorClassificationTypeDescription\":{\"entity\":\"EquifaxCreditorClassificationType.cdm.json/EquifaxCreditorClassificationType\",\"name\":\"EquifaxCreditorClassificationTypeDescription\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"EquifaxCreditorClassificationType\",\"path\":\"EquifaxCreditorClassificationType.cdm.json/EquifaxCreditorClassificationType\"},\"description\":\"The creditor classification type.\\n\\nEx:\\n- Bank\\n- Store\\n- Car Dealership\\n- Credit card\",\"primaryKey\":[\"EquifaxCreditorClassificationTypeId\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"EquifaxCreditorClassificationType.cdm.json/EquifaxCreditorClassificationType\",\"name\":\"EquifaxCreditorClassificationTypeId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of an Equifax Creditor Classification Type.\",\"isNullable\":false,\"name\":\"EquifaxCreditorClassificationTypeId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"EquifaxCreditorClassificationType.cdm.json/EquifaxCreditorClassificationType\",\"name\":\"EquifaxCreditorClassificationTypeName\"},\"dataType\":\"string\",\"dataTypeLength\":256,\"description\":\"The name of an Equifax Creditor Classification Type.\",\"isNullable\":true,\"name\":\"EquifaxCreditorClassificationTypeName\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"EquifaxCreditorClassificationType.cdm.json/EquifaxCreditorClassificationType\",\"name\":\"EquifaxCreditorClassificationTypeDescription\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"The description of an Equifax Creditor Classification Type.\",\"isNullable\":true,\"name\":\"EquifaxCreditorClassificationTypeDescription\"}]}}}",
+			"Description": "The creditor classification type.\n\nEx:\n- Bank\n- Store\n- Car Dealership\n- Credit card",
+			"DisplayFolderInfo": "{\"name\":\"Customer Credit & Collections\",\"colorCode\":\"#022F22\"}",
+			"PrimaryKeys": "EquifaxCreditorClassificationTypeId",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

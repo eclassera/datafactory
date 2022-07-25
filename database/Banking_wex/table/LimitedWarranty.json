@@ -1,0 +1,180 @@
+{
+	"name": "LimitedWarranty",
+	"properties": {
+		"Name": "LimitedWarranty",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "A 'limited warranty' is used by manufacturers when selling tangible products.",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "ContractId",
+					"Description": "The unique identifier of a Contract.",
+					"BaseAttributeReference": {
+						"Entity": "LimitedWarranty.cdm.json/LimitedWarranty",
+						"Name": "ContractId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "LimitedWarrantySection",
+					"Description": "This section provides that the product will be replaced or repaired if there is a defect during the warranty period.\n\n'Limited warranty' refers to warranty coverage that is limited in time or as to the types of problems covered.",
+					"BaseAttributeReference": {
+						"Entity": "LimitedWarranty.cdm.json/LimitedWarranty",
+						"Name": "LimitedWarrantySection"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "OtherLimitsSection",
+					"Description": "This section establishes additional limitations on the warranty such as improper use or implied warranties that are disclaimed.",
+					"BaseAttributeReference": {
+						"Entity": "LimitedWarranty.cdm.json/LimitedWarranty",
+						"Name": "OtherLimitsSection"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "ExclusiveObligationSection",
+					"Description": "This section establishes that the manufacturer has no obligation beyond those set forth in the Limited Warranty.",
+					"BaseAttributeReference": {
+						"Entity": "LimitedWarranty.cdm.json/LimitedWarranty",
+						"Name": "ExclusiveObligationSection"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "OtherStatementsSection",
+					"Description": "This section establishes clearly that statements made by employees of the manufacturer do not constitute warranties.",
+					"BaseAttributeReference": {
+						"Entity": "LimitedWarranty.cdm.json/LimitedWarranty",
+						"Name": "OtherStatementsSection"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "EntireObligationSection",
+					"Description": "This section makes two general statements about the product 'Limited Warranty'.\n\n(1)  The Limited Warranty is complete and the manufacturer has not other obligation\n\n(2)  If some provisions are found to be illegal, the rest of the Limited Warranty still remains in effect",
+					"BaseAttributeReference": {
+						"Entity": "LimitedWarranty.cdm.json/LimitedWarranty",
+						"Name": "EntireObligationSection"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "ProductId",
+					"Description": "The unique identifier of a Product.",
+					"BaseAttributeReference": {
+						"Entity": "LimitedWarranty.cdm.json/LimitedWarranty",
+						"Name": "ProductId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "long",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"HIVE_TYPE_STRING": "long"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/LimitedWarranty",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/LimitedWarranty",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"ContractId\":{\"entity\":\"LimitedWarranty.cdm.json/LimitedWarranty\",\"name\":\"ContractId\"},\"LimitedWarrantySection\":{\"entity\":\"LimitedWarranty.cdm.json/LimitedWarranty\",\"name\":\"LimitedWarrantySection\"},\"OtherLimitsSection\":{\"entity\":\"LimitedWarranty.cdm.json/LimitedWarranty\",\"name\":\"OtherLimitsSection\"},\"ExclusiveObligationSection\":{\"entity\":\"LimitedWarranty.cdm.json/LimitedWarranty\",\"name\":\"ExclusiveObligationSection\"},\"OtherStatementsSection\":{\"entity\":\"LimitedWarranty.cdm.json/LimitedWarranty\",\"name\":\"OtherStatementsSection\"},\"EntireObligationSection\":{\"entity\":\"LimitedWarranty.cdm.json/LimitedWarranty\",\"name\":\"EntireObligationSection\"},\"ProductId\":{\"entity\":\"LimitedWarranty.cdm.json/LimitedWarranty\",\"name\":\"ProductId\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"LimitedWarranty\",\"path\":\"LimitedWarranty.cdm.json/LimitedWarranty\"},\"description\":\"A 'limited warranty' is used by manufacturers when selling tangible products.\",\"primaryKey\":[\"ContractId\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"LimitedWarranty.cdm.json/LimitedWarranty\",\"name\":\"ContractId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Contract.\",\"isNullable\":false,\"name\":\"ContractId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"LimitedWarranty.cdm.json/LimitedWarranty\",\"name\":\"LimitedWarrantySection\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"This section provides that the product will be replaced or repaired if there is a defect during the warranty period.\\n\\n'Limited warranty' refers to warranty coverage that is limited in time or as to the types of problems covered.\",\"isNullable\":true,\"name\":\"LimitedWarrantySection\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"LimitedWarranty.cdm.json/LimitedWarranty\",\"name\":\"OtherLimitsSection\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"This section establishes additional limitations on the warranty such as improper use or implied warranties that are disclaimed.\",\"isNullable\":true,\"name\":\"OtherLimitsSection\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"LimitedWarranty.cdm.json/LimitedWarranty\",\"name\":\"ExclusiveObligationSection\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"This section establishes that the manufacturer has no obligation beyond those set forth in the Limited Warranty.\",\"isNullable\":true,\"name\":\"ExclusiveObligationSection\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"LimitedWarranty.cdm.json/LimitedWarranty\",\"name\":\"OtherStatementsSection\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"This section establishes clearly that statements made by employees of the manufacturer do not constitute warranties.\",\"isNullable\":true,\"name\":\"OtherStatementsSection\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"LimitedWarranty.cdm.json/LimitedWarranty\",\"name\":\"EntireObligationSection\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"This section makes two general statements about the product 'Limited Warranty'.\\n\\n(1)  The Limited Warranty is complete and the manufacturer has not other obligation\\n\\n(2)  If some provisions are found to be illegal, the rest of the Limited Warranty still remains in effect\",\"isNullable\":true,\"name\":\"EntireObligationSection\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"LimitedWarranty.cdm.json/LimitedWarranty\",\"name\":\"ProductId\"},\"dataType\":\"long\",\"description\":\"The unique identifier of a Product.\",\"isNullable\":true,\"name\":\"ProductId\"}]}}}",
+			"Description": "A 'limited warranty' is used by manufacturers when selling tangible products.",
+			"DisplayFolderInfo": "{\"name\":\"Contract\",\"colorCode\":\"#917EDB\"}",
+			"PrimaryKeys": "ContractId",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

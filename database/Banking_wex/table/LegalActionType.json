@@ -1,0 +1,113 @@
+{
+	"name": "LegalActionType",
+	"properties": {
+		"Name": "LegalActionType",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "A categorization of legal action types based on common characteristics or objectives.\n\nEx:\n- Debt collection\n- Civil Procedure\n- Employment Action\n- Personal Injury Suit\n- Lien\n- Class Action Suit\n- Bankruptcy",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "LegalActionTypeId",
+					"Description": "The unique identifier of a Legal Action Type.",
+					"BaseAttributeReference": {
+						"Entity": "LegalActionType.cdm.json/LegalActionType",
+						"Name": "LegalActionTypeId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "LegalActionTypeName",
+					"Description": "The name of a Legal Action Type.",
+					"BaseAttributeReference": {
+						"Entity": "LegalActionType.cdm.json/LegalActionType",
+						"Name": "LegalActionTypeName"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 256,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "LegalActionTypeDescription",
+					"Description": "The description of a Legal Action Type.",
+					"BaseAttributeReference": {
+						"Entity": "LegalActionType.cdm.json/LegalActionType",
+						"Name": "LegalActionTypeDescription"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/LegalActionType",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/LegalActionType",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"LegalActionTypeId\":{\"entity\":\"LegalActionType.cdm.json/LegalActionType\",\"name\":\"LegalActionTypeId\"},\"LegalActionTypeName\":{\"entity\":\"LegalActionType.cdm.json/LegalActionType\",\"name\":\"LegalActionTypeName\"},\"LegalActionTypeDescription\":{\"entity\":\"LegalActionType.cdm.json/LegalActionType\",\"name\":\"LegalActionTypeDescription\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"LegalActionType\",\"path\":\"LegalActionType.cdm.json/LegalActionType\"},\"description\":\"A categorization of legal action types based on common characteristics or objectives.\\n\\nEx:\\n- Debt collection\\n- Civil Procedure\\n- Employment Action\\n- Personal Injury Suit\\n- Lien\\n- Class Action Suit\\n- Bankruptcy\",\"primaryKey\":[\"LegalActionTypeId\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"LegalActionType.cdm.json/LegalActionType\",\"name\":\"LegalActionTypeId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Legal Action Type.\",\"isNullable\":false,\"name\":\"LegalActionTypeId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"LegalActionType.cdm.json/LegalActionType\",\"name\":\"LegalActionTypeName\"},\"dataType\":\"string\",\"dataTypeLength\":256,\"description\":\"The name of a Legal Action Type.\",\"isNullable\":true,\"name\":\"LegalActionTypeName\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"LegalActionType.cdm.json/LegalActionType\",\"name\":\"LegalActionTypeDescription\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"The description of a Legal Action Type.\",\"isNullable\":true,\"name\":\"LegalActionTypeDescription\"}]}}}",
+			"Description": "A categorization of legal action types based on common characteristics or objectives.\n\nEx:\n- Debt collection\n- Civil Procedure\n- Employment Action\n- Personal Injury Suit\n- Lien\n- Class Action Suit\n- Bankruptcy",
+			"DisplayFolderInfo": "{\"name\":\"Party\",\"colorCode\":\"#00727A\"}",
+			"PrimaryKeys": "LegalActionTypeId",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

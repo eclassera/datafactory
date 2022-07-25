@@ -1,0 +1,113 @@
+{
+	"name": "CommunicationType",
+	"properties": {
+		"Name": "CommunicationType",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "A classification or categorization of communications based on common characteristics or functions.\n\nEx:\n- Scheduling Notification\n- Schedule Confirmation Request\n- Overdue Payment Notice\n- Test Results\n- Bill/Invoice\n- Marketing\n- Shipment Status\n- Service Request Update / Notice\n- Service Request Resolution Statement\n- Breach of Personal Information Notification",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "CommunicationTypeId",
+					"Description": "The unique identifier of a communication type.",
+					"BaseAttributeReference": {
+						"Entity": "CommunicationType.cdm.json/CommunicationType",
+						"Name": "CommunicationTypeId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "CommunicationTypeName",
+					"Description": "The name of a communication type.",
+					"BaseAttributeReference": {
+						"Entity": "CommunicationType.cdm.json/CommunicationType",
+						"Name": "CommunicationTypeName"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 256,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "CommunicationTypeDescription",
+					"Description": "The description of a communication type.",
+					"BaseAttributeReference": {
+						"Entity": "CommunicationType.cdm.json/CommunicationType",
+						"Name": "CommunicationTypeDescription"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/CommunicationType",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/CommunicationType",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"CommunicationTypeId\":{\"entity\":\"CommunicationType.cdm.json/CommunicationType\",\"name\":\"CommunicationTypeId\"},\"CommunicationTypeName\":{\"entity\":\"CommunicationType.cdm.json/CommunicationType\",\"name\":\"CommunicationTypeName\"},\"CommunicationTypeDescription\":{\"entity\":\"CommunicationType.cdm.json/CommunicationType\",\"name\":\"CommunicationTypeDescription\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"CommunicationType\",\"path\":\"CommunicationType.cdm.json/CommunicationType\"},\"description\":\"A classification or categorization of communications based on common characteristics or functions.\\n\\nEx:\\n- Scheduling Notification\\n- Schedule Confirmation Request\\n- Overdue Payment Notice\\n- Test Results\\n- Bill/Invoice\\n- Marketing\\n- Shipment Status\\n- Service Request Update / Notice\\n- Service Request Resolution Statement\\n- Breach of Personal Information Notification\",\"primaryKey\":[\"CommunicationTypeId\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CommunicationType.cdm.json/CommunicationType\",\"name\":\"CommunicationTypeId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a communication type.\",\"isNullable\":false,\"name\":\"CommunicationTypeId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CommunicationType.cdm.json/CommunicationType\",\"name\":\"CommunicationTypeName\"},\"dataType\":\"string\",\"dataTypeLength\":256,\"description\":\"The name of a communication type.\",\"isNullable\":true,\"name\":\"CommunicationTypeName\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CommunicationType.cdm.json/CommunicationType\",\"name\":\"CommunicationTypeDescription\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"The description of a communication type.\",\"isNullable\":true,\"name\":\"CommunicationTypeDescription\"}]}}}",
+			"Description": "A classification or categorization of communications based on common characteristics or functions.\n\nEx:\n- Scheduling Notification\n- Schedule Confirmation Request\n- Overdue Payment Notice\n- Test Results\n- Bill/Invoice\n- Marketing\n- Shipment Status\n- Service Request Update / Notice\n- Service Request Resolution Statement\n- Breach of Personal Information Notification",
+			"DisplayFolderInfo": "{\"name\":\"Customer Service & Contact Management\",\"colorCode\":\"#Ef6950\"}",
+			"PrimaryKeys": "CommunicationTypeId",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

@@ -1,0 +1,113 @@
+{
+	"name": "TaxBasis",
+	"properties": {
+		"Name": "TaxBasis",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "The basis by which revenues are considered:\n\nEx:\n- Cash, revenues are considered earned at the time they are received in cash and expenses are considered to be incurred at the time cash is disbursed in their payment.\n\n- Accrual, revenues are credited to the period in which they are earned regardless of when payment is received.",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "TaxBasisId",
+					"Description": "The unique identifier of a Tax Basis.",
+					"BaseAttributeReference": {
+						"Entity": "TaxBasis.cdm.json/TaxBasis",
+						"Name": "TaxBasisId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "TaxBasisName",
+					"Description": "The name of a Tax Basis.",
+					"BaseAttributeReference": {
+						"Entity": "TaxBasis.cdm.json/TaxBasis",
+						"Name": "TaxBasisName"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 256,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "TaxBasisDescription",
+					"Description": "The description of a Tax Basis.",
+					"BaseAttributeReference": {
+						"Entity": "TaxBasis.cdm.json/TaxBasis",
+						"Name": "TaxBasisDescription"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/TaxBasis",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/TaxBasis",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"TaxBasisId\":{\"entity\":\"TaxBasis.cdm.json/TaxBasis\",\"name\":\"TaxBasisId\"},\"TaxBasisName\":{\"entity\":\"TaxBasis.cdm.json/TaxBasis\",\"name\":\"TaxBasisName\"},\"TaxBasisDescription\":{\"entity\":\"TaxBasis.cdm.json/TaxBasis\",\"name\":\"TaxBasisDescription\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"TaxBasis\",\"path\":\"TaxBasis.cdm.json/TaxBasis\"},\"description\":\"The basis by which revenues are considered:\\n\\nEx:\\n- Cash, revenues are considered earned at the time they are received in cash and expenses are considered to be incurred at the time cash is disbursed in their payment.\\n\\n- Accrual, revenues are credited to the period in which they are earned regardless of when payment is received.\",\"primaryKey\":[\"TaxBasisId\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"TaxBasis.cdm.json/TaxBasis\",\"name\":\"TaxBasisId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Tax Basis.\",\"isNullable\":false,\"name\":\"TaxBasisId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"TaxBasis.cdm.json/TaxBasis\",\"name\":\"TaxBasisName\"},\"dataType\":\"string\",\"dataTypeLength\":256,\"description\":\"The name of a Tax Basis.\",\"isNullable\":true,\"name\":\"TaxBasisName\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"TaxBasis.cdm.json/TaxBasis\",\"name\":\"TaxBasisDescription\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"The description of a Tax Basis.\",\"isNullable\":true,\"name\":\"TaxBasisDescription\"}]}}}",
+			"Description": "The basis by which revenues are considered:\n\nEx:\n- Cash, revenues are considered earned at the time they are received in cash and expenses are considered to be incurred at the time cash is disbursed in their payment.\n\n- Accrual, revenues are credited to the period in which they are earned regardless of when payment is received.",
+			"DisplayFolderInfo": "{\"name\":\"Accounting & Financial Reporting\",\"colorCode\":\"#0078D4\"}",
+			"PrimaryKeys": "TaxBasisId",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

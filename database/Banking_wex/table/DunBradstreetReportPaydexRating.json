@@ -1,0 +1,181 @@
+{
+	"name": "DunBradstreetReportPaydexRating",
+	"properties": {
+		"Name": "DunBradstreetReportPaydexRating",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "The Customer Dun Bradstreet Paydex Rating for the indicated range of dates.\n\nThe PAYDEX is a dollar-weighted numerical score that reflects a company's payment\nperformance as reported to D&B.\n\nA score of 80 denotes that payments reported to D&B have generally been made within terms.\n\nScores over 80 indicate that payments reported to D&B generally have been made earlier than terms. The table below provides a key to the PAYDEX score.\n\nAs an example, a company with a PAYDEX of 50 is paying its vendor obligations reported to\nD&B in an average* of 30 days beyond the terms granted.",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "DunsNumber",
+					"Description": "Dun & Bradstreet (D&B) provides a D-U-N-S Number, a unique nine digit identification number, for each physical location of your business.",
+					"BaseAttributeReference": {
+						"Entity": "DunBradstreetReportPaydexRating.cdm.json/DunBradstreetReportPaydexRating",
+						"Name": "DunsNumber"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "decimal",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Precision": 9,
+						"Scale": 0,
+						"Properties": {
+							"HIVE_TYPE_STRING": "decimal"
+						}
+					}
+				},
+				{
+					"Name": "ReportPurchaseDate",
+					"Description": "The purchase date of the report.",
+					"BaseAttributeReference": {
+						"Entity": "DunBradstreetReportPaydexRating.cdm.json/DunBradstreetReportPaydexRating",
+						"Name": "ReportPurchaseDate"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "date",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"DateFormat": "YYYY-MM-DD",
+							"HIVE_TYPE_STRING": "date"
+						}
+					}
+				},
+				{
+					"Name": "PeriodStartDate",
+					"Description": "The period start date for which the associated D&B data is effective or 'as-of'.",
+					"BaseAttributeReference": {
+						"Entity": "DunBradstreetReportPaydexRating.cdm.json/DunBradstreetReportPaydexRating",
+						"Name": "PeriodStartDate"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "date",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"DateFormat": "YYYY-MM-DD",
+							"HIVE_TYPE_STRING": "date"
+						}
+					}
+				},
+				{
+					"Name": "PeriodEndDate",
+					"Description": "The period end date for which the associated D&B data is effective or 'as-of'.",
+					"BaseAttributeReference": {
+						"Entity": "DunBradstreetReportPaydexRating.cdm.json/DunBradstreetReportPaydexRating",
+						"Name": "PeriodEndDate"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "date",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"DateFormat": "YYYY-MM-DD",
+							"HIVE_TYPE_STRING": "date"
+						}
+					}
+				},
+				{
+					"Name": "DunBradstreetPaydexCategoryId",
+					"Description": "The unique identifier of a D&B Paydex Category.",
+					"BaseAttributeReference": {
+						"Entity": "DunBradstreetReportPaydexRating.cdm.json/DunBradstreetReportPaydexRating",
+						"Name": "DunBradstreetPaydexCategoryId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "DunBradstreetPaydexQuartileRankingId",
+					"Description": "The unique identifier of a Paydex Quartile Ranking.",
+					"BaseAttributeReference": {
+						"Entity": "DunBradstreetReportPaydexRating.cdm.json/DunBradstreetReportPaydexRating",
+						"Name": "DunBradstreetPaydexQuartileRankingId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "CustomerPaydexRatingNote",
+					"Description": "A note, comment or additional information regarding the Paydex Rating.",
+					"BaseAttributeReference": {
+						"Entity": "DunBradstreetReportPaydexRating.cdm.json/DunBradstreetReportPaydexRating",
+						"Name": "CustomerPaydexRatingNote"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/DunBradstreetReportPaydexRating",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/DunBradstreetReportPaydexRating",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"DunsNumber\":{\"entity\":\"DunBradstreetReportPaydexRating.cdm.json/DunBradstreetReportPaydexRating\",\"name\":\"DunsNumber\"},\"ReportPurchaseDate\":{\"entity\":\"DunBradstreetReportPaydexRating.cdm.json/DunBradstreetReportPaydexRating\",\"name\":\"ReportPurchaseDate\"},\"PeriodStartDate\":{\"entity\":\"DunBradstreetReportPaydexRating.cdm.json/DunBradstreetReportPaydexRating\",\"name\":\"PeriodStartDate\"},\"PeriodEndDate\":{\"entity\":\"DunBradstreetReportPaydexRating.cdm.json/DunBradstreetReportPaydexRating\",\"name\":\"PeriodEndDate\"},\"DunBradstreetPaydexCategoryId\":{\"entity\":\"DunBradstreetReportPaydexRating.cdm.json/DunBradstreetReportPaydexRating\",\"name\":\"DunBradstreetPaydexCategoryId\"},\"DunBradstreetPaydexQuartileRankingId\":{\"entity\":\"DunBradstreetReportPaydexRating.cdm.json/DunBradstreetReportPaydexRating\",\"name\":\"DunBradstreetPaydexQuartileRankingId\"},\"CustomerPaydexRatingNote\":{\"entity\":\"DunBradstreetReportPaydexRating.cdm.json/DunBradstreetReportPaydexRating\",\"name\":\"CustomerPaydexRatingNote\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"DunBradstreetReportPaydexRating\",\"path\":\"DunBradstreetReportPaydexRating.cdm.json/DunBradstreetReportPaydexRating\"},\"description\":\"The Customer Dun Bradstreet Paydex Rating for the indicated range of dates.\\n\\nThe PAYDEX is a dollar-weighted numerical score that reflects a company's payment\\nperformance as reported to D&B.\\n\\nA score of 80 denotes that payments reported to D&B have generally been made within terms.\\n\\nScores over 80 indicate that payments reported to D&B generally have been made earlier than terms. The table below provides a key to the PAYDEX score.\\n\\nAs an example, a company with a PAYDEX of 50 is paying its vendor obligations reported to\\nD&B in an average* of 30 days beyond the terms granted.\",\"primaryKey\":[\"DunsNumber\",\"ReportPurchaseDate\",\"PeriodStartDate\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"DunBradstreetReportPaydexRating.cdm.json/DunBradstreetReportPaydexRating\",\"name\":\"DunsNumber\"},\"dataType\":\"decimal\",\"dataTypeLength\":9,\"description\":\"Dun & Bradstreet (D&B) provides a D-U-N-S Number, a unique nine digit identification number, for each physical location of your business.\",\"isNullable\":false,\"scale\":0,\"name\":\"DunsNumber\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"DunBradstreetReportPaydexRating.cdm.json/DunBradstreetReportPaydexRating\",\"name\":\"ReportPurchaseDate\"},\"dataType\":\"date\",\"dateFormat\":\"YYYY-MM-DD\",\"description\":\"The purchase date of the report.\",\"isNullable\":false,\"name\":\"ReportPurchaseDate\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"DunBradstreetReportPaydexRating.cdm.json/DunBradstreetReportPaydexRating\",\"name\":\"PeriodStartDate\"},\"dataType\":\"date\",\"dateFormat\":\"YYYY-MM-DD\",\"description\":\"The period start date for which the associated D&B data is effective or 'as-of'.\",\"isNullable\":false,\"name\":\"PeriodStartDate\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"DunBradstreetReportPaydexRating.cdm.json/DunBradstreetReportPaydexRating\",\"name\":\"PeriodEndDate\"},\"dataType\":\"date\",\"dateFormat\":\"YYYY-MM-DD\",\"description\":\"The period end date for which the associated D&B data is effective or 'as-of'.\",\"isNullable\":true,\"name\":\"PeriodEndDate\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"DunBradstreetReportPaydexRating.cdm.json/DunBradstreetReportPaydexRating\",\"name\":\"DunBradstreetPaydexCategoryId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a D&B Paydex Category.\",\"isNullable\":false,\"name\":\"DunBradstreetPaydexCategoryId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"DunBradstreetReportPaydexRating.cdm.json/DunBradstreetReportPaydexRating\",\"name\":\"DunBradstreetPaydexQuartileRankingId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Paydex Quartile Ranking.\",\"isNullable\":true,\"name\":\"DunBradstreetPaydexQuartileRankingId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"DunBradstreetReportPaydexRating.cdm.json/DunBradstreetReportPaydexRating\",\"name\":\"CustomerPaydexRatingNote\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"A note, comment or additional information regarding the Paydex Rating.\",\"isNullable\":true,\"name\":\"CustomerPaydexRatingNote\"}]}}}",
+			"Description": "The Customer Dun Bradstreet Paydex Rating for the indicated range of dates.\n\nThe PAYDEX is a dollar-weighted numerical score that reflects a company's payment\nperformance as reported to D&B.\n\nA score of 80 denotes that payments reported to D&B have generally been made within terms.\n\nScores over 80 indicate that payments reported to D&B generally have been made earlier than terms. The table below provides a key to the PAYDEX score.\n\nAs an example, a company with a PAYDEX of 50 is paying its vendor obligations reported to\nD&B in an average* of 30 days beyond the terms granted.",
+			"DisplayFolderInfo": "{\"name\":\"Customer Credit & Collections\",\"colorCode\":\"#022F22\"}",
+			"PrimaryKeys": "DunsNumber,ReportPurchaseDate,PeriodStartDate",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

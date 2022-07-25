@@ -1,0 +1,113 @@
+{
+	"name": "CreditRisk",
+	"properties": {
+		"Name": "CreditRisk",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "The overall credit risk that is assigned to a Customer on a Credit Report or Credit Review.\n\nEx:\n- Excellent\n- Above Average\n- Average\n- Below Average\n- Poor\n- Unrated",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "CreditRiskId",
+					"Description": "The unique identifier of a Credit Risk.",
+					"BaseAttributeReference": {
+						"Entity": "CreditRisk.cdm.json/CreditRisk",
+						"Name": "CreditRiskId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "CreditRiskName",
+					"Description": "The common business name of the Credit Risk.",
+					"BaseAttributeReference": {
+						"Entity": "CreditRisk.cdm.json/CreditRisk",
+						"Name": "CreditRiskName"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 256,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "CreditRiskDescription",
+					"Description": "The description of the Credit Risk.",
+					"BaseAttributeReference": {
+						"Entity": "CreditRisk.cdm.json/CreditRisk",
+						"Name": "CreditRiskDescription"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/CreditRisk",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/CreditRisk",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"CreditRiskId\":{\"entity\":\"CreditRisk.cdm.json/CreditRisk\",\"name\":\"CreditRiskId\"},\"CreditRiskName\":{\"entity\":\"CreditRisk.cdm.json/CreditRisk\",\"name\":\"CreditRiskName\"},\"CreditRiskDescription\":{\"entity\":\"CreditRisk.cdm.json/CreditRisk\",\"name\":\"CreditRiskDescription\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"CreditRisk\",\"path\":\"CreditRisk.cdm.json/CreditRisk\"},\"description\":\"The overall credit risk that is assigned to a Customer on a Credit Report or Credit Review.\\n\\nEx:\\n- Excellent\\n- Above Average\\n- Average\\n- Below Average\\n- Poor\\n- Unrated\",\"primaryKey\":[\"CreditRiskId\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CreditRisk.cdm.json/CreditRisk\",\"name\":\"CreditRiskId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Credit Risk.\",\"isNullable\":false,\"name\":\"CreditRiskId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CreditRisk.cdm.json/CreditRisk\",\"name\":\"CreditRiskName\"},\"dataType\":\"string\",\"dataTypeLength\":256,\"description\":\"The common business name of the Credit Risk.\",\"isNullable\":true,\"name\":\"CreditRiskName\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CreditRisk.cdm.json/CreditRisk\",\"name\":\"CreditRiskDescription\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"The description of the Credit Risk.\",\"isNullable\":true,\"name\":\"CreditRiskDescription\"}]}}}",
+			"Description": "The overall credit risk that is assigned to a Customer on a Credit Report or Credit Review.\n\nEx:\n- Excellent\n- Above Average\n- Average\n- Below Average\n- Poor\n- Unrated",
+			"DisplayFolderInfo": "{\"name\":\"Customer Credit & Collections\",\"colorCode\":\"#022F22\"}",
+			"PrimaryKeys": "CreditRiskId",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

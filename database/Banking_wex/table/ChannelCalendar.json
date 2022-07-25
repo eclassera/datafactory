@@ -1,0 +1,146 @@
+{
+	"name": "ChannelCalendar",
+	"properties": {
+		"Name": "ChannelCalendar",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "The calendar that is utilized by the channel during the specified period.",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "ChannelId",
+					"Description": "The unique identifier of a Channel.",
+					"BaseAttributeReference": {
+						"Entity": "ChannelCalendar.cdm.json/ChannelCalendar",
+						"Name": "ChannelId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "CalendarId",
+					"Description": "The unique identifier of a Calendar.",
+					"BaseAttributeReference": {
+						"Entity": "ChannelCalendar.cdm.json/ChannelCalendar",
+						"Name": "CalendarId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "ChannelCalendarStartTimestamp",
+					"Description": "The start timestamp for the Channel Calendar relationship.",
+					"BaseAttributeReference": {
+						"Entity": "ChannelCalendar.cdm.json/ChannelCalendar",
+						"Name": "ChannelCalendarStartTimestamp"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "timestamp",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"TimestampFormat": "YYYY-MM-DD HH:MM:SS.fffffffff",
+							"HIVE_TYPE_STRING": "timestamp"
+						}
+					}
+				},
+				{
+					"Name": "ChannelCalendarEndTimestamp",
+					"Description": "The end timestamp for the Channel Calendar relationship.",
+					"BaseAttributeReference": {
+						"Entity": "ChannelCalendar.cdm.json/ChannelCalendar",
+						"Name": "ChannelCalendarEndTimestamp"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "timestamp",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"TimestampFormat": "YYYY-MM-DD HH:MM:SS.fffffffff",
+							"HIVE_TYPE_STRING": "timestamp"
+						}
+					}
+				},
+				{
+					"Name": "ChannelCalendarNote",
+					"Description": "A note, comment or additional information regarding the Channel Calendar.",
+					"BaseAttributeReference": {
+						"Entity": "ChannelCalendar.cdm.json/ChannelCalendar",
+						"Name": "ChannelCalendarNote"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/ChannelCalendar",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/ChannelCalendar",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"ChannelId\":{\"entity\":\"ChannelCalendar.cdm.json/ChannelCalendar\",\"name\":\"ChannelId\"},\"CalendarId\":{\"entity\":\"ChannelCalendar.cdm.json/ChannelCalendar\",\"name\":\"CalendarId\"},\"ChannelCalendarStartTimestamp\":{\"entity\":\"ChannelCalendar.cdm.json/ChannelCalendar\",\"name\":\"ChannelCalendarStartTimestamp\"},\"ChannelCalendarEndTimestamp\":{\"entity\":\"ChannelCalendar.cdm.json/ChannelCalendar\",\"name\":\"ChannelCalendarEndTimestamp\"},\"ChannelCalendarNote\":{\"entity\":\"ChannelCalendar.cdm.json/ChannelCalendar\",\"name\":\"ChannelCalendarNote\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"ChannelCalendar\",\"path\":\"ChannelCalendar.cdm.json/ChannelCalendar\"},\"description\":\"The calendar that is utilized by the channel during the specified period.\",\"primaryKey\":[\"ChannelId\",\"CalendarId\",\"ChannelCalendarStartTimestamp\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ChannelCalendar.cdm.json/ChannelCalendar\",\"name\":\"ChannelId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Channel.\",\"isNullable\":false,\"name\":\"ChannelId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ChannelCalendar.cdm.json/ChannelCalendar\",\"name\":\"CalendarId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Calendar.\",\"isNullable\":false,\"name\":\"CalendarId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ChannelCalendar.cdm.json/ChannelCalendar\",\"name\":\"ChannelCalendarStartTimestamp\"},\"dataType\":\"timestamp\",\"description\":\"The start timestamp for the Channel Calendar relationship.\",\"isNullable\":false,\"name\":\"ChannelCalendarStartTimestamp\",\"timestampFormat\":\"YYYY-MM-DD HH:MM:SS.fffffffff\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ChannelCalendar.cdm.json/ChannelCalendar\",\"name\":\"ChannelCalendarEndTimestamp\"},\"dataType\":\"timestamp\",\"description\":\"The end timestamp for the Channel Calendar relationship.\",\"isNullable\":true,\"name\":\"ChannelCalendarEndTimestamp\",\"timestampFormat\":\"YYYY-MM-DD HH:MM:SS.fffffffff\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ChannelCalendar.cdm.json/ChannelCalendar\",\"name\":\"ChannelCalendarNote\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"A note, comment or additional information regarding the Channel Calendar.\",\"isNullable\":true,\"name\":\"ChannelCalendarNote\"}]}}}",
+			"Description": "The calendar that is utilized by the channel during the specified period.",
+			"DisplayFolderInfo": "{\"name\":\"Channel\",\"colorCode\":\"#001D3F\"}",
+			"PrimaryKeys": "ChannelId,CalendarId,ChannelCalendarStartTimestamp",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

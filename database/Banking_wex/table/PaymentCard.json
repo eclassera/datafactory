@@ -1,0 +1,212 @@
+{
+	"name": "PaymentCard",
+	"properties": {
+		"Name": "PaymentCard",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "A payment card enables card holders to purchase products or services without cash and to pay for them at a later date or with the value associated with the payment card related account or it's stored value.\n\nTypically in order to qualify for this type of credit, the card holder must open an account with a bank or company, which sponsors a card. \n\nThe card holder then receives a line of credit with a specified dollar amount.   They can use the card to make purchases from participating merchants until they reach this credit limit. \n\nEvery month the sponsor provides a bill, which aggregates the card activity during the previous 30 days. Depending on the terms of the card, the customer may pay interest charges on the amount that they do not pay for on a monthly basis.  \n\nThe banks and companies that provide or sponsor payment cards profit in three ways. \n\n(1)  They make money from the interest payments charged on the unpaid balance\n\n(2)  They also can make money by charging an annual fee for the use of the card\n\n(3)  The sponsors make money by charging merchants a small percentage of income for the service of the card. This arrangement is acceptable to the merchants because they can let their customers pay by payment card instead of requiring cash. \n\nThe merchant makes arrangements to participate in a payment card program with a merchant bank, which in turn works with a card-issuing bank. The merchant bank determines what percentage of the total purchase value has to be paid by the merchant to the card-issuing bank. The amount varies depending on the volume and type of business, but in general it is between 1-2%. A percentage of that amount is kept by the merchant bank as a transaction-processing fee.",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "PaymentCardId",
+					"Description": "The unique identifier of a Payment Card.",
+					"BaseAttributeReference": {
+						"Entity": "PaymentCard.cdm.json/PaymentCard",
+						"Name": "PaymentCardId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "PaymentCardToken",
+					"Description": "A token for a Payment Card is used to point to a secure (typically encrypted) location where details of the payment card information can be found.",
+					"BaseAttributeReference": {
+						"Entity": "PaymentCard.cdm.json/PaymentCard",
+						"Name": "PaymentCardToken"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "MaskedPaymentAccountNumber",
+					"Description": "The masked PAN typically is in the format of *'s followed by the last four digits of the PAN.",
+					"BaseAttributeReference": {
+						"Entity": "PaymentCard.cdm.json/PaymentCard",
+						"Name": "MaskedPaymentAccountNumber"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "EmbossedPaymentCardCardholderName",
+					"Description": "The name of a Payment Card Cardholder that is embossed on the card.",
+					"BaseAttributeReference": {
+						"Entity": "PaymentCard.cdm.json/PaymentCard",
+						"Name": "EmbossedPaymentCardCardholderName"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 256,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "PaymentCardIssuedDate",
+					"Description": "The date that the credit card was issued.",
+					"BaseAttributeReference": {
+						"Entity": "PaymentCard.cdm.json/PaymentCard",
+						"Name": "PaymentCardIssuedDate"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "date",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"DateFormat": "YYYY-MM-DD",
+							"HIVE_TYPE_STRING": "date"
+						}
+					}
+				},
+				{
+					"Name": "PaymentCardActivationTimestamp",
+					"Description": "The timestamp that the payment card was activated.",
+					"BaseAttributeReference": {
+						"Entity": "PaymentCard.cdm.json/PaymentCard",
+						"Name": "PaymentCardActivationTimestamp"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "date",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"DateFormat": "YYYY-MM-DD",
+							"HIVE_TYPE_STRING": "date"
+						}
+					}
+				},
+				{
+					"Name": "PaymentCardTypeId",
+					"Description": "The unique identifier of a Payment Card Type.",
+					"BaseAttributeReference": {
+						"Entity": "PaymentCard.cdm.json/PaymentCard",
+						"Name": "PaymentCardTypeId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "DebitCardIndicator",
+					"Description": "Indicates whether the payment card is a debit card.",
+					"BaseAttributeReference": {
+						"Entity": "PaymentCard.cdm.json/PaymentCard",
+						"Name": "DebitCardIndicator"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "boolean",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"HIVE_TYPE_STRING": "boolean"
+						}
+					}
+				},
+				{
+					"Name": "PaymentCardNote",
+					"Description": "A note, comment or additional information regarding the Payment Card.",
+					"BaseAttributeReference": {
+						"Entity": "PaymentCard.cdm.json/PaymentCard",
+						"Name": "PaymentCardNote"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/PaymentCard",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/PaymentCard",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"PaymentCardId\":{\"entity\":\"PaymentCard.cdm.json/PaymentCard\",\"name\":\"PaymentCardId\"},\"PaymentCardToken\":{\"entity\":\"PaymentCard.cdm.json/PaymentCard\",\"name\":\"PaymentCardToken\"},\"MaskedPaymentAccountNumber\":{\"entity\":\"PaymentCard.cdm.json/PaymentCard\",\"name\":\"MaskedPaymentAccountNumber\"},\"EmbossedPaymentCardCardholderName\":{\"entity\":\"PaymentCard.cdm.json/PaymentCard\",\"name\":\"EmbossedPaymentCardCardholderName\"},\"PaymentCardIssuedDate\":{\"entity\":\"PaymentCard.cdm.json/PaymentCard\",\"name\":\"PaymentCardIssuedDate\"},\"PaymentCardActivationTimestamp\":{\"entity\":\"PaymentCard.cdm.json/PaymentCard\",\"name\":\"PaymentCardActivationTimestamp\"},\"PaymentCardTypeId\":{\"entity\":\"PaymentCard.cdm.json/PaymentCard\",\"name\":\"PaymentCardTypeId\"},\"DebitCardIndicator\":{\"entity\":\"PaymentCard.cdm.json/PaymentCard\",\"name\":\"DebitCardIndicator\"},\"PaymentCardNote\":{\"entity\":\"PaymentCard.cdm.json/PaymentCard\",\"name\":\"PaymentCardNote\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"PaymentCard\",\"path\":\"PaymentCard.cdm.json/PaymentCard\"},\"description\":\"A payment card enables card holders to purchase products or services without cash and to pay for them at a later date or with the value associated with the payment card related account or it's stored value.\\n\\nTypically in order to qualify for this type of credit, the card holder must open an account with a bank or company, which sponsors a card. \\n\\nThe card holder then receives a line of credit with a specified dollar amount.   They can use the card to make purchases from participating merchants until they reach this credit limit. \\n\\nEvery month the sponsor provides a bill, which aggregates the card activity during the previous 30 days. Depending on the terms of the card, the customer may pay interest charges on the amount that they do not pay for on a monthly basis.  \\n\\nThe banks and companies that provide or sponsor payment cards profit in three ways. \\n\\n(1)  They make money from the interest payments charged on the unpaid balance\\n\\n(2)  They also can make money by charging an annual fee for the use of the card\\n\\n(3)  The sponsors make money by charging merchants a small percentage of income for the service of the card. This arrangement is acceptable to the merchants because they can let their customers pay by payment card instead of requiring cash. \\n\\nThe merchant makes arrangements to participate in a payment card program with a merchant bank, which in turn works with a card-issuing bank. The merchant bank determines what percentage of the total purchase value has to be paid by the merchant to the card-issuing bank. The amount varies depending on the volume and type of business, but in general it is between 1-2%. A percentage of that amount is kept by the merchant bank as a transaction-processing fee.\",\"primaryKey\":[\"PaymentCardId\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"PaymentCard.cdm.json/PaymentCard\",\"name\":\"PaymentCardId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Payment Card.\",\"isNullable\":false,\"name\":\"PaymentCardId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"PaymentCard.cdm.json/PaymentCard\",\"name\":\"PaymentCardToken\"},\"dataType\":\"integer\",\"description\":\"A token for a Payment Card is used to point to a secure (typically encrypted) location where details of the payment card information can be found.\",\"isNullable\":false,\"name\":\"PaymentCardToken\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"PaymentCard.cdm.json/PaymentCard\",\"name\":\"MaskedPaymentAccountNumber\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"The masked PAN typically is in the format of *'s followed by the last four digits of the PAN.\",\"isNullable\":true,\"name\":\"MaskedPaymentAccountNumber\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"PaymentCard.cdm.json/PaymentCard\",\"name\":\"EmbossedPaymentCardCardholderName\"},\"dataType\":\"string\",\"dataTypeLength\":256,\"description\":\"The name of a Payment Card Cardholder that is embossed on the card.\",\"isNullable\":true,\"name\":\"EmbossedPaymentCardCardholderName\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"PaymentCard.cdm.json/PaymentCard\",\"name\":\"PaymentCardIssuedDate\"},\"dataType\":\"date\",\"dateFormat\":\"YYYY-MM-DD\",\"description\":\"The date that the credit card was issued.\",\"isNullable\":true,\"name\":\"PaymentCardIssuedDate\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"PaymentCard.cdm.json/PaymentCard\",\"name\":\"PaymentCardActivationTimestamp\"},\"dataType\":\"date\",\"dateFormat\":\"YYYY-MM-DD\",\"description\":\"The timestamp that the payment card was activated.\",\"isNullable\":true,\"name\":\"PaymentCardActivationTimestamp\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"PaymentCard.cdm.json/PaymentCard\",\"name\":\"PaymentCardTypeId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Payment Card Type.\",\"isNullable\":false,\"name\":\"PaymentCardTypeId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"PaymentCard.cdm.json/PaymentCard\",\"name\":\"DebitCardIndicator\"},\"dataType\":\"boolean\",\"description\":\"Indicates whether the payment card is a debit card.\",\"isNullable\":true,\"name\":\"DebitCardIndicator\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"PaymentCard.cdm.json/PaymentCard\",\"name\":\"PaymentCardNote\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"A note, comment or additional information regarding the Payment Card.\",\"isNullable\":true,\"name\":\"PaymentCardNote\"}]}}}",
+			"Description": "A payment card enables card holders to purchase products or services without cash and to pay for them at a later date or with the value associated with the payment card related account or it's stored value.\n\nTypically in order to qualify for this type of credit, the card holder must open an account with a bank or company, which sponsors a card. \n\nThe card holder then receives a line of credit with a specified dollar amount.   They can use the card to make purchases from participating merchants until they reach this credit limit. \n\nEvery month the sponsor provides a bill, which aggregates the card activity during the previous 30 days. Depending on the terms of the card, the customer may pay interest charges on the amount that they do not pay for on a monthly basis.  \n\nThe banks and companies that provide or sponsor payment cards profit in three ways. \n\n(1)  They make money from the interest payments charged on the unpaid balance\n\n(2)  They also can make money by charging an annual fee for the use of the card\n\n(3)  The sponsors make money by charging merchants a small percentage of income for the service of the card. This arrangement is acceptable to the merchants because they can let their customers pay by payment card instead of requiring cash. \n\nThe merchant makes arrangements to participate in a payment card program with a merchant bank, which in turn works with a card-issuing bank. The merchant bank determines what percentage of the total purchase value has to be paid by the merchant to the card-issuing bank. The amount varies depending on the volume and type of business, but in general it is between 1-2%. A percentage of that amount is kept by the merchant bank as a transaction-processing fee.",
+			"DisplayFolderInfo": "{\"name\":\"Transaction\",\"colorCode\":\"#823A16\"}",
+			"PrimaryKeys": "PaymentCardId",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

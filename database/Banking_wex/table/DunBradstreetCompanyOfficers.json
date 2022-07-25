@@ -1,0 +1,165 @@
+{
+	"name": "DunBradstreetCompanyOfficers",
+	"properties": {
+		"Name": "DunBradstreetCompanyOfficers",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "Business officers and key personnel.",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "DunsNumber",
+					"Description": "Dun & Bradstreet (D&B) provides a D-U-N-S Number, a unique nine digit identification number, for each physical location of your business.",
+					"BaseAttributeReference": {
+						"Entity": "DunBradstreetCompanyOfficers.cdm.json/DunBradstreetCompanyOfficers",
+						"Name": "DunsNumber"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "decimal",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Precision": 9,
+						"Scale": 0,
+						"Properties": {
+							"HIVE_TYPE_STRING": "decimal"
+						}
+					}
+				},
+				{
+					"Name": "ReportPurchaseDate",
+					"Description": "The purchase date of the report.",
+					"BaseAttributeReference": {
+						"Entity": "DunBradstreetCompanyOfficers.cdm.json/DunBradstreetCompanyOfficers",
+						"Name": "ReportPurchaseDate"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "date",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"DateFormat": "YYYY-MM-DD",
+							"HIVE_TYPE_STRING": "date"
+						}
+					}
+				},
+				{
+					"Name": "MiddleName",
+					"Description": "The company office middle name.",
+					"BaseAttributeReference": {
+						"Entity": "DunBradstreetCompanyOfficers.cdm.json/DunBradstreetCompanyOfficers",
+						"Name": "MiddleName"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Length": 256,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "LastName",
+					"Description": "The company officer last name.",
+					"BaseAttributeReference": {
+						"Entity": "DunBradstreetCompanyOfficers.cdm.json/DunBradstreetCompanyOfficers",
+						"Name": "LastName"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Length": 256,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "FirstName",
+					"Description": "The company officer first name.",
+					"BaseAttributeReference": {
+						"Entity": "DunBradstreetCompanyOfficers.cdm.json/DunBradstreetCompanyOfficers",
+						"Name": "FirstName"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Length": 256,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "DunBradstreetCompanyPositionTypeId",
+					"Description": "The unique identifier of a Dun Bradstreet Company Position Type.",
+					"BaseAttributeReference": {
+						"Entity": "DunBradstreetCompanyOfficers.cdm.json/DunBradstreetCompanyOfficers",
+						"Name": "DunBradstreetCompanyPositionTypeId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/DunBradstreetCompanyOfficers",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/DunBradstreetCompanyOfficers",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"DunsNumber\":{\"entity\":\"DunBradstreetCompanyOfficers.cdm.json/DunBradstreetCompanyOfficers\",\"name\":\"DunsNumber\"},\"ReportPurchaseDate\":{\"entity\":\"DunBradstreetCompanyOfficers.cdm.json/DunBradstreetCompanyOfficers\",\"name\":\"ReportPurchaseDate\"},\"MiddleName\":{\"entity\":\"DunBradstreetCompanyOfficers.cdm.json/DunBradstreetCompanyOfficers\",\"name\":\"MiddleName\"},\"LastName\":{\"entity\":\"DunBradstreetCompanyOfficers.cdm.json/DunBradstreetCompanyOfficers\",\"name\":\"LastName\"},\"FirstName\":{\"entity\":\"DunBradstreetCompanyOfficers.cdm.json/DunBradstreetCompanyOfficers\",\"name\":\"FirstName\"},\"DunBradstreetCompanyPositionTypeId\":{\"entity\":\"DunBradstreetCompanyOfficers.cdm.json/DunBradstreetCompanyOfficers\",\"name\":\"DunBradstreetCompanyPositionTypeId\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"DunBradstreetCompanyOfficers\",\"path\":\"DunBradstreetCompanyOfficers.cdm.json/DunBradstreetCompanyOfficers\"},\"description\":\"Business officers and key personnel.\",\"primaryKey\":[\"DunsNumber\",\"ReportPurchaseDate\",\"MiddleName\",\"LastName\",\"FirstName\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"DunBradstreetCompanyOfficers.cdm.json/DunBradstreetCompanyOfficers\",\"name\":\"DunsNumber\"},\"dataType\":\"decimal\",\"dataTypeLength\":9,\"description\":\"Dun & Bradstreet (D&B) provides a D-U-N-S Number, a unique nine digit identification number, for each physical location of your business.\",\"isNullable\":false,\"scale\":0,\"name\":\"DunsNumber\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"DunBradstreetCompanyOfficers.cdm.json/DunBradstreetCompanyOfficers\",\"name\":\"ReportPurchaseDate\"},\"dataType\":\"date\",\"dateFormat\":\"YYYY-MM-DD\",\"description\":\"The purchase date of the report.\",\"isNullable\":false,\"name\":\"ReportPurchaseDate\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"DunBradstreetCompanyOfficers.cdm.json/DunBradstreetCompanyOfficers\",\"name\":\"MiddleName\"},\"dataType\":\"string\",\"dataTypeLength\":256,\"description\":\"The company office middle name.\",\"isNullable\":false,\"name\":\"MiddleName\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"DunBradstreetCompanyOfficers.cdm.json/DunBradstreetCompanyOfficers\",\"name\":\"LastName\"},\"dataType\":\"string\",\"dataTypeLength\":256,\"description\":\"The company officer last name.\",\"isNullable\":false,\"name\":\"LastName\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"DunBradstreetCompanyOfficers.cdm.json/DunBradstreetCompanyOfficers\",\"name\":\"FirstName\"},\"dataType\":\"string\",\"dataTypeLength\":256,\"description\":\"The company officer first name.\",\"isNullable\":false,\"name\":\"FirstName\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"DunBradstreetCompanyOfficers.cdm.json/DunBradstreetCompanyOfficers\",\"name\":\"DunBradstreetCompanyPositionTypeId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Dun Bradstreet Company Position Type.\",\"isNullable\":true,\"name\":\"DunBradstreetCompanyPositionTypeId\"}]}}}",
+			"Description": "Business officers and key personnel.",
+			"DisplayFolderInfo": "{\"name\":\"Customer Credit & Collections\",\"colorCode\":\"#022F22\"}",
+			"PrimaryKeys": "DunsNumber,ReportPurchaseDate,MiddleName,LastName,FirstName",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

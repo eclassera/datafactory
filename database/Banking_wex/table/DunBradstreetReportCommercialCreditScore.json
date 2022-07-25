@@ -1,0 +1,165 @@
+{
+	"name": "DunBradstreetReportCommercialCreditScore",
+	"properties": {
+		"Name": "DunBradstreetReportCommercialCreditScore",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "The customer's commercial credit score for the indicated range of dates.\n\nD&B's Commercial Credit Score is designed to predict the likelihood that a company will pay its bills in a severely delinquent manner (90 days or more past terms), obtain legal relief from creditors or cease operations without paying all creditors in full over the next 12 months, based on the information in D&B's files. A severely delinquent firm is defined as a business with at least 25% of its payments slow and at least 10% of its payments 90 days or more past due.                   \n\n \n\nThe score models are based upon the observed characteristics of hundreds of thousands of businesses in D&B's database and the relationship these characteristics have to the probability of a company experiencing severe delinquency over a period of 12 months. \n\n \n\nKey to Credit Score Class and Percentile:\n\nScore Class          Score Percentile          Credit Score Level - Degree of Risk of\n\n   Value                       Value                    Delinquent Payment over the Next 12 Months\n\n     1                          91 - 100                  Low\n\n     2                          71 - 90                     Moderate\n\n     3                          31 - 70                    Average\n\n     4                          11 - 30                    Significant\n\n     5                          1 - 10                      High\n\n     0                              0                         Discontinued at the location, indication\n\n                                                                of open bankruptcy or confirmed high risk\n\n \n\nThe Commercial Credit Score uses statistical probabilities to classify companies into three risk classifications, which provide different views of the same underlying data. In most cases, the Credit Score Class is your best choice for at-a-glance risk assessment. The more detailed percentile and score classifications provide more granular views of this information, which can provide a more specific classification when you want to see precisely where a business falls on the spectrum of risk. The classifications are:\n\n1. A \"Class\" of 1 - 5, which separates all businesses D&B has credit scores for into five distinct risk groups where a one (1) represents businesses that have the lowest probability of severe delinquency, and a five (5) represents businesses with the highest probability of severe delinquency. This Class enables you to quickly assess a new or existing account to determine appropriate risk policies.\n\n2. A \"Percentile\" of 1 - 100, where a 1 represents businesses that have the highest probability of severe delinquency, and a 100 represents businesses with the lowest probability of severe delinquency. This Percentile illustrates where a company falls among businesses in the D&B information base, and is most effectively used to rank order portfolios from highest to lowest risk of business failure.\n\n3. A \"Score\" of 101 - 670, where a 101 represents businesses that have the highest probability of severe delinquency, and a 670 represents businesses with the lowest probability of severe delinquency. This score classification enables you to use more granular cutoffs if you are using the data from the Comprehensive Report as part of a more automated decision-making process.\n\nCommercial Credit Scores are not calculated for those businesses designated as \"Discontinued at This Location,\" \"Open Bankruptcy\", \"Higher Risk.\" These records are automatically assigned a score of zero (0).",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "DunsNumber",
+					"Description": "Dun & Bradstreet (D&B) provides a D-U-N-S Number, a unique nine digit identification number, for each physical location of your business.",
+					"BaseAttributeReference": {
+						"Entity": "DunBradstreetReportCommercialCreditScore.cdm.json/DunBradstreetReportCommercialCreditScore",
+						"Name": "DunsNumber"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "decimal",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Precision": 9,
+						"Scale": 0,
+						"Properties": {
+							"HIVE_TYPE_STRING": "decimal"
+						}
+					}
+				},
+				{
+					"Name": "ReportPurchaseDate",
+					"Description": "The purchase date of the report.",
+					"BaseAttributeReference": {
+						"Entity": "DunBradstreetReportCommercialCreditScore.cdm.json/DunBradstreetReportCommercialCreditScore",
+						"Name": "ReportPurchaseDate"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "date",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"DateFormat": "YYYY-MM-DD",
+							"HIVE_TYPE_STRING": "date"
+						}
+					}
+				},
+				{
+					"Name": "PeriodStartDate",
+					"Description": "The period start date for which the associated D&B data is effective or 'as-of'.",
+					"BaseAttributeReference": {
+						"Entity": "DunBradstreetReportCommercialCreditScore.cdm.json/DunBradstreetReportCommercialCreditScore",
+						"Name": "PeriodStartDate"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "date",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"DateFormat": "YYYY-MM-DD",
+							"HIVE_TYPE_STRING": "date"
+						}
+					}
+				},
+				{
+					"Name": "PeriodEndDate",
+					"Description": "The period end date for which the associated D&B data is effective or 'as-of'.",
+					"BaseAttributeReference": {
+						"Entity": "DunBradstreetReportCommercialCreditScore.cdm.json/DunBradstreetReportCommercialCreditScore",
+						"Name": "PeriodEndDate"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "date",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"DateFormat": "YYYY-MM-DD",
+							"HIVE_TYPE_STRING": "date"
+						}
+					}
+				},
+				{
+					"Name": "DunBradstreetCommercialCreditScoreId",
+					"Description": "The unique identifier of a Dun Bradstreet commercial credit score.",
+					"BaseAttributeReference": {
+						"Entity": "DunBradstreetReportCommercialCreditScore.cdm.json/DunBradstreetReportCommercialCreditScore",
+						"Name": "DunBradstreetCommercialCreditScoreId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "CustomerCommercialCreditScoreNote",
+					"Description": "Notes, comments or additional information regarding the Customer's Commercial Credit Score.",
+					"BaseAttributeReference": {
+						"Entity": "DunBradstreetReportCommercialCreditScore.cdm.json/DunBradstreetReportCommercialCreditScore",
+						"Name": "CustomerCommercialCreditScoreNote"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/DunBradstreetReportCommercialCreditScore",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/DunBradstreetReportCommercialCreditScore",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"DunsNumber\":{\"entity\":\"DunBradstreetReportCommercialCreditScore.cdm.json/DunBradstreetReportCommercialCreditScore\",\"name\":\"DunsNumber\"},\"ReportPurchaseDate\":{\"entity\":\"DunBradstreetReportCommercialCreditScore.cdm.json/DunBradstreetReportCommercialCreditScore\",\"name\":\"ReportPurchaseDate\"},\"PeriodStartDate\":{\"entity\":\"DunBradstreetReportCommercialCreditScore.cdm.json/DunBradstreetReportCommercialCreditScore\",\"name\":\"PeriodStartDate\"},\"PeriodEndDate\":{\"entity\":\"DunBradstreetReportCommercialCreditScore.cdm.json/DunBradstreetReportCommercialCreditScore\",\"name\":\"PeriodEndDate\"},\"DunBradstreetCommercialCreditScoreId\":{\"entity\":\"DunBradstreetReportCommercialCreditScore.cdm.json/DunBradstreetReportCommercialCreditScore\",\"name\":\"DunBradstreetCommercialCreditScoreId\"},\"CustomerCommercialCreditScoreNote\":{\"entity\":\"DunBradstreetReportCommercialCreditScore.cdm.json/DunBradstreetReportCommercialCreditScore\",\"name\":\"CustomerCommercialCreditScoreNote\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"DunBradstreetReportCommercialCreditScore\",\"path\":\"DunBradstreetReportCommercialCreditScore.cdm.json/DunBradstreetReportCommercialCreditScore\"},\"description\":\"The customer's commercial credit score for the indicated range of dates.\\n\\nD&B's Commercial Credit Score is designed to predict the likelihood that a company will pay its bills in a severely delinquent manner (90 days or more past terms), obtain legal relief from creditors or cease operations without paying all creditors in full over the next 12 months, based on the information in D&B's files. A severely delinquent firm is defined as a business with at least 25% of its payments slow and at least 10% of its payments 90 days or more past due.                   \\n\\n \\n\\nThe score models are based upon the observed characteristics of hundreds of thousands of businesses in D&B's database and the relationship these characteristics have to the probability of a company experiencing severe delinquency over a period of 12 months. \\n\\n \\n\\nKey to Credit Score Class and Percentile:\\n\\nScore Class          Score Percentile          Credit Score Level - Degree of Risk of\\n\\n   Value                       Value                    Delinquent Payment over the Next 12 Months\\n\\n     1                          91 - 100                  Low\\n\\n     2                          71 - 90                     Moderate\\n\\n     3                          31 - 70                    Average\\n\\n     4                          11 - 30                    Significant\\n\\n     5                          1 - 10                      High\\n\\n     0                              0                         Discontinued at the location, indication\\n\\n                                                                of open bankruptcy or confirmed high risk\\n\\n \\n\\nThe Commercial Credit Score uses statistical probabilities to classify companies into three risk classifications, which provide different views of the same underlying data. In most cases, the Credit Score Class is your best choice for at-a-glance risk assessment. The more detailed percentile and score classifications provide more granular views of this information, which can provide a more specific classification when you want to see precisely where a business falls on the spectrum of risk. The classifications are:\\n\\n1. A \\\"Class\\\" of 1 - 5, which separates all businesses D&B has credit scores for into five distinct risk groups where a one (1) represents businesses that have the lowest probability of severe delinquency, and a five (5) represents businesses with the highest probability of severe delinquency. This Class enables you to quickly assess a new or existing account to determine appropriate risk policies.\\n\\n2. A \\\"Percentile\\\" of 1 - 100, where a 1 represents businesses that have the highest probability of severe delinquency, and a 100 represents businesses with the lowest probability of severe delinquency. This Percentile illustrates where a company falls among businesses in the D&B information base, and is most effectively used to rank order portfolios from highest to lowest risk of business failure.\\n\\n3. A \\\"Score\\\" of 101 - 670, where a 101 represents businesses that have the highest probability of severe delinquency, and a 670 represents businesses with the lowest probability of severe delinquency. This score classification enables you to use more granular cutoffs if you are using the data from the Comprehensive Report as part of a more automated decision-making process.\\n\\nCommercial Credit Scores are not calculated for those businesses designated as \\\"Discontinued at This Location,\\\" \\\"Open Bankruptcy\\\", \\\"Higher Risk.\\\" These records are automatically assigned a score of zero (0).\",\"primaryKey\":[\"DunsNumber\",\"ReportPurchaseDate\",\"PeriodStartDate\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"DunBradstreetReportCommercialCreditScore.cdm.json/DunBradstreetReportCommercialCreditScore\",\"name\":\"DunsNumber\"},\"dataType\":\"decimal\",\"dataTypeLength\":9,\"description\":\"Dun & Bradstreet (D&B) provides a D-U-N-S Number, a unique nine digit identification number, for each physical location of your business.\",\"isNullable\":false,\"scale\":0,\"name\":\"DunsNumber\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"DunBradstreetReportCommercialCreditScore.cdm.json/DunBradstreetReportCommercialCreditScore\",\"name\":\"ReportPurchaseDate\"},\"dataType\":\"date\",\"dateFormat\":\"YYYY-MM-DD\",\"description\":\"The purchase date of the report.\",\"isNullable\":false,\"name\":\"ReportPurchaseDate\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"DunBradstreetReportCommercialCreditScore.cdm.json/DunBradstreetReportCommercialCreditScore\",\"name\":\"PeriodStartDate\"},\"dataType\":\"date\",\"dateFormat\":\"YYYY-MM-DD\",\"description\":\"The period start date for which the associated D&B data is effective or 'as-of'.\",\"isNullable\":false,\"name\":\"PeriodStartDate\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"DunBradstreetReportCommercialCreditScore.cdm.json/DunBradstreetReportCommercialCreditScore\",\"name\":\"PeriodEndDate\"},\"dataType\":\"date\",\"dateFormat\":\"YYYY-MM-DD\",\"description\":\"The period end date for which the associated D&B data is effective or 'as-of'.\",\"isNullable\":true,\"name\":\"PeriodEndDate\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"DunBradstreetReportCommercialCreditScore.cdm.json/DunBradstreetReportCommercialCreditScore\",\"name\":\"DunBradstreetCommercialCreditScoreId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Dun Bradstreet commercial credit score.\",\"isNullable\":true,\"name\":\"DunBradstreetCommercialCreditScoreId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"DunBradstreetReportCommercialCreditScore.cdm.json/DunBradstreetReportCommercialCreditScore\",\"name\":\"CustomerCommercialCreditScoreNote\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"Notes, comments or additional information regarding the Customer's Commercial Credit Score.\",\"isNullable\":true,\"name\":\"CustomerCommercialCreditScoreNote\"}]}}}",
+			"Description": "The customer's commercial credit score for the indicated range of dates.\n\nD&B's Commercial Credit Score is designed to predict the likelihood that a company will pay its bills in a severely delinquent manner (90 days or more past terms), obtain legal relief from creditors or cease operations without paying all creditors in full over the next 12 months, based on the information in D&B's files. A severely delinquent firm is defined as a business with at least 25% of its payments slow and at least 10% of its payments 90 days or more past due.                   \n\n \n\nThe score models are based upon the observed characteristics of hundreds of thousands of businesses in D&B's database and the relationship these characteristics have to the probability of a company experiencing severe delinquency over a period of 12 months. \n\n \n\nKey to Credit Score Class and Percentile:\n\nScore Class          Score Percentile          Credit Score Level - Degree of Risk of\n\n   Value                       Value                    Delinquent Payment over the Next 12 Months\n\n     1                          91 - 100                  Low\n\n     2                          71 - 90                     Moderate\n\n     3                          31 - 70                    Average\n\n     4                          11 - 30                    Significant\n\n     5                          1 - 10                      High\n\n     0                              0                         Discontinued at the location, indication\n\n                                                                of open bankruptcy or confirmed high risk\n\n \n\nThe Commercial Credit Score uses statistical probabilities to classify companies into three risk classifications, which provide different views of the same underlying data. In most cases, the Credit Score Class is your best choice for at-a-glance risk assessment. The more detailed percentile and score classifications provide more granular views of this information, which can provide a more specific classification when you want to see precisely where a business falls on the spectrum of risk. The classifications are:\n\n1. A \"Class\" of 1 - 5, which separates all businesses D&B has credit scores for into five distinct risk groups where a one (1) represents businesses that have the lowest probability of severe delinquency, and a five (5) represents businesses with the highest probability of severe delinquency. This Class enables you to quickly assess a new or existing account to determine appropriate risk policies.\n\n2. A \"Percentile\" of 1 - 100, where a 1 represents businesses that have the highest probability of severe delinquency, and a 100 represents businesses with the lowest probability of severe delinquency. This Percentile illustrates where a company falls among businesses in the D&B information base, and is most effectively used to rank order portfolios from highest to lowest risk of business failure.\n\n3. A \"Score\" of 101 - 670, where a 101 represents businesses that have the highest probability of severe delinquency, and a 670 represents businesses with the lowest probability of severe delinquency. This score classification enables you to use more granular cutoffs if you are using the data from the Comprehensive Report as part of a more automated decision-making process.\n\nCommercial Credit Scores are not calculated for those businesses designated as \"Discontinued at This Location,\" \"Open Bankruptcy\", \"Higher Risk.\" These records are automatically assigned a score of zero (0).",
+			"DisplayFolderInfo": "{\"name\":\"Customer Credit & Collections\",\"colorCode\":\"#022F22\"}",
+			"PrimaryKeys": "DunsNumber,ReportPurchaseDate,PeriodStartDate",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

@@ -1,0 +1,98 @@
+{
+	"name": "EcoaCode",
+	"properties": {
+		"Name": "EcoaCode",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "ECOA is a code representing the ownership designation on the account.\n\nECOA Codes \nA Applicant\nB On Behalf of Another\nC Co-Applicant / Co-Maker\nI Individual\nJ Joint\nM Maker\nS Shared\nT Terminated\nU Undesignated\nW Work Related\nZ Authorized User\n\nECOA is a code representing the ownership designation on the account.\n\nECOA Codes \nA Applicant\nB On Behalf of Another\nC Co-Applicant / Co-Maker\nI Individual\nJ Joint\nM Maker\nS Shared\nT Terminated\nU Undesignated\nW Work Related\nZ Authorized User\n\nATH USR or A\nAuthorized user\nBEHALF or B\nOn behalf of another person\nCO MAKR or C\nCo-Maker\nINDIVID or I\nIndividual account\nJOINT or J\nJoint account\nMAKER or M\nMaker\nSHARED or S\nShared\nTERMNTD or T\nTerminated\nUNDESIG or U\nUndesignated",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "EcoaCode",
+					"Description": "The ECOA code.",
+					"BaseAttributeReference": {
+						"Entity": "EcoaCode.cdm.json/EcoaCode",
+						"Name": "EcoaCode"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "decimal",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Precision": 1,
+						"Scale": 0,
+						"Properties": {
+							"HIVE_TYPE_STRING": "decimal"
+						}
+					}
+				},
+				{
+					"Name": "EcoaDescription",
+					"Description": "The description of the ECOA code.",
+					"BaseAttributeReference": {
+						"Entity": "EcoaCode.cdm.json/EcoaCode",
+						"Name": "EcoaDescription"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/EcoaCode",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/EcoaCode",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"EcoaCode\":{\"entity\":\"EcoaCode.cdm.json/EcoaCode\",\"name\":\"EcoaCode\"},\"EcoaDescription\":{\"entity\":\"EcoaCode.cdm.json/EcoaCode\",\"name\":\"EcoaDescription\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"EcoaCode\",\"path\":\"EcoaCode.cdm.json/EcoaCode\"},\"description\":\"ECOA is a code representing the ownership designation on the account.\\n\\nECOA Codes \\nA Applicant\\nB On Behalf of Another\\nC Co-Applicant / Co-Maker\\nI Individual\\nJ Joint\\nM Maker\\nS Shared\\nT Terminated\\nU Undesignated\\nW Work Related\\nZ Authorized User\\n\\nECOA is a code representing the ownership designation on the account.\\n\\nECOA Codes \\nA Applicant\\nB On Behalf of Another\\nC Co-Applicant / Co-Maker\\nI Individual\\nJ Joint\\nM Maker\\nS Shared\\nT Terminated\\nU Undesignated\\nW Work Related\\nZ Authorized User\\n\\nATH USR or A\\nAuthorized user\\nBEHALF or B\\nOn behalf of another person\\nCO MAKR or C\\nCo-Maker\\nINDIVID or I\\nIndividual account\\nJOINT or J\\nJoint account\\nMAKER or M\\nMaker\\nSHARED or S\\nShared\\nTERMNTD or T\\nTerminated\\nUNDESIG or U\\nUndesignated\",\"primaryKey\":[\"EcoaCode\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"EcoaCode.cdm.json/EcoaCode\",\"name\":\"EcoaCode\"},\"dataType\":\"decimal\",\"dataTypeLength\":1,\"description\":\"The ECOA code.\",\"isNullable\":false,\"scale\":0,\"name\":\"EcoaCode\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"EcoaCode.cdm.json/EcoaCode\",\"name\":\"EcoaDescription\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"The description of the ECOA code.\",\"isNullable\":true,\"name\":\"EcoaDescription\"}]}}}",
+			"Description": "ECOA is a code representing the ownership designation on the account.\n\nECOA Codes \nA Applicant\nB On Behalf of Another\nC Co-Applicant / Co-Maker\nI Individual\nJ Joint\nM Maker\nS Shared\nT Terminated\nU Undesignated\nW Work Related\nZ Authorized User\n\nECOA is a code representing the ownership designation on the account.\n\nECOA Codes \nA Applicant\nB On Behalf of Another\nC Co-Applicant / Co-Maker\nI Individual\nJ Joint\nM Maker\nS Shared\nT Terminated\nU Undesignated\nW Work Related\nZ Authorized User\n\nATH USR or A\nAuthorized user\nBEHALF or B\nOn behalf of another person\nCO MAKR or C\nCo-Maker\nINDIVID or I\nIndividual account\nJOINT or J\nJoint account\nMAKER or M\nMaker\nSHARED or S\nShared\nTERMNTD or T\nTerminated\nUNDESIG or U\nUndesignated",
+			"DisplayFolderInfo": "{\"name\":\"Customer Credit & Collections\",\"colorCode\":\"#022F22\"}",
+			"PrimaryKeys": "EcoaCode",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

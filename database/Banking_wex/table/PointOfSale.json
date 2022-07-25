@@ -1,0 +1,178 @@
+{
+	"name": "PointOfSale",
+	"properties": {
+		"Name": "PointOfSale",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "The physical location at which goods are sold to customers. For most large organizations today the point-of-sale will be an electronic cash register or a POS terminal capable of communicating (for purchase authorization) with banks and credit card companies.",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "PointOfSaleId",
+					"Description": "The unique identifier of a POS.",
+					"BaseAttributeReference": {
+						"Entity": "PointOfSale.cdm.json/PointOfSale",
+						"Name": "PointOfSaleId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "PointOfSaleName",
+					"Description": "The name of a POS.",
+					"BaseAttributeReference": {
+						"Entity": "PointOfSale.cdm.json/PointOfSale",
+						"Name": "PointOfSaleName"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 256,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "PointOfSaleDescription",
+					"Description": "The description of a POS.",
+					"BaseAttributeReference": {
+						"Entity": "PointOfSale.cdm.json/PointOfSale",
+						"Name": "PointOfSaleDescription"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "PointOfSaleNote",
+					"Description": "A note, comment or additional information regarding a POS.",
+					"BaseAttributeReference": {
+						"Entity": "PointOfSale.cdm.json/PointOfSale",
+						"Name": "PointOfSaleNote"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "PointOfSaleTypeId",
+					"Description": "The unique identifier of the POS Type.",
+					"BaseAttributeReference": {
+						"Entity": "PointOfSale.cdm.json/PointOfSale",
+						"Name": "PointOfSaleTypeId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "StoreId",
+					"Description": "The unique identifier of a Store.",
+					"BaseAttributeReference": {
+						"Entity": "PointOfSale.cdm.json/PointOfSale",
+						"Name": "StoreId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "ServiceLocationId",
+					"Description": "The unique identifier of a service location.",
+					"BaseAttributeReference": {
+						"Entity": "PointOfSale.cdm.json/PointOfSale",
+						"Name": "ServiceLocationId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/PointOfSale",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/PointOfSale",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"PointOfSaleId\":{\"entity\":\"PointOfSale.cdm.json/PointOfSale\",\"name\":\"PointOfSaleId\"},\"PointOfSaleName\":{\"entity\":\"PointOfSale.cdm.json/PointOfSale\",\"name\":\"PointOfSaleName\"},\"PointOfSaleDescription\":{\"entity\":\"PointOfSale.cdm.json/PointOfSale\",\"name\":\"PointOfSaleDescription\"},\"PointOfSaleNote\":{\"entity\":\"PointOfSale.cdm.json/PointOfSale\",\"name\":\"PointOfSaleNote\"},\"PointOfSaleTypeId\":{\"entity\":\"PointOfSale.cdm.json/PointOfSale\",\"name\":\"PointOfSaleTypeId\"},\"StoreId\":{\"entity\":\"PointOfSale.cdm.json/PointOfSale\",\"name\":\"StoreId\"},\"ServiceLocationId\":{\"entity\":\"PointOfSale.cdm.json/PointOfSale\",\"name\":\"ServiceLocationId\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"PointOfSale\",\"path\":\"PointOfSale.cdm.json/PointOfSale\"},\"description\":\"The physical location at which goods are sold to customers. For most large organizations today the point-of-sale will be an electronic cash register or a POS terminal capable of communicating (for purchase authorization) with banks and credit card companies.\",\"primaryKey\":[\"PointOfSaleId\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"PointOfSale.cdm.json/PointOfSale\",\"name\":\"PointOfSaleId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a POS.\",\"isNullable\":false,\"name\":\"PointOfSaleId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"PointOfSale.cdm.json/PointOfSale\",\"name\":\"PointOfSaleName\"},\"dataType\":\"string\",\"dataTypeLength\":256,\"description\":\"The name of a POS.\",\"isNullable\":true,\"name\":\"PointOfSaleName\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"PointOfSale.cdm.json/PointOfSale\",\"name\":\"PointOfSaleDescription\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"The description of a POS.\",\"isNullable\":true,\"name\":\"PointOfSaleDescription\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"PointOfSale.cdm.json/PointOfSale\",\"name\":\"PointOfSaleNote\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"A note, comment or additional information regarding a POS.\",\"isNullable\":true,\"name\":\"PointOfSaleNote\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"PointOfSale.cdm.json/PointOfSale\",\"name\":\"PointOfSaleTypeId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of the POS Type.\",\"isNullable\":true,\"name\":\"PointOfSaleTypeId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"PointOfSale.cdm.json/PointOfSale\",\"name\":\"StoreId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Store.\",\"isNullable\":true,\"name\":\"StoreId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"PointOfSale.cdm.json/PointOfSale\",\"name\":\"ServiceLocationId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a service location.\",\"isNullable\":true,\"name\":\"ServiceLocationId\"}]}}}",
+			"Description": "The physical location at which goods are sold to customers. For most large organizations today the point-of-sale will be an electronic cash register or a POS terminal capable of communicating (for purchase authorization) with banks and credit card companies.",
+			"DisplayFolderInfo": "{\"name\":\"Transaction\",\"colorCode\":\"#823A16\"}",
+			"PrimaryKeys": "PointOfSaleId",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

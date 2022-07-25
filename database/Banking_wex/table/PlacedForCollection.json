@@ -1,0 +1,166 @@
+{
+	"name": "PlacedForCollection",
+	"properties": {
+		"Name": "PlacedForCollection",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "Information about accounts placed for collection with Dun Bradstreet and other agencies.",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "DunsNumber",
+					"Description": "Dun & Bradstreet (D&B) provides a D-U-N-S Number, a unique nine digit identification number, for each physical location of your business.",
+					"BaseAttributeReference": {
+						"Entity": "PlacedForCollection.cdm.json/PlacedForCollection",
+						"Name": "DunsNumber"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "decimal",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Precision": 9,
+						"Scale": 0,
+						"Properties": {
+							"HIVE_TYPE_STRING": "decimal"
+						}
+					}
+				},
+				{
+					"Name": "ReportPurchaseDate",
+					"Description": "The purchase date of the report.",
+					"BaseAttributeReference": {
+						"Entity": "PlacedForCollection.cdm.json/PlacedForCollection",
+						"Name": "ReportPurchaseDate"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "date",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"DateFormat": "YYYY-MM-DD",
+							"HIVE_TYPE_STRING": "date"
+						}
+					}
+				},
+				{
+					"Name": "NumberPlacedForCollectionWithDunBradstreet",
+					"Description": "Number of accounts placed for collection with Dun Bradstreet.",
+					"BaseAttributeReference": {
+						"Entity": "PlacedForCollection.cdm.json/PlacedForCollection",
+						"Name": "NumberPlacedForCollectionWithDunBradstreet"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "TotalAmountPlacedForCollectionWithDunBradstreet",
+					"Description": "The total amount of accounts placed for collection with Dun Bradstreet.",
+					"BaseAttributeReference": {
+						"Entity": "PlacedForCollection.cdm.json/PlacedForCollection",
+						"Name": "TotalAmountPlacedForCollectionWithDunBradstreet"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "decimal",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Precision": 18,
+						"Scale": 2,
+						"Properties": {
+							"HIVE_TYPE_STRING": "decimal"
+						}
+					}
+				},
+				{
+					"Name": "NumberPlacedForCollectionWithOtherAgency",
+					"Description": "Number of accounts placed for collection with an agency other than Dun Bradstreet.",
+					"BaseAttributeReference": {
+						"Entity": "PlacedForCollection.cdm.json/PlacedForCollection",
+						"Name": "NumberPlacedForCollectionWithOtherAgency"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "TotalAmountPlacedForCollectionWithOtherAgency",
+					"Description": "The total amount of accounts placed for collection with an agency other than Dun Bradstreet.",
+					"BaseAttributeReference": {
+						"Entity": "PlacedForCollection.cdm.json/PlacedForCollection",
+						"Name": "TotalAmountPlacedForCollectionWithOtherAgency"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "decimal",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Precision": 18,
+						"Scale": 2,
+						"Properties": {
+							"HIVE_TYPE_STRING": "decimal"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/PlacedForCollection",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/PlacedForCollection",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"DunsNumber\":{\"entity\":\"PlacedForCollection.cdm.json/PlacedForCollection\",\"name\":\"DunsNumber\"},\"ReportPurchaseDate\":{\"entity\":\"PlacedForCollection.cdm.json/PlacedForCollection\",\"name\":\"ReportPurchaseDate\"},\"NumberPlacedForCollectionWithDunBradstreet\":{\"entity\":\"PlacedForCollection.cdm.json/PlacedForCollection\",\"name\":\"NumberPlacedForCollectionWithDunBradstreet\"},\"TotalAmountPlacedForCollectionWithDunBradstreet\":{\"entity\":\"PlacedForCollection.cdm.json/PlacedForCollection\",\"name\":\"TotalAmountPlacedForCollectionWithDunBradstreet\"},\"NumberPlacedForCollectionWithOtherAgency\":{\"entity\":\"PlacedForCollection.cdm.json/PlacedForCollection\",\"name\":\"NumberPlacedForCollectionWithOtherAgency\"},\"TotalAmountPlacedForCollectionWithOtherAgency\":{\"entity\":\"PlacedForCollection.cdm.json/PlacedForCollection\",\"name\":\"TotalAmountPlacedForCollectionWithOtherAgency\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"PlacedForCollection\",\"path\":\"PlacedForCollection.cdm.json/PlacedForCollection\"},\"description\":\"Information about accounts placed for collection with Dun Bradstreet and other agencies.\",\"primaryKey\":[\"DunsNumber\",\"ReportPurchaseDate\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"PlacedForCollection.cdm.json/PlacedForCollection\",\"name\":\"DunsNumber\"},\"dataType\":\"decimal\",\"dataTypeLength\":9,\"description\":\"Dun & Bradstreet (D&B) provides a D-U-N-S Number, a unique nine digit identification number, for each physical location of your business.\",\"isNullable\":false,\"scale\":0,\"name\":\"DunsNumber\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"PlacedForCollection.cdm.json/PlacedForCollection\",\"name\":\"ReportPurchaseDate\"},\"dataType\":\"date\",\"dateFormat\":\"YYYY-MM-DD\",\"description\":\"The purchase date of the report.\",\"isNullable\":false,\"name\":\"ReportPurchaseDate\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"PlacedForCollection.cdm.json/PlacedForCollection\",\"name\":\"NumberPlacedForCollectionWithDunBradstreet\"},\"dataType\":\"integer\",\"description\":\"Number of accounts placed for collection with Dun Bradstreet.\",\"isNullable\":true,\"name\":\"NumberPlacedForCollectionWithDunBradstreet\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"PlacedForCollection.cdm.json/PlacedForCollection\",\"name\":\"TotalAmountPlacedForCollectionWithDunBradstreet\"},\"dataType\":\"decimal\",\"dataTypeLength\":18,\"description\":\"The total amount of accounts placed for collection with Dun Bradstreet.\",\"isNullable\":true,\"scale\":2,\"name\":\"TotalAmountPlacedForCollectionWithDunBradstreet\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"PlacedForCollection.cdm.json/PlacedForCollection\",\"name\":\"NumberPlacedForCollectionWithOtherAgency\"},\"dataType\":\"integer\",\"description\":\"Number of accounts placed for collection with an agency other than Dun Bradstreet.\",\"isNullable\":true,\"name\":\"NumberPlacedForCollectionWithOtherAgency\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"PlacedForCollection.cdm.json/PlacedForCollection\",\"name\":\"TotalAmountPlacedForCollectionWithOtherAgency\"},\"dataType\":\"decimal\",\"dataTypeLength\":18,\"description\":\"The total amount of accounts placed for collection with an agency other than Dun Bradstreet.\",\"isNullable\":true,\"scale\":2,\"name\":\"TotalAmountPlacedForCollectionWithOtherAgency\"}]}}}",
+			"Description": "Information about accounts placed for collection with Dun Bradstreet and other agencies.",
+			"DisplayFolderInfo": "{\"name\":\"Customer Credit & Collections\",\"colorCode\":\"#022F22\"}",
+			"PrimaryKeys": "DunsNumber,ReportPurchaseDate",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

@@ -1,0 +1,148 @@
+{
+	"name": "ConsumerLoanInterestRate",
+	"properties": {
+		"Name": "ConsumerLoanInterestRate",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "The consumer loan interest rate 'history' or schedule for the associated period(s).",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "CreditGrantorId",
+					"Description": "The unique identifier of a Credit Grantor.",
+					"BaseAttributeReference": {
+						"Entity": "ConsumerLoanInterestRate.cdm.json/ConsumerLoanInterestRate",
+						"Name": "CreditGrantorId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "LoanAccountNumber",
+					"Description": "The unique identifier of a loan.",
+					"BaseAttributeReference": {
+						"Entity": "ConsumerLoanInterestRate.cdm.json/ConsumerLoanInterestRate",
+						"Name": "LoanAccountNumber"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Length": 20,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "PeriodStartDate",
+					"Description": "The period start date that the associated interest rate is effective for the consumer loan.",
+					"BaseAttributeReference": {
+						"Entity": "ConsumerLoanInterestRate.cdm.json/ConsumerLoanInterestRate",
+						"Name": "PeriodStartDate"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "date",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"DateFormat": "YYYY-MM-DD",
+							"HIVE_TYPE_STRING": "date"
+						}
+					}
+				},
+				{
+					"Name": "PeriodEndDate",
+					"Description": "The period end date that the associated interest rate is effective for the consumer loan.",
+					"BaseAttributeReference": {
+						"Entity": "ConsumerLoanInterestRate.cdm.json/ConsumerLoanInterestRate",
+						"Name": "PeriodEndDate"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "date",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"DateFormat": "YYYY-MM-DD",
+							"HIVE_TYPE_STRING": "date"
+						}
+					}
+				},
+				{
+					"Name": "InterestRatePercentage",
+					"Description": "The interest rate associated with the loan.",
+					"BaseAttributeReference": {
+						"Entity": "ConsumerLoanInterestRate.cdm.json/ConsumerLoanInterestRate",
+						"Name": "InterestRatePercentage"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "decimal",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Precision": 18,
+						"Scale": 8,
+						"Properties": {
+							"HIVE_TYPE_STRING": "decimal"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/ConsumerLoanInterestRate",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/ConsumerLoanInterestRate",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"CreditGrantorId\":{\"entity\":\"ConsumerLoanInterestRate.cdm.json/ConsumerLoanInterestRate\",\"name\":\"CreditGrantorId\"},\"LoanAccountNumber\":{\"entity\":\"ConsumerLoanInterestRate.cdm.json/ConsumerLoanInterestRate\",\"name\":\"LoanAccountNumber\"},\"PeriodStartDate\":{\"entity\":\"ConsumerLoanInterestRate.cdm.json/ConsumerLoanInterestRate\",\"name\":\"PeriodStartDate\"},\"PeriodEndDate\":{\"entity\":\"ConsumerLoanInterestRate.cdm.json/ConsumerLoanInterestRate\",\"name\":\"PeriodEndDate\"},\"InterestRatePercentage\":{\"entity\":\"ConsumerLoanInterestRate.cdm.json/ConsumerLoanInterestRate\",\"name\":\"InterestRatePercentage\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"ConsumerLoanInterestRate\",\"path\":\"ConsumerLoanInterestRate.cdm.json/ConsumerLoanInterestRate\"},\"description\":\"The consumer loan interest rate 'history' or schedule for the associated period(s).\",\"primaryKey\":[\"CreditGrantorId\",\"LoanAccountNumber\",\"PeriodStartDate\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ConsumerLoanInterestRate.cdm.json/ConsumerLoanInterestRate\",\"name\":\"CreditGrantorId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Credit Grantor.\",\"isNullable\":false,\"name\":\"CreditGrantorId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ConsumerLoanInterestRate.cdm.json/ConsumerLoanInterestRate\",\"name\":\"LoanAccountNumber\"},\"dataType\":\"string\",\"dataTypeLength\":20,\"description\":\"The unique identifier of a loan.\",\"isNullable\":false,\"name\":\"LoanAccountNumber\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ConsumerLoanInterestRate.cdm.json/ConsumerLoanInterestRate\",\"name\":\"PeriodStartDate\"},\"dataType\":\"date\",\"dateFormat\":\"YYYY-MM-DD\",\"description\":\"The period start date that the associated interest rate is effective for the consumer loan.\",\"isNullable\":false,\"name\":\"PeriodStartDate\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ConsumerLoanInterestRate.cdm.json/ConsumerLoanInterestRate\",\"name\":\"PeriodEndDate\"},\"dataType\":\"date\",\"dateFormat\":\"YYYY-MM-DD\",\"description\":\"The period end date that the associated interest rate is effective for the consumer loan.\",\"isNullable\":true,\"name\":\"PeriodEndDate\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ConsumerLoanInterestRate.cdm.json/ConsumerLoanInterestRate\",\"name\":\"InterestRatePercentage\"},\"dataType\":\"decimal\",\"dataTypeLength\":18,\"description\":\"The interest rate associated with the loan.\",\"isNullable\":true,\"scale\":8,\"name\":\"InterestRatePercentage\"}]}}}",
+			"Description": "The consumer loan interest rate 'history' or schedule for the associated period(s).",
+			"DisplayFolderInfo": "{\"name\":\"Customer Credit & Collections\",\"colorCode\":\"#022F22\"}",
+			"PrimaryKeys": "CreditGrantorId,LoanAccountNumber,PeriodStartDate",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

@@ -1,0 +1,401 @@
+{
+	"name": "PaymentCardAgreement",
+	"properties": {
+		"Name": "PaymentCardAgreement",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "The terms and conditions to which the payment card holder agrees to honor in regard to the associated payment card.",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "ContractId",
+					"Description": "The unique identifier of a Contract.",
+					"BaseAttributeReference": {
+						"Entity": "PaymentCardAgreement.cdm.json/PaymentCardAgreement",
+						"Name": "ContractId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "AnnualFee",
+					"Description": "The annual fee (or other periodic fee) the issuer charges for you to have the card. You may have to pay this fee even if you never use the card.",
+					"BaseAttributeReference": {
+						"Entity": "PaymentCardAgreement.cdm.json/PaymentCardAgreement",
+						"Name": "AnnualFee"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "decimal",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Precision": 18,
+						"Scale": 2,
+						"Properties": {
+							"HIVE_TYPE_STRING": "decimal"
+						}
+					}
+				},
+				{
+					"Name": "AnnualInterestPercentageRate",
+					"Description": "The interest rate you will pay, on an annual basis, if you carry over balances on purchases from one billing cycle to the next. If the card has a temporary introductory rate, the rate that applies after the temporary rate expires is also stated.\n\nA measure of the cost of credit expressed as a yearly rate. Many payment card plans charge different APRs for credit used in different ways--for example, one APR for purchases, another for cash advances, and still another for balance transfers. Some plans may increase the APR if a payment is late. \n\nCash-advance fee",
+					"BaseAttributeReference": {
+						"Entity": "PaymentCardAgreement.cdm.json/PaymentCardAgreement",
+						"Name": "AnnualInterestPercentageRate"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "PeriodicInterestRate",
+					"Description": "The rate you are charged each billing period. For most payment card plans, the periodic rate is a monthly rate, calculated by dividing the APR by 12. For example, a payment card with an 18% APR has a monthly periodic rate of 1.5%.",
+					"BaseAttributeReference": {
+						"Entity": "PaymentCardAgreement.cdm.json/PaymentCardAgreement",
+						"Name": "PeriodicInterestRate"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "AnnualPercentageRateCalculationStatement",
+					"Description": "A statement describing how APR is calculated.",
+					"BaseAttributeReference": {
+						"Entity": "PaymentCardAgreement.cdm.json/PaymentCardAgreement",
+						"Name": "AnnualPercentageRateCalculationStatement"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "OtherAprsStatement",
+					"Description": "A statement describing other APR's to be paid.\n\nThe interest rates you will pay, on an annual basis, if you get a cash advance on your payment card, if you transfer a balance from another payment card, or if the card issuer applies penalty rates. (More information on the penalty rate may be included outside the disclosure box--for example, in a footnote.)",
+					"BaseAttributeReference": {
+						"Entity": "PaymentCardAgreement.cdm.json/PaymentCardAgreement",
+						"Name": "OtherAprsStatement"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "GracePeriodInDays",
+					"Description": "A period of time, often about 25 days, during which you can pay your payment card bill without incurring a finance charge. Under nearly all payment card plans, the grace period applies only if you pay your balance in full each month. It does not apply if you carry a balance forward. Also, the grace period usually does not apply to cash advances, which may begin accruing interest from the day of the transaction.",
+					"BaseAttributeReference": {
+						"Entity": "PaymentCardAgreement.cdm.json/PaymentCardAgreement",
+						"Name": "GracePeriodInDays"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "GracePeriodStatement",
+					"Description": "A statement describing the grace period.",
+					"BaseAttributeReference": {
+						"Entity": "PaymentCardAgreement.cdm.json/PaymentCardAgreement",
+						"Name": "GracePeriodStatement"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "LatePaymentChargeAmount",
+					"Description": "A charge imposed when your payment is late. If your payment arrives after the grace period, you may be charged both a finance charge (the interest on your outstanding balance) and a late-payment charge. Some card issuers may also impose a penalty rate if you have more than one late payment within several months.",
+					"BaseAttributeReference": {
+						"Entity": "PaymentCardAgreement.cdm.json/PaymentCardAgreement",
+						"Name": "LatePaymentChargeAmount"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "decimal",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Precision": 18,
+						"Scale": 2,
+						"Properties": {
+							"HIVE_TYPE_STRING": "decimal"
+						}
+					}
+				},
+				{
+					"Name": "TransactionFeesStatement",
+					"Description": "A free describing transaction fees required with the payment card.",
+					"BaseAttributeReference": {
+						"Entity": "PaymentCardAgreement.cdm.json/PaymentCardAgreement",
+						"Name": "TransactionFeesStatement"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "TransactionFeeForPurchasesStatement",
+					"Description": "A statement describing any charge imposed when you use the card for a purchases.",
+					"BaseAttributeReference": {
+						"Entity": "PaymentCardAgreement.cdm.json/PaymentCardAgreement",
+						"Name": "TransactionFeeForPurchasesStatement"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "GoverningLawState",
+					"Description": "The state under whose law the payment card is governed.",
+					"BaseAttributeReference": {
+						"Entity": "PaymentCardAgreement.cdm.json/PaymentCardAgreement",
+						"Name": "GoverningLawState"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 64,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "AgreementText",
+					"Description": "The text of the payment card agreement.",
+					"BaseAttributeReference": {
+						"Entity": "PaymentCardAgreement.cdm.json/PaymentCardAgreement",
+						"Name": "AgreementText"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "PrivacyNoticeStatement",
+					"Description": "A statement regarding privacy and the use of payment card data.",
+					"BaseAttributeReference": {
+						"Entity": "PaymentCardAgreement.cdm.json/PaymentCardAgreement",
+						"Name": "PrivacyNoticeStatement"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "NoticeToStateResidentsStatement",
+					"Description": "A notice to the resident of a specific state that the payment card is issued in.",
+					"BaseAttributeReference": {
+						"Entity": "PaymentCardAgreement.cdm.json/PaymentCardAgreement",
+						"Name": "NoticeToStateResidentsStatement"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "NoticeToMarriedStateResidents",
+					"Description": "A notice to married state residents regarding the joint liabilities of using the card.",
+					"BaseAttributeReference": {
+						"Entity": "PaymentCardAgreement.cdm.json/PaymentCardAgreement",
+						"Name": "NoticeToMarriedStateResidents"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "SecurityInterestPledgeAssignmentOfCollateralStatement",
+					"Description": "This is an application for secured payment card account. In consideration of the issuance of this secured payment card account, you have authorized Wells Fargo Bank Nevada, N.A. to open a deposit account called the \"Secured Card Collateral Account\" (the \"Collateral Account\") in your name. To secure all of your obligations arising under this payment card account, you assign, transfer, pledge, grant a security interest in, and set over to the bank all rights, title and interest in the Collateral Account and in all renewals, additions and proceeds of the Collateral Account. You agree that this security interest, pledge, and assignment includes and gives the Bank the right to redeem, collect and withdraw any part or the full amount of the Collateral Account upon any default under the secured payment card agreement or in the event your secured payment card account is terminated for any reason. You acknowledge and agree that this security interest, pledge, and assignment means that the bank has exclusive control over the Collateral Account. You may not make any withdrawals from the Collateral Account while it secures your payment card. This security interest, pledge, and assignment is given as security for any and all amounts you may owe, including but not limited to interest, fees and charges which may accrue under your secured payment card account. You agree that if the secured payment card account is closed for any reason, the funds in the Collateral Account shall remain on deposit for up to 30-60 days after the balance on the secured payment card account has been paid in full. The Collateral Account will be a non-interest bearing FDIC insured account.",
+					"BaseAttributeReference": {
+						"Entity": "PaymentCardAgreement.cdm.json/PaymentCardAgreement",
+						"Name": "SecurityInterestPledgeAssignmentOfCollateralStatement"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "CollateralAccountAuthorizationStatement",
+					"Description": "You request that the Bank open the Collateral Account described above and agree: \nThe Collateral Account and the Bank's practices are subject to the terms of the Collateral Account, to federal and state laws, and to Bank policies. \nTo pay all charges and follow all practices set forth in the terms applicable to the Collateral Account. \nTo hereby stipulate to the terms of the arbitration program described in the Secured Visa card Customer Agreement and Disclosure Statement. \nTo abide by all future changes to the terms for the Collateral Account. \nThe Bank may disclose information about the Collateral Account and payment card account to credit reporting agencies and to other persons or agencies who, in its judgement, have legitimate business purpose for obtaining such information, subject to applicable law.",
+					"BaseAttributeReference": {
+						"Entity": "PaymentCardAgreement.cdm.json/PaymentCardAgreement",
+						"Name": "CollateralAccountAuthorizationStatement"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "ApplicationAgreementStatement",
+					"Description": "Application Agreement: This application is for a payment card with Wells Fargo Bank Nevada, N.A. governed by Nevada law. I certify that all information provided is true, correct, and complete and that I have the legal capacity to enter into this contract. The bank is authorized to verify or check any of the information given, to obtain credit reports on me and to make overdraft protection advances if I requested that feature. I authorize the Bank to obtain information from others to investigate my credit, employment and income history and state records including state employment security agency records and to report information regarding my account to consumer reporting agencies. I agree that the Bank will determine the amount of credit extended, as well as which product I qualify for, based on the Bank's review criteria. If I do not qualify for the product or pricing requested or for the lowest pricing offered, I authorize the Bank to grant me the product and pricing for which I do qualify. I agree to be bound by the terms and conditions of the Customer Agreement and Disclosure Statement, which will be sent to me, and understand that the terms of my account may be changed at any time, subject to applicable law. I hereby stipulate to the terms of the arbitration program described in the Customer Agreement and Disclosure Statement. I understand and agree that I will be liable for payment of all amounts owing on the account. I understand and agree that each person applying will have full and equal access to any credit line extended and each will be individually and jointly liable for payment of all amounts owed even if only one applicant uses the account. I acknowledge receipt of the insurance disclosure above. I further acknowledge that the bank will not consider my decision whether to enroll in Credit Defense Service in its credit approval process.",
+					"BaseAttributeReference": {
+						"Entity": "PaymentCardAgreement.cdm.json/PaymentCardAgreement",
+						"Name": "ApplicationAgreementStatement"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "UseOfInformationStatement",
+					"Description": "To provide you with superior service, to inform you of product opportunities and for other business purposes, the family of banks and companies affiliated with Wells Fargo & Company may share information about you, including information obtained from consumer credit reports, among themselves. If you do not want us to share information in this fashion, provide us with your name, address and social security number or taxpayer identification number (if one has been issued) and your direction, such as, \"I request to be excluded from sharing of information among affiliates.\" You can provide us with that information by calling us at 1-888-528-8460. Even if you give us such directions, we may still disclose identifying information and information about your transactions and experiences with us to other Wells Fargo companies as permitted by the federal Fair Credit Reporting Act.",
+					"BaseAttributeReference": {
+						"Entity": "PaymentCardAgreement.cdm.json/PaymentCardAgreement",
+						"Name": "UseOfInformationStatement"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/PaymentCardAgreement",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/PaymentCardAgreement",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"ContractId\":{\"entity\":\"PaymentCardAgreement.cdm.json/PaymentCardAgreement\",\"name\":\"ContractId\"},\"AnnualFee\":{\"entity\":\"PaymentCardAgreement.cdm.json/PaymentCardAgreement\",\"name\":\"AnnualFee\"},\"AnnualInterestPercentageRate\":{\"entity\":\"PaymentCardAgreement.cdm.json/PaymentCardAgreement\",\"name\":\"AnnualInterestPercentageRate\"},\"PeriodicInterestRate\":{\"entity\":\"PaymentCardAgreement.cdm.json/PaymentCardAgreement\",\"name\":\"PeriodicInterestRate\"},\"AnnualPercentageRateCalculationStatement\":{\"entity\":\"PaymentCardAgreement.cdm.json/PaymentCardAgreement\",\"name\":\"AnnualPercentageRateCalculationStatement\"},\"OtherAprsStatement\":{\"entity\":\"PaymentCardAgreement.cdm.json/PaymentCardAgreement\",\"name\":\"OtherAprsStatement\"},\"GracePeriodInDays\":{\"entity\":\"PaymentCardAgreement.cdm.json/PaymentCardAgreement\",\"name\":\"GracePeriodInDays\"},\"GracePeriodStatement\":{\"entity\":\"PaymentCardAgreement.cdm.json/PaymentCardAgreement\",\"name\":\"GracePeriodStatement\"},\"LatePaymentChargeAmount\":{\"entity\":\"PaymentCardAgreement.cdm.json/PaymentCardAgreement\",\"name\":\"LatePaymentChargeAmount\"},\"TransactionFeesStatement\":{\"entity\":\"PaymentCardAgreement.cdm.json/PaymentCardAgreement\",\"name\":\"TransactionFeesStatement\"},\"TransactionFeeForPurchasesStatement\":{\"entity\":\"PaymentCardAgreement.cdm.json/PaymentCardAgreement\",\"name\":\"TransactionFeeForPurchasesStatement\"},\"GoverningLawState\":{\"entity\":\"PaymentCardAgreement.cdm.json/PaymentCardAgreement\",\"name\":\"GoverningLawState\"},\"AgreementText\":{\"entity\":\"PaymentCardAgreement.cdm.json/PaymentCardAgreement\",\"name\":\"AgreementText\"},\"PrivacyNoticeStatement\":{\"entity\":\"PaymentCardAgreement.cdm.json/PaymentCardAgreement\",\"name\":\"PrivacyNoticeStatement\"},\"NoticeToStateResidentsStatement\":{\"entity\":\"PaymentCardAgreement.cdm.json/PaymentCardAgreement\",\"name\":\"NoticeToStateResidentsStatement\"},\"NoticeToMarriedStateResidents\":{\"entity\":\"PaymentCardAgreement.cdm.json/PaymentCardAgreement\",\"name\":\"NoticeToMarriedStateResidents\"},\"SecurityInterestPledgeAssignmentOfCollateralStatement\":{\"entity\":\"PaymentCardAgreement.cdm.json/PaymentCardAgreement\",\"name\":\"SecurityInterestPledgeAssignmentOfCollateralStatement\"},\"CollateralAccountAuthorizationStatement\":{\"entity\":\"PaymentCardAgreement.cdm.json/PaymentCardAgreement\",\"name\":\"CollateralAccountAuthorizationStatement\"},\"ApplicationAgreementStatement\":{\"entity\":\"PaymentCardAgreement.cdm.json/PaymentCardAgreement\",\"name\":\"ApplicationAgreementStatement\"},\"UseOfInformationStatement\":{\"entity\":\"PaymentCardAgreement.cdm.json/PaymentCardAgreement\",\"name\":\"UseOfInformationStatement\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"PaymentCardAgreement\",\"path\":\"PaymentCardAgreement.cdm.json/PaymentCardAgreement\"},\"description\":\"The terms and conditions to which the payment card holder agrees to honor in regard to the associated payment card.\",\"primaryKey\":[\"ContractId\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"PaymentCardAgreement.cdm.json/PaymentCardAgreement\",\"name\":\"ContractId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Contract.\",\"isNullable\":false,\"name\":\"ContractId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"PaymentCardAgreement.cdm.json/PaymentCardAgreement\",\"name\":\"AnnualFee\"},\"dataType\":\"decimal\",\"dataTypeLength\":18,\"description\":\"The annual fee (or other periodic fee) the issuer charges for you to have the card. You may have to pay this fee even if you never use the card.\",\"isNullable\":false,\"scale\":2,\"name\":\"AnnualFee\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"PaymentCardAgreement.cdm.json/PaymentCardAgreement\",\"name\":\"AnnualInterestPercentageRate\"},\"dataType\":\"integer\",\"description\":\"The interest rate you will pay, on an annual basis, if you carry over balances on purchases from one billing cycle to the next. If the card has a temporary introductory rate, the rate that applies after the temporary rate expires is also stated.\\n\\nA measure of the cost of credit expressed as a yearly rate. Many payment card plans charge different APRs for credit used in different ways--for example, one APR for purchases, another for cash advances, and still another for balance transfers. Some plans may increase the APR if a payment is late. \\n\\nCash-advance fee\",\"isNullable\":true,\"name\":\"AnnualInterestPercentageRate\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"PaymentCardAgreement.cdm.json/PaymentCardAgreement\",\"name\":\"PeriodicInterestRate\"},\"dataType\":\"integer\",\"description\":\"The rate you are charged each billing period. For most payment card plans, the periodic rate is a monthly rate, calculated by dividing the APR by 12. For example, a payment card with an 18% APR has a monthly periodic rate of 1.5%.\",\"isNullable\":true,\"name\":\"PeriodicInterestRate\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"PaymentCardAgreement.cdm.json/PaymentCardAgreement\",\"name\":\"AnnualPercentageRateCalculationStatement\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"A statement describing how APR is calculated.\",\"isNullable\":true,\"name\":\"AnnualPercentageRateCalculationStatement\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"PaymentCardAgreement.cdm.json/PaymentCardAgreement\",\"name\":\"OtherAprsStatement\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"A statement describing other APR's to be paid.\\n\\nThe interest rates you will pay, on an annual basis, if you get a cash advance on your payment card, if you transfer a balance from another payment card, or if the card issuer applies penalty rates. (More information on the penalty rate may be included outside the disclosure box--for example, in a footnote.)\",\"isNullable\":true,\"name\":\"OtherAprsStatement\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"PaymentCardAgreement.cdm.json/PaymentCardAgreement\",\"name\":\"GracePeriodInDays\"},\"dataType\":\"integer\",\"description\":\"A period of time, often about 25 days, during which you can pay your payment card bill without incurring a finance charge. Under nearly all payment card plans, the grace period applies only if you pay your balance in full each month. It does not apply if you carry a balance forward. Also, the grace period usually does not apply to cash advances, which may begin accruing interest from the day of the transaction.\",\"isNullable\":true,\"name\":\"GracePeriodInDays\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"PaymentCardAgreement.cdm.json/PaymentCardAgreement\",\"name\":\"GracePeriodStatement\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"A statement describing the grace period.\",\"isNullable\":true,\"name\":\"GracePeriodStatement\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"PaymentCardAgreement.cdm.json/PaymentCardAgreement\",\"name\":\"LatePaymentChargeAmount\"},\"dataType\":\"decimal\",\"dataTypeLength\":18,\"description\":\"A charge imposed when your payment is late. If your payment arrives after the grace period, you may be charged both a finance charge (the interest on your outstanding balance) and a late-payment charge. Some card issuers may also impose a penalty rate if you have more than one late payment within several months.\",\"isNullable\":true,\"scale\":2,\"name\":\"LatePaymentChargeAmount\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"PaymentCardAgreement.cdm.json/PaymentCardAgreement\",\"name\":\"TransactionFeesStatement\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"A free describing transaction fees required with the payment card.\",\"isNullable\":true,\"name\":\"TransactionFeesStatement\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"PaymentCardAgreement.cdm.json/PaymentCardAgreement\",\"name\":\"TransactionFeeForPurchasesStatement\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"A statement describing any charge imposed when you use the card for a purchases.\",\"isNullable\":true,\"name\":\"TransactionFeeForPurchasesStatement\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"PaymentCardAgreement.cdm.json/PaymentCardAgreement\",\"name\":\"GoverningLawState\"},\"dataType\":\"string\",\"dataTypeLength\":64,\"description\":\"The state under whose law the payment card is governed.\",\"isNullable\":true,\"name\":\"GoverningLawState\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"PaymentCardAgreement.cdm.json/PaymentCardAgreement\",\"name\":\"AgreementText\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"The text of the payment card agreement.\",\"isNullable\":true,\"name\":\"AgreementText\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"PaymentCardAgreement.cdm.json/PaymentCardAgreement\",\"name\":\"PrivacyNoticeStatement\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"A statement regarding privacy and the use of payment card data.\",\"isNullable\":true,\"name\":\"PrivacyNoticeStatement\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"PaymentCardAgreement.cdm.json/PaymentCardAgreement\",\"name\":\"NoticeToStateResidentsStatement\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"A notice to the resident of a specific state that the payment card is issued in.\",\"isNullable\":true,\"name\":\"NoticeToStateResidentsStatement\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"PaymentCardAgreement.cdm.json/PaymentCardAgreement\",\"name\":\"NoticeToMarriedStateResidents\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"A notice to married state residents regarding the joint liabilities of using the card.\",\"isNullable\":true,\"name\":\"NoticeToMarriedStateResidents\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"PaymentCardAgreement.cdm.json/PaymentCardAgreement\",\"name\":\"SecurityInterestPledgeAssignmentOfCollateralStatement\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"This is an application for secured payment card account. In consideration of the issuance of this secured payment card account, you have authorized Wells Fargo Bank Nevada, N.A. to open a deposit account called the \\\"Secured Card Collateral Account\\\" (the \\\"Collateral Account\\\") in your name. To secure all of your obligations arising under this payment card account, you assign, transfer, pledge, grant a security interest in, and set over to the bank all rights, title and interest in the Collateral Account and in all renewals, additions and proceeds of the Collateral Account. You agree that this security interest, pledge, and assignment includes and gives the Bank the right to redeem, collect and withdraw any part or the full amount of the Collateral Account upon any default under the secured payment card agreement or in the event your secured payment card account is terminated for any reason. You acknowledge and agree that this security interest, pledge, and assignment means that the bank has exclusive control over the Collateral Account. You may not make any withdrawals from the Collateral Account while it secures your payment card. This security interest, pledge, and assignment is given as security for any and all amounts you may owe, including but not limited to interest, fees and charges which may accrue under your secured payment card account. You agree that if the secured payment card account is closed for any reason, the funds in the Collateral Account shall remain on deposit for up to 30-60 days after the balance on the secured payment card account has been paid in full. The Collateral Account will be a non-interest bearing FDIC insured account.\",\"isNullable\":true,\"name\":\"SecurityInterestPledgeAssignmentOfCollateralStatement\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"PaymentCardAgreement.cdm.json/PaymentCardAgreement\",\"name\":\"CollateralAccountAuthorizationStatement\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"You request that the Bank open the Collateral Account described above and agree: \\nThe Collateral Account and the Bank's practices are subject to the terms of the Collateral Account, to federal and state laws, and to Bank policies. \\nTo pay all charges and follow all practices set forth in the terms applicable to the Collateral Account. \\nTo hereby stipulate to the terms of the arbitration program described in the Secured Visa card Customer Agreement and Disclosure Statement. \\nTo abide by all future changes to the terms for the Collateral Account. \\nThe Bank may disclose information about the Collateral Account and payment card account to credit reporting agencies and to other persons or agencies who, in its judgement, have legitimate business purpose for obtaining such information, subject to applicable law.\",\"isNullable\":true,\"name\":\"CollateralAccountAuthorizationStatement\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"PaymentCardAgreement.cdm.json/PaymentCardAgreement\",\"name\":\"ApplicationAgreementStatement\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"Application Agreement: This application is for a payment card with Wells Fargo Bank Nevada, N.A. governed by Nevada law. I certify that all information provided is true, correct, and complete and that I have the legal capacity to enter into this contract. The bank is authorized to verify or check any of the information given, to obtain credit reports on me and to make overdraft protection advances if I requested that feature. I authorize the Bank to obtain information from others to investigate my credit, employment and income history and state records including state employment security agency records and to report information regarding my account to consumer reporting agencies. I agree that the Bank will determine the amount of credit extended, as well as which product I qualify for, based on the Bank's review criteria. If I do not qualify for the product or pricing requested or for the lowest pricing offered, I authorize the Bank to grant me the product and pricing for which I do qualify. I agree to be bound by the terms and conditions of the Customer Agreement and Disclosure Statement, which will be sent to me, and understand that the terms of my account may be changed at any time, subject to applicable law. I hereby stipulate to the terms of the arbitration program described in the Customer Agreement and Disclosure Statement. I understand and agree that I will be liable for payment of all amounts owing on the account. I understand and agree that each person applying will have full and equal access to any credit line extended and each will be individually and jointly liable for payment of all amounts owed even if only one applicant uses the account. I acknowledge receipt of the insurance disclosure above. I further acknowledge that the bank will not consider my decision whether to enroll in Credit Defense Service in its credit approval process.\",\"isNullable\":true,\"name\":\"ApplicationAgreementStatement\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"PaymentCardAgreement.cdm.json/PaymentCardAgreement\",\"name\":\"UseOfInformationStatement\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"To provide you with superior service, to inform you of product opportunities and for other business purposes, the family of banks and companies affiliated with Wells Fargo & Company may share information about you, including information obtained from consumer credit reports, among themselves. If you do not want us to share information in this fashion, provide us with your name, address and social security number or taxpayer identification number (if one has been issued) and your direction, such as, \\\"I request to be excluded from sharing of information among affiliates.\\\" You can provide us with that information by calling us at 1-888-528-8460. Even if you give us such directions, we may still disclose identifying information and information about your transactions and experiences with us to other Wells Fargo companies as permitted by the federal Fair Credit Reporting Act.\",\"isNullable\":true,\"name\":\"UseOfInformationStatement\"}]}}}",
+			"Description": "The terms and conditions to which the payment card holder agrees to honor in regard to the associated payment card.",
+			"DisplayFolderInfo": "{\"name\":\"Contract\",\"colorCode\":\"#917EDB\"}",
+			"PrimaryKeys": "ContractId",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

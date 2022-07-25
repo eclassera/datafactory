@@ -1,0 +1,113 @@
+{
+	"name": "TerritoryType",
+	"properties": {
+		"Name": "TerritoryType",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "The type of territory.\n\nEx:\n- Region\n- District\n- Territory",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "TerritoryTypeId",
+					"Description": "The unique identifier of a Territory type.",
+					"BaseAttributeReference": {
+						"Entity": "TerritoryType.cdm.json/TerritoryType",
+						"Name": "TerritoryTypeId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "TerritoryTypeName",
+					"Description": "The name of a Territory type.",
+					"BaseAttributeReference": {
+						"Entity": "TerritoryType.cdm.json/TerritoryType",
+						"Name": "TerritoryTypeName"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 256,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "TerritoryTypeDescription",
+					"Description": "The description of a Territory type.",
+					"BaseAttributeReference": {
+						"Entity": "TerritoryType.cdm.json/TerritoryType",
+						"Name": "TerritoryTypeDescription"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/TerritoryType",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/TerritoryType",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"TerritoryTypeId\":{\"entity\":\"TerritoryType.cdm.json/TerritoryType\",\"name\":\"TerritoryTypeId\"},\"TerritoryTypeName\":{\"entity\":\"TerritoryType.cdm.json/TerritoryType\",\"name\":\"TerritoryTypeName\"},\"TerritoryTypeDescription\":{\"entity\":\"TerritoryType.cdm.json/TerritoryType\",\"name\":\"TerritoryTypeDescription\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"TerritoryType\",\"path\":\"TerritoryType.cdm.json/TerritoryType\"},\"description\":\"The type of territory.\\n\\nEx:\\n- Region\\n- District\\n- Territory\",\"primaryKey\":[\"TerritoryTypeId\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"TerritoryType.cdm.json/TerritoryType\",\"name\":\"TerritoryTypeId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Territory type.\",\"isNullable\":false,\"name\":\"TerritoryTypeId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"TerritoryType.cdm.json/TerritoryType\",\"name\":\"TerritoryTypeName\"},\"dataType\":\"string\",\"dataTypeLength\":256,\"description\":\"The name of a Territory type.\",\"isNullable\":true,\"name\":\"TerritoryTypeName\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"TerritoryType.cdm.json/TerritoryType\",\"name\":\"TerritoryTypeDescription\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"The description of a Territory type.\",\"isNullable\":true,\"name\":\"TerritoryTypeDescription\"}]}}}",
+			"Description": "The type of territory.\n\nEx:\n- Region\n- District\n- Territory",
+			"DisplayFolderInfo": "{\"name\":\"Geography\",\"colorCode\":\"#008A94\"}",
+			"PrimaryKeys": "TerritoryTypeId",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

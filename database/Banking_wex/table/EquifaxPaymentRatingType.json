@@ -1,0 +1,113 @@
+{
+	"name": "EquifaxPaymentRatingType",
+	"properties": {
+		"Name": "EquifaxPaymentRatingType",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "The Equifax payment rating.\n\nEx:\n- Pays as agreed\n- Closed/never late",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "EquifaxPaymentRatingTypeId",
+					"Description": "The unique identifier of an Equifax Payment Rating Type.",
+					"BaseAttributeReference": {
+						"Entity": "EquifaxPaymentRatingType.cdm.json/EquifaxPaymentRatingType",
+						"Name": "EquifaxPaymentRatingTypeId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "EquifaxPaymentRatingTypeName",
+					"Description": "The name of an Equifax Payment Rating Type.",
+					"BaseAttributeReference": {
+						"Entity": "EquifaxPaymentRatingType.cdm.json/EquifaxPaymentRatingType",
+						"Name": "EquifaxPaymentRatingTypeName"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 256,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "EquifaxPaymentRatingTypeDescription",
+					"Description": "The description of an Equifax Payment Rating Type.",
+					"BaseAttributeReference": {
+						"Entity": "EquifaxPaymentRatingType.cdm.json/EquifaxPaymentRatingType",
+						"Name": "EquifaxPaymentRatingTypeDescription"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/EquifaxPaymentRatingType",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/EquifaxPaymentRatingType",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"EquifaxPaymentRatingTypeId\":{\"entity\":\"EquifaxPaymentRatingType.cdm.json/EquifaxPaymentRatingType\",\"name\":\"EquifaxPaymentRatingTypeId\"},\"EquifaxPaymentRatingTypeName\":{\"entity\":\"EquifaxPaymentRatingType.cdm.json/EquifaxPaymentRatingType\",\"name\":\"EquifaxPaymentRatingTypeName\"},\"EquifaxPaymentRatingTypeDescription\":{\"entity\":\"EquifaxPaymentRatingType.cdm.json/EquifaxPaymentRatingType\",\"name\":\"EquifaxPaymentRatingTypeDescription\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"EquifaxPaymentRatingType\",\"path\":\"EquifaxPaymentRatingType.cdm.json/EquifaxPaymentRatingType\"},\"description\":\"The Equifax payment rating.\\n\\nEx:\\n- Pays as agreed\\n- Closed/never late\",\"primaryKey\":[\"EquifaxPaymentRatingTypeId\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"EquifaxPaymentRatingType.cdm.json/EquifaxPaymentRatingType\",\"name\":\"EquifaxPaymentRatingTypeId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of an Equifax Payment Rating Type.\",\"isNullable\":false,\"name\":\"EquifaxPaymentRatingTypeId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"EquifaxPaymentRatingType.cdm.json/EquifaxPaymentRatingType\",\"name\":\"EquifaxPaymentRatingTypeName\"},\"dataType\":\"string\",\"dataTypeLength\":256,\"description\":\"The name of an Equifax Payment Rating Type.\",\"isNullable\":true,\"name\":\"EquifaxPaymentRatingTypeName\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"EquifaxPaymentRatingType.cdm.json/EquifaxPaymentRatingType\",\"name\":\"EquifaxPaymentRatingTypeDescription\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"The description of an Equifax Payment Rating Type.\",\"isNullable\":true,\"name\":\"EquifaxPaymentRatingTypeDescription\"}]}}}",
+			"Description": "The Equifax payment rating.\n\nEx:\n- Pays as agreed\n- Closed/never late",
+			"DisplayFolderInfo": "{\"name\":\"Customer Credit & Collections\",\"colorCode\":\"#022F22\"}",
+			"PrimaryKeys": "EquifaxPaymentRatingTypeId",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

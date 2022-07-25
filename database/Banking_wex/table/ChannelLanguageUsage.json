@@ -1,0 +1,178 @@
+{
+	"name": "ChannelLanguageUsage",
+	"properties": {
+		"Name": "ChannelLanguageUsage",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "The language(s) and language usage that the channel identifies or are identified as appropriate for various language usage.",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "ChannelId",
+					"Description": "The unique identifier of a Channel.",
+					"BaseAttributeReference": {
+						"Entity": "ChannelLanguageUsage.cdm.json/ChannelLanguageUsage",
+						"Name": "ChannelId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "LanguageUsageId",
+					"Description": "The unique identifier of the Language Usage.",
+					"BaseAttributeReference": {
+						"Entity": "ChannelLanguageUsage.cdm.json/ChannelLanguageUsage",
+						"Name": "LanguageUsageId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "IsoLanguageId",
+					"Description": "The unique identifier of an ISO Language.",
+					"BaseAttributeReference": {
+						"Entity": "ChannelLanguageUsage.cdm.json/ChannelLanguageUsage",
+						"Name": "IsoLanguageId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "PeriodStartTimestamp",
+					"Description": "The period start timestamp that the information is valid or effective as of.",
+					"BaseAttributeReference": {
+						"Entity": "ChannelLanguageUsage.cdm.json/ChannelLanguageUsage",
+						"Name": "PeriodStartTimestamp"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "timestamp",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"TimestampFormat": "YYYY-MM-DD HH:MM:SS.fffffffff",
+							"HIVE_TYPE_STRING": "timestamp"
+						}
+					}
+				},
+				{
+					"Name": "PeriodEndTimestamp",
+					"Description": "The period end timestamp that the information is valid or effective as of.",
+					"BaseAttributeReference": {
+						"Entity": "ChannelLanguageUsage.cdm.json/ChannelLanguageUsage",
+						"Name": "PeriodEndTimestamp"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "timestamp",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"TimestampFormat": "YYYY-MM-DD HH:MM:SS.fffffffff",
+							"HIVE_TYPE_STRING": "timestamp"
+						}
+					}
+				},
+				{
+					"Name": "PreferenceId",
+					"Description": "The unique identifier of a Preference.",
+					"BaseAttributeReference": {
+						"Entity": "ChannelLanguageUsage.cdm.json/ChannelLanguageUsage",
+						"Name": "PreferenceId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "ChannelLanguageUsageNote",
+					"Description": "A note, comment or additional information regarding the Customer Language Usage.",
+					"BaseAttributeReference": {
+						"Entity": "ChannelLanguageUsage.cdm.json/ChannelLanguageUsage",
+						"Name": "ChannelLanguageUsageNote"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/ChannelLanguageUsage",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/ChannelLanguageUsage",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"ChannelId\":{\"entity\":\"ChannelLanguageUsage.cdm.json/ChannelLanguageUsage\",\"name\":\"ChannelId\"},\"LanguageUsageId\":{\"entity\":\"ChannelLanguageUsage.cdm.json/ChannelLanguageUsage\",\"name\":\"LanguageUsageId\"},\"IsoLanguageId\":{\"entity\":\"ChannelLanguageUsage.cdm.json/ChannelLanguageUsage\",\"name\":\"IsoLanguageId\"},\"PeriodStartTimestamp\":{\"entity\":\"ChannelLanguageUsage.cdm.json/ChannelLanguageUsage\",\"name\":\"PeriodStartTimestamp\"},\"PeriodEndTimestamp\":{\"entity\":\"ChannelLanguageUsage.cdm.json/ChannelLanguageUsage\",\"name\":\"PeriodEndTimestamp\"},\"PreferenceId\":{\"entity\":\"ChannelLanguageUsage.cdm.json/ChannelLanguageUsage\",\"name\":\"PreferenceId\"},\"ChannelLanguageUsageNote\":{\"entity\":\"ChannelLanguageUsage.cdm.json/ChannelLanguageUsage\",\"name\":\"ChannelLanguageUsageNote\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"ChannelLanguageUsage\",\"path\":\"ChannelLanguageUsage.cdm.json/ChannelLanguageUsage\"},\"description\":\"The language(s) and language usage that the channel identifies or are identified as appropriate for various language usage.\",\"primaryKey\":[\"ChannelId\",\"LanguageUsageId\",\"IsoLanguageId\",\"PeriodStartTimestamp\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ChannelLanguageUsage.cdm.json/ChannelLanguageUsage\",\"name\":\"ChannelId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Channel.\",\"isNullable\":false,\"name\":\"ChannelId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ChannelLanguageUsage.cdm.json/ChannelLanguageUsage\",\"name\":\"LanguageUsageId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of the Language Usage.\",\"isNullable\":false,\"name\":\"LanguageUsageId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ChannelLanguageUsage.cdm.json/ChannelLanguageUsage\",\"name\":\"IsoLanguageId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of an ISO Language.\",\"isNullable\":false,\"name\":\"IsoLanguageId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ChannelLanguageUsage.cdm.json/ChannelLanguageUsage\",\"name\":\"PeriodStartTimestamp\"},\"dataType\":\"timestamp\",\"description\":\"The period start timestamp that the information is valid or effective as of.\",\"isNullable\":false,\"name\":\"PeriodStartTimestamp\",\"timestampFormat\":\"YYYY-MM-DD HH:MM:SS.fffffffff\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ChannelLanguageUsage.cdm.json/ChannelLanguageUsage\",\"name\":\"PeriodEndTimestamp\"},\"dataType\":\"timestamp\",\"description\":\"The period end timestamp that the information is valid or effective as of.\",\"isNullable\":true,\"name\":\"PeriodEndTimestamp\",\"timestampFormat\":\"YYYY-MM-DD HH:MM:SS.fffffffff\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ChannelLanguageUsage.cdm.json/ChannelLanguageUsage\",\"name\":\"PreferenceId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Preference.\",\"isNullable\":false,\"name\":\"PreferenceId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ChannelLanguageUsage.cdm.json/ChannelLanguageUsage\",\"name\":\"ChannelLanguageUsageNote\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"A note, comment or additional information regarding the Customer Language Usage.\",\"isNullable\":true,\"name\":\"ChannelLanguageUsageNote\"}]}}}",
+			"Description": "The language(s) and language usage that the channel identifies or are identified as appropriate for various language usage.",
+			"DisplayFolderInfo": "{\"name\":\"Channel\",\"colorCode\":\"#001D3F\"}",
+			"PrimaryKeys": "ChannelId,LanguageUsageId,IsoLanguageId,PeriodStartTimestamp",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

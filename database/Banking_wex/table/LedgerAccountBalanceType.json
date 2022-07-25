@@ -1,0 +1,113 @@
+{
+	"name": "LedgerAccountBalanceType",
+	"properties": {
+		"Name": "LedgerAccountBalanceType",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "A categorization of the Ledger Account Balance.\n\nEx:\nCurrent \n\nBalance Forward - At month close, all open transactions and the ending balance from the previous month are summarized into a single amount which is then aged as current. This means that all unpaid balances roll forward as a single amount at the beginning of each month with no aging occurring. No transaction detail is therefore kept on file once the month is closed.\n\nAged Balance Forward - As each month is closed, open transactions are summarized into a monthly total amount, which is then aged as of the last calendar day of that month. (Multiple monthly balances may exist for each customer.) After the month is closed, the transaction detail is not kept on file. This kind of balance type is therefore useful for those customers for whom it is not necessary to keep a transaction by transaction level of detail on file.",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "LedgerAccountBalanceTypeId",
+					"Description": "The unique identifier of a Ledger Account Balance Type.",
+					"BaseAttributeReference": {
+						"Entity": "LedgerAccountBalanceType.cdm.json/LedgerAccountBalanceType",
+						"Name": "LedgerAccountBalanceTypeId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "LedgerAccountBalanceTypeName",
+					"Description": "The name of a Ledger Account Balance Type.",
+					"BaseAttributeReference": {
+						"Entity": "LedgerAccountBalanceType.cdm.json/LedgerAccountBalanceType",
+						"Name": "LedgerAccountBalanceTypeName"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 256,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "LedgerAccountBalanceTypeDescription",
+					"Description": "The description of a Ledger Account Balance Type.",
+					"BaseAttributeReference": {
+						"Entity": "LedgerAccountBalanceType.cdm.json/LedgerAccountBalanceType",
+						"Name": "LedgerAccountBalanceTypeDescription"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/LedgerAccountBalanceType",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/LedgerAccountBalanceType",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"LedgerAccountBalanceTypeId\":{\"entity\":\"LedgerAccountBalanceType.cdm.json/LedgerAccountBalanceType\",\"name\":\"LedgerAccountBalanceTypeId\"},\"LedgerAccountBalanceTypeName\":{\"entity\":\"LedgerAccountBalanceType.cdm.json/LedgerAccountBalanceType\",\"name\":\"LedgerAccountBalanceTypeName\"},\"LedgerAccountBalanceTypeDescription\":{\"entity\":\"LedgerAccountBalanceType.cdm.json/LedgerAccountBalanceType\",\"name\":\"LedgerAccountBalanceTypeDescription\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"LedgerAccountBalanceType\",\"path\":\"LedgerAccountBalanceType.cdm.json/LedgerAccountBalanceType\"},\"description\":\"A categorization of the Ledger Account Balance.\\n\\nEx:\\nCurrent \\n\\nBalance Forward - At month close, all open transactions and the ending balance from the previous month are summarized into a single amount which is then aged as current. This means that all unpaid balances roll forward as a single amount at the beginning of each month with no aging occurring. No transaction detail is therefore kept on file once the month is closed.\\n\\nAged Balance Forward - As each month is closed, open transactions are summarized into a monthly total amount, which is then aged as of the last calendar day of that month. (Multiple monthly balances may exist for each customer.) After the month is closed, the transaction detail is not kept on file. This kind of balance type is therefore useful for those customers for whom it is not necessary to keep a transaction by transaction level of detail on file.\",\"primaryKey\":[\"LedgerAccountBalanceTypeId\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"LedgerAccountBalanceType.cdm.json/LedgerAccountBalanceType\",\"name\":\"LedgerAccountBalanceTypeId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Ledger Account Balance Type.\",\"isNullable\":false,\"name\":\"LedgerAccountBalanceTypeId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"LedgerAccountBalanceType.cdm.json/LedgerAccountBalanceType\",\"name\":\"LedgerAccountBalanceTypeName\"},\"dataType\":\"string\",\"dataTypeLength\":256,\"description\":\"The name of a Ledger Account Balance Type.\",\"isNullable\":true,\"name\":\"LedgerAccountBalanceTypeName\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"LedgerAccountBalanceType.cdm.json/LedgerAccountBalanceType\",\"name\":\"LedgerAccountBalanceTypeDescription\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"The description of a Ledger Account Balance Type.\",\"isNullable\":true,\"name\":\"LedgerAccountBalanceTypeDescription\"}]}}}",
+			"Description": "A categorization of the Ledger Account Balance.\n\nEx:\nCurrent \n\nBalance Forward - At month close, all open transactions and the ending balance from the previous month are summarized into a single amount which is then aged as current. This means that all unpaid balances roll forward as a single amount at the beginning of each month with no aging occurring. No transaction detail is therefore kept on file once the month is closed.\n\nAged Balance Forward - As each month is closed, open transactions are summarized into a monthly total amount, which is then aged as of the last calendar day of that month. (Multiple monthly balances may exist for each customer.) After the month is closed, the transaction detail is not kept on file. This kind of balance type is therefore useful for those customers for whom it is not necessary to keep a transaction by transaction level of detail on file.",
+			"DisplayFolderInfo": "{\"name\":\"Accounting & Financial Reporting\",\"colorCode\":\"#0078D4\"}",
+			"PrimaryKeys": "LedgerAccountBalanceTypeId",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

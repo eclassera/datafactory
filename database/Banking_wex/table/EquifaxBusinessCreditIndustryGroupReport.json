@@ -1,0 +1,586 @@
+{
+	"name": "EquifaxBusinessCreditIndustryGroupReport",
+	"properties": {
+		"Name": "EquifaxBusinessCreditIndustryGroupReport",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "SUMMARY - Open Non-Financial Accounts by Industry Group\nThis table summarizes open non-financial accounts, by credit grantor industry, with a date reported within 24 months of inquiry.\n\nSUMMARY - Closed Non-Financial Accounts by Industry Group\nThis table summarizes closed non-financial accounts, by credit grantor industry, with a closed date within 24 months of inquiry.",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "EquifaxIndustryGroupId",
+					"Description": "The unique identifier of an Equifax Industry Group.",
+					"BaseAttributeReference": {
+						"Entity": "EquifaxBusinessCreditIndustryGroupReport.cdm.json/EquifaxBusinessCreditIndustryGroupReport",
+						"Name": "EquifaxIndustryGroupId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "EfxId",
+					"Description": "The EFX ID™ is a unique and persistent nine-digit number that identifies and tracks the business unit with which you have the credit relationship;",
+					"BaseAttributeReference": {
+						"Entity": "EquifaxBusinessCreditIndustryGroupReport.cdm.json/EquifaxBusinessCreditIndustryGroupReport",
+						"Name": "EfxId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "ProfileTimestamp",
+					"Description": "Provides the timestamp when the inquiry was made as recorded\nby Equifax (Eastern Time).",
+					"BaseAttributeReference": {
+						"Entity": "EquifaxBusinessCreditIndustryGroupReport.cdm.json/EquifaxBusinessCreditIndustryGroupReport",
+						"Name": "ProfileTimestamp"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "timestamp",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"TimestampFormat": "YYYY-MM-DD HH:MM:SS.fffffffff",
+							"HIVE_TYPE_STRING": "timestamp"
+						}
+					}
+				},
+				{
+					"Name": "NumberOfAccounts",
+					"Description": "Count of open accounts by industry group.",
+					"BaseAttributeReference": {
+						"Entity": "EquifaxBusinessCreditIndustryGroupReport.cdm.json/EquifaxBusinessCreditIndustryGroupReport",
+						"Name": "NumberOfAccounts"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "MostSevereStatusComment",
+					"Description": "Returns the most severe current status experienced by one of the credit grantors in this industry group.\n\nEX:\n- Current\n- Slow up to 3",
+					"BaseAttributeReference": {
+						"Entity": "EquifaxBusinessCreditIndustryGroupReport.cdm.json/EquifaxBusinessCreditIndustryGroupReport",
+						"Name": "MostSevereStatusComment"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "HighestBalanceAmount",
+					"Description": "The single highest credit extended or past due from one of the credit grantors for that industry group.",
+					"BaseAttributeReference": {
+						"Entity": "EquifaxBusinessCreditIndustryGroupReport.cdm.json/EquifaxBusinessCreditIndustryGroupReport",
+						"Name": "HighestBalanceAmount"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "decimal",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Precision": 18,
+						"Scale": 2,
+						"Properties": {
+							"HIVE_TYPE_STRING": "decimal"
+						}
+					}
+				},
+				{
+					"Name": "HighestTotalPastDueAmount",
+					"Description": "The single highest total past due as reported by one of the credit grantors for that industry group.",
+					"BaseAttributeReference": {
+						"Entity": "EquifaxBusinessCreditIndustryGroupReport.cdm.json/EquifaxBusinessCreditIndustryGroupReport",
+						"Name": "HighestTotalPastDueAmount"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "decimal",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Precision": 18,
+						"Scale": 2,
+						"Properties": {
+							"HIVE_TYPE_STRING": "decimal"
+						}
+					}
+				},
+				{
+					"Name": "BalanceAmount",
+					"Description": "Sum of all the total reported balances including any past due amount.",
+					"BaseAttributeReference": {
+						"Entity": "EquifaxBusinessCreditIndustryGroupReport.cdm.json/EquifaxBusinessCreditIndustryGroupReport",
+						"Name": "BalanceAmount"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "decimal",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Precision": 18,
+						"Scale": 2,
+						"Properties": {
+							"HIVE_TYPE_STRING": "decimal"
+						}
+					}
+				},
+				{
+					"Name": "PastDueAmount",
+					"Description": "Sum of all past due amounts (excluding charge-offs).",
+					"BaseAttributeReference": {
+						"Entity": "EquifaxBusinessCreditIndustryGroupReport.cdm.json/EquifaxBusinessCreditIndustryGroupReport",
+						"Name": "PastDueAmount"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "decimal",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Precision": 18,
+						"Scale": 2,
+						"Properties": {
+							"HIVE_TYPE_STRING": "decimal"
+						}
+					}
+				},
+				{
+					"Name": "SlowUpTo30Amount",
+					"Description": "The amount of that aging category's dollars compared to total past due up to 30 days.",
+					"BaseAttributeReference": {
+						"Entity": "EquifaxBusinessCreditIndustryGroupReport.cdm.json/EquifaxBusinessCreditIndustryGroupReport",
+						"Name": "SlowUpTo30Amount"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "decimal",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Precision": 18,
+						"Scale": 2,
+						"Properties": {
+							"HIVE_TYPE_STRING": "decimal"
+						}
+					}
+				},
+				{
+					"Name": "SlowUpTo30Percentage",
+					"Description": "The percentage of that aging category's dollars compared to total past due up to 30 days.",
+					"BaseAttributeReference": {
+						"Entity": "EquifaxBusinessCreditIndustryGroupReport.cdm.json/EquifaxBusinessCreditIndustryGroupReport",
+						"Name": "SlowUpTo30Percentage"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "decimal",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Precision": 18,
+						"Scale": 8,
+						"Properties": {
+							"HIVE_TYPE_STRING": "decimal"
+						}
+					}
+				},
+				{
+					"Name": "SlowUpTo60Amount",
+					"Description": "The amount of that aging category's dollars compared to total past due up to 60 days.",
+					"BaseAttributeReference": {
+						"Entity": "EquifaxBusinessCreditIndustryGroupReport.cdm.json/EquifaxBusinessCreditIndustryGroupReport",
+						"Name": "SlowUpTo60Amount"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "decimal",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Precision": 18,
+						"Scale": 2,
+						"Properties": {
+							"HIVE_TYPE_STRING": "decimal"
+						}
+					}
+				},
+				{
+					"Name": "SlowUpTo60Percentage",
+					"Description": "The percentage of that aging category's dollars compared to total past due up to 60 days.",
+					"BaseAttributeReference": {
+						"Entity": "EquifaxBusinessCreditIndustryGroupReport.cdm.json/EquifaxBusinessCreditIndustryGroupReport",
+						"Name": "SlowUpTo60Percentage"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "decimal",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Precision": 18,
+						"Scale": 8,
+						"Properties": {
+							"HIVE_TYPE_STRING": "decimal"
+						}
+					}
+				},
+				{
+					"Name": "SlowUpTo90Amount",
+					"Description": "The amount of that aging category's dollars compared to total past due up to 90 days.",
+					"BaseAttributeReference": {
+						"Entity": "EquifaxBusinessCreditIndustryGroupReport.cdm.json/EquifaxBusinessCreditIndustryGroupReport",
+						"Name": "SlowUpTo90Amount"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "decimal",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Precision": 18,
+						"Scale": 2,
+						"Properties": {
+							"HIVE_TYPE_STRING": "decimal"
+						}
+					}
+				},
+				{
+					"Name": "SlowUpTo90Percentage",
+					"Description": "The percentage of that aging category's dollars compared to total past due up to 90 days.",
+					"BaseAttributeReference": {
+						"Entity": "EquifaxBusinessCreditIndustryGroupReport.cdm.json/EquifaxBusinessCreditIndustryGroupReport",
+						"Name": "SlowUpTo90Percentage"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "decimal",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Precision": 18,
+						"Scale": 8,
+						"Properties": {
+							"HIVE_TYPE_STRING": "decimal"
+						}
+					}
+				},
+				{
+					"Name": "SlowUpTo120Amount",
+					"Description": "The amount of that aging category's dollars compared to total past due up to 120 days.",
+					"BaseAttributeReference": {
+						"Entity": "EquifaxBusinessCreditIndustryGroupReport.cdm.json/EquifaxBusinessCreditIndustryGroupReport",
+						"Name": "SlowUpTo120Amount"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "decimal",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Precision": 18,
+						"Scale": 2,
+						"Properties": {
+							"HIVE_TYPE_STRING": "decimal"
+						}
+					}
+				},
+				{
+					"Name": "SlowUpTo120Percentage",
+					"Description": "The percentage of that aging category's dollars compared to total past due up to 120 days.",
+					"BaseAttributeReference": {
+						"Entity": "EquifaxBusinessCreditIndustryGroupReport.cdm.json/EquifaxBusinessCreditIndustryGroupReport",
+						"Name": "SlowUpTo120Percentage"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "decimal",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Precision": 18,
+						"Scale": 8,
+						"Properties": {
+							"HIVE_TYPE_STRING": "decimal"
+						}
+					}
+				},
+				{
+					"Name": "SlowUp121PlusAmount",
+					"Description": "The amount of that aging category's dollars compared to total past due exceeding 120 days.",
+					"BaseAttributeReference": {
+						"Entity": "EquifaxBusinessCreditIndustryGroupReport.cdm.json/EquifaxBusinessCreditIndustryGroupReport",
+						"Name": "SlowUp121PlusAmount"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "decimal",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Precision": 18,
+						"Scale": 2,
+						"Properties": {
+							"HIVE_TYPE_STRING": "decimal"
+						}
+					}
+				},
+				{
+					"Name": "SlowUp120PlusPercentage",
+					"Description": "The percentage of that aging category's dollars compared to total past due exceeding 120 days.",
+					"BaseAttributeReference": {
+						"Entity": "EquifaxBusinessCreditIndustryGroupReport.cdm.json/EquifaxBusinessCreditIndustryGroupReport",
+						"Name": "SlowUp120PlusPercentage"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "decimal",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Precision": 18,
+						"Scale": 8,
+						"Properties": {
+							"HIVE_TYPE_STRING": "decimal"
+						}
+					}
+				},
+				{
+					"Name": "SingleHighestCreditExtendedAmount",
+					"Description": "The highest credit amount that was extended for all accounts closed.",
+					"BaseAttributeReference": {
+						"Entity": "EquifaxBusinessCreditIndustryGroupReport.cdm.json/EquifaxBusinessCreditIndustryGroupReport",
+						"Name": "SingleHighestCreditExtendedAmount"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "decimal",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Precision": 18,
+						"Scale": 2,
+						"Properties": {
+							"HIVE_TYPE_STRING": "decimal"
+						}
+					}
+				},
+				{
+					"Name": "TotalHighCreditAmount",
+					"Description": "Total highest credit or balance extended for all accounts closed in current standing ($0 balance).",
+					"BaseAttributeReference": {
+						"Entity": "EquifaxBusinessCreditIndustryGroupReport.cdm.json/EquifaxBusinessCreditIndustryGroupReport",
+						"Name": "TotalHighCreditAmount"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "decimal",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Precision": 18,
+						"Scale": 2,
+						"Properties": {
+							"HIVE_TYPE_STRING": "decimal"
+						}
+					}
+				},
+				{
+					"Name": "NumberOfAccountsClosedInGoodStanding",
+					"Description": "Number of accounts closed with a $0 balance.",
+					"BaseAttributeReference": {
+						"Entity": "EquifaxBusinessCreditIndustryGroupReport.cdm.json/EquifaxBusinessCreditIndustryGroupReport",
+						"Name": "NumberOfAccountsClosedInGoodStanding"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "MostRecentDateClosedInCurrentStanding",
+					"Description": "The most recent date closed for all accounts closed in current standing.",
+					"BaseAttributeReference": {
+						"Entity": "EquifaxBusinessCreditIndustryGroupReport.cdm.json/EquifaxBusinessCreditIndustryGroupReport",
+						"Name": "MostRecentDateClosedInCurrentStanding"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "date",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"DateFormat": "YYYY-MM-DD",
+							"HIVE_TYPE_STRING": "date"
+						}
+					}
+				},
+				{
+					"Name": "NumberOfAccountsClosedInDelinquentStatus",
+					"Description": "Number of all accounts closed with a delinquent status.",
+					"BaseAttributeReference": {
+						"Entity": "EquifaxBusinessCreditIndustryGroupReport.cdm.json/EquifaxBusinessCreditIndustryGroupReport",
+						"Name": "NumberOfAccountsClosedInDelinquentStatus"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "MostRecentDateClosedInDelinquentStatus",
+					"Description": "The most recent closed date for all accounts closed with a delinquent status.",
+					"BaseAttributeReference": {
+						"Entity": "EquifaxBusinessCreditIndustryGroupReport.cdm.json/EquifaxBusinessCreditIndustryGroupReport",
+						"Name": "MostRecentDateClosedInDelinquentStatus"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "date",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"DateFormat": "YYYY-MM-DD",
+							"HIVE_TYPE_STRING": "date"
+						}
+					}
+				},
+				{
+					"Name": "BalanceAtClosedDateAmount",
+					"Description": "Total outstanding balances for all accounts closed with a delinquent status.",
+					"BaseAttributeReference": {
+						"Entity": "EquifaxBusinessCreditIndustryGroupReport.cdm.json/EquifaxBusinessCreditIndustryGroupReport",
+						"Name": "BalanceAtClosedDateAmount"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "decimal",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Precision": 18,
+						"Scale": 2,
+						"Properties": {
+							"HIVE_TYPE_STRING": "decimal"
+						}
+					}
+				},
+				{
+					"Name": "NumberOfAccountsClosedInChargeOffStatus",
+					"Description": "Number of accounts charged-off.",
+					"BaseAttributeReference": {
+						"Entity": "EquifaxBusinessCreditIndustryGroupReport.cdm.json/EquifaxBusinessCreditIndustryGroupReport",
+						"Name": "NumberOfAccountsClosedInChargeOffStatus"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "MostRecentDateClosedInChargeOffStatus",
+					"Description": "The most recent date closed for all accounts closed with a charged-off status.",
+					"BaseAttributeReference": {
+						"Entity": "EquifaxBusinessCreditIndustryGroupReport.cdm.json/EquifaxBusinessCreditIndustryGroupReport",
+						"Name": "MostRecentDateClosedInChargeOffStatus"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "date",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"DateFormat": "YYYY-MM-DD",
+							"HIVE_TYPE_STRING": "date"
+						}
+					}
+				},
+				{
+					"Name": "BalanceAtChargeOffDate",
+					"Description": "Reported balances of all charged-off accounts at the date closed. Balance may not equal charged-off amount in the Report Highlights due to interest, penalties, and late fees which may have been reported after the closed date.",
+					"BaseAttributeReference": {
+						"Entity": "EquifaxBusinessCreditIndustryGroupReport.cdm.json/EquifaxBusinessCreditIndustryGroupReport",
+						"Name": "BalanceAtChargeOffDate"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "decimal",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Precision": 18,
+						"Scale": 2,
+						"Properties": {
+							"HIVE_TYPE_STRING": "decimal"
+						}
+					}
+				},
+				{
+					"Name": "GrandTotalAmount",
+					"Description": "Number of closed non-financial accounts by status at closed date; sums total balance in delinquent and charged-off status at date closed.",
+					"BaseAttributeReference": {
+						"Entity": "EquifaxBusinessCreditIndustryGroupReport.cdm.json/EquifaxBusinessCreditIndustryGroupReport",
+						"Name": "GrandTotalAmount"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "decimal",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Precision": 18,
+						"Scale": 2,
+						"Properties": {
+							"HIVE_TYPE_STRING": "decimal"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/EquifaxBusinessCreditIndustryGroupReport",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/EquifaxBusinessCreditIndustryGroupReport",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"EquifaxIndustryGroupId\":{\"entity\":\"EquifaxBusinessCreditIndustryGroupReport.cdm.json/EquifaxBusinessCreditIndustryGroupReport\",\"name\":\"EquifaxIndustryGroupId\"},\"EfxId\":{\"entity\":\"EquifaxBusinessCreditIndustryGroupReport.cdm.json/EquifaxBusinessCreditIndustryGroupReport\",\"name\":\"EfxId\"},\"ProfileTimestamp\":{\"entity\":\"EquifaxBusinessCreditIndustryGroupReport.cdm.json/EquifaxBusinessCreditIndustryGroupReport\",\"name\":\"ProfileTimestamp\"},\"NumberOfAccounts\":{\"entity\":\"EquifaxBusinessCreditIndustryGroupReport.cdm.json/EquifaxBusinessCreditIndustryGroupReport\",\"name\":\"NumberOfAccounts\"},\"MostSevereStatusComment\":{\"entity\":\"EquifaxBusinessCreditIndustryGroupReport.cdm.json/EquifaxBusinessCreditIndustryGroupReport\",\"name\":\"MostSevereStatusComment\"},\"HighestBalanceAmount\":{\"entity\":\"EquifaxBusinessCreditIndustryGroupReport.cdm.json/EquifaxBusinessCreditIndustryGroupReport\",\"name\":\"HighestBalanceAmount\"},\"HighestTotalPastDueAmount\":{\"entity\":\"EquifaxBusinessCreditIndustryGroupReport.cdm.json/EquifaxBusinessCreditIndustryGroupReport\",\"name\":\"HighestTotalPastDueAmount\"},\"BalanceAmount\":{\"entity\":\"EquifaxBusinessCreditIndustryGroupReport.cdm.json/EquifaxBusinessCreditIndustryGroupReport\",\"name\":\"BalanceAmount\"},\"PastDueAmount\":{\"entity\":\"EquifaxBusinessCreditIndustryGroupReport.cdm.json/EquifaxBusinessCreditIndustryGroupReport\",\"name\":\"PastDueAmount\"},\"SlowUpTo30Amount\":{\"entity\":\"EquifaxBusinessCreditIndustryGroupReport.cdm.json/EquifaxBusinessCreditIndustryGroupReport\",\"name\":\"SlowUpTo30Amount\"},\"SlowUpTo30Percentage\":{\"entity\":\"EquifaxBusinessCreditIndustryGroupReport.cdm.json/EquifaxBusinessCreditIndustryGroupReport\",\"name\":\"SlowUpTo30Percentage\"},\"SlowUpTo60Amount\":{\"entity\":\"EquifaxBusinessCreditIndustryGroupReport.cdm.json/EquifaxBusinessCreditIndustryGroupReport\",\"name\":\"SlowUpTo60Amount\"},\"SlowUpTo60Percentage\":{\"entity\":\"EquifaxBusinessCreditIndustryGroupReport.cdm.json/EquifaxBusinessCreditIndustryGroupReport\",\"name\":\"SlowUpTo60Percentage\"},\"SlowUpTo90Amount\":{\"entity\":\"EquifaxBusinessCreditIndustryGroupReport.cdm.json/EquifaxBusinessCreditIndustryGroupReport\",\"name\":\"SlowUpTo90Amount\"},\"SlowUpTo90Percentage\":{\"entity\":\"EquifaxBusinessCreditIndustryGroupReport.cdm.json/EquifaxBusinessCreditIndustryGroupReport\",\"name\":\"SlowUpTo90Percentage\"},\"SlowUpTo120Amount\":{\"entity\":\"EquifaxBusinessCreditIndustryGroupReport.cdm.json/EquifaxBusinessCreditIndustryGroupReport\",\"name\":\"SlowUpTo120Amount\"},\"SlowUpTo120Percentage\":{\"entity\":\"EquifaxBusinessCreditIndustryGroupReport.cdm.json/EquifaxBusinessCreditIndustryGroupReport\",\"name\":\"SlowUpTo120Percentage\"},\"SlowUp121PlusAmount\":{\"entity\":\"EquifaxBusinessCreditIndustryGroupReport.cdm.json/EquifaxBusinessCreditIndustryGroupReport\",\"name\":\"SlowUp121PlusAmount\"},\"SlowUp120PlusPercentage\":{\"entity\":\"EquifaxBusinessCreditIndustryGroupReport.cdm.json/EquifaxBusinessCreditIndustryGroupReport\",\"name\":\"SlowUp120PlusPercentage\"},\"SingleHighestCreditExtendedAmount\":{\"entity\":\"EquifaxBusinessCreditIndustryGroupReport.cdm.json/EquifaxBusinessCreditIndustryGroupReport\",\"name\":\"SingleHighestCreditExtendedAmount\"},\"TotalHighCreditAmount\":{\"entity\":\"EquifaxBusinessCreditIndustryGroupReport.cdm.json/EquifaxBusinessCreditIndustryGroupReport\",\"name\":\"TotalHighCreditAmount\"},\"NumberOfAccountsClosedInGoodStanding\":{\"entity\":\"EquifaxBusinessCreditIndustryGroupReport.cdm.json/EquifaxBusinessCreditIndustryGroupReport\",\"name\":\"NumberOfAccountsClosedInGoodStanding\"},\"MostRecentDateClosedInCurrentStanding\":{\"entity\":\"EquifaxBusinessCreditIndustryGroupReport.cdm.json/EquifaxBusinessCreditIndustryGroupReport\",\"name\":\"MostRecentDateClosedInCurrentStanding\"},\"NumberOfAccountsClosedInDelinquentStatus\":{\"entity\":\"EquifaxBusinessCreditIndustryGroupReport.cdm.json/EquifaxBusinessCreditIndustryGroupReport\",\"name\":\"NumberOfAccountsClosedInDelinquentStatus\"},\"MostRecentDateClosedInDelinquentStatus\":{\"entity\":\"EquifaxBusinessCreditIndustryGroupReport.cdm.json/EquifaxBusinessCreditIndustryGroupReport\",\"name\":\"MostRecentDateClosedInDelinquentStatus\"},\"BalanceAtClosedDateAmount\":{\"entity\":\"EquifaxBusinessCreditIndustryGroupReport.cdm.json/EquifaxBusinessCreditIndustryGroupReport\",\"name\":\"BalanceAtClosedDateAmount\"},\"NumberOfAccountsClosedInChargeOffStatus\":{\"entity\":\"EquifaxBusinessCreditIndustryGroupReport.cdm.json/EquifaxBusinessCreditIndustryGroupReport\",\"name\":\"NumberOfAccountsClosedInChargeOffStatus\"},\"MostRecentDateClosedInChargeOffStatus\":{\"entity\":\"EquifaxBusinessCreditIndustryGroupReport.cdm.json/EquifaxBusinessCreditIndustryGroupReport\",\"name\":\"MostRecentDateClosedInChargeOffStatus\"},\"BalanceAtChargeOffDate\":{\"entity\":\"EquifaxBusinessCreditIndustryGroupReport.cdm.json/EquifaxBusinessCreditIndustryGroupReport\",\"name\":\"BalanceAtChargeOffDate\"},\"GrandTotalAmount\":{\"entity\":\"EquifaxBusinessCreditIndustryGroupReport.cdm.json/EquifaxBusinessCreditIndustryGroupReport\",\"name\":\"GrandTotalAmount\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"EquifaxBusinessCreditIndustryGroupReport\",\"path\":\"EquifaxBusinessCreditIndustryGroupReport.cdm.json/EquifaxBusinessCreditIndustryGroupReport\"},\"description\":\"SUMMARY - Open Non-Financial Accounts by Industry Group\\nThis table summarizes open non-financial accounts, by credit grantor industry, with a date reported within 24 months of inquiry.\\n\\nSUMMARY - Closed Non-Financial Accounts by Industry Group\\nThis table summarizes closed non-financial accounts, by credit grantor industry, with a closed date within 24 months of inquiry.\",\"primaryKey\":[\"EquifaxIndustryGroupId\",\"EfxId\",\"ProfileTimestamp\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"EquifaxBusinessCreditIndustryGroupReport.cdm.json/EquifaxBusinessCreditIndustryGroupReport\",\"name\":\"EquifaxIndustryGroupId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of an Equifax Industry Group.\",\"isNullable\":false,\"name\":\"EquifaxIndustryGroupId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"EquifaxBusinessCreditIndustryGroupReport.cdm.json/EquifaxBusinessCreditIndustryGroupReport\",\"name\":\"EfxId\"},\"dataType\":\"integer\",\"description\":\"The EFX ID™ is a unique and persistent nine-digit number that identifies and tracks the business unit with which you have the credit relationship;\",\"isNullable\":false,\"name\":\"EfxId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"EquifaxBusinessCreditIndustryGroupReport.cdm.json/EquifaxBusinessCreditIndustryGroupReport\",\"name\":\"ProfileTimestamp\"},\"dataType\":\"timestamp\",\"description\":\"Provides the timestamp when the inquiry was made as recorded\\nby Equifax (Eastern Time).\",\"isNullable\":false,\"name\":\"ProfileTimestamp\",\"timestampFormat\":\"YYYY-MM-DD HH:MM:SS.fffffffff\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"EquifaxBusinessCreditIndustryGroupReport.cdm.json/EquifaxBusinessCreditIndustryGroupReport\",\"name\":\"NumberOfAccounts\"},\"dataType\":\"integer\",\"description\":\"Count of open accounts by industry group.\",\"isNullable\":true,\"name\":\"NumberOfAccounts\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"EquifaxBusinessCreditIndustryGroupReport.cdm.json/EquifaxBusinessCreditIndustryGroupReport\",\"name\":\"MostSevereStatusComment\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"Returns the most severe current status experienced by one of the credit grantors in this industry group.\\n\\nEX:\\n- Current\\n- Slow up to 3\",\"isNullable\":true,\"name\":\"MostSevereStatusComment\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"EquifaxBusinessCreditIndustryGroupReport.cdm.json/EquifaxBusinessCreditIndustryGroupReport\",\"name\":\"HighestBalanceAmount\"},\"dataType\":\"decimal\",\"dataTypeLength\":18,\"description\":\"The single highest credit extended or past due from one of the credit grantors for that industry group.\",\"isNullable\":true,\"scale\":2,\"name\":\"HighestBalanceAmount\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"EquifaxBusinessCreditIndustryGroupReport.cdm.json/EquifaxBusinessCreditIndustryGroupReport\",\"name\":\"HighestTotalPastDueAmount\"},\"dataType\":\"decimal\",\"dataTypeLength\":18,\"description\":\"The single highest total past due as reported by one of the credit grantors for that industry group.\",\"isNullable\":true,\"scale\":2,\"name\":\"HighestTotalPastDueAmount\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"EquifaxBusinessCreditIndustryGroupReport.cdm.json/EquifaxBusinessCreditIndustryGroupReport\",\"name\":\"BalanceAmount\"},\"dataType\":\"decimal\",\"dataTypeLength\":18,\"description\":\"Sum of all the total reported balances including any past due amount.\",\"isNullable\":true,\"scale\":2,\"name\":\"BalanceAmount\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"EquifaxBusinessCreditIndustryGroupReport.cdm.json/EquifaxBusinessCreditIndustryGroupReport\",\"name\":\"PastDueAmount\"},\"dataType\":\"decimal\",\"dataTypeLength\":18,\"description\":\"Sum of all past due amounts (excluding charge-offs).\",\"isNullable\":true,\"scale\":2,\"name\":\"PastDueAmount\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"EquifaxBusinessCreditIndustryGroupReport.cdm.json/EquifaxBusinessCreditIndustryGroupReport\",\"name\":\"SlowUpTo30Amount\"},\"dataType\":\"decimal\",\"dataTypeLength\":18,\"description\":\"The amount of that aging category's dollars compared to total past due up to 30 days.\",\"isNullable\":true,\"scale\":2,\"name\":\"SlowUpTo30Amount\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"EquifaxBusinessCreditIndustryGroupReport.cdm.json/EquifaxBusinessCreditIndustryGroupReport\",\"name\":\"SlowUpTo30Percentage\"},\"dataType\":\"decimal\",\"dataTypeLength\":18,\"description\":\"The percentage of that aging category's dollars compared to total past due up to 30 days.\",\"isNullable\":true,\"scale\":8,\"name\":\"SlowUpTo30Percentage\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"EquifaxBusinessCreditIndustryGroupReport.cdm.json/EquifaxBusinessCreditIndustryGroupReport\",\"name\":\"SlowUpTo60Amount\"},\"dataType\":\"decimal\",\"dataTypeLength\":18,\"description\":\"The amount of that aging category's dollars compared to total past due up to 60 days.\",\"isNullable\":true,\"scale\":2,\"name\":\"SlowUpTo60Amount\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"EquifaxBusinessCreditIndustryGroupReport.cdm.json/EquifaxBusinessCreditIndustryGroupReport\",\"name\":\"SlowUpTo60Percentage\"},\"dataType\":\"decimal\",\"dataTypeLength\":18,\"description\":\"The percentage of that aging category's dollars compared to total past due up to 60 days.\",\"isNullable\":true,\"scale\":8,\"name\":\"SlowUpTo60Percentage\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"EquifaxBusinessCreditIndustryGroupReport.cdm.json/EquifaxBusinessCreditIndustryGroupReport\",\"name\":\"SlowUpTo90Amount\"},\"dataType\":\"decimal\",\"dataTypeLength\":18,\"description\":\"The amount of that aging category's dollars compared to total past due up to 90 days.\",\"isNullable\":true,\"scale\":2,\"name\":\"SlowUpTo90Amount\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"EquifaxBusinessCreditIndustryGroupReport.cdm.json/EquifaxBusinessCreditIndustryGroupReport\",\"name\":\"SlowUpTo90Percentage\"},\"dataType\":\"decimal\",\"dataTypeLength\":18,\"description\":\"The percentage of that aging category's dollars compared to total past due up to 90 days.\",\"isNullable\":true,\"scale\":8,\"name\":\"SlowUpTo90Percentage\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"EquifaxBusinessCreditIndustryGroupReport.cdm.json/EquifaxBusinessCreditIndustryGroupReport\",\"name\":\"SlowUpTo120Amount\"},\"dataType\":\"decimal\",\"dataTypeLength\":18,\"description\":\"The amount of that aging category's dollars compared to total past due up to 120 days.\",\"isNullable\":true,\"scale\":2,\"name\":\"SlowUpTo120Amount\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"EquifaxBusinessCreditIndustryGroupReport.cdm.json/EquifaxBusinessCreditIndustryGroupReport\",\"name\":\"SlowUpTo120Percentage\"},\"dataType\":\"decimal\",\"dataTypeLength\":18,\"description\":\"The percentage of that aging category's dollars compared to total past due up to 120 days.\",\"isNullable\":true,\"scale\":8,\"name\":\"SlowUpTo120Percentage\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"EquifaxBusinessCreditIndustryGroupReport.cdm.json/EquifaxBusinessCreditIndustryGroupReport\",\"name\":\"SlowUp121PlusAmount\"},\"dataType\":\"decimal\",\"dataTypeLength\":18,\"description\":\"The amount of that aging category's dollars compared to total past due exceeding 120 days.\",\"isNullable\":true,\"scale\":2,\"name\":\"SlowUp121PlusAmount\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"EquifaxBusinessCreditIndustryGroupReport.cdm.json/EquifaxBusinessCreditIndustryGroupReport\",\"name\":\"SlowUp120PlusPercentage\"},\"dataType\":\"decimal\",\"dataTypeLength\":18,\"description\":\"The percentage of that aging category's dollars compared to total past due exceeding 120 days.\",\"isNullable\":true,\"scale\":8,\"name\":\"SlowUp120PlusPercentage\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"EquifaxBusinessCreditIndustryGroupReport.cdm.json/EquifaxBusinessCreditIndustryGroupReport\",\"name\":\"SingleHighestCreditExtendedAmount\"},\"dataType\":\"decimal\",\"dataTypeLength\":18,\"description\":\"The highest credit amount that was extended for all accounts closed.\",\"isNullable\":true,\"scale\":2,\"name\":\"SingleHighestCreditExtendedAmount\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"EquifaxBusinessCreditIndustryGroupReport.cdm.json/EquifaxBusinessCreditIndustryGroupReport\",\"name\":\"TotalHighCreditAmount\"},\"dataType\":\"decimal\",\"dataTypeLength\":18,\"description\":\"Total highest credit or balance extended for all accounts closed in current standing ($0 balance).\",\"isNullable\":true,\"scale\":2,\"name\":\"TotalHighCreditAmount\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"EquifaxBusinessCreditIndustryGroupReport.cdm.json/EquifaxBusinessCreditIndustryGroupReport\",\"name\":\"NumberOfAccountsClosedInGoodStanding\"},\"dataType\":\"integer\",\"description\":\"Number of accounts closed with a $0 balance.\",\"isNullable\":true,\"name\":\"NumberOfAccountsClosedInGoodStanding\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"EquifaxBusinessCreditIndustryGroupReport.cdm.json/EquifaxBusinessCreditIndustryGroupReport\",\"name\":\"MostRecentDateClosedInCurrentStanding\"},\"dataType\":\"date\",\"dateFormat\":\"YYYY-MM-DD\",\"description\":\"The most recent date closed for all accounts closed in current standing.\",\"isNullable\":true,\"name\":\"MostRecentDateClosedInCurrentStanding\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"EquifaxBusinessCreditIndustryGroupReport.cdm.json/EquifaxBusinessCreditIndustryGroupReport\",\"name\":\"NumberOfAccountsClosedInDelinquentStatus\"},\"dataType\":\"integer\",\"description\":\"Number of all accounts closed with a delinquent status.\",\"isNullable\":true,\"name\":\"NumberOfAccountsClosedInDelinquentStatus\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"EquifaxBusinessCreditIndustryGroupReport.cdm.json/EquifaxBusinessCreditIndustryGroupReport\",\"name\":\"MostRecentDateClosedInDelinquentStatus\"},\"dataType\":\"date\",\"dateFormat\":\"YYYY-MM-DD\",\"description\":\"The most recent closed date for all accounts closed with a delinquent status.\",\"isNullable\":true,\"name\":\"MostRecentDateClosedInDelinquentStatus\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"EquifaxBusinessCreditIndustryGroupReport.cdm.json/EquifaxBusinessCreditIndustryGroupReport\",\"name\":\"BalanceAtClosedDateAmount\"},\"dataType\":\"decimal\",\"dataTypeLength\":18,\"description\":\"Total outstanding balances for all accounts closed with a delinquent status.\",\"isNullable\":true,\"scale\":2,\"name\":\"BalanceAtClosedDateAmount\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"EquifaxBusinessCreditIndustryGroupReport.cdm.json/EquifaxBusinessCreditIndustryGroupReport\",\"name\":\"NumberOfAccountsClosedInChargeOffStatus\"},\"dataType\":\"integer\",\"description\":\"Number of accounts charged-off.\",\"isNullable\":true,\"name\":\"NumberOfAccountsClosedInChargeOffStatus\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"EquifaxBusinessCreditIndustryGroupReport.cdm.json/EquifaxBusinessCreditIndustryGroupReport\",\"name\":\"MostRecentDateClosedInChargeOffStatus\"},\"dataType\":\"date\",\"dateFormat\":\"YYYY-MM-DD\",\"description\":\"The most recent date closed for all accounts closed with a charged-off status.\",\"isNullable\":true,\"name\":\"MostRecentDateClosedInChargeOffStatus\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"EquifaxBusinessCreditIndustryGroupReport.cdm.json/EquifaxBusinessCreditIndustryGroupReport\",\"name\":\"BalanceAtChargeOffDate\"},\"dataType\":\"decimal\",\"dataTypeLength\":18,\"description\":\"Reported balances of all charged-off accounts at the date closed. Balance may not equal charged-off amount in the Report Highlights due to interest, penalties, and late fees which may have been reported after the closed date.\",\"isNullable\":true,\"scale\":2,\"name\":\"BalanceAtChargeOffDate\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"EquifaxBusinessCreditIndustryGroupReport.cdm.json/EquifaxBusinessCreditIndustryGroupReport\",\"name\":\"GrandTotalAmount\"},\"dataType\":\"decimal\",\"dataTypeLength\":18,\"description\":\"Number of closed non-financial accounts by status at closed date; sums total balance in delinquent and charged-off status at date closed.\",\"isNullable\":true,\"scale\":2,\"name\":\"GrandTotalAmount\"}]}}}",
+			"Description": "SUMMARY - Open Non-Financial Accounts by Industry Group\nThis table summarizes open non-financial accounts, by credit grantor industry, with a date reported within 24 months of inquiry.\n\nSUMMARY - Closed Non-Financial Accounts by Industry Group\nThis table summarizes closed non-financial accounts, by credit grantor industry, with a closed date within 24 months of inquiry.",
+			"DisplayFolderInfo": "{\"name\":\"Customer Credit & Collections\",\"colorCode\":\"#022F22\"}",
+			"PrimaryKeys": "EquifaxIndustryGroupId,EfxId,ProfileTimestamp",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

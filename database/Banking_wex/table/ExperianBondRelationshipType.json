@@ -1,0 +1,113 @@
+{
+	"name": "ExperianBondRelationshipType",
+	"properties": {
+		"Name": "ExperianBondRelationshipType",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "The type of Experian bond relationship.\n\nEx:\n- General Liability Insurance",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "ExperianBondRelationshipTypeId",
+					"Description": "The unique identifier of an Experian bond relationship type.",
+					"BaseAttributeReference": {
+						"Entity": "ExperianBondRelationshipType.cdm.json/ExperianBondRelationshipType",
+						"Name": "ExperianBondRelationshipTypeId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "ExperianBondRelationshipTypeName",
+					"Description": "The name of an Experian bond relationship type.",
+					"BaseAttributeReference": {
+						"Entity": "ExperianBondRelationshipType.cdm.json/ExperianBondRelationshipType",
+						"Name": "ExperianBondRelationshipTypeName"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 256,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "ExperianBondRelationshipTypeDescription",
+					"Description": "The description of an Experian bond relationship type.",
+					"BaseAttributeReference": {
+						"Entity": "ExperianBondRelationshipType.cdm.json/ExperianBondRelationshipType",
+						"Name": "ExperianBondRelationshipTypeDescription"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/ExperianBondRelationshipType",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/ExperianBondRelationshipType",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"ExperianBondRelationshipTypeId\":{\"entity\":\"ExperianBondRelationshipType.cdm.json/ExperianBondRelationshipType\",\"name\":\"ExperianBondRelationshipTypeId\"},\"ExperianBondRelationshipTypeName\":{\"entity\":\"ExperianBondRelationshipType.cdm.json/ExperianBondRelationshipType\",\"name\":\"ExperianBondRelationshipTypeName\"},\"ExperianBondRelationshipTypeDescription\":{\"entity\":\"ExperianBondRelationshipType.cdm.json/ExperianBondRelationshipType\",\"name\":\"ExperianBondRelationshipTypeDescription\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"ExperianBondRelationshipType\",\"path\":\"ExperianBondRelationshipType.cdm.json/ExperianBondRelationshipType\"},\"description\":\"The type of Experian bond relationship.\\n\\nEx:\\n- General Liability Insurance\",\"primaryKey\":[\"ExperianBondRelationshipTypeId\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ExperianBondRelationshipType.cdm.json/ExperianBondRelationshipType\",\"name\":\"ExperianBondRelationshipTypeId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of an Experian bond relationship type.\",\"isNullable\":false,\"name\":\"ExperianBondRelationshipTypeId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ExperianBondRelationshipType.cdm.json/ExperianBondRelationshipType\",\"name\":\"ExperianBondRelationshipTypeName\"},\"dataType\":\"string\",\"dataTypeLength\":256,\"description\":\"The name of an Experian bond relationship type.\",\"isNullable\":true,\"name\":\"ExperianBondRelationshipTypeName\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ExperianBondRelationshipType.cdm.json/ExperianBondRelationshipType\",\"name\":\"ExperianBondRelationshipTypeDescription\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"The description of an Experian bond relationship type.\",\"isNullable\":true,\"name\":\"ExperianBondRelationshipTypeDescription\"}]}}}",
+			"Description": "The type of Experian bond relationship.\n\nEx:\n- General Liability Insurance",
+			"DisplayFolderInfo": "{\"name\":\"Customer Credit & Collections\",\"colorCode\":\"#022F22\"}",
+			"PrimaryKeys": "ExperianBondRelationshipTypeId",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

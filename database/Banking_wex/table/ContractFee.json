@@ -1,0 +1,147 @@
+{
+	"name": "ContractFee",
+	"properties": {
+		"Name": "ContractFee",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "The fees defined by the contract for the associated period.",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "ContractId",
+					"Description": "The unique identifier of a Contract.",
+					"BaseAttributeReference": {
+						"Entity": "ContractFee.cdm.json/ContractFee",
+						"Name": "ContractId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "ContractFeeTypeId",
+					"Description": "The unique identifier of a contract fee.",
+					"BaseAttributeReference": {
+						"Entity": "ContractFee.cdm.json/ContractFee",
+						"Name": "ContractFeeTypeId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "ContractFeeTimestamp",
+					"Description": "The timestamp associated with the contract fee.",
+					"BaseAttributeReference": {
+						"Entity": "ContractFee.cdm.json/ContractFee",
+						"Name": "ContractFeeTimestamp"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "timestamp",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"TimestampFormat": "YYYY-MM-DD HH:MM:SS.fffffffff",
+							"HIVE_TYPE_STRING": "timestamp"
+						}
+					}
+				},
+				{
+					"Name": "FeeAmount",
+					"Description": "The amount of the fee.",
+					"BaseAttributeReference": {
+						"Entity": "ContractFee.cdm.json/ContractFee",
+						"Name": "FeeAmount"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "decimal",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Precision": 18,
+						"Scale": 2,
+						"Properties": {
+							"HIVE_TYPE_STRING": "decimal"
+						}
+					}
+				},
+				{
+					"Name": "FeeNote",
+					"Description": "A note, comment or additional information regarding the contract fee.",
+					"BaseAttributeReference": {
+						"Entity": "ContractFee.cdm.json/ContractFee",
+						"Name": "FeeNote"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/ContractFee",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/ContractFee",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"ContractId\":{\"entity\":\"ContractFee.cdm.json/ContractFee\",\"name\":\"ContractId\"},\"ContractFeeTypeId\":{\"entity\":\"ContractFee.cdm.json/ContractFee\",\"name\":\"ContractFeeTypeId\"},\"ContractFeeTimestamp\":{\"entity\":\"ContractFee.cdm.json/ContractFee\",\"name\":\"ContractFeeTimestamp\"},\"FeeAmount\":{\"entity\":\"ContractFee.cdm.json/ContractFee\",\"name\":\"FeeAmount\"},\"FeeNote\":{\"entity\":\"ContractFee.cdm.json/ContractFee\",\"name\":\"FeeNote\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"ContractFee\",\"path\":\"ContractFee.cdm.json/ContractFee\"},\"description\":\"The fees defined by the contract for the associated period.\",\"primaryKey\":[\"ContractId\",\"ContractFeeTypeId\",\"ContractFeeTimestamp\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ContractFee.cdm.json/ContractFee\",\"name\":\"ContractId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Contract.\",\"isNullable\":false,\"name\":\"ContractId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ContractFee.cdm.json/ContractFee\",\"name\":\"ContractFeeTypeId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a contract fee.\",\"isNullable\":false,\"name\":\"ContractFeeTypeId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ContractFee.cdm.json/ContractFee\",\"name\":\"ContractFeeTimestamp\"},\"dataType\":\"timestamp\",\"description\":\"The timestamp associated with the contract fee.\",\"isNullable\":false,\"name\":\"ContractFeeTimestamp\",\"timestampFormat\":\"YYYY-MM-DD HH:MM:SS.fffffffff\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ContractFee.cdm.json/ContractFee\",\"name\":\"FeeAmount\"},\"dataType\":\"decimal\",\"dataTypeLength\":18,\"description\":\"The amount of the fee.\",\"isNullable\":true,\"scale\":2,\"name\":\"FeeAmount\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ContractFee.cdm.json/ContractFee\",\"name\":\"FeeNote\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"A note, comment or additional information regarding the contract fee.\",\"isNullable\":true,\"name\":\"FeeNote\"}]}}}",
+			"Description": "The fees defined by the contract for the associated period.",
+			"DisplayFolderInfo": "{\"name\":\"Contract\",\"colorCode\":\"#917EDB\"}",
+			"PrimaryKeys": "ContractId,ContractFeeTypeId,ContractFeeTimestamp",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

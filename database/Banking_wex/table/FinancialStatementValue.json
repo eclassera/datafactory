@@ -1,0 +1,214 @@
+{
+	"name": "FinancialStatementValue",
+	"properties": {
+		"Name": "FinancialStatementValue",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "The values that corresponds to the line / column of the financial statement.",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "LegalEntityId",
+					"Description": "The unique identifier of a Legal Entity.",
+					"BaseAttributeReference": {
+						"Entity": "FinancialStatementValue.cdm.json/FinancialStatementValue",
+						"Name": "LegalEntityId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "FinancialStatementId",
+					"Description": "The unique identifier of a Financial Statement.",
+					"BaseAttributeReference": {
+						"Entity": "FinancialStatementValue.cdm.json/FinancialStatementValue",
+						"Name": "FinancialStatementId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "PeriodStartDate",
+					"Description": "The period start date for which the financial statement is prepared.",
+					"BaseAttributeReference": {
+						"Entity": "FinancialStatementValue.cdm.json/FinancialStatementValue",
+						"Name": "PeriodStartDate"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "date",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"DateFormat": "YYYY-MM-DD",
+							"HIVE_TYPE_STRING": "date"
+						}
+					}
+				},
+				{
+					"Name": "PeriodEndDate",
+					"Description": "The period end date for which the financial statement is prepared.",
+					"BaseAttributeReference": {
+						"Entity": "FinancialStatementValue.cdm.json/FinancialStatementValue",
+						"Name": "PeriodEndDate"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "date",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"DateFormat": "YYYY-MM-DD",
+							"HIVE_TYPE_STRING": "date"
+						}
+					}
+				},
+				{
+					"Name": "FinancialStatementLineId",
+					"Description": "The unique identifier of a Financial Statement Line.",
+					"BaseAttributeReference": {
+						"Entity": "FinancialStatementValue.cdm.json/FinancialStatementValue",
+						"Name": "FinancialStatementLineId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "FinancialStatementColumnId",
+					"Description": "The unique identifier of a financial statement column.",
+					"BaseAttributeReference": {
+						"Entity": "FinancialStatementValue.cdm.json/FinancialStatementValue",
+						"Name": "FinancialStatementColumnId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "FinancialStatementTextValue",
+					"Description": "The text value that corresponds to the line / column. This value will only be populated when  the Text Indicator of the FINANCIAL STATEMENT LINE is set to true.",
+					"BaseAttributeReference": {
+						"Entity": "FinancialStatementValue.cdm.json/FinancialStatementValue",
+						"Name": "FinancialStatementTextValue"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "FinancialStatementNumericValue",
+					"Description": "The numeric value that corresponds to the line / column. This value will only be populated when  the Numeric Indicator of the FINANCIAL STATEMENT LINE is set to true.",
+					"BaseAttributeReference": {
+						"Entity": "FinancialStatementValue.cdm.json/FinancialStatementValue",
+						"Name": "FinancialStatementNumericValue"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "decimal",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Precision": 18,
+						"Scale": 2,
+						"Properties": {
+							"HIVE_TYPE_STRING": "decimal"
+						}
+					}
+				},
+				{
+					"Name": "FinancialStatementPercentageValue",
+					"Description": "The percentage value that corresponds to the line / column. This value will only be populated when  the Percentage Indicator of the FINANCIAL STATEMENT LINE is set to true.",
+					"BaseAttributeReference": {
+						"Entity": "FinancialStatementValue.cdm.json/FinancialStatementValue",
+						"Name": "FinancialStatementPercentageValue"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "decimal",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Precision": 18,
+						"Scale": 8,
+						"Properties": {
+							"HIVE_TYPE_STRING": "decimal"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/FinancialStatementValue",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/FinancialStatementValue",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"LegalEntityId\":{\"entity\":\"FinancialStatementValue.cdm.json/FinancialStatementValue\",\"name\":\"LegalEntityId\"},\"FinancialStatementId\":{\"entity\":\"FinancialStatementValue.cdm.json/FinancialStatementValue\",\"name\":\"FinancialStatementId\"},\"PeriodStartDate\":{\"entity\":\"FinancialStatementValue.cdm.json/FinancialStatementValue\",\"name\":\"PeriodStartDate\"},\"PeriodEndDate\":{\"entity\":\"FinancialStatementValue.cdm.json/FinancialStatementValue\",\"name\":\"PeriodEndDate\"},\"FinancialStatementLineId\":{\"entity\":\"FinancialStatementValue.cdm.json/FinancialStatementValue\",\"name\":\"FinancialStatementLineId\"},\"FinancialStatementColumnId\":{\"entity\":\"FinancialStatementValue.cdm.json/FinancialStatementValue\",\"name\":\"FinancialStatementColumnId\"},\"FinancialStatementTextValue\":{\"entity\":\"FinancialStatementValue.cdm.json/FinancialStatementValue\",\"name\":\"FinancialStatementTextValue\"},\"FinancialStatementNumericValue\":{\"entity\":\"FinancialStatementValue.cdm.json/FinancialStatementValue\",\"name\":\"FinancialStatementNumericValue\"},\"FinancialStatementPercentageValue\":{\"entity\":\"FinancialStatementValue.cdm.json/FinancialStatementValue\",\"name\":\"FinancialStatementPercentageValue\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"FinancialStatementValue\",\"path\":\"FinancialStatementValue.cdm.json/FinancialStatementValue\"},\"description\":\"The values that corresponds to the line / column of the financial statement.\",\"primaryKey\":[\"LegalEntityId\",\"FinancialStatementId\",\"PeriodStartDate\",\"PeriodEndDate\",\"FinancialStatementLineId\",\"FinancialStatementColumnId\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"FinancialStatementValue.cdm.json/FinancialStatementValue\",\"name\":\"LegalEntityId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Legal Entity.\",\"isNullable\":false,\"name\":\"LegalEntityId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"FinancialStatementValue.cdm.json/FinancialStatementValue\",\"name\":\"FinancialStatementId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Financial Statement.\",\"isNullable\":false,\"name\":\"FinancialStatementId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"FinancialStatementValue.cdm.json/FinancialStatementValue\",\"name\":\"PeriodStartDate\"},\"dataType\":\"date\",\"dateFormat\":\"YYYY-MM-DD\",\"description\":\"The period start date for which the financial statement is prepared.\",\"isNullable\":false,\"name\":\"PeriodStartDate\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"FinancialStatementValue.cdm.json/FinancialStatementValue\",\"name\":\"PeriodEndDate\"},\"dataType\":\"date\",\"dateFormat\":\"YYYY-MM-DD\",\"description\":\"The period end date for which the financial statement is prepared.\",\"isNullable\":false,\"name\":\"PeriodEndDate\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"FinancialStatementValue.cdm.json/FinancialStatementValue\",\"name\":\"FinancialStatementLineId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Financial Statement Line.\",\"isNullable\":false,\"name\":\"FinancialStatementLineId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"FinancialStatementValue.cdm.json/FinancialStatementValue\",\"name\":\"FinancialStatementColumnId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a financial statement column.\",\"isNullable\":false,\"name\":\"FinancialStatementColumnId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"FinancialStatementValue.cdm.json/FinancialStatementValue\",\"name\":\"FinancialStatementTextValue\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"The text value that corresponds to the line / column. This value will only be populated when  the Text Indicator of the FINANCIAL STATEMENT LINE is set to true.\",\"isNullable\":true,\"name\":\"FinancialStatementTextValue\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"FinancialStatementValue.cdm.json/FinancialStatementValue\",\"name\":\"FinancialStatementNumericValue\"},\"dataType\":\"decimal\",\"dataTypeLength\":18,\"description\":\"The numeric value that corresponds to the line / column. This value will only be populated when  the Numeric Indicator of the FINANCIAL STATEMENT LINE is set to true.\",\"isNullable\":true,\"scale\":2,\"name\":\"FinancialStatementNumericValue\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"FinancialStatementValue.cdm.json/FinancialStatementValue\",\"name\":\"FinancialStatementPercentageValue\"},\"dataType\":\"decimal\",\"dataTypeLength\":18,\"description\":\"The percentage value that corresponds to the line / column. This value will only be populated when  the Percentage Indicator of the FINANCIAL STATEMENT LINE is set to true.\",\"isNullable\":true,\"scale\":8,\"name\":\"FinancialStatementPercentageValue\"}]}}}",
+			"Description": "The values that corresponds to the line / column of the financial statement.",
+			"DisplayFolderInfo": "{\"name\":\"Accounting & Financial Reporting\",\"colorCode\":\"#0078D4\"}",
+			"PrimaryKeys": "LegalEntityId,FinancialStatementId,PeriodStartDate,PeriodEndDate,FinancialStatementLineId,FinancialStatementColumnId",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

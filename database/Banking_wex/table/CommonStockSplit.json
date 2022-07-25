@@ -1,0 +1,114 @@
+{
+	"name": "CommonStockSplit",
+	"properties": {
+		"Name": "CommonStockSplit",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "The issuance of additional shares of stock to stockholders accompanied by a reduction in the par or stated value per share.",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "StockId",
+					"Description": "The unique identifier of a Financial Product.",
+					"BaseAttributeReference": {
+						"Entity": "CommonStockSplit.cdm.json/CommonStockSplit",
+						"Name": "StockId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "long",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "long"
+						}
+					}
+				},
+				{
+					"Name": "StockSplitDate",
+					"Description": "The date of the stock split.",
+					"BaseAttributeReference": {
+						"Entity": "CommonStockSplit.cdm.json/CommonStockSplit",
+						"Name": "StockSplitDate"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "date",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"DateFormat": "YYYY-MM-DD",
+							"HIVE_TYPE_STRING": "date"
+						}
+					}
+				},
+				{
+					"Name": "StockSplitRatio",
+					"Description": "The ratio of new shares that are issued for each existing share tendered.",
+					"BaseAttributeReference": {
+						"Entity": "CommonStockSplit.cdm.json/CommonStockSplit",
+						"Name": "StockSplitRatio"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "decimal",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Precision": 18,
+						"Scale": 8,
+						"Properties": {
+							"HIVE_TYPE_STRING": "decimal"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/CommonStockSplit",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/CommonStockSplit",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"StockId\":{\"entity\":\"CommonStockSplit.cdm.json/CommonStockSplit\",\"name\":\"StockId\"},\"StockSplitDate\":{\"entity\":\"CommonStockSplit.cdm.json/CommonStockSplit\",\"name\":\"StockSplitDate\"},\"StockSplitRatio\":{\"entity\":\"CommonStockSplit.cdm.json/CommonStockSplit\",\"name\":\"StockSplitRatio\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"CommonStockSplit\",\"path\":\"CommonStockSplit.cdm.json/CommonStockSplit\"},\"description\":\"The issuance of additional shares of stock to stockholders accompanied by a reduction in the par or stated value per share.\",\"primaryKey\":[\"StockId\",\"StockSplitDate\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CommonStockSplit.cdm.json/CommonStockSplit\",\"name\":\"StockId\"},\"dataType\":\"long\",\"description\":\"The unique identifier of a Financial Product.\",\"isNullable\":false,\"name\":\"StockId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CommonStockSplit.cdm.json/CommonStockSplit\",\"name\":\"StockSplitDate\"},\"dataType\":\"date\",\"dateFormat\":\"YYYY-MM-DD\",\"description\":\"The date of the stock split.\",\"isNullable\":false,\"name\":\"StockSplitDate\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CommonStockSplit.cdm.json/CommonStockSplit\",\"name\":\"StockSplitRatio\"},\"dataType\":\"decimal\",\"dataTypeLength\":18,\"description\":\"The ratio of new shares that are issued for each existing share tendered.\",\"isNullable\":true,\"scale\":8,\"name\":\"StockSplitRatio\"}]}}}",
+			"Description": "The issuance of additional shares of stock to stockholders accompanied by a reduction in the par or stated value per share.",
+			"DisplayFolderInfo": "{\"name\":\"Financial Product\",\"colorCode\":\"#001475\"}",
+			"PrimaryKeys": "StockId,StockSplitDate",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

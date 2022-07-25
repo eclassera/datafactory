@@ -1,0 +1,146 @@
+{
+	"name": "IsoCurrencyConversion",
+	"properties": {
+		"Name": "IsoCurrencyConversion",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "The conversion rate of two currencies as of the associated timestamp.",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "ConvertFromIsoCurrencyCode",
+					"Description": "The ISO 4217 currency code.",
+					"BaseAttributeReference": {
+						"Entity": "IsoCurrencyConversion.cdm.json/IsoCurrencyConversion",
+						"Name": "ConvertFromIsoCurrencyCode"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Length": 3,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "ConvertToIsoCurrencyCode",
+					"Description": "The ISO 4217 currency code.",
+					"BaseAttributeReference": {
+						"Entity": "IsoCurrencyConversion.cdm.json/IsoCurrencyConversion",
+						"Name": "ConvertToIsoCurrencyCode"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Length": 3,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "ExchangeRateTypeId",
+					"Description": "The unique identifier of a Exchange Rate Type.",
+					"BaseAttributeReference": {
+						"Entity": "IsoCurrencyConversion.cdm.json/IsoCurrencyConversion",
+						"Name": "ExchangeRateTypeId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "CurrencyConversionTimestamp",
+					"Description": "The timestamp for which the currency conversion is provided.",
+					"BaseAttributeReference": {
+						"Entity": "IsoCurrencyConversion.cdm.json/IsoCurrencyConversion",
+						"Name": "CurrencyConversionTimestamp"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "timestamp",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"TimestampFormat": "YYYY-MM-DD HH:MM:SS.fffffffff",
+							"HIVE_TYPE_STRING": "timestamp"
+						}
+					}
+				},
+				{
+					"Name": "CurrencyConversionRate",
+					"Description": "The Conversion-From Currency to Conversion-To Currency rate.",
+					"BaseAttributeReference": {
+						"Entity": "IsoCurrencyConversion.cdm.json/IsoCurrencyConversion",
+						"Name": "CurrencyConversionRate"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/IsoCurrencyConversion",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/IsoCurrencyConversion",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"ConvertFromIsoCurrencyCode\":{\"entity\":\"IsoCurrencyConversion.cdm.json/IsoCurrencyConversion\",\"name\":\"ConvertFromIsoCurrencyCode\"},\"ConvertToIsoCurrencyCode\":{\"entity\":\"IsoCurrencyConversion.cdm.json/IsoCurrencyConversion\",\"name\":\"ConvertToIsoCurrencyCode\"},\"ExchangeRateTypeId\":{\"entity\":\"IsoCurrencyConversion.cdm.json/IsoCurrencyConversion\",\"name\":\"ExchangeRateTypeId\"},\"CurrencyConversionTimestamp\":{\"entity\":\"IsoCurrencyConversion.cdm.json/IsoCurrencyConversion\",\"name\":\"CurrencyConversionTimestamp\"},\"CurrencyConversionRate\":{\"entity\":\"IsoCurrencyConversion.cdm.json/IsoCurrencyConversion\",\"name\":\"CurrencyConversionRate\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"IsoCurrencyConversion\",\"path\":\"IsoCurrencyConversion.cdm.json/IsoCurrencyConversion\"},\"description\":\"The conversion rate of two currencies as of the associated timestamp.\",\"primaryKey\":[\"ConvertFromIsoCurrencyCode\",\"ConvertToIsoCurrencyCode\",\"ExchangeRateTypeId\",\"CurrencyConversionTimestamp\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"IsoCurrencyConversion.cdm.json/IsoCurrencyConversion\",\"name\":\"ConvertFromIsoCurrencyCode\"},\"dataType\":\"string\",\"dataTypeLength\":3,\"description\":\"The ISO 4217 currency code.\",\"isNullable\":false,\"name\":\"ConvertFromIsoCurrencyCode\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"IsoCurrencyConversion.cdm.json/IsoCurrencyConversion\",\"name\":\"ConvertToIsoCurrencyCode\"},\"dataType\":\"string\",\"dataTypeLength\":3,\"description\":\"The ISO 4217 currency code.\",\"isNullable\":false,\"name\":\"ConvertToIsoCurrencyCode\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"IsoCurrencyConversion.cdm.json/IsoCurrencyConversion\",\"name\":\"ExchangeRateTypeId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Exchange Rate Type.\",\"isNullable\":false,\"name\":\"ExchangeRateTypeId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"IsoCurrencyConversion.cdm.json/IsoCurrencyConversion\",\"name\":\"CurrencyConversionTimestamp\"},\"dataType\":\"timestamp\",\"description\":\"The timestamp for which the currency conversion is provided.\",\"isNullable\":false,\"name\":\"CurrencyConversionTimestamp\",\"timestampFormat\":\"YYYY-MM-DD HH:MM:SS.fffffffff\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"IsoCurrencyConversion.cdm.json/IsoCurrencyConversion\",\"name\":\"CurrencyConversionRate\"},\"dataType\":\"integer\",\"description\":\"The Conversion-From Currency to Conversion-To Currency rate.\",\"isNullable\":true,\"name\":\"CurrencyConversionRate\"}]}}}",
+			"Description": "The conversion rate of two currencies as of the associated timestamp.",
+			"DisplayFolderInfo": "{\"name\":\"Accounting & Financial Reporting\",\"colorCode\":\"#0078D4\"}",
+			"PrimaryKeys": "ConvertFromIsoCurrencyCode,ConvertToIsoCurrencyCode,ExchangeRateTypeId,CurrencyConversionTimestamp",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

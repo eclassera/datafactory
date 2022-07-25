@@ -1,0 +1,180 @@
+{
+	"name": "HouseholdMemberIncome",
+	"properties": {
+		"Name": "HouseholdMemberIncome",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "The income derived by the Individual Household Member during the associated period and from the associated Income Source.",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "HouseholdId",
+					"Description": "The unique identifier of a Household.",
+					"BaseAttributeReference": {
+						"Entity": "HouseholdMemberIncome.cdm.json/HouseholdMemberIncome",
+						"Name": "HouseholdId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "HouseholdMemberPartyId",
+					"Description": "The unique identifier of a Party.",
+					"BaseAttributeReference": {
+						"Entity": "HouseholdMemberIncome.cdm.json/HouseholdMemberIncome",
+						"Name": "HouseholdMemberPartyId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "long",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "long"
+						}
+					}
+				},
+				{
+					"Name": "HouseholdMemberPeriodStartDate",
+					"Description": "The period start date for which the party is a member of the household.",
+					"BaseAttributeReference": {
+						"Entity": "HouseholdMemberIncome.cdm.json/HouseholdMemberIncome",
+						"Name": "HouseholdMemberPeriodStartDate"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "date",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"DateFormat": "YYYY-MM-DD",
+							"HIVE_TYPE_STRING": "date"
+						}
+					}
+				},
+				{
+					"Name": "HouseholdIncomeSourceId",
+					"Description": "The unique identifier of the Household Income Source.",
+					"BaseAttributeReference": {
+						"Entity": "HouseholdMemberIncome.cdm.json/HouseholdMemberIncome",
+						"Name": "HouseholdIncomeSourceId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "PeriodStartDate",
+					"Description": "The period start date for which the party earned the income.",
+					"BaseAttributeReference": {
+						"Entity": "HouseholdMemberIncome.cdm.json/HouseholdMemberIncome",
+						"Name": "PeriodStartDate"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "date",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"DateFormat": "YYYY-MM-DD",
+							"HIVE_TYPE_STRING": "date"
+						}
+					}
+				},
+				{
+					"Name": "PeriodEndDate",
+					"Description": "The period end date for which the party earned the income.",
+					"BaseAttributeReference": {
+						"Entity": "HouseholdMemberIncome.cdm.json/HouseholdMemberIncome",
+						"Name": "PeriodEndDate"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "date",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"DateFormat": "YYYY-MM-DD",
+							"HIVE_TYPE_STRING": "date"
+						}
+					}
+				},
+				{
+					"Name": "IncomeAmount",
+					"Description": "The income from the income from the associated source is reported.",
+					"BaseAttributeReference": {
+						"Entity": "HouseholdMemberIncome.cdm.json/HouseholdMemberIncome",
+						"Name": "IncomeAmount"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "decimal",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Precision": 18,
+						"Scale": 2,
+						"Properties": {
+							"HIVE_TYPE_STRING": "decimal"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/HouseholdMemberIncome",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/HouseholdMemberIncome",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"HouseholdId\":{\"entity\":\"HouseholdMemberIncome.cdm.json/HouseholdMemberIncome\",\"name\":\"HouseholdId\"},\"HouseholdMemberPartyId\":{\"entity\":\"HouseholdMemberIncome.cdm.json/HouseholdMemberIncome\",\"name\":\"HouseholdMemberPartyId\"},\"HouseholdMemberPeriodStartDate\":{\"entity\":\"HouseholdMemberIncome.cdm.json/HouseholdMemberIncome\",\"name\":\"HouseholdMemberPeriodStartDate\"},\"HouseholdIncomeSourceId\":{\"entity\":\"HouseholdMemberIncome.cdm.json/HouseholdMemberIncome\",\"name\":\"HouseholdIncomeSourceId\"},\"PeriodStartDate\":{\"entity\":\"HouseholdMemberIncome.cdm.json/HouseholdMemberIncome\",\"name\":\"PeriodStartDate\"},\"PeriodEndDate\":{\"entity\":\"HouseholdMemberIncome.cdm.json/HouseholdMemberIncome\",\"name\":\"PeriodEndDate\"},\"IncomeAmount\":{\"entity\":\"HouseholdMemberIncome.cdm.json/HouseholdMemberIncome\",\"name\":\"IncomeAmount\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"HouseholdMemberIncome\",\"path\":\"HouseholdMemberIncome.cdm.json/HouseholdMemberIncome\"},\"description\":\"The income derived by the Individual Household Member during the associated period and from the associated Income Source.\",\"primaryKey\":[\"HouseholdId\",\"HouseholdMemberPartyId\",\"HouseholdMemberPeriodStartDate\",\"HouseholdIncomeSourceId\",\"PeriodStartDate\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"HouseholdMemberIncome.cdm.json/HouseholdMemberIncome\",\"name\":\"HouseholdId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Household.\",\"isNullable\":false,\"name\":\"HouseholdId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"HouseholdMemberIncome.cdm.json/HouseholdMemberIncome\",\"name\":\"HouseholdMemberPartyId\"},\"dataType\":\"long\",\"description\":\"The unique identifier of a Party.\",\"isNullable\":false,\"name\":\"HouseholdMemberPartyId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"HouseholdMemberIncome.cdm.json/HouseholdMemberIncome\",\"name\":\"HouseholdMemberPeriodStartDate\"},\"dataType\":\"date\",\"dateFormat\":\"YYYY-MM-DD\",\"description\":\"The period start date for which the party is a member of the household.\",\"isNullable\":false,\"name\":\"HouseholdMemberPeriodStartDate\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"HouseholdMemberIncome.cdm.json/HouseholdMemberIncome\",\"name\":\"HouseholdIncomeSourceId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of the Household Income Source.\",\"isNullable\":false,\"name\":\"HouseholdIncomeSourceId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"HouseholdMemberIncome.cdm.json/HouseholdMemberIncome\",\"name\":\"PeriodStartDate\"},\"dataType\":\"date\",\"dateFormat\":\"YYYY-MM-DD\",\"description\":\"The period start date for which the party earned the income.\",\"isNullable\":false,\"name\":\"PeriodStartDate\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"HouseholdMemberIncome.cdm.json/HouseholdMemberIncome\",\"name\":\"PeriodEndDate\"},\"dataType\":\"date\",\"dateFormat\":\"YYYY-MM-DD\",\"description\":\"The period end date for which the party earned the income.\",\"isNullable\":true,\"name\":\"PeriodEndDate\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"HouseholdMemberIncome.cdm.json/HouseholdMemberIncome\",\"name\":\"IncomeAmount\"},\"dataType\":\"decimal\",\"dataTypeLength\":18,\"description\":\"The income from the income from the associated source is reported.\",\"isNullable\":true,\"scale\":2,\"name\":\"IncomeAmount\"}]}}}",
+			"Description": "The income derived by the Individual Household Member during the associated period and from the associated Income Source.",
+			"DisplayFolderInfo": "{\"name\":\"Party\",\"colorCode\":\"#00727A\"}",
+			"PrimaryKeys": "HouseholdId,HouseholdMemberPartyId,HouseholdMemberPeriodStartDate,HouseholdIncomeSourceId,PeriodStartDate",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

@@ -1,0 +1,113 @@
+{
+	"name": "LegalActionStatus",
+	"properties": {
+		"Name": "LegalActionStatus",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "The status of the Legal Action.\n\nEx:\n- Filed\n- Pending\n- In Court\n- Resolved",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "LegalActionStatusId",
+					"Description": "The unique identifier of a Legal Action Status.",
+					"BaseAttributeReference": {
+						"Entity": "LegalActionStatus.cdm.json/LegalActionStatus",
+						"Name": "LegalActionStatusId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "LegalActionStatusName",
+					"Description": "The name of a Legal Action Status.",
+					"BaseAttributeReference": {
+						"Entity": "LegalActionStatus.cdm.json/LegalActionStatus",
+						"Name": "LegalActionStatusName"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 256,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "LegalActionStatusDescription",
+					"Description": "The description of a Legal Action Status.",
+					"BaseAttributeReference": {
+						"Entity": "LegalActionStatus.cdm.json/LegalActionStatus",
+						"Name": "LegalActionStatusDescription"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/LegalActionStatus",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/LegalActionStatus",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"LegalActionStatusId\":{\"entity\":\"LegalActionStatus.cdm.json/LegalActionStatus\",\"name\":\"LegalActionStatusId\"},\"LegalActionStatusName\":{\"entity\":\"LegalActionStatus.cdm.json/LegalActionStatus\",\"name\":\"LegalActionStatusName\"},\"LegalActionStatusDescription\":{\"entity\":\"LegalActionStatus.cdm.json/LegalActionStatus\",\"name\":\"LegalActionStatusDescription\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"LegalActionStatus\",\"path\":\"LegalActionStatus.cdm.json/LegalActionStatus\"},\"description\":\"The status of the Legal Action.\\n\\nEx:\\n- Filed\\n- Pending\\n- In Court\\n- Resolved\",\"primaryKey\":[\"LegalActionStatusId\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"LegalActionStatus.cdm.json/LegalActionStatus\",\"name\":\"LegalActionStatusId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Legal Action Status.\",\"isNullable\":false,\"name\":\"LegalActionStatusId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"LegalActionStatus.cdm.json/LegalActionStatus\",\"name\":\"LegalActionStatusName\"},\"dataType\":\"string\",\"dataTypeLength\":256,\"description\":\"The name of a Legal Action Status.\",\"isNullable\":true,\"name\":\"LegalActionStatusName\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"LegalActionStatus.cdm.json/LegalActionStatus\",\"name\":\"LegalActionStatusDescription\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"The description of a Legal Action Status.\",\"isNullable\":true,\"name\":\"LegalActionStatusDescription\"}]}}}",
+			"Description": "The status of the Legal Action.\n\nEx:\n- Filed\n- Pending\n- In Court\n- Resolved",
+			"DisplayFolderInfo": "{\"name\":\"Party\",\"colorCode\":\"#00727A\"}",
+			"PrimaryKeys": "LegalActionStatusId",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

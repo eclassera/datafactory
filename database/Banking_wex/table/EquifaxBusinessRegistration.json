@@ -1,0 +1,196 @@
+{
+	"name": "EquifaxBusinessRegistration",
+	"properties": {
+		"Name": "EquifaxBusinessRegistration",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "Information regarding the business registration.",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "EfxId",
+					"Description": "The EFX ID™ is a unique and persistent nine-digit number that identifies and tracks the business unit with which you have the credit relationship;",
+					"BaseAttributeReference": {
+						"Entity": "EquifaxBusinessRegistration.cdm.json/EquifaxBusinessRegistration",
+						"Name": "EfxId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "ProfileTimestamp",
+					"Description": "Provides the timestamp when the inquiry was made as recorded\nby Equifax (Eastern Time).",
+					"BaseAttributeReference": {
+						"Entity": "EquifaxBusinessRegistration.cdm.json/EquifaxBusinessRegistration",
+						"Name": "ProfileTimestamp"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "timestamp",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"TimestampFormat": "YYYY-MM-DD HH:MM:SS.fffffffff",
+							"HIVE_TYPE_STRING": "timestamp"
+						}
+					}
+				},
+				{
+					"Name": "RegistryNumber",
+					"Description": "This is the number assigned by the state office.",
+					"BaseAttributeReference": {
+						"Entity": "EquifaxBusinessRegistration.cdm.json/EquifaxBusinessRegistration",
+						"Name": "RegistryNumber"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "IncorporationState",
+					"Description": "This may include any of the 50 U.S. states plus Washington, D.C.; only the \"domestic\" incorporation state is returned.",
+					"BaseAttributeReference": {
+						"Entity": "EquifaxBusinessRegistration.cdm.json/EquifaxBusinessRegistration",
+						"Name": "IncorporationState"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 64,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "BusinessRegisteredName",
+					"Description": "The business name provided at the time of registration.",
+					"BaseAttributeReference": {
+						"Entity": "EquifaxBusinessRegistration.cdm.json/EquifaxBusinessRegistration",
+						"Name": "BusinessRegisteredName"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 256,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "FilingDate",
+					"Description": "This is the date the state recorded as the paperwork transaction date. It may or may not be the same as the incorporation date. \n\nThis date will usually change annually and is used to indicate when the most recent update was received by the state. It is possible that the fi ling date is\nseveral years old because the state did not update a \"lapsed or inactive fi ling\".",
+					"BaseAttributeReference": {
+						"Entity": "EquifaxBusinessRegistration.cdm.json/EquifaxBusinessRegistration",
+						"Name": "FilingDate"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "date",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"DateFormat": "YYYY-MM-DD",
+							"HIVE_TYPE_STRING": "date"
+						}
+					}
+				},
+				{
+					"Name": "IncorporationDate",
+					"Description": "This is the date of the original fi ling of incorporation papers.\n\nIt will not change from year to year. \n\nThis is not the date the business fi led the papers with the state.",
+					"BaseAttributeReference": {
+						"Entity": "EquifaxBusinessRegistration.cdm.json/EquifaxBusinessRegistration",
+						"Name": "IncorporationDate"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "date",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"DateFormat": "YYYY-MM-DD",
+							"HIVE_TYPE_STRING": "date"
+						}
+					}
+				},
+				{
+					"Name": "EquifaxBusinessRegistrationStatusTypeId",
+					"Description": "The unique identifier of an  Equifax business registration status type.",
+					"BaseAttributeReference": {
+						"Entity": "EquifaxBusinessRegistration.cdm.json/EquifaxBusinessRegistration",
+						"Name": "EquifaxBusinessRegistrationStatusTypeId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/EquifaxBusinessRegistration",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/EquifaxBusinessRegistration",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"EfxId\":{\"entity\":\"EquifaxBusinessRegistration.cdm.json/EquifaxBusinessRegistration\",\"name\":\"EfxId\"},\"ProfileTimestamp\":{\"entity\":\"EquifaxBusinessRegistration.cdm.json/EquifaxBusinessRegistration\",\"name\":\"ProfileTimestamp\"},\"RegistryNumber\":{\"entity\":\"EquifaxBusinessRegistration.cdm.json/EquifaxBusinessRegistration\",\"name\":\"RegistryNumber\"},\"IncorporationState\":{\"entity\":\"EquifaxBusinessRegistration.cdm.json/EquifaxBusinessRegistration\",\"name\":\"IncorporationState\"},\"BusinessRegisteredName\":{\"entity\":\"EquifaxBusinessRegistration.cdm.json/EquifaxBusinessRegistration\",\"name\":\"BusinessRegisteredName\"},\"FilingDate\":{\"entity\":\"EquifaxBusinessRegistration.cdm.json/EquifaxBusinessRegistration\",\"name\":\"FilingDate\"},\"IncorporationDate\":{\"entity\":\"EquifaxBusinessRegistration.cdm.json/EquifaxBusinessRegistration\",\"name\":\"IncorporationDate\"},\"EquifaxBusinessRegistrationStatusTypeId\":{\"entity\":\"EquifaxBusinessRegistration.cdm.json/EquifaxBusinessRegistration\",\"name\":\"EquifaxBusinessRegistrationStatusTypeId\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"EquifaxBusinessRegistration\",\"path\":\"EquifaxBusinessRegistration.cdm.json/EquifaxBusinessRegistration\"},\"description\":\"Information regarding the business registration.\",\"primaryKey\":[\"EfxId\",\"ProfileTimestamp\",\"RegistryNumber\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"EquifaxBusinessRegistration.cdm.json/EquifaxBusinessRegistration\",\"name\":\"EfxId\"},\"dataType\":\"integer\",\"description\":\"The EFX ID™ is a unique and persistent nine-digit number that identifies and tracks the business unit with which you have the credit relationship;\",\"isNullable\":false,\"name\":\"EfxId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"EquifaxBusinessRegistration.cdm.json/EquifaxBusinessRegistration\",\"name\":\"ProfileTimestamp\"},\"dataType\":\"timestamp\",\"description\":\"Provides the timestamp when the inquiry was made as recorded\\nby Equifax (Eastern Time).\",\"isNullable\":false,\"name\":\"ProfileTimestamp\",\"timestampFormat\":\"YYYY-MM-DD HH:MM:SS.fffffffff\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"EquifaxBusinessRegistration.cdm.json/EquifaxBusinessRegistration\",\"name\":\"RegistryNumber\"},\"dataType\":\"integer\",\"description\":\"This is the number assigned by the state office.\",\"isNullable\":false,\"name\":\"RegistryNumber\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"EquifaxBusinessRegistration.cdm.json/EquifaxBusinessRegistration\",\"name\":\"IncorporationState\"},\"dataType\":\"string\",\"dataTypeLength\":64,\"description\":\"This may include any of the 50 U.S. states plus Washington, D.C.; only the \\\"domestic\\\" incorporation state is returned.\",\"isNullable\":true,\"name\":\"IncorporationState\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"EquifaxBusinessRegistration.cdm.json/EquifaxBusinessRegistration\",\"name\":\"BusinessRegisteredName\"},\"dataType\":\"string\",\"dataTypeLength\":256,\"description\":\"The business name provided at the time of registration.\",\"isNullable\":true,\"name\":\"BusinessRegisteredName\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"EquifaxBusinessRegistration.cdm.json/EquifaxBusinessRegistration\",\"name\":\"FilingDate\"},\"dataType\":\"date\",\"dateFormat\":\"YYYY-MM-DD\",\"description\":\"This is the date the state recorded as the paperwork transaction date. It may or may not be the same as the incorporation date. \\n\\nThis date will usually change annually and is used to indicate when the most recent update was received by the state. It is possible that the fi ling date is\\nseveral years old because the state did not update a \\\"lapsed or inactive fi ling\\\".\",\"isNullable\":true,\"name\":\"FilingDate\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"EquifaxBusinessRegistration.cdm.json/EquifaxBusinessRegistration\",\"name\":\"IncorporationDate\"},\"dataType\":\"date\",\"dateFormat\":\"YYYY-MM-DD\",\"description\":\"This is the date of the original fi ling of incorporation papers.\\n\\nIt will not change from year to year. \\n\\nThis is not the date the business fi led the papers with the state.\",\"isNullable\":true,\"name\":\"IncorporationDate\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"EquifaxBusinessRegistration.cdm.json/EquifaxBusinessRegistration\",\"name\":\"EquifaxBusinessRegistrationStatusTypeId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of an  Equifax business registration status type.\",\"isNullable\":true,\"name\":\"EquifaxBusinessRegistrationStatusTypeId\"}]}}}",
+			"Description": "Information regarding the business registration.",
+			"DisplayFolderInfo": "{\"name\":\"Customer Credit & Collections\",\"colorCode\":\"#022F22\"}",
+			"PrimaryKeys": "EfxId,ProfileTimestamp,RegistryNumber",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

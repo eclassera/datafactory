@@ -1,0 +1,113 @@
+{
+	"name": "CustomerAccountStatusType",
+	"properties": {
+		"Name": "CustomerAccountStatusType",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "A type of status that may be associated with a  Customer Account for a period of time.\n\nEx:\n- Active\n- Current\n- Dormant\n- Blocked\n- Exceeds requirements\n- Needs to be funded\n- Closed\n- Inactive\n- Frozen\n- Collection Suspended\n- Suspended\n- Delinquent\n- In Default\n- Unknown",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "CustomerAccountStatusTypeId",
+					"Description": "The unique identifier of a Customer Account Status Type.",
+					"BaseAttributeReference": {
+						"Entity": "CustomerAccountStatusType.cdm.json/CustomerAccountStatusType",
+						"Name": "CustomerAccountStatusTypeId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "CustomerAccountStatusTypeName",
+					"Description": "The name of a Customer Account Status Type.",
+					"BaseAttributeReference": {
+						"Entity": "CustomerAccountStatusType.cdm.json/CustomerAccountStatusType",
+						"Name": "CustomerAccountStatusTypeName"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 256,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "CustomerAccountStatusTypeDescription",
+					"Description": "The description of a Customer Account Status Type.",
+					"BaseAttributeReference": {
+						"Entity": "CustomerAccountStatusType.cdm.json/CustomerAccountStatusType",
+						"Name": "CustomerAccountStatusTypeDescription"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/CustomerAccountStatusType",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/CustomerAccountStatusType",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"CustomerAccountStatusTypeId\":{\"entity\":\"CustomerAccountStatusType.cdm.json/CustomerAccountStatusType\",\"name\":\"CustomerAccountStatusTypeId\"},\"CustomerAccountStatusTypeName\":{\"entity\":\"CustomerAccountStatusType.cdm.json/CustomerAccountStatusType\",\"name\":\"CustomerAccountStatusTypeName\"},\"CustomerAccountStatusTypeDescription\":{\"entity\":\"CustomerAccountStatusType.cdm.json/CustomerAccountStatusType\",\"name\":\"CustomerAccountStatusTypeDescription\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"CustomerAccountStatusType\",\"path\":\"CustomerAccountStatusType.cdm.json/CustomerAccountStatusType\"},\"description\":\"A type of status that may be associated with a  Customer Account for a period of time.\\n\\nEx:\\n- Active\\n- Current\\n- Dormant\\n- Blocked\\n- Exceeds requirements\\n- Needs to be funded\\n- Closed\\n- Inactive\\n- Frozen\\n- Collection Suspended\\n- Suspended\\n- Delinquent\\n- In Default\\n- Unknown\",\"primaryKey\":[\"CustomerAccountStatusTypeId\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CustomerAccountStatusType.cdm.json/CustomerAccountStatusType\",\"name\":\"CustomerAccountStatusTypeId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Customer Account Status Type.\",\"isNullable\":false,\"name\":\"CustomerAccountStatusTypeId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CustomerAccountStatusType.cdm.json/CustomerAccountStatusType\",\"name\":\"CustomerAccountStatusTypeName\"},\"dataType\":\"string\",\"dataTypeLength\":256,\"description\":\"The name of a Customer Account Status Type.\",\"isNullable\":true,\"name\":\"CustomerAccountStatusTypeName\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CustomerAccountStatusType.cdm.json/CustomerAccountStatusType\",\"name\":\"CustomerAccountStatusTypeDescription\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"The description of a Customer Account Status Type.\",\"isNullable\":true,\"name\":\"CustomerAccountStatusTypeDescription\"}]}}}",
+			"Description": "A type of status that may be associated with a  Customer Account for a period of time.\n\nEx:\n- Active\n- Current\n- Dormant\n- Blocked\n- Exceeds requirements\n- Needs to be funded\n- Closed\n- Inactive\n- Frozen\n- Collection Suspended\n- Suspended\n- Delinquent\n- In Default\n- Unknown",
+			"DisplayFolderInfo": "{\"name\":\"Customer Account\",\"colorCode\":\"#E3008C\"}",
+			"PrimaryKeys": "CustomerAccountStatusTypeId",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

@@ -1,0 +1,146 @@
+{
+	"name": "ExperianConsumerSpouseCoApplicant",
+	"properties": {
+		"Name": "ExperianConsumerSpouseCoApplicant",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "Guarantors, also called cosigners, co-applicant, or joint account holders have the same responsibility with regard to the debt. C\n\nCosigners and joint account holders are both equally responsible for repayment of the debt. Therefore, the account would appear on both the primary account holder's and co-applicant's credit report.",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "ExperianReportNumber",
+					"Description": "The unique identifier of an Experian consumer.",
+					"BaseAttributeReference": {
+						"Entity": "ExperianConsumerSpouseCoApplicant.cdm.json/ExperianConsumerSpouseCoApplicant",
+						"Name": "ExperianReportNumber"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "CoApplicantId",
+					"Description": "The unique identifier of a co-applicant.",
+					"BaseAttributeReference": {
+						"Entity": "ExperianConsumerSpouseCoApplicant.cdm.json/ExperianConsumerSpouseCoApplicant",
+						"Name": "CoApplicantId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "CoApplicantFirstName",
+					"Description": "The co-applicant first name.",
+					"BaseAttributeReference": {
+						"Entity": "ExperianConsumerSpouseCoApplicant.cdm.json/ExperianConsumerSpouseCoApplicant",
+						"Name": "CoApplicantFirstName"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 256,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "CoApplicantMiddleName",
+					"Description": "The co-applicant middle name.",
+					"BaseAttributeReference": {
+						"Entity": "ExperianConsumerSpouseCoApplicant.cdm.json/ExperianConsumerSpouseCoApplicant",
+						"Name": "CoApplicantMiddleName"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 256,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "CoApplicantLastName",
+					"Description": "The co-applicant last name.",
+					"BaseAttributeReference": {
+						"Entity": "ExperianConsumerSpouseCoApplicant.cdm.json/ExperianConsumerSpouseCoApplicant",
+						"Name": "CoApplicantLastName"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 256,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/ExperianConsumerSpouseCoApplicant",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/ExperianConsumerSpouseCoApplicant",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"ExperianReportNumber\":{\"entity\":\"ExperianConsumerSpouseCoApplicant.cdm.json/ExperianConsumerSpouseCoApplicant\",\"name\":\"ExperianReportNumber\"},\"CoApplicantId\":{\"entity\":\"ExperianConsumerSpouseCoApplicant.cdm.json/ExperianConsumerSpouseCoApplicant\",\"name\":\"CoApplicantId\"},\"CoApplicantFirstName\":{\"entity\":\"ExperianConsumerSpouseCoApplicant.cdm.json/ExperianConsumerSpouseCoApplicant\",\"name\":\"CoApplicantFirstName\"},\"CoApplicantMiddleName\":{\"entity\":\"ExperianConsumerSpouseCoApplicant.cdm.json/ExperianConsumerSpouseCoApplicant\",\"name\":\"CoApplicantMiddleName\"},\"CoApplicantLastName\":{\"entity\":\"ExperianConsumerSpouseCoApplicant.cdm.json/ExperianConsumerSpouseCoApplicant\",\"name\":\"CoApplicantLastName\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"ExperianConsumerSpouseCoApplicant\",\"path\":\"ExperianConsumerSpouseCoApplicant.cdm.json/ExperianConsumerSpouseCoApplicant\"},\"description\":\"Guarantors, also called cosigners, co-applicant, or joint account holders have the same responsibility with regard to the debt. C\\n\\nCosigners and joint account holders are both equally responsible for repayment of the debt. Therefore, the account would appear on both the primary account holder's and co-applicant's credit report.\",\"primaryKey\":[\"ExperianReportNumber\",\"CoApplicantId\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ExperianConsumerSpouseCoApplicant.cdm.json/ExperianConsumerSpouseCoApplicant\",\"name\":\"ExperianReportNumber\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of an Experian consumer.\",\"isNullable\":false,\"name\":\"ExperianReportNumber\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ExperianConsumerSpouseCoApplicant.cdm.json/ExperianConsumerSpouseCoApplicant\",\"name\":\"CoApplicantId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a co-applicant.\",\"isNullable\":false,\"name\":\"CoApplicantId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ExperianConsumerSpouseCoApplicant.cdm.json/ExperianConsumerSpouseCoApplicant\",\"name\":\"CoApplicantFirstName\"},\"dataType\":\"string\",\"dataTypeLength\":256,\"description\":\"The co-applicant first name.\",\"isNullable\":true,\"name\":\"CoApplicantFirstName\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ExperianConsumerSpouseCoApplicant.cdm.json/ExperianConsumerSpouseCoApplicant\",\"name\":\"CoApplicantMiddleName\"},\"dataType\":\"string\",\"dataTypeLength\":256,\"description\":\"The co-applicant middle name.\",\"isNullable\":true,\"name\":\"CoApplicantMiddleName\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ExperianConsumerSpouseCoApplicant.cdm.json/ExperianConsumerSpouseCoApplicant\",\"name\":\"CoApplicantLastName\"},\"dataType\":\"string\",\"dataTypeLength\":256,\"description\":\"The co-applicant last name.\",\"isNullable\":true,\"name\":\"CoApplicantLastName\"}]}}}",
+			"Description": "Guarantors, also called cosigners, co-applicant, or joint account holders have the same responsibility with regard to the debt. C\n\nCosigners and joint account holders are both equally responsible for repayment of the debt. Therefore, the account would appear on both the primary account holder's and co-applicant's credit report.",
+			"DisplayFolderInfo": "{\"name\":\"Customer Credit & Collections\",\"colorCode\":\"#022F22\"}",
+			"PrimaryKeys": "ExperianReportNumber,CoApplicantId",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

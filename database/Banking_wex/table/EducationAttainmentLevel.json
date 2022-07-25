@@ -1,0 +1,113 @@
+{
+	"name": "EducationAttainmentLevel",
+	"properties": {
+		"Name": "EducationAttainmentLevel",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "The level of educational attainment achieved by the Individual.\n\nEx:\n-  Less than 9th Grade\n-  9th to 12th Grade\n-  High School Graduate \n-  High School Equivalency Graduate\n-  Some College, No Degree\n-  Associate Degree\n-  Bachelor's Degree\n-  Graduate Degree\n-  Professional Degree\n\nNote:\nThis must be an identifying relationship since one or more degrees may be granted at a single time and one or more degrees may be achieved from the same educational institution.",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "EducationAttainmentLevelId",
+					"Description": "The unique identifier of an Education Attainment Level.",
+					"BaseAttributeReference": {
+						"Entity": "EducationAttainmentLevel.cdm.json/EducationAttainmentLevel",
+						"Name": "EducationAttainmentLevelId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "EducationAttainmentLevelName",
+					"Description": "The name of an Education Attainment Level.",
+					"BaseAttributeReference": {
+						"Entity": "EducationAttainmentLevel.cdm.json/EducationAttainmentLevel",
+						"Name": "EducationAttainmentLevelName"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 256,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "EducationAttainmentLevelDescription",
+					"Description": "The description of an Education Attainment Level.",
+					"BaseAttributeReference": {
+						"Entity": "EducationAttainmentLevel.cdm.json/EducationAttainmentLevel",
+						"Name": "EducationAttainmentLevelDescription"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/EducationAttainmentLevel",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/EducationAttainmentLevel",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"EducationAttainmentLevelId\":{\"entity\":\"EducationAttainmentLevel.cdm.json/EducationAttainmentLevel\",\"name\":\"EducationAttainmentLevelId\"},\"EducationAttainmentLevelName\":{\"entity\":\"EducationAttainmentLevel.cdm.json/EducationAttainmentLevel\",\"name\":\"EducationAttainmentLevelName\"},\"EducationAttainmentLevelDescription\":{\"entity\":\"EducationAttainmentLevel.cdm.json/EducationAttainmentLevel\",\"name\":\"EducationAttainmentLevelDescription\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"EducationAttainmentLevel\",\"path\":\"EducationAttainmentLevel.cdm.json/EducationAttainmentLevel\"},\"description\":\"The level of educational attainment achieved by the Individual.\\n\\nEx:\\n-  Less than 9th Grade\\n-  9th to 12th Grade\\n-  High School Graduate \\n-  High School Equivalency Graduate\\n-  Some College, No Degree\\n-  Associate Degree\\n-  Bachelor's Degree\\n-  Graduate Degree\\n-  Professional Degree\\n\\nNote:\\nThis must be an identifying relationship since one or more degrees may be granted at a single time and one or more degrees may be achieved from the same educational institution.\",\"primaryKey\":[\"EducationAttainmentLevelId\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"EducationAttainmentLevel.cdm.json/EducationAttainmentLevel\",\"name\":\"EducationAttainmentLevelId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of an Education Attainment Level.\",\"isNullable\":false,\"name\":\"EducationAttainmentLevelId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"EducationAttainmentLevel.cdm.json/EducationAttainmentLevel\",\"name\":\"EducationAttainmentLevelName\"},\"dataType\":\"string\",\"dataTypeLength\":256,\"description\":\"The name of an Education Attainment Level.\",\"isNullable\":true,\"name\":\"EducationAttainmentLevelName\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"EducationAttainmentLevel.cdm.json/EducationAttainmentLevel\",\"name\":\"EducationAttainmentLevelDescription\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"The description of an Education Attainment Level.\",\"isNullable\":true,\"name\":\"EducationAttainmentLevelDescription\"}]}}}",
+			"Description": "The level of educational attainment achieved by the Individual.\n\nEx:\n-  Less than 9th Grade\n-  9th to 12th Grade\n-  High School Graduate \n-  High School Equivalency Graduate\n-  Some College, No Degree\n-  Associate Degree\n-  Bachelor's Degree\n-  Graduate Degree\n-  Professional Degree\n\nNote:\nThis must be an identifying relationship since one or more degrees may be granted at a single time and one or more degrees may be achieved from the same educational institution.",
+			"DisplayFolderInfo": "{\"name\":\"Party\",\"colorCode\":\"#00727A\"}",
+			"PrimaryKeys": "EducationAttainmentLevelId",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

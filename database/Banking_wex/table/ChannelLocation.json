@@ -1,0 +1,196 @@
+{
+	"name": "ChannelLocation",
+	"properties": {
+		"Name": "ChannelLocation",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "The channel location(s) of the associated Location Type for the indicated period.",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "ChannelId",
+					"Description": "The unique identifier of a Channel.",
+					"BaseAttributeReference": {
+						"Entity": "ChannelLocation.cdm.json/ChannelLocation",
+						"Name": "ChannelId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "LocationTypeId",
+					"Description": "The unique identifier of a Location Type.",
+					"BaseAttributeReference": {
+						"Entity": "ChannelLocation.cdm.json/ChannelLocation",
+						"Name": "LocationTypeId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "LocationId",
+					"Description": "The unique identifier of a Location.",
+					"BaseAttributeReference": {
+						"Entity": "ChannelLocation.cdm.json/ChannelLocation",
+						"Name": "LocationId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "PeriodStartTimestamp",
+					"Description": "The period start timestamp associated with the information.",
+					"BaseAttributeReference": {
+						"Entity": "ChannelLocation.cdm.json/ChannelLocation",
+						"Name": "PeriodStartTimestamp"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "timestamp",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"TimestampFormat": "YYYY-MM-DD HH:MM:SS.fffffffff",
+							"HIVE_TYPE_STRING": "timestamp"
+						}
+					}
+				},
+				{
+					"Name": "PeriodEndTimestamp",
+					"Description": "The period end timestamp associated with the information.",
+					"BaseAttributeReference": {
+						"Entity": "ChannelLocation.cdm.json/ChannelLocation",
+						"Name": "PeriodEndTimestamp"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "timestamp",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"TimestampFormat": "YYYY-MM-DD HH:MM:SS.fffffffff",
+							"HIVE_TYPE_STRING": "timestamp"
+						}
+					}
+				},
+				{
+					"Name": "GlobalLocationNumber",
+					"Description": "The Global Location Number (GLN) is a simple tool used to uniquely identify locations. It can be used to identify physical locations such as a warehouse, legal entities, or a function / department within a legal entity. The GLN is part of the GS1 system of standards.",
+					"BaseAttributeReference": {
+						"Entity": "ChannelLocation.cdm.json/ChannelLocation",
+						"Name": "GlobalLocationNumber"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "decimal",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Precision": 13,
+						"Scale": 0,
+						"Properties": {
+							"HIVE_TYPE_STRING": "decimal"
+						}
+					}
+				},
+				{
+					"Name": "PreferenceId",
+					"Description": "The unique identifier of a Preference.",
+					"BaseAttributeReference": {
+						"Entity": "ChannelLocation.cdm.json/ChannelLocation",
+						"Name": "PreferenceId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "ChannelLocationNote",
+					"Description": "A note, comment or additional information regarding a Channel Location.",
+					"BaseAttributeReference": {
+						"Entity": "ChannelLocation.cdm.json/ChannelLocation",
+						"Name": "ChannelLocationNote"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/ChannelLocation",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/ChannelLocation",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"ChannelId\":{\"entity\":\"ChannelLocation.cdm.json/ChannelLocation\",\"name\":\"ChannelId\"},\"LocationTypeId\":{\"entity\":\"ChannelLocation.cdm.json/ChannelLocation\",\"name\":\"LocationTypeId\"},\"LocationId\":{\"entity\":\"ChannelLocation.cdm.json/ChannelLocation\",\"name\":\"LocationId\"},\"PeriodStartTimestamp\":{\"entity\":\"ChannelLocation.cdm.json/ChannelLocation\",\"name\":\"PeriodStartTimestamp\"},\"PeriodEndTimestamp\":{\"entity\":\"ChannelLocation.cdm.json/ChannelLocation\",\"name\":\"PeriodEndTimestamp\"},\"GlobalLocationNumber\":{\"entity\":\"ChannelLocation.cdm.json/ChannelLocation\",\"name\":\"GlobalLocationNumber\"},\"PreferenceId\":{\"entity\":\"ChannelLocation.cdm.json/ChannelLocation\",\"name\":\"PreferenceId\"},\"ChannelLocationNote\":{\"entity\":\"ChannelLocation.cdm.json/ChannelLocation\",\"name\":\"ChannelLocationNote\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"ChannelLocation\",\"path\":\"ChannelLocation.cdm.json/ChannelLocation\"},\"description\":\"The channel location(s) of the associated Location Type for the indicated period.\",\"primaryKey\":[\"ChannelId\",\"LocationTypeId\",\"LocationId\",\"PeriodStartTimestamp\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ChannelLocation.cdm.json/ChannelLocation\",\"name\":\"ChannelId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Channel.\",\"isNullable\":false,\"name\":\"ChannelId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ChannelLocation.cdm.json/ChannelLocation\",\"name\":\"LocationTypeId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Location Type.\",\"isNullable\":false,\"name\":\"LocationTypeId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ChannelLocation.cdm.json/ChannelLocation\",\"name\":\"LocationId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Location.\",\"isNullable\":false,\"name\":\"LocationId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ChannelLocation.cdm.json/ChannelLocation\",\"name\":\"PeriodStartTimestamp\"},\"dataType\":\"timestamp\",\"description\":\"The period start timestamp associated with the information.\",\"isNullable\":false,\"name\":\"PeriodStartTimestamp\",\"timestampFormat\":\"YYYY-MM-DD HH:MM:SS.fffffffff\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ChannelLocation.cdm.json/ChannelLocation\",\"name\":\"PeriodEndTimestamp\"},\"dataType\":\"timestamp\",\"description\":\"The period end timestamp associated with the information.\",\"isNullable\":true,\"name\":\"PeriodEndTimestamp\",\"timestampFormat\":\"YYYY-MM-DD HH:MM:SS.fffffffff\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ChannelLocation.cdm.json/ChannelLocation\",\"name\":\"GlobalLocationNumber\"},\"dataType\":\"decimal\",\"dataTypeLength\":13,\"description\":\"The Global Location Number (GLN) is a simple tool used to uniquely identify locations. It can be used to identify physical locations such as a warehouse, legal entities, or a function / department within a legal entity. The GLN is part of the GS1 system of standards.\",\"isNullable\":true,\"scale\":0,\"name\":\"GlobalLocationNumber\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ChannelLocation.cdm.json/ChannelLocation\",\"name\":\"PreferenceId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Preference.\",\"isNullable\":true,\"name\":\"PreferenceId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ChannelLocation.cdm.json/ChannelLocation\",\"name\":\"ChannelLocationNote\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"A note, comment or additional information regarding a Channel Location.\",\"isNullable\":true,\"name\":\"ChannelLocationNote\"}]}}}",
+			"Description": "The channel location(s) of the associated Location Type for the indicated period.",
+			"DisplayFolderInfo": "{\"name\":\"Channel\",\"colorCode\":\"#001D3F\"}",
+			"PrimaryKeys": "ChannelId,LocationTypeId,LocationId,PeriodStartTimestamp",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

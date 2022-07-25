@@ -1,0 +1,113 @@
+{
+	"name": "HouseholdType",
+	"properties": {
+		"Name": "HouseholdType",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "A domestic unit that consists of members of a family who live together along with non-relatives.\n\nEx:\n-  Family of origination\n-  Family of procreation\n-  Family\n-  Married couple\n-  Married couple with children\n-  Family No Spouse\n-  Male Householder\n-  Male Householder with Related Children\n-  Female Householder\n-  Female Householder with Related Children\n-  Nonfamily household\n-  One Person Household Male\n-  One Person Household Female\n-  Two + Persons Male Householder\n-  Two + Persons Female Householder",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "HouseholdTypeId",
+					"Description": "The unique identifier of a Household Type.",
+					"BaseAttributeReference": {
+						"Entity": "HouseholdType.cdm.json/HouseholdType",
+						"Name": "HouseholdTypeId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "HouseholdTypeName",
+					"Description": "The name of the Household Type.",
+					"BaseAttributeReference": {
+						"Entity": "HouseholdType.cdm.json/HouseholdType",
+						"Name": "HouseholdTypeName"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 256,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "HouseholdTypeDescription",
+					"Description": "The description of the Household Type.",
+					"BaseAttributeReference": {
+						"Entity": "HouseholdType.cdm.json/HouseholdType",
+						"Name": "HouseholdTypeDescription"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/HouseholdType",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/HouseholdType",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"HouseholdTypeId\":{\"entity\":\"HouseholdType.cdm.json/HouseholdType\",\"name\":\"HouseholdTypeId\"},\"HouseholdTypeName\":{\"entity\":\"HouseholdType.cdm.json/HouseholdType\",\"name\":\"HouseholdTypeName\"},\"HouseholdTypeDescription\":{\"entity\":\"HouseholdType.cdm.json/HouseholdType\",\"name\":\"HouseholdTypeDescription\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"HouseholdType\",\"path\":\"HouseholdType.cdm.json/HouseholdType\"},\"description\":\"A domestic unit that consists of members of a family who live together along with non-relatives.\\n\\nEx:\\n-  Family of origination\\n-  Family of procreation\\n-  Family\\n-  Married couple\\n-  Married couple with children\\n-  Family No Spouse\\n-  Male Householder\\n-  Male Householder with Related Children\\n-  Female Householder\\n-  Female Householder with Related Children\\n-  Nonfamily household\\n-  One Person Household Male\\n-  One Person Household Female\\n-  Two + Persons Male Householder\\n-  Two + Persons Female Householder\",\"primaryKey\":[\"HouseholdTypeId\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"HouseholdType.cdm.json/HouseholdType\",\"name\":\"HouseholdTypeId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Household Type.\",\"isNullable\":false,\"name\":\"HouseholdTypeId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"HouseholdType.cdm.json/HouseholdType\",\"name\":\"HouseholdTypeName\"},\"dataType\":\"string\",\"dataTypeLength\":256,\"description\":\"The name of the Household Type.\",\"isNullable\":true,\"name\":\"HouseholdTypeName\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"HouseholdType.cdm.json/HouseholdType\",\"name\":\"HouseholdTypeDescription\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"The description of the Household Type.\",\"isNullable\":true,\"name\":\"HouseholdTypeDescription\"}]}}}",
+			"Description": "A domestic unit that consists of members of a family who live together along with non-relatives.\n\nEx:\n-  Family of origination\n-  Family of procreation\n-  Family\n-  Married couple\n-  Married couple with children\n-  Family No Spouse\n-  Male Householder\n-  Male Householder with Related Children\n-  Female Householder\n-  Female Householder with Related Children\n-  Nonfamily household\n-  One Person Household Male\n-  One Person Household Female\n-  Two + Persons Male Householder\n-  Two + Persons Female Householder",
+			"DisplayFolderInfo": "{\"name\":\"Party\",\"colorCode\":\"#00727A\"}",
+			"PrimaryKeys": "HouseholdTypeId",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

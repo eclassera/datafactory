@@ -1,0 +1,143 @@
+{
+	"name": "ChannelApplicableTax",
+	"properties": {
+		"Name": "ChannelApplicableTax",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "The tax(es) that are applicable to transactions involving the product.",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "ChannelId",
+					"Description": "The unique identifier of a Channel.",
+					"BaseAttributeReference": {
+						"Entity": "ChannelApplicableTax.cdm.json/ChannelApplicableTax",
+						"Name": "ChannelId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "TaxId",
+					"Description": "The unique identifier of a Tax.",
+					"BaseAttributeReference": {
+						"Entity": "ChannelApplicableTax.cdm.json/ChannelApplicableTax",
+						"Name": "TaxId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "TaxExemptIndicator",
+					"Description": "Indicates that the tax is exempt for the channel and does not need to be collected.",
+					"BaseAttributeReference": {
+						"Entity": "ChannelApplicableTax.cdm.json/ChannelApplicableTax",
+						"Name": "TaxExemptIndicator"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "boolean",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"HIVE_TYPE_STRING": "boolean"
+						}
+					}
+				},
+				{
+					"Name": "TaxApplicableToStoreIndicator",
+					"Description": "Indicates whether the tax is applicable to the store and needs to be collected and remitted to the appropriate authorities.",
+					"BaseAttributeReference": {
+						"Entity": "ChannelApplicableTax.cdm.json/ChannelApplicableTax",
+						"Name": "TaxApplicableToStoreIndicator"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "boolean",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"HIVE_TYPE_STRING": "boolean"
+						}
+					}
+				},
+				{
+					"Name": "TaxIncludedInPriceIndicator",
+					"Description": "Indicates whether the tax is already included in the product list price or whether it needs to be added during the transaction.",
+					"BaseAttributeReference": {
+						"Entity": "ChannelApplicableTax.cdm.json/ChannelApplicableTax",
+						"Name": "TaxIncludedInPriceIndicator"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "boolean",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"HIVE_TYPE_STRING": "boolean"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/ChannelApplicableTax",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/ChannelApplicableTax",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"ChannelId\":{\"entity\":\"ChannelApplicableTax.cdm.json/ChannelApplicableTax\",\"name\":\"ChannelId\"},\"TaxId\":{\"entity\":\"ChannelApplicableTax.cdm.json/ChannelApplicableTax\",\"name\":\"TaxId\"},\"TaxExemptIndicator\":{\"entity\":\"ChannelApplicableTax.cdm.json/ChannelApplicableTax\",\"name\":\"TaxExemptIndicator\"},\"TaxApplicableToStoreIndicator\":{\"entity\":\"ChannelApplicableTax.cdm.json/ChannelApplicableTax\",\"name\":\"TaxApplicableToStoreIndicator\"},\"TaxIncludedInPriceIndicator\":{\"entity\":\"ChannelApplicableTax.cdm.json/ChannelApplicableTax\",\"name\":\"TaxIncludedInPriceIndicator\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"ChannelApplicableTax\",\"path\":\"ChannelApplicableTax.cdm.json/ChannelApplicableTax\"},\"description\":\"The tax(es) that are applicable to transactions involving the product.\",\"primaryKey\":[\"ChannelId\",\"TaxId\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ChannelApplicableTax.cdm.json/ChannelApplicableTax\",\"name\":\"ChannelId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Channel.\",\"isNullable\":false,\"name\":\"ChannelId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ChannelApplicableTax.cdm.json/ChannelApplicableTax\",\"name\":\"TaxId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Tax.\",\"isNullable\":false,\"name\":\"TaxId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ChannelApplicableTax.cdm.json/ChannelApplicableTax\",\"name\":\"TaxExemptIndicator\"},\"dataType\":\"boolean\",\"description\":\"Indicates that the tax is exempt for the channel and does not need to be collected.\",\"isNullable\":true,\"name\":\"TaxExemptIndicator\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ChannelApplicableTax.cdm.json/ChannelApplicableTax\",\"name\":\"TaxApplicableToStoreIndicator\"},\"dataType\":\"boolean\",\"description\":\"Indicates whether the tax is applicable to the store and needs to be collected and remitted to the appropriate authorities.\",\"isNullable\":true,\"name\":\"TaxApplicableToStoreIndicator\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ChannelApplicableTax.cdm.json/ChannelApplicableTax\",\"name\":\"TaxIncludedInPriceIndicator\"},\"dataType\":\"boolean\",\"description\":\"Indicates whether the tax is already included in the product list price or whether it needs to be added during the transaction.\",\"isNullable\":true,\"name\":\"TaxIncludedInPriceIndicator\"}]}}}",
+			"Description": "The tax(es) that are applicable to transactions involving the product.",
+			"DisplayFolderInfo": "{\"name\":\"Channel\",\"colorCode\":\"#001D3F\"}",
+			"PrimaryKeys": "ChannelId,TaxId",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

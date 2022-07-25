@@ -1,0 +1,113 @@
+{
+	"name": "EquifaxFinancialAccountStatusType",
+	"properties": {
+		"Name": "EquifaxFinancialAccountStatusType",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "The overall payment performance status of the most recently reported period.\n\nEx:\n- 0 Current\n- S Slow\n- 1 Slow Up to 30\n- 2 Slow Up to 60\n- 3 Slow Up to 90\n- 4 Slow Up to 120\n- 5 Slow 121+\n- 6 Collection\n- 7 Non-accrual account\n- 8 Repossession/Foreclosure\n- 9 Charge-Off",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "EquifaxFinancialAccountStatusTypeId",
+					"Description": "The unique identifier of a Financial Account Status Type.",
+					"BaseAttributeReference": {
+						"Entity": "EquifaxFinancialAccountStatusType.cdm.json/EquifaxFinancialAccountStatusType",
+						"Name": "EquifaxFinancialAccountStatusTypeId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "EquifaxFinancialAccountStatusTypeName",
+					"Description": "The name of a Financial Account Status Type.",
+					"BaseAttributeReference": {
+						"Entity": "EquifaxFinancialAccountStatusType.cdm.json/EquifaxFinancialAccountStatusType",
+						"Name": "EquifaxFinancialAccountStatusTypeName"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 256,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "EquifaxFinancialAccountStatusTypeDescription",
+					"Description": "The description of a Financial Account Status Type.",
+					"BaseAttributeReference": {
+						"Entity": "EquifaxFinancialAccountStatusType.cdm.json/EquifaxFinancialAccountStatusType",
+						"Name": "EquifaxFinancialAccountStatusTypeDescription"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/EquifaxFinancialAccountStatusType",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/EquifaxFinancialAccountStatusType",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"EquifaxFinancialAccountStatusTypeId\":{\"entity\":\"EquifaxFinancialAccountStatusType.cdm.json/EquifaxFinancialAccountStatusType\",\"name\":\"EquifaxFinancialAccountStatusTypeId\"},\"EquifaxFinancialAccountStatusTypeName\":{\"entity\":\"EquifaxFinancialAccountStatusType.cdm.json/EquifaxFinancialAccountStatusType\",\"name\":\"EquifaxFinancialAccountStatusTypeName\"},\"EquifaxFinancialAccountStatusTypeDescription\":{\"entity\":\"EquifaxFinancialAccountStatusType.cdm.json/EquifaxFinancialAccountStatusType\",\"name\":\"EquifaxFinancialAccountStatusTypeDescription\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"EquifaxFinancialAccountStatusType\",\"path\":\"EquifaxFinancialAccountStatusType.cdm.json/EquifaxFinancialAccountStatusType\"},\"description\":\"The overall payment performance status of the most recently reported period.\\n\\nEx:\\n- 0 Current\\n- S Slow\\n- 1 Slow Up to 30\\n- 2 Slow Up to 60\\n- 3 Slow Up to 90\\n- 4 Slow Up to 120\\n- 5 Slow 121+\\n- 6 Collection\\n- 7 Non-accrual account\\n- 8 Repossession/Foreclosure\\n- 9 Charge-Off\",\"primaryKey\":[\"EquifaxFinancialAccountStatusTypeId\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"EquifaxFinancialAccountStatusType.cdm.json/EquifaxFinancialAccountStatusType\",\"name\":\"EquifaxFinancialAccountStatusTypeId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Financial Account Status Type.\",\"isNullable\":false,\"name\":\"EquifaxFinancialAccountStatusTypeId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"EquifaxFinancialAccountStatusType.cdm.json/EquifaxFinancialAccountStatusType\",\"name\":\"EquifaxFinancialAccountStatusTypeName\"},\"dataType\":\"string\",\"dataTypeLength\":256,\"description\":\"The name of a Financial Account Status Type.\",\"isNullable\":true,\"name\":\"EquifaxFinancialAccountStatusTypeName\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"EquifaxFinancialAccountStatusType.cdm.json/EquifaxFinancialAccountStatusType\",\"name\":\"EquifaxFinancialAccountStatusTypeDescription\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"The description of a Financial Account Status Type.\",\"isNullable\":true,\"name\":\"EquifaxFinancialAccountStatusTypeDescription\"}]}}}",
+			"Description": "The overall payment performance status of the most recently reported period.\n\nEx:\n- 0 Current\n- S Slow\n- 1 Slow Up to 30\n- 2 Slow Up to 60\n- 3 Slow Up to 90\n- 4 Slow Up to 120\n- 5 Slow 121+\n- 6 Collection\n- 7 Non-accrual account\n- 8 Repossession/Foreclosure\n- 9 Charge-Off",
+			"DisplayFolderInfo": "{\"name\":\"Customer Credit & Collections\",\"colorCode\":\"#022F22\"}",
+			"PrimaryKeys": "EquifaxFinancialAccountStatusTypeId",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

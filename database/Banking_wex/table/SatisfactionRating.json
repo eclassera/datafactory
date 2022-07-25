@@ -1,0 +1,113 @@
+{
+	"name": "SatisfactionRating",
+	"properties": {
+		"Name": "SatisfactionRating",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "A rating for overall satisfaction that may be associated with an associated Rating Criteria.\n\nEx:\n- Outstanding\n- Above Average\n- Average\n- Below Average\n- Poor\n- Unacceptable",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "SatisfactionRatingId",
+					"Description": "The unique identifier of a Satisfaction Rating.",
+					"BaseAttributeReference": {
+						"Entity": "SatisfactionRating.cdm.json/SatisfactionRating",
+						"Name": "SatisfactionRatingId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "SatisfactionRatingName",
+					"Description": "The name of a Satisfaction Rating.",
+					"BaseAttributeReference": {
+						"Entity": "SatisfactionRating.cdm.json/SatisfactionRating",
+						"Name": "SatisfactionRatingName"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 256,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "SatisfactionRatingDescription",
+					"Description": "The description of a Satisfaction Rating.",
+					"BaseAttributeReference": {
+						"Entity": "SatisfactionRating.cdm.json/SatisfactionRating",
+						"Name": "SatisfactionRatingDescription"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/SatisfactionRating",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/SatisfactionRating",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"SatisfactionRatingId\":{\"entity\":\"SatisfactionRating.cdm.json/SatisfactionRating\",\"name\":\"SatisfactionRatingId\"},\"SatisfactionRatingName\":{\"entity\":\"SatisfactionRating.cdm.json/SatisfactionRating\",\"name\":\"SatisfactionRatingName\"},\"SatisfactionRatingDescription\":{\"entity\":\"SatisfactionRating.cdm.json/SatisfactionRating\",\"name\":\"SatisfactionRatingDescription\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"SatisfactionRating\",\"path\":\"SatisfactionRating.cdm.json/SatisfactionRating\"},\"description\":\"A rating for overall satisfaction that may be associated with an associated Rating Criteria.\\n\\nEx:\\n- Outstanding\\n- Above Average\\n- Average\\n- Below Average\\n- Poor\\n- Unacceptable\",\"primaryKey\":[\"SatisfactionRatingId\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"SatisfactionRating.cdm.json/SatisfactionRating\",\"name\":\"SatisfactionRatingId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Satisfaction Rating.\",\"isNullable\":false,\"name\":\"SatisfactionRatingId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"SatisfactionRating.cdm.json/SatisfactionRating\",\"name\":\"SatisfactionRatingName\"},\"dataType\":\"string\",\"dataTypeLength\":256,\"description\":\"The name of a Satisfaction Rating.\",\"isNullable\":true,\"name\":\"SatisfactionRatingName\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"SatisfactionRating.cdm.json/SatisfactionRating\",\"name\":\"SatisfactionRatingDescription\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"The description of a Satisfaction Rating.\",\"isNullable\":true,\"name\":\"SatisfactionRatingDescription\"}]}}}",
+			"Description": "A rating for overall satisfaction that may be associated with an associated Rating Criteria.\n\nEx:\n- Outstanding\n- Above Average\n- Average\n- Below Average\n- Poor\n- Unacceptable",
+			"DisplayFolderInfo": "{\"name\":\"Customer Service & Contact Management\",\"colorCode\":\"#Ef6950\"}",
+			"PrimaryKeys": "SatisfactionRatingId",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

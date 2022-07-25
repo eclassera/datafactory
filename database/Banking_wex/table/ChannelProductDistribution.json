@@ -1,0 +1,215 @@
+{
+	"name": "ChannelProductDistribution",
+	"properties": {
+		"Name": "ChannelProductDistribution",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "The product distributions via the associated channel for the indicated date.",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "ChannelId",
+					"Description": "The unique identifier of a Channel.",
+					"BaseAttributeReference": {
+						"Entity": "ChannelProductDistribution.cdm.json/ChannelProductDistribution",
+						"Name": "ChannelId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "ProductId",
+					"Description": "The unique identifier of a Product.",
+					"BaseAttributeReference": {
+						"Entity": "ChannelProductDistribution.cdm.json/ChannelProductDistribution",
+						"Name": "ProductId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "long",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "long"
+						}
+					}
+				},
+				{
+					"Name": "ProductChannelStartDate",
+					"Description": "The period start date for which the product is distributed in the associated channel.",
+					"BaseAttributeReference": {
+						"Entity": "ChannelProductDistribution.cdm.json/ChannelProductDistribution",
+						"Name": "ProductChannelStartDate"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "date",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"DateFormat": "YYYY-MM-DD",
+							"HIVE_TYPE_STRING": "date"
+						}
+					}
+				},
+				{
+					"Name": "CountryId",
+					"Description": "The unique identifier of the Country.",
+					"BaseAttributeReference": {
+						"Entity": "ChannelProductDistribution.cdm.json/ChannelProductDistribution",
+						"Name": "CountryId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "PeriodEndDate",
+					"Description": "The period end date for which the product distribution information is provided for the associated channel.",
+					"BaseAttributeReference": {
+						"Entity": "ChannelProductDistribution.cdm.json/ChannelProductDistribution",
+						"Name": "PeriodEndDate"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "date",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"DateFormat": "YYYY-MM-DD",
+							"HIVE_TYPE_STRING": "date"
+						}
+					}
+				},
+				{
+					"Name": "TotalNumberOfDistributionTransactions",
+					"Description": "The total number of product distribution transaction handled by the channel for the date.",
+					"BaseAttributeReference": {
+						"Entity": "ChannelProductDistribution.cdm.json/ChannelProductDistribution",
+						"Name": "TotalNumberOfDistributionTransactions"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "TotalProductDistributedQuantity",
+					"Description": "The total quantity of product distributed by the channel during the period.",
+					"BaseAttributeReference": {
+						"Entity": "ChannelProductDistribution.cdm.json/ChannelProductDistribution",
+						"Name": "TotalProductDistributedQuantity"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "decimal",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Precision": 18,
+						"Scale": 2,
+						"Properties": {
+							"HIVE_TYPE_STRING": "decimal"
+						}
+					}
+				},
+				{
+					"Name": "TotalProductDistributedRevenuesAmount",
+					"Description": "The total amount of revenues derived from products distributed by the distribution channel during the period.",
+					"BaseAttributeReference": {
+						"Entity": "ChannelProductDistribution.cdm.json/ChannelProductDistribution",
+						"Name": "TotalProductDistributedRevenuesAmount"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "decimal",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Precision": 18,
+						"Scale": 2,
+						"Properties": {
+							"HIVE_TYPE_STRING": "decimal"
+						}
+					}
+				},
+				{
+					"Name": "TotalChannelProductCommissionsPaidAmount",
+					"Description": "The total amount of commissions paid to the channel during the period.",
+					"BaseAttributeReference": {
+						"Entity": "ChannelProductDistribution.cdm.json/ChannelProductDistribution",
+						"Name": "TotalChannelProductCommissionsPaidAmount"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "decimal",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Precision": 18,
+						"Scale": 2,
+						"Properties": {
+							"HIVE_TYPE_STRING": "decimal"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/ChannelProductDistribution",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/ChannelProductDistribution",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"ChannelId\":{\"entity\":\"ChannelProductDistribution.cdm.json/ChannelProductDistribution\",\"name\":\"ChannelId\"},\"ProductId\":{\"entity\":\"ChannelProductDistribution.cdm.json/ChannelProductDistribution\",\"name\":\"ProductId\"},\"ProductChannelStartDate\":{\"entity\":\"ChannelProductDistribution.cdm.json/ChannelProductDistribution\",\"name\":\"ProductChannelStartDate\"},\"CountryId\":{\"entity\":\"ChannelProductDistribution.cdm.json/ChannelProductDistribution\",\"name\":\"CountryId\"},\"PeriodEndDate\":{\"entity\":\"ChannelProductDistribution.cdm.json/ChannelProductDistribution\",\"name\":\"PeriodEndDate\"},\"TotalNumberOfDistributionTransactions\":{\"entity\":\"ChannelProductDistribution.cdm.json/ChannelProductDistribution\",\"name\":\"TotalNumberOfDistributionTransactions\"},\"TotalProductDistributedQuantity\":{\"entity\":\"ChannelProductDistribution.cdm.json/ChannelProductDistribution\",\"name\":\"TotalProductDistributedQuantity\"},\"TotalProductDistributedRevenuesAmount\":{\"entity\":\"ChannelProductDistribution.cdm.json/ChannelProductDistribution\",\"name\":\"TotalProductDistributedRevenuesAmount\"},\"TotalChannelProductCommissionsPaidAmount\":{\"entity\":\"ChannelProductDistribution.cdm.json/ChannelProductDistribution\",\"name\":\"TotalChannelProductCommissionsPaidAmount\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"ChannelProductDistribution\",\"path\":\"ChannelProductDistribution.cdm.json/ChannelProductDistribution\"},\"description\":\"The product distributions via the associated channel for the indicated date.\",\"primaryKey\":[\"ChannelId\",\"ProductId\",\"ProductChannelStartDate\",\"CountryId\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ChannelProductDistribution.cdm.json/ChannelProductDistribution\",\"name\":\"ChannelId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Channel.\",\"isNullable\":false,\"name\":\"ChannelId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ChannelProductDistribution.cdm.json/ChannelProductDistribution\",\"name\":\"ProductId\"},\"dataType\":\"long\",\"description\":\"The unique identifier of a Product.\",\"isNullable\":false,\"name\":\"ProductId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ChannelProductDistribution.cdm.json/ChannelProductDistribution\",\"name\":\"ProductChannelStartDate\"},\"dataType\":\"date\",\"dateFormat\":\"YYYY-MM-DD\",\"description\":\"The period start date for which the product is distributed in the associated channel.\",\"isNullable\":false,\"name\":\"ProductChannelStartDate\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ChannelProductDistribution.cdm.json/ChannelProductDistribution\",\"name\":\"CountryId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of the Country.\",\"isNullable\":false,\"name\":\"CountryId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ChannelProductDistribution.cdm.json/ChannelProductDistribution\",\"name\":\"PeriodEndDate\"},\"dataType\":\"date\",\"dateFormat\":\"YYYY-MM-DD\",\"description\":\"The period end date for which the product distribution information is provided for the associated channel.\",\"isNullable\":true,\"name\":\"PeriodEndDate\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ChannelProductDistribution.cdm.json/ChannelProductDistribution\",\"name\":\"TotalNumberOfDistributionTransactions\"},\"dataType\":\"integer\",\"description\":\"The total number of product distribution transaction handled by the channel for the date.\",\"isNullable\":true,\"name\":\"TotalNumberOfDistributionTransactions\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ChannelProductDistribution.cdm.json/ChannelProductDistribution\",\"name\":\"TotalProductDistributedQuantity\"},\"dataType\":\"decimal\",\"dataTypeLength\":18,\"description\":\"The total quantity of product distributed by the channel during the period.\",\"isNullable\":true,\"scale\":2,\"name\":\"TotalProductDistributedQuantity\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ChannelProductDistribution.cdm.json/ChannelProductDistribution\",\"name\":\"TotalProductDistributedRevenuesAmount\"},\"dataType\":\"decimal\",\"dataTypeLength\":18,\"description\":\"The total amount of revenues derived from products distributed by the distribution channel during the period.\",\"isNullable\":true,\"scale\":2,\"name\":\"TotalProductDistributedRevenuesAmount\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ChannelProductDistribution.cdm.json/ChannelProductDistribution\",\"name\":\"TotalChannelProductCommissionsPaidAmount\"},\"dataType\":\"decimal\",\"dataTypeLength\":18,\"description\":\"The total amount of commissions paid to the channel during the period.\",\"isNullable\":true,\"scale\":2,\"name\":\"TotalChannelProductCommissionsPaidAmount\"}]}}}",
+			"Description": "The product distributions via the associated channel for the indicated date.",
+			"DisplayFolderInfo": "{\"name\":\"Channel\",\"colorCode\":\"#001D3F\"}",
+			"PrimaryKeys": "ChannelId,ProductId,ProductChannelStartDate,CountryId",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

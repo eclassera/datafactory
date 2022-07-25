@@ -1,0 +1,113 @@
+{
+	"name": "DunBradstreetCompositeCreditAppraisal",
+	"properties": {
+		"Name": "DunBradstreetCompositeCreditAppraisal",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "The Dun Bradstreet Credit Appraisal is rated:\n\n1 = High\n\nVery low change of business failure and will usually pay all obligations within terms.\n\nPayments: Satisfactory, suitable explanations for any slowness \n\nFinance: Statements regularly obtained\nUsually comparative figures\nStrong condition\nUpward trend \n\nHistory: One year back, at least;\nthree years preferably\nAdequate assurance of ownership\n\nAntecedents: Experienced in all aspects of business management\nNo recent business failures, felony, conviction, etc., that would have serious impact on business\n\n2 = Good\n\nLow change of business failure and will usually pay all obligations within terms.\n\nPayments: Generally satisfactory, suitable explanation for slowness \n\nFinance: Statements obtained \nSound Condition\nTrend Usually favorable\n\nHistory: No minimum years if other factors satisfactory\nAdequate assurance of ownership\n\nAntecedents: If new, previous experience in line or in successfully managing a previous business\nNo recent business failures, felony, conviction, etc., that would have serious impact on business\n\n3 =Fair\n\n Moderate change of business failure and/or will usually pay all obligations slow.\n\nPayments: Significant slowness \n\nFinance: Statement obtained\nCondition unbalanced\nOperating Losses\nImpaired Cash flow\nHeavy debt\n\nHistory: Adequate assurance of ownership\n\nAntecedents: May lack balanced experience, or experience in line\nConsider impact on business of any recent business failures or felony convictions\n\n4 = Limited \n\nHigher chance of business failure and/or will usually pay all obligations slow.\n\nPayments: Even greater elements of risk, credit worthiness limited\n\nFinance: Significant, even chronic slowness \n\nHistory: Adequate assurance of ownership\n\nAntecedents: May lack balanced experience, or experience in line\nConsider impact on business of any recent business failures or felony convictions\n\nThe Composite Credit Appraisal is a number, 1 through 4, that makes up the second half of the company's Rating and reflects D&B's overall assessment of that firm's creditworthiness. \n\nThe \"2\", \"3\", or \"4\" Composite Credit Appraisal is based on analysis by D&B of company payments, public records, business age and other important factors. A \"2\" is the highest Composite Credit Appraisal a company not supplying D&B with current financial information can receive.",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "DunBradstreetCompositeCreditAppraisalId",
+					"Description": "The unique identifier of a Dun Bradstreet Composite Credit Appraisal rating.",
+					"BaseAttributeReference": {
+						"Entity": "DunBradstreetCompositeCreditAppraisal.cdm.json/DunBradstreetCompositeCreditAppraisal",
+						"Name": "DunBradstreetCompositeCreditAppraisalId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "DunBradstreetCompositeCreditAppraisalName",
+					"Description": "The name of a Dun Bradstreet Composite Credit Appraisal rating.",
+					"BaseAttributeReference": {
+						"Entity": "DunBradstreetCompositeCreditAppraisal.cdm.json/DunBradstreetCompositeCreditAppraisal",
+						"Name": "DunBradstreetCompositeCreditAppraisalName"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 256,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "DunBradstreetCompositeCreditAppraisalDescription",
+					"Description": "The description of a Dun Bradstreet Composite Credit Appraisal rating.",
+					"BaseAttributeReference": {
+						"Entity": "DunBradstreetCompositeCreditAppraisal.cdm.json/DunBradstreetCompositeCreditAppraisal",
+						"Name": "DunBradstreetCompositeCreditAppraisalDescription"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/DunBradstreetCompositeCreditAppraisal",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/DunBradstreetCompositeCreditAppraisal",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"DunBradstreetCompositeCreditAppraisalId\":{\"entity\":\"DunBradstreetCompositeCreditAppraisal.cdm.json/DunBradstreetCompositeCreditAppraisal\",\"name\":\"DunBradstreetCompositeCreditAppraisalId\"},\"DunBradstreetCompositeCreditAppraisalName\":{\"entity\":\"DunBradstreetCompositeCreditAppraisal.cdm.json/DunBradstreetCompositeCreditAppraisal\",\"name\":\"DunBradstreetCompositeCreditAppraisalName\"},\"DunBradstreetCompositeCreditAppraisalDescription\":{\"entity\":\"DunBradstreetCompositeCreditAppraisal.cdm.json/DunBradstreetCompositeCreditAppraisal\",\"name\":\"DunBradstreetCompositeCreditAppraisalDescription\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"DunBradstreetCompositeCreditAppraisal\",\"path\":\"DunBradstreetCompositeCreditAppraisal.cdm.json/DunBradstreetCompositeCreditAppraisal\"},\"description\":\"The Dun Bradstreet Credit Appraisal is rated:\\n\\n1 = High\\n\\nVery low change of business failure and will usually pay all obligations within terms.\\n\\nPayments: Satisfactory, suitable explanations for any slowness \\n\\nFinance: Statements regularly obtained\\nUsually comparative figures\\nStrong condition\\nUpward trend \\n\\nHistory: One year back, at least;\\nthree years preferably\\nAdequate assurance of ownership\\n\\nAntecedents: Experienced in all aspects of business management\\nNo recent business failures, felony, conviction, etc., that would have serious impact on business\\n\\n2 = Good\\n\\nLow change of business failure and will usually pay all obligations within terms.\\n\\nPayments: Generally satisfactory, suitable explanation for slowness \\n\\nFinance: Statements obtained \\nSound Condition\\nTrend Usually favorable\\n\\nHistory: No minimum years if other factors satisfactory\\nAdequate assurance of ownership\\n\\nAntecedents: If new, previous experience in line or in successfully managing a previous business\\nNo recent business failures, felony, conviction, etc., that would have serious impact on business\\n\\n3 =Fair\\n\\n Moderate change of business failure and/or will usually pay all obligations slow.\\n\\nPayments: Significant slowness \\n\\nFinance: Statement obtained\\nCondition unbalanced\\nOperating Losses\\nImpaired Cash flow\\nHeavy debt\\n\\nHistory: Adequate assurance of ownership\\n\\nAntecedents: May lack balanced experience, or experience in line\\nConsider impact on business of any recent business failures or felony convictions\\n\\n4 = Limited \\n\\nHigher chance of business failure and/or will usually pay all obligations slow.\\n\\nPayments: Even greater elements of risk, credit worthiness limited\\n\\nFinance: Significant, even chronic slowness \\n\\nHistory: Adequate assurance of ownership\\n\\nAntecedents: May lack balanced experience, or experience in line\\nConsider impact on business of any recent business failures or felony convictions\\n\\nThe Composite Credit Appraisal is a number, 1 through 4, that makes up the second half of the company's Rating and reflects D&B's overall assessment of that firm's creditworthiness. \\n\\nThe \\\"2\\\", \\\"3\\\", or \\\"4\\\" Composite Credit Appraisal is based on analysis by D&B of company payments, public records, business age and other important factors. A \\\"2\\\" is the highest Composite Credit Appraisal a company not supplying D&B with current financial information can receive.\",\"primaryKey\":[\"DunBradstreetCompositeCreditAppraisalId\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"DunBradstreetCompositeCreditAppraisal.cdm.json/DunBradstreetCompositeCreditAppraisal\",\"name\":\"DunBradstreetCompositeCreditAppraisalId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Dun Bradstreet Composite Credit Appraisal rating.\",\"isNullable\":false,\"name\":\"DunBradstreetCompositeCreditAppraisalId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"DunBradstreetCompositeCreditAppraisal.cdm.json/DunBradstreetCompositeCreditAppraisal\",\"name\":\"DunBradstreetCompositeCreditAppraisalName\"},\"dataType\":\"string\",\"dataTypeLength\":256,\"description\":\"The name of a Dun Bradstreet Composite Credit Appraisal rating.\",\"isNullable\":true,\"name\":\"DunBradstreetCompositeCreditAppraisalName\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"DunBradstreetCompositeCreditAppraisal.cdm.json/DunBradstreetCompositeCreditAppraisal\",\"name\":\"DunBradstreetCompositeCreditAppraisalDescription\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"The description of a Dun Bradstreet Composite Credit Appraisal rating.\",\"isNullable\":true,\"name\":\"DunBradstreetCompositeCreditAppraisalDescription\"}]}}}",
+			"Description": "The Dun Bradstreet Credit Appraisal is rated:\n\n1 = High\n\nVery low change of business failure and will usually pay all obligations within terms.\n\nPayments: Satisfactory, suitable explanations for any slowness \n\nFinance: Statements regularly obtained\nUsually comparative figures\nStrong condition\nUpward trend \n\nHistory: One year back, at least;\nthree years preferably\nAdequate assurance of ownership\n\nAntecedents: Experienced in all aspects of business management\nNo recent business failures, felony, conviction, etc., that would have serious impact on business\n\n2 = Good\n\nLow change of business failure and will usually pay all obligations within terms.\n\nPayments: Generally satisfactory, suitable explanation for slowness \n\nFinance: Statements obtained \nSound Condition\nTrend Usually favorable\n\nHistory: No minimum years if other factors satisfactory\nAdequate assurance of ownership\n\nAntecedents: If new, previous experience in line or in successfully managing a previous business\nNo recent business failures, felony, conviction, etc., that would have serious impact on business\n\n3 =Fair\n\n Moderate change of business failure and/or will usually pay all obligations slow.\n\nPayments: Significant slowness \n\nFinance: Statement obtained\nCondition unbalanced\nOperating Losses\nImpaired Cash flow\nHeavy debt\n\nHistory: Adequate assurance of ownership\n\nAntecedents: May lack balanced experience, or experience in line\nConsider impact on business of any recent business failures or felony convictions\n\n4 = Limited \n\nHigher chance of business failure and/or will usually pay all obligations slow.\n\nPayments: Even greater elements of risk, credit worthiness limited\n\nFinance: Significant, even chronic slowness \n\nHistory: Adequate assurance of ownership\n\nAntecedents: May lack balanced experience, or experience in line\nConsider impact on business of any recent business failures or felony convictions\n\nThe Composite Credit Appraisal is a number, 1 through 4, that makes up the second half of the company's Rating and reflects D&B's overall assessment of that firm's creditworthiness. \n\nThe \"2\", \"3\", or \"4\" Composite Credit Appraisal is based on analysis by D&B of company payments, public records, business age and other important factors. A \"2\" is the highest Composite Credit Appraisal a company not supplying D&B with current financial information can receive.",
+			"DisplayFolderInfo": "{\"name\":\"Customer Credit & Collections\",\"colorCode\":\"#022F22\"}",
+			"PrimaryKeys": "DunBradstreetCompositeCreditAppraisalId",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

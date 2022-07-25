@@ -1,0 +1,113 @@
+{
+	"name": "DoNotEmailRegistryEmail",
+	"properties": {
+		"Name": "DoNotEmailRegistryEmail",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "An email address that is restricted by the Do Not Call Registry.",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "DoNotContactRegistryId",
+					"Description": "The unique identifier of an Do Not Contact Registry.",
+					"BaseAttributeReference": {
+						"Entity": "DoNotEmailRegistryEmail.cdm.json/DoNotEmailRegistryEmail",
+						"Name": "DoNotContactRegistryId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "EmailAddress",
+					"Description": "The Customer email address.",
+					"BaseAttributeReference": {
+						"Entity": "DoNotEmailRegistryEmail.cdm.json/DoNotEmailRegistryEmail",
+						"Name": "EmailAddress"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Length": 256,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "DoNotEmailRegistryEmailAddressNote",
+					"Description": "A note, comment or additional information regarding the Do Not Email Registry Email Address.",
+					"BaseAttributeReference": {
+						"Entity": "DoNotEmailRegistryEmail.cdm.json/DoNotEmailRegistryEmail",
+						"Name": "DoNotEmailRegistryEmailAddressNote"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/DoNotEmailRegistryEmail",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/DoNotEmailRegistryEmail",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"DoNotContactRegistryId\":{\"entity\":\"DoNotEmailRegistryEmail.cdm.json/DoNotEmailRegistryEmail\",\"name\":\"DoNotContactRegistryId\"},\"EmailAddress\":{\"entity\":\"DoNotEmailRegistryEmail.cdm.json/DoNotEmailRegistryEmail\",\"name\":\"EmailAddress\"},\"DoNotEmailRegistryEmailAddressNote\":{\"entity\":\"DoNotEmailRegistryEmail.cdm.json/DoNotEmailRegistryEmail\",\"name\":\"DoNotEmailRegistryEmailAddressNote\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"DoNotEmailRegistryEmail\",\"path\":\"DoNotEmailRegistryEmail.cdm.json/DoNotEmailRegistryEmail\"},\"description\":\"An email address that is restricted by the Do Not Call Registry.\",\"primaryKey\":[\"DoNotContactRegistryId\",\"EmailAddress\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"DoNotEmailRegistryEmail.cdm.json/DoNotEmailRegistryEmail\",\"name\":\"DoNotContactRegistryId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of an Do Not Contact Registry.\",\"isNullable\":false,\"name\":\"DoNotContactRegistryId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"DoNotEmailRegistryEmail.cdm.json/DoNotEmailRegistryEmail\",\"name\":\"EmailAddress\"},\"dataType\":\"string\",\"dataTypeLength\":256,\"description\":\"The Customer email address.\",\"isNullable\":false,\"name\":\"EmailAddress\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"DoNotEmailRegistryEmail.cdm.json/DoNotEmailRegistryEmail\",\"name\":\"DoNotEmailRegistryEmailAddressNote\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"A note, comment or additional information regarding the Do Not Email Registry Email Address.\",\"isNullable\":true,\"name\":\"DoNotEmailRegistryEmailAddressNote\"}]}}}",
+			"Description": "An email address that is restricted by the Do Not Call Registry.",
+			"DisplayFolderInfo": "{\"name\":\"Party\",\"colorCode\":\"#00727A\"}",
+			"PrimaryKeys": "DoNotContactRegistryId,EmailAddress",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

@@ -1,0 +1,146 @@
+{
+	"name": "CustomerCreditScore",
+	"properties": {
+		"Name": "CustomerCreditScore",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "The Customer Credit Score provided by the Credit Rating Agency using the Credit Scoring Model.\n\nAll three major credit bureaus generate a variety of versions of scores calculated using various FICO, Vantage and other models including their own proprietary models. \n\nOther credit rating agencies (including internal sources), and credit scoring models (including internally developed) may also be utilized.\n\nNote: While it is possible for a credit score and a credit report to be obtained from a credit rating agency at the same time, this is not a requirement. Each  may be ordered independent of one another. For this reason we have chosen to keep the score and the report separate from one another.",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "CustomerId",
+					"Description": "The unique identifier of a Customer.",
+					"BaseAttributeReference": {
+						"Entity": "CustomerCreditScore.cdm.json/CustomerCreditScore",
+						"Name": "CustomerId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "long",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "long"
+						}
+					}
+				},
+				{
+					"Name": "CreditRatingAgencyId",
+					"Description": "The unique identifier of a Credit Rating Agency.",
+					"BaseAttributeReference": {
+						"Entity": "CustomerCreditScore.cdm.json/CustomerCreditScore",
+						"Name": "CreditRatingAgencyId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "CreditScoringModelId",
+					"Description": "The unique identifier of a Credit Scoring Model.",
+					"BaseAttributeReference": {
+						"Entity": "CustomerCreditScore.cdm.json/CustomerCreditScore",
+						"Name": "CreditScoringModelId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "CustomerCreditScoreTimestamp",
+					"Description": "The timestamp of the customer credit score.",
+					"BaseAttributeReference": {
+						"Entity": "CustomerCreditScore.cdm.json/CustomerCreditScore",
+						"Name": "CustomerCreditScoreTimestamp"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "timestamp",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"TimestampFormat": "YYYY-MM-DD HH:MM:SS.fffffffff",
+							"HIVE_TYPE_STRING": "timestamp"
+						}
+					}
+				},
+				{
+					"Name": "CustomerCreditScore",
+					"Description": "The Customer Credit Score provided by the Credit Rating Agency using the Credit Scoring Model.",
+					"BaseAttributeReference": {
+						"Entity": "CustomerCreditScore.cdm.json/CustomerCreditScore",
+						"Name": "CustomerCreditScore"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "decimal",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Precision": 3,
+						"Scale": 0,
+						"Properties": {
+							"HIVE_TYPE_STRING": "decimal"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/CustomerCreditScore",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/CustomerCreditScore",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"CustomerId\":{\"entity\":\"CustomerCreditScore.cdm.json/CustomerCreditScore\",\"name\":\"CustomerId\"},\"CreditRatingAgencyId\":{\"entity\":\"CustomerCreditScore.cdm.json/CustomerCreditScore\",\"name\":\"CreditRatingAgencyId\"},\"CreditScoringModelId\":{\"entity\":\"CustomerCreditScore.cdm.json/CustomerCreditScore\",\"name\":\"CreditScoringModelId\"},\"CustomerCreditScoreTimestamp\":{\"entity\":\"CustomerCreditScore.cdm.json/CustomerCreditScore\",\"name\":\"CustomerCreditScoreTimestamp\"},\"CustomerCreditScore\":{\"entity\":\"CustomerCreditScore.cdm.json/CustomerCreditScore\",\"name\":\"CustomerCreditScore\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"CustomerCreditScore\",\"path\":\"CustomerCreditScore.cdm.json/CustomerCreditScore\"},\"description\":\"The Customer Credit Score provided by the Credit Rating Agency using the Credit Scoring Model.\\n\\nAll three major credit bureaus generate a variety of versions of scores calculated using various FICO, Vantage and other models including their own proprietary models. \\n\\nOther credit rating agencies (including internal sources), and credit scoring models (including internally developed) may also be utilized.\\n\\nNote: While it is possible for a credit score and a credit report to be obtained from a credit rating agency at the same time, this is not a requirement. Each  may be ordered independent of one another. For this reason we have chosen to keep the score and the report separate from one another.\",\"primaryKey\":[\"CustomerId\",\"CreditRatingAgencyId\",\"CreditScoringModelId\",\"CustomerCreditScoreTimestamp\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CustomerCreditScore.cdm.json/CustomerCreditScore\",\"name\":\"CustomerId\"},\"dataType\":\"long\",\"description\":\"The unique identifier of a Customer.\",\"isNullable\":false,\"name\":\"CustomerId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CustomerCreditScore.cdm.json/CustomerCreditScore\",\"name\":\"CreditRatingAgencyId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Credit Rating Agency.\",\"isNullable\":false,\"name\":\"CreditRatingAgencyId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CustomerCreditScore.cdm.json/CustomerCreditScore\",\"name\":\"CreditScoringModelId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Credit Scoring Model.\",\"isNullable\":false,\"name\":\"CreditScoringModelId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CustomerCreditScore.cdm.json/CustomerCreditScore\",\"name\":\"CustomerCreditScoreTimestamp\"},\"dataType\":\"timestamp\",\"description\":\"The timestamp of the customer credit score.\",\"isNullable\":false,\"name\":\"CustomerCreditScoreTimestamp\",\"timestampFormat\":\"YYYY-MM-DD HH:MM:SS.fffffffff\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CustomerCreditScore.cdm.json/CustomerCreditScore\",\"name\":\"CustomerCreditScore\"},\"dataType\":\"decimal\",\"dataTypeLength\":3,\"description\":\"The Customer Credit Score provided by the Credit Rating Agency using the Credit Scoring Model.\",\"isNullable\":true,\"scale\":0,\"name\":\"CustomerCreditScore\"}]}}}",
+			"Description": "The Customer Credit Score provided by the Credit Rating Agency using the Credit Scoring Model.\n\nAll three major credit bureaus generate a variety of versions of scores calculated using various FICO, Vantage and other models including their own proprietary models. \n\nOther credit rating agencies (including internal sources), and credit scoring models (including internally developed) may also be utilized.\n\nNote: While it is possible for a credit score and a credit report to be obtained from a credit rating agency at the same time, this is not a requirement. Each  may be ordered independent of one another. For this reason we have chosen to keep the score and the report separate from one another.",
+			"DisplayFolderInfo": "{\"name\":\"Customer Credit & Collections\",\"colorCode\":\"#022F22\"}",
+			"PrimaryKeys": "CustomerId,CreditRatingAgencyId,CreditScoringModelId,CustomerCreditScoreTimestamp",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

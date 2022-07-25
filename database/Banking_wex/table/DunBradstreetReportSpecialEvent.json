@@ -1,0 +1,164 @@
+{
+	"name": "DunBradstreetReportSpecialEvent",
+	"properties": {
+		"Name": "DunBradstreetReportSpecialEvent",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "Dun & Bradstreet maintains Special Events information about Customers that can be used to justify credit or similar decisions in excess of numeric ratings.\n\nDun & Bradstreet Example:\n\n12/03/04\n-------------\nOn Mar 26, 1999 the subject experienced a fire due to an earthquake.  According to Leslie Smith, president, damages amounted to $35,000 which were fully covered by their insurance company.  The business was closed for two days while employees settled personal matters.\n\nSpecial Events alert you to any recent developments D&B learns about that may impact your potential relationship with a firm, such as bankruptcy filings, changes in ownership, acquisitions and other events. Information reported in this section may also include announcements on the release of earnings reports. Special Events may help explain unusual company trends. For example, a change in ownership could have an impact on manner of payment, or decreased production may reflect an unexpected interruption in factory operations (i.e., labor strike or fire).",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "DunsNumber",
+					"Description": "Dun & Bradstreet (D&B) provides a D-U-N-S Number, a unique nine digit identification number, for each physical location of your business.",
+					"BaseAttributeReference": {
+						"Entity": "DunBradstreetReportSpecialEvent.cdm.json/DunBradstreetReportSpecialEvent",
+						"Name": "DunsNumber"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "decimal",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Precision": 9,
+						"Scale": 0,
+						"Properties": {
+							"HIVE_TYPE_STRING": "decimal"
+						}
+					}
+				},
+				{
+					"Name": "ReportPurchaseDate",
+					"Description": "The purchase date of the report.",
+					"BaseAttributeReference": {
+						"Entity": "DunBradstreetReportSpecialEvent.cdm.json/DunBradstreetReportSpecialEvent",
+						"Name": "ReportPurchaseDate"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "date",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"DateFormat": "YYYY-MM-DD",
+							"HIVE_TYPE_STRING": "date"
+						}
+					}
+				},
+				{
+					"Name": "SpecialEventId",
+					"Description": "The unique identifier of a Special Event.",
+					"BaseAttributeReference": {
+						"Entity": "DunBradstreetReportSpecialEvent.cdm.json/DunBradstreetReportSpecialEvent",
+						"Name": "SpecialEventId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "SpecialEventTimestamp",
+					"Description": "The timestamp of the special event.",
+					"BaseAttributeReference": {
+						"Entity": "DunBradstreetReportSpecialEvent.cdm.json/DunBradstreetReportSpecialEvent",
+						"Name": "SpecialEventTimestamp"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "timestamp",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"TimestampFormat": "YYYY-MM-DD HH:MM:SS.fffffffff",
+							"HIVE_TYPE_STRING": "timestamp"
+						}
+					}
+				},
+				{
+					"Name": "DunBradstreetSpecialEventTypeId",
+					"Description": "The unique identifier of a Dun Bradstreet Special Event Type ID.",
+					"BaseAttributeReference": {
+						"Entity": "DunBradstreetReportSpecialEvent.cdm.json/DunBradstreetReportSpecialEvent",
+						"Name": "DunBradstreetSpecialEventTypeId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "SpecialEventNote",
+					"Description": "A note, comments or additional information describing the associated Special Event.",
+					"BaseAttributeReference": {
+						"Entity": "DunBradstreetReportSpecialEvent.cdm.json/DunBradstreetReportSpecialEvent",
+						"Name": "SpecialEventNote"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/DunBradstreetReportSpecialEvent",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/DunBradstreetReportSpecialEvent",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"DunsNumber\":{\"entity\":\"DunBradstreetReportSpecialEvent.cdm.json/DunBradstreetReportSpecialEvent\",\"name\":\"DunsNumber\"},\"ReportPurchaseDate\":{\"entity\":\"DunBradstreetReportSpecialEvent.cdm.json/DunBradstreetReportSpecialEvent\",\"name\":\"ReportPurchaseDate\"},\"SpecialEventId\":{\"entity\":\"DunBradstreetReportSpecialEvent.cdm.json/DunBradstreetReportSpecialEvent\",\"name\":\"SpecialEventId\"},\"SpecialEventTimestamp\":{\"entity\":\"DunBradstreetReportSpecialEvent.cdm.json/DunBradstreetReportSpecialEvent\",\"name\":\"SpecialEventTimestamp\"},\"DunBradstreetSpecialEventTypeId\":{\"entity\":\"DunBradstreetReportSpecialEvent.cdm.json/DunBradstreetReportSpecialEvent\",\"name\":\"DunBradstreetSpecialEventTypeId\"},\"SpecialEventNote\":{\"entity\":\"DunBradstreetReportSpecialEvent.cdm.json/DunBradstreetReportSpecialEvent\",\"name\":\"SpecialEventNote\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"DunBradstreetReportSpecialEvent\",\"path\":\"DunBradstreetReportSpecialEvent.cdm.json/DunBradstreetReportSpecialEvent\"},\"description\":\"Dun & Bradstreet maintains Special Events information about Customers that can be used to justify credit or similar decisions in excess of numeric ratings.\\n\\nDun & Bradstreet Example:\\n\\n12/03/04\\n-------------\\nOn Mar 26, 1999 the subject experienced a fire due to an earthquake.  According to Leslie Smith, president, damages amounted to $35,000 which were fully covered by their insurance company.  The business was closed for two days while employees settled personal matters.\\n\\nSpecial Events alert you to any recent developments D&B learns about that may impact your potential relationship with a firm, such as bankruptcy filings, changes in ownership, acquisitions and other events. Information reported in this section may also include announcements on the release of earnings reports. Special Events may help explain unusual company trends. For example, a change in ownership could have an impact on manner of payment, or decreased production may reflect an unexpected interruption in factory operations (i.e., labor strike or fire).\",\"primaryKey\":[\"DunsNumber\",\"ReportPurchaseDate\",\"SpecialEventId\",\"SpecialEventTimestamp\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"DunBradstreetReportSpecialEvent.cdm.json/DunBradstreetReportSpecialEvent\",\"name\":\"DunsNumber\"},\"dataType\":\"decimal\",\"dataTypeLength\":9,\"description\":\"Dun & Bradstreet (D&B) provides a D-U-N-S Number, a unique nine digit identification number, for each physical location of your business.\",\"isNullable\":false,\"scale\":0,\"name\":\"DunsNumber\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"DunBradstreetReportSpecialEvent.cdm.json/DunBradstreetReportSpecialEvent\",\"name\":\"ReportPurchaseDate\"},\"dataType\":\"date\",\"dateFormat\":\"YYYY-MM-DD\",\"description\":\"The purchase date of the report.\",\"isNullable\":false,\"name\":\"ReportPurchaseDate\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"DunBradstreetReportSpecialEvent.cdm.json/DunBradstreetReportSpecialEvent\",\"name\":\"SpecialEventId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Special Event.\",\"isNullable\":false,\"name\":\"SpecialEventId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"DunBradstreetReportSpecialEvent.cdm.json/DunBradstreetReportSpecialEvent\",\"name\":\"SpecialEventTimestamp\"},\"dataType\":\"timestamp\",\"description\":\"The timestamp of the special event.\",\"isNullable\":false,\"name\":\"SpecialEventTimestamp\",\"timestampFormat\":\"YYYY-MM-DD HH:MM:SS.fffffffff\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"DunBradstreetReportSpecialEvent.cdm.json/DunBradstreetReportSpecialEvent\",\"name\":\"DunBradstreetSpecialEventTypeId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Dun Bradstreet Special Event Type ID.\",\"isNullable\":true,\"name\":\"DunBradstreetSpecialEventTypeId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"DunBradstreetReportSpecialEvent.cdm.json/DunBradstreetReportSpecialEvent\",\"name\":\"SpecialEventNote\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"A note, comments or additional information describing the associated Special Event.\",\"isNullable\":true,\"name\":\"SpecialEventNote\"}]}}}",
+			"Description": "Dun & Bradstreet maintains Special Events information about Customers that can be used to justify credit or similar decisions in excess of numeric ratings.\n\nDun & Bradstreet Example:\n\n12/03/04\n-------------\nOn Mar 26, 1999 the subject experienced a fire due to an earthquake.  According to Leslie Smith, president, damages amounted to $35,000 which were fully covered by their insurance company.  The business was closed for two days while employees settled personal matters.\n\nSpecial Events alert you to any recent developments D&B learns about that may impact your potential relationship with a firm, such as bankruptcy filings, changes in ownership, acquisitions and other events. Information reported in this section may also include announcements on the release of earnings reports. Special Events may help explain unusual company trends. For example, a change in ownership could have an impact on manner of payment, or decreased production may reflect an unexpected interruption in factory operations (i.e., labor strike or fire).",
+			"DisplayFolderInfo": "{\"name\":\"Customer Credit & Collections\",\"colorCode\":\"#022F22\"}",
+			"PrimaryKeys": "DunsNumber,ReportPurchaseDate,SpecialEventId,SpecialEventTimestamp",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

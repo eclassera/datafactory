@@ -1,0 +1,113 @@
+{
+	"name": "ServiceLevelAgreementParameter",
+	"properties": {
+		"Name": "ServiceLevelAgreementParameter",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "A parameter that is applied to a SLA.\n\nEx:\n- Minimum claim settlement time = 4 weeks\nThe parameter would be 20 business days.",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "ServiceLevelAgreementParameterId",
+					"Description": "The unique identifier of a Service Level Agreement Parameter.",
+					"BaseAttributeReference": {
+						"Entity": "ServiceLevelAgreementParameter.cdm.json/ServiceLevelAgreementParameter",
+						"Name": "ServiceLevelAgreementParameterId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "ServiceLevelAgreementParameterName",
+					"Description": "The name of a Service Level Agreement Parameter.",
+					"BaseAttributeReference": {
+						"Entity": "ServiceLevelAgreementParameter.cdm.json/ServiceLevelAgreementParameter",
+						"Name": "ServiceLevelAgreementParameterName"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 256,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "ServiceLevelAgreementParameterDescription",
+					"Description": "The description of a Service Level Agreement Parameter.",
+					"BaseAttributeReference": {
+						"Entity": "ServiceLevelAgreementParameter.cdm.json/ServiceLevelAgreementParameter",
+						"Name": "ServiceLevelAgreementParameterDescription"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/ServiceLevelAgreementParameter",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/ServiceLevelAgreementParameter",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"ServiceLevelAgreementParameterId\":{\"entity\":\"ServiceLevelAgreementParameter.cdm.json/ServiceLevelAgreementParameter\",\"name\":\"ServiceLevelAgreementParameterId\"},\"ServiceLevelAgreementParameterName\":{\"entity\":\"ServiceLevelAgreementParameter.cdm.json/ServiceLevelAgreementParameter\",\"name\":\"ServiceLevelAgreementParameterName\"},\"ServiceLevelAgreementParameterDescription\":{\"entity\":\"ServiceLevelAgreementParameter.cdm.json/ServiceLevelAgreementParameter\",\"name\":\"ServiceLevelAgreementParameterDescription\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"ServiceLevelAgreementParameter\",\"path\":\"ServiceLevelAgreementParameter.cdm.json/ServiceLevelAgreementParameter\"},\"description\":\"A parameter that is applied to a SLA.\\n\\nEx:\\n- Minimum claim settlement time = 4 weeks\\nThe parameter would be 20 business days.\",\"primaryKey\":[\"ServiceLevelAgreementParameterId\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ServiceLevelAgreementParameter.cdm.json/ServiceLevelAgreementParameter\",\"name\":\"ServiceLevelAgreementParameterId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Service Level Agreement Parameter.\",\"isNullable\":false,\"name\":\"ServiceLevelAgreementParameterId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ServiceLevelAgreementParameter.cdm.json/ServiceLevelAgreementParameter\",\"name\":\"ServiceLevelAgreementParameterName\"},\"dataType\":\"string\",\"dataTypeLength\":256,\"description\":\"The name of a Service Level Agreement Parameter.\",\"isNullable\":true,\"name\":\"ServiceLevelAgreementParameterName\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ServiceLevelAgreementParameter.cdm.json/ServiceLevelAgreementParameter\",\"name\":\"ServiceLevelAgreementParameterDescription\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"The description of a Service Level Agreement Parameter.\",\"isNullable\":true,\"name\":\"ServiceLevelAgreementParameterDescription\"}]}}}",
+			"Description": "A parameter that is applied to a SLA.\n\nEx:\n- Minimum claim settlement time = 4 weeks\nThe parameter would be 20 business days.",
+			"DisplayFolderInfo": "{\"name\":\"Contract\",\"colorCode\":\"#917EDB\"}",
+			"PrimaryKeys": "ServiceLevelAgreementParameterId",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

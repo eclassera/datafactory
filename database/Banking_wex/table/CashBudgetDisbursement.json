@@ -1,0 +1,162 @@
+{
+	"name": "CashBudgetDisbursement",
+	"properties": {
+		"Name": "CashBudgetDisbursement",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "The specific disbursements associated with the aggregate number shown in the DISBURSEMENTS SECTION.",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "CashBudgetId",
+					"Description": "The unique identifier of a Cash Budget.",
+					"BaseAttributeReference": {
+						"Entity": "CashBudgetDisbursement.cdm.json/CashBudgetDisbursement",
+						"Name": "CashBudgetId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "CashBudgetVersionId",
+					"Description": "The unique identifier of a Cash Budget Version.",
+					"BaseAttributeReference": {
+						"Entity": "CashBudgetDisbursement.cdm.json/CashBudgetDisbursement",
+						"Name": "CashBudgetVersionId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "CashBudgetDisbursementItemId",
+					"Description": "The unique identifier of a Cash Budget Disbursement Item.",
+					"BaseAttributeReference": {
+						"Entity": "CashBudgetDisbursement.cdm.json/CashBudgetDisbursement",
+						"Name": "CashBudgetDisbursementItemId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "DisbursementAmount",
+					"Description": "The amount of the associated disbursements.",
+					"BaseAttributeReference": {
+						"Entity": "CashBudgetDisbursement.cdm.json/CashBudgetDisbursement",
+						"Name": "DisbursementAmount"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "decimal",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Precision": 18,
+						"Scale": 2,
+						"Properties": {
+							"HIVE_TYPE_STRING": "decimal"
+						}
+					}
+				},
+				{
+					"Name": "DisburseToPartyId",
+					"Description": "The unique identifier of a Party.",
+					"BaseAttributeReference": {
+						"Entity": "CashBudgetDisbursement.cdm.json/CashBudgetDisbursement",
+						"Name": "DisburseToPartyId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "long",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"HIVE_TYPE_STRING": "long"
+						}
+					}
+				},
+				{
+					"Name": "DisbursementNote",
+					"Description": "A note, comment or additional information regarding the disbursement.",
+					"BaseAttributeReference": {
+						"Entity": "CashBudgetDisbursement.cdm.json/CashBudgetDisbursement",
+						"Name": "DisbursementNote"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/CashBudgetDisbursement",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/CashBudgetDisbursement",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"CashBudgetId\":{\"entity\":\"CashBudgetDisbursement.cdm.json/CashBudgetDisbursement\",\"name\":\"CashBudgetId\"},\"CashBudgetVersionId\":{\"entity\":\"CashBudgetDisbursement.cdm.json/CashBudgetDisbursement\",\"name\":\"CashBudgetVersionId\"},\"CashBudgetDisbursementItemId\":{\"entity\":\"CashBudgetDisbursement.cdm.json/CashBudgetDisbursement\",\"name\":\"CashBudgetDisbursementItemId\"},\"DisbursementAmount\":{\"entity\":\"CashBudgetDisbursement.cdm.json/CashBudgetDisbursement\",\"name\":\"DisbursementAmount\"},\"DisburseToPartyId\":{\"entity\":\"CashBudgetDisbursement.cdm.json/CashBudgetDisbursement\",\"name\":\"DisburseToPartyId\"},\"DisbursementNote\":{\"entity\":\"CashBudgetDisbursement.cdm.json/CashBudgetDisbursement\",\"name\":\"DisbursementNote\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"CashBudgetDisbursement\",\"path\":\"CashBudgetDisbursement.cdm.json/CashBudgetDisbursement\"},\"description\":\"The specific disbursements associated with the aggregate number shown in the DISBURSEMENTS SECTION.\",\"primaryKey\":[\"CashBudgetId\",\"CashBudgetVersionId\",\"CashBudgetDisbursementItemId\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CashBudgetDisbursement.cdm.json/CashBudgetDisbursement\",\"name\":\"CashBudgetId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Cash Budget.\",\"isNullable\":false,\"name\":\"CashBudgetId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CashBudgetDisbursement.cdm.json/CashBudgetDisbursement\",\"name\":\"CashBudgetVersionId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Cash Budget Version.\",\"isNullable\":false,\"name\":\"CashBudgetVersionId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CashBudgetDisbursement.cdm.json/CashBudgetDisbursement\",\"name\":\"CashBudgetDisbursementItemId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Cash Budget Disbursement Item.\",\"isNullable\":false,\"name\":\"CashBudgetDisbursementItemId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CashBudgetDisbursement.cdm.json/CashBudgetDisbursement\",\"name\":\"DisbursementAmount\"},\"dataType\":\"decimal\",\"dataTypeLength\":18,\"description\":\"The amount of the associated disbursements.\",\"isNullable\":true,\"scale\":2,\"name\":\"DisbursementAmount\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CashBudgetDisbursement.cdm.json/CashBudgetDisbursement\",\"name\":\"DisburseToPartyId\"},\"dataType\":\"long\",\"description\":\"The unique identifier of a Party.\",\"isNullable\":true,\"name\":\"DisburseToPartyId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CashBudgetDisbursement.cdm.json/CashBudgetDisbursement\",\"name\":\"DisbursementNote\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"A note, comment or additional information regarding the disbursement.\",\"isNullable\":true,\"name\":\"DisbursementNote\"}]}}}",
+			"Description": "The specific disbursements associated with the aggregate number shown in the DISBURSEMENTS SECTION.",
+			"DisplayFolderInfo": "{\"name\":\"Budget & Forecasting\",\"colorCode\":\"#00188F\"}",
+			"PrimaryKeys": "CashBudgetId,CashBudgetVersionId,CashBudgetDisbursementItemId",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

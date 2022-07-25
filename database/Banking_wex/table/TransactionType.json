@@ -1,0 +1,113 @@
+{
+	"name": "TransactionType",
+	"properties": {
+		"Name": "TransactionType",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "A classification of transaction based on common function.\n\nEx:\n- In-store Purchase \n- On-line Purchase \n- Order\n- Return\n- Refund\n- Exchange\n- Payment\n- Rebate\n- Layaway\n- Credit\n- Receipt\n- Coupon Redemption\n- Securities Lending\n- Trade Order\n- Transfer\n- Add funds to account\n- Debit Account payout\n- Buy\n- Sell\n- Borrow\n- Account Maintenance\n- Mark To Market",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "TransactionTypeId",
+					"Description": "The unique identifier of a Transaction Type.",
+					"BaseAttributeReference": {
+						"Entity": "TransactionType.cdm.json/TransactionType",
+						"Name": "TransactionTypeId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "TransactionTypeName",
+					"Description": "The name of a Transaction Type.",
+					"BaseAttributeReference": {
+						"Entity": "TransactionType.cdm.json/TransactionType",
+						"Name": "TransactionTypeName"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 256,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "TransactionTypeDescription",
+					"Description": "The description of a Transaction Type.",
+					"BaseAttributeReference": {
+						"Entity": "TransactionType.cdm.json/TransactionType",
+						"Name": "TransactionTypeDescription"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/TransactionType",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/TransactionType",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"TransactionTypeId\":{\"entity\":\"TransactionType.cdm.json/TransactionType\",\"name\":\"TransactionTypeId\"},\"TransactionTypeName\":{\"entity\":\"TransactionType.cdm.json/TransactionType\",\"name\":\"TransactionTypeName\"},\"TransactionTypeDescription\":{\"entity\":\"TransactionType.cdm.json/TransactionType\",\"name\":\"TransactionTypeDescription\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"TransactionType\",\"path\":\"TransactionType.cdm.json/TransactionType\"},\"description\":\"A classification of transaction based on common function.\\n\\nEx:\\n- In-store Purchase \\n- On-line Purchase \\n- Order\\n- Return\\n- Refund\\n- Exchange\\n- Payment\\n- Rebate\\n- Layaway\\n- Credit\\n- Receipt\\n- Coupon Redemption\\n- Securities Lending\\n- Trade Order\\n- Transfer\\n- Add funds to account\\n- Debit Account payout\\n- Buy\\n- Sell\\n- Borrow\\n- Account Maintenance\\n- Mark To Market\",\"primaryKey\":[\"TransactionTypeId\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"TransactionType.cdm.json/TransactionType\",\"name\":\"TransactionTypeId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Transaction Type.\",\"isNullable\":false,\"name\":\"TransactionTypeId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"TransactionType.cdm.json/TransactionType\",\"name\":\"TransactionTypeName\"},\"dataType\":\"string\",\"dataTypeLength\":256,\"description\":\"The name of a Transaction Type.\",\"isNullable\":true,\"name\":\"TransactionTypeName\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"TransactionType.cdm.json/TransactionType\",\"name\":\"TransactionTypeDescription\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"The description of a Transaction Type.\",\"isNullable\":true,\"name\":\"TransactionTypeDescription\"}]}}}",
+			"Description": "A classification of transaction based on common function.\n\nEx:\n- In-store Purchase \n- On-line Purchase \n- Order\n- Return\n- Refund\n- Exchange\n- Payment\n- Rebate\n- Layaway\n- Credit\n- Receipt\n- Coupon Redemption\n- Securities Lending\n- Trade Order\n- Transfer\n- Add funds to account\n- Debit Account payout\n- Buy\n- Sell\n- Borrow\n- Account Maintenance\n- Mark To Market",
+			"DisplayFolderInfo": "{\"name\":\"Transaction\",\"colorCode\":\"#823A16\"}",
+			"PrimaryKeys": "TransactionTypeId",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

@@ -1,0 +1,145 @@
+{
+	"name": "LeadSource",
+	"properties": {
+		"Name": "LeadSource",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "The specific source or lead that led to the individual being acquired as a customer, prospect, member, interested party or other similar relationship.\n\nEx:\n- Personal referral\n- Mailing list #9 f \n- Marketing Event 32\n- Advertisement 51\n- Existing customer referral",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "LeadSourceId",
+					"Description": "The unique identifier of a Lead Source.",
+					"BaseAttributeReference": {
+						"Entity": "LeadSource.cdm.json/LeadSource",
+						"Name": "LeadSourceId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "LeadSourceName",
+					"Description": "The name of the Lead Source.",
+					"BaseAttributeReference": {
+						"Entity": "LeadSource.cdm.json/LeadSource",
+						"Name": "LeadSourceName"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 256,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "LeadSourceDescription",
+					"Description": "A description of the Lead Source.",
+					"BaseAttributeReference": {
+						"Entity": "LeadSource.cdm.json/LeadSource",
+						"Name": "LeadSourceDescription"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "LeadSourceTypeId",
+					"Description": "The unique identifier of a Lead Source Type.",
+					"BaseAttributeReference": {
+						"Entity": "LeadSource.cdm.json/LeadSource",
+						"Name": "LeadSourceTypeId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "PartyId",
+					"Description": "The unique identifier of a Party.",
+					"BaseAttributeReference": {
+						"Entity": "LeadSource.cdm.json/LeadSource",
+						"Name": "PartyId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "long",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"HIVE_TYPE_STRING": "long"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/LeadSource",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/LeadSource",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"LeadSourceId\":{\"entity\":\"LeadSource.cdm.json/LeadSource\",\"name\":\"LeadSourceId\"},\"LeadSourceName\":{\"entity\":\"LeadSource.cdm.json/LeadSource\",\"name\":\"LeadSourceName\"},\"LeadSourceDescription\":{\"entity\":\"LeadSource.cdm.json/LeadSource\",\"name\":\"LeadSourceDescription\"},\"LeadSourceTypeId\":{\"entity\":\"LeadSource.cdm.json/LeadSource\",\"name\":\"LeadSourceTypeId\"},\"PartyId\":{\"entity\":\"LeadSource.cdm.json/LeadSource\",\"name\":\"PartyId\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"LeadSource\",\"path\":\"LeadSource.cdm.json/LeadSource\"},\"description\":\"The specific source or lead that led to the individual being acquired as a customer, prospect, member, interested party or other similar relationship.\\n\\nEx:\\n- Personal referral\\n- Mailing list #9 f \\n- Marketing Event 32\\n- Advertisement 51\\n- Existing customer referral\",\"primaryKey\":[\"LeadSourceId\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"LeadSource.cdm.json/LeadSource\",\"name\":\"LeadSourceId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Lead Source.\",\"isNullable\":false,\"name\":\"LeadSourceId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"LeadSource.cdm.json/LeadSource\",\"name\":\"LeadSourceName\"},\"dataType\":\"string\",\"dataTypeLength\":256,\"description\":\"The name of the Lead Source.\",\"isNullable\":true,\"name\":\"LeadSourceName\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"LeadSource.cdm.json/LeadSource\",\"name\":\"LeadSourceDescription\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"A description of the Lead Source.\",\"isNullable\":true,\"name\":\"LeadSourceDescription\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"LeadSource.cdm.json/LeadSource\",\"name\":\"LeadSourceTypeId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Lead Source Type.\",\"isNullable\":true,\"name\":\"LeadSourceTypeId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"LeadSource.cdm.json/LeadSource\",\"name\":\"PartyId\"},\"dataType\":\"long\",\"description\":\"The unique identifier of a Party.\",\"isNullable\":true,\"name\":\"PartyId\"}]}}}",
+			"Description": "The specific source or lead that led to the individual being acquired as a customer, prospect, member, interested party or other similar relationship.\n\nEx:\n- Personal referral\n- Mailing list #9 f \n- Marketing Event 32\n- Advertisement 51\n- Existing customer referral",
+			"DisplayFolderInfo": "{\"name\":\"Customer\",\"colorCode\":\"#4B003F\"}",
+			"PrimaryKeys": "LeadSourceId",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

@@ -1,0 +1,161 @@
+{
+	"name": "Ledger",
+	"properties": {
+		"Name": "Ledger",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "A ledger is a group of accounts.\n\nIt is the complete set of accounts for a business entity.\n\nThere is no standard form for a ledger as long as it records debts and credits to each account.\n\nTransactions may be recorded either to a single ledger ('General Ledger') or to subsidiary ledgers and then subsequently recorded to the General Ledger.\n\nIt is the book of secondary or final entry after the initial or first entry into a journal, which are then posted to the ledger.",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "LedgerId",
+					"Description": "The unique identifier of a Ledger.",
+					"BaseAttributeReference": {
+						"Entity": "Ledger.cdm.json/Ledger",
+						"Name": "LedgerId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "LedgerName",
+					"Description": "The name of a Ledger.",
+					"BaseAttributeReference": {
+						"Entity": "Ledger.cdm.json/Ledger",
+						"Name": "LedgerName"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 256,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "LedgerDescription",
+					"Description": "The description of a Ledger.",
+					"BaseAttributeReference": {
+						"Entity": "Ledger.cdm.json/Ledger",
+						"Name": "LedgerDescription"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "LegalEntityId",
+					"Description": "The unique identifier of a Legal Entity.",
+					"BaseAttributeReference": {
+						"Entity": "Ledger.cdm.json/Ledger",
+						"Name": "LegalEntityId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "LedgerTypeId",
+					"Description": "The unique identifier of a Ledger Type.",
+					"BaseAttributeReference": {
+						"Entity": "Ledger.cdm.json/Ledger",
+						"Name": "LedgerTypeId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "AccountingFrameworkId",
+					"Description": "The unique identifier of an Accounting Framework.",
+					"BaseAttributeReference": {
+						"Entity": "Ledger.cdm.json/Ledger",
+						"Name": "AccountingFrameworkId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/Ledger",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/Ledger",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"LedgerId\":{\"entity\":\"Ledger.cdm.json/Ledger\",\"name\":\"LedgerId\"},\"LedgerName\":{\"entity\":\"Ledger.cdm.json/Ledger\",\"name\":\"LedgerName\"},\"LedgerDescription\":{\"entity\":\"Ledger.cdm.json/Ledger\",\"name\":\"LedgerDescription\"},\"LegalEntityId\":{\"entity\":\"Ledger.cdm.json/Ledger\",\"name\":\"LegalEntityId\"},\"LedgerTypeId\":{\"entity\":\"Ledger.cdm.json/Ledger\",\"name\":\"LedgerTypeId\"},\"AccountingFrameworkId\":{\"entity\":\"Ledger.cdm.json/Ledger\",\"name\":\"AccountingFrameworkId\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"Ledger\",\"path\":\"Ledger.cdm.json/Ledger\"},\"description\":\"A ledger is a group of accounts.\\n\\nIt is the complete set of accounts for a business entity.\\n\\nThere is no standard form for a ledger as long as it records debts and credits to each account.\\n\\nTransactions may be recorded either to a single ledger ('General Ledger') or to subsidiary ledgers and then subsequently recorded to the General Ledger.\\n\\nIt is the book of secondary or final entry after the initial or first entry into a journal, which are then posted to the ledger.\",\"primaryKey\":[\"LedgerId\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"Ledger.cdm.json/Ledger\",\"name\":\"LedgerId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Ledger.\",\"isNullable\":false,\"name\":\"LedgerId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"Ledger.cdm.json/Ledger\",\"name\":\"LedgerName\"},\"dataType\":\"string\",\"dataTypeLength\":256,\"description\":\"The name of a Ledger.\",\"isNullable\":true,\"name\":\"LedgerName\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"Ledger.cdm.json/Ledger\",\"name\":\"LedgerDescription\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"The description of a Ledger.\",\"isNullable\":true,\"name\":\"LedgerDescription\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"Ledger.cdm.json/Ledger\",\"name\":\"LegalEntityId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Legal Entity.\",\"isNullable\":true,\"name\":\"LegalEntityId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"Ledger.cdm.json/Ledger\",\"name\":\"LedgerTypeId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Ledger Type.\",\"isNullable\":true,\"name\":\"LedgerTypeId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"Ledger.cdm.json/Ledger\",\"name\":\"AccountingFrameworkId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of an Accounting Framework.\",\"isNullable\":true,\"name\":\"AccountingFrameworkId\"}]}}}",
+			"Description": "A ledger is a group of accounts.\n\nIt is the complete set of accounts for a business entity.\n\nThere is no standard form for a ledger as long as it records debts and credits to each account.\n\nTransactions may be recorded either to a single ledger ('General Ledger') or to subsidiary ledgers and then subsequently recorded to the General Ledger.\n\nIt is the book of secondary or final entry after the initial or first entry into a journal, which are then posted to the ledger.",
+			"DisplayFolderInfo": "{\"name\":\"Accounting & Financial Reporting\",\"colorCode\":\"#0078D4\"}",
+			"PrimaryKeys": "LedgerId",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

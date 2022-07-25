@@ -1,0 +1,162 @@
+{
+	"name": "CustomerCertification",
+	"properties": {
+		"Name": "CustomerCertification",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "The certification(s) held by the customer.",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "CustomerId",
+					"Description": "The unique identifier of a Customer.",
+					"BaseAttributeReference": {
+						"Entity": "CustomerCertification.cdm.json/CustomerCertification",
+						"Name": "CustomerId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "long",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "long"
+						}
+					}
+				},
+				{
+					"Name": "CertificationId",
+					"Description": "The unique identifier of a Certification.",
+					"BaseAttributeReference": {
+						"Entity": "CustomerCertification.cdm.json/CustomerCertification",
+						"Name": "CertificationId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "CustomerCertificationStartDate",
+					"Description": "The date that the customer certification was awarded.",
+					"BaseAttributeReference": {
+						"Entity": "CustomerCertification.cdm.json/CustomerCertification",
+						"Name": "CustomerCertificationStartDate"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "date",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"DateFormat": "YYYY-MM-DD",
+							"HIVE_TYPE_STRING": "date"
+						}
+					}
+				},
+				{
+					"Name": "CustomerCertificationExpiryDate",
+					"Description": "The expiry date of the customer certification that was awarded.",
+					"BaseAttributeReference": {
+						"Entity": "CustomerCertification.cdm.json/CustomerCertification",
+						"Name": "CustomerCertificationExpiryDate"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "date",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"DateFormat": "YYYY-MM-DD",
+							"HIVE_TYPE_STRING": "date"
+						}
+					}
+				},
+				{
+					"Name": "CustomerCertificationNote",
+					"Description": "A note, comment or additional information regarding the customer certification.",
+					"BaseAttributeReference": {
+						"Entity": "CustomerCertification.cdm.json/CustomerCertification",
+						"Name": "CustomerCertificationNote"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "CertifiedByPartyId",
+					"Description": "The unique identifier of a Party.",
+					"BaseAttributeReference": {
+						"Entity": "CustomerCertification.cdm.json/CustomerCertification",
+						"Name": "CertifiedByPartyId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "long",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"HIVE_TYPE_STRING": "long"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/CustomerCertification",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/CustomerCertification",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"CustomerId\":{\"entity\":\"CustomerCertification.cdm.json/CustomerCertification\",\"name\":\"CustomerId\"},\"CertificationId\":{\"entity\":\"CustomerCertification.cdm.json/CustomerCertification\",\"name\":\"CertificationId\"},\"CustomerCertificationStartDate\":{\"entity\":\"CustomerCertification.cdm.json/CustomerCertification\",\"name\":\"CustomerCertificationStartDate\"},\"CustomerCertificationExpiryDate\":{\"entity\":\"CustomerCertification.cdm.json/CustomerCertification\",\"name\":\"CustomerCertificationExpiryDate\"},\"CustomerCertificationNote\":{\"entity\":\"CustomerCertification.cdm.json/CustomerCertification\",\"name\":\"CustomerCertificationNote\"},\"CertifiedByPartyId\":{\"entity\":\"CustomerCertification.cdm.json/CustomerCertification\",\"name\":\"CertifiedByPartyId\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"CustomerCertification\",\"path\":\"CustomerCertification.cdm.json/CustomerCertification\"},\"description\":\"The certification(s) held by the customer.\",\"primaryKey\":[\"CustomerId\",\"CertificationId\",\"CustomerCertificationStartDate\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CustomerCertification.cdm.json/CustomerCertification\",\"name\":\"CustomerId\"},\"dataType\":\"long\",\"description\":\"The unique identifier of a Customer.\",\"isNullable\":false,\"name\":\"CustomerId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CustomerCertification.cdm.json/CustomerCertification\",\"name\":\"CertificationId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Certification.\",\"isNullable\":false,\"name\":\"CertificationId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CustomerCertification.cdm.json/CustomerCertification\",\"name\":\"CustomerCertificationStartDate\"},\"dataType\":\"date\",\"dateFormat\":\"YYYY-MM-DD\",\"description\":\"The date that the customer certification was awarded.\",\"isNullable\":false,\"name\":\"CustomerCertificationStartDate\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CustomerCertification.cdm.json/CustomerCertification\",\"name\":\"CustomerCertificationExpiryDate\"},\"dataType\":\"date\",\"dateFormat\":\"YYYY-MM-DD\",\"description\":\"The expiry date of the customer certification that was awarded.\",\"isNullable\":true,\"name\":\"CustomerCertificationExpiryDate\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CustomerCertification.cdm.json/CustomerCertification\",\"name\":\"CustomerCertificationNote\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"A note, comment or additional information regarding the customer certification.\",\"isNullable\":true,\"name\":\"CustomerCertificationNote\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CustomerCertification.cdm.json/CustomerCertification\",\"name\":\"CertifiedByPartyId\"},\"dataType\":\"long\",\"description\":\"The unique identifier of a Party.\",\"isNullable\":true,\"name\":\"CertifiedByPartyId\"}]}}}",
+			"Description": "The certification(s) held by the customer.",
+			"DisplayFolderInfo": "{\"name\":\"Customer\",\"colorCode\":\"#4B003F\"}",
+			"PrimaryKeys": "CustomerId,CertificationId,CustomerCertificationStartDate",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

@@ -1,0 +1,196 @@
+{
+	"name": "ExperianCompanyLegalFilings",
+	"properties": {
+		"Name": "ExperianCompanyLegalFilings",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "Legal filings associated with the company.",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "ExperianFileNumber",
+					"Description": "The unique and persistent number that identifies and tracks the Experian company.",
+					"BaseAttributeReference": {
+						"Entity": "ExperianCompanyLegalFilings.cdm.json/ExperianCompanyLegalFilings",
+						"Name": "ExperianFileNumber"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "ProfileTimestamp",
+					"Description": "The timestamp of the Experian profile.",
+					"BaseAttributeReference": {
+						"Entity": "ExperianCompanyLegalFilings.cdm.json/ExperianCompanyLegalFilings",
+						"Name": "ProfileTimestamp"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "timestamp",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"TimestampFormat": "YYYY-MM-DD HH:MM:SS.fffffffff",
+							"HIVE_TYPE_STRING": "timestamp"
+						}
+					}
+				},
+				{
+					"Name": "FilingNumber",
+					"Description": "The Experian filing number.",
+					"BaseAttributeReference": {
+						"Entity": "ExperianCompanyLegalFilings.cdm.json/ExperianCompanyLegalFilings",
+						"Name": "FilingNumber"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "FilingAmount",
+					"Description": "The amount of the filing.",
+					"BaseAttributeReference": {
+						"Entity": "ExperianCompanyLegalFilings.cdm.json/ExperianCompanyLegalFilings",
+						"Name": "FilingAmount"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "decimal",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Precision": 18,
+						"Scale": 2,
+						"Properties": {
+							"HIVE_TYPE_STRING": "decimal"
+						}
+					}
+				},
+				{
+					"Name": "JurisdictionName",
+					"Description": "The name of the filing jurisdiction.",
+					"BaseAttributeReference": {
+						"Entity": "ExperianCompanyLegalFilings.cdm.json/ExperianCompanyLegalFilings",
+						"Name": "JurisdictionName"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 256,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "FiledByName",
+					"Description": "The name of the filer.",
+					"BaseAttributeReference": {
+						"Entity": "ExperianCompanyLegalFilings.cdm.json/ExperianCompanyLegalFilings",
+						"Name": "FiledByName"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 256,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "ExperianLegalFilingTypeId",
+					"Description": "The unique identifier of an Experian legal filing type.",
+					"BaseAttributeReference": {
+						"Entity": "ExperianCompanyLegalFilings.cdm.json/ExperianCompanyLegalFilings",
+						"Name": "ExperianLegalFilingTypeId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "ExperianLegalFilingStatusTypeId",
+					"Description": "The unique identifier of an Experian legal filing status type.",
+					"BaseAttributeReference": {
+						"Entity": "ExperianCompanyLegalFilings.cdm.json/ExperianCompanyLegalFilings",
+						"Name": "ExperianLegalFilingStatusTypeId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/ExperianCompanyLegalFilings",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/ExperianCompanyLegalFilings",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"ExperianFileNumber\":{\"entity\":\"ExperianCompanyLegalFilings.cdm.json/ExperianCompanyLegalFilings\",\"name\":\"ExperianFileNumber\"},\"ProfileTimestamp\":{\"entity\":\"ExperianCompanyLegalFilings.cdm.json/ExperianCompanyLegalFilings\",\"name\":\"ProfileTimestamp\"},\"FilingNumber\":{\"entity\":\"ExperianCompanyLegalFilings.cdm.json/ExperianCompanyLegalFilings\",\"name\":\"FilingNumber\"},\"FilingAmount\":{\"entity\":\"ExperianCompanyLegalFilings.cdm.json/ExperianCompanyLegalFilings\",\"name\":\"FilingAmount\"},\"JurisdictionName\":{\"entity\":\"ExperianCompanyLegalFilings.cdm.json/ExperianCompanyLegalFilings\",\"name\":\"JurisdictionName\"},\"FiledByName\":{\"entity\":\"ExperianCompanyLegalFilings.cdm.json/ExperianCompanyLegalFilings\",\"name\":\"FiledByName\"},\"ExperianLegalFilingTypeId\":{\"entity\":\"ExperianCompanyLegalFilings.cdm.json/ExperianCompanyLegalFilings\",\"name\":\"ExperianLegalFilingTypeId\"},\"ExperianLegalFilingStatusTypeId\":{\"entity\":\"ExperianCompanyLegalFilings.cdm.json/ExperianCompanyLegalFilings\",\"name\":\"ExperianLegalFilingStatusTypeId\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"ExperianCompanyLegalFilings\",\"path\":\"ExperianCompanyLegalFilings.cdm.json/ExperianCompanyLegalFilings\"},\"description\":\"Legal filings associated with the company.\",\"primaryKey\":[\"ExperianFileNumber\",\"ProfileTimestamp\",\"FilingNumber\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ExperianCompanyLegalFilings.cdm.json/ExperianCompanyLegalFilings\",\"name\":\"ExperianFileNumber\"},\"dataType\":\"integer\",\"description\":\"The unique and persistent number that identifies and tracks the Experian company.\",\"isNullable\":false,\"name\":\"ExperianFileNumber\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ExperianCompanyLegalFilings.cdm.json/ExperianCompanyLegalFilings\",\"name\":\"ProfileTimestamp\"},\"dataType\":\"timestamp\",\"description\":\"The timestamp of the Experian profile.\",\"isNullable\":false,\"name\":\"ProfileTimestamp\",\"timestampFormat\":\"YYYY-MM-DD HH:MM:SS.fffffffff\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ExperianCompanyLegalFilings.cdm.json/ExperianCompanyLegalFilings\",\"name\":\"FilingNumber\"},\"dataType\":\"integer\",\"description\":\"The Experian filing number.\",\"isNullable\":false,\"name\":\"FilingNumber\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ExperianCompanyLegalFilings.cdm.json/ExperianCompanyLegalFilings\",\"name\":\"FilingAmount\"},\"dataType\":\"decimal\",\"dataTypeLength\":18,\"description\":\"The amount of the filing.\",\"isNullable\":true,\"scale\":2,\"name\":\"FilingAmount\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ExperianCompanyLegalFilings.cdm.json/ExperianCompanyLegalFilings\",\"name\":\"JurisdictionName\"},\"dataType\":\"string\",\"dataTypeLength\":256,\"description\":\"The name of the filing jurisdiction.\",\"isNullable\":true,\"name\":\"JurisdictionName\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ExperianCompanyLegalFilings.cdm.json/ExperianCompanyLegalFilings\",\"name\":\"FiledByName\"},\"dataType\":\"string\",\"dataTypeLength\":256,\"description\":\"The name of the filer.\",\"isNullable\":true,\"name\":\"FiledByName\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ExperianCompanyLegalFilings.cdm.json/ExperianCompanyLegalFilings\",\"name\":\"ExperianLegalFilingTypeId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of an Experian legal filing type.\",\"isNullable\":true,\"name\":\"ExperianLegalFilingTypeId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ExperianCompanyLegalFilings.cdm.json/ExperianCompanyLegalFilings\",\"name\":\"ExperianLegalFilingStatusTypeId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of an Experian legal filing status type.\",\"isNullable\":true,\"name\":\"ExperianLegalFilingStatusTypeId\"}]}}}",
+			"Description": "Legal filings associated with the company.",
+			"DisplayFolderInfo": "{\"name\":\"Customer Credit & Collections\",\"colorCode\":\"#022F22\"}",
+			"PrimaryKeys": "ExperianFileNumber,ProfileTimestamp,FilingNumber",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

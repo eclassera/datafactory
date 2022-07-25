@@ -1,0 +1,113 @@
+{
+	"name": "Preference",
+	"properties": {
+		"Name": "Preference",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "The preference associated with the associated characteristic.\n\nEx:\n- Do Not Contact\n- Preferred\n- Secondary Preference\n- Alternate Preference\n- None",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "PreferenceId",
+					"Description": "The unique identifier of a Preference.",
+					"BaseAttributeReference": {
+						"Entity": "Preference.cdm.json/Preference",
+						"Name": "PreferenceId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "PreferenceName",
+					"Description": "The name of a Preference.",
+					"BaseAttributeReference": {
+						"Entity": "Preference.cdm.json/Preference",
+						"Name": "PreferenceName"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 256,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "PreferenceDescription",
+					"Description": "The description of a Preference.",
+					"BaseAttributeReference": {
+						"Entity": "Preference.cdm.json/Preference",
+						"Name": "PreferenceDescription"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/Preference",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/Preference",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"PreferenceId\":{\"entity\":\"Preference.cdm.json/Preference\",\"name\":\"PreferenceId\"},\"PreferenceName\":{\"entity\":\"Preference.cdm.json/Preference\",\"name\":\"PreferenceName\"},\"PreferenceDescription\":{\"entity\":\"Preference.cdm.json/Preference\",\"name\":\"PreferenceDescription\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"Preference\",\"path\":\"Preference.cdm.json/Preference\"},\"description\":\"The preference associated with the associated characteristic.\\n\\nEx:\\n- Do Not Contact\\n- Preferred\\n- Secondary Preference\\n- Alternate Preference\\n- None\",\"primaryKey\":[\"PreferenceId\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"Preference.cdm.json/Preference\",\"name\":\"PreferenceId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Preference.\",\"isNullable\":false,\"name\":\"PreferenceId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"Preference.cdm.json/Preference\",\"name\":\"PreferenceName\"},\"dataType\":\"string\",\"dataTypeLength\":256,\"description\":\"The name of a Preference.\",\"isNullable\":true,\"name\":\"PreferenceName\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"Preference.cdm.json/Preference\",\"name\":\"PreferenceDescription\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"The description of a Preference.\",\"isNullable\":true,\"name\":\"PreferenceDescription\"}]}}}",
+			"Description": "The preference associated with the associated characteristic.\n\nEx:\n- Do Not Contact\n- Preferred\n- Secondary Preference\n- Alternate Preference\n- None",
+			"DisplayFolderInfo": "{\"name\":\"Party\",\"colorCode\":\"#00727A\"}",
+			"PrimaryKeys": "PreferenceId",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

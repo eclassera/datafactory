@@ -1,0 +1,148 @@
+{
+	"name": "MortgageInterestRate",
+	"properties": {
+		"Name": "MortgageInterestRate",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "The interest rate history or schedule for the associated period(s).",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "CreditGrantorId",
+					"Description": "The unique identifier of a Credit Grantor.",
+					"BaseAttributeReference": {
+						"Entity": "MortgageInterestRate.cdm.json/MortgageInterestRate",
+						"Name": "CreditGrantorId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "MortgageLoanAccountNumber",
+					"Description": "The unique identifier of a Mortgage Loan.",
+					"BaseAttributeReference": {
+						"Entity": "MortgageInterestRate.cdm.json/MortgageInterestRate",
+						"Name": "MortgageLoanAccountNumber"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Length": 20,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "PeriodStartDate",
+					"Description": "The period start date that the associated interest rate is effective for the mortgage loan.",
+					"BaseAttributeReference": {
+						"Entity": "MortgageInterestRate.cdm.json/MortgageInterestRate",
+						"Name": "PeriodStartDate"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "date",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"DateFormat": "YYYY-MM-DD",
+							"HIVE_TYPE_STRING": "date"
+						}
+					}
+				},
+				{
+					"Name": "PeriodEndDate",
+					"Description": "The period end date that the associated interest rate is effective for the mortgage loan.",
+					"BaseAttributeReference": {
+						"Entity": "MortgageInterestRate.cdm.json/MortgageInterestRate",
+						"Name": "PeriodEndDate"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "date",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"DateFormat": "YYYY-MM-DD",
+							"HIVE_TYPE_STRING": "date"
+						}
+					}
+				},
+				{
+					"Name": "InterestRatePercentage",
+					"Description": "The interest rate associated with the mortgage loan for the associated period.",
+					"BaseAttributeReference": {
+						"Entity": "MortgageInterestRate.cdm.json/MortgageInterestRate",
+						"Name": "InterestRatePercentage"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "decimal",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Precision": 18,
+						"Scale": 8,
+						"Properties": {
+							"HIVE_TYPE_STRING": "decimal"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/MortgageInterestRate",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/MortgageInterestRate",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"CreditGrantorId\":{\"entity\":\"MortgageInterestRate.cdm.json/MortgageInterestRate\",\"name\":\"CreditGrantorId\"},\"MortgageLoanAccountNumber\":{\"entity\":\"MortgageInterestRate.cdm.json/MortgageInterestRate\",\"name\":\"MortgageLoanAccountNumber\"},\"PeriodStartDate\":{\"entity\":\"MortgageInterestRate.cdm.json/MortgageInterestRate\",\"name\":\"PeriodStartDate\"},\"PeriodEndDate\":{\"entity\":\"MortgageInterestRate.cdm.json/MortgageInterestRate\",\"name\":\"PeriodEndDate\"},\"InterestRatePercentage\":{\"entity\":\"MortgageInterestRate.cdm.json/MortgageInterestRate\",\"name\":\"InterestRatePercentage\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"MortgageInterestRate\",\"path\":\"MortgageInterestRate.cdm.json/MortgageInterestRate\"},\"description\":\"The interest rate history or schedule for the associated period(s).\",\"primaryKey\":[\"CreditGrantorId\",\"MortgageLoanAccountNumber\",\"PeriodStartDate\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"MortgageInterestRate.cdm.json/MortgageInterestRate\",\"name\":\"CreditGrantorId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Credit Grantor.\",\"isNullable\":false,\"name\":\"CreditGrantorId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"MortgageInterestRate.cdm.json/MortgageInterestRate\",\"name\":\"MortgageLoanAccountNumber\"},\"dataType\":\"string\",\"dataTypeLength\":20,\"description\":\"The unique identifier of a Mortgage Loan.\",\"isNullable\":false,\"name\":\"MortgageLoanAccountNumber\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"MortgageInterestRate.cdm.json/MortgageInterestRate\",\"name\":\"PeriodStartDate\"},\"dataType\":\"date\",\"dateFormat\":\"YYYY-MM-DD\",\"description\":\"The period start date that the associated interest rate is effective for the mortgage loan.\",\"isNullable\":false,\"name\":\"PeriodStartDate\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"MortgageInterestRate.cdm.json/MortgageInterestRate\",\"name\":\"PeriodEndDate\"},\"dataType\":\"date\",\"dateFormat\":\"YYYY-MM-DD\",\"description\":\"The period end date that the associated interest rate is effective for the mortgage loan.\",\"isNullable\":true,\"name\":\"PeriodEndDate\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"MortgageInterestRate.cdm.json/MortgageInterestRate\",\"name\":\"InterestRatePercentage\"},\"dataType\":\"decimal\",\"dataTypeLength\":18,\"description\":\"The interest rate associated with the mortgage loan for the associated period.\",\"isNullable\":true,\"scale\":8,\"name\":\"InterestRatePercentage\"}]}}}",
+			"Description": "The interest rate history or schedule for the associated period(s).",
+			"DisplayFolderInfo": "{\"name\":\"Customer Credit & Collections\",\"colorCode\":\"#022F22\"}",
+			"PrimaryKeys": "CreditGrantorId,MortgageLoanAccountNumber,PeriodStartDate",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

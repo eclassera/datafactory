@@ -1,0 +1,113 @@
+{
+	"name": "CommunicationStatus",
+	"properties": {
+		"Name": "CommunicationStatus",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "The status of the associated communication.\n\nEx:\n- Assigned\n- Issued/Sent\n- Confirmed/Received\n- Communication Failed\n- Communication Returned Undeliverable\n- Pending Authorization\n- Unknown\n- N/A",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "CommunicationStatusId",
+					"Description": "The unique identifier of a Communication Status.",
+					"BaseAttributeReference": {
+						"Entity": "CommunicationStatus.cdm.json/CommunicationStatus",
+						"Name": "CommunicationStatusId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "CommunicationStatusName",
+					"Description": "The name of a Communication Status.",
+					"BaseAttributeReference": {
+						"Entity": "CommunicationStatus.cdm.json/CommunicationStatus",
+						"Name": "CommunicationStatusName"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 256,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "CommunicationStatusDescription",
+					"Description": "The description of a Communication Status.",
+					"BaseAttributeReference": {
+						"Entity": "CommunicationStatus.cdm.json/CommunicationStatus",
+						"Name": "CommunicationStatusDescription"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/CommunicationStatus",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/CommunicationStatus",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"CommunicationStatusId\":{\"entity\":\"CommunicationStatus.cdm.json/CommunicationStatus\",\"name\":\"CommunicationStatusId\"},\"CommunicationStatusName\":{\"entity\":\"CommunicationStatus.cdm.json/CommunicationStatus\",\"name\":\"CommunicationStatusName\"},\"CommunicationStatusDescription\":{\"entity\":\"CommunicationStatus.cdm.json/CommunicationStatus\",\"name\":\"CommunicationStatusDescription\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"CommunicationStatus\",\"path\":\"CommunicationStatus.cdm.json/CommunicationStatus\"},\"description\":\"The status of the associated communication.\\n\\nEx:\\n- Assigned\\n- Issued/Sent\\n- Confirmed/Received\\n- Communication Failed\\n- Communication Returned Undeliverable\\n- Pending Authorization\\n- Unknown\\n- N/A\",\"primaryKey\":[\"CommunicationStatusId\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CommunicationStatus.cdm.json/CommunicationStatus\",\"name\":\"CommunicationStatusId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Communication Status.\",\"isNullable\":false,\"name\":\"CommunicationStatusId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CommunicationStatus.cdm.json/CommunicationStatus\",\"name\":\"CommunicationStatusName\"},\"dataType\":\"string\",\"dataTypeLength\":256,\"description\":\"The name of a Communication Status.\",\"isNullable\":true,\"name\":\"CommunicationStatusName\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CommunicationStatus.cdm.json/CommunicationStatus\",\"name\":\"CommunicationStatusDescription\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"The description of a Communication Status.\",\"isNullable\":true,\"name\":\"CommunicationStatusDescription\"}]}}}",
+			"Description": "The status of the associated communication.\n\nEx:\n- Assigned\n- Issued/Sent\n- Confirmed/Received\n- Communication Failed\n- Communication Returned Undeliverable\n- Pending Authorization\n- Unknown\n- N/A",
+			"DisplayFolderInfo": "{\"name\":\"Customer Service & Contact Management\",\"colorCode\":\"#Ef6950\"}",
+			"PrimaryKeys": "CommunicationStatusId",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

@@ -1,0 +1,229 @@
+{
+	"name": "EquifaxTaxLien",
+	"properties": {
+		"Name": "EquifaxTaxLien",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "Equifax recorded tax liens.",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "EquifaxReportNumber",
+					"Description": "The Equifax report number.",
+					"BaseAttributeReference": {
+						"Entity": "EquifaxTaxLien.cdm.json/EquifaxTaxLien",
+						"Name": "EquifaxReportNumber"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "EquifaxTaxLienId",
+					"Description": "The unique identifier of an Equifax Tax Lien.",
+					"BaseAttributeReference": {
+						"Entity": "EquifaxTaxLien.cdm.json/EquifaxTaxLien",
+						"Name": "EquifaxTaxLienId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "CaseNumber",
+					"Description": "Number assigned to the case.",
+					"BaseAttributeReference": {
+						"Entity": "EquifaxTaxLien.cdm.json/EquifaxTaxLien",
+						"Name": "CaseNumber"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "CourtNumber",
+					"Description": "The customer number assigned by the court",
+					"BaseAttributeReference": {
+						"Entity": "EquifaxTaxLien.cdm.json/EquifaxTaxLien",
+						"Name": "CourtNumber"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "FilingDate",
+					"Description": "The date when the legal item was filed or reported",
+					"BaseAttributeReference": {
+						"Entity": "EquifaxTaxLien.cdm.json/EquifaxTaxLien",
+						"Name": "FilingDate"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "date",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"DateFormat": "YYYY-MM-DD",
+							"HIVE_TYPE_STRING": "date"
+						}
+					}
+				},
+				{
+					"Name": "Amount",
+					"Description": "The amount of the tax lien.",
+					"BaseAttributeReference": {
+						"Entity": "EquifaxTaxLien.cdm.json/EquifaxTaxLien",
+						"Name": "Amount"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "decimal",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Precision": 18,
+						"Scale": 2,
+						"Properties": {
+							"HIVE_TYPE_STRING": "decimal"
+						}
+					}
+				},
+				{
+					"Name": "DateReleased",
+					"Description": "The date when the lien was released",
+					"BaseAttributeReference": {
+						"Entity": "EquifaxTaxLien.cdm.json/EquifaxTaxLien",
+						"Name": "DateReleased"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "date",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"DateFormat": "YYYY-MM-DD",
+							"HIVE_TYPE_STRING": "date"
+						}
+					}
+				},
+				{
+					"Name": "DateVerified",
+					"Description": "The date when the tax lien information was verified",
+					"BaseAttributeReference": {
+						"Entity": "EquifaxTaxLien.cdm.json/EquifaxTaxLien",
+						"Name": "DateVerified"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "date",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"DateFormat": "YYYY-MM-DD",
+							"HIVE_TYPE_STRING": "date"
+						}
+					}
+				},
+				{
+					"Name": "EquifaxTaxCreditorTypeId",
+					"Description": "The unique identifier of a Tax Creditor Type.",
+					"BaseAttributeReference": {
+						"Entity": "EquifaxTaxLien.cdm.json/EquifaxTaxLien",
+						"Name": "EquifaxTaxCreditorTypeId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "TaxLienStatus",
+					"Description": "A statement regarding the tax lien status.",
+					"BaseAttributeReference": {
+						"Entity": "EquifaxTaxLien.cdm.json/EquifaxTaxLien",
+						"Name": "TaxLienStatus"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/EquifaxTaxLien",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/EquifaxTaxLien",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"EquifaxReportNumber\":{\"entity\":\"EquifaxTaxLien.cdm.json/EquifaxTaxLien\",\"name\":\"EquifaxReportNumber\"},\"EquifaxTaxLienId\":{\"entity\":\"EquifaxTaxLien.cdm.json/EquifaxTaxLien\",\"name\":\"EquifaxTaxLienId\"},\"CaseNumber\":{\"entity\":\"EquifaxTaxLien.cdm.json/EquifaxTaxLien\",\"name\":\"CaseNumber\"},\"CourtNumber\":{\"entity\":\"EquifaxTaxLien.cdm.json/EquifaxTaxLien\",\"name\":\"CourtNumber\"},\"FilingDate\":{\"entity\":\"EquifaxTaxLien.cdm.json/EquifaxTaxLien\",\"name\":\"FilingDate\"},\"Amount\":{\"entity\":\"EquifaxTaxLien.cdm.json/EquifaxTaxLien\",\"name\":\"Amount\"},\"DateReleased\":{\"entity\":\"EquifaxTaxLien.cdm.json/EquifaxTaxLien\",\"name\":\"DateReleased\"},\"DateVerified\":{\"entity\":\"EquifaxTaxLien.cdm.json/EquifaxTaxLien\",\"name\":\"DateVerified\"},\"EquifaxTaxCreditorTypeId\":{\"entity\":\"EquifaxTaxLien.cdm.json/EquifaxTaxLien\",\"name\":\"EquifaxTaxCreditorTypeId\"},\"TaxLienStatus\":{\"entity\":\"EquifaxTaxLien.cdm.json/EquifaxTaxLien\",\"name\":\"TaxLienStatus\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"EquifaxTaxLien\",\"path\":\"EquifaxTaxLien.cdm.json/EquifaxTaxLien\"},\"description\":\"Equifax recorded tax liens.\",\"primaryKey\":[\"EquifaxReportNumber\",\"EquifaxTaxLienId\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"EquifaxTaxLien.cdm.json/EquifaxTaxLien\",\"name\":\"EquifaxReportNumber\"},\"dataType\":\"integer\",\"description\":\"The Equifax report number.\",\"isNullable\":false,\"name\":\"EquifaxReportNumber\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"EquifaxTaxLien.cdm.json/EquifaxTaxLien\",\"name\":\"EquifaxTaxLienId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of an Equifax Tax Lien.\",\"isNullable\":false,\"name\":\"EquifaxTaxLienId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"EquifaxTaxLien.cdm.json/EquifaxTaxLien\",\"name\":\"CaseNumber\"},\"dataType\":\"integer\",\"description\":\"Number assigned to the case.\",\"isNullable\":true,\"name\":\"CaseNumber\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"EquifaxTaxLien.cdm.json/EquifaxTaxLien\",\"name\":\"CourtNumber\"},\"dataType\":\"integer\",\"description\":\"The customer number assigned by the court\",\"isNullable\":true,\"name\":\"CourtNumber\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"EquifaxTaxLien.cdm.json/EquifaxTaxLien\",\"name\":\"FilingDate\"},\"dataType\":\"date\",\"dateFormat\":\"YYYY-MM-DD\",\"description\":\"The date when the legal item was filed or reported\",\"isNullable\":true,\"name\":\"FilingDate\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"EquifaxTaxLien.cdm.json/EquifaxTaxLien\",\"name\":\"Amount\"},\"dataType\":\"decimal\",\"dataTypeLength\":18,\"description\":\"The amount of the tax lien.\",\"isNullable\":true,\"scale\":2,\"name\":\"Amount\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"EquifaxTaxLien.cdm.json/EquifaxTaxLien\",\"name\":\"DateReleased\"},\"dataType\":\"date\",\"dateFormat\":\"YYYY-MM-DD\",\"description\":\"The date when the lien was released\",\"isNullable\":true,\"name\":\"DateReleased\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"EquifaxTaxLien.cdm.json/EquifaxTaxLien\",\"name\":\"DateVerified\"},\"dataType\":\"date\",\"dateFormat\":\"YYYY-MM-DD\",\"description\":\"The date when the tax lien information was verified\",\"isNullable\":true,\"name\":\"DateVerified\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"EquifaxTaxLien.cdm.json/EquifaxTaxLien\",\"name\":\"EquifaxTaxCreditorTypeId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Tax Creditor Type.\",\"isNullable\":true,\"name\":\"EquifaxTaxCreditorTypeId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"EquifaxTaxLien.cdm.json/EquifaxTaxLien\",\"name\":\"TaxLienStatus\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"A statement regarding the tax lien status.\",\"isNullable\":true,\"name\":\"TaxLienStatus\"}]}}}",
+			"Description": "Equifax recorded tax liens.",
+			"DisplayFolderInfo": "{\"name\":\"Customer Credit & Collections\",\"colorCode\":\"#022F22\"}",
+			"PrimaryKeys": "EquifaxReportNumber,EquifaxTaxLienId",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

@@ -1,0 +1,210 @@
+{
+	"name": "ExperianCompanyRiskSummary",
+	"properties": {
+		"Name": "ExperianCompanyRiskSummary",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "Risk metrics for the Experian company.",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "ExperianFileNumber",
+					"Description": "The unique and persistent number that identifies and tracks the Experian company.",
+					"BaseAttributeReference": {
+						"Entity": "ExperianCompanyRiskSummary.cdm.json/ExperianCompanyRiskSummary",
+						"Name": "ExperianFileNumber"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "ProfileTimestamp",
+					"Description": "The timestamp of the Experian profile.",
+					"BaseAttributeReference": {
+						"Entity": "ExperianCompanyRiskSummary.cdm.json/ExperianCompanyRiskSummary",
+						"Name": "ProfileTimestamp"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "timestamp",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"TimestampFormat": "YYYY-MM-DD HH:MM:SS.fffffffff",
+							"HIVE_TYPE_STRING": "timestamp"
+						}
+					}
+				},
+				{
+					"Name": "IntelliscorePlusScore",
+					"Description": "This score predicts the likelihood of serious credit delinquencies within the next 12 months.\n\nIt uses tradeline and collections information public filings and other variables to predict future risk.\n\nHigher scores indicate lower risk.",
+					"BaseAttributeReference": {
+						"Entity": "ExperianCompanyRiskSummary.cdm.json/ExperianCompanyRiskSummary",
+						"Name": "IntelliscorePlusScore"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "FinancialStabilityRiskScore",
+					"Description": "This score predicts the likelihood of financial stability risk within the next 12 months using tradeline and collections information, public filing and other variables to predict future risk.\n\nHigher scores indicate lower risk.",
+					"BaseAttributeReference": {
+						"Entity": "ExperianCompanyRiskSummary.cdm.json/ExperianCompanyRiskSummary",
+						"Name": "FinancialStabilityRiskScore"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "CompanyDaysBeyondTerms",
+					"Description": "The average number of days (past terms) a business takes to pay its suppliers.",
+					"BaseAttributeReference": {
+						"Entity": "ExperianCompanyRiskSummary.cdm.json/ExperianCompanyRiskSummary",
+						"Name": "CompanyDaysBeyondTerms"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "IndustryDbtNumber",
+					"Description": "The industry DBT number for the period.\n\nDays Beyond Terms (DBT) is the average number of days a firm pays its bills past the invoice due date.",
+					"BaseAttributeReference": {
+						"Entity": "ExperianCompanyRiskSummary.cdm.json/ExperianCompanyRiskSummary",
+						"Name": "IndustryDbtNumber"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "NumberDerogatoryLegalFilings",
+					"Description": "The number of derogatory legal filings reported.",
+					"BaseAttributeReference": {
+						"Entity": "ExperianCompanyRiskSummary.cdm.json/ExperianCompanyRiskSummary",
+						"Name": "NumberDerogatoryLegalFilings"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "NumberOfFraudAlerts",
+					"Description": "The number of fraud alerts issued for the period for the company.",
+					"BaseAttributeReference": {
+						"Entity": "ExperianCompanyRiskSummary.cdm.json/ExperianCompanyRiskSummary",
+						"Name": "NumberOfFraudAlerts"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "CreditLimitRecommendationAmount",
+					"Description": "The recommended credit limit amount for the company.",
+					"BaseAttributeReference": {
+						"Entity": "ExperianCompanyRiskSummary.cdm.json/ExperianCompanyRiskSummary",
+						"Name": "CreditLimitRecommendationAmount"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "decimal",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Precision": 18,
+						"Scale": 2,
+						"Properties": {
+							"HIVE_TYPE_STRING": "decimal"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/ExperianCompanyRiskSummary",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/ExperianCompanyRiskSummary",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"ExperianFileNumber\":{\"entity\":\"ExperianCompanyRiskSummary.cdm.json/ExperianCompanyRiskSummary\",\"name\":\"ExperianFileNumber\"},\"ProfileTimestamp\":{\"entity\":\"ExperianCompanyRiskSummary.cdm.json/ExperianCompanyRiskSummary\",\"name\":\"ProfileTimestamp\"},\"IntelliscorePlusScore\":{\"entity\":\"ExperianCompanyRiskSummary.cdm.json/ExperianCompanyRiskSummary\",\"name\":\"IntelliscorePlusScore\"},\"FinancialStabilityRiskScore\":{\"entity\":\"ExperianCompanyRiskSummary.cdm.json/ExperianCompanyRiskSummary\",\"name\":\"FinancialStabilityRiskScore\"},\"CompanyDaysBeyondTerms\":{\"entity\":\"ExperianCompanyRiskSummary.cdm.json/ExperianCompanyRiskSummary\",\"name\":\"CompanyDaysBeyondTerms\"},\"IndustryDbtNumber\":{\"entity\":\"ExperianCompanyRiskSummary.cdm.json/ExperianCompanyRiskSummary\",\"name\":\"IndustryDbtNumber\"},\"NumberDerogatoryLegalFilings\":{\"entity\":\"ExperianCompanyRiskSummary.cdm.json/ExperianCompanyRiskSummary\",\"name\":\"NumberDerogatoryLegalFilings\"},\"NumberOfFraudAlerts\":{\"entity\":\"ExperianCompanyRiskSummary.cdm.json/ExperianCompanyRiskSummary\",\"name\":\"NumberOfFraudAlerts\"},\"CreditLimitRecommendationAmount\":{\"entity\":\"ExperianCompanyRiskSummary.cdm.json/ExperianCompanyRiskSummary\",\"name\":\"CreditLimitRecommendationAmount\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"ExperianCompanyRiskSummary\",\"path\":\"ExperianCompanyRiskSummary.cdm.json/ExperianCompanyRiskSummary\"},\"description\":\"Risk metrics for the Experian company.\",\"primaryKey\":[\"ExperianFileNumber\",\"ProfileTimestamp\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ExperianCompanyRiskSummary.cdm.json/ExperianCompanyRiskSummary\",\"name\":\"ExperianFileNumber\"},\"dataType\":\"integer\",\"description\":\"The unique and persistent number that identifies and tracks the Experian company.\",\"isNullable\":false,\"name\":\"ExperianFileNumber\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ExperianCompanyRiskSummary.cdm.json/ExperianCompanyRiskSummary\",\"name\":\"ProfileTimestamp\"},\"dataType\":\"timestamp\",\"description\":\"The timestamp of the Experian profile.\",\"isNullable\":false,\"name\":\"ProfileTimestamp\",\"timestampFormat\":\"YYYY-MM-DD HH:MM:SS.fffffffff\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ExperianCompanyRiskSummary.cdm.json/ExperianCompanyRiskSummary\",\"name\":\"IntelliscorePlusScore\"},\"dataType\":\"integer\",\"description\":\"This score predicts the likelihood of serious credit delinquencies within the next 12 months.\\n\\nIt uses tradeline and collections information public filings and other variables to predict future risk.\\n\\nHigher scores indicate lower risk.\",\"isNullable\":true,\"name\":\"IntelliscorePlusScore\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ExperianCompanyRiskSummary.cdm.json/ExperianCompanyRiskSummary\",\"name\":\"FinancialStabilityRiskScore\"},\"dataType\":\"integer\",\"description\":\"This score predicts the likelihood of financial stability risk within the next 12 months using tradeline and collections information, public filing and other variables to predict future risk.\\n\\nHigher scores indicate lower risk.\",\"isNullable\":true,\"name\":\"FinancialStabilityRiskScore\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ExperianCompanyRiskSummary.cdm.json/ExperianCompanyRiskSummary\",\"name\":\"CompanyDaysBeyondTerms\"},\"dataType\":\"integer\",\"description\":\"The average number of days (past terms) a business takes to pay its suppliers.\",\"isNullable\":true,\"name\":\"CompanyDaysBeyondTerms\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ExperianCompanyRiskSummary.cdm.json/ExperianCompanyRiskSummary\",\"name\":\"IndustryDbtNumber\"},\"dataType\":\"integer\",\"description\":\"The industry DBT number for the period.\\n\\nDays Beyond Terms (DBT) is the average number of days a firm pays its bills past the invoice due date.\",\"isNullable\":true,\"name\":\"IndustryDbtNumber\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ExperianCompanyRiskSummary.cdm.json/ExperianCompanyRiskSummary\",\"name\":\"NumberDerogatoryLegalFilings\"},\"dataType\":\"integer\",\"description\":\"The number of derogatory legal filings reported.\",\"isNullable\":true,\"name\":\"NumberDerogatoryLegalFilings\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ExperianCompanyRiskSummary.cdm.json/ExperianCompanyRiskSummary\",\"name\":\"NumberOfFraudAlerts\"},\"dataType\":\"integer\",\"description\":\"The number of fraud alerts issued for the period for the company.\",\"isNullable\":true,\"name\":\"NumberOfFraudAlerts\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ExperianCompanyRiskSummary.cdm.json/ExperianCompanyRiskSummary\",\"name\":\"CreditLimitRecommendationAmount\"},\"dataType\":\"decimal\",\"dataTypeLength\":18,\"description\":\"The recommended credit limit amount for the company.\",\"isNullable\":true,\"scale\":2,\"name\":\"CreditLimitRecommendationAmount\"}]}}}",
+			"Description": "Risk metrics for the Experian company.",
+			"DisplayFolderInfo": "{\"name\":\"Customer Credit & Collections\",\"colorCode\":\"#022F22\"}",
+			"PrimaryKeys": "ExperianFileNumber,ProfileTimestamp",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

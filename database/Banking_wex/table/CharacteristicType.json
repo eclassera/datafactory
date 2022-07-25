@@ -1,0 +1,113 @@
+{
+	"name": "CharacteristicType",
+	"properties": {
+		"Name": "CharacteristicType",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "A characteristic that can be used to identify a customer.\n\nEx:\n- Number Of Children\n- Favorite Color",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "CharacteristicTypeId",
+					"Description": "The unique identifier of a characteristic type.",
+					"BaseAttributeReference": {
+						"Entity": "CharacteristicType.cdm.json/CharacteristicType",
+						"Name": "CharacteristicTypeId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "CharacteristicTypeName",
+					"Description": "The name of a characteristic type.",
+					"BaseAttributeReference": {
+						"Entity": "CharacteristicType.cdm.json/CharacteristicType",
+						"Name": "CharacteristicTypeName"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 256,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "CharacteristicTypeDescription",
+					"Description": "The description of a characteristic type.",
+					"BaseAttributeReference": {
+						"Entity": "CharacteristicType.cdm.json/CharacteristicType",
+						"Name": "CharacteristicTypeDescription"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/CharacteristicType",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/CharacteristicType",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"CharacteristicTypeId\":{\"entity\":\"CharacteristicType.cdm.json/CharacteristicType\",\"name\":\"CharacteristicTypeId\"},\"CharacteristicTypeName\":{\"entity\":\"CharacteristicType.cdm.json/CharacteristicType\",\"name\":\"CharacteristicTypeName\"},\"CharacteristicTypeDescription\":{\"entity\":\"CharacteristicType.cdm.json/CharacteristicType\",\"name\":\"CharacteristicTypeDescription\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"CharacteristicType\",\"path\":\"CharacteristicType.cdm.json/CharacteristicType\"},\"description\":\"A characteristic that can be used to identify a customer.\\n\\nEx:\\n- Number Of Children\\n- Favorite Color\",\"primaryKey\":[\"CharacteristicTypeId\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CharacteristicType.cdm.json/CharacteristicType\",\"name\":\"CharacteristicTypeId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a characteristic type.\",\"isNullable\":false,\"name\":\"CharacteristicTypeId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CharacteristicType.cdm.json/CharacteristicType\",\"name\":\"CharacteristicTypeName\"},\"dataType\":\"string\",\"dataTypeLength\":256,\"description\":\"The name of a characteristic type.\",\"isNullable\":true,\"name\":\"CharacteristicTypeName\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CharacteristicType.cdm.json/CharacteristicType\",\"name\":\"CharacteristicTypeDescription\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"The description of a characteristic type.\",\"isNullable\":true,\"name\":\"CharacteristicTypeDescription\"}]}}}",
+			"Description": "A characteristic that can be used to identify a customer.\n\nEx:\n- Number Of Children\n- Favorite Color",
+			"DisplayFolderInfo": "{\"name\":\"Customer\",\"colorCode\":\"#4B003F\"}",
+			"PrimaryKeys": "CharacteristicTypeId",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

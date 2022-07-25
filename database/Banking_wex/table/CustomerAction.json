@@ -1,0 +1,177 @@
+{
+	"name": "CustomerAction",
+	"properties": {
+		"Name": "CustomerAction",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "A Customer Action that occurs or is recorded in connection with the customer.",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "CustomerId",
+					"Description": "The unique identifier of a Customer.",
+					"BaseAttributeReference": {
+						"Entity": "CustomerAction.cdm.json/CustomerAction",
+						"Name": "CustomerId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "long",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "long"
+						}
+					}
+				},
+				{
+					"Name": "CustomerActionTypeId",
+					"Description": "The unique identifier of a Customer Action Type.",
+					"BaseAttributeReference": {
+						"Entity": "CustomerAction.cdm.json/CustomerAction",
+						"Name": "CustomerActionTypeId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "CustomerActionTimestamp",
+					"Description": "The timestamp of the customer action.",
+					"BaseAttributeReference": {
+						"Entity": "CustomerAction.cdm.json/CustomerAction",
+						"Name": "CustomerActionTimestamp"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "timestamp",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"TimestampFormat": "YYYY-MM-DD HH:MM:SS.fffffffff",
+							"HIVE_TYPE_STRING": "timestamp"
+						}
+					}
+				},
+				{
+					"Name": "CustomerActionValue",
+					"Description": "A value associated with the customer action, normally as a result of the outcome of the action. It is possible that no value is associated with a particular action.",
+					"BaseAttributeReference": {
+						"Entity": "CustomerAction.cdm.json/CustomerAction",
+						"Name": "CustomerActionValue"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "CustomerActionNote",
+					"Description": "A note, comment or additional information regarding the customer action.",
+					"BaseAttributeReference": {
+						"Entity": "CustomerAction.cdm.json/CustomerAction",
+						"Name": "CustomerActionNote"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "CustomerActionStatusId",
+					"Description": "The unique identifier of a Customer Account Event Status.",
+					"BaseAttributeReference": {
+						"Entity": "CustomerAction.cdm.json/CustomerAction",
+						"Name": "CustomerActionStatusId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "SourcePartyId",
+					"Description": "The unique identifier of a Party.",
+					"BaseAttributeReference": {
+						"Entity": "CustomerAction.cdm.json/CustomerAction",
+						"Name": "SourcePartyId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "long",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"HIVE_TYPE_STRING": "long"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/CustomerAction",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/CustomerAction",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"CustomerId\":{\"entity\":\"CustomerAction.cdm.json/CustomerAction\",\"name\":\"CustomerId\"},\"CustomerActionTypeId\":{\"entity\":\"CustomerAction.cdm.json/CustomerAction\",\"name\":\"CustomerActionTypeId\"},\"CustomerActionTimestamp\":{\"entity\":\"CustomerAction.cdm.json/CustomerAction\",\"name\":\"CustomerActionTimestamp\"},\"CustomerActionValue\":{\"entity\":\"CustomerAction.cdm.json/CustomerAction\",\"name\":\"CustomerActionValue\"},\"CustomerActionNote\":{\"entity\":\"CustomerAction.cdm.json/CustomerAction\",\"name\":\"CustomerActionNote\"},\"CustomerActionStatusId\":{\"entity\":\"CustomerAction.cdm.json/CustomerAction\",\"name\":\"CustomerActionStatusId\"},\"SourcePartyId\":{\"entity\":\"CustomerAction.cdm.json/CustomerAction\",\"name\":\"SourcePartyId\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"CustomerAction\",\"path\":\"CustomerAction.cdm.json/CustomerAction\"},\"description\":\"A Customer Action that occurs or is recorded in connection with the customer.\",\"primaryKey\":[\"CustomerId\",\"CustomerActionTypeId\",\"CustomerActionTimestamp\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CustomerAction.cdm.json/CustomerAction\",\"name\":\"CustomerId\"},\"dataType\":\"long\",\"description\":\"The unique identifier of a Customer.\",\"isNullable\":false,\"name\":\"CustomerId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CustomerAction.cdm.json/CustomerAction\",\"name\":\"CustomerActionTypeId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Customer Action Type.\",\"isNullable\":false,\"name\":\"CustomerActionTypeId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CustomerAction.cdm.json/CustomerAction\",\"name\":\"CustomerActionTimestamp\"},\"dataType\":\"timestamp\",\"description\":\"The timestamp of the customer action.\",\"isNullable\":false,\"name\":\"CustomerActionTimestamp\",\"timestampFormat\":\"YYYY-MM-DD HH:MM:SS.fffffffff\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CustomerAction.cdm.json/CustomerAction\",\"name\":\"CustomerActionValue\"},\"dataType\":\"integer\",\"description\":\"A value associated with the customer action, normally as a result of the outcome of the action. It is possible that no value is associated with a particular action.\",\"isNullable\":true,\"name\":\"CustomerActionValue\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CustomerAction.cdm.json/CustomerAction\",\"name\":\"CustomerActionNote\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"A note, comment or additional information regarding the customer action.\",\"isNullable\":true,\"name\":\"CustomerActionNote\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CustomerAction.cdm.json/CustomerAction\",\"name\":\"CustomerActionStatusId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Customer Account Event Status.\",\"isNullable\":true,\"name\":\"CustomerActionStatusId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CustomerAction.cdm.json/CustomerAction\",\"name\":\"SourcePartyId\"},\"dataType\":\"long\",\"description\":\"The unique identifier of a Party.\",\"isNullable\":true,\"name\":\"SourcePartyId\"}]}}}",
+			"Description": "A Customer Action that occurs or is recorded in connection with the customer.",
+			"DisplayFolderInfo": "{\"name\":\"Customer\",\"colorCode\":\"#4B003F\"}",
+			"PrimaryKeys": "CustomerId,CustomerActionTypeId,CustomerActionTimestamp",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

@@ -1,0 +1,113 @@
+{
+	"name": "SecurityIssuerType",
+	"properties": {
+		"Name": "SecurityIssuerType",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "The type of security issuer.\n\nEx.:\n- Corporation\n- Municipal Government\n- State Government\n- Federal Government\n- Investment Trust",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "SecurityIssuerTypeId",
+					"Description": "The unique identifier of the Security Issuer Type.",
+					"BaseAttributeReference": {
+						"Entity": "SecurityIssuerType.cdm.json/SecurityIssuerType",
+						"Name": "SecurityIssuerTypeId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "SecurityIssuerTypeName",
+					"Description": "The name of the Security Issuer Type.",
+					"BaseAttributeReference": {
+						"Entity": "SecurityIssuerType.cdm.json/SecurityIssuerType",
+						"Name": "SecurityIssuerTypeName"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 256,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "SecurityIssuerTypeDescription",
+					"Description": "The description of the Security Issuer Type.",
+					"BaseAttributeReference": {
+						"Entity": "SecurityIssuerType.cdm.json/SecurityIssuerType",
+						"Name": "SecurityIssuerTypeDescription"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/SecurityIssuerType",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/SecurityIssuerType",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"SecurityIssuerTypeId\":{\"entity\":\"SecurityIssuerType.cdm.json/SecurityIssuerType\",\"name\":\"SecurityIssuerTypeId\"},\"SecurityIssuerTypeName\":{\"entity\":\"SecurityIssuerType.cdm.json/SecurityIssuerType\",\"name\":\"SecurityIssuerTypeName\"},\"SecurityIssuerTypeDescription\":{\"entity\":\"SecurityIssuerType.cdm.json/SecurityIssuerType\",\"name\":\"SecurityIssuerTypeDescription\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"SecurityIssuerType\",\"path\":\"SecurityIssuerType.cdm.json/SecurityIssuerType\"},\"description\":\"The type of security issuer.\\n\\nEx.:\\n- Corporation\\n- Municipal Government\\n- State Government\\n- Federal Government\\n- Investment Trust\",\"primaryKey\":[\"SecurityIssuerTypeId\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"SecurityIssuerType.cdm.json/SecurityIssuerType\",\"name\":\"SecurityIssuerTypeId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of the Security Issuer Type.\",\"isNullable\":false,\"name\":\"SecurityIssuerTypeId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"SecurityIssuerType.cdm.json/SecurityIssuerType\",\"name\":\"SecurityIssuerTypeName\"},\"dataType\":\"string\",\"dataTypeLength\":256,\"description\":\"The name of the Security Issuer Type.\",\"isNullable\":true,\"name\":\"SecurityIssuerTypeName\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"SecurityIssuerType.cdm.json/SecurityIssuerType\",\"name\":\"SecurityIssuerTypeDescription\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"The description of the Security Issuer Type.\",\"isNullable\":true,\"name\":\"SecurityIssuerTypeDescription\"}]}}}",
+			"Description": "The type of security issuer.\n\nEx.:\n- Corporation\n- Municipal Government\n- State Government\n- Federal Government\n- Investment Trust",
+			"DisplayFolderInfo": "{\"name\":\"Financial Product\",\"colorCode\":\"#001475\"}",
+			"PrimaryKeys": "SecurityIssuerTypeId",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

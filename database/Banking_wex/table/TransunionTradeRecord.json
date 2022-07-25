@@ -1,0 +1,503 @@
+{
+	"name": "TransunionTradeRecord",
+	"properties": {
+		"Name": "TransunionTradeRecord",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "TransUnion records of consumer buying and payment activities.",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "TransunionReferenceNumber",
+					"Description": "The TransUnion file number.",
+					"BaseAttributeReference": {
+						"Entity": "TransunionTradeRecord.cdm.json/TransunionTradeRecord",
+						"Name": "TransunionReferenceNumber"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "AccountNumber",
+					"Description": "Consumer's account number with the credit grantor (for consumer protection reasons, partial or truncated account numbers are displayed within the tradelines)\n \nMay be partially masked with asterisks.",
+					"BaseAttributeReference": {
+						"Entity": "TransunionTradeRecord.cdm.json/TransunionTradeRecord",
+						"Name": "AccountNumber"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Length": 20,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "TradingCompanyName",
+					"Description": "The name of the trading company or party.",
+					"BaseAttributeReference": {
+						"Entity": "TransunionTradeRecord.cdm.json/TransunionTradeRecord",
+						"Name": "TradingCompanyName"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 256,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "TransunionAccountTypeId",
+					"Description": "The unique identifier of a TransUnion account type.",
+					"BaseAttributeReference": {
+						"Entity": "TransunionTradeRecord.cdm.json/TransunionTradeRecord",
+						"Name": "TransunionAccountTypeId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "TransunionResponsibilityTypeId",
+					"Description": "The unique identifier of a TransUnion Responsibility Type.",
+					"BaseAttributeReference": {
+						"Entity": "TransunionTradeRecord.cdm.json/TransunionTradeRecord",
+						"Name": "TransunionResponsibilityTypeId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "OpenedDate",
+					"Description": "The date that the trade record was opened.",
+					"BaseAttributeReference": {
+						"Entity": "TransunionTradeRecord.cdm.json/TransunionTradeRecord",
+						"Name": "OpenedDate"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "date",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"DateFormat": "YYYY-MM-DD",
+							"HIVE_TYPE_STRING": "date"
+						}
+					}
+				},
+				{
+					"Name": "ClosedDate",
+					"Description": "The date that the trade record was closed.",
+					"BaseAttributeReference": {
+						"Entity": "TransunionTradeRecord.cdm.json/TransunionTradeRecord",
+						"Name": "ClosedDate"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "date",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"DateFormat": "YYYY-MM-DD",
+							"HIVE_TYPE_STRING": "date"
+						}
+					}
+				},
+				{
+					"Name": "Remark",
+					"Description": "A remark associated with the trade record.\n\nEx:\nACCOUNT IN DISPUTE\nCONVENTIONAL MORTGAGE",
+					"BaseAttributeReference": {
+						"Entity": "TransunionTradeRecord.cdm.json/TransunionTradeRecord",
+						"Name": "Remark"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "CreditLimitAmount",
+					"Description": "The credit limit amount associated with the account.",
+					"BaseAttributeReference": {
+						"Entity": "TransunionTradeRecord.cdm.json/TransunionTradeRecord",
+						"Name": "CreditLimitAmount"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "decimal",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Precision": 18,
+						"Scale": 2,
+						"Properties": {
+							"HIVE_TYPE_STRING": "decimal"
+						}
+					}
+				},
+				{
+					"Name": "HighCreditAmount",
+					"Description": "Highest amount ever owed by the consumer on that account",
+					"BaseAttributeReference": {
+						"Entity": "TransunionTradeRecord.cdm.json/TransunionTradeRecord",
+						"Name": "HighCreditAmount"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "decimal",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Precision": 18,
+						"Scale": 2,
+						"Properties": {
+							"HIVE_TYPE_STRING": "decimal"
+						}
+					}
+				},
+				{
+					"Name": "BalanceAmount",
+					"Description": "Balance owed as of date verified",
+					"BaseAttributeReference": {
+						"Entity": "TransunionTradeRecord.cdm.json/TransunionTradeRecord",
+						"Name": "BalanceAmount"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "decimal",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Precision": 18,
+						"Scale": 2,
+						"Properties": {
+							"HIVE_TYPE_STRING": "decimal"
+						}
+					}
+				},
+				{
+					"Name": "PastDueAmount",
+					"Description": "Amount past due as of date verified",
+					"BaseAttributeReference": {
+						"Entity": "TransunionTradeRecord.cdm.json/TransunionTradeRecord",
+						"Name": "PastDueAmount"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "decimal",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Precision": 18,
+						"Scale": 2,
+						"Properties": {
+							"HIVE_TYPE_STRING": "decimal"
+						}
+					}
+				},
+				{
+					"Name": "VerifiedDate",
+					"Description": "Date of last update on the account",
+					"BaseAttributeReference": {
+						"Entity": "TransunionTradeRecord.cdm.json/TransunionTradeRecord",
+						"Name": "VerifiedDate"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "date",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"DateFormat": "YYYY-MM-DD",
+							"HIVE_TYPE_STRING": "date"
+						}
+					}
+				},
+				{
+					"Name": "PaidAmount",
+					"Description": "The amount paid upon the account.",
+					"BaseAttributeReference": {
+						"Entity": "TransunionTradeRecord.cdm.json/TransunionTradeRecord",
+						"Name": "PaidAmount"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "decimal",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Precision": 18,
+						"Scale": 2,
+						"Properties": {
+							"HIVE_TYPE_STRING": "decimal"
+						}
+					}
+				},
+				{
+					"Name": "Terms",
+					"Description": "The terms associated with the account number.",
+					"BaseAttributeReference": {
+						"Entity": "TransunionTradeRecord.cdm.json/TransunionTradeRecord",
+						"Name": "Terms"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "LatePaymentNumberOfMonths",
+					"Description": "The number of months of late payments.",
+					"BaseAttributeReference": {
+						"Entity": "TransunionTradeRecord.cdm.json/TransunionTradeRecord",
+						"Name": "LatePaymentNumberOfMonths"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "LatePayments30Days",
+					"Description": "The number of 30 day late payments.",
+					"BaseAttributeReference": {
+						"Entity": "TransunionTradeRecord.cdm.json/TransunionTradeRecord",
+						"Name": "LatePayments30Days"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "LatePayments60Days",
+					"Description": "The number of 60 day late payments.",
+					"BaseAttributeReference": {
+						"Entity": "TransunionTradeRecord.cdm.json/TransunionTradeRecord",
+						"Name": "LatePayments60Days"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "LatePayments90Days",
+					"Description": "The number of 90 day late payments.",
+					"BaseAttributeReference": {
+						"Entity": "TransunionTradeRecord.cdm.json/TransunionTradeRecord",
+						"Name": "LatePayments90Days"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "DelinquencyDate",
+					"Description": "The date that delinquency was declared.",
+					"BaseAttributeReference": {
+						"Entity": "TransunionTradeRecord.cdm.json/TransunionTradeRecord",
+						"Name": "DelinquencyDate"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "date",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"DateFormat": "YYYY-MM-DD",
+							"HIVE_TYPE_STRING": "date"
+						}
+					}
+				},
+				{
+					"Name": "DelinquencyAmount",
+					"Description": "The amount of delinquency.",
+					"BaseAttributeReference": {
+						"Entity": "TransunionTradeRecord.cdm.json/TransunionTradeRecord",
+						"Name": "DelinquencyAmount"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "decimal",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Precision": 18,
+						"Scale": 2,
+						"Properties": {
+							"HIVE_TYPE_STRING": "decimal"
+						}
+					}
+				},
+				{
+					"Name": "PaymentPatternMonths112",
+					"Description": "The subject's payment pattern with his/ her actual rating or Manner of Payment (MOP) over a period of time. Depending on which option a customer chooses either 24 months or 12 months of information will be shown.\n\nEx:\nMonths 1 -12: 445543211111",
+					"BaseAttributeReference": {
+						"Entity": "TransunionTradeRecord.cdm.json/TransunionTradeRecord",
+						"Name": "PaymentPatternMonths112"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "PaymentPatternMonths324",
+					"Description": "The subject's payment pattern with his/ her actual rating or Manner of Payment (MOP) over a period of time. Depending on which option a customer chooses either 24 months or 12 months of information will be shown.\n\nEx:\nMonths 13 -24: 111111111111",
+					"BaseAttributeReference": {
+						"Entity": "TransunionTradeRecord.cdm.json/TransunionTradeRecord",
+						"Name": "PaymentPatternMonths324"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "EcoaCode",
+					"Description": "The ECOA code.",
+					"BaseAttributeReference": {
+						"Entity": "TransunionTradeRecord.cdm.json/TransunionTradeRecord",
+						"Name": "EcoaCode"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "decimal",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Precision": 1,
+						"Scale": 0,
+						"Properties": {
+							"HIVE_TYPE_STRING": "decimal"
+						}
+					}
+				},
+				{
+					"Name": "TransunionKindOfBusinessClassificationId",
+					"Description": "The unique identifier of the TransUnion Kind Of Business Classification.",
+					"BaseAttributeReference": {
+						"Entity": "TransunionTradeRecord.cdm.json/TransunionTradeRecord",
+						"Name": "TransunionKindOfBusinessClassificationId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "TransunionIndustryCodeId",
+					"Description": "The unique identifier of a TransUnion Industry Code.",
+					"BaseAttributeReference": {
+						"Entity": "TransunionTradeRecord.cdm.json/TransunionTradeRecord",
+						"Name": "TransunionIndustryCodeId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/TransunionTradeRecord",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/TransunionTradeRecord",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"TransunionReferenceNumber\":{\"entity\":\"TransunionTradeRecord.cdm.json/TransunionTradeRecord\",\"name\":\"TransunionReferenceNumber\"},\"AccountNumber\":{\"entity\":\"TransunionTradeRecord.cdm.json/TransunionTradeRecord\",\"name\":\"AccountNumber\"},\"TradingCompanyName\":{\"entity\":\"TransunionTradeRecord.cdm.json/TransunionTradeRecord\",\"name\":\"TradingCompanyName\"},\"TransunionAccountTypeId\":{\"entity\":\"TransunionTradeRecord.cdm.json/TransunionTradeRecord\",\"name\":\"TransunionAccountTypeId\"},\"TransunionResponsibilityTypeId\":{\"entity\":\"TransunionTradeRecord.cdm.json/TransunionTradeRecord\",\"name\":\"TransunionResponsibilityTypeId\"},\"OpenedDate\":{\"entity\":\"TransunionTradeRecord.cdm.json/TransunionTradeRecord\",\"name\":\"OpenedDate\"},\"ClosedDate\":{\"entity\":\"TransunionTradeRecord.cdm.json/TransunionTradeRecord\",\"name\":\"ClosedDate\"},\"Remark\":{\"entity\":\"TransunionTradeRecord.cdm.json/TransunionTradeRecord\",\"name\":\"Remark\"},\"CreditLimitAmount\":{\"entity\":\"TransunionTradeRecord.cdm.json/TransunionTradeRecord\",\"name\":\"CreditLimitAmount\"},\"HighCreditAmount\":{\"entity\":\"TransunionTradeRecord.cdm.json/TransunionTradeRecord\",\"name\":\"HighCreditAmount\"},\"BalanceAmount\":{\"entity\":\"TransunionTradeRecord.cdm.json/TransunionTradeRecord\",\"name\":\"BalanceAmount\"},\"PastDueAmount\":{\"entity\":\"TransunionTradeRecord.cdm.json/TransunionTradeRecord\",\"name\":\"PastDueAmount\"},\"VerifiedDate\":{\"entity\":\"TransunionTradeRecord.cdm.json/TransunionTradeRecord\",\"name\":\"VerifiedDate\"},\"PaidAmount\":{\"entity\":\"TransunionTradeRecord.cdm.json/TransunionTradeRecord\",\"name\":\"PaidAmount\"},\"Terms\":{\"entity\":\"TransunionTradeRecord.cdm.json/TransunionTradeRecord\",\"name\":\"Terms\"},\"LatePaymentNumberOfMonths\":{\"entity\":\"TransunionTradeRecord.cdm.json/TransunionTradeRecord\",\"name\":\"LatePaymentNumberOfMonths\"},\"LatePayments30Days\":{\"entity\":\"TransunionTradeRecord.cdm.json/TransunionTradeRecord\",\"name\":\"LatePayments30Days\"},\"LatePayments60Days\":{\"entity\":\"TransunionTradeRecord.cdm.json/TransunionTradeRecord\",\"name\":\"LatePayments60Days\"},\"LatePayments90Days\":{\"entity\":\"TransunionTradeRecord.cdm.json/TransunionTradeRecord\",\"name\":\"LatePayments90Days\"},\"DelinquencyDate\":{\"entity\":\"TransunionTradeRecord.cdm.json/TransunionTradeRecord\",\"name\":\"DelinquencyDate\"},\"DelinquencyAmount\":{\"entity\":\"TransunionTradeRecord.cdm.json/TransunionTradeRecord\",\"name\":\"DelinquencyAmount\"},\"PaymentPatternMonths112\":{\"entity\":\"TransunionTradeRecord.cdm.json/TransunionTradeRecord\",\"name\":\"PaymentPatternMonths112\"},\"PaymentPatternMonths324\":{\"entity\":\"TransunionTradeRecord.cdm.json/TransunionTradeRecord\",\"name\":\"PaymentPatternMonths324\"},\"EcoaCode\":{\"entity\":\"TransunionTradeRecord.cdm.json/TransunionTradeRecord\",\"name\":\"EcoaCode\"},\"TransunionKindOfBusinessClassificationId\":{\"entity\":\"TransunionTradeRecord.cdm.json/TransunionTradeRecord\",\"name\":\"TransunionKindOfBusinessClassificationId\"},\"TransunionIndustryCodeId\":{\"entity\":\"TransunionTradeRecord.cdm.json/TransunionTradeRecord\",\"name\":\"TransunionIndustryCodeId\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"TransunionTradeRecord\",\"path\":\"TransunionTradeRecord.cdm.json/TransunionTradeRecord\"},\"description\":\"TransUnion records of consumer buying and payment activities.\",\"primaryKey\":[\"TransunionReferenceNumber\",\"AccountNumber\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"TransunionTradeRecord.cdm.json/TransunionTradeRecord\",\"name\":\"TransunionReferenceNumber\"},\"dataType\":\"integer\",\"description\":\"The TransUnion file number.\",\"isNullable\":false,\"name\":\"TransunionReferenceNumber\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"TransunionTradeRecord.cdm.json/TransunionTradeRecord\",\"name\":\"AccountNumber\"},\"dataType\":\"string\",\"dataTypeLength\":20,\"description\":\"Consumer's account number with the credit grantor (for consumer protection reasons, partial or truncated account numbers are displayed within the tradelines)\\n \\nMay be partially masked with asterisks.\",\"isNullable\":false,\"name\":\"AccountNumber\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"TransunionTradeRecord.cdm.json/TransunionTradeRecord\",\"name\":\"TradingCompanyName\"},\"dataType\":\"string\",\"dataTypeLength\":256,\"description\":\"The name of the trading company or party.\",\"isNullable\":true,\"name\":\"TradingCompanyName\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"TransunionTradeRecord.cdm.json/TransunionTradeRecord\",\"name\":\"TransunionAccountTypeId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a TransUnion account type.\",\"isNullable\":true,\"name\":\"TransunionAccountTypeId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"TransunionTradeRecord.cdm.json/TransunionTradeRecord\",\"name\":\"TransunionResponsibilityTypeId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a TransUnion Responsibility Type.\",\"isNullable\":true,\"name\":\"TransunionResponsibilityTypeId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"TransunionTradeRecord.cdm.json/TransunionTradeRecord\",\"name\":\"OpenedDate\"},\"dataType\":\"date\",\"dateFormat\":\"YYYY-MM-DD\",\"description\":\"The date that the trade record was opened.\",\"isNullable\":true,\"name\":\"OpenedDate\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"TransunionTradeRecord.cdm.json/TransunionTradeRecord\",\"name\":\"ClosedDate\"},\"dataType\":\"date\",\"dateFormat\":\"YYYY-MM-DD\",\"description\":\"The date that the trade record was closed.\",\"isNullable\":true,\"name\":\"ClosedDate\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"TransunionTradeRecord.cdm.json/TransunionTradeRecord\",\"name\":\"Remark\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"A remark associated with the trade record.\\n\\nEx:\\nACCOUNT IN DISPUTE\\nCONVENTIONAL MORTGAGE\",\"isNullable\":true,\"name\":\"Remark\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"TransunionTradeRecord.cdm.json/TransunionTradeRecord\",\"name\":\"CreditLimitAmount\"},\"dataType\":\"decimal\",\"dataTypeLength\":18,\"description\":\"The credit limit amount associated with the account.\",\"isNullable\":true,\"scale\":2,\"name\":\"CreditLimitAmount\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"TransunionTradeRecord.cdm.json/TransunionTradeRecord\",\"name\":\"HighCreditAmount\"},\"dataType\":\"decimal\",\"dataTypeLength\":18,\"description\":\"Highest amount ever owed by the consumer on that account\",\"isNullable\":true,\"scale\":2,\"name\":\"HighCreditAmount\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"TransunionTradeRecord.cdm.json/TransunionTradeRecord\",\"name\":\"BalanceAmount\"},\"dataType\":\"decimal\",\"dataTypeLength\":18,\"description\":\"Balance owed as of date verified\",\"isNullable\":true,\"scale\":2,\"name\":\"BalanceAmount\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"TransunionTradeRecord.cdm.json/TransunionTradeRecord\",\"name\":\"PastDueAmount\"},\"dataType\":\"decimal\",\"dataTypeLength\":18,\"description\":\"Amount past due as of date verified\",\"isNullable\":true,\"scale\":2,\"name\":\"PastDueAmount\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"TransunionTradeRecord.cdm.json/TransunionTradeRecord\",\"name\":\"VerifiedDate\"},\"dataType\":\"date\",\"dateFormat\":\"YYYY-MM-DD\",\"description\":\"Date of last update on the account\",\"isNullable\":true,\"name\":\"VerifiedDate\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"TransunionTradeRecord.cdm.json/TransunionTradeRecord\",\"name\":\"PaidAmount\"},\"dataType\":\"decimal\",\"dataTypeLength\":18,\"description\":\"The amount paid upon the account.\",\"isNullable\":true,\"scale\":2,\"name\":\"PaidAmount\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"TransunionTradeRecord.cdm.json/TransunionTradeRecord\",\"name\":\"Terms\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"The terms associated with the account number.\",\"isNullable\":true,\"name\":\"Terms\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"TransunionTradeRecord.cdm.json/TransunionTradeRecord\",\"name\":\"LatePaymentNumberOfMonths\"},\"dataType\":\"integer\",\"description\":\"The number of months of late payments.\",\"isNullable\":true,\"name\":\"LatePaymentNumberOfMonths\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"TransunionTradeRecord.cdm.json/TransunionTradeRecord\",\"name\":\"LatePayments30Days\"},\"dataType\":\"integer\",\"description\":\"The number of 30 day late payments.\",\"isNullable\":true,\"name\":\"LatePayments30Days\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"TransunionTradeRecord.cdm.json/TransunionTradeRecord\",\"name\":\"LatePayments60Days\"},\"dataType\":\"integer\",\"description\":\"The number of 60 day late payments.\",\"isNullable\":true,\"name\":\"LatePayments60Days\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"TransunionTradeRecord.cdm.json/TransunionTradeRecord\",\"name\":\"LatePayments90Days\"},\"dataType\":\"integer\",\"description\":\"The number of 90 day late payments.\",\"isNullable\":true,\"name\":\"LatePayments90Days\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"TransunionTradeRecord.cdm.json/TransunionTradeRecord\",\"name\":\"DelinquencyDate\"},\"dataType\":\"date\",\"dateFormat\":\"YYYY-MM-DD\",\"description\":\"The date that delinquency was declared.\",\"isNullable\":true,\"name\":\"DelinquencyDate\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"TransunionTradeRecord.cdm.json/TransunionTradeRecord\",\"name\":\"DelinquencyAmount\"},\"dataType\":\"decimal\",\"dataTypeLength\":18,\"description\":\"The amount of delinquency.\",\"isNullable\":true,\"scale\":2,\"name\":\"DelinquencyAmount\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"TransunionTradeRecord.cdm.json/TransunionTradeRecord\",\"name\":\"PaymentPatternMonths112\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"The subject's payment pattern with his/ her actual rating or Manner of Payment (MOP) over a period of time. Depending on which option a customer chooses either 24 months or 12 months of information will be shown.\\n\\nEx:\\nMonths 1 -12: 445543211111\",\"isNullable\":true,\"name\":\"PaymentPatternMonths112\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"TransunionTradeRecord.cdm.json/TransunionTradeRecord\",\"name\":\"PaymentPatternMonths324\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"The subject's payment pattern with his/ her actual rating or Manner of Payment (MOP) over a period of time. Depending on which option a customer chooses either 24 months or 12 months of information will be shown.\\n\\nEx:\\nMonths 13 -24: 111111111111\",\"isNullable\":true,\"name\":\"PaymentPatternMonths324\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"TransunionTradeRecord.cdm.json/TransunionTradeRecord\",\"name\":\"EcoaCode\"},\"dataType\":\"decimal\",\"dataTypeLength\":1,\"description\":\"The ECOA code.\",\"isNullable\":true,\"scale\":0,\"name\":\"EcoaCode\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"TransunionTradeRecord.cdm.json/TransunionTradeRecord\",\"name\":\"TransunionKindOfBusinessClassificationId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of the TransUnion Kind Of Business Classification.\",\"isNullable\":true,\"name\":\"TransunionKindOfBusinessClassificationId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"TransunionTradeRecord.cdm.json/TransunionTradeRecord\",\"name\":\"TransunionIndustryCodeId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a TransUnion Industry Code.\",\"isNullable\":true,\"name\":\"TransunionIndustryCodeId\"}]}}}",
+			"Description": "TransUnion records of consumer buying and payment activities.",
+			"DisplayFolderInfo": "{\"name\":\"Customer Credit & Collections\",\"colorCode\":\"#022F22\"}",
+			"PrimaryKeys": "TransunionReferenceNumber,AccountNumber",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

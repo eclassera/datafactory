@@ -1,0 +1,149 @@
+{
+	"name": "CreditScoringModelScoreRange",
+	"properties": {
+		"Name": "CreditScoringModelScoreRange",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "The meaning assigned to ranges of credit scores for the applicable credit scoring model. Some scoring models will have both a grade and a description while others may only have one or the other.\n\nEx.:\n\n800-850 - Excellent\n700-799 - Very Good\n680-699 - Good\n620-679 - Fair\n580-619 - Poor\n500-579 - Bad\n0-499 - Very Bad\n\n901-990 - A - Super prime\n801-900 - B - Prime plus\n701-800 - C - Prime\n601-700 - D - Nonprime\n501-600 - F - High risk",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "CreditScoringModelId",
+					"Description": "The unique identifier of a Credit Scoring Model.",
+					"BaseAttributeReference": {
+						"Entity": "CreditScoringModelScoreRange.cdm.json/CreditScoringModelScoreRange",
+						"Name": "CreditScoringModelId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "CreditScoringModelMinimumCreditScore",
+					"Description": "The minimum credit score for which this description describes the credit score.",
+					"BaseAttributeReference": {
+						"Entity": "CreditScoringModelScoreRange.cdm.json/CreditScoringModelScoreRange",
+						"Name": "CreditScoringModelMinimumCreditScore"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "decimal",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Precision": 3,
+						"Scale": 0,
+						"Properties": {
+							"HIVE_TYPE_STRING": "decimal"
+						}
+					}
+				},
+				{
+					"Name": "CreditScoringModelMaximumCreditScore",
+					"Description": "The maximum credit score for which this description describes the credit score.",
+					"BaseAttributeReference": {
+						"Entity": "CreditScoringModelScoreRange.cdm.json/CreditScoringModelScoreRange",
+						"Name": "CreditScoringModelMaximumCreditScore"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "decimal",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Precision": 3,
+						"Scale": 0,
+						"Properties": {
+							"HIVE_TYPE_STRING": "decimal"
+						}
+					}
+				},
+				{
+					"Name": "CreditScoringModelScoreRangeGrade",
+					"Description": "The grade assigned to the range of credit scores.",
+					"BaseAttributeReference": {
+						"Entity": "CreditScoringModelScoreRange.cdm.json/CreditScoringModelScoreRange",
+						"Name": "CreditScoringModelScoreRangeGrade"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 1,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "CreditScoringModelScoreRangeDescription",
+					"Description": "The description of a Credit Scoring Model Score Range.",
+					"BaseAttributeReference": {
+						"Entity": "CreditScoringModelScoreRange.cdm.json/CreditScoringModelScoreRange",
+						"Name": "CreditScoringModelScoreRangeDescription"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/CreditScoringModelScoreRange",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/CreditScoringModelScoreRange",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"CreditScoringModelId\":{\"entity\":\"CreditScoringModelScoreRange.cdm.json/CreditScoringModelScoreRange\",\"name\":\"CreditScoringModelId\"},\"CreditScoringModelMinimumCreditScore\":{\"entity\":\"CreditScoringModelScoreRange.cdm.json/CreditScoringModelScoreRange\",\"name\":\"CreditScoringModelMinimumCreditScore\"},\"CreditScoringModelMaximumCreditScore\":{\"entity\":\"CreditScoringModelScoreRange.cdm.json/CreditScoringModelScoreRange\",\"name\":\"CreditScoringModelMaximumCreditScore\"},\"CreditScoringModelScoreRangeGrade\":{\"entity\":\"CreditScoringModelScoreRange.cdm.json/CreditScoringModelScoreRange\",\"name\":\"CreditScoringModelScoreRangeGrade\"},\"CreditScoringModelScoreRangeDescription\":{\"entity\":\"CreditScoringModelScoreRange.cdm.json/CreditScoringModelScoreRange\",\"name\":\"CreditScoringModelScoreRangeDescription\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"CreditScoringModelScoreRange\",\"path\":\"CreditScoringModelScoreRange.cdm.json/CreditScoringModelScoreRange\"},\"description\":\"The meaning assigned to ranges of credit scores for the applicable credit scoring model. Some scoring models will have both a grade and a description while others may only have one or the other.\\n\\nEx.:\\n\\n800-850 - Excellent\\n700-799 - Very Good\\n680-699 - Good\\n620-679 - Fair\\n580-619 - Poor\\n500-579 - Bad\\n0-499 - Very Bad\\n\\n901-990 - A - Super prime\\n801-900 - B - Prime plus\\n701-800 - C - Prime\\n601-700 - D - Nonprime\\n501-600 - F - High risk\",\"primaryKey\":[\"CreditScoringModelId\",\"CreditScoringModelMinimumCreditScore\",\"CreditScoringModelMaximumCreditScore\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CreditScoringModelScoreRange.cdm.json/CreditScoringModelScoreRange\",\"name\":\"CreditScoringModelId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Credit Scoring Model.\",\"isNullable\":false,\"name\":\"CreditScoringModelId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CreditScoringModelScoreRange.cdm.json/CreditScoringModelScoreRange\",\"name\":\"CreditScoringModelMinimumCreditScore\"},\"dataType\":\"decimal\",\"dataTypeLength\":3,\"description\":\"The minimum credit score for which this description describes the credit score.\",\"isNullable\":false,\"scale\":0,\"name\":\"CreditScoringModelMinimumCreditScore\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CreditScoringModelScoreRange.cdm.json/CreditScoringModelScoreRange\",\"name\":\"CreditScoringModelMaximumCreditScore\"},\"dataType\":\"decimal\",\"dataTypeLength\":3,\"description\":\"The maximum credit score for which this description describes the credit score.\",\"isNullable\":false,\"scale\":0,\"name\":\"CreditScoringModelMaximumCreditScore\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CreditScoringModelScoreRange.cdm.json/CreditScoringModelScoreRange\",\"name\":\"CreditScoringModelScoreRangeGrade\"},\"dataType\":\"string\",\"dataTypeLength\":1,\"description\":\"The grade assigned to the range of credit scores.\",\"isNullable\":true,\"name\":\"CreditScoringModelScoreRangeGrade\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CreditScoringModelScoreRange.cdm.json/CreditScoringModelScoreRange\",\"name\":\"CreditScoringModelScoreRangeDescription\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"The description of a Credit Scoring Model Score Range.\",\"isNullable\":true,\"name\":\"CreditScoringModelScoreRangeDescription\"}]}}}",
+			"Description": "The meaning assigned to ranges of credit scores for the applicable credit scoring model. Some scoring models will have both a grade and a description while others may only have one or the other.\n\nEx.:\n\n800-850 - Excellent\n700-799 - Very Good\n680-699 - Good\n620-679 - Fair\n580-619 - Poor\n500-579 - Bad\n0-499 - Very Bad\n\n901-990 - A - Super prime\n801-900 - B - Prime plus\n701-800 - C - Prime\n601-700 - D - Nonprime\n501-600 - F - High risk",
+			"DisplayFolderInfo": "{\"name\":\"Customer Credit & Collections\",\"colorCode\":\"#022F22\"}",
+			"PrimaryKeys": "CreditScoringModelId,CreditScoringModelMinimumCreditScore,CreditScoringModelMaximumCreditScore",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

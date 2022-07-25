@@ -1,0 +1,197 @@
+{
+	"name": "CustomerReceivershipProceeding",
+	"properties": {
+		"Name": "CustomerReceivershipProceeding",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "Receivership is used to denote a situation in which a legal entity,  institution or enterprise is being held by a receiver. \n\nA receiver is a legal person that has custodial responsibility for the property of others, which may include both tangible and intangible assets and rights.\n\nThere are various types of receiver appointments that may exist:\n\n1.  A receiver appointed by a (government) regulator pursuant to a statute\n2.  A privately-appointed receiver \n3.  A court-appointed receiver.",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "ReceivershipProceedingId",
+					"Description": "The unique identifier of a Receivership Proceeding.",
+					"BaseAttributeReference": {
+						"Entity": "CustomerReceivershipProceeding.cdm.json/CustomerReceivershipProceeding",
+						"Name": "ReceivershipProceedingId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "ReceiverName",
+					"Description": "The name of the court-appointed officer or business that acts as a receiver to identify, protect or liquidate debtor assets to benefit the creditor(s).",
+					"BaseAttributeReference": {
+						"Entity": "CustomerReceivershipProceeding.cdm.json/CustomerReceivershipProceeding",
+						"Name": "ReceiverName"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 256,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "PeriodStartDate",
+					"Description": "The starting period date for which the Receiver is in charge of the Creditors business or assets.",
+					"BaseAttributeReference": {
+						"Entity": "CustomerReceivershipProceeding.cdm.json/CustomerReceivershipProceeding",
+						"Name": "PeriodStartDate"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "date",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"DateFormat": "YYYY-MM-DD",
+							"HIVE_TYPE_STRING": "date"
+						}
+					}
+				},
+				{
+					"Name": "PeriodEndDate",
+					"Description": "The ending period date for which the Receiver is in charge of the Creditors business or assets.",
+					"BaseAttributeReference": {
+						"Entity": "CustomerReceivershipProceeding.cdm.json/CustomerReceivershipProceeding",
+						"Name": "PeriodEndDate"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "date",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"DateFormat": "YYYY-MM-DD",
+							"HIVE_TYPE_STRING": "date"
+						}
+					}
+				},
+				{
+					"Name": "EffectiveDate",
+					"Description": "The date that the receivership is in effect.",
+					"BaseAttributeReference": {
+						"Entity": "CustomerReceivershipProceeding.cdm.json/CustomerReceivershipProceeding",
+						"Name": "EffectiveDate"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "date",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"DateFormat": "YYYY-MM-DD",
+							"HIVE_TYPE_STRING": "date"
+						}
+					}
+				},
+				{
+					"Name": "OutstandingAmount",
+					"Description": "The outstanding amount of debt.",
+					"BaseAttributeReference": {
+						"Entity": "CustomerReceivershipProceeding.cdm.json/CustomerReceivershipProceeding",
+						"Name": "OutstandingAmount"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "decimal",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Precision": 18,
+						"Scale": 2,
+						"Properties": {
+							"HIVE_TYPE_STRING": "decimal"
+						}
+					}
+				},
+				{
+					"Name": "ReceivershipProceedingTypeId",
+					"Description": "The unique identifier of a Receivership Proceeding Type.",
+					"BaseAttributeReference": {
+						"Entity": "CustomerReceivershipProceeding.cdm.json/CustomerReceivershipProceeding",
+						"Name": "ReceivershipProceedingTypeId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "CustomerId",
+					"Description": "The unique identifier of a Customer.",
+					"BaseAttributeReference": {
+						"Entity": "CustomerReceivershipProceeding.cdm.json/CustomerReceivershipProceeding",
+						"Name": "CustomerId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "long",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"HIVE_TYPE_STRING": "long"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/CustomerReceivershipProceeding",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/CustomerReceivershipProceeding",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"ReceivershipProceedingId\":{\"entity\":\"CustomerReceivershipProceeding.cdm.json/CustomerReceivershipProceeding\",\"name\":\"ReceivershipProceedingId\"},\"ReceiverName\":{\"entity\":\"CustomerReceivershipProceeding.cdm.json/CustomerReceivershipProceeding\",\"name\":\"ReceiverName\"},\"PeriodStartDate\":{\"entity\":\"CustomerReceivershipProceeding.cdm.json/CustomerReceivershipProceeding\",\"name\":\"PeriodStartDate\"},\"PeriodEndDate\":{\"entity\":\"CustomerReceivershipProceeding.cdm.json/CustomerReceivershipProceeding\",\"name\":\"PeriodEndDate\"},\"EffectiveDate\":{\"entity\":\"CustomerReceivershipProceeding.cdm.json/CustomerReceivershipProceeding\",\"name\":\"EffectiveDate\"},\"OutstandingAmount\":{\"entity\":\"CustomerReceivershipProceeding.cdm.json/CustomerReceivershipProceeding\",\"name\":\"OutstandingAmount\"},\"ReceivershipProceedingTypeId\":{\"entity\":\"CustomerReceivershipProceeding.cdm.json/CustomerReceivershipProceeding\",\"name\":\"ReceivershipProceedingTypeId\"},\"CustomerId\":{\"entity\":\"CustomerReceivershipProceeding.cdm.json/CustomerReceivershipProceeding\",\"name\":\"CustomerId\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"CustomerReceivershipProceeding\",\"path\":\"CustomerReceivershipProceeding.cdm.json/CustomerReceivershipProceeding\"},\"description\":\"Receivership is used to denote a situation in which a legal entity,  institution or enterprise is being held by a receiver. \\n\\nA receiver is a legal person that has custodial responsibility for the property of others, which may include both tangible and intangible assets and rights.\\n\\nThere are various types of receiver appointments that may exist:\\n\\n1.  A receiver appointed by a (government) regulator pursuant to a statute\\n2.  A privately-appointed receiver \\n3.  A court-appointed receiver.\",\"primaryKey\":[\"ReceivershipProceedingId\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CustomerReceivershipProceeding.cdm.json/CustomerReceivershipProceeding\",\"name\":\"ReceivershipProceedingId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Receivership Proceeding.\",\"isNullable\":false,\"name\":\"ReceivershipProceedingId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CustomerReceivershipProceeding.cdm.json/CustomerReceivershipProceeding\",\"name\":\"ReceiverName\"},\"dataType\":\"string\",\"dataTypeLength\":256,\"description\":\"The name of the court-appointed officer or business that acts as a receiver to identify, protect or liquidate debtor assets to benefit the creditor(s).\",\"isNullable\":true,\"name\":\"ReceiverName\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CustomerReceivershipProceeding.cdm.json/CustomerReceivershipProceeding\",\"name\":\"PeriodStartDate\"},\"dataType\":\"date\",\"dateFormat\":\"YYYY-MM-DD\",\"description\":\"The starting period date for which the Receiver is in charge of the Creditors business or assets.\",\"isNullable\":true,\"name\":\"PeriodStartDate\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CustomerReceivershipProceeding.cdm.json/CustomerReceivershipProceeding\",\"name\":\"PeriodEndDate\"},\"dataType\":\"date\",\"dateFormat\":\"YYYY-MM-DD\",\"description\":\"The ending period date for which the Receiver is in charge of the Creditors business or assets.\",\"isNullable\":true,\"name\":\"PeriodEndDate\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CustomerReceivershipProceeding.cdm.json/CustomerReceivershipProceeding\",\"name\":\"EffectiveDate\"},\"dataType\":\"date\",\"dateFormat\":\"YYYY-MM-DD\",\"description\":\"The date that the receivership is in effect.\",\"isNullable\":true,\"name\":\"EffectiveDate\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CustomerReceivershipProceeding.cdm.json/CustomerReceivershipProceeding\",\"name\":\"OutstandingAmount\"},\"dataType\":\"decimal\",\"dataTypeLength\":18,\"description\":\"The outstanding amount of debt.\",\"isNullable\":true,\"scale\":2,\"name\":\"OutstandingAmount\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CustomerReceivershipProceeding.cdm.json/CustomerReceivershipProceeding\",\"name\":\"ReceivershipProceedingTypeId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Receivership Proceeding Type.\",\"isNullable\":true,\"name\":\"ReceivershipProceedingTypeId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CustomerReceivershipProceeding.cdm.json/CustomerReceivershipProceeding\",\"name\":\"CustomerId\"},\"dataType\":\"long\",\"description\":\"The unique identifier of a Customer.\",\"isNullable\":true,\"name\":\"CustomerId\"}]}}}",
+			"Description": "Receivership is used to denote a situation in which a legal entity,  institution or enterprise is being held by a receiver. \n\nA receiver is a legal person that has custodial responsibility for the property of others, which may include both tangible and intangible assets and rights.\n\nThere are various types of receiver appointments that may exist:\n\n1.  A receiver appointed by a (government) regulator pursuant to a statute\n2.  A privately-appointed receiver \n3.  A court-appointed receiver.",
+			"DisplayFolderInfo": "{\"name\":\"Customer Credit & Collections\",\"colorCode\":\"#022F22\"}",
+			"PrimaryKeys": "ReceivershipProceedingId",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

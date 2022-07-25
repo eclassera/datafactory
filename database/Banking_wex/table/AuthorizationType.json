@@ -1,0 +1,113 @@
+{
+	"name": "AuthorizationType",
+	"properties": {
+		"Name": "AuthorizationType",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "The type of authorization required or granted.\n\nEx:\n- Customer Authorization\n- Management Authorization\n- Processing Agent\n- No Authorization Required\n- Sign Invoice\n- Approve purchase orders\n- Enter into contracts",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "AuthorizationTypeId",
+					"Description": "The unique identifier of an Authorization Type.",
+					"BaseAttributeReference": {
+						"Entity": "AuthorizationType.cdm.json/AuthorizationType",
+						"Name": "AuthorizationTypeId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "AuthorizationTypeName",
+					"Description": "The name of an Authorization Type.",
+					"BaseAttributeReference": {
+						"Entity": "AuthorizationType.cdm.json/AuthorizationType",
+						"Name": "AuthorizationTypeName"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 256,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "AuthorizationTypeDescription",
+					"Description": "The description of an Authorization Type.",
+					"BaseAttributeReference": {
+						"Entity": "AuthorizationType.cdm.json/AuthorizationType",
+						"Name": "AuthorizationTypeDescription"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/AuthorizationType",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/AuthorizationType",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"AuthorizationTypeId\":{\"entity\":\"AuthorizationType.cdm.json/AuthorizationType\",\"name\":\"AuthorizationTypeId\"},\"AuthorizationTypeName\":{\"entity\":\"AuthorizationType.cdm.json/AuthorizationType\",\"name\":\"AuthorizationTypeName\"},\"AuthorizationTypeDescription\":{\"entity\":\"AuthorizationType.cdm.json/AuthorizationType\",\"name\":\"AuthorizationTypeDescription\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"AuthorizationType\",\"path\":\"AuthorizationType.cdm.json/AuthorizationType\"},\"description\":\"The type of authorization required or granted.\\n\\nEx:\\n- Customer Authorization\\n- Management Authorization\\n- Processing Agent\\n- No Authorization Required\\n- Sign Invoice\\n- Approve purchase orders\\n- Enter into contracts\",\"primaryKey\":[\"AuthorizationTypeId\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"AuthorizationType.cdm.json/AuthorizationType\",\"name\":\"AuthorizationTypeId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of an Authorization Type.\",\"isNullable\":false,\"name\":\"AuthorizationTypeId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"AuthorizationType.cdm.json/AuthorizationType\",\"name\":\"AuthorizationTypeName\"},\"dataType\":\"string\",\"dataTypeLength\":256,\"description\":\"The name of an Authorization Type.\",\"isNullable\":true,\"name\":\"AuthorizationTypeName\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"AuthorizationType.cdm.json/AuthorizationType\",\"name\":\"AuthorizationTypeDescription\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"The description of an Authorization Type.\",\"isNullable\":true,\"name\":\"AuthorizationTypeDescription\"}]}}}",
+			"Description": "The type of authorization required or granted.\n\nEx:\n- Customer Authorization\n- Management Authorization\n- Processing Agent\n- No Authorization Required\n- Sign Invoice\n- Approve purchase orders\n- Enter into contracts",
+			"DisplayFolderInfo": "{\"name\":\"Transaction\",\"colorCode\":\"#823A16\"}",
+			"PrimaryKeys": "AuthorizationTypeId",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

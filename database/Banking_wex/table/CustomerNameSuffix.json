@@ -1,0 +1,144 @@
+{
+	"name": "CustomerNameSuffix",
+	"properties": {
+		"Name": "CustomerNameSuffix",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "The customer name suffix and it's ordering.",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "CustomerId",
+					"Description": "The unique identifier of a Customer.",
+					"BaseAttributeReference": {
+						"Entity": "CustomerNameSuffix.cdm.json/CustomerNameSuffix",
+						"Name": "CustomerId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "long",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "long"
+						}
+					}
+				},
+				{
+					"Name": "CustomerNameId",
+					"Description": "The unique identifier of a Customer Name.",
+					"BaseAttributeReference": {
+						"Entity": "CustomerNameSuffix.cdm.json/CustomerNameSuffix",
+						"Name": "CustomerNameId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "NameSuffixId",
+					"Description": "The unique identifier of a Name Suffix.",
+					"BaseAttributeReference": {
+						"Entity": "CustomerNameSuffix.cdm.json/CustomerNameSuffix",
+						"Name": "NameSuffixId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "SuffixOrderNumber",
+					"Description": "The ordering of the associated suffix.",
+					"BaseAttributeReference": {
+						"Entity": "CustomerNameSuffix.cdm.json/CustomerNameSuffix",
+						"Name": "SuffixOrderNumber"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "CustomerNameSuffixNote",
+					"Description": "A note, comment or additional information regarding the customer name suffix.",
+					"BaseAttributeReference": {
+						"Entity": "CustomerNameSuffix.cdm.json/CustomerNameSuffix",
+						"Name": "CustomerNameSuffixNote"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/CustomerNameSuffix",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/CustomerNameSuffix",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"CustomerId\":{\"entity\":\"CustomerNameSuffix.cdm.json/CustomerNameSuffix\",\"name\":\"CustomerId\"},\"CustomerNameId\":{\"entity\":\"CustomerNameSuffix.cdm.json/CustomerNameSuffix\",\"name\":\"CustomerNameId\"},\"NameSuffixId\":{\"entity\":\"CustomerNameSuffix.cdm.json/CustomerNameSuffix\",\"name\":\"NameSuffixId\"},\"SuffixOrderNumber\":{\"entity\":\"CustomerNameSuffix.cdm.json/CustomerNameSuffix\",\"name\":\"SuffixOrderNumber\"},\"CustomerNameSuffixNote\":{\"entity\":\"CustomerNameSuffix.cdm.json/CustomerNameSuffix\",\"name\":\"CustomerNameSuffixNote\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"CustomerNameSuffix\",\"path\":\"CustomerNameSuffix.cdm.json/CustomerNameSuffix\"},\"description\":\"The customer name suffix and it's ordering.\",\"primaryKey\":[\"CustomerId\",\"CustomerNameId\",\"NameSuffixId\",\"SuffixOrderNumber\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CustomerNameSuffix.cdm.json/CustomerNameSuffix\",\"name\":\"CustomerId\"},\"dataType\":\"long\",\"description\":\"The unique identifier of a Customer.\",\"isNullable\":false,\"name\":\"CustomerId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CustomerNameSuffix.cdm.json/CustomerNameSuffix\",\"name\":\"CustomerNameId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Customer Name.\",\"isNullable\":false,\"name\":\"CustomerNameId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CustomerNameSuffix.cdm.json/CustomerNameSuffix\",\"name\":\"NameSuffixId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Name Suffix.\",\"isNullable\":false,\"name\":\"NameSuffixId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CustomerNameSuffix.cdm.json/CustomerNameSuffix\",\"name\":\"SuffixOrderNumber\"},\"dataType\":\"integer\",\"description\":\"The ordering of the associated suffix.\",\"isNullable\":false,\"name\":\"SuffixOrderNumber\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CustomerNameSuffix.cdm.json/CustomerNameSuffix\",\"name\":\"CustomerNameSuffixNote\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"A note, comment or additional information regarding the customer name suffix.\",\"isNullable\":true,\"name\":\"CustomerNameSuffixNote\"}]}}}",
+			"Description": "The customer name suffix and it's ordering.",
+			"DisplayFolderInfo": "{\"name\":\"Customer\",\"colorCode\":\"#4B003F\"}",
+			"PrimaryKeys": "CustomerId,CustomerNameId,NameSuffixId,SuffixOrderNumber",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

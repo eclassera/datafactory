@@ -1,0 +1,210 @@
+{
+	"name": "CustomerCreditCriteriaRating",
+	"properties": {
+		"Name": "CustomerCreditCriteriaRating",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "This is the Credit Agency period credit rating based upon specific individual Credit Criteria, which are combined to provide an overall credit rating.",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "CustomerId",
+					"Description": "The unique identifier of a Customer.",
+					"BaseAttributeReference": {
+						"Entity": "CustomerCreditCriteriaRating.cdm.json/CustomerCreditCriteriaRating",
+						"Name": "CustomerId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "long",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "long"
+						}
+					}
+				},
+				{
+					"Name": "CreditRatingAgencyId",
+					"Description": "The unique identifier of a Credit Rating Agency.",
+					"BaseAttributeReference": {
+						"Entity": "CustomerCreditCriteriaRating.cdm.json/CustomerCreditCriteriaRating",
+						"Name": "CreditRatingAgencyId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "CreditCriteriaId",
+					"Description": "The unique identifier of a Credit Criteria.",
+					"BaseAttributeReference": {
+						"Entity": "CustomerCreditCriteriaRating.cdm.json/CustomerCreditCriteriaRating",
+						"Name": "CreditCriteriaId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "PeriodStartDate",
+					"Description": "The period start date for which the associated credit criteria rating is valid.",
+					"BaseAttributeReference": {
+						"Entity": "CustomerCreditCriteriaRating.cdm.json/CustomerCreditCriteriaRating",
+						"Name": "PeriodStartDate"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "date",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"DateFormat": "YYYY-MM-DD",
+							"HIVE_TYPE_STRING": "date"
+						}
+					}
+				},
+				{
+					"Name": "PeriodEndDate",
+					"Description": "The period end date for which the associated credit criteria rating is valid.",
+					"BaseAttributeReference": {
+						"Entity": "CustomerCreditCriteriaRating.cdm.json/CustomerCreditCriteriaRating",
+						"Name": "PeriodEndDate"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "date",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"DateFormat": "YYYY-MM-DD",
+							"HIVE_TYPE_STRING": "date"
+						}
+					}
+				},
+				{
+					"Name": "CreditCriteriaRatingId",
+					"Description": "The unique identifier of a Credit Criteria Rating.",
+					"BaseAttributeReference": {
+						"Entity": "CustomerCreditCriteriaRating.cdm.json/CustomerCreditCriteriaRating",
+						"Name": "CreditCriteriaRatingId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "MinimumAcceptableCreditCriteriaRating",
+					"Description": "The minimum acceptable Credit Criteria Rating for the Customer.",
+					"BaseAttributeReference": {
+						"Entity": "CustomerCreditCriteriaRating.cdm.json/CustomerCreditCriteriaRating",
+						"Name": "MinimumAcceptableCreditCriteriaRating"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "MaximumAttainableCreditCriteriaRating",
+					"Description": "The maximum Credit Criteria Rating attainable by the Customer.",
+					"BaseAttributeReference": {
+						"Entity": "CustomerCreditCriteriaRating.cdm.json/CustomerCreditCriteriaRating",
+						"Name": "MaximumAttainableCreditCriteriaRating"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "CreditRatingNote",
+					"Description": "Note or comments regarding the Customer period credit rating.",
+					"BaseAttributeReference": {
+						"Entity": "CustomerCreditCriteriaRating.cdm.json/CustomerCreditCriteriaRating",
+						"Name": "CreditRatingNote"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/CustomerCreditCriteriaRating",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/CustomerCreditCriteriaRating",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"CustomerId\":{\"entity\":\"CustomerCreditCriteriaRating.cdm.json/CustomerCreditCriteriaRating\",\"name\":\"CustomerId\"},\"CreditRatingAgencyId\":{\"entity\":\"CustomerCreditCriteriaRating.cdm.json/CustomerCreditCriteriaRating\",\"name\":\"CreditRatingAgencyId\"},\"CreditCriteriaId\":{\"entity\":\"CustomerCreditCriteriaRating.cdm.json/CustomerCreditCriteriaRating\",\"name\":\"CreditCriteriaId\"},\"PeriodStartDate\":{\"entity\":\"CustomerCreditCriteriaRating.cdm.json/CustomerCreditCriteriaRating\",\"name\":\"PeriodStartDate\"},\"PeriodEndDate\":{\"entity\":\"CustomerCreditCriteriaRating.cdm.json/CustomerCreditCriteriaRating\",\"name\":\"PeriodEndDate\"},\"CreditCriteriaRatingId\":{\"entity\":\"CustomerCreditCriteriaRating.cdm.json/CustomerCreditCriteriaRating\",\"name\":\"CreditCriteriaRatingId\"},\"MinimumAcceptableCreditCriteriaRating\":{\"entity\":\"CustomerCreditCriteriaRating.cdm.json/CustomerCreditCriteriaRating\",\"name\":\"MinimumAcceptableCreditCriteriaRating\"},\"MaximumAttainableCreditCriteriaRating\":{\"entity\":\"CustomerCreditCriteriaRating.cdm.json/CustomerCreditCriteriaRating\",\"name\":\"MaximumAttainableCreditCriteriaRating\"},\"CreditRatingNote\":{\"entity\":\"CustomerCreditCriteriaRating.cdm.json/CustomerCreditCriteriaRating\",\"name\":\"CreditRatingNote\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"CustomerCreditCriteriaRating\",\"path\":\"CustomerCreditCriteriaRating.cdm.json/CustomerCreditCriteriaRating\"},\"description\":\"This is the Credit Agency period credit rating based upon specific individual Credit Criteria, which are combined to provide an overall credit rating.\",\"primaryKey\":[\"CustomerId\",\"CreditRatingAgencyId\",\"CreditCriteriaId\",\"PeriodStartDate\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CustomerCreditCriteriaRating.cdm.json/CustomerCreditCriteriaRating\",\"name\":\"CustomerId\"},\"dataType\":\"long\",\"description\":\"The unique identifier of a Customer.\",\"isNullable\":false,\"name\":\"CustomerId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CustomerCreditCriteriaRating.cdm.json/CustomerCreditCriteriaRating\",\"name\":\"CreditRatingAgencyId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Credit Rating Agency.\",\"isNullable\":false,\"name\":\"CreditRatingAgencyId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CustomerCreditCriteriaRating.cdm.json/CustomerCreditCriteriaRating\",\"name\":\"CreditCriteriaId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Credit Criteria.\",\"isNullable\":false,\"name\":\"CreditCriteriaId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CustomerCreditCriteriaRating.cdm.json/CustomerCreditCriteriaRating\",\"name\":\"PeriodStartDate\"},\"dataType\":\"date\",\"dateFormat\":\"YYYY-MM-DD\",\"description\":\"The period start date for which the associated credit criteria rating is valid.\",\"isNullable\":false,\"name\":\"PeriodStartDate\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CustomerCreditCriteriaRating.cdm.json/CustomerCreditCriteriaRating\",\"name\":\"PeriodEndDate\"},\"dataType\":\"date\",\"dateFormat\":\"YYYY-MM-DD\",\"description\":\"The period end date for which the associated credit criteria rating is valid.\",\"isNullable\":true,\"name\":\"PeriodEndDate\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CustomerCreditCriteriaRating.cdm.json/CustomerCreditCriteriaRating\",\"name\":\"CreditCriteriaRatingId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Credit Criteria Rating.\",\"isNullable\":false,\"name\":\"CreditCriteriaRatingId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CustomerCreditCriteriaRating.cdm.json/CustomerCreditCriteriaRating\",\"name\":\"MinimumAcceptableCreditCriteriaRating\"},\"dataType\":\"integer\",\"description\":\"The minimum acceptable Credit Criteria Rating for the Customer.\",\"isNullable\":true,\"name\":\"MinimumAcceptableCreditCriteriaRating\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CustomerCreditCriteriaRating.cdm.json/CustomerCreditCriteriaRating\",\"name\":\"MaximumAttainableCreditCriteriaRating\"},\"dataType\":\"integer\",\"description\":\"The maximum Credit Criteria Rating attainable by the Customer.\",\"isNullable\":true,\"name\":\"MaximumAttainableCreditCriteriaRating\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CustomerCreditCriteriaRating.cdm.json/CustomerCreditCriteriaRating\",\"name\":\"CreditRatingNote\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"Note or comments regarding the Customer period credit rating.\",\"isNullable\":true,\"name\":\"CreditRatingNote\"}]}}}",
+			"Description": "This is the Credit Agency period credit rating based upon specific individual Credit Criteria, which are combined to provide an overall credit rating.",
+			"DisplayFolderInfo": "{\"name\":\"Customer Credit & Collections\",\"colorCode\":\"#022F22\"}",
+			"PrimaryKeys": "CustomerId,CreditRatingAgencyId,CreditCriteriaId,PeriodStartDate",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

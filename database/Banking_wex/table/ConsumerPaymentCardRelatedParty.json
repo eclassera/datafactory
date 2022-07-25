@@ -1,0 +1,128 @@
+{
+	"name": "ConsumerPaymentCardRelatedParty",
+	"properties": {
+		"Name": "ConsumerPaymentCardRelatedParty",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "A party that has a relationship to the Payment Card for the indicated period.",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "PaymentCardId",
+					"Description": "Primary Account Number (PAN) = The number that is embossed, encoded, or both, on a plastic card that identifies the issuer and the particular cardholder account.\n\nThe account number on the card, which is unique to every cardholder. The card number is used to identify the purchaser for authorization and billing purposes.",
+					"BaseAttributeReference": {
+						"Entity": "ConsumerPaymentCardRelatedParty.cdm.json/ConsumerPaymentCardRelatedParty",
+						"Name": "PaymentCardId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "PartyId",
+					"Description": "The unique identifier of a Party.",
+					"BaseAttributeReference": {
+						"Entity": "ConsumerPaymentCardRelatedParty.cdm.json/ConsumerPaymentCardRelatedParty",
+						"Name": "PartyId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "long",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "long"
+						}
+					}
+				},
+				{
+					"Name": "PaymentCardPartyRelationshipTypeId",
+					"Description": "The unique identifier of a co-signer relationship.",
+					"BaseAttributeReference": {
+						"Entity": "ConsumerPaymentCardRelatedParty.cdm.json/ConsumerPaymentCardRelatedParty",
+						"Name": "PaymentCardPartyRelationshipTypeId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "PaymentCardRelatedPartyNote",
+					"Description": "A note, comment or additional information regarding the Payment Card Party Relationship.",
+					"BaseAttributeReference": {
+						"Entity": "ConsumerPaymentCardRelatedParty.cdm.json/ConsumerPaymentCardRelatedParty",
+						"Name": "PaymentCardRelatedPartyNote"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/ConsumerPaymentCardRelatedParty",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/ConsumerPaymentCardRelatedParty",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"PaymentCardId\":{\"entity\":\"ConsumerPaymentCardRelatedParty.cdm.json/ConsumerPaymentCardRelatedParty\",\"name\":\"PaymentCardId\"},\"PartyId\":{\"entity\":\"ConsumerPaymentCardRelatedParty.cdm.json/ConsumerPaymentCardRelatedParty\",\"name\":\"PartyId\"},\"PaymentCardPartyRelationshipTypeId\":{\"entity\":\"ConsumerPaymentCardRelatedParty.cdm.json/ConsumerPaymentCardRelatedParty\",\"name\":\"PaymentCardPartyRelationshipTypeId\"},\"PaymentCardRelatedPartyNote\":{\"entity\":\"ConsumerPaymentCardRelatedParty.cdm.json/ConsumerPaymentCardRelatedParty\",\"name\":\"PaymentCardRelatedPartyNote\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"ConsumerPaymentCardRelatedParty\",\"path\":\"ConsumerPaymentCardRelatedParty.cdm.json/ConsumerPaymentCardRelatedParty\"},\"description\":\"A party that has a relationship to the Payment Card for the indicated period.\",\"primaryKey\":[\"PaymentCardId\",\"PartyId\",\"PaymentCardPartyRelationshipTypeId\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ConsumerPaymentCardRelatedParty.cdm.json/ConsumerPaymentCardRelatedParty\",\"name\":\"PaymentCardId\"},\"dataType\":\"integer\",\"description\":\"Primary Account Number (PAN) = The number that is embossed, encoded, or both, on a plastic card that identifies the issuer and the particular cardholder account.\\n\\nThe account number on the card, which is unique to every cardholder. The card number is used to identify the purchaser for authorization and billing purposes.\",\"isNullable\":false,\"name\":\"PaymentCardId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ConsumerPaymentCardRelatedParty.cdm.json/ConsumerPaymentCardRelatedParty\",\"name\":\"PartyId\"},\"dataType\":\"long\",\"description\":\"The unique identifier of a Party.\",\"isNullable\":false,\"name\":\"PartyId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ConsumerPaymentCardRelatedParty.cdm.json/ConsumerPaymentCardRelatedParty\",\"name\":\"PaymentCardPartyRelationshipTypeId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a co-signer relationship.\",\"isNullable\":false,\"name\":\"PaymentCardPartyRelationshipTypeId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ConsumerPaymentCardRelatedParty.cdm.json/ConsumerPaymentCardRelatedParty\",\"name\":\"PaymentCardRelatedPartyNote\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"A note, comment or additional information regarding the Payment Card Party Relationship.\",\"isNullable\":true,\"name\":\"PaymentCardRelatedPartyNote\"}]}}}",
+			"Description": "A party that has a relationship to the Payment Card for the indicated period.",
+			"DisplayFolderInfo": "{\"name\":\"Customer Credit & Collections\",\"colorCode\":\"#022F22\"}",
+			"PrimaryKeys": "PaymentCardId,PartyId,PaymentCardPartyRelationshipTypeId",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

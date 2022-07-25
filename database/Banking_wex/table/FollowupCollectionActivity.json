@@ -1,0 +1,113 @@
+{
+	"name": "FollowupCollectionActivity",
+	"properties": {
+		"Name": "FollowupCollectionActivity",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "A categorization follow-up collection activities based upon common characteristics or functions performed.\n\nEach of the specific collection activities directed at a Customer may require additional (follow-up) collection activities to be specified.   \n\nThe follow-up activity indicated should trigger one of the following collection activities or a management decisions:\n\n(1)  Personal Contact\n(2)  Telephone Call\n(3)  Collection Letter\n(4)  Close Account\n(5)  Freeze Account\n(6)  Refer to third party collection agency\n(7)  Refer for legal action",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "FollowupCollectionActivityId",
+					"Description": "The unique identifier of a Followup Collection Activity.",
+					"BaseAttributeReference": {
+						"Entity": "FollowupCollectionActivity.cdm.json/FollowupCollectionActivity",
+						"Name": "FollowupCollectionActivityId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "FollowupCollectionActivityName",
+					"Description": "The name of a Followup Collection Activity Type.",
+					"BaseAttributeReference": {
+						"Entity": "FollowupCollectionActivity.cdm.json/FollowupCollectionActivity",
+						"Name": "FollowupCollectionActivityName"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 256,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "FollowupCollectionActivityDescription",
+					"Description": "The description of a Followup Collection Activity Type.",
+					"BaseAttributeReference": {
+						"Entity": "FollowupCollectionActivity.cdm.json/FollowupCollectionActivity",
+						"Name": "FollowupCollectionActivityDescription"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/FollowupCollectionActivity",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/FollowupCollectionActivity",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"FollowupCollectionActivityId\":{\"entity\":\"FollowupCollectionActivity.cdm.json/FollowupCollectionActivity\",\"name\":\"FollowupCollectionActivityId\"},\"FollowupCollectionActivityName\":{\"entity\":\"FollowupCollectionActivity.cdm.json/FollowupCollectionActivity\",\"name\":\"FollowupCollectionActivityName\"},\"FollowupCollectionActivityDescription\":{\"entity\":\"FollowupCollectionActivity.cdm.json/FollowupCollectionActivity\",\"name\":\"FollowupCollectionActivityDescription\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"FollowupCollectionActivity\",\"path\":\"FollowupCollectionActivity.cdm.json/FollowupCollectionActivity\"},\"description\":\"A categorization follow-up collection activities based upon common characteristics or functions performed.\\n\\nEach of the specific collection activities directed at a Customer may require additional (follow-up) collection activities to be specified.   \\n\\nThe follow-up activity indicated should trigger one of the following collection activities or a management decisions:\\n\\n(1)  Personal Contact\\n(2)  Telephone Call\\n(3)  Collection Letter\\n(4)  Close Account\\n(5)  Freeze Account\\n(6)  Refer to third party collection agency\\n(7)  Refer for legal action\",\"primaryKey\":[\"FollowupCollectionActivityId\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"FollowupCollectionActivity.cdm.json/FollowupCollectionActivity\",\"name\":\"FollowupCollectionActivityId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Followup Collection Activity.\",\"isNullable\":false,\"name\":\"FollowupCollectionActivityId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"FollowupCollectionActivity.cdm.json/FollowupCollectionActivity\",\"name\":\"FollowupCollectionActivityName\"},\"dataType\":\"string\",\"dataTypeLength\":256,\"description\":\"The name of a Followup Collection Activity Type.\",\"isNullable\":true,\"name\":\"FollowupCollectionActivityName\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"FollowupCollectionActivity.cdm.json/FollowupCollectionActivity\",\"name\":\"FollowupCollectionActivityDescription\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"The description of a Followup Collection Activity Type.\",\"isNullable\":true,\"name\":\"FollowupCollectionActivityDescription\"}]}}}",
+			"Description": "A categorization follow-up collection activities based upon common characteristics or functions performed.\n\nEach of the specific collection activities directed at a Customer may require additional (follow-up) collection activities to be specified.   \n\nThe follow-up activity indicated should trigger one of the following collection activities or a management decisions:\n\n(1)  Personal Contact\n(2)  Telephone Call\n(3)  Collection Letter\n(4)  Close Account\n(5)  Freeze Account\n(6)  Refer to third party collection agency\n(7)  Refer for legal action",
+			"DisplayFolderInfo": "{\"name\":\"Customer Credit & Collections\",\"colorCode\":\"#022F22\"}",
+			"PrimaryKeys": "FollowupCollectionActivityId",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

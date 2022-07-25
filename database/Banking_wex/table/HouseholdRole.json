@@ -1,0 +1,113 @@
+{
+	"name": "HouseholdRole",
+	"properties": {
+		"Name": "HouseholdRole",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "A role played by a household member.\n\nEx:\n- Caregiver\n- Income producer\n- Dependent child\n- Dependent adult\n- Biological sibling\n- Biological parent",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "HouseholdRoleId",
+					"Description": "The unique identifier of a Household Role.",
+					"BaseAttributeReference": {
+						"Entity": "HouseholdRole.cdm.json/HouseholdRole",
+						"Name": "HouseholdRoleId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "HouseholdRoleName",
+					"Description": "The name of a Household Role.",
+					"BaseAttributeReference": {
+						"Entity": "HouseholdRole.cdm.json/HouseholdRole",
+						"Name": "HouseholdRoleName"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 256,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "HouseholdRoleDescription",
+					"Description": "The description of a Household Role.",
+					"BaseAttributeReference": {
+						"Entity": "HouseholdRole.cdm.json/HouseholdRole",
+						"Name": "HouseholdRoleDescription"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/HouseholdRole",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/HouseholdRole",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"HouseholdRoleId\":{\"entity\":\"HouseholdRole.cdm.json/HouseholdRole\",\"name\":\"HouseholdRoleId\"},\"HouseholdRoleName\":{\"entity\":\"HouseholdRole.cdm.json/HouseholdRole\",\"name\":\"HouseholdRoleName\"},\"HouseholdRoleDescription\":{\"entity\":\"HouseholdRole.cdm.json/HouseholdRole\",\"name\":\"HouseholdRoleDescription\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"HouseholdRole\",\"path\":\"HouseholdRole.cdm.json/HouseholdRole\"},\"description\":\"A role played by a household member.\\n\\nEx:\\n- Caregiver\\n- Income producer\\n- Dependent child\\n- Dependent adult\\n- Biological sibling\\n- Biological parent\",\"primaryKey\":[\"HouseholdRoleId\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"HouseholdRole.cdm.json/HouseholdRole\",\"name\":\"HouseholdRoleId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Household Role.\",\"isNullable\":false,\"name\":\"HouseholdRoleId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"HouseholdRole.cdm.json/HouseholdRole\",\"name\":\"HouseholdRoleName\"},\"dataType\":\"string\",\"dataTypeLength\":256,\"description\":\"The name of a Household Role.\",\"isNullable\":true,\"name\":\"HouseholdRoleName\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"HouseholdRole.cdm.json/HouseholdRole\",\"name\":\"HouseholdRoleDescription\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"The description of a Household Role.\",\"isNullable\":true,\"name\":\"HouseholdRoleDescription\"}]}}}",
+			"Description": "A role played by a household member.\n\nEx:\n- Caregiver\n- Income producer\n- Dependent child\n- Dependent adult\n- Biological sibling\n- Biological parent",
+			"DisplayFolderInfo": "{\"name\":\"Party\",\"colorCode\":\"#00727A\"}",
+			"PrimaryKeys": "HouseholdRoleId",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

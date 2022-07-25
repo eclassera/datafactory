@@ -1,0 +1,129 @@
+{
+	"name": "VehicleManufacturerModel",
+	"properties": {
+		"Name": "VehicleManufacturerModel",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "A specific vehicle offering by a vehicle manufacturer.\n\nEx:\nVEHICLE MAKE = BMW\nVEHICLE MODEL = 320",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "VehicleManufacturerId",
+					"Description": "The unique identifier of a Vehicle Manufacturer.",
+					"BaseAttributeReference": {
+						"Entity": "VehicleManufacturerModel.cdm.json/VehicleManufacturerModel",
+						"Name": "VehicleManufacturerId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "VehicleModelId",
+					"Description": "The unique identifier of a vehicle model.",
+					"BaseAttributeReference": {
+						"Entity": "VehicleManufacturerModel.cdm.json/VehicleManufacturerModel",
+						"Name": "VehicleModelId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "VehicleModelName",
+					"Description": "The name of a vehicle model.",
+					"BaseAttributeReference": {
+						"Entity": "VehicleManufacturerModel.cdm.json/VehicleManufacturerModel",
+						"Name": "VehicleModelName"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 256,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "VehicleModelDescription",
+					"Description": "The description of a vehicle model.",
+					"BaseAttributeReference": {
+						"Entity": "VehicleManufacturerModel.cdm.json/VehicleManufacturerModel",
+						"Name": "VehicleModelDescription"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/VehicleManufacturerModel",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/VehicleManufacturerModel",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"VehicleManufacturerId\":{\"entity\":\"VehicleManufacturerModel.cdm.json/VehicleManufacturerModel\",\"name\":\"VehicleManufacturerId\"},\"VehicleModelId\":{\"entity\":\"VehicleManufacturerModel.cdm.json/VehicleManufacturerModel\",\"name\":\"VehicleModelId\"},\"VehicleModelName\":{\"entity\":\"VehicleManufacturerModel.cdm.json/VehicleManufacturerModel\",\"name\":\"VehicleModelName\"},\"VehicleModelDescription\":{\"entity\":\"VehicleManufacturerModel.cdm.json/VehicleManufacturerModel\",\"name\":\"VehicleModelDescription\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"VehicleManufacturerModel\",\"path\":\"VehicleManufacturerModel.cdm.json/VehicleManufacturerModel\"},\"description\":\"A specific vehicle offering by a vehicle manufacturer.\\n\\nEx:\\nVEHICLE MAKE = BMW\\nVEHICLE MODEL = 320\",\"primaryKey\":[\"VehicleManufacturerId\",\"VehicleModelId\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"VehicleManufacturerModel.cdm.json/VehicleManufacturerModel\",\"name\":\"VehicleManufacturerId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Vehicle Manufacturer.\",\"isNullable\":false,\"name\":\"VehicleManufacturerId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"VehicleManufacturerModel.cdm.json/VehicleManufacturerModel\",\"name\":\"VehicleModelId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a vehicle model.\",\"isNullable\":false,\"name\":\"VehicleModelId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"VehicleManufacturerModel.cdm.json/VehicleManufacturerModel\",\"name\":\"VehicleModelName\"},\"dataType\":\"string\",\"dataTypeLength\":256,\"description\":\"The name of a vehicle model.\",\"isNullable\":true,\"name\":\"VehicleModelName\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"VehicleManufacturerModel.cdm.json/VehicleManufacturerModel\",\"name\":\"VehicleModelDescription\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"The description of a vehicle model.\",\"isNullable\":true,\"name\":\"VehicleModelDescription\"}]}}}",
+			"Description": "A specific vehicle offering by a vehicle manufacturer.\n\nEx:\nVEHICLE MAKE = BMW\nVEHICLE MODEL = 320",
+			"DisplayFolderInfo": "{\"name\":\"Customer Credit & Collections\",\"colorCode\":\"#022F22\"}",
+			"PrimaryKeys": "VehicleManufacturerId,VehicleModelId",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

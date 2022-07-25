@@ -1,0 +1,113 @@
+{
+	"name": "BenefitCriteriaType",
+	"properties": {
+		"Name": "BenefitCriteriaType",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "Benefit Criteria Type is a means of classifying, grouping or categorizing specific Benefit Criteria at a higher level for analysis and presentation.\n\nThe Benefit Criteria is the specific variable or value that may be linked to a Market Segment.\n\nThe Benefit Type is the larger category to which the Benefit Criteria belongs.\n\nThe following are examples:\n\nBenefit Criteria:  Long Term Appreciation\nBenefit Type:  Investment Objective\n\nBenefit Criteria:  Retirement Savings\nBenefit Type:  Investment Objective",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "BenefitCriteriaTypeId",
+					"Description": "The unique identifier of a Benefit Criteria Type.",
+					"BaseAttributeReference": {
+						"Entity": "BenefitCriteriaType.cdm.json/BenefitCriteriaType",
+						"Name": "BenefitCriteriaTypeId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "BenefitCriteriaTypeName",
+					"Description": "The name of the Benefit Criteria Type.",
+					"BaseAttributeReference": {
+						"Entity": "BenefitCriteriaType.cdm.json/BenefitCriteriaType",
+						"Name": "BenefitCriteriaTypeName"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 256,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "BenefitCriteriaTypeDescription",
+					"Description": "The description of the Benefit Criteria Type.",
+					"BaseAttributeReference": {
+						"Entity": "BenefitCriteriaType.cdm.json/BenefitCriteriaType",
+						"Name": "BenefitCriteriaTypeDescription"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/BenefitCriteriaType",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/BenefitCriteriaType",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"BenefitCriteriaTypeId\":{\"entity\":\"BenefitCriteriaType.cdm.json/BenefitCriteriaType\",\"name\":\"BenefitCriteriaTypeId\"},\"BenefitCriteriaTypeName\":{\"entity\":\"BenefitCriteriaType.cdm.json/BenefitCriteriaType\",\"name\":\"BenefitCriteriaTypeName\"},\"BenefitCriteriaTypeDescription\":{\"entity\":\"BenefitCriteriaType.cdm.json/BenefitCriteriaType\",\"name\":\"BenefitCriteriaTypeDescription\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"BenefitCriteriaType\",\"path\":\"BenefitCriteriaType.cdm.json/BenefitCriteriaType\"},\"description\":\"Benefit Criteria Type is a means of classifying, grouping or categorizing specific Benefit Criteria at a higher level for analysis and presentation.\\n\\nThe Benefit Criteria is the specific variable or value that may be linked to a Market Segment.\\n\\nThe Benefit Type is the larger category to which the Benefit Criteria belongs.\\n\\nThe following are examples:\\n\\nBenefit Criteria:  Long Term Appreciation\\nBenefit Type:  Investment Objective\\n\\nBenefit Criteria:  Retirement Savings\\nBenefit Type:  Investment Objective\",\"primaryKey\":[\"BenefitCriteriaTypeId\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"BenefitCriteriaType.cdm.json/BenefitCriteriaType\",\"name\":\"BenefitCriteriaTypeId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Benefit Criteria Type.\",\"isNullable\":false,\"name\":\"BenefitCriteriaTypeId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"BenefitCriteriaType.cdm.json/BenefitCriteriaType\",\"name\":\"BenefitCriteriaTypeName\"},\"dataType\":\"string\",\"dataTypeLength\":256,\"description\":\"The name of the Benefit Criteria Type.\",\"isNullable\":true,\"name\":\"BenefitCriteriaTypeName\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"BenefitCriteriaType.cdm.json/BenefitCriteriaType\",\"name\":\"BenefitCriteriaTypeDescription\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"The description of the Benefit Criteria Type.\",\"isNullable\":true,\"name\":\"BenefitCriteriaTypeDescription\"}]}}}",
+			"Description": "Benefit Criteria Type is a means of classifying, grouping or categorizing specific Benefit Criteria at a higher level for analysis and presentation.\n\nThe Benefit Criteria is the specific variable or value that may be linked to a Market Segment.\n\nThe Benefit Type is the larger category to which the Benefit Criteria belongs.\n\nThe following are examples:\n\nBenefit Criteria:  Long Term Appreciation\nBenefit Type:  Investment Objective\n\nBenefit Criteria:  Retirement Savings\nBenefit Type:  Investment Objective",
+			"DisplayFolderInfo": "{\"name\":\"Customer\",\"colorCode\":\"#4B003F\"}",
+			"PrimaryKeys": "BenefitCriteriaTypeId",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

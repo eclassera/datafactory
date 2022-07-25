@@ -1,0 +1,161 @@
+{
+	"name": "FinancialStatementLineNoteCrossReference",
+	"properties": {
+		"Name": "FinancialStatementLineNoteCrossReference",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "The cross-reference between a line on a financial statement and any notes that are applicable to the line.",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "LegalEntityId",
+					"Description": "The unique identifier of a Legal Entity.",
+					"BaseAttributeReference": {
+						"Entity": "FinancialStatementLineNoteCrossReference.cdm.json/FinancialStatementLineNoteCrossReference",
+						"Name": "LegalEntityId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "FinancialStatementId",
+					"Description": "The unique identifier of a Financial Statement.",
+					"BaseAttributeReference": {
+						"Entity": "FinancialStatementLineNoteCrossReference.cdm.json/FinancialStatementLineNoteCrossReference",
+						"Name": "FinancialStatementId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "PeriodStartDate",
+					"Description": "The period start date for which the set of financial statements is prepared.",
+					"BaseAttributeReference": {
+						"Entity": "FinancialStatementLineNoteCrossReference.cdm.json/FinancialStatementLineNoteCrossReference",
+						"Name": "PeriodStartDate"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "date",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"DateFormat": "YYYY-MM-DD",
+							"HIVE_TYPE_STRING": "date"
+						}
+					}
+				},
+				{
+					"Name": "PeriodEndDate",
+					"Description": "The period end date for which the set of financial statements is prepared.",
+					"BaseAttributeReference": {
+						"Entity": "FinancialStatementLineNoteCrossReference.cdm.json/FinancialStatementLineNoteCrossReference",
+						"Name": "PeriodEndDate"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "date",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"DateFormat": "YYYY-MM-DD",
+							"HIVE_TYPE_STRING": "date"
+						}
+					}
+				},
+				{
+					"Name": "FinancialStatementLineId",
+					"Description": "The unique identifier of a Financial Statement Line.",
+					"BaseAttributeReference": {
+						"Entity": "FinancialStatementLineNoteCrossReference.cdm.json/FinancialStatementLineNoteCrossReference",
+						"Name": "FinancialStatementLineId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "FinancialStatementNoteId",
+					"Description": "The unique identifier of a financial statement note.",
+					"BaseAttributeReference": {
+						"Entity": "FinancialStatementLineNoteCrossReference.cdm.json/FinancialStatementLineNoteCrossReference",
+						"Name": "FinancialStatementNoteId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/FinancialStatementLineNoteCrossReference",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/FinancialStatementLineNoteCrossReference",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"LegalEntityId\":{\"entity\":\"FinancialStatementLineNoteCrossReference.cdm.json/FinancialStatementLineNoteCrossReference\",\"name\":\"LegalEntityId\"},\"FinancialStatementId\":{\"entity\":\"FinancialStatementLineNoteCrossReference.cdm.json/FinancialStatementLineNoteCrossReference\",\"name\":\"FinancialStatementId\"},\"PeriodStartDate\":{\"entity\":\"FinancialStatementLineNoteCrossReference.cdm.json/FinancialStatementLineNoteCrossReference\",\"name\":\"PeriodStartDate\"},\"PeriodEndDate\":{\"entity\":\"FinancialStatementLineNoteCrossReference.cdm.json/FinancialStatementLineNoteCrossReference\",\"name\":\"PeriodEndDate\"},\"FinancialStatementLineId\":{\"entity\":\"FinancialStatementLineNoteCrossReference.cdm.json/FinancialStatementLineNoteCrossReference\",\"name\":\"FinancialStatementLineId\"},\"FinancialStatementNoteId\":{\"entity\":\"FinancialStatementLineNoteCrossReference.cdm.json/FinancialStatementLineNoteCrossReference\",\"name\":\"FinancialStatementNoteId\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"FinancialStatementLineNoteCrossReference\",\"path\":\"FinancialStatementLineNoteCrossReference.cdm.json/FinancialStatementLineNoteCrossReference\"},\"description\":\"The cross-reference between a line on a financial statement and any notes that are applicable to the line.\",\"primaryKey\":[\"LegalEntityId\",\"FinancialStatementId\",\"PeriodStartDate\",\"PeriodEndDate\",\"FinancialStatementLineId\",\"FinancialStatementNoteId\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"FinancialStatementLineNoteCrossReference.cdm.json/FinancialStatementLineNoteCrossReference\",\"name\":\"LegalEntityId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Legal Entity.\",\"isNullable\":false,\"name\":\"LegalEntityId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"FinancialStatementLineNoteCrossReference.cdm.json/FinancialStatementLineNoteCrossReference\",\"name\":\"FinancialStatementId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Financial Statement.\",\"isNullable\":false,\"name\":\"FinancialStatementId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"FinancialStatementLineNoteCrossReference.cdm.json/FinancialStatementLineNoteCrossReference\",\"name\":\"PeriodStartDate\"},\"dataType\":\"date\",\"dateFormat\":\"YYYY-MM-DD\",\"description\":\"The period start date for which the set of financial statements is prepared.\",\"isNullable\":false,\"name\":\"PeriodStartDate\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"FinancialStatementLineNoteCrossReference.cdm.json/FinancialStatementLineNoteCrossReference\",\"name\":\"PeriodEndDate\"},\"dataType\":\"date\",\"dateFormat\":\"YYYY-MM-DD\",\"description\":\"The period end date for which the set of financial statements is prepared.\",\"isNullable\":false,\"name\":\"PeriodEndDate\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"FinancialStatementLineNoteCrossReference.cdm.json/FinancialStatementLineNoteCrossReference\",\"name\":\"FinancialStatementLineId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Financial Statement Line.\",\"isNullable\":false,\"name\":\"FinancialStatementLineId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"FinancialStatementLineNoteCrossReference.cdm.json/FinancialStatementLineNoteCrossReference\",\"name\":\"FinancialStatementNoteId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a financial statement note.\",\"isNullable\":false,\"name\":\"FinancialStatementNoteId\"}]}}}",
+			"Description": "The cross-reference between a line on a financial statement and any notes that are applicable to the line.",
+			"DisplayFolderInfo": "{\"name\":\"Accounting & Financial Reporting\",\"colorCode\":\"#0078D4\"}",
+			"PrimaryKeys": "LegalEntityId,FinancialStatementId,PeriodStartDate,PeriodEndDate,FinancialStatementLineId,FinancialStatementNoteId",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

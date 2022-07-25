@@ -1,0 +1,162 @@
+{
+	"name": "AssignmentAsset",
+	"properties": {
+		"Name": "AssignmentAsset",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "Assets that have been assigned to the Assignment Proceeding.",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "AssignmentProceedingId",
+					"Description": "The unique identifier of an Assignment Proceeding.",
+					"BaseAttributeReference": {
+						"Entity": "AssignmentAsset.cdm.json/AssignmentAsset",
+						"Name": "AssignmentProceedingId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "AssetId",
+					"Description": "The unique identifier of an Asset.",
+					"BaseAttributeReference": {
+						"Entity": "AssignmentAsset.cdm.json/AssignmentAsset",
+						"Name": "AssetId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "long",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "long"
+						}
+					}
+				},
+				{
+					"Name": "PeriodStartDate",
+					"Description": "The period start date for which the asset assignment is made.",
+					"BaseAttributeReference": {
+						"Entity": "AssignmentAsset.cdm.json/AssignmentAsset",
+						"Name": "PeriodStartDate"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "date",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"DateFormat": "YYYY-MM-DD",
+							"HIVE_TYPE_STRING": "date"
+						}
+					}
+				},
+				{
+					"Name": "PeriodEndDate",
+					"Description": "The period end date for which the asset assignment is made.",
+					"BaseAttributeReference": {
+						"Entity": "AssignmentAsset.cdm.json/AssignmentAsset",
+						"Name": "PeriodEndDate"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "date",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"DateFormat": "YYYY-MM-DD",
+							"HIVE_TYPE_STRING": "date"
+						}
+					}
+				},
+				{
+					"Name": "AssetAssignmentNote",
+					"Description": "A note, comment or additional information regarding the asset assignment.",
+					"BaseAttributeReference": {
+						"Entity": "AssignmentAsset.cdm.json/AssignmentAsset",
+						"Name": "AssetAssignmentNote"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "AttachedAssetStatusId",
+					"Description": "The unique identifier of an Attached Asset Status.",
+					"BaseAttributeReference": {
+						"Entity": "AssignmentAsset.cdm.json/AssignmentAsset",
+						"Name": "AttachedAssetStatusId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/AssignmentAsset",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/AssignmentAsset",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"AssignmentProceedingId\":{\"entity\":\"AssignmentAsset.cdm.json/AssignmentAsset\",\"name\":\"AssignmentProceedingId\"},\"AssetId\":{\"entity\":\"AssignmentAsset.cdm.json/AssignmentAsset\",\"name\":\"AssetId\"},\"PeriodStartDate\":{\"entity\":\"AssignmentAsset.cdm.json/AssignmentAsset\",\"name\":\"PeriodStartDate\"},\"PeriodEndDate\":{\"entity\":\"AssignmentAsset.cdm.json/AssignmentAsset\",\"name\":\"PeriodEndDate\"},\"AssetAssignmentNote\":{\"entity\":\"AssignmentAsset.cdm.json/AssignmentAsset\",\"name\":\"AssetAssignmentNote\"},\"AttachedAssetStatusId\":{\"entity\":\"AssignmentAsset.cdm.json/AssignmentAsset\",\"name\":\"AttachedAssetStatusId\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"AssignmentAsset\",\"path\":\"AssignmentAsset.cdm.json/AssignmentAsset\"},\"description\":\"Assets that have been assigned to the Assignment Proceeding.\",\"primaryKey\":[\"AssignmentProceedingId\",\"AssetId\",\"PeriodStartDate\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"AssignmentAsset.cdm.json/AssignmentAsset\",\"name\":\"AssignmentProceedingId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of an Assignment Proceeding.\",\"isNullable\":false,\"name\":\"AssignmentProceedingId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"AssignmentAsset.cdm.json/AssignmentAsset\",\"name\":\"AssetId\"},\"dataType\":\"long\",\"description\":\"The unique identifier of an Asset.\",\"isNullable\":false,\"name\":\"AssetId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"AssignmentAsset.cdm.json/AssignmentAsset\",\"name\":\"PeriodStartDate\"},\"dataType\":\"date\",\"dateFormat\":\"YYYY-MM-DD\",\"description\":\"The period start date for which the asset assignment is made.\",\"isNullable\":false,\"name\":\"PeriodStartDate\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"AssignmentAsset.cdm.json/AssignmentAsset\",\"name\":\"PeriodEndDate\"},\"dataType\":\"date\",\"dateFormat\":\"YYYY-MM-DD\",\"description\":\"The period end date for which the asset assignment is made.\",\"isNullable\":true,\"name\":\"PeriodEndDate\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"AssignmentAsset.cdm.json/AssignmentAsset\",\"name\":\"AssetAssignmentNote\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"A note, comment or additional information regarding the asset assignment.\",\"isNullable\":true,\"name\":\"AssetAssignmentNote\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"AssignmentAsset.cdm.json/AssignmentAsset\",\"name\":\"AttachedAssetStatusId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of an Attached Asset Status.\",\"isNullable\":true,\"name\":\"AttachedAssetStatusId\"}]}}}",
+			"Description": "Assets that have been assigned to the Assignment Proceeding.",
+			"DisplayFolderInfo": "{\"name\":\"Customer Credit & Collections\",\"colorCode\":\"#022F22\"}",
+			"PrimaryKeys": "AssignmentProceedingId,AssetId,PeriodStartDate",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

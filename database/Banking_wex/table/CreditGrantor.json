@@ -1,0 +1,286 @@
+{
+	"name": "CreditGrantor",
+	"properties": {
+		"Name": "CreditGrantor",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "Person or business furnishing consumer goods and/or services on credit.",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "CreditGrantorId",
+					"Description": "The unique identifier of a Credit Grantor.",
+					"BaseAttributeReference": {
+						"Entity": "CreditGrantor.cdm.json/CreditGrantor",
+						"Name": "CreditGrantorId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "CreditGrantorName",
+					"Description": "The name of the Credit Grantor.",
+					"BaseAttributeReference": {
+						"Entity": "CreditGrantor.cdm.json/CreditGrantor",
+						"Name": "CreditGrantorName"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 256,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "SiteDunsNumber",
+					"Description": "Linkage, in general terms, is the relationship between different companies or specific sites within a corporate family.\nLinkage occurs in D&B WorldBase when one business location has financial & legal responsibility for another business location. There are two types of linkage relationships in D&B WorldBase:\n\nBranch to headquarter, linkage\nSubsidiary to parent, linkage\n\nThere are other types of family relationships that occur which are not linked in the D&B file because the affiliated company has no legal obligation for the debts of the other company. Examples of these types of relationships include businesses affiliated through common officers or situations where one corporation owns a part or minority interest in another (50% or less) and joint ventures, where there is a 50/50 split in the ownership.\n\nThere are 8 classifications of businesses defined in D&B WorldBase: \n\n1) Single Location Subsidiary\nA single location subsidiary has a parent which owns >50% of its capital stock, however, it does not have branches or subsidiaries reporting to it. Do not confuse this with a stand-alone business which is titled \"single location\" and is not part of a corporate family.\n \n2) Headquarters\n\nA headquarters is a business establishment that has branches or divisions reporting to it, and is financially responsible for those branches or divisions. If the headquarters has more than 50% of capital stock owned by another corporation, it also will be a subsidiary. If it owns more than 50% of capital stock of another corporation, then it is also a parent.\n\n3) Branch\n\nA branch is a secondary location of its headquarters. It is not a separate corporation, has no legal responsibility for its debts, even though bills may be paid from the branch location. It will usually have the same legal business name as its headquarters, although branches frequently operate under a different trade style than the headquarters establishment. A branch may be located at the same address as the headquarters if it has a unique trade style. In such cases, the branch may appear to be a duplicate with a different D-U-N-S number than the headquarters record, which may confuse customers if they don't purchase the trade style field.\n\n4) Division\n\nA division, like a branch, is a secondary location of a business. However, a division carries out specific business operations related to the headquarters under a divisional name. Divisions look similar to branches in D&B WorldBase and carry a branch code.\n\n5) Subsidiary\n\nA subsidiary is a corporation whose capital stock is more than 50% owned by another corporation and will have a different legal business name from its parent company. A subsidiary may have branches and/or subsidiaries of its own. If it does, then its D-U-N-S Number appears in the headquarter/parent D-U-N-S Number field of its children.\n\n6) Parent\n\nA parent is a corporation that owns more than 50 % of another corporation's capital stock. The parent company can also be a subsidiary of another corporation. If the parent also has branches, then it is a headquarters as well as being a parent company.\n\n7) Domestic Ultimate\n\nThe Domestic Ultimate is an entity within the global family tree which is the highest ranking member within a specific country. There can be several domestic ultimates within a given country for one corporate family.\n\n8) Global Ultimate\n \nThe Global Ultimate is the top most responsible entity within the global family tree. The Global Ultimate may have branches and/or subsidiaries reporting directly or indirectly to it.\n\nDEFINING CORPORATE RESPONSIBILITY\nFor the purposes of linking these relationships to define corporate responsibility, each family member carries up to four D-U-N-S Numbers.\n\n- Its own Site D-U-N-S Number\n\n- That of the next highest level in the family; parent or headquarter D-U-N-S\n\n- That of the highest level within its country; its domestic ultimate D-U-N-S\n\n- That of its top global ultimate; global ultimate D-U-N-S\n\nFor example, the branch carries its own D-U-N-S Number, that of its headquarters, that of its domestic ultimate, and that of its global ultimate. A subsidiary carries its own D-U-N-S number, that of its parent, that of its domestic ultimate, and that of its global ultimate.\n\nThe domestic ultimate is the highest member of the tree in a specific country. The site D-U-N-S Number and domestic ultimate D-U-N-S number will all be the same on the domestic ultimate record.\n\nThe global ultimate record carries the same D-U-N-S Number in the site D-U-N-S field, the headquarters/parent D-U-N-S field, the domestic ultimate D-U-N-S number and the global ultimate D-U-N-S field. This business is at the very top of the global family tree.",
+					"BaseAttributeReference": {
+						"Entity": "CreditGrantor.cdm.json/CreditGrantor",
+						"Name": "SiteDunsNumber"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "decimal",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Precision": 9,
+						"Scale": 0,
+						"Properties": {
+							"HIVE_TYPE_STRING": "decimal"
+						}
+					}
+				},
+				{
+					"Name": "ParentOrHeadquartersDunsNumber",
+					"Description": "Linkage, in general terms, is the relationship between different companies or specific sites within a corporate family.\nLinkage occurs in D&B WorldBase when one business location has financial & legal responsibility for another business location. There are two types of linkage relationships in D&B WorldBase:\n\nBranch to headquarter, linkage\nSubsidiary to parent, linkage\n\nThere are other types of family relationships that occur which are not linked in the D&B file because the affiliated company has no legal obligation for the debts of the other company. Examples of these types of relationships include businesses affiliated through common officers or situations where one corporation owns a part or minority interest in another (50% or less) and joint ventures, where there is a 50/50 split in the ownership.\n\nThere are 8 classifications of businesses defined in D&B WorldBase: \n\n1) Single Location Subsidiary\nA single location subsidiary has a parent which owns >50% of its capital stock, however, it does not have branches or subsidiaries reporting to it. Do not confuse this with a stand-alone business which is titled \"single location\" and is not part of a corporate family.\n \n2) Headquarters\n\nA headquarters is a business establishment that has branches or divisions reporting to it, and is financially responsible for those branches or divisions. If the headquarters has more than 50% of capital stock owned by another corporation, it also will be a subsidiary. If it owns more than 50% of capital stock of another corporation, then it is also a parent.\n\n3) Branch\n\nA branch is a secondary location of its headquarters. It is not a separate corporation, has no legal responsibility for its debts, even though bills may be paid from the branch location. It will usually have the same legal business name as its headquarters, although branches frequently operate under a different trade style than the headquarters establishment. A branch may be located at the same address as the headquarters if it has a unique trade style. In such cases, the branch may appear to be a duplicate with a different D-U-N-S number than the headquarters record, which may confuse customers if they don't purchase the trade style field.\n\n4) Division\n\nA division, like a branch, is a secondary location of a business. However, a division carries out specific business operations related to the headquarters under a divisional name. Divisions look similar to branches in D&B WorldBase and carry a branch code.\n\n5) Subsidiary\n\nA subsidiary is a corporation whose capital stock is more than 50% owned by another corporation and will have a different legal business name from its parent company. A subsidiary may have branches and/or subsidiaries of its own. If it does, then its D-U-N-S Number appears in the headquarter/parent D-U-N-S Number field of its children.\n\n6) Parent\n\nA parent is a corporation that owns more than 50 % of another corporation's capital stock. The parent company can also be a subsidiary of another corporation. If the parent also has branches, then it is a headquarters as well as being a parent company.\n\n7) Domestic Ultimate\n\nThe Domestic Ultimate is an entity within the global family tree which is the highest ranking member within a specific country. There can be several domestic ultimates within a given country for one corporate family.\n\n8) Global Ultimate\n \nThe Global Ultimate is the top most responsible entity within the global family tree. The Global Ultimate may have branches and/or subsidiaries reporting directly or indirectly to it.\n\nDEFINING CORPORATE RESPONSIBILITY\nFor the purposes of linking these relationships to define corporate responsibility, each family member carries up to four D-U-N-S Numbers.\n\n- Its own Site D-U-N-S Number\n\n- That of the next highest level in the family; parent or headquarter D-U-N-S\n\n- That of the highest level within its country; its domestic ultimate D-U-N-S\n\n- That of its top global ultimate; global ultimate D-U-N-S\n\nFor example, the branch carries its own D-U-N-S Number, that of its headquarters, that of its domestic ultimate, and that of its global ultimate. A subsidiary carries its own D-U-N-S number, that of its parent, that of its domestic ultimate, and that of its global ultimate.\n\nThe domestic ultimate is the highest member of the tree in a specific country. The site D-U-N-S Number and domestic ultimate D-U-N-S number will all be the same on the domestic ultimate record.\n\nThe global ultimate record carries the same D-U-N-S Number in the site D-U-N-S field, the headquarters/parent D-U-N-S field, the domestic ultimate D-U-N-S number and the global ultimate D-U-N-S field. This business is at the very top of the global family tree.",
+					"BaseAttributeReference": {
+						"Entity": "CreditGrantor.cdm.json/CreditGrantor",
+						"Name": "ParentOrHeadquartersDunsNumber"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "decimal",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Precision": 9,
+						"Scale": 0,
+						"Properties": {
+							"HIVE_TYPE_STRING": "decimal"
+						}
+					}
+				},
+				{
+					"Name": "DomesticUltimateDunsNumber",
+					"Description": "Linkage, in general terms, is the relationship between different companies or specific sites within a corporate family.\nLinkage occurs in D&B WorldBase when one business location has financial & legal responsibility for another business location. There are two types of linkage relationships in D&B WorldBase:\n\nBranch to headquarter, linkage\nSubsidiary to parent, linkage\n\nThere are other types of family relationships that occur which are not linked in the D&B file because the affiliated company has no legal obligation for the debts of the other company. Examples of these types of relationships include businesses affiliated through common officers or situations where one corporation owns a part or minority interest in another (50% or less) and joint ventures, where there is a 50/50 split in the ownership.\n\nThere are 8 classifications of businesses defined in D&B WorldBase: \n\n1) Single Location Subsidiary\nA single location subsidiary has a parent which owns >50% of its capital stock, however, it does not have branches or subsidiaries reporting to it. Do not confuse this with a stand-alone business which is titled \"single location\" and is not part of a corporate family.\n \n2) Headquarters\n\nA headquarters is a business establishment that has branches or divisions reporting to it, and is financially responsible for those branches or divisions. If the headquarters has more than 50% of capital stock owned by another corporation, it also will be a subsidiary. If it owns more than 50% of capital stock of another corporation, then it is also a parent.\n\n3) Branch\n\nA branch is a secondary location of its headquarters. It is not a separate corporation, has no legal responsibility for its debts, even though bills may be paid from the branch location. It will usually have the same legal business name as its headquarters, although branches frequently operate under a different trade style than the headquarters establishment. A branch may be located at the same address as the headquarters if it has a unique trade style. In such cases, the branch may appear to be a duplicate with a different D-U-N-S number than the headquarters record, which may confuse customers if they don't purchase the trade style field.\n\n4) Division\n\nA division, like a branch, is a secondary location of a business. However, a division carries out specific business operations related to the headquarters under a divisional name. Divisions look similar to branches in D&B WorldBase and carry a branch code.\n\n5) Subsidiary\n\nA subsidiary is a corporation whose capital stock is more than 50% owned by another corporation and will have a different legal business name from its parent company. A subsidiary may have branches and/or subsidiaries of its own. If it does, then its D-U-N-S Number appears in the headquarter/parent D-U-N-S Number field of its children.\n\n6) Parent\n\nA parent is a corporation that owns more than 50 % of another corporation's capital stock. The parent company can also be a subsidiary of another corporation. If the parent also has branches, then it is a headquarters as well as being a parent company.\n\n7) Domestic Ultimate\n\nThe Domestic Ultimate is an entity within the global family tree which is the highest ranking member within a specific country. There can be several domestic ultimates within a given country for one corporate family.\n\n8) Global Ultimate\n \nThe Global Ultimate is the top most responsible entity within the global family tree. The Global Ultimate may have branches and/or subsidiaries reporting directly or indirectly to it.\n\nDEFINING CORPORATE RESPONSIBILITY\nFor the purposes of linking these relationships to define corporate responsibility, each family member carries up to four D-U-N-S Numbers.\n\n- Its own Site D-U-N-S Number\n\n- That of the next highest level in the family; parent or headquarter D-U-N-S\n\n- That of the highest level within its country; its domestic ultimate D-U-N-S\n\n- That of its top global ultimate; global ultimate D-U-N-S\n\nFor example, the branch carries its own D-U-N-S Number, that of its headquarters, that of its domestic ultimate, and that of its global ultimate. A subsidiary carries its own D-U-N-S number, that of its parent, that of its domestic ultimate, and that of its global ultimate.\n\nThe domestic ultimate is the highest member of the tree in a specific country. The site D-U-N-S Number and domestic ultimate D-U-N-S number will all be the same on the domestic ultimate record.\n\nThe global ultimate record carries the same D-U-N-S Number in the site D-U-N-S field, the headquarters/parent D-U-N-S field, the domestic ultimate D-U-N-S number and the global ultimate D-U-N-S field. This business is at the very top of the global family tree.",
+					"BaseAttributeReference": {
+						"Entity": "CreditGrantor.cdm.json/CreditGrantor",
+						"Name": "DomesticUltimateDunsNumber"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "decimal",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Precision": 9,
+						"Scale": 0,
+						"Properties": {
+							"HIVE_TYPE_STRING": "decimal"
+						}
+					}
+				},
+				{
+					"Name": "GlobalUltimateDunsNumber",
+					"Description": "Linkage, in general terms, is the relationship between different companies or specific sites within a corporate family.\nLinkage occurs in D&B WorldBase when one business location has financial & legal responsibility for another business location. There are two types of linkage relationships in D&B WorldBase:\n\nBranch to headquarter, linkage\nSubsidiary to parent, linkage\n\nThere are other types of family relationships that occur which are not linked in the D&B file because the affiliated company has no legal obligation for the debts of the other company. Examples of these types of relationships include businesses affiliated through common officers or situations where one corporation owns a part or minority interest in another (50% or less) and joint ventures, where there is a 50/50 split in the ownership.\n\nThere are 8 classifications of businesses defined in D&B WorldBase: \n\n1) Single Location Subsidiary\nA single location subsidiary has a parent which owns >50% of its capital stock, however, it does not have branches or subsidiaries reporting to it. Do not confuse this with a stand-alone business which is titled \"single location\" and is not part of a corporate family.\n \n2) Headquarters\n\nA headquarters is a business establishment that has branches or divisions reporting to it, and is financially responsible for those branches or divisions. If the headquarters has more than 50% of capital stock owned by another corporation, it also will be a subsidiary. If it owns more than 50% of capital stock of another corporation, then it is also a parent.\n\n3) Branch\n\nA branch is a secondary location of its headquarters. It is not a separate corporation, has no legal responsibility for its debts, even though bills may be paid from the branch location. It will usually have the same legal business name as its headquarters, although branches frequently operate under a different trade style than the headquarters establishment. A branch may be located at the same address as the headquarters if it has a unique trade style. In such cases, the branch may appear to be a duplicate with a different D-U-N-S number than the headquarters record, which may confuse customers if they don't purchase the trade style field.\n\n4) Division\n\nA division, like a branch, is a secondary location of a business. However, a division carries out specific business operations related to the headquarters under a divisional name. Divisions look similar to branches in D&B WorldBase and carry a branch code.\n\n5) Subsidiary\n\nA subsidiary is a corporation whose capital stock is more than 50% owned by another corporation and will have a different legal business name from its parent company. A subsidiary may have branches and/or subsidiaries of its own. If it does, then its D-U-N-S Number appears in the headquarter/parent D-U-N-S Number field of its children.\n\n6) Parent\n\nA parent is a corporation that owns more than 50 % of another corporation's capital stock. The parent company can also be a subsidiary of another corporation. If the parent also has branches, then it is a headquarters as well as being a parent company.\n\n7) Domestic Ultimate\n\nThe Domestic Ultimate is an entity within the global family tree which is the highest ranking member within a specific country. There can be several domestic ultimates within a given country for one corporate family.\n\n8) Global Ultimate\n \nThe Global Ultimate is the top most responsible entity within the global family tree. The Global Ultimate may have branches and/or subsidiaries reporting directly or indirectly to it.\n\nDEFINING CORPORATE RESPONSIBILITY\nFor the purposes of linking these relationships to define corporate responsibility, each family member carries up to four D-U-N-S Numbers.\n\n- Its own Site D-U-N-S Number\n\n- That of the next highest level in the family; parent or headquarter D-U-N-S\n\n- That of the highest level within its country; its domestic ultimate D-U-N-S\n\n- That of its top global ultimate; global ultimate D-U-N-S\n\nFor example, the branch carries its own D-U-N-S Number, that of its headquarters, that of its domestic ultimate, and that of its global ultimate. A subsidiary carries its own D-U-N-S number, that of its parent, that of its domestic ultimate, and that of its global ultimate.\n\nThe domestic ultimate is the highest member of the tree in a specific country. The site D-U-N-S Number and domestic ultimate D-U-N-S number will all be the same on the domestic ultimate record.\n\nThe global ultimate record carries the same D-U-N-S Number in the site D-U-N-S field, the headquarters/parent D-U-N-S field, the domestic ultimate D-U-N-S number and the global ultimate D-U-N-S field. This business is at the very top of the global family tree.",
+					"BaseAttributeReference": {
+						"Entity": "CreditGrantor.cdm.json/CreditGrantor",
+						"Name": "GlobalUltimateDunsNumber"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "decimal",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Precision": 9,
+						"Scale": 0,
+						"Properties": {
+							"HIVE_TYPE_STRING": "decimal"
+						}
+					}
+				},
+				{
+					"Name": "PrimaryContactName",
+					"Description": "The name of the primary contact associated with the Customer.",
+					"BaseAttributeReference": {
+						"Entity": "CreditGrantor.cdm.json/CreditGrantor",
+						"Name": "PrimaryContactName"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 256,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "LocationId",
+					"Description": "The unique identifier of a Location.",
+					"BaseAttributeReference": {
+						"Entity": "CreditGrantor.cdm.json/CreditGrantor",
+						"Name": "LocationId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "PrimaryContactTelephoneNumber",
+					"Description": "The telephone number of the primary contact associated with the Customer.",
+					"BaseAttributeReference": {
+						"Entity": "CreditGrantor.cdm.json/CreditGrantor",
+						"Name": "PrimaryContactTelephoneNumber"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "decimal",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Precision": 15,
+						"Scale": 0,
+						"Properties": {
+							"HIVE_TYPE_STRING": "decimal"
+						}
+					}
+				},
+				{
+					"Name": "PrimaryContactFaxNumber",
+					"Description": "The fax number of the primary contact associated with the Customer.",
+					"BaseAttributeReference": {
+						"Entity": "CreditGrantor.cdm.json/CreditGrantor",
+						"Name": "PrimaryContactFaxNumber"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "decimal",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Precision": 15,
+						"Scale": 0,
+						"Properties": {
+							"HIVE_TYPE_STRING": "decimal"
+						}
+					}
+				},
+				{
+					"Name": "PrimaryContactEmailAddress",
+					"Description": "The email address of the primary contact associated with the Customer.",
+					"BaseAttributeReference": {
+						"Entity": "CreditGrantor.cdm.json/CreditGrantor",
+						"Name": "PrimaryContactEmailAddress"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 256,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "CreditGrantorTypeId",
+					"Description": "The unique identifier of a Credit Grantor Type.",
+					"BaseAttributeReference": {
+						"Entity": "CreditGrantor.cdm.json/CreditGrantor",
+						"Name": "CreditGrantorTypeId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "PartyId",
+					"Description": "The unique identifier of a Party.",
+					"BaseAttributeReference": {
+						"Entity": "CreditGrantor.cdm.json/CreditGrantor",
+						"Name": "PartyId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "long",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"HIVE_TYPE_STRING": "long"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/CreditGrantor",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/CreditGrantor",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"CreditGrantorId\":{\"entity\":\"CreditGrantor.cdm.json/CreditGrantor\",\"name\":\"CreditGrantorId\"},\"CreditGrantorName\":{\"entity\":\"CreditGrantor.cdm.json/CreditGrantor\",\"name\":\"CreditGrantorName\"},\"SiteDunsNumber\":{\"entity\":\"CreditGrantor.cdm.json/CreditGrantor\",\"name\":\"SiteDunsNumber\"},\"ParentOrHeadquartersDunsNumber\":{\"entity\":\"CreditGrantor.cdm.json/CreditGrantor\",\"name\":\"ParentOrHeadquartersDunsNumber\"},\"DomesticUltimateDunsNumber\":{\"entity\":\"CreditGrantor.cdm.json/CreditGrantor\",\"name\":\"DomesticUltimateDunsNumber\"},\"GlobalUltimateDunsNumber\":{\"entity\":\"CreditGrantor.cdm.json/CreditGrantor\",\"name\":\"GlobalUltimateDunsNumber\"},\"PrimaryContactName\":{\"entity\":\"CreditGrantor.cdm.json/CreditGrantor\",\"name\":\"PrimaryContactName\"},\"LocationId\":{\"entity\":\"CreditGrantor.cdm.json/CreditGrantor\",\"name\":\"LocationId\"},\"PrimaryContactTelephoneNumber\":{\"entity\":\"CreditGrantor.cdm.json/CreditGrantor\",\"name\":\"PrimaryContactTelephoneNumber\"},\"PrimaryContactFaxNumber\":{\"entity\":\"CreditGrantor.cdm.json/CreditGrantor\",\"name\":\"PrimaryContactFaxNumber\"},\"PrimaryContactEmailAddress\":{\"entity\":\"CreditGrantor.cdm.json/CreditGrantor\",\"name\":\"PrimaryContactEmailAddress\"},\"CreditGrantorTypeId\":{\"entity\":\"CreditGrantor.cdm.json/CreditGrantor\",\"name\":\"CreditGrantorTypeId\"},\"PartyId\":{\"entity\":\"CreditGrantor.cdm.json/CreditGrantor\",\"name\":\"PartyId\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"CreditGrantor\",\"path\":\"CreditGrantor.cdm.json/CreditGrantor\"},\"description\":\"Person or business furnishing consumer goods and/or services on credit.\",\"primaryKey\":[\"CreditGrantorId\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CreditGrantor.cdm.json/CreditGrantor\",\"name\":\"CreditGrantorId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Credit Grantor.\",\"isNullable\":false,\"name\":\"CreditGrantorId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CreditGrantor.cdm.json/CreditGrantor\",\"name\":\"CreditGrantorName\"},\"dataType\":\"string\",\"dataTypeLength\":256,\"description\":\"The name of the Credit Grantor.\",\"isNullable\":true,\"name\":\"CreditGrantorName\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CreditGrantor.cdm.json/CreditGrantor\",\"name\":\"SiteDunsNumber\"},\"dataType\":\"decimal\",\"dataTypeLength\":9,\"description\":\"Linkage, in general terms, is the relationship between different companies or specific sites within a corporate family.\\nLinkage occurs in D&B WorldBase when one business location has financial & legal responsibility for another business location. There are two types of linkage relationships in D&B WorldBase:\\n\\nBranch to headquarter, linkage\\nSubsidiary to parent, linkage\\n\\nThere are other types of family relationships that occur which are not linked in the D&B file because the affiliated company has no legal obligation for the debts of the other company. Examples of these types of relationships include businesses affiliated through common officers or situations where one corporation owns a part or minority interest in another (50% or less) and joint ventures, where there is a 50/50 split in the ownership.\\n\\nThere are 8 classifications of businesses defined in D&B WorldBase: \\n\\n1) Single Location Subsidiary\\nA single location subsidiary has a parent which owns >50% of its capital stock, however, it does not have branches or subsidiaries reporting to it. Do not confuse this with a stand-alone business which is titled \\\"single location\\\" and is not part of a corporate family.\\n \\n2) Headquarters\\n\\nA headquarters is a business establishment that has branches or divisions reporting to it, and is financially responsible for those branches or divisions. If the headquarters has more than 50% of capital stock owned by another corporation, it also will be a subsidiary. If it owns more than 50% of capital stock of another corporation, then it is also a parent.\\n\\n3) Branch\\n\\nA branch is a secondary location of its headquarters. It is not a separate corporation, has no legal responsibility for its debts, even though bills may be paid from the branch location. It will usually have the same legal business name as its headquarters, although branches frequently operate under a different trade style than the headquarters establishment. A branch may be located at the same address as the headquarters if it has a unique trade style. In such cases, the branch may appear to be a duplicate with a different D-U-N-S number than the headquarters record, which may confuse customers if they don't purchase the trade style field.\\n\\n4) Division\\n\\nA division, like a branch, is a secondary location of a business. However, a division carries out specific business operations related to the headquarters under a divisional name. Divisions look similar to branches in D&B WorldBase and carry a branch code.\\n\\n5) Subsidiary\\n\\nA subsidiary is a corporation whose capital stock is more than 50% owned by another corporation and will have a different legal business name from its parent company. A subsidiary may have branches and/or subsidiaries of its own. If it does, then its D-U-N-S Number appears in the headquarter/parent D-U-N-S Number field of its children.\\n\\n6) Parent\\n\\nA parent is a corporation that owns more than 50 % of another corporation's capital stock. The parent company can also be a subsidiary of another corporation. If the parent also has branches, then it is a headquarters as well as being a parent company.\\n\\n7) Domestic Ultimate\\n\\nThe Domestic Ultimate is an entity within the global family tree which is the highest ranking member within a specific country. There can be several domestic ultimates within a given country for one corporate family.\\n\\n8) Global Ultimate\\n \\nThe Global Ultimate is the top most responsible entity within the global family tree. The Global Ultimate may have branches and/or subsidiaries reporting directly or indirectly to it.\\n\\nDEFINING CORPORATE RESPONSIBILITY\\nFor the purposes of linking these relationships to define corporate responsibility, each family member carries up to four D-U-N-S Numbers.\\n\\n- Its own Site D-U-N-S Number\\n\\n- That of the next highest level in the family; parent or headquarter D-U-N-S\\n\\n- That of the highest level within its country; its domestic ultimate D-U-N-S\\n\\n- That of its top global ultimate; global ultimate D-U-N-S\\n\\nFor example, the branch carries its own D-U-N-S Number, that of its headquarters, that of its domestic ultimate, and that of its global ultimate. A subsidiary carries its own D-U-N-S number, that of its parent, that of its domestic ultimate, and that of its global ultimate.\\n\\nThe domestic ultimate is the highest member of the tree in a specific country. The site D-U-N-S Number and domestic ultimate D-U-N-S number will all be the same on the domestic ultimate record.\\n\\nThe global ultimate record carries the same D-U-N-S Number in the site D-U-N-S field, the headquarters/parent D-U-N-S field, the domestic ultimate D-U-N-S number and the global ultimate D-U-N-S field. This business is at the very top of the global family tree.\",\"isNullable\":true,\"scale\":0,\"name\":\"SiteDunsNumber\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CreditGrantor.cdm.json/CreditGrantor\",\"name\":\"ParentOrHeadquartersDunsNumber\"},\"dataType\":\"decimal\",\"dataTypeLength\":9,\"description\":\"Linkage, in general terms, is the relationship between different companies or specific sites within a corporate family.\\nLinkage occurs in D&B WorldBase when one business location has financial & legal responsibility for another business location. There are two types of linkage relationships in D&B WorldBase:\\n\\nBranch to headquarter, linkage\\nSubsidiary to parent, linkage\\n\\nThere are other types of family relationships that occur which are not linked in the D&B file because the affiliated company has no legal obligation for the debts of the other company. Examples of these types of relationships include businesses affiliated through common officers or situations where one corporation owns a part or minority interest in another (50% or less) and joint ventures, where there is a 50/50 split in the ownership.\\n\\nThere are 8 classifications of businesses defined in D&B WorldBase: \\n\\n1) Single Location Subsidiary\\nA single location subsidiary has a parent which owns >50% of its capital stock, however, it does not have branches or subsidiaries reporting to it. Do not confuse this with a stand-alone business which is titled \\\"single location\\\" and is not part of a corporate family.\\n \\n2) Headquarters\\n\\nA headquarters is a business establishment that has branches or divisions reporting to it, and is financially responsible for those branches or divisions. If the headquarters has more than 50% of capital stock owned by another corporation, it also will be a subsidiary. If it owns more than 50% of capital stock of another corporation, then it is also a parent.\\n\\n3) Branch\\n\\nA branch is a secondary location of its headquarters. It is not a separate corporation, has no legal responsibility for its debts, even though bills may be paid from the branch location. It will usually have the same legal business name as its headquarters, although branches frequently operate under a different trade style than the headquarters establishment. A branch may be located at the same address as the headquarters if it has a unique trade style. In such cases, the branch may appear to be a duplicate with a different D-U-N-S number than the headquarters record, which may confuse customers if they don't purchase the trade style field.\\n\\n4) Division\\n\\nA division, like a branch, is a secondary location of a business. However, a division carries out specific business operations related to the headquarters under a divisional name. Divisions look similar to branches in D&B WorldBase and carry a branch code.\\n\\n5) Subsidiary\\n\\nA subsidiary is a corporation whose capital stock is more than 50% owned by another corporation and will have a different legal business name from its parent company. A subsidiary may have branches and/or subsidiaries of its own. If it does, then its D-U-N-S Number appears in the headquarter/parent D-U-N-S Number field of its children.\\n\\n6) Parent\\n\\nA parent is a corporation that owns more than 50 % of another corporation's capital stock. The parent company can also be a subsidiary of another corporation. If the parent also has branches, then it is a headquarters as well as being a parent company.\\n\\n7) Domestic Ultimate\\n\\nThe Domestic Ultimate is an entity within the global family tree which is the highest ranking member within a specific country. There can be several domestic ultimates within a given country for one corporate family.\\n\\n8) Global Ultimate\\n \\nThe Global Ultimate is the top most responsible entity within the global family tree. The Global Ultimate may have branches and/or subsidiaries reporting directly or indirectly to it.\\n\\nDEFINING CORPORATE RESPONSIBILITY\\nFor the purposes of linking these relationships to define corporate responsibility, each family member carries up to four D-U-N-S Numbers.\\n\\n- Its own Site D-U-N-S Number\\n\\n- That of the next highest level in the family; parent or headquarter D-U-N-S\\n\\n- That of the highest level within its country; its domestic ultimate D-U-N-S\\n\\n- That of its top global ultimate; global ultimate D-U-N-S\\n\\nFor example, the branch carries its own D-U-N-S Number, that of its headquarters, that of its domestic ultimate, and that of its global ultimate. A subsidiary carries its own D-U-N-S number, that of its parent, that of its domestic ultimate, and that of its global ultimate.\\n\\nThe domestic ultimate is the highest member of the tree in a specific country. The site D-U-N-S Number and domestic ultimate D-U-N-S number will all be the same on the domestic ultimate record.\\n\\nThe global ultimate record carries the same D-U-N-S Number in the site D-U-N-S field, the headquarters/parent D-U-N-S field, the domestic ultimate D-U-N-S number and the global ultimate D-U-N-S field. This business is at the very top of the global family tree.\",\"isNullable\":true,\"scale\":0,\"name\":\"ParentOrHeadquartersDunsNumber\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CreditGrantor.cdm.json/CreditGrantor\",\"name\":\"DomesticUltimateDunsNumber\"},\"dataType\":\"decimal\",\"dataTypeLength\":9,\"description\":\"Linkage, in general terms, is the relationship between different companies or specific sites within a corporate family.\\nLinkage occurs in D&B WorldBase when one business location has financial & legal responsibility for another business location. There are two types of linkage relationships in D&B WorldBase:\\n\\nBranch to headquarter, linkage\\nSubsidiary to parent, linkage\\n\\nThere are other types of family relationships that occur which are not linked in the D&B file because the affiliated company has no legal obligation for the debts of the other company. Examples of these types of relationships include businesses affiliated through common officers or situations where one corporation owns a part or minority interest in another (50% or less) and joint ventures, where there is a 50/50 split in the ownership.\\n\\nThere are 8 classifications of businesses defined in D&B WorldBase: \\n\\n1) Single Location Subsidiary\\nA single location subsidiary has a parent which owns >50% of its capital stock, however, it does not have branches or subsidiaries reporting to it. Do not confuse this with a stand-alone business which is titled \\\"single location\\\" and is not part of a corporate family.\\n \\n2) Headquarters\\n\\nA headquarters is a business establishment that has branches or divisions reporting to it, and is financially responsible for those branches or divisions. If the headquarters has more than 50% of capital stock owned by another corporation, it also will be a subsidiary. If it owns more than 50% of capital stock of another corporation, then it is also a parent.\\n\\n3) Branch\\n\\nA branch is a secondary location of its headquarters. It is not a separate corporation, has no legal responsibility for its debts, even though bills may be paid from the branch location. It will usually have the same legal business name as its headquarters, although branches frequently operate under a different trade style than the headquarters establishment. A branch may be located at the same address as the headquarters if it has a unique trade style. In such cases, the branch may appear to be a duplicate with a different D-U-N-S number than the headquarters record, which may confuse customers if they don't purchase the trade style field.\\n\\n4) Division\\n\\nA division, like a branch, is a secondary location of a business. However, a division carries out specific business operations related to the headquarters under a divisional name. Divisions look similar to branches in D&B WorldBase and carry a branch code.\\n\\n5) Subsidiary\\n\\nA subsidiary is a corporation whose capital stock is more than 50% owned by another corporation and will have a different legal business name from its parent company. A subsidiary may have branches and/or subsidiaries of its own. If it does, then its D-U-N-S Number appears in the headquarter/parent D-U-N-S Number field of its children.\\n\\n6) Parent\\n\\nA parent is a corporation that owns more than 50 % of another corporation's capital stock. The parent company can also be a subsidiary of another corporation. If the parent also has branches, then it is a headquarters as well as being a parent company.\\n\\n7) Domestic Ultimate\\n\\nThe Domestic Ultimate is an entity within the global family tree which is the highest ranking member within a specific country. There can be several domestic ultimates within a given country for one corporate family.\\n\\n8) Global Ultimate\\n \\nThe Global Ultimate is the top most responsible entity within the global family tree. The Global Ultimate may have branches and/or subsidiaries reporting directly or indirectly to it.\\n\\nDEFINING CORPORATE RESPONSIBILITY\\nFor the purposes of linking these relationships to define corporate responsibility, each family member carries up to four D-U-N-S Numbers.\\n\\n- Its own Site D-U-N-S Number\\n\\n- That of the next highest level in the family; parent or headquarter D-U-N-S\\n\\n- That of the highest level within its country; its domestic ultimate D-U-N-S\\n\\n- That of its top global ultimate; global ultimate D-U-N-S\\n\\nFor example, the branch carries its own D-U-N-S Number, that of its headquarters, that of its domestic ultimate, and that of its global ultimate. A subsidiary carries its own D-U-N-S number, that of its parent, that of its domestic ultimate, and that of its global ultimate.\\n\\nThe domestic ultimate is the highest member of the tree in a specific country. The site D-U-N-S Number and domestic ultimate D-U-N-S number will all be the same on the domestic ultimate record.\\n\\nThe global ultimate record carries the same D-U-N-S Number in the site D-U-N-S field, the headquarters/parent D-U-N-S field, the domestic ultimate D-U-N-S number and the global ultimate D-U-N-S field. This business is at the very top of the global family tree.\",\"isNullable\":true,\"scale\":0,\"name\":\"DomesticUltimateDunsNumber\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CreditGrantor.cdm.json/CreditGrantor\",\"name\":\"GlobalUltimateDunsNumber\"},\"dataType\":\"decimal\",\"dataTypeLength\":9,\"description\":\"Linkage, in general terms, is the relationship between different companies or specific sites within a corporate family.\\nLinkage occurs in D&B WorldBase when one business location has financial & legal responsibility for another business location. There are two types of linkage relationships in D&B WorldBase:\\n\\nBranch to headquarter, linkage\\nSubsidiary to parent, linkage\\n\\nThere are other types of family relationships that occur which are not linked in the D&B file because the affiliated company has no legal obligation for the debts of the other company. Examples of these types of relationships include businesses affiliated through common officers or situations where one corporation owns a part or minority interest in another (50% or less) and joint ventures, where there is a 50/50 split in the ownership.\\n\\nThere are 8 classifications of businesses defined in D&B WorldBase: \\n\\n1) Single Location Subsidiary\\nA single location subsidiary has a parent which owns >50% of its capital stock, however, it does not have branches or subsidiaries reporting to it. Do not confuse this with a stand-alone business which is titled \\\"single location\\\" and is not part of a corporate family.\\n \\n2) Headquarters\\n\\nA headquarters is a business establishment that has branches or divisions reporting to it, and is financially responsible for those branches or divisions. If the headquarters has more than 50% of capital stock owned by another corporation, it also will be a subsidiary. If it owns more than 50% of capital stock of another corporation, then it is also a parent.\\n\\n3) Branch\\n\\nA branch is a secondary location of its headquarters. It is not a separate corporation, has no legal responsibility for its debts, even though bills may be paid from the branch location. It will usually have the same legal business name as its headquarters, although branches frequently operate under a different trade style than the headquarters establishment. A branch may be located at the same address as the headquarters if it has a unique trade style. In such cases, the branch may appear to be a duplicate with a different D-U-N-S number than the headquarters record, which may confuse customers if they don't purchase the trade style field.\\n\\n4) Division\\n\\nA division, like a branch, is a secondary location of a business. However, a division carries out specific business operations related to the headquarters under a divisional name. Divisions look similar to branches in D&B WorldBase and carry a branch code.\\n\\n5) Subsidiary\\n\\nA subsidiary is a corporation whose capital stock is more than 50% owned by another corporation and will have a different legal business name from its parent company. A subsidiary may have branches and/or subsidiaries of its own. If it does, then its D-U-N-S Number appears in the headquarter/parent D-U-N-S Number field of its children.\\n\\n6) Parent\\n\\nA parent is a corporation that owns more than 50 % of another corporation's capital stock. The parent company can also be a subsidiary of another corporation. If the parent also has branches, then it is a headquarters as well as being a parent company.\\n\\n7) Domestic Ultimate\\n\\nThe Domestic Ultimate is an entity within the global family tree which is the highest ranking member within a specific country. There can be several domestic ultimates within a given country for one corporate family.\\n\\n8) Global Ultimate\\n \\nThe Global Ultimate is the top most responsible entity within the global family tree. The Global Ultimate may have branches and/or subsidiaries reporting directly or indirectly to it.\\n\\nDEFINING CORPORATE RESPONSIBILITY\\nFor the purposes of linking these relationships to define corporate responsibility, each family member carries up to four D-U-N-S Numbers.\\n\\n- Its own Site D-U-N-S Number\\n\\n- That of the next highest level in the family; parent or headquarter D-U-N-S\\n\\n- That of the highest level within its country; its domestic ultimate D-U-N-S\\n\\n- That of its top global ultimate; global ultimate D-U-N-S\\n\\nFor example, the branch carries its own D-U-N-S Number, that of its headquarters, that of its domestic ultimate, and that of its global ultimate. A subsidiary carries its own D-U-N-S number, that of its parent, that of its domestic ultimate, and that of its global ultimate.\\n\\nThe domestic ultimate is the highest member of the tree in a specific country. The site D-U-N-S Number and domestic ultimate D-U-N-S number will all be the same on the domestic ultimate record.\\n\\nThe global ultimate record carries the same D-U-N-S Number in the site D-U-N-S field, the headquarters/parent D-U-N-S field, the domestic ultimate D-U-N-S number and the global ultimate D-U-N-S field. This business is at the very top of the global family tree.\",\"isNullable\":true,\"scale\":0,\"name\":\"GlobalUltimateDunsNumber\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CreditGrantor.cdm.json/CreditGrantor\",\"name\":\"PrimaryContactName\"},\"dataType\":\"string\",\"dataTypeLength\":256,\"description\":\"The name of the primary contact associated with the Customer.\",\"isNullable\":true,\"name\":\"PrimaryContactName\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CreditGrantor.cdm.json/CreditGrantor\",\"name\":\"LocationId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Location.\",\"isNullable\":true,\"name\":\"LocationId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CreditGrantor.cdm.json/CreditGrantor\",\"name\":\"PrimaryContactTelephoneNumber\"},\"dataType\":\"decimal\",\"dataTypeLength\":15,\"description\":\"The telephone number of the primary contact associated with the Customer.\",\"isNullable\":true,\"scale\":0,\"name\":\"PrimaryContactTelephoneNumber\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CreditGrantor.cdm.json/CreditGrantor\",\"name\":\"PrimaryContactFaxNumber\"},\"dataType\":\"decimal\",\"dataTypeLength\":15,\"description\":\"The fax number of the primary contact associated with the Customer.\",\"isNullable\":true,\"scale\":0,\"name\":\"PrimaryContactFaxNumber\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CreditGrantor.cdm.json/CreditGrantor\",\"name\":\"PrimaryContactEmailAddress\"},\"dataType\":\"string\",\"dataTypeLength\":256,\"description\":\"The email address of the primary contact associated with the Customer.\",\"isNullable\":true,\"name\":\"PrimaryContactEmailAddress\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CreditGrantor.cdm.json/CreditGrantor\",\"name\":\"CreditGrantorTypeId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Credit Grantor Type.\",\"isNullable\":true,\"name\":\"CreditGrantorTypeId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CreditGrantor.cdm.json/CreditGrantor\",\"name\":\"PartyId\"},\"dataType\":\"long\",\"description\":\"The unique identifier of a Party.\",\"isNullable\":true,\"name\":\"PartyId\"}]}}}",
+			"Description": "Person or business furnishing consumer goods and/or services on credit.",
+			"DisplayFolderInfo": "{\"name\":\"Customer Credit & Collections\",\"colorCode\":\"#022F22\"}",
+			"PrimaryKeys": "CreditGrantorId",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

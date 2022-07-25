@@ -1,0 +1,112 @@
+{
+	"name": "ChannelIncentive",
+	"properties": {
+		"Name": "ChannelIncentive",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "An incentive that is offered to a Channel.",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "ChannelId",
+					"Description": "The unique identifier of a Channel.",
+					"BaseAttributeReference": {
+						"Entity": "ChannelIncentive.cdm.json/ChannelIncentive",
+						"Name": "ChannelId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "IncentiveId",
+					"Description": "The unique identifier of an Incentive.",
+					"BaseAttributeReference": {
+						"Entity": "ChannelIncentive.cdm.json/ChannelIncentive",
+						"Name": "IncentiveId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "ChannelIncentiveNote",
+					"Description": "Notes, comments or additional information regarding the Channel Incentive.",
+					"BaseAttributeReference": {
+						"Entity": "ChannelIncentive.cdm.json/ChannelIncentive",
+						"Name": "ChannelIncentiveNote"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/ChannelIncentive",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/ChannelIncentive",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"ChannelId\":{\"entity\":\"ChannelIncentive.cdm.json/ChannelIncentive\",\"name\":\"ChannelId\"},\"IncentiveId\":{\"entity\":\"ChannelIncentive.cdm.json/ChannelIncentive\",\"name\":\"IncentiveId\"},\"ChannelIncentiveNote\":{\"entity\":\"ChannelIncentive.cdm.json/ChannelIncentive\",\"name\":\"ChannelIncentiveNote\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"ChannelIncentive\",\"path\":\"ChannelIncentive.cdm.json/ChannelIncentive\"},\"description\":\"An incentive that is offered to a Channel.\",\"primaryKey\":[\"ChannelId\",\"IncentiveId\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ChannelIncentive.cdm.json/ChannelIncentive\",\"name\":\"ChannelId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Channel.\",\"isNullable\":false,\"name\":\"ChannelId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ChannelIncentive.cdm.json/ChannelIncentive\",\"name\":\"IncentiveId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of an Incentive.\",\"isNullable\":false,\"name\":\"IncentiveId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ChannelIncentive.cdm.json/ChannelIncentive\",\"name\":\"ChannelIncentiveNote\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"Notes, comments or additional information regarding the Channel Incentive.\",\"isNullable\":true,\"name\":\"ChannelIncentiveNote\"}]}}}",
+			"Description": "An incentive that is offered to a Channel.",
+			"DisplayFolderInfo": "{\"name\":\"Channel\",\"colorCode\":\"#001D3F\"}",
+			"PrimaryKeys": "ChannelId,IncentiveId",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

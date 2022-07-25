@@ -1,0 +1,165 @@
+{
+	"name": "ChannelAggregateProductAllocation",
+	"properties": {
+		"Name": "ChannelAggregateProductAllocation",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "The total Product allocations to the channel expressed in terms of unit quantity allocated and allocation valuation based on selling price for the associated timestamp.\n\nAllocations are the planned inventories to meet an anticipated demand.   In this case allocations are summarized for a product across all customers.",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "ChannelId",
+					"Description": "The unique identifier of a Channel.",
+					"BaseAttributeReference": {
+						"Entity": "ChannelAggregateProductAllocation.cdm.json/ChannelAggregateProductAllocation",
+						"Name": "ChannelId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "ProductId",
+					"Description": "The unique identifier of a Product.",
+					"BaseAttributeReference": {
+						"Entity": "ChannelAggregateProductAllocation.cdm.json/ChannelAggregateProductAllocation",
+						"Name": "ProductId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "long",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "long"
+						}
+					}
+				},
+				{
+					"Name": "Timestamp",
+					"Description": "The timestamp that the associated information is reported, recorded or effective as-of.",
+					"BaseAttributeReference": {
+						"Entity": "ChannelAggregateProductAllocation.cdm.json/ChannelAggregateProductAllocation",
+						"Name": "Timestamp"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "timestamp",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"TimestampFormat": "YYYY-MM-DD HH:MM:SS.fffffffff",
+							"HIVE_TYPE_STRING": "timestamp"
+						}
+					}
+				},
+				{
+					"Name": "TotalAllocationsUnitsQuantity",
+					"Description": "The total number of units allocated for the associated date.",
+					"BaseAttributeReference": {
+						"Entity": "ChannelAggregateProductAllocation.cdm.json/ChannelAggregateProductAllocation",
+						"Name": "TotalAllocationsUnitsQuantity"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "decimal",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Precision": 18,
+						"Scale": 2,
+						"Properties": {
+							"HIVE_TYPE_STRING": "decimal"
+						}
+					}
+				},
+				{
+					"Name": "TotalAllocationsProductUnitsValuationAmount",
+					"Description": "The total value of units allocated for the associated date.",
+					"BaseAttributeReference": {
+						"Entity": "ChannelAggregateProductAllocation.cdm.json/ChannelAggregateProductAllocation",
+						"Name": "TotalAllocationsProductUnitsValuationAmount"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "decimal",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Precision": 18,
+						"Scale": 2,
+						"Properties": {
+							"HIVE_TYPE_STRING": "decimal"
+						}
+					}
+				},
+				{
+					"Name": "IsoCurrencyCode",
+					"Description": "The ISO 4217 currency code.",
+					"BaseAttributeReference": {
+						"Entity": "ChannelAggregateProductAllocation.cdm.json/ChannelAggregateProductAllocation",
+						"Name": "IsoCurrencyCode"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 3,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/ChannelAggregateProductAllocation",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/ChannelAggregateProductAllocation",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"ChannelId\":{\"entity\":\"ChannelAggregateProductAllocation.cdm.json/ChannelAggregateProductAllocation\",\"name\":\"ChannelId\"},\"ProductId\":{\"entity\":\"ChannelAggregateProductAllocation.cdm.json/ChannelAggregateProductAllocation\",\"name\":\"ProductId\"},\"Timestamp\":{\"entity\":\"ChannelAggregateProductAllocation.cdm.json/ChannelAggregateProductAllocation\",\"name\":\"Timestamp\"},\"TotalAllocationsUnitsQuantity\":{\"entity\":\"ChannelAggregateProductAllocation.cdm.json/ChannelAggregateProductAllocation\",\"name\":\"TotalAllocationsUnitsQuantity\"},\"TotalAllocationsProductUnitsValuationAmount\":{\"entity\":\"ChannelAggregateProductAllocation.cdm.json/ChannelAggregateProductAllocation\",\"name\":\"TotalAllocationsProductUnitsValuationAmount\"},\"IsoCurrencyCode\":{\"entity\":\"ChannelAggregateProductAllocation.cdm.json/ChannelAggregateProductAllocation\",\"name\":\"IsoCurrencyCode\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"ChannelAggregateProductAllocation\",\"path\":\"ChannelAggregateProductAllocation.cdm.json/ChannelAggregateProductAllocation\"},\"description\":\"The total Product allocations to the channel expressed in terms of unit quantity allocated and allocation valuation based on selling price for the associated timestamp.\\n\\nAllocations are the planned inventories to meet an anticipated demand.   In this case allocations are summarized for a product across all customers.\",\"primaryKey\":[\"ChannelId\",\"ProductId\",\"Timestamp\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ChannelAggregateProductAllocation.cdm.json/ChannelAggregateProductAllocation\",\"name\":\"ChannelId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Channel.\",\"isNullable\":false,\"name\":\"ChannelId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ChannelAggregateProductAllocation.cdm.json/ChannelAggregateProductAllocation\",\"name\":\"ProductId\"},\"dataType\":\"long\",\"description\":\"The unique identifier of a Product.\",\"isNullable\":false,\"name\":\"ProductId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ChannelAggregateProductAllocation.cdm.json/ChannelAggregateProductAllocation\",\"name\":\"Timestamp\"},\"dataType\":\"timestamp\",\"description\":\"The timestamp that the associated information is reported, recorded or effective as-of.\",\"isNullable\":false,\"name\":\"Timestamp\",\"timestampFormat\":\"YYYY-MM-DD HH:MM:SS.fffffffff\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ChannelAggregateProductAllocation.cdm.json/ChannelAggregateProductAllocation\",\"name\":\"TotalAllocationsUnitsQuantity\"},\"dataType\":\"decimal\",\"dataTypeLength\":18,\"description\":\"The total number of units allocated for the associated date.\",\"isNullable\":true,\"scale\":2,\"name\":\"TotalAllocationsUnitsQuantity\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ChannelAggregateProductAllocation.cdm.json/ChannelAggregateProductAllocation\",\"name\":\"TotalAllocationsProductUnitsValuationAmount\"},\"dataType\":\"decimal\",\"dataTypeLength\":18,\"description\":\"The total value of units allocated for the associated date.\",\"isNullable\":true,\"scale\":2,\"name\":\"TotalAllocationsProductUnitsValuationAmount\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ChannelAggregateProductAllocation.cdm.json/ChannelAggregateProductAllocation\",\"name\":\"IsoCurrencyCode\"},\"dataType\":\"string\",\"dataTypeLength\":3,\"description\":\"The ISO 4217 currency code.\",\"isNullable\":true,\"name\":\"IsoCurrencyCode\"}]}}}",
+			"Description": "The total Product allocations to the channel expressed in terms of unit quantity allocated and allocation valuation based on selling price for the associated timestamp.\n\nAllocations are the planned inventories to meet an anticipated demand.   In this case allocations are summarized for a product across all customers.",
+			"DisplayFolderInfo": "{\"name\":\"Channel\",\"colorCode\":\"#001D3F\"}",
+			"PrimaryKeys": "ChannelId,ProductId,Timestamp",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

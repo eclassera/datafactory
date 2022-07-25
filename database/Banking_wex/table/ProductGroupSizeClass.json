@@ -1,0 +1,145 @@
+{
+	"name": "ProductGroupSizeClass",
+	"properties": {
+		"Name": "ProductGroupSizeClass",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "The number of Products in a Product Group for a particular Size Class during a Period.",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "ProductGroupId",
+					"Description": "The unique identifier of a Product Group.",
+					"BaseAttributeReference": {
+						"Entity": "ProductGroupSizeClass.cdm.json/ProductGroupSizeClass",
+						"Name": "ProductGroupId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "SizeClassId",
+					"Description": "The unique identifier of a size class.",
+					"BaseAttributeReference": {
+						"Entity": "ProductGroupSizeClass.cdm.json/ProductGroupSizeClass",
+						"Name": "SizeClassId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "PeriodStartDate",
+					"Description": "The period start date for information about a Size Class within a Product Group.",
+					"BaseAttributeReference": {
+						"Entity": "ProductGroupSizeClass.cdm.json/ProductGroupSizeClass",
+						"Name": "PeriodStartDate"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "date",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"DateFormat": "YYYY-MM-DD",
+							"HIVE_TYPE_STRING": "date"
+						}
+					}
+				},
+				{
+					"Name": "PeriodEndDate",
+					"Description": "The period end date for information about a Size Class within a Product Group.",
+					"BaseAttributeReference": {
+						"Entity": "ProductGroupSizeClass.cdm.json/ProductGroupSizeClass",
+						"Name": "PeriodEndDate"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "date",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"DateFormat": "YYYY-MM-DD",
+							"HIVE_TYPE_STRING": "date"
+						}
+					}
+				},
+				{
+					"Name": "NumberOfProductsInSizeClass",
+					"Description": "The number of Products in a Product Group for a particular Size Class during a Period.",
+					"BaseAttributeReference": {
+						"Entity": "ProductGroupSizeClass.cdm.json/ProductGroupSizeClass",
+						"Name": "NumberOfProductsInSizeClass"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/ProductGroupSizeClass",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/ProductGroupSizeClass",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"ProductGroupId\":{\"entity\":\"ProductGroupSizeClass.cdm.json/ProductGroupSizeClass\",\"name\":\"ProductGroupId\"},\"SizeClassId\":{\"entity\":\"ProductGroupSizeClass.cdm.json/ProductGroupSizeClass\",\"name\":\"SizeClassId\"},\"PeriodStartDate\":{\"entity\":\"ProductGroupSizeClass.cdm.json/ProductGroupSizeClass\",\"name\":\"PeriodStartDate\"},\"PeriodEndDate\":{\"entity\":\"ProductGroupSizeClass.cdm.json/ProductGroupSizeClass\",\"name\":\"PeriodEndDate\"},\"NumberOfProductsInSizeClass\":{\"entity\":\"ProductGroupSizeClass.cdm.json/ProductGroupSizeClass\",\"name\":\"NumberOfProductsInSizeClass\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"ProductGroupSizeClass\",\"path\":\"ProductGroupSizeClass.cdm.json/ProductGroupSizeClass\"},\"description\":\"The number of Products in a Product Group for a particular Size Class during a Period.\",\"primaryKey\":[\"ProductGroupId\",\"SizeClassId\",\"PeriodStartDate\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ProductGroupSizeClass.cdm.json/ProductGroupSizeClass\",\"name\":\"ProductGroupId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Product Group.\",\"isNullable\":false,\"name\":\"ProductGroupId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ProductGroupSizeClass.cdm.json/ProductGroupSizeClass\",\"name\":\"SizeClassId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a size class.\",\"isNullable\":false,\"name\":\"SizeClassId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ProductGroupSizeClass.cdm.json/ProductGroupSizeClass\",\"name\":\"PeriodStartDate\"},\"dataType\":\"date\",\"dateFormat\":\"YYYY-MM-DD\",\"description\":\"The period start date for information about a Size Class within a Product Group.\",\"isNullable\":false,\"name\":\"PeriodStartDate\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ProductGroupSizeClass.cdm.json/ProductGroupSizeClass\",\"name\":\"PeriodEndDate\"},\"dataType\":\"date\",\"dateFormat\":\"YYYY-MM-DD\",\"description\":\"The period end date for information about a Size Class within a Product Group.\",\"isNullable\":true,\"name\":\"PeriodEndDate\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ProductGroupSizeClass.cdm.json/ProductGroupSizeClass\",\"name\":\"NumberOfProductsInSizeClass\"},\"dataType\":\"integer\",\"description\":\"The number of Products in a Product Group for a particular Size Class during a Period.\",\"isNullable\":true,\"name\":\"NumberOfProductsInSizeClass\"}]}}}",
+			"Description": "The number of Products in a Product Group for a particular Size Class during a Period.",
+			"DisplayFolderInfo": "{\"name\":\"Product\",\"colorCode\":\"#0E3D73\"}",
+			"PrimaryKeys": "ProductGroupId,SizeClassId,PeriodStartDate",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

@@ -1,0 +1,112 @@
+{
+	"name": "ExperianConsumerEmployer",
+	"properties": {
+		"Name": "ExperianConsumerEmployer",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "Your ID information, which may or may not include your employer, is provided for an account the first time it is reported to Experian. The names of employers provided on your credit report are not designed to represent a complete employment history. Rather, the list can help in verifying your identity.",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "ExperianReportNumber",
+					"Description": "The unique identifier of an Experian consumer.",
+					"BaseAttributeReference": {
+						"Entity": "ExperianConsumerEmployer.cdm.json/ExperianConsumerEmployer",
+						"Name": "ExperianReportNumber"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "EmployerId",
+					"Description": "The unique identifier of an employer.",
+					"BaseAttributeReference": {
+						"Entity": "ExperianConsumerEmployer.cdm.json/ExperianConsumerEmployer",
+						"Name": "EmployerId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "EmployerName",
+					"Description": "The employer name.",
+					"BaseAttributeReference": {
+						"Entity": "ExperianConsumerEmployer.cdm.json/ExperianConsumerEmployer",
+						"Name": "EmployerName"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Length": 256,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/ExperianConsumerEmployer",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/ExperianConsumerEmployer",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"ExperianReportNumber\":{\"entity\":\"ExperianConsumerEmployer.cdm.json/ExperianConsumerEmployer\",\"name\":\"ExperianReportNumber\"},\"EmployerId\":{\"entity\":\"ExperianConsumerEmployer.cdm.json/ExperianConsumerEmployer\",\"name\":\"EmployerId\"},\"EmployerName\":{\"entity\":\"ExperianConsumerEmployer.cdm.json/ExperianConsumerEmployer\",\"name\":\"EmployerName\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"ExperianConsumerEmployer\",\"path\":\"ExperianConsumerEmployer.cdm.json/ExperianConsumerEmployer\"},\"description\":\"Your ID information, which may or may not include your employer, is provided for an account the first time it is reported to Experian. The names of employers provided on your credit report are not designed to represent a complete employment history. Rather, the list can help in verifying your identity.\",\"primaryKey\":[\"ExperianReportNumber\",\"EmployerId\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ExperianConsumerEmployer.cdm.json/ExperianConsumerEmployer\",\"name\":\"ExperianReportNumber\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of an Experian consumer.\",\"isNullable\":false,\"name\":\"ExperianReportNumber\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ExperianConsumerEmployer.cdm.json/ExperianConsumerEmployer\",\"name\":\"EmployerId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of an employer.\",\"isNullable\":false,\"name\":\"EmployerId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ExperianConsumerEmployer.cdm.json/ExperianConsumerEmployer\",\"name\":\"EmployerName\"},\"dataType\":\"string\",\"dataTypeLength\":256,\"description\":\"The employer name.\",\"isNullable\":false,\"name\":\"EmployerName\"}]}}}",
+			"Description": "Your ID information, which may or may not include your employer, is provided for an account the first time it is reported to Experian. The names of employers provided on your credit report are not designed to represent a complete employment history. Rather, the list can help in verifying your identity.",
+			"DisplayFolderInfo": "{\"name\":\"Customer Credit & Collections\",\"colorCode\":\"#022F22\"}",
+			"PrimaryKeys": "ExperianReportNumber,EmployerId",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

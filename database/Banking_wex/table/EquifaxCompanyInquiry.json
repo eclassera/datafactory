@@ -1,0 +1,129 @@
+{
+	"name": "EquifaxCompanyInquiry",
+	"properties": {
+		"Name": "EquifaxCompanyInquiry",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "Recent inquiries.",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "EfxId",
+					"Description": "The EFX ID™ is a unique and persistent nine-digit number that identifies and tracks the business unit with which you have the credit relationship;",
+					"BaseAttributeReference": {
+						"Entity": "EquifaxCompanyInquiry.cdm.json/EquifaxCompanyInquiry",
+						"Name": "EfxId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "ProfileTimestamp",
+					"Description": "Provides the timestamp when the inquiry was made as recorded\nby Equifax (Eastern Time).",
+					"BaseAttributeReference": {
+						"Entity": "EquifaxCompanyInquiry.cdm.json/EquifaxCompanyInquiry",
+						"Name": "ProfileTimestamp"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "timestamp",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"TimestampFormat": "YYYY-MM-DD HH:MM:SS.fffffffff",
+							"HIVE_TYPE_STRING": "timestamp"
+						}
+					}
+				},
+				{
+					"Name": "InquiryDate",
+					"Description": "The date of the inquiry.",
+					"BaseAttributeReference": {
+						"Entity": "EquifaxCompanyInquiry.cdm.json/EquifaxCompanyInquiry",
+						"Name": "InquiryDate"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "date",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"DateFormat": "YYYY-MM-DD",
+							"HIVE_TYPE_STRING": "date"
+						}
+					}
+				},
+				{
+					"Name": "EquifaxInquiryTypeId",
+					"Description": "The unique identifier of an Equifax Inquiry Type.",
+					"BaseAttributeReference": {
+						"Entity": "EquifaxCompanyInquiry.cdm.json/EquifaxCompanyInquiry",
+						"Name": "EquifaxInquiryTypeId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/EquifaxCompanyInquiry",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/EquifaxCompanyInquiry",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"EfxId\":{\"entity\":\"EquifaxCompanyInquiry.cdm.json/EquifaxCompanyInquiry\",\"name\":\"EfxId\"},\"ProfileTimestamp\":{\"entity\":\"EquifaxCompanyInquiry.cdm.json/EquifaxCompanyInquiry\",\"name\":\"ProfileTimestamp\"},\"InquiryDate\":{\"entity\":\"EquifaxCompanyInquiry.cdm.json/EquifaxCompanyInquiry\",\"name\":\"InquiryDate\"},\"EquifaxInquiryTypeId\":{\"entity\":\"EquifaxCompanyInquiry.cdm.json/EquifaxCompanyInquiry\",\"name\":\"EquifaxInquiryTypeId\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"EquifaxCompanyInquiry\",\"path\":\"EquifaxCompanyInquiry.cdm.json/EquifaxCompanyInquiry\"},\"description\":\"Recent inquiries.\",\"primaryKey\":[\"EfxId\",\"ProfileTimestamp\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"EquifaxCompanyInquiry.cdm.json/EquifaxCompanyInquiry\",\"name\":\"EfxId\"},\"dataType\":\"integer\",\"description\":\"The EFX ID™ is a unique and persistent nine-digit number that identifies and tracks the business unit with which you have the credit relationship;\",\"isNullable\":false,\"name\":\"EfxId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"EquifaxCompanyInquiry.cdm.json/EquifaxCompanyInquiry\",\"name\":\"ProfileTimestamp\"},\"dataType\":\"timestamp\",\"description\":\"Provides the timestamp when the inquiry was made as recorded\\nby Equifax (Eastern Time).\",\"isNullable\":false,\"name\":\"ProfileTimestamp\",\"timestampFormat\":\"YYYY-MM-DD HH:MM:SS.fffffffff\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"EquifaxCompanyInquiry.cdm.json/EquifaxCompanyInquiry\",\"name\":\"InquiryDate\"},\"dataType\":\"date\",\"dateFormat\":\"YYYY-MM-DD\",\"description\":\"The date of the inquiry.\",\"isNullable\":true,\"name\":\"InquiryDate\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"EquifaxCompanyInquiry.cdm.json/EquifaxCompanyInquiry\",\"name\":\"EquifaxInquiryTypeId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of an Equifax Inquiry Type.\",\"isNullable\":true,\"name\":\"EquifaxInquiryTypeId\"}]}}}",
+			"Description": "Recent inquiries.",
+			"DisplayFolderInfo": "{\"name\":\"Customer Credit & Collections\",\"colorCode\":\"#022F22\"}",
+			"PrimaryKeys": "EfxId,ProfileTimestamp",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

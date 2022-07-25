@@ -1,0 +1,163 @@
+{
+	"name": "PersonalLineOfCreditStatus",
+	"properties": {
+		"Name": "PersonalLineOfCreditStatus",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "The status of the personal line of credit as of the associated period.\n\nEx:\nCURRENT\nLine Of Credit payments are current and paid.\n\nDELINQUENT\nLine Of Credit payments are delinquent or unpaid.\n\nIN-DEFAULT\nThe Line Of Credit is in default due to unpaid payments or failure to comply with the terms and conditions of the Line Of Credit.",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "CreditGrantorId",
+					"Description": "The unique identifier of a Credit Grantor.",
+					"BaseAttributeReference": {
+						"Entity": "PersonalLineOfCreditStatus.cdm.json/PersonalLineOfCreditStatus",
+						"Name": "CreditGrantorId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "LineOfCreditAccountNumber",
+					"Description": "The unique identifier of a specific Line Of Credit provided to a Customer/Customer Account.",
+					"BaseAttributeReference": {
+						"Entity": "PersonalLineOfCreditStatus.cdm.json/PersonalLineOfCreditStatus",
+						"Name": "LineOfCreditAccountNumber"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Length": 20,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "PeriodStartDate",
+					"Description": "The period start date for which the associated line of credit status is effective.",
+					"BaseAttributeReference": {
+						"Entity": "PersonalLineOfCreditStatus.cdm.json/PersonalLineOfCreditStatus",
+						"Name": "PeriodStartDate"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "date",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"DateFormat": "YYYY-MM-DD",
+							"HIVE_TYPE_STRING": "date"
+						}
+					}
+				},
+				{
+					"Name": "PeriodEndDate",
+					"Description": "The period end date for which the associated line of credit status is effective.",
+					"BaseAttributeReference": {
+						"Entity": "PersonalLineOfCreditStatus.cdm.json/PersonalLineOfCreditStatus",
+						"Name": "PeriodEndDate"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "date",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"DateFormat": "YYYY-MM-DD",
+							"HIVE_TYPE_STRING": "date"
+						}
+					}
+				},
+				{
+					"Name": "LineOfCreditStatusNote",
+					"Description": "A note, comment or additional information regarding the associated line of credit status.",
+					"BaseAttributeReference": {
+						"Entity": "PersonalLineOfCreditStatus.cdm.json/PersonalLineOfCreditStatus",
+						"Name": "LineOfCreditStatusNote"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "LineOfCreditStatusTypeId",
+					"Description": "The unique identifier of a Line Of Credit Status Type.",
+					"BaseAttributeReference": {
+						"Entity": "PersonalLineOfCreditStatus.cdm.json/PersonalLineOfCreditStatus",
+						"Name": "LineOfCreditStatusTypeId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/PersonalLineOfCreditStatus",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/PersonalLineOfCreditStatus",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"CreditGrantorId\":{\"entity\":\"PersonalLineOfCreditStatus.cdm.json/PersonalLineOfCreditStatus\",\"name\":\"CreditGrantorId\"},\"LineOfCreditAccountNumber\":{\"entity\":\"PersonalLineOfCreditStatus.cdm.json/PersonalLineOfCreditStatus\",\"name\":\"LineOfCreditAccountNumber\"},\"PeriodStartDate\":{\"entity\":\"PersonalLineOfCreditStatus.cdm.json/PersonalLineOfCreditStatus\",\"name\":\"PeriodStartDate\"},\"PeriodEndDate\":{\"entity\":\"PersonalLineOfCreditStatus.cdm.json/PersonalLineOfCreditStatus\",\"name\":\"PeriodEndDate\"},\"LineOfCreditStatusNote\":{\"entity\":\"PersonalLineOfCreditStatus.cdm.json/PersonalLineOfCreditStatus\",\"name\":\"LineOfCreditStatusNote\"},\"LineOfCreditStatusTypeId\":{\"entity\":\"PersonalLineOfCreditStatus.cdm.json/PersonalLineOfCreditStatus\",\"name\":\"LineOfCreditStatusTypeId\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"PersonalLineOfCreditStatus\",\"path\":\"PersonalLineOfCreditStatus.cdm.json/PersonalLineOfCreditStatus\"},\"description\":\"The status of the personal line of credit as of the associated period.\\n\\nEx:\\nCURRENT\\nLine Of Credit payments are current and paid.\\n\\nDELINQUENT\\nLine Of Credit payments are delinquent or unpaid.\\n\\nIN-DEFAULT\\nThe Line Of Credit is in default due to unpaid payments or failure to comply with the terms and conditions of the Line Of Credit.\",\"primaryKey\":[\"CreditGrantorId\",\"LineOfCreditAccountNumber\",\"PeriodStartDate\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"PersonalLineOfCreditStatus.cdm.json/PersonalLineOfCreditStatus\",\"name\":\"CreditGrantorId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Credit Grantor.\",\"isNullable\":false,\"name\":\"CreditGrantorId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"PersonalLineOfCreditStatus.cdm.json/PersonalLineOfCreditStatus\",\"name\":\"LineOfCreditAccountNumber\"},\"dataType\":\"string\",\"dataTypeLength\":20,\"description\":\"The unique identifier of a specific Line Of Credit provided to a Customer/Customer Account.\",\"isNullable\":false,\"name\":\"LineOfCreditAccountNumber\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"PersonalLineOfCreditStatus.cdm.json/PersonalLineOfCreditStatus\",\"name\":\"PeriodStartDate\"},\"dataType\":\"date\",\"dateFormat\":\"YYYY-MM-DD\",\"description\":\"The period start date for which the associated line of credit status is effective.\",\"isNullable\":false,\"name\":\"PeriodStartDate\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"PersonalLineOfCreditStatus.cdm.json/PersonalLineOfCreditStatus\",\"name\":\"PeriodEndDate\"},\"dataType\":\"date\",\"dateFormat\":\"YYYY-MM-DD\",\"description\":\"The period end date for which the associated line of credit status is effective.\",\"isNullable\":false,\"name\":\"PeriodEndDate\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"PersonalLineOfCreditStatus.cdm.json/PersonalLineOfCreditStatus\",\"name\":\"LineOfCreditStatusNote\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"A note, comment or additional information regarding the associated line of credit status.\",\"isNullable\":true,\"name\":\"LineOfCreditStatusNote\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"PersonalLineOfCreditStatus.cdm.json/PersonalLineOfCreditStatus\",\"name\":\"LineOfCreditStatusTypeId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Line Of Credit Status Type.\",\"isNullable\":true,\"name\":\"LineOfCreditStatusTypeId\"}]}}}",
+			"Description": "The status of the personal line of credit as of the associated period.\n\nEx:\nCURRENT\nLine Of Credit payments are current and paid.\n\nDELINQUENT\nLine Of Credit payments are delinquent or unpaid.\n\nIN-DEFAULT\nThe Line Of Credit is in default due to unpaid payments or failure to comply with the terms and conditions of the Line Of Credit.",
+			"DisplayFolderInfo": "{\"name\":\"Customer Credit & Collections\",\"colorCode\":\"#022F22\"}",
+			"PrimaryKeys": "CreditGrantorId,LineOfCreditAccountNumber,PeriodStartDate",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

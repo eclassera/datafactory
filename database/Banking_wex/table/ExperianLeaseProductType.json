@@ -1,0 +1,113 @@
+{
+	"name": "ExperianLeaseProductType",
+	"properties": {
+		"Name": "ExperianLeaseProductType",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "The type of Experian lease product.\n\nEx:\n- OFFICE EQUP",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "ExperianLeaseProductTypeId",
+					"Description": "The unique identifier of an Experian lease product.",
+					"BaseAttributeReference": {
+						"Entity": "ExperianLeaseProductType.cdm.json/ExperianLeaseProductType",
+						"Name": "ExperianLeaseProductTypeId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "ExperianLeaseProductTypeName",
+					"Description": "The name of an Experian lease product.",
+					"BaseAttributeReference": {
+						"Entity": "ExperianLeaseProductType.cdm.json/ExperianLeaseProductType",
+						"Name": "ExperianLeaseProductTypeName"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 256,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "ExperianLeaseProductTypeDescription",
+					"Description": "The description of an Experian lease product.",
+					"BaseAttributeReference": {
+						"Entity": "ExperianLeaseProductType.cdm.json/ExperianLeaseProductType",
+						"Name": "ExperianLeaseProductTypeDescription"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/ExperianLeaseProductType",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/ExperianLeaseProductType",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"ExperianLeaseProductTypeId\":{\"entity\":\"ExperianLeaseProductType.cdm.json/ExperianLeaseProductType\",\"name\":\"ExperianLeaseProductTypeId\"},\"ExperianLeaseProductTypeName\":{\"entity\":\"ExperianLeaseProductType.cdm.json/ExperianLeaseProductType\",\"name\":\"ExperianLeaseProductTypeName\"},\"ExperianLeaseProductTypeDescription\":{\"entity\":\"ExperianLeaseProductType.cdm.json/ExperianLeaseProductType\",\"name\":\"ExperianLeaseProductTypeDescription\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"ExperianLeaseProductType\",\"path\":\"ExperianLeaseProductType.cdm.json/ExperianLeaseProductType\"},\"description\":\"The type of Experian lease product.\\n\\nEx:\\n- OFFICE EQUP\",\"primaryKey\":[\"ExperianLeaseProductTypeId\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ExperianLeaseProductType.cdm.json/ExperianLeaseProductType\",\"name\":\"ExperianLeaseProductTypeId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of an Experian lease product.\",\"isNullable\":false,\"name\":\"ExperianLeaseProductTypeId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ExperianLeaseProductType.cdm.json/ExperianLeaseProductType\",\"name\":\"ExperianLeaseProductTypeName\"},\"dataType\":\"string\",\"dataTypeLength\":256,\"description\":\"The name of an Experian lease product.\",\"isNullable\":true,\"name\":\"ExperianLeaseProductTypeName\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ExperianLeaseProductType.cdm.json/ExperianLeaseProductType\",\"name\":\"ExperianLeaseProductTypeDescription\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"The description of an Experian lease product.\",\"isNullable\":true,\"name\":\"ExperianLeaseProductTypeDescription\"}]}}}",
+			"Description": "The type of Experian lease product.\n\nEx:\n- OFFICE EQUP",
+			"DisplayFolderInfo": "{\"name\":\"Customer Credit & Collections\",\"colorCode\":\"#022F22\"}",
+			"PrimaryKeys": "ExperianLeaseProductTypeId",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

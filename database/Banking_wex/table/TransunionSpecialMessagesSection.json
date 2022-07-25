@@ -1,0 +1,145 @@
+{
+	"name": "TransunionSpecialMessagesSection",
+	"properties": {
+		"Name": "TransunionSpecialMessagesSection",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "Special messages associated with the Customer's TransUnion Credit Report.",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "TransunionReferenceNumber",
+					"Description": "The TransUnion file number.",
+					"BaseAttributeReference": {
+						"Entity": "TransunionSpecialMessagesSection.cdm.json/TransunionSpecialMessagesSection",
+						"Name": "TransunionReferenceNumber"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "SpecialMessageId",
+					"Description": "The unique identifier of a special message.",
+					"BaseAttributeReference": {
+						"Entity": "TransunionSpecialMessagesSection.cdm.json/TransunionSpecialMessagesSection",
+						"Name": "SpecialMessageId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "SpecialMessageTimestamp",
+					"Description": "The timestamp of the special message.",
+					"BaseAttributeReference": {
+						"Entity": "TransunionSpecialMessagesSection.cdm.json/TransunionSpecialMessagesSection",
+						"Name": "SpecialMessageTimestamp"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "timestamp",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"TimestampFormat": "YYYY-MM-DD HH:MM:SS.fffffffff",
+							"HIVE_TYPE_STRING": "timestamp"
+						}
+					}
+				},
+				{
+					"Name": "TransunionSpecialMessageTypeId",
+					"Description": "The unique identifier of a TransUnion special message type.",
+					"BaseAttributeReference": {
+						"Entity": "TransunionSpecialMessagesSection.cdm.json/TransunionSpecialMessagesSection",
+						"Name": "TransunionSpecialMessageTypeId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "SpecialMessage",
+					"Description": "The contents of the special message.\n\nEx:\n- FRAUD MODEL SCORE: +200, ID SCORE: 500, SCORE FACTOR CODES: 345 PHONE NUMBER ASSOCIATED WITH A\nMAIL BOX FACILITY, 678 IDENTITY ELEMENTS LINKED TO SUSPECTED FRAUD ACTIVITY, 901 IDENTITY LOW RISK\nFOR IDENTITY FRAUD; (IDA TRANSACTION#: 73126113617059)",
+					"BaseAttributeReference": {
+						"Entity": "TransunionSpecialMessagesSection.cdm.json/TransunionSpecialMessagesSection",
+						"Name": "SpecialMessage"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/TransunionSpecialMessagesSection",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/TransunionSpecialMessagesSection",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"TransunionReferenceNumber\":{\"entity\":\"TransunionSpecialMessagesSection.cdm.json/TransunionSpecialMessagesSection\",\"name\":\"TransunionReferenceNumber\"},\"SpecialMessageId\":{\"entity\":\"TransunionSpecialMessagesSection.cdm.json/TransunionSpecialMessagesSection\",\"name\":\"SpecialMessageId\"},\"SpecialMessageTimestamp\":{\"entity\":\"TransunionSpecialMessagesSection.cdm.json/TransunionSpecialMessagesSection\",\"name\":\"SpecialMessageTimestamp\"},\"TransunionSpecialMessageTypeId\":{\"entity\":\"TransunionSpecialMessagesSection.cdm.json/TransunionSpecialMessagesSection\",\"name\":\"TransunionSpecialMessageTypeId\"},\"SpecialMessage\":{\"entity\":\"TransunionSpecialMessagesSection.cdm.json/TransunionSpecialMessagesSection\",\"name\":\"SpecialMessage\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"TransunionSpecialMessagesSection\",\"path\":\"TransunionSpecialMessagesSection.cdm.json/TransunionSpecialMessagesSection\"},\"description\":\"Special messages associated with the Customer's TransUnion Credit Report.\",\"primaryKey\":[\"TransunionReferenceNumber\",\"SpecialMessageId\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"TransunionSpecialMessagesSection.cdm.json/TransunionSpecialMessagesSection\",\"name\":\"TransunionReferenceNumber\"},\"dataType\":\"integer\",\"description\":\"The TransUnion file number.\",\"isNullable\":false,\"name\":\"TransunionReferenceNumber\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"TransunionSpecialMessagesSection.cdm.json/TransunionSpecialMessagesSection\",\"name\":\"SpecialMessageId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a special message.\",\"isNullable\":false,\"name\":\"SpecialMessageId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"TransunionSpecialMessagesSection.cdm.json/TransunionSpecialMessagesSection\",\"name\":\"SpecialMessageTimestamp\"},\"dataType\":\"timestamp\",\"description\":\"The timestamp of the special message.\",\"isNullable\":true,\"name\":\"SpecialMessageTimestamp\",\"timestampFormat\":\"YYYY-MM-DD HH:MM:SS.fffffffff\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"TransunionSpecialMessagesSection.cdm.json/TransunionSpecialMessagesSection\",\"name\":\"TransunionSpecialMessageTypeId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a TransUnion special message type.\",\"isNullable\":true,\"name\":\"TransunionSpecialMessageTypeId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"TransunionSpecialMessagesSection.cdm.json/TransunionSpecialMessagesSection\",\"name\":\"SpecialMessage\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"The contents of the special message.\\n\\nEx:\\n- FRAUD MODEL SCORE: +200, ID SCORE: 500, SCORE FACTOR CODES: 345 PHONE NUMBER ASSOCIATED WITH A\\nMAIL BOX FACILITY, 678 IDENTITY ELEMENTS LINKED TO SUSPECTED FRAUD ACTIVITY, 901 IDENTITY LOW RISK\\nFOR IDENTITY FRAUD; (IDA TRANSACTION#: 73126113617059)\",\"isNullable\":true,\"name\":\"SpecialMessage\"}]}}}",
+			"Description": "Special messages associated with the Customer's TransUnion Credit Report.",
+			"DisplayFolderInfo": "{\"name\":\"Customer Credit & Collections\",\"colorCode\":\"#022F22\"}",
+			"PrimaryKeys": "TransunionReferenceNumber,SpecialMessageId",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

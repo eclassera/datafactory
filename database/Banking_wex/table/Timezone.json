@@ -1,0 +1,131 @@
+{
+	"name": "Timezone",
+	"properties": {
+		"Name": "Timezone",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "A time zone is a region of the Earth that has adopted the same standard time, usually referred to as the local time. Most adjacent time zones are exactly one hour apart, and by convention compute their local time as an offset from Greenwich Mean Time.\n\nNorth America\nAbbreviation   Full name           Other abbreviations   Time zone\nNST   Newfoundland Standard Time   HNT   UTC - 3:30 hours\nNDT   Newfoundland Daylight Time   HAT   UTC - 2:30 hours\nAST   Atlantic Standard Time       HNA   UTC - 4 hours\nADT   Atlantic Daylight Time       HAA   UTC - 3 hours\nEST   Eastern Standard Time        HNE   UTC - 5 hours\nEDT   Eastern Daylight Time        HAE   UTC - 4 hours\nCST   Central Standard Time        HNC   UTC - 6 hours\nCDT   Central Daylight Time        HAC   UTC - 5 hours\nMST   Mountain Standard Time       HNR   UTC - 7 hours\nMDT   Mountain Daylight Time       HAR   UTC - 6 hours\nPST   Pacific Standard Time        HNP   UTC - 8 hours\nPDT   Pacific Daylight Time        HAP   UTC - 7 hours\nAKST  Alaska Standard Time         HNY   UTC - 9 hours\nAKDT  Alaska Daylight Time         HAY   UTC - 8 hours\nHAST  Hawaii-Aleutian Standard Time      UTC - 10 hours\nHADT  Hawaii-Aleutian Daylight Time      UTC - 9 hours\n\nAustralia\nAbbreviation   Full name      Other abbr.   Time zone\nNFT  Norfolk (Island) Time                  UTC + 11:30 hours\nEST  Eastern Standard Time           AEST   UTC + 10 hours\nEST  Eastern Summer(Daylight) Time   AEDT   UTC + 11 hours\nCST  Central Standard Time           ACST   UTC + 9:30 hours\nCST  Central Summer(Daylight) Time   ACDT   UTC + 10:30 hours\nWST  Western Standard Time           AWST   UTC + 8 hours\nWST  Western Summer(Daylight) Time   AWDT   UTC + 9 hours\nCXT  Christmas Island Time                  UTC + 7 hours\n\nEurope\nAbbreviation   Full name   Other abbreviations   Time zone\nGMT  Greenwich Mean Time                         UTC   UTC\nBST  British Summer Time                         UTC + 1 hour\nIST  Irish Summer Time                           UTC + 1 hour\nWET  Western European Time                       UTC\nWEST Western European Summer Time   WEDT         UTC + 1 hour\nCET  Central European Time          MEZ          UTC + 1 hour\nCEST Central European Summer Time   CEDT, MESZ   UTC + 2 hours\nEET  Eastern European Time                       UTC + 2 hours\nEEST Eastern European Summer Time   EEDT         UTC + 3 hours\n\nAbbreviation   Full name  Time zone\nZ   Zulu Time Zone        UTC\nY   Yankee Time Zone      UTC - 12 hours\nX   X-ray Time Zone       UTC - 11 hours\nW   Whiskey Time Zone     UTC - 10 hours\nV   Victor Time Zone      UTC - 9 hours\nU   Uniform Time Zone     UTC - 8 hours\nT   Tango Time Zone       UTC - 7 hours\nS   Sierra Time Zone      UTC - 6 hours\nR   Romeo Time Zone       UTC - 5 hours\nQ   Quebec Time Zone      UTC - 4 hours\nP   Papa Time Zone        UTC - 3 hours\nO   Oscar Time Zone       UTC - 2 hours\nN   November Time Zone    UTC - 1 hour\nA   Alpha Time Zone       UTC + 1 hour\nB   Bravo Time Zone       UTC + 2 hours\nC   Charlie Time Zone     UTC + 3 hours\nD   Delta Time Zone       UTC + 4 hours\nE   Echo Time Zone        UTC + 5 hours\nF   Foxtrot Time Zone     UTC + 6 hours\nG   Golf Time Zone        UTC + 7 hours\nH   Hotel Time Zone       UTC + 8 hours\nI   India Time Zone       UTC + 9 hours\nK   Kilo Time Zone        UTC + 10 hours\nL   Lima Time Zone        UTC + 11 hours\nM   Mike Time Zone        UTC + 12 hours",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "TimezoneId",
+					"Description": "The unique identifier of a timezone.",
+					"BaseAttributeReference": {
+						"Entity": "Timezone.cdm.json/Timezone",
+						"Name": "TimezoneId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "TimezoneAbbreviationCode",
+					"Description": "The abbreviation code of the timezone.",
+					"BaseAttributeReference": {
+						"Entity": "Timezone.cdm.json/Timezone",
+						"Name": "TimezoneAbbreviationCode"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Length": 3,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "TimezoneName",
+					"Description": "The name of the timezone.",
+					"BaseAttributeReference": {
+						"Entity": "Timezone.cdm.json/Timezone",
+						"Name": "TimezoneName"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 256,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "UtcNumberHours",
+					"Description": "The Coordinated Universal Time (UTC), which was formerly called Greenwich Mean Time + the number of hours to equal the associated timezone.",
+					"BaseAttributeReference": {
+						"Entity": "Timezone.cdm.json/Timezone",
+						"Name": "UtcNumberHours"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "decimal",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Precision": 18,
+						"Scale": 2,
+						"Properties": {
+							"HIVE_TYPE_STRING": "decimal"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/Timezone",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/Timezone",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"TimezoneId\":{\"entity\":\"Timezone.cdm.json/Timezone\",\"name\":\"TimezoneId\"},\"TimezoneAbbreviationCode\":{\"entity\":\"Timezone.cdm.json/Timezone\",\"name\":\"TimezoneAbbreviationCode\"},\"TimezoneName\":{\"entity\":\"Timezone.cdm.json/Timezone\",\"name\":\"TimezoneName\"},\"UtcNumberHours\":{\"entity\":\"Timezone.cdm.json/Timezone\",\"name\":\"UtcNumberHours\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"Timezone\",\"path\":\"Timezone.cdm.json/Timezone\"},\"description\":\"A time zone is a region of the Earth that has adopted the same standard time, usually referred to as the local time. Most adjacent time zones are exactly one hour apart, and by convention compute their local time as an offset from Greenwich Mean Time.\\n\\nNorth America\\nAbbreviation   Full name           Other abbreviations   Time zone\\nNST   Newfoundland Standard Time   HNT   UTC - 3:30 hours\\nNDT   Newfoundland Daylight Time   HAT   UTC - 2:30 hours\\nAST   Atlantic Standard Time       HNA   UTC - 4 hours\\nADT   Atlantic Daylight Time       HAA   UTC - 3 hours\\nEST   Eastern Standard Time        HNE   UTC - 5 hours\\nEDT   Eastern Daylight Time        HAE   UTC - 4 hours\\nCST   Central Standard Time        HNC   UTC - 6 hours\\nCDT   Central Daylight Time        HAC   UTC - 5 hours\\nMST   Mountain Standard Time       HNR   UTC - 7 hours\\nMDT   Mountain Daylight Time       HAR   UTC - 6 hours\\nPST   Pacific Standard Time        HNP   UTC - 8 hours\\nPDT   Pacific Daylight Time        HAP   UTC - 7 hours\\nAKST  Alaska Standard Time         HNY   UTC - 9 hours\\nAKDT  Alaska Daylight Time         HAY   UTC - 8 hours\\nHAST  Hawaii-Aleutian Standard Time      UTC - 10 hours\\nHADT  Hawaii-Aleutian Daylight Time      UTC - 9 hours\\n\\nAustralia\\nAbbreviation   Full name      Other abbr.   Time zone\\nNFT  Norfolk (Island) Time                  UTC + 11:30 hours\\nEST  Eastern Standard Time           AEST   UTC + 10 hours\\nEST  Eastern Summer(Daylight) Time   AEDT   UTC + 11 hours\\nCST  Central Standard Time           ACST   UTC + 9:30 hours\\nCST  Central Summer(Daylight) Time   ACDT   UTC + 10:30 hours\\nWST  Western Standard Time           AWST   UTC + 8 hours\\nWST  Western Summer(Daylight) Time   AWDT   UTC + 9 hours\\nCXT  Christmas Island Time                  UTC + 7 hours\\n\\nEurope\\nAbbreviation   Full name   Other abbreviations   Time zone\\nGMT  Greenwich Mean Time                         UTC   UTC\\nBST  British Summer Time                         UTC + 1 hour\\nIST  Irish Summer Time                           UTC + 1 hour\\nWET  Western European Time                       UTC\\nWEST Western European Summer Time   WEDT         UTC + 1 hour\\nCET  Central European Time          MEZ          UTC + 1 hour\\nCEST Central European Summer Time   CEDT, MESZ   UTC + 2 hours\\nEET  Eastern European Time                       UTC + 2 hours\\nEEST Eastern European Summer Time   EEDT         UTC + 3 hours\\n\\nAbbreviation   Full name  Time zone\\nZ   Zulu Time Zone        UTC\\nY   Yankee Time Zone      UTC - 12 hours\\nX   X-ray Time Zone       UTC - 11 hours\\nW   Whiskey Time Zone     UTC - 10 hours\\nV   Victor Time Zone      UTC - 9 hours\\nU   Uniform Time Zone     UTC - 8 hours\\nT   Tango Time Zone       UTC - 7 hours\\nS   Sierra Time Zone      UTC - 6 hours\\nR   Romeo Time Zone       UTC - 5 hours\\nQ   Quebec Time Zone      UTC - 4 hours\\nP   Papa Time Zone        UTC - 3 hours\\nO   Oscar Time Zone       UTC - 2 hours\\nN   November Time Zone    UTC - 1 hour\\nA   Alpha Time Zone       UTC + 1 hour\\nB   Bravo Time Zone       UTC + 2 hours\\nC   Charlie Time Zone     UTC + 3 hours\\nD   Delta Time Zone       UTC + 4 hours\\nE   Echo Time Zone        UTC + 5 hours\\nF   Foxtrot Time Zone     UTC + 6 hours\\nG   Golf Time Zone        UTC + 7 hours\\nH   Hotel Time Zone       UTC + 8 hours\\nI   India Time Zone       UTC + 9 hours\\nK   Kilo Time Zone        UTC + 10 hours\\nL   Lima Time Zone        UTC + 11 hours\\nM   Mike Time Zone        UTC + 12 hours\",\"primaryKey\":[\"TimezoneId\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"Timezone.cdm.json/Timezone\",\"name\":\"TimezoneId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a timezone.\",\"isNullable\":false,\"name\":\"TimezoneId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"Timezone.cdm.json/Timezone\",\"name\":\"TimezoneAbbreviationCode\"},\"dataType\":\"string\",\"dataTypeLength\":3,\"description\":\"The abbreviation code of the timezone.\",\"isNullable\":false,\"name\":\"TimezoneAbbreviationCode\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"Timezone.cdm.json/Timezone\",\"name\":\"TimezoneName\"},\"dataType\":\"string\",\"dataTypeLength\":256,\"description\":\"The name of the timezone.\",\"isNullable\":true,\"name\":\"TimezoneName\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"Timezone.cdm.json/Timezone\",\"name\":\"UtcNumberHours\"},\"dataType\":\"decimal\",\"dataTypeLength\":18,\"description\":\"The Coordinated Universal Time (UTC), which was formerly called Greenwich Mean Time + the number of hours to equal the associated timezone.\",\"isNullable\":true,\"scale\":2,\"name\":\"UtcNumberHours\"}]}}}",
+			"Description": "A time zone is a region of the Earth that has adopted the same standard time, usually referred to as the local time. Most adjacent time zones are exactly one hour apart, and by convention compute their local time as an offset from Greenwich Mean Time.\n\nNorth America\nAbbreviation   Full name           Other abbreviations   Time zone\nNST   Newfoundland Standard Time   HNT   UTC - 3:30 hours\nNDT   Newfoundland Daylight Time   HAT   UTC - 2:30 hours\nAST   Atlantic Standard Time       HNA   UTC - 4 hours\nADT   Atlantic Daylight Time       HAA   UTC - 3 hours\nEST   Eastern Standard Time        HNE   UTC - 5 hours\nEDT   Eastern Daylight Time        HAE   UTC - 4 hours\nCST   Central Standard Time        HNC   UTC - 6 hours\nCDT   Central Daylight Time        HAC   UTC - 5 hours\nMST   Mountain Standard Time       HNR   UTC - 7 hours\nMDT   Mountain Daylight Time       HAR   UTC - 6 hours\nPST   Pacific Standard Time        HNP   UTC - 8 hours\nPDT   Pacific Daylight Time        HAP   UTC - 7 hours\nAKST  Alaska Standard Time         HNY   UTC - 9 hours\nAKDT  Alaska Daylight Time         HAY   UTC - 8 hours\nHAST  Hawaii-Aleutian Standard Time      UTC - 10 hours\nHADT  Hawaii-Aleutian Daylight Time      UTC - 9 hours\n\nAustralia\nAbbreviation   Full name      Other abbr.   Time zone\nNFT  Norfolk (Island) Time                  UTC + 11:30 hours\nEST  Eastern Standard Time           AEST   UTC + 10 hours\nEST  Eastern Summer(Daylight) Time   AEDT   UTC + 11 hours\nCST  Central Standard Time           ACST   UTC + 9:30 hours\nCST  Central Summer(Daylight) Time   ACDT   UTC + 10:30 hours\nWST  Western Standard Time           AWST   UTC + 8 hours\nWST  Western Summer(Daylight) Time   AWDT   UTC + 9 hours\nCXT  Christmas Island Time                  UTC + 7 hours\n\nEurope\nAbbreviation   Full name   Other abbreviations   Time zone\nGMT  Greenwich Mean Time                         UTC   UTC\nBST  British Summer Time                         UTC + 1 hour\nIST  Irish Summer Time                           UTC + 1 hour\nWET  Western European Time                       UTC\nWEST Western European Summer Time   WEDT         UTC + 1 hour\nCET  Central European Time          MEZ          UTC + 1 hour\nCEST Central European Summer Time   CEDT, MESZ   UTC + 2 hours\nEET  Eastern European Time                       UTC + 2 hours\nEEST Eastern European Summer Time   EEDT         UTC + 3 hours\n\nAbbreviation   Full name  Time zone\nZ   Zulu Time Zone        UTC\nY   Yankee Time Zone      UTC - 12 hours\nX   X-ray Time Zone       UTC - 11 hours\nW   Whiskey Time Zone     UTC - 10 hours\nV   Victor Time Zone      UTC - 9 hours\nU   Uniform Time Zone     UTC - 8 hours\nT   Tango Time Zone       UTC - 7 hours\nS   Sierra Time Zone      UTC - 6 hours\nR   Romeo Time Zone       UTC - 5 hours\nQ   Quebec Time Zone      UTC - 4 hours\nP   Papa Time Zone        UTC - 3 hours\nO   Oscar Time Zone       UTC - 2 hours\nN   November Time Zone    UTC - 1 hour\nA   Alpha Time Zone       UTC + 1 hour\nB   Bravo Time Zone       UTC + 2 hours\nC   Charlie Time Zone     UTC + 3 hours\nD   Delta Time Zone       UTC + 4 hours\nE   Echo Time Zone        UTC + 5 hours\nF   Foxtrot Time Zone     UTC + 6 hours\nG   Golf Time Zone        UTC + 7 hours\nH   Hotel Time Zone       UTC + 8 hours\nI   India Time Zone       UTC + 9 hours\nK   Kilo Time Zone        UTC + 10 hours\nL   Lima Time Zone        UTC + 11 hours\nM   Mike Time Zone        UTC + 12 hours",
+			"DisplayFolderInfo": "{\"name\":\"Geography\",\"colorCode\":\"#008A94\"}",
+			"PrimaryKeys": "TimezoneId",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

@@ -1,0 +1,162 @@
+{
+	"name": "RelatedResponsibilityCenter",
+	"properties": {
+		"Name": "RelatedResponsibilityCenter",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "The relationship of two or more responsibility centers.",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "ResponsibilityCenterId",
+					"Description": "The unique identifier of a Responsibility Center.",
+					"BaseAttributeReference": {
+						"Entity": "RelatedResponsibilityCenter.cdm.json/RelatedResponsibilityCenter",
+						"Name": "ResponsibilityCenterId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "RelatedResponsibilityCentreId",
+					"Description": "The unique identifier of a Responsibility Center.",
+					"BaseAttributeReference": {
+						"Entity": "RelatedResponsibilityCenter.cdm.json/RelatedResponsibilityCenter",
+						"Name": "RelatedResponsibilityCentreId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "ResponsibilityCenterRelationshipTypeId",
+					"Description": "The unique identifier of an Account Relationship Type.",
+					"BaseAttributeReference": {
+						"Entity": "RelatedResponsibilityCenter.cdm.json/RelatedResponsibilityCenter",
+						"Name": "ResponsibilityCenterRelationshipTypeId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "PeriodStartDate",
+					"Description": "The period start date of the responsibility center relationship.",
+					"BaseAttributeReference": {
+						"Entity": "RelatedResponsibilityCenter.cdm.json/RelatedResponsibilityCenter",
+						"Name": "PeriodStartDate"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "date",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"DateFormat": "YYYY-MM-DD",
+							"HIVE_TYPE_STRING": "date"
+						}
+					}
+				},
+				{
+					"Name": "PeriodEndDate",
+					"Description": "The period end date of the responsibility center relationship.",
+					"BaseAttributeReference": {
+						"Entity": "RelatedResponsibilityCenter.cdm.json/RelatedResponsibilityCenter",
+						"Name": "PeriodEndDate"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "date",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"DateFormat": "YYYY-MM-DD",
+							"HIVE_TYPE_STRING": "date"
+						}
+					}
+				},
+				{
+					"Name": "ResponsibilityCenterRelationshipNote",
+					"Description": "A note, comment or additional information regarding the responsibility center.",
+					"BaseAttributeReference": {
+						"Entity": "RelatedResponsibilityCenter.cdm.json/RelatedResponsibilityCenter",
+						"Name": "ResponsibilityCenterRelationshipNote"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/RelatedResponsibilityCenter",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/RelatedResponsibilityCenter",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"ResponsibilityCenterId\":{\"entity\":\"RelatedResponsibilityCenter.cdm.json/RelatedResponsibilityCenter\",\"name\":\"ResponsibilityCenterId\"},\"RelatedResponsibilityCentreId\":{\"entity\":\"RelatedResponsibilityCenter.cdm.json/RelatedResponsibilityCenter\",\"name\":\"RelatedResponsibilityCentreId\"},\"ResponsibilityCenterRelationshipTypeId\":{\"entity\":\"RelatedResponsibilityCenter.cdm.json/RelatedResponsibilityCenter\",\"name\":\"ResponsibilityCenterRelationshipTypeId\"},\"PeriodStartDate\":{\"entity\":\"RelatedResponsibilityCenter.cdm.json/RelatedResponsibilityCenter\",\"name\":\"PeriodStartDate\"},\"PeriodEndDate\":{\"entity\":\"RelatedResponsibilityCenter.cdm.json/RelatedResponsibilityCenter\",\"name\":\"PeriodEndDate\"},\"ResponsibilityCenterRelationshipNote\":{\"entity\":\"RelatedResponsibilityCenter.cdm.json/RelatedResponsibilityCenter\",\"name\":\"ResponsibilityCenterRelationshipNote\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"RelatedResponsibilityCenter\",\"path\":\"RelatedResponsibilityCenter.cdm.json/RelatedResponsibilityCenter\"},\"description\":\"The relationship of two or more responsibility centers.\",\"primaryKey\":[\"ResponsibilityCenterId\",\"RelatedResponsibilityCentreId\",\"ResponsibilityCenterRelationshipTypeId\",\"PeriodStartDate\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"RelatedResponsibilityCenter.cdm.json/RelatedResponsibilityCenter\",\"name\":\"ResponsibilityCenterId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Responsibility Center.\",\"isNullable\":false,\"name\":\"ResponsibilityCenterId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"RelatedResponsibilityCenter.cdm.json/RelatedResponsibilityCenter\",\"name\":\"RelatedResponsibilityCentreId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Responsibility Center.\",\"isNullable\":false,\"name\":\"RelatedResponsibilityCentreId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"RelatedResponsibilityCenter.cdm.json/RelatedResponsibilityCenter\",\"name\":\"ResponsibilityCenterRelationshipTypeId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of an Account Relationship Type.\",\"isNullable\":false,\"name\":\"ResponsibilityCenterRelationshipTypeId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"RelatedResponsibilityCenter.cdm.json/RelatedResponsibilityCenter\",\"name\":\"PeriodStartDate\"},\"dataType\":\"date\",\"dateFormat\":\"YYYY-MM-DD\",\"description\":\"The period start date of the responsibility center relationship.\",\"isNullable\":false,\"name\":\"PeriodStartDate\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"RelatedResponsibilityCenter.cdm.json/RelatedResponsibilityCenter\",\"name\":\"PeriodEndDate\"},\"dataType\":\"date\",\"dateFormat\":\"YYYY-MM-DD\",\"description\":\"The period end date of the responsibility center relationship.\",\"isNullable\":true,\"name\":\"PeriodEndDate\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"RelatedResponsibilityCenter.cdm.json/RelatedResponsibilityCenter\",\"name\":\"ResponsibilityCenterRelationshipNote\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"A note, comment or additional information regarding the responsibility center.\",\"isNullable\":true,\"name\":\"ResponsibilityCenterRelationshipNote\"}]}}}",
+			"Description": "The relationship of two or more responsibility centers.",
+			"DisplayFolderInfo": "{\"name\":\"Accounting & Financial Reporting\",\"colorCode\":\"#0078D4\"}",
+			"PrimaryKeys": "ResponsibilityCenterId,RelatedResponsibilityCentreId,ResponsibilityCenterRelationshipTypeId,PeriodStartDate",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

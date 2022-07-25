@@ -1,0 +1,160 @@
+{
+	"name": "ExperianInquiriesSummary",
+	"properties": {
+		"Name": "ExperianInquiriesSummary",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "Experian business category inquires by year/month.",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "ExperianFileNumber",
+					"Description": "The unique and persistent number that identifies and tracks the Experian company.",
+					"BaseAttributeReference": {
+						"Entity": "ExperianInquiriesSummary.cdm.json/ExperianInquiriesSummary",
+						"Name": "ExperianFileNumber"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "ProfileTimestamp",
+					"Description": "The timestamp of the Experian profile.",
+					"BaseAttributeReference": {
+						"Entity": "ExperianInquiriesSummary.cdm.json/ExperianInquiriesSummary",
+						"Name": "ProfileTimestamp"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "timestamp",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"TimestampFormat": "YYYY-MM-DD HH:MM:SS.fffffffff",
+							"HIVE_TYPE_STRING": "timestamp"
+						}
+					}
+				},
+				{
+					"Name": "ExperianBusinessCategoryTypeId",
+					"Description": "The unique identifier of an Experian business category type.",
+					"BaseAttributeReference": {
+						"Entity": "ExperianInquiriesSummary.cdm.json/ExperianInquiriesSummary",
+						"Name": "ExperianBusinessCategoryTypeId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "Year",
+					"Description": "The relevant year.",
+					"BaseAttributeReference": {
+						"Entity": "ExperianInquiriesSummary.cdm.json/ExperianInquiriesSummary",
+						"Name": "Year"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "Month",
+					"Description": "The relevant month.",
+					"BaseAttributeReference": {
+						"Entity": "ExperianInquiriesSummary.cdm.json/ExperianInquiriesSummary",
+						"Name": "Month"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "NumberOfInquiries",
+					"Description": "The number of inquiries for the associated month, year and Experian business category.",
+					"BaseAttributeReference": {
+						"Entity": "ExperianInquiriesSummary.cdm.json/ExperianInquiriesSummary",
+						"Name": "NumberOfInquiries"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/ExperianInquiriesSummary",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/ExperianInquiriesSummary",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"ExperianFileNumber\":{\"entity\":\"ExperianInquiriesSummary.cdm.json/ExperianInquiriesSummary\",\"name\":\"ExperianFileNumber\"},\"ProfileTimestamp\":{\"entity\":\"ExperianInquiriesSummary.cdm.json/ExperianInquiriesSummary\",\"name\":\"ProfileTimestamp\"},\"ExperianBusinessCategoryTypeId\":{\"entity\":\"ExperianInquiriesSummary.cdm.json/ExperianInquiriesSummary\",\"name\":\"ExperianBusinessCategoryTypeId\"},\"Year\":{\"entity\":\"ExperianInquiriesSummary.cdm.json/ExperianInquiriesSummary\",\"name\":\"Year\"},\"Month\":{\"entity\":\"ExperianInquiriesSummary.cdm.json/ExperianInquiriesSummary\",\"name\":\"Month\"},\"NumberOfInquiries\":{\"entity\":\"ExperianInquiriesSummary.cdm.json/ExperianInquiriesSummary\",\"name\":\"NumberOfInquiries\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"ExperianInquiriesSummary\",\"path\":\"ExperianInquiriesSummary.cdm.json/ExperianInquiriesSummary\"},\"description\":\"Experian business category inquires by year/month.\",\"primaryKey\":[\"ExperianFileNumber\",\"ProfileTimestamp\",\"ExperianBusinessCategoryTypeId\",\"Year\",\"Month\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ExperianInquiriesSummary.cdm.json/ExperianInquiriesSummary\",\"name\":\"ExperianFileNumber\"},\"dataType\":\"integer\",\"description\":\"The unique and persistent number that identifies and tracks the Experian company.\",\"isNullable\":false,\"name\":\"ExperianFileNumber\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ExperianInquiriesSummary.cdm.json/ExperianInquiriesSummary\",\"name\":\"ProfileTimestamp\"},\"dataType\":\"timestamp\",\"description\":\"The timestamp of the Experian profile.\",\"isNullable\":false,\"name\":\"ProfileTimestamp\",\"timestampFormat\":\"YYYY-MM-DD HH:MM:SS.fffffffff\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ExperianInquiriesSummary.cdm.json/ExperianInquiriesSummary\",\"name\":\"ExperianBusinessCategoryTypeId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of an Experian business category type.\",\"isNullable\":false,\"name\":\"ExperianBusinessCategoryTypeId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ExperianInquiriesSummary.cdm.json/ExperianInquiriesSummary\",\"name\":\"Year\"},\"dataType\":\"integer\",\"description\":\"The relevant year.\",\"isNullable\":false,\"name\":\"Year\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ExperianInquiriesSummary.cdm.json/ExperianInquiriesSummary\",\"name\":\"Month\"},\"dataType\":\"integer\",\"description\":\"The relevant month.\",\"isNullable\":false,\"name\":\"Month\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ExperianInquiriesSummary.cdm.json/ExperianInquiriesSummary\",\"name\":\"NumberOfInquiries\"},\"dataType\":\"integer\",\"description\":\"The number of inquiries for the associated month, year and Experian business category.\",\"isNullable\":true,\"name\":\"NumberOfInquiries\"}]}}}",
+			"Description": "Experian business category inquires by year/month.",
+			"DisplayFolderInfo": "{\"name\":\"Customer Credit & Collections\",\"colorCode\":\"#022F22\"}",
+			"PrimaryKeys": "ExperianFileNumber,ProfileTimestamp,ExperianBusinessCategoryTypeId,Year,Month",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

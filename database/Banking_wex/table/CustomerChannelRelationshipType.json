@@ -1,0 +1,113 @@
+{
+	"name": "CustomerChannelRelationshipType",
+	"properties": {
+		"Name": "CustomerChannelRelationshipType",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "The nature of the relationship between the customer and the channel.\n\nEx:\n- Customer's Preferred Sales Channel\n- Customer's Preferred Distribution Channel\n- Customer Acts As A Sales Channel\n- Customer Acts As A Distribution Channel",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "CustomerChannelRelationshipTypeId",
+					"Description": "The unique identifier of a Customer Channel Relationship Type.",
+					"BaseAttributeReference": {
+						"Entity": "CustomerChannelRelationshipType.cdm.json/CustomerChannelRelationshipType",
+						"Name": "CustomerChannelRelationshipTypeId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "CustomerChannelRelationshipTypeName",
+					"Description": "The name of a Customer Channel Relationship Type.",
+					"BaseAttributeReference": {
+						"Entity": "CustomerChannelRelationshipType.cdm.json/CustomerChannelRelationshipType",
+						"Name": "CustomerChannelRelationshipTypeName"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 256,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "CustomerChannelRelationshipTypeDescription",
+					"Description": "The description of a Customer Channel Relationship Type.",
+					"BaseAttributeReference": {
+						"Entity": "CustomerChannelRelationshipType.cdm.json/CustomerChannelRelationshipType",
+						"Name": "CustomerChannelRelationshipTypeDescription"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/CustomerChannelRelationshipType",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/CustomerChannelRelationshipType",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"CustomerChannelRelationshipTypeId\":{\"entity\":\"CustomerChannelRelationshipType.cdm.json/CustomerChannelRelationshipType\",\"name\":\"CustomerChannelRelationshipTypeId\"},\"CustomerChannelRelationshipTypeName\":{\"entity\":\"CustomerChannelRelationshipType.cdm.json/CustomerChannelRelationshipType\",\"name\":\"CustomerChannelRelationshipTypeName\"},\"CustomerChannelRelationshipTypeDescription\":{\"entity\":\"CustomerChannelRelationshipType.cdm.json/CustomerChannelRelationshipType\",\"name\":\"CustomerChannelRelationshipTypeDescription\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"CustomerChannelRelationshipType\",\"path\":\"CustomerChannelRelationshipType.cdm.json/CustomerChannelRelationshipType\"},\"description\":\"The nature of the relationship between the customer and the channel.\\n\\nEx:\\n- Customer's Preferred Sales Channel\\n- Customer's Preferred Distribution Channel\\n- Customer Acts As A Sales Channel\\n- Customer Acts As A Distribution Channel\",\"primaryKey\":[\"CustomerChannelRelationshipTypeId\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CustomerChannelRelationshipType.cdm.json/CustomerChannelRelationshipType\",\"name\":\"CustomerChannelRelationshipTypeId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Customer Channel Relationship Type.\",\"isNullable\":false,\"name\":\"CustomerChannelRelationshipTypeId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CustomerChannelRelationshipType.cdm.json/CustomerChannelRelationshipType\",\"name\":\"CustomerChannelRelationshipTypeName\"},\"dataType\":\"string\",\"dataTypeLength\":256,\"description\":\"The name of a Customer Channel Relationship Type.\",\"isNullable\":true,\"name\":\"CustomerChannelRelationshipTypeName\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CustomerChannelRelationshipType.cdm.json/CustomerChannelRelationshipType\",\"name\":\"CustomerChannelRelationshipTypeDescription\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"The description of a Customer Channel Relationship Type.\",\"isNullable\":true,\"name\":\"CustomerChannelRelationshipTypeDescription\"}]}}}",
+			"Description": "The nature of the relationship between the customer and the channel.\n\nEx:\n- Customer's Preferred Sales Channel\n- Customer's Preferred Distribution Channel\n- Customer Acts As A Sales Channel\n- Customer Acts As A Distribution Channel",
+			"DisplayFolderInfo": "{\"name\":\"Channel\",\"colorCode\":\"#001D3F\"}",
+			"PrimaryKeys": "CustomerChannelRelationshipTypeId",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

@@ -1,0 +1,113 @@
+{
+	"name": "EmailType",
+	"properties": {
+		"Name": "EmailType",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "A specific type of usage of an email address.\n\nEx:\nINDIVIDUAL\n- Primary\n- Alternate\n- Business\n- Emergency Contact\n\nLEGAL ENTITY\n- Headquarters\n- Boston Office\n- Support\n- Marketing\n- Legal",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "EmailTypeId",
+					"Description": "The unique identifier of an Email Type.",
+					"BaseAttributeReference": {
+						"Entity": "EmailType.cdm.json/EmailType",
+						"Name": "EmailTypeId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "EmailTypeName",
+					"Description": "The name of an Email Type.",
+					"BaseAttributeReference": {
+						"Entity": "EmailType.cdm.json/EmailType",
+						"Name": "EmailTypeName"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 256,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "EmailTypeDescription",
+					"Description": "The description of an Email Type.",
+					"BaseAttributeReference": {
+						"Entity": "EmailType.cdm.json/EmailType",
+						"Name": "EmailTypeDescription"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/EmailType",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/EmailType",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"EmailTypeId\":{\"entity\":\"EmailType.cdm.json/EmailType\",\"name\":\"EmailTypeId\"},\"EmailTypeName\":{\"entity\":\"EmailType.cdm.json/EmailType\",\"name\":\"EmailTypeName\"},\"EmailTypeDescription\":{\"entity\":\"EmailType.cdm.json/EmailType\",\"name\":\"EmailTypeDescription\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"EmailType\",\"path\":\"EmailType.cdm.json/EmailType\"},\"description\":\"A specific type of usage of an email address.\\n\\nEx:\\nINDIVIDUAL\\n- Primary\\n- Alternate\\n- Business\\n- Emergency Contact\\n\\nLEGAL ENTITY\\n- Headquarters\\n- Boston Office\\n- Support\\n- Marketing\\n- Legal\",\"primaryKey\":[\"EmailTypeId\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"EmailType.cdm.json/EmailType\",\"name\":\"EmailTypeId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of an Email Type.\",\"isNullable\":false,\"name\":\"EmailTypeId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"EmailType.cdm.json/EmailType\",\"name\":\"EmailTypeName\"},\"dataType\":\"string\",\"dataTypeLength\":256,\"description\":\"The name of an Email Type.\",\"isNullable\":true,\"name\":\"EmailTypeName\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"EmailType.cdm.json/EmailType\",\"name\":\"EmailTypeDescription\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"The description of an Email Type.\",\"isNullable\":true,\"name\":\"EmailTypeDescription\"}]}}}",
+			"Description": "A specific type of usage of an email address.\n\nEx:\nINDIVIDUAL\n- Primary\n- Alternate\n- Business\n- Emergency Contact\n\nLEGAL ENTITY\n- Headquarters\n- Boston Office\n- Support\n- Marketing\n- Legal",
+			"DisplayFolderInfo": "{\"name\":\"Party\",\"colorCode\":\"#00727A\"}",
+			"PrimaryKeys": "EmailTypeId",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

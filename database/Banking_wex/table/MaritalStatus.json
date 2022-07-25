@@ -1,0 +1,113 @@
+{
+	"name": "MaritalStatus",
+	"properties": {
+		"Name": "MaritalStatus",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "The marital status of an individual.\n\nThe US Bureau of Census identifies four major categories: \n\n-  never married\n-  married\n-  widowed\n-  divorced \n\nThe category \"married\" is further divided into \"married, spouse present,\" \"separated,\" and \"other married, spouse absent.\" A person was classified as \"married, spouse present\" if the husband or wife was reported as a member of the household, even though he or she may have been temporarily absent on business or on vacation, visiting, in a hospital, etc., at the time of the enumeration. People reported as separated included those with legal separations, those living apart with intentions of obtaining a divorce, and other people permanently or temporarily separated because of marital discord. The group \"other married, spouse absent\" includes married people living apart because either the husband or wife was employed and living at a considerable distance from home, was serving away from home in the Armed Forces, had moved to another area, or had a different place of residence for any other reason except separation as defined above.\n\nNEVER MARRIED\nIncludes all persons who have never been married, including persons whose only marriage(s) was annulled. \n\nMARRIED\nMarried is a status for those who on the enumeration date were bound by marriage, regardless of whether they are living together or not. This includes those who by law (e.g. tradition, religion, state, etc.) are formally married but also those who live together and are regarded by their community as husbands and wives.\n\nWIDOWED\nWidowed is a status for those whose husbands or wives were deceased and had not yet remarried.\n\nDIVORCED\nRefers to a category for those who divorced their husbands or wives and have not yet remarried.\n\nSEPARATED\nIncludes persons legally separated or otherwise absent from their spouse because of marital discord. Included are persons who have been deserted or who have parted because they no longer want to live together but who have not obtained a divorce. \n\nNOW MARRIED/EXCEPT SEPARATED\nIncludes persons whose current marriage has not ended through widowhood, divorce, or separation (regardless of previous marital history). The category may also include couples who live together or persons in common-law marriages if they consider this category the most appropriate. In certain tabulations, currently married persons are further classified as \"spouse present\" or \"spouse absent.\" \n\nUNMARRIED COUPLE\nA couple that is not married but are living together.\n\nCOMMON-LAW MARRIAGE\nA common law marriage comes about when a man and woman who are free to marry agree to live together as husband and wife without the formal ceremony. In order to be common law married, both spouses must have intended to be husband and wife. Certain states do not recognize common law marriages.",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "MaritalStatusId",
+					"Description": "The unique identifier of the Marital Status.",
+					"BaseAttributeReference": {
+						"Entity": "MaritalStatus.cdm.json/MaritalStatus",
+						"Name": "MaritalStatusId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "MaritalStatusName",
+					"Description": "The name of the Marital Status.",
+					"BaseAttributeReference": {
+						"Entity": "MaritalStatus.cdm.json/MaritalStatus",
+						"Name": "MaritalStatusName"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 256,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "MaritalStatusDescription",
+					"Description": "The description of the Marital Status.",
+					"BaseAttributeReference": {
+						"Entity": "MaritalStatus.cdm.json/MaritalStatus",
+						"Name": "MaritalStatusDescription"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/MaritalStatus",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/MaritalStatus",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"MaritalStatusId\":{\"entity\":\"MaritalStatus.cdm.json/MaritalStatus\",\"name\":\"MaritalStatusId\"},\"MaritalStatusName\":{\"entity\":\"MaritalStatus.cdm.json/MaritalStatus\",\"name\":\"MaritalStatusName\"},\"MaritalStatusDescription\":{\"entity\":\"MaritalStatus.cdm.json/MaritalStatus\",\"name\":\"MaritalStatusDescription\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"MaritalStatus\",\"path\":\"MaritalStatus.cdm.json/MaritalStatus\"},\"description\":\"The marital status of an individual.\\n\\nThe US Bureau of Census identifies four major categories: \\n\\n-  never married\\n-  married\\n-  widowed\\n-  divorced \\n\\nThe category \\\"married\\\" is further divided into \\\"married, spouse present,\\\" \\\"separated,\\\" and \\\"other married, spouse absent.\\\" A person was classified as \\\"married, spouse present\\\" if the husband or wife was reported as a member of the household, even though he or she may have been temporarily absent on business or on vacation, visiting, in a hospital, etc., at the time of the enumeration. People reported as separated included those with legal separations, those living apart with intentions of obtaining a divorce, and other people permanently or temporarily separated because of marital discord. The group \\\"other married, spouse absent\\\" includes married people living apart because either the husband or wife was employed and living at a considerable distance from home, was serving away from home in the Armed Forces, had moved to another area, or had a different place of residence for any other reason except separation as defined above.\\n\\nNEVER MARRIED\\nIncludes all persons who have never been married, including persons whose only marriage(s) was annulled. \\n\\nMARRIED\\nMarried is a status for those who on the enumeration date were bound by marriage, regardless of whether they are living together or not. This includes those who by law (e.g. tradition, religion, state, etc.) are formally married but also those who live together and are regarded by their community as husbands and wives.\\n\\nWIDOWED\\nWidowed is a status for those whose husbands or wives were deceased and had not yet remarried.\\n\\nDIVORCED\\nRefers to a category for those who divorced their husbands or wives and have not yet remarried.\\n\\nSEPARATED\\nIncludes persons legally separated or otherwise absent from their spouse because of marital discord. Included are persons who have been deserted or who have parted because they no longer want to live together but who have not obtained a divorce. \\n\\nNOW MARRIED/EXCEPT SEPARATED\\nIncludes persons whose current marriage has not ended through widowhood, divorce, or separation (regardless of previous marital history). The category may also include couples who live together or persons in common-law marriages if they consider this category the most appropriate. In certain tabulations, currently married persons are further classified as \\\"spouse present\\\" or \\\"spouse absent.\\\" \\n\\nUNMARRIED COUPLE\\nA couple that is not married but are living together.\\n\\nCOMMON-LAW MARRIAGE\\nA common law marriage comes about when a man and woman who are free to marry agree to live together as husband and wife without the formal ceremony. In order to be common law married, both spouses must have intended to be husband and wife. Certain states do not recognize common law marriages.\",\"primaryKey\":[\"MaritalStatusId\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"MaritalStatus.cdm.json/MaritalStatus\",\"name\":\"MaritalStatusId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of the Marital Status.\",\"isNullable\":false,\"name\":\"MaritalStatusId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"MaritalStatus.cdm.json/MaritalStatus\",\"name\":\"MaritalStatusName\"},\"dataType\":\"string\",\"dataTypeLength\":256,\"description\":\"The name of the Marital Status.\",\"isNullable\":true,\"name\":\"MaritalStatusName\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"MaritalStatus.cdm.json/MaritalStatus\",\"name\":\"MaritalStatusDescription\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"The description of the Marital Status.\",\"isNullable\":true,\"name\":\"MaritalStatusDescription\"}]}}}",
+			"Description": "The marital status of an individual.\n\nThe US Bureau of Census identifies four major categories: \n\n-  never married\n-  married\n-  widowed\n-  divorced \n\nThe category \"married\" is further divided into \"married, spouse present,\" \"separated,\" and \"other married, spouse absent.\" A person was classified as \"married, spouse present\" if the husband or wife was reported as a member of the household, even though he or she may have been temporarily absent on business or on vacation, visiting, in a hospital, etc., at the time of the enumeration. People reported as separated included those with legal separations, those living apart with intentions of obtaining a divorce, and other people permanently or temporarily separated because of marital discord. The group \"other married, spouse absent\" includes married people living apart because either the husband or wife was employed and living at a considerable distance from home, was serving away from home in the Armed Forces, had moved to another area, or had a different place of residence for any other reason except separation as defined above.\n\nNEVER MARRIED\nIncludes all persons who have never been married, including persons whose only marriage(s) was annulled. \n\nMARRIED\nMarried is a status for those who on the enumeration date were bound by marriage, regardless of whether they are living together or not. This includes those who by law (e.g. tradition, religion, state, etc.) are formally married but also those who live together and are regarded by their community as husbands and wives.\n\nWIDOWED\nWidowed is a status for those whose husbands or wives were deceased and had not yet remarried.\n\nDIVORCED\nRefers to a category for those who divorced their husbands or wives and have not yet remarried.\n\nSEPARATED\nIncludes persons legally separated or otherwise absent from their spouse because of marital discord. Included are persons who have been deserted or who have parted because they no longer want to live together but who have not obtained a divorce. \n\nNOW MARRIED/EXCEPT SEPARATED\nIncludes persons whose current marriage has not ended through widowhood, divorce, or separation (regardless of previous marital history). The category may also include couples who live together or persons in common-law marriages if they consider this category the most appropriate. In certain tabulations, currently married persons are further classified as \"spouse present\" or \"spouse absent.\" \n\nUNMARRIED COUPLE\nA couple that is not married but are living together.\n\nCOMMON-LAW MARRIAGE\nA common law marriage comes about when a man and woman who are free to marry agree to live together as husband and wife without the formal ceremony. In order to be common law married, both spouses must have intended to be husband and wife. Certain states do not recognize common law marriages.",
+			"DisplayFolderInfo": "{\"name\":\"Party\",\"colorCode\":\"#00727A\"}",
+			"PrimaryKeys": "MaritalStatusId",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

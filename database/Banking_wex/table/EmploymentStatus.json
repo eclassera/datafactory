@@ -1,0 +1,113 @@
+{
+	"name": "EmploymentStatus",
+	"properties": {
+		"Name": "EmploymentStatus",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "The Employment Status of the Individual.\n\nEx:\n- Full-Time Employee\n- Part-Time Employee\n- Contract Employee\n- Temporary Employee\n\nSource:  US Bureau of Census\n\nEMPLOYED\nAll civilians 16 years old and over who were either (1) \"at work\"--those who did any work at all during the reference week as paid employees, worked in their own business or profession, worked on their own farm, or worked 15 hours or more as unpaid workers on a family farm or in a family business; or (2) were \"with a job but not at work\"--those who did not work during the reference week but had jobs or businesses from which they were temporarily absent due to illness, bad weather, industrial dispute, vacation, or other personal reasons. Excluded from the employed are persons whose only activity consisted of work around the house or unpaid volunteer work for religious, charitable, and similar organizations; also excluded are persons on active duty in the United States Armed Forces.\n\nUNEMPLOYED\nAll civilians 16 years old and over are classified as unemployed if they (1) were neither \"at work\" nor \"with a job but not at work\" during the reference week, and (2) were looking for work during the last 4 weeks, and (3) were available to accept a job. Also\nincluded as unemployed are civilians who did not work at all during the reference week and were waiting to be called back to a job from which they had been laid off. \n\nExamples of job seeking activities are: \n\n-   Registering at a public or private employment office \n\n-   Meeting with prospective employers \n\n-   Investigating possibilities for starting a professional practice or opening a business\n\n-   Placing or answering advertisements \n\n-   Writing letters of application \n\n-   Being on a union or professional register",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "EmploymentStatusId",
+					"Description": "The unique identifier of an Employment Status.",
+					"BaseAttributeReference": {
+						"Entity": "EmploymentStatus.cdm.json/EmploymentStatus",
+						"Name": "EmploymentStatusId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "EmploymentStatusName",
+					"Description": "The name of an Employment Status.",
+					"BaseAttributeReference": {
+						"Entity": "EmploymentStatus.cdm.json/EmploymentStatus",
+						"Name": "EmploymentStatusName"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 256,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "EmploymentStatusDescription",
+					"Description": "The description of an Employment Status.",
+					"BaseAttributeReference": {
+						"Entity": "EmploymentStatus.cdm.json/EmploymentStatus",
+						"Name": "EmploymentStatusDescription"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/EmploymentStatus",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/EmploymentStatus",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"EmploymentStatusId\":{\"entity\":\"EmploymentStatus.cdm.json/EmploymentStatus\",\"name\":\"EmploymentStatusId\"},\"EmploymentStatusName\":{\"entity\":\"EmploymentStatus.cdm.json/EmploymentStatus\",\"name\":\"EmploymentStatusName\"},\"EmploymentStatusDescription\":{\"entity\":\"EmploymentStatus.cdm.json/EmploymentStatus\",\"name\":\"EmploymentStatusDescription\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"EmploymentStatus\",\"path\":\"EmploymentStatus.cdm.json/EmploymentStatus\"},\"description\":\"The Employment Status of the Individual.\\n\\nEx:\\n- Full-Time Employee\\n- Part-Time Employee\\n- Contract Employee\\n- Temporary Employee\\n\\nSource:  US Bureau of Census\\n\\nEMPLOYED\\nAll civilians 16 years old and over who were either (1) \\\"at work\\\"--those who did any work at all during the reference week as paid employees, worked in their own business or profession, worked on their own farm, or worked 15 hours or more as unpaid workers on a family farm or in a family business; or (2) were \\\"with a job but not at work\\\"--those who did not work during the reference week but had jobs or businesses from which they were temporarily absent due to illness, bad weather, industrial dispute, vacation, or other personal reasons. Excluded from the employed are persons whose only activity consisted of work around the house or unpaid volunteer work for religious, charitable, and similar organizations; also excluded are persons on active duty in the United States Armed Forces.\\n\\nUNEMPLOYED\\nAll civilians 16 years old and over are classified as unemployed if they (1) were neither \\\"at work\\\" nor \\\"with a job but not at work\\\" during the reference week, and (2) were looking for work during the last 4 weeks, and (3) were available to accept a job. Also\\nincluded as unemployed are civilians who did not work at all during the reference week and were waiting to be called back to a job from which they had been laid off. \\n\\nExamples of job seeking activities are: \\n\\n-   Registering at a public or private employment office \\n\\n-   Meeting with prospective employers \\n\\n-   Investigating possibilities for starting a professional practice or opening a business\\n\\n-   Placing or answering advertisements \\n\\n-   Writing letters of application \\n\\n-   Being on a union or professional register\",\"primaryKey\":[\"EmploymentStatusId\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"EmploymentStatus.cdm.json/EmploymentStatus\",\"name\":\"EmploymentStatusId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of an Employment Status.\",\"isNullable\":false,\"name\":\"EmploymentStatusId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"EmploymentStatus.cdm.json/EmploymentStatus\",\"name\":\"EmploymentStatusName\"},\"dataType\":\"string\",\"dataTypeLength\":256,\"description\":\"The name of an Employment Status.\",\"isNullable\":true,\"name\":\"EmploymentStatusName\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"EmploymentStatus.cdm.json/EmploymentStatus\",\"name\":\"EmploymentStatusDescription\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"The description of an Employment Status.\",\"isNullable\":true,\"name\":\"EmploymentStatusDescription\"}]}}}",
+			"Description": "The Employment Status of the Individual.\n\nEx:\n- Full-Time Employee\n- Part-Time Employee\n- Contract Employee\n- Temporary Employee\n\nSource:  US Bureau of Census\n\nEMPLOYED\nAll civilians 16 years old and over who were either (1) \"at work\"--those who did any work at all during the reference week as paid employees, worked in their own business or profession, worked on their own farm, or worked 15 hours or more as unpaid workers on a family farm or in a family business; or (2) were \"with a job but not at work\"--those who did not work during the reference week but had jobs or businesses from which they were temporarily absent due to illness, bad weather, industrial dispute, vacation, or other personal reasons. Excluded from the employed are persons whose only activity consisted of work around the house or unpaid volunteer work for religious, charitable, and similar organizations; also excluded are persons on active duty in the United States Armed Forces.\n\nUNEMPLOYED\nAll civilians 16 years old and over are classified as unemployed if they (1) were neither \"at work\" nor \"with a job but not at work\" during the reference week, and (2) were looking for work during the last 4 weeks, and (3) were available to accept a job. Also\nincluded as unemployed are civilians who did not work at all during the reference week and were waiting to be called back to a job from which they had been laid off. \n\nExamples of job seeking activities are: \n\n-   Registering at a public or private employment office \n\n-   Meeting with prospective employers \n\n-   Investigating possibilities for starting a professional practice or opening a business\n\n-   Placing or answering advertisements \n\n-   Writing letters of application \n\n-   Being on a union or professional register",
+			"DisplayFolderInfo": "{\"name\":\"Human Resources & Payroll\",\"colorCode\":\"#042C59\"}",
+			"PrimaryKeys": "EmploymentStatusId",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

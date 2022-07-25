@@ -1,0 +1,113 @@
+{
+	"name": "InventoryValuationMethod",
+	"properties": {
+		"Name": "InventoryValuationMethod",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "The method selected by the company to account for inventory. \n\nIt determines the value of inventory on the balance sheet and the amount of expense recognized for cost of goods sold on the income statement.\n\nThe 3 most frequently used are:\n\n- FIFO (First In/First Out)\nThe method of valuing inventory which assumes that all issues or sales are charged at the most current cost but inventory are valued at the latest cost available.\n\n- LIFO (Last In/First Out) - Not permitted under IFRS\nThe method of valuing inventory which assumes that all issues or sales are charged at the most current cost but inventory are valued at the oldest cost available.\n\n- Average Cost\nThe method of valuing inventory which is based on the average cost of the Item over a period of time.\n\nOther methods include:\n- Periodic Method\n- Perpetual Method\n- Weighted Average\n- Specific Identification\n- Net Realizable Value\n- Lower Of Cost Or Market (LCM)\n- LCM - Item by Item\n- LCM - Total Replacement Cost\n- Gross Profit Method\n- Retail Inventory Method",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "InventoryValuationMethodId",
+					"Description": "The unique identifier of an Inventory Valuation Method.",
+					"BaseAttributeReference": {
+						"Entity": "InventoryValuationMethod.cdm.json/InventoryValuationMethod",
+						"Name": "InventoryValuationMethodId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "InventoryValuationMethodName",
+					"Description": "The name of an Inventory Valuation Method.",
+					"BaseAttributeReference": {
+						"Entity": "InventoryValuationMethod.cdm.json/InventoryValuationMethod",
+						"Name": "InventoryValuationMethodName"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 256,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "InventoryValuationMethodDescription",
+					"Description": "The description of an Inventory Valuation Method.",
+					"BaseAttributeReference": {
+						"Entity": "InventoryValuationMethod.cdm.json/InventoryValuationMethod",
+						"Name": "InventoryValuationMethodDescription"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/InventoryValuationMethod",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/InventoryValuationMethod",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"InventoryValuationMethodId\":{\"entity\":\"InventoryValuationMethod.cdm.json/InventoryValuationMethod\",\"name\":\"InventoryValuationMethodId\"},\"InventoryValuationMethodName\":{\"entity\":\"InventoryValuationMethod.cdm.json/InventoryValuationMethod\",\"name\":\"InventoryValuationMethodName\"},\"InventoryValuationMethodDescription\":{\"entity\":\"InventoryValuationMethod.cdm.json/InventoryValuationMethod\",\"name\":\"InventoryValuationMethodDescription\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"InventoryValuationMethod\",\"path\":\"InventoryValuationMethod.cdm.json/InventoryValuationMethod\"},\"description\":\"The method selected by the company to account for inventory. \\n\\nIt determines the value of inventory on the balance sheet and the amount of expense recognized for cost of goods sold on the income statement.\\n\\nThe 3 most frequently used are:\\n\\n- FIFO (First In/First Out)\\nThe method of valuing inventory which assumes that all issues or sales are charged at the most current cost but inventory are valued at the latest cost available.\\n\\n- LIFO (Last In/First Out) - Not permitted under IFRS\\nThe method of valuing inventory which assumes that all issues or sales are charged at the most current cost but inventory are valued at the oldest cost available.\\n\\n- Average Cost\\nThe method of valuing inventory which is based on the average cost of the Item over a period of time.\\n\\nOther methods include:\\n- Periodic Method\\n- Perpetual Method\\n- Weighted Average\\n- Specific Identification\\n- Net Realizable Value\\n- Lower Of Cost Or Market (LCM)\\n- LCM - Item by Item\\n- LCM - Total Replacement Cost\\n- Gross Profit Method\\n- Retail Inventory Method\",\"primaryKey\":[\"InventoryValuationMethodId\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"InventoryValuationMethod.cdm.json/InventoryValuationMethod\",\"name\":\"InventoryValuationMethodId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of an Inventory Valuation Method.\",\"isNullable\":false,\"name\":\"InventoryValuationMethodId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"InventoryValuationMethod.cdm.json/InventoryValuationMethod\",\"name\":\"InventoryValuationMethodName\"},\"dataType\":\"string\",\"dataTypeLength\":256,\"description\":\"The name of an Inventory Valuation Method.\",\"isNullable\":true,\"name\":\"InventoryValuationMethodName\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"InventoryValuationMethod.cdm.json/InventoryValuationMethod\",\"name\":\"InventoryValuationMethodDescription\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"The description of an Inventory Valuation Method.\",\"isNullable\":true,\"name\":\"InventoryValuationMethodDescription\"}]}}}",
+			"Description": "The method selected by the company to account for inventory. \n\nIt determines the value of inventory on the balance sheet and the amount of expense recognized for cost of goods sold on the income statement.\n\nThe 3 most frequently used are:\n\n- FIFO (First In/First Out)\nThe method of valuing inventory which assumes that all issues or sales are charged at the most current cost but inventory are valued at the latest cost available.\n\n- LIFO (Last In/First Out) - Not permitted under IFRS\nThe method of valuing inventory which assumes that all issues or sales are charged at the most current cost but inventory are valued at the oldest cost available.\n\n- Average Cost\nThe method of valuing inventory which is based on the average cost of the Item over a period of time.\n\nOther methods include:\n- Periodic Method\n- Perpetual Method\n- Weighted Average\n- Specific Identification\n- Net Realizable Value\n- Lower Of Cost Or Market (LCM)\n- LCM - Item by Item\n- LCM - Total Replacement Cost\n- Gross Profit Method\n- Retail Inventory Method",
+			"DisplayFolderInfo": "{\"name\":\"Accounting & Financial Reporting\",\"colorCode\":\"#0078D4\"}",
+			"PrimaryKeys": "InventoryValuationMethodId",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

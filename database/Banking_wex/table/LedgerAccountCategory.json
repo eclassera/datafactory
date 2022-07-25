@@ -1,0 +1,113 @@
+{
+	"name": "LedgerAccountCategory",
+	"properties": {
+		"Name": "LedgerAccountCategory",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "A categorization of ledger accounts based on their representational characteristics.\n\nThe chart of accounts will have three major types of accounts:\n\nEx:\n\nASSETS\n- Cash\n- A/R\n- Supplies\n- Equipment\n\nLIABILITIES\n- A/P\n- Notes Payable\n\nREVENUE AND EXPENSES\n- Service Revenue\n- Rental Revenue\n- Commission Revenue\n- Rent Expense\n- Salaries Expense\n- Insurance Expense",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "LedgerAccountCategoryId",
+					"Description": "The unique identifier of a Ledger Account Category.",
+					"BaseAttributeReference": {
+						"Entity": "LedgerAccountCategory.cdm.json/LedgerAccountCategory",
+						"Name": "LedgerAccountCategoryId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "LedgerAccountCategoryName",
+					"Description": "The name of a Ledger Account Category.",
+					"BaseAttributeReference": {
+						"Entity": "LedgerAccountCategory.cdm.json/LedgerAccountCategory",
+						"Name": "LedgerAccountCategoryName"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 256,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "LedgerAccountCategoryDescription",
+					"Description": "The description of a Ledger Account Category.",
+					"BaseAttributeReference": {
+						"Entity": "LedgerAccountCategory.cdm.json/LedgerAccountCategory",
+						"Name": "LedgerAccountCategoryDescription"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/LedgerAccountCategory",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/LedgerAccountCategory",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"LedgerAccountCategoryId\":{\"entity\":\"LedgerAccountCategory.cdm.json/LedgerAccountCategory\",\"name\":\"LedgerAccountCategoryId\"},\"LedgerAccountCategoryName\":{\"entity\":\"LedgerAccountCategory.cdm.json/LedgerAccountCategory\",\"name\":\"LedgerAccountCategoryName\"},\"LedgerAccountCategoryDescription\":{\"entity\":\"LedgerAccountCategory.cdm.json/LedgerAccountCategory\",\"name\":\"LedgerAccountCategoryDescription\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"LedgerAccountCategory\",\"path\":\"LedgerAccountCategory.cdm.json/LedgerAccountCategory\"},\"description\":\"A categorization of ledger accounts based on their representational characteristics.\\n\\nThe chart of accounts will have three major types of accounts:\\n\\nEx:\\n\\nASSETS\\n- Cash\\n- A/R\\n- Supplies\\n- Equipment\\n\\nLIABILITIES\\n- A/P\\n- Notes Payable\\n\\nREVENUE AND EXPENSES\\n- Service Revenue\\n- Rental Revenue\\n- Commission Revenue\\n- Rent Expense\\n- Salaries Expense\\n- Insurance Expense\",\"primaryKey\":[\"LedgerAccountCategoryId\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"LedgerAccountCategory.cdm.json/LedgerAccountCategory\",\"name\":\"LedgerAccountCategoryId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Ledger Account Category.\",\"isNullable\":false,\"name\":\"LedgerAccountCategoryId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"LedgerAccountCategory.cdm.json/LedgerAccountCategory\",\"name\":\"LedgerAccountCategoryName\"},\"dataType\":\"string\",\"dataTypeLength\":256,\"description\":\"The name of a Ledger Account Category.\",\"isNullable\":true,\"name\":\"LedgerAccountCategoryName\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"LedgerAccountCategory.cdm.json/LedgerAccountCategory\",\"name\":\"LedgerAccountCategoryDescription\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"The description of a Ledger Account Category.\",\"isNullable\":true,\"name\":\"LedgerAccountCategoryDescription\"}]}}}",
+			"Description": "A categorization of ledger accounts based on their representational characteristics.\n\nThe chart of accounts will have three major types of accounts:\n\nEx:\n\nASSETS\n- Cash\n- A/R\n- Supplies\n- Equipment\n\nLIABILITIES\n- A/P\n- Notes Payable\n\nREVENUE AND EXPENSES\n- Service Revenue\n- Rental Revenue\n- Commission Revenue\n- Rent Expense\n- Salaries Expense\n- Insurance Expense",
+			"DisplayFolderInfo": "{\"name\":\"Accounting & Financial Reporting\",\"colorCode\":\"#0078D4\"}",
+			"PrimaryKeys": "LedgerAccountCategoryId",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

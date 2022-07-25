@@ -1,0 +1,196 @@
+{
+	"name": "ExperianTaxLien",
+	"properties": {
+		"Name": "ExperianTaxLien",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "The business tax liens.",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "ExperianFileNumber",
+					"Description": "The unique and persistent number that identifies and tracks the Experian company.",
+					"BaseAttributeReference": {
+						"Entity": "ExperianTaxLien.cdm.json/ExperianTaxLien",
+						"Name": "ExperianFileNumber"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "ProfileTimestamp",
+					"Description": "The timestamp of the Experian profile.",
+					"BaseAttributeReference": {
+						"Entity": "ExperianTaxLien.cdm.json/ExperianTaxLien",
+						"Name": "ProfileTimestamp"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "timestamp",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"TimestampFormat": "YYYY-MM-DD HH:MM:SS.fffffffff",
+							"HIVE_TYPE_STRING": "timestamp"
+						}
+					}
+				},
+				{
+					"Name": "FilingNumber",
+					"Description": "The tax lien filing number.",
+					"BaseAttributeReference": {
+						"Entity": "ExperianTaxLien.cdm.json/ExperianTaxLien",
+						"Name": "FilingNumber"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "FilingDate",
+					"Description": "The tax lien filing date.",
+					"BaseAttributeReference": {
+						"Entity": "ExperianTaxLien.cdm.json/ExperianTaxLien",
+						"Name": "FilingDate"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "date",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"DateFormat": "YYYY-MM-DD",
+							"HIVE_TYPE_STRING": "date"
+						}
+					}
+				},
+				{
+					"Name": "LienAmount",
+					"Description": "The amount of the tax lien.",
+					"BaseAttributeReference": {
+						"Entity": "ExperianTaxLien.cdm.json/ExperianTaxLien",
+						"Name": "LienAmount"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "decimal",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Precision": 18,
+						"Scale": 2,
+						"Properties": {
+							"HIVE_TYPE_STRING": "decimal"
+						}
+					}
+				},
+				{
+					"Name": "JurisdictionName",
+					"Description": "The name of the jurisdiction.",
+					"BaseAttributeReference": {
+						"Entity": "ExperianTaxLien.cdm.json/ExperianTaxLien",
+						"Name": "JurisdictionName"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 256,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "ExperianTaxLienFilingTypeId",
+					"Description": "The unique identifier of an Experian tax lien filing type.",
+					"BaseAttributeReference": {
+						"Entity": "ExperianTaxLien.cdm.json/ExperianTaxLien",
+						"Name": "ExperianTaxLienFilingTypeId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "ExperianTaxLienStatusTypeId",
+					"Description": "The unique identifier of an Experian tax lien status type.",
+					"BaseAttributeReference": {
+						"Entity": "ExperianTaxLien.cdm.json/ExperianTaxLien",
+						"Name": "ExperianTaxLienStatusTypeId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/ExperianTaxLien",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/ExperianTaxLien",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"ExperianFileNumber\":{\"entity\":\"ExperianTaxLien.cdm.json/ExperianTaxLien\",\"name\":\"ExperianFileNumber\"},\"ProfileTimestamp\":{\"entity\":\"ExperianTaxLien.cdm.json/ExperianTaxLien\",\"name\":\"ProfileTimestamp\"},\"FilingNumber\":{\"entity\":\"ExperianTaxLien.cdm.json/ExperianTaxLien\",\"name\":\"FilingNumber\"},\"FilingDate\":{\"entity\":\"ExperianTaxLien.cdm.json/ExperianTaxLien\",\"name\":\"FilingDate\"},\"LienAmount\":{\"entity\":\"ExperianTaxLien.cdm.json/ExperianTaxLien\",\"name\":\"LienAmount\"},\"JurisdictionName\":{\"entity\":\"ExperianTaxLien.cdm.json/ExperianTaxLien\",\"name\":\"JurisdictionName\"},\"ExperianTaxLienFilingTypeId\":{\"entity\":\"ExperianTaxLien.cdm.json/ExperianTaxLien\",\"name\":\"ExperianTaxLienFilingTypeId\"},\"ExperianTaxLienStatusTypeId\":{\"entity\":\"ExperianTaxLien.cdm.json/ExperianTaxLien\",\"name\":\"ExperianTaxLienStatusTypeId\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"ExperianTaxLien\",\"path\":\"ExperianTaxLien.cdm.json/ExperianTaxLien\"},\"description\":\"The business tax liens.\",\"primaryKey\":[\"ExperianFileNumber\",\"ProfileTimestamp\",\"FilingNumber\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ExperianTaxLien.cdm.json/ExperianTaxLien\",\"name\":\"ExperianFileNumber\"},\"dataType\":\"integer\",\"description\":\"The unique and persistent number that identifies and tracks the Experian company.\",\"isNullable\":false,\"name\":\"ExperianFileNumber\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ExperianTaxLien.cdm.json/ExperianTaxLien\",\"name\":\"ProfileTimestamp\"},\"dataType\":\"timestamp\",\"description\":\"The timestamp of the Experian profile.\",\"isNullable\":false,\"name\":\"ProfileTimestamp\",\"timestampFormat\":\"YYYY-MM-DD HH:MM:SS.fffffffff\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ExperianTaxLien.cdm.json/ExperianTaxLien\",\"name\":\"FilingNumber\"},\"dataType\":\"integer\",\"description\":\"The tax lien filing number.\",\"isNullable\":false,\"name\":\"FilingNumber\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ExperianTaxLien.cdm.json/ExperianTaxLien\",\"name\":\"FilingDate\"},\"dataType\":\"date\",\"dateFormat\":\"YYYY-MM-DD\",\"description\":\"The tax lien filing date.\",\"isNullable\":true,\"name\":\"FilingDate\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ExperianTaxLien.cdm.json/ExperianTaxLien\",\"name\":\"LienAmount\"},\"dataType\":\"decimal\",\"dataTypeLength\":18,\"description\":\"The amount of the tax lien.\",\"isNullable\":true,\"scale\":2,\"name\":\"LienAmount\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ExperianTaxLien.cdm.json/ExperianTaxLien\",\"name\":\"JurisdictionName\"},\"dataType\":\"string\",\"dataTypeLength\":256,\"description\":\"The name of the jurisdiction.\",\"isNullable\":true,\"name\":\"JurisdictionName\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ExperianTaxLien.cdm.json/ExperianTaxLien\",\"name\":\"ExperianTaxLienFilingTypeId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of an Experian tax lien filing type.\",\"isNullable\":true,\"name\":\"ExperianTaxLienFilingTypeId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ExperianTaxLien.cdm.json/ExperianTaxLien\",\"name\":\"ExperianTaxLienStatusTypeId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of an Experian tax lien status type.\",\"isNullable\":true,\"name\":\"ExperianTaxLienStatusTypeId\"}]}}}",
+			"Description": "The business tax liens.",
+			"DisplayFolderInfo": "{\"name\":\"Customer Credit & Collections\",\"colorCode\":\"#022F22\"}",
+			"PrimaryKeys": "ExperianFileNumber,ProfileTimestamp,FilingNumber",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

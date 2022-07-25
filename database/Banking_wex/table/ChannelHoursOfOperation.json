@@ -1,0 +1,213 @@
+{
+	"name": "ChannelHoursOfOperation",
+	"properties": {
+		"Name": "ChannelHoursOfOperation",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "The Channel hours of operation on a particular date at the site where it is located.",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "ChannelId",
+					"Description": "The unique identifier of a Channel.",
+					"BaseAttributeReference": {
+						"Entity": "ChannelHoursOfOperation.cdm.json/ChannelHoursOfOperation",
+						"Name": "ChannelId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "DayOfWeekId",
+					"Description": "The unique identifier of a Day Of Week.",
+					"BaseAttributeReference": {
+						"Entity": "ChannelHoursOfOperation.cdm.json/ChannelHoursOfOperation",
+						"Name": "DayOfWeekId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "PeriodStartDate",
+					"Description": "The period start date for which the channel hours of operation are valid.",
+					"BaseAttributeReference": {
+						"Entity": "ChannelHoursOfOperation.cdm.json/ChannelHoursOfOperation",
+						"Name": "PeriodStartDate"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "date",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"DateFormat": "YYYY-MM-DD",
+							"HIVE_TYPE_STRING": "date"
+						}
+					}
+				},
+				{
+					"Name": "PeriodEndDate",
+					"Description": "The period end date for which the channel hours of operation are valid.",
+					"BaseAttributeReference": {
+						"Entity": "ChannelHoursOfOperation.cdm.json/ChannelHoursOfOperation",
+						"Name": "PeriodEndDate"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "date",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"DateFormat": "YYYY-MM-DD",
+							"HIVE_TYPE_STRING": "date"
+						}
+					}
+				},
+				{
+					"Name": "OperationStartTime",
+					"Description": "The starting or opening time of operation for the Channel",
+					"BaseAttributeReference": {
+						"Entity": "ChannelHoursOfOperation.cdm.json/ChannelHoursOfOperation",
+						"Name": "OperationStartTime"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Length": 256,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "OperationEndTime",
+					"Description": "The closing or ending time of operation for the Channel.",
+					"BaseAttributeReference": {
+						"Entity": "ChannelHoursOfOperation.cdm.json/ChannelHoursOfOperation",
+						"Name": "OperationEndTime"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Length": 256,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "HolidayIndicator",
+					"Description": "Indicates that the associated date is a holiday.",
+					"BaseAttributeReference": {
+						"Entity": "ChannelHoursOfOperation.cdm.json/ChannelHoursOfOperation",
+						"Name": "HolidayIndicator"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "boolean",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"HIVE_TYPE_STRING": "boolean"
+						}
+					}
+				},
+				{
+					"Name": "HolidayName",
+					"Description": "The name of the associated holiday.",
+					"BaseAttributeReference": {
+						"Entity": "ChannelHoursOfOperation.cdm.json/ChannelHoursOfOperation",
+						"Name": "HolidayName"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 256,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "ChannelHoursOfOperationNote",
+					"Description": "A note, comment or additional information regarding a channel hours of operation.",
+					"BaseAttributeReference": {
+						"Entity": "ChannelHoursOfOperation.cdm.json/ChannelHoursOfOperation",
+						"Name": "ChannelHoursOfOperationNote"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/ChannelHoursOfOperation",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/ChannelHoursOfOperation",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"ChannelId\":{\"entity\":\"ChannelHoursOfOperation.cdm.json/ChannelHoursOfOperation\",\"name\":\"ChannelId\"},\"DayOfWeekId\":{\"entity\":\"ChannelHoursOfOperation.cdm.json/ChannelHoursOfOperation\",\"name\":\"DayOfWeekId\"},\"PeriodStartDate\":{\"entity\":\"ChannelHoursOfOperation.cdm.json/ChannelHoursOfOperation\",\"name\":\"PeriodStartDate\"},\"PeriodEndDate\":{\"entity\":\"ChannelHoursOfOperation.cdm.json/ChannelHoursOfOperation\",\"name\":\"PeriodEndDate\"},\"OperationStartTime\":{\"entity\":\"ChannelHoursOfOperation.cdm.json/ChannelHoursOfOperation\",\"name\":\"OperationStartTime\"},\"OperationEndTime\":{\"entity\":\"ChannelHoursOfOperation.cdm.json/ChannelHoursOfOperation\",\"name\":\"OperationEndTime\"},\"HolidayIndicator\":{\"entity\":\"ChannelHoursOfOperation.cdm.json/ChannelHoursOfOperation\",\"name\":\"HolidayIndicator\"},\"HolidayName\":{\"entity\":\"ChannelHoursOfOperation.cdm.json/ChannelHoursOfOperation\",\"name\":\"HolidayName\"},\"ChannelHoursOfOperationNote\":{\"entity\":\"ChannelHoursOfOperation.cdm.json/ChannelHoursOfOperation\",\"name\":\"ChannelHoursOfOperationNote\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"ChannelHoursOfOperation\",\"path\":\"ChannelHoursOfOperation.cdm.json/ChannelHoursOfOperation\"},\"description\":\"The Channel hours of operation on a particular date at the site where it is located.\",\"primaryKey\":[\"ChannelId\",\"DayOfWeekId\",\"PeriodStartDate\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ChannelHoursOfOperation.cdm.json/ChannelHoursOfOperation\",\"name\":\"ChannelId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Channel.\",\"isNullable\":false,\"name\":\"ChannelId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ChannelHoursOfOperation.cdm.json/ChannelHoursOfOperation\",\"name\":\"DayOfWeekId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Day Of Week.\",\"isNullable\":false,\"name\":\"DayOfWeekId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ChannelHoursOfOperation.cdm.json/ChannelHoursOfOperation\",\"name\":\"PeriodStartDate\"},\"dataType\":\"date\",\"dateFormat\":\"YYYY-MM-DD\",\"description\":\"The period start date for which the channel hours of operation are valid.\",\"isNullable\":false,\"name\":\"PeriodStartDate\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ChannelHoursOfOperation.cdm.json/ChannelHoursOfOperation\",\"name\":\"PeriodEndDate\"},\"dataType\":\"date\",\"dateFormat\":\"YYYY-MM-DD\",\"description\":\"The period end date for which the channel hours of operation are valid.\",\"isNullable\":false,\"name\":\"PeriodEndDate\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ChannelHoursOfOperation.cdm.json/ChannelHoursOfOperation\",\"name\":\"OperationStartTime\"},\"dataType\":\"string\",\"dataTypeLength\":256,\"description\":\"The starting or opening time of operation for the Channel\",\"isNullable\":false,\"name\":\"OperationStartTime\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ChannelHoursOfOperation.cdm.json/ChannelHoursOfOperation\",\"name\":\"OperationEndTime\"},\"dataType\":\"string\",\"dataTypeLength\":256,\"description\":\"The closing or ending time of operation for the Channel.\",\"isNullable\":false,\"name\":\"OperationEndTime\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ChannelHoursOfOperation.cdm.json/ChannelHoursOfOperation\",\"name\":\"HolidayIndicator\"},\"dataType\":\"boolean\",\"description\":\"Indicates that the associated date is a holiday.\",\"isNullable\":true,\"name\":\"HolidayIndicator\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ChannelHoursOfOperation.cdm.json/ChannelHoursOfOperation\",\"name\":\"HolidayName\"},\"dataType\":\"string\",\"dataTypeLength\":256,\"description\":\"The name of the associated holiday.\",\"isNullable\":true,\"name\":\"HolidayName\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ChannelHoursOfOperation.cdm.json/ChannelHoursOfOperation\",\"name\":\"ChannelHoursOfOperationNote\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"A note, comment or additional information regarding a channel hours of operation.\",\"isNullable\":true,\"name\":\"ChannelHoursOfOperationNote\"}]}}}",
+			"Description": "The Channel hours of operation on a particular date at the site where it is located.",
+			"DisplayFolderInfo": "{\"name\":\"Channel\",\"colorCode\":\"#001D3F\"}",
+			"PrimaryKeys": "ChannelId,DayOfWeekId,PeriodStartDate",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

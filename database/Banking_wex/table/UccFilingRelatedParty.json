@@ -1,0 +1,162 @@
+{
+	"name": "UccFilingRelatedParty",
+	"properties": {
+		"Name": "UccFilingRelatedParty",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "A party that has a relationship with the UCC Filing over the indicated period.\n\n Ex:\n- Creditor\n- Debtor\n- Creditor Attorney",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "UccFilingNumber",
+					"Description": "The unique identifier of the UCC filing.",
+					"BaseAttributeReference": {
+						"Entity": "UccFilingRelatedParty.cdm.json/UccFilingRelatedParty",
+						"Name": "UccFilingNumber"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "PartyId",
+					"Description": "The unique identifier of a Party.",
+					"BaseAttributeReference": {
+						"Entity": "UccFilingRelatedParty.cdm.json/UccFilingRelatedParty",
+						"Name": "PartyId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "long",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "long"
+						}
+					}
+				},
+				{
+					"Name": "UccFilingPartyRelationshipTypeId",
+					"Description": "The unique identifier of a UCC Filing - Party  relationship type.",
+					"BaseAttributeReference": {
+						"Entity": "UccFilingRelatedParty.cdm.json/UccFilingRelatedParty",
+						"Name": "UccFilingPartyRelationshipTypeId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "PeriodStartDate",
+					"Description": "The period start date for which the associated UCC filing - party relationship is valid or in-effect.",
+					"BaseAttributeReference": {
+						"Entity": "UccFilingRelatedParty.cdm.json/UccFilingRelatedParty",
+						"Name": "PeriodStartDate"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "date",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"DateFormat": "YYYY-MM-DD",
+							"HIVE_TYPE_STRING": "date"
+						}
+					}
+				},
+				{
+					"Name": "PeriodEndDate",
+					"Description": "The period end date for which the associated UCC filing - party relationship is valid or in-effect.",
+					"BaseAttributeReference": {
+						"Entity": "UccFilingRelatedParty.cdm.json/UccFilingRelatedParty",
+						"Name": "PeriodEndDate"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "date",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"DateFormat": "YYYY-MM-DD",
+							"HIVE_TYPE_STRING": "date"
+						}
+					}
+				},
+				{
+					"Name": "UccFilingPartyRelationshipNote",
+					"Description": "A note, comment or additional information regarding the UCC filing - party relationship.",
+					"BaseAttributeReference": {
+						"Entity": "UccFilingRelatedParty.cdm.json/UccFilingRelatedParty",
+						"Name": "UccFilingPartyRelationshipNote"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/UccFilingRelatedParty",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/UccFilingRelatedParty",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"UccFilingNumber\":{\"entity\":\"UccFilingRelatedParty.cdm.json/UccFilingRelatedParty\",\"name\":\"UccFilingNumber\"},\"PartyId\":{\"entity\":\"UccFilingRelatedParty.cdm.json/UccFilingRelatedParty\",\"name\":\"PartyId\"},\"UccFilingPartyRelationshipTypeId\":{\"entity\":\"UccFilingRelatedParty.cdm.json/UccFilingRelatedParty\",\"name\":\"UccFilingPartyRelationshipTypeId\"},\"PeriodStartDate\":{\"entity\":\"UccFilingRelatedParty.cdm.json/UccFilingRelatedParty\",\"name\":\"PeriodStartDate\"},\"PeriodEndDate\":{\"entity\":\"UccFilingRelatedParty.cdm.json/UccFilingRelatedParty\",\"name\":\"PeriodEndDate\"},\"UccFilingPartyRelationshipNote\":{\"entity\":\"UccFilingRelatedParty.cdm.json/UccFilingRelatedParty\",\"name\":\"UccFilingPartyRelationshipNote\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"UccFilingRelatedParty\",\"path\":\"UccFilingRelatedParty.cdm.json/UccFilingRelatedParty\"},\"description\":\"A party that has a relationship with the UCC Filing over the indicated period.\\n\\n Ex:\\n- Creditor\\n- Debtor\\n- Creditor Attorney\",\"primaryKey\":[\"UccFilingNumber\",\"PartyId\",\"UccFilingPartyRelationshipTypeId\",\"PeriodStartDate\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"UccFilingRelatedParty.cdm.json/UccFilingRelatedParty\",\"name\":\"UccFilingNumber\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of the UCC filing.\",\"isNullable\":false,\"name\":\"UccFilingNumber\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"UccFilingRelatedParty.cdm.json/UccFilingRelatedParty\",\"name\":\"PartyId\"},\"dataType\":\"long\",\"description\":\"The unique identifier of a Party.\",\"isNullable\":false,\"name\":\"PartyId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"UccFilingRelatedParty.cdm.json/UccFilingRelatedParty\",\"name\":\"UccFilingPartyRelationshipTypeId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a UCC Filing - Party  relationship type.\",\"isNullable\":false,\"name\":\"UccFilingPartyRelationshipTypeId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"UccFilingRelatedParty.cdm.json/UccFilingRelatedParty\",\"name\":\"PeriodStartDate\"},\"dataType\":\"date\",\"dateFormat\":\"YYYY-MM-DD\",\"description\":\"The period start date for which the associated UCC filing - party relationship is valid or in-effect.\",\"isNullable\":false,\"name\":\"PeriodStartDate\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"UccFilingRelatedParty.cdm.json/UccFilingRelatedParty\",\"name\":\"PeriodEndDate\"},\"dataType\":\"date\",\"dateFormat\":\"YYYY-MM-DD\",\"description\":\"The period end date for which the associated UCC filing - party relationship is valid or in-effect.\",\"isNullable\":true,\"name\":\"PeriodEndDate\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"UccFilingRelatedParty.cdm.json/UccFilingRelatedParty\",\"name\":\"UccFilingPartyRelationshipNote\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"A note, comment or additional information regarding the UCC filing - party relationship.\",\"isNullable\":true,\"name\":\"UccFilingPartyRelationshipNote\"}]}}}",
+			"Description": "A party that has a relationship with the UCC Filing over the indicated period.\n\n Ex:\n- Creditor\n- Debtor\n- Creditor Attorney",
+			"DisplayFolderInfo": "{\"name\":\"Customer Credit & Collections\",\"colorCode\":\"#022F22\"}",
+			"PrimaryKeys": "UccFilingNumber,PartyId,UccFilingPartyRelationshipTypeId,PeriodStartDate",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

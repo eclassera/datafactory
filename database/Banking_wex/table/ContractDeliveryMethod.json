@@ -1,0 +1,113 @@
+{
+	"name": "ContractDeliveryMethod",
+	"properties": {
+		"Name": "ContractDeliveryMethod",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "The method by which the contract was delivered to the party.\n\nEx:\n- Mail\n- Registered Mail\n- FedEx\n- UPS\n- Courier",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "ContractDeliveryMethodId",
+					"Description": "The unique identifier of a contract delivery method.",
+					"BaseAttributeReference": {
+						"Entity": "ContractDeliveryMethod.cdm.json/ContractDeliveryMethod",
+						"Name": "ContractDeliveryMethodId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "ContractDeliveryMethodName",
+					"Description": "The name of a contract delivery method.",
+					"BaseAttributeReference": {
+						"Entity": "ContractDeliveryMethod.cdm.json/ContractDeliveryMethod",
+						"Name": "ContractDeliveryMethodName"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 256,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "ContractDeliveryMethodDescription",
+					"Description": "The description of a contract delivery method.",
+					"BaseAttributeReference": {
+						"Entity": "ContractDeliveryMethod.cdm.json/ContractDeliveryMethod",
+						"Name": "ContractDeliveryMethodDescription"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/ContractDeliveryMethod",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/ContractDeliveryMethod",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"ContractDeliveryMethodId\":{\"entity\":\"ContractDeliveryMethod.cdm.json/ContractDeliveryMethod\",\"name\":\"ContractDeliveryMethodId\"},\"ContractDeliveryMethodName\":{\"entity\":\"ContractDeliveryMethod.cdm.json/ContractDeliveryMethod\",\"name\":\"ContractDeliveryMethodName\"},\"ContractDeliveryMethodDescription\":{\"entity\":\"ContractDeliveryMethod.cdm.json/ContractDeliveryMethod\",\"name\":\"ContractDeliveryMethodDescription\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"ContractDeliveryMethod\",\"path\":\"ContractDeliveryMethod.cdm.json/ContractDeliveryMethod\"},\"description\":\"The method by which the contract was delivered to the party.\\n\\nEx:\\n- Mail\\n- Registered Mail\\n- FedEx\\n- UPS\\n- Courier\",\"primaryKey\":[\"ContractDeliveryMethodId\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ContractDeliveryMethod.cdm.json/ContractDeliveryMethod\",\"name\":\"ContractDeliveryMethodId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a contract delivery method.\",\"isNullable\":false,\"name\":\"ContractDeliveryMethodId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ContractDeliveryMethod.cdm.json/ContractDeliveryMethod\",\"name\":\"ContractDeliveryMethodName\"},\"dataType\":\"string\",\"dataTypeLength\":256,\"description\":\"The name of a contract delivery method.\",\"isNullable\":true,\"name\":\"ContractDeliveryMethodName\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ContractDeliveryMethod.cdm.json/ContractDeliveryMethod\",\"name\":\"ContractDeliveryMethodDescription\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"The description of a contract delivery method.\",\"isNullable\":true,\"name\":\"ContractDeliveryMethodDescription\"}]}}}",
+			"Description": "The method by which the contract was delivered to the party.\n\nEx:\n- Mail\n- Registered Mail\n- FedEx\n- UPS\n- Courier",
+			"DisplayFolderInfo": "{\"name\":\"Contract\",\"colorCode\":\"#917EDB\"}",
+			"PrimaryKeys": "ContractDeliveryMethodId",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

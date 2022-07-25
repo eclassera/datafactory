@@ -1,0 +1,146 @@
+{
+	"name": "CustomerGroupCustomer",
+	"properties": {
+		"Name": "CustomerGroupCustomer",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "The Customer(s) that comprise or are members of the associated Customer Group.",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "CustomerGroupId",
+					"Description": "The unique identifier of a Customer Group.",
+					"BaseAttributeReference": {
+						"Entity": "CustomerGroupCustomer.cdm.json/CustomerGroupCustomer",
+						"Name": "CustomerGroupId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "CustomerId",
+					"Description": "The unique identifier of a Customer.",
+					"BaseAttributeReference": {
+						"Entity": "CustomerGroupCustomer.cdm.json/CustomerGroupCustomer",
+						"Name": "CustomerId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "long",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "long"
+						}
+					}
+				},
+				{
+					"Name": "PeriodStartDate",
+					"Description": "The period start date of the customer relationship.",
+					"BaseAttributeReference": {
+						"Entity": "CustomerGroupCustomer.cdm.json/CustomerGroupCustomer",
+						"Name": "PeriodStartDate"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "date",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"DateFormat": "YYYY-MM-DD",
+							"HIVE_TYPE_STRING": "date"
+						}
+					}
+				},
+				{
+					"Name": "PeriodEndDate",
+					"Description": "The period end date of the customer relationship.",
+					"BaseAttributeReference": {
+						"Entity": "CustomerGroupCustomer.cdm.json/CustomerGroupCustomer",
+						"Name": "PeriodEndDate"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "date",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"DateFormat": "YYYY-MM-DD",
+							"HIVE_TYPE_STRING": "date"
+						}
+					}
+				},
+				{
+					"Name": "CustomerGroupNote",
+					"Description": "A note, comment or additional information regarding the customer group affiliation.",
+					"BaseAttributeReference": {
+						"Entity": "CustomerGroupCustomer.cdm.json/CustomerGroupCustomer",
+						"Name": "CustomerGroupNote"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/CustomerGroupCustomer",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/CustomerGroupCustomer",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"CustomerGroupId\":{\"entity\":\"CustomerGroupCustomer.cdm.json/CustomerGroupCustomer\",\"name\":\"CustomerGroupId\"},\"CustomerId\":{\"entity\":\"CustomerGroupCustomer.cdm.json/CustomerGroupCustomer\",\"name\":\"CustomerId\"},\"PeriodStartDate\":{\"entity\":\"CustomerGroupCustomer.cdm.json/CustomerGroupCustomer\",\"name\":\"PeriodStartDate\"},\"PeriodEndDate\":{\"entity\":\"CustomerGroupCustomer.cdm.json/CustomerGroupCustomer\",\"name\":\"PeriodEndDate\"},\"CustomerGroupNote\":{\"entity\":\"CustomerGroupCustomer.cdm.json/CustomerGroupCustomer\",\"name\":\"CustomerGroupNote\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"CustomerGroupCustomer\",\"path\":\"CustomerGroupCustomer.cdm.json/CustomerGroupCustomer\"},\"description\":\"The Customer(s) that comprise or are members of the associated Customer Group.\",\"primaryKey\":[\"CustomerGroupId\",\"CustomerId\",\"PeriodStartDate\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CustomerGroupCustomer.cdm.json/CustomerGroupCustomer\",\"name\":\"CustomerGroupId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Customer Group.\",\"isNullable\":false,\"name\":\"CustomerGroupId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CustomerGroupCustomer.cdm.json/CustomerGroupCustomer\",\"name\":\"CustomerId\"},\"dataType\":\"long\",\"description\":\"The unique identifier of a Customer.\",\"isNullable\":false,\"name\":\"CustomerId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CustomerGroupCustomer.cdm.json/CustomerGroupCustomer\",\"name\":\"PeriodStartDate\"},\"dataType\":\"date\",\"dateFormat\":\"YYYY-MM-DD\",\"description\":\"The period start date of the customer relationship.\",\"isNullable\":false,\"name\":\"PeriodStartDate\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CustomerGroupCustomer.cdm.json/CustomerGroupCustomer\",\"name\":\"PeriodEndDate\"},\"dataType\":\"date\",\"dateFormat\":\"YYYY-MM-DD\",\"description\":\"The period end date of the customer relationship.\",\"isNullable\":true,\"name\":\"PeriodEndDate\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CustomerGroupCustomer.cdm.json/CustomerGroupCustomer\",\"name\":\"CustomerGroupNote\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"A note, comment or additional information regarding the customer group affiliation.\",\"isNullable\":true,\"name\":\"CustomerGroupNote\"}]}}}",
+			"Description": "The Customer(s) that comprise or are members of the associated Customer Group.",
+			"DisplayFolderInfo": "{\"name\":\"Customer\",\"colorCode\":\"#4B003F\"}",
+			"PrimaryKeys": "CustomerGroupId,CustomerId,PeriodStartDate",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

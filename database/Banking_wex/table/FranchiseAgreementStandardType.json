@@ -1,0 +1,113 @@
+{
+	"name": "FranchiseAgreementStandardType",
+	"properties": {
+		"Name": "FranchiseAgreementStandardType",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "A standard that the franchise requires compliance with.\n\nEx:\n- Premises cleanliness\n- Lighting",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "FranchiseAgreementStandardTypeId",
+					"Description": "The unique identifier of a franchise agreement standard type.",
+					"BaseAttributeReference": {
+						"Entity": "FranchiseAgreementStandardType.cdm.json/FranchiseAgreementStandardType",
+						"Name": "FranchiseAgreementStandardTypeId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "FranchiseAgreementStandardTypeName",
+					"Description": "The name of a franchise agreement standard type.",
+					"BaseAttributeReference": {
+						"Entity": "FranchiseAgreementStandardType.cdm.json/FranchiseAgreementStandardType",
+						"Name": "FranchiseAgreementStandardTypeName"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 256,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "FranchiseAgreementStandardTypeDescription",
+					"Description": "The description of a franchise agreement standard type.",
+					"BaseAttributeReference": {
+						"Entity": "FranchiseAgreementStandardType.cdm.json/FranchiseAgreementStandardType",
+						"Name": "FranchiseAgreementStandardTypeDescription"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/FranchiseAgreementStandardType",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/FranchiseAgreementStandardType",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"FranchiseAgreementStandardTypeId\":{\"entity\":\"FranchiseAgreementStandardType.cdm.json/FranchiseAgreementStandardType\",\"name\":\"FranchiseAgreementStandardTypeId\"},\"FranchiseAgreementStandardTypeName\":{\"entity\":\"FranchiseAgreementStandardType.cdm.json/FranchiseAgreementStandardType\",\"name\":\"FranchiseAgreementStandardTypeName\"},\"FranchiseAgreementStandardTypeDescription\":{\"entity\":\"FranchiseAgreementStandardType.cdm.json/FranchiseAgreementStandardType\",\"name\":\"FranchiseAgreementStandardTypeDescription\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"FranchiseAgreementStandardType\",\"path\":\"FranchiseAgreementStandardType.cdm.json/FranchiseAgreementStandardType\"},\"description\":\"A standard that the franchise requires compliance with.\\n\\nEx:\\n- Premises cleanliness\\n- Lighting\",\"primaryKey\":[\"FranchiseAgreementStandardTypeId\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"FranchiseAgreementStandardType.cdm.json/FranchiseAgreementStandardType\",\"name\":\"FranchiseAgreementStandardTypeId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a franchise agreement standard type.\",\"isNullable\":false,\"name\":\"FranchiseAgreementStandardTypeId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"FranchiseAgreementStandardType.cdm.json/FranchiseAgreementStandardType\",\"name\":\"FranchiseAgreementStandardTypeName\"},\"dataType\":\"string\",\"dataTypeLength\":256,\"description\":\"The name of a franchise agreement standard type.\",\"isNullable\":true,\"name\":\"FranchiseAgreementStandardTypeName\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"FranchiseAgreementStandardType.cdm.json/FranchiseAgreementStandardType\",\"name\":\"FranchiseAgreementStandardTypeDescription\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"The description of a franchise agreement standard type.\",\"isNullable\":true,\"name\":\"FranchiseAgreementStandardTypeDescription\"}]}}}",
+			"Description": "A standard that the franchise requires compliance with.\n\nEx:\n- Premises cleanliness\n- Lighting",
+			"DisplayFolderInfo": "{\"name\":\"Contract\",\"colorCode\":\"#917EDB\"}",
+			"PrimaryKeys": "FranchiseAgreementStandardTypeId",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

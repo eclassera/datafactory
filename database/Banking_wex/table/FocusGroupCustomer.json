@@ -1,0 +1,146 @@
+{
+	"name": "FocusGroupCustomer",
+	"properties": {
+		"Name": "FocusGroupCustomer",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "The one of more Focus Groups that the Customer is a member of.\n\nA special interest group that focuses upon a specific Product or Product usage.\n\nFocus Groups are most often manufacturer-sponsored groups designed to provide feedback directly to the manufacturer regarding their products prior to product mass marketing.",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "FocusGroupId",
+					"Description": "The unique identifier of the Focus Group.",
+					"BaseAttributeReference": {
+						"Entity": "FocusGroupCustomer.cdm.json/FocusGroupCustomer",
+						"Name": "FocusGroupId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "CustomerId",
+					"Description": "The unique identifier of a Customer.",
+					"BaseAttributeReference": {
+						"Entity": "FocusGroupCustomer.cdm.json/FocusGroupCustomer",
+						"Name": "CustomerId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "long",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "long"
+						}
+					}
+				},
+				{
+					"Name": "PeriodStartDate",
+					"Description": "The period start date of the Focus Group - Customer association.",
+					"BaseAttributeReference": {
+						"Entity": "FocusGroupCustomer.cdm.json/FocusGroupCustomer",
+						"Name": "PeriodStartDate"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "date",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"DateFormat": "YYYY-MM-DD",
+							"HIVE_TYPE_STRING": "date"
+						}
+					}
+				},
+				{
+					"Name": "PeriodEndDate",
+					"Description": "The period end date of the Focus Group - Customer association.",
+					"BaseAttributeReference": {
+						"Entity": "FocusGroupCustomer.cdm.json/FocusGroupCustomer",
+						"Name": "PeriodEndDate"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "date",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"DateFormat": "YYYY-MM-DD",
+							"HIVE_TYPE_STRING": "date"
+						}
+					}
+				},
+				{
+					"Name": "FocusGroupMembershipNote",
+					"Description": "A note, comment or additional detail regarding the Focus Group membership.",
+					"BaseAttributeReference": {
+						"Entity": "FocusGroupCustomer.cdm.json/FocusGroupCustomer",
+						"Name": "FocusGroupMembershipNote"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/FocusGroupCustomer",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/FocusGroupCustomer",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"FocusGroupId\":{\"entity\":\"FocusGroupCustomer.cdm.json/FocusGroupCustomer\",\"name\":\"FocusGroupId\"},\"CustomerId\":{\"entity\":\"FocusGroupCustomer.cdm.json/FocusGroupCustomer\",\"name\":\"CustomerId\"},\"PeriodStartDate\":{\"entity\":\"FocusGroupCustomer.cdm.json/FocusGroupCustomer\",\"name\":\"PeriodStartDate\"},\"PeriodEndDate\":{\"entity\":\"FocusGroupCustomer.cdm.json/FocusGroupCustomer\",\"name\":\"PeriodEndDate\"},\"FocusGroupMembershipNote\":{\"entity\":\"FocusGroupCustomer.cdm.json/FocusGroupCustomer\",\"name\":\"FocusGroupMembershipNote\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"FocusGroupCustomer\",\"path\":\"FocusGroupCustomer.cdm.json/FocusGroupCustomer\"},\"description\":\"The one of more Focus Groups that the Customer is a member of.\\n\\nA special interest group that focuses upon a specific Product or Product usage.\\n\\nFocus Groups are most often manufacturer-sponsored groups designed to provide feedback directly to the manufacturer regarding their products prior to product mass marketing.\",\"primaryKey\":[\"FocusGroupId\",\"CustomerId\",\"PeriodStartDate\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"FocusGroupCustomer.cdm.json/FocusGroupCustomer\",\"name\":\"FocusGroupId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of the Focus Group.\",\"isNullable\":false,\"name\":\"FocusGroupId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"FocusGroupCustomer.cdm.json/FocusGroupCustomer\",\"name\":\"CustomerId\"},\"dataType\":\"long\",\"description\":\"The unique identifier of a Customer.\",\"isNullable\":false,\"name\":\"CustomerId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"FocusGroupCustomer.cdm.json/FocusGroupCustomer\",\"name\":\"PeriodStartDate\"},\"dataType\":\"date\",\"dateFormat\":\"YYYY-MM-DD\",\"description\":\"The period start date of the Focus Group - Customer association.\",\"isNullable\":false,\"name\":\"PeriodStartDate\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"FocusGroupCustomer.cdm.json/FocusGroupCustomer\",\"name\":\"PeriodEndDate\"},\"dataType\":\"date\",\"dateFormat\":\"YYYY-MM-DD\",\"description\":\"The period end date of the Focus Group - Customer association.\",\"isNullable\":false,\"name\":\"PeriodEndDate\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"FocusGroupCustomer.cdm.json/FocusGroupCustomer\",\"name\":\"FocusGroupMembershipNote\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"A note, comment or additional detail regarding the Focus Group membership.\",\"isNullable\":true,\"name\":\"FocusGroupMembershipNote\"}]}}}",
+			"Description": "The one of more Focus Groups that the Customer is a member of.\n\nA special interest group that focuses upon a specific Product or Product usage.\n\nFocus Groups are most often manufacturer-sponsored groups designed to provide feedback directly to the manufacturer regarding their products prior to product mass marketing.",
+			"DisplayFolderInfo": "{\"name\":\"Customer\",\"colorCode\":\"#4B003F\"}",
+			"PrimaryKeys": "FocusGroupId,CustomerId,PeriodStartDate",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

@@ -1,0 +1,113 @@
+{
+	"name": "ItemType",
+	"properties": {
+		"Name": "ItemType",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "A type of Item based on common characteristics, function or similar criteria.\n\nEx:\nTOOL\nAn inventory Item that is checked out to an employee and is to be returned.\n\nKIT\nA consolidation or grouping of Item(s) that are packaged together by a later assembly.  A number of separate Stock Keeping Units that are supplied or used as one item under its own Part Number  Kitting is really an assembly operation.\n\nFINISHED GOOD (\"Product\")\nInventory to which the final increments of value have been added through manufacturing, which equates to a 'product'.\n\nREPLACEMENT PART\nReplacement parts are generally used as components in Products and are not considered 'Finished Goods'.    However, Replacement Parts that are sold are often considered Products and handled as such.\n\nRAW MATERIAL\nItems purchased from a Vendor for assembly into a company's products.  Raw materials usually require some manufacturing operation to be performed upon them before they can be assembled.\n\nUNIT\nOne inventoried piece such as a nut, bolt or washer.   Units are usually identified by an item number. By definition, all units are completely interchangeable.",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "ItemTypeId",
+					"Description": "The unique identifier of an Item Type.",
+					"BaseAttributeReference": {
+						"Entity": "ItemType.cdm.json/ItemType",
+						"Name": "ItemTypeId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "ItemTypeName",
+					"Description": "The name of an Item Type.",
+					"BaseAttributeReference": {
+						"Entity": "ItemType.cdm.json/ItemType",
+						"Name": "ItemTypeName"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 256,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "ItemTypeDescription",
+					"Description": "The description of an Item Type.",
+					"BaseAttributeReference": {
+						"Entity": "ItemType.cdm.json/ItemType",
+						"Name": "ItemTypeDescription"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/ItemType",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/ItemType",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"ItemTypeId\":{\"entity\":\"ItemType.cdm.json/ItemType\",\"name\":\"ItemTypeId\"},\"ItemTypeName\":{\"entity\":\"ItemType.cdm.json/ItemType\",\"name\":\"ItemTypeName\"},\"ItemTypeDescription\":{\"entity\":\"ItemType.cdm.json/ItemType\",\"name\":\"ItemTypeDescription\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"ItemType\",\"path\":\"ItemType.cdm.json/ItemType\"},\"description\":\"A type of Item based on common characteristics, function or similar criteria.\\n\\nEx:\\nTOOL\\nAn inventory Item that is checked out to an employee and is to be returned.\\n\\nKIT\\nA consolidation or grouping of Item(s) that are packaged together by a later assembly.  A number of separate Stock Keeping Units that are supplied or used as one item under its own Part Number  Kitting is really an assembly operation.\\n\\nFINISHED GOOD (\\\"Product\\\")\\nInventory to which the final increments of value have been added through manufacturing, which equates to a 'product'.\\n\\nREPLACEMENT PART\\nReplacement parts are generally used as components in Products and are not considered 'Finished Goods'.    However, Replacement Parts that are sold are often considered Products and handled as such.\\n\\nRAW MATERIAL\\nItems purchased from a Vendor for assembly into a company's products.  Raw materials usually require some manufacturing operation to be performed upon them before they can be assembled.\\n\\nUNIT\\nOne inventoried piece such as a nut, bolt or washer.   Units are usually identified by an item number. By definition, all units are completely interchangeable.\",\"primaryKey\":[\"ItemTypeId\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ItemType.cdm.json/ItemType\",\"name\":\"ItemTypeId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of an Item Type.\",\"isNullable\":false,\"name\":\"ItemTypeId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ItemType.cdm.json/ItemType\",\"name\":\"ItemTypeName\"},\"dataType\":\"string\",\"dataTypeLength\":256,\"description\":\"The name of an Item Type.\",\"isNullable\":true,\"name\":\"ItemTypeName\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ItemType.cdm.json/ItemType\",\"name\":\"ItemTypeDescription\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"The description of an Item Type.\",\"isNullable\":true,\"name\":\"ItemTypeDescription\"}]}}}",
+			"Description": "A type of Item based on common characteristics, function or similar criteria.\n\nEx:\nTOOL\nAn inventory Item that is checked out to an employee and is to be returned.\n\nKIT\nA consolidation or grouping of Item(s) that are packaged together by a later assembly.  A number of separate Stock Keeping Units that are supplied or used as one item under its own Part Number  Kitting is really an assembly operation.\n\nFINISHED GOOD (\"Product\")\nInventory to which the final increments of value have been added through manufacturing, which equates to a 'product'.\n\nREPLACEMENT PART\nReplacement parts are generally used as components in Products and are not considered 'Finished Goods'.    However, Replacement Parts that are sold are often considered Products and handled as such.\n\nRAW MATERIAL\nItems purchased from a Vendor for assembly into a company's products.  Raw materials usually require some manufacturing operation to be performed upon them before they can be assembled.\n\nUNIT\nOne inventoried piece such as a nut, bolt or washer.   Units are usually identified by an item number. By definition, all units are completely interchangeable.",
+			"DisplayFolderInfo": "{\"name\":\"Inventory\",\"colorCode\":\"#8170C2\"}",
+			"PrimaryKeys": "ItemTypeId",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

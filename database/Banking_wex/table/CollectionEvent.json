@@ -1,0 +1,129 @@
+{
+	"name": "CollectionEvent",
+	"properties": {
+		"Name": "CollectionEvent",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "A collection-related event involving a creditor.",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "CollectionEventId",
+					"Description": "The unique identifier of a collection event.",
+					"BaseAttributeReference": {
+						"Entity": "CollectionEvent.cdm.json/CollectionEvent",
+						"Name": "CollectionEventId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "CollectionEventTimestamp",
+					"Description": "The timestamp of a collection event.",
+					"BaseAttributeReference": {
+						"Entity": "CollectionEvent.cdm.json/CollectionEvent",
+						"Name": "CollectionEventTimestamp"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "timestamp",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"TimestampFormat": "YYYY-MM-DD HH:MM:SS.fffffffff",
+							"HIVE_TYPE_STRING": "timestamp"
+						}
+					}
+				},
+				{
+					"Name": "CollectionEventNote",
+					"Description": "A note, comment or additional information related to the collection event.",
+					"BaseAttributeReference": {
+						"Entity": "CollectionEvent.cdm.json/CollectionEvent",
+						"Name": "CollectionEventNote"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "CommunicationId",
+					"Description": "The unique identifier of a service request/contact Communication.",
+					"BaseAttributeReference": {
+						"Entity": "CollectionEvent.cdm.json/CollectionEvent",
+						"Name": "CommunicationId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "long",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"HIVE_TYPE_STRING": "long"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/CollectionEvent",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/CollectionEvent",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"CollectionEventId\":{\"entity\":\"CollectionEvent.cdm.json/CollectionEvent\",\"name\":\"CollectionEventId\"},\"CollectionEventTimestamp\":{\"entity\":\"CollectionEvent.cdm.json/CollectionEvent\",\"name\":\"CollectionEventTimestamp\"},\"CollectionEventNote\":{\"entity\":\"CollectionEvent.cdm.json/CollectionEvent\",\"name\":\"CollectionEventNote\"},\"CommunicationId\":{\"entity\":\"CollectionEvent.cdm.json/CollectionEvent\",\"name\":\"CommunicationId\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"CollectionEvent\",\"path\":\"CollectionEvent.cdm.json/CollectionEvent\"},\"description\":\"A collection-related event involving a creditor.\",\"primaryKey\":[\"CollectionEventId\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CollectionEvent.cdm.json/CollectionEvent\",\"name\":\"CollectionEventId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a collection event.\",\"isNullable\":false,\"name\":\"CollectionEventId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CollectionEvent.cdm.json/CollectionEvent\",\"name\":\"CollectionEventTimestamp\"},\"dataType\":\"timestamp\",\"description\":\"The timestamp of a collection event.\",\"isNullable\":true,\"name\":\"CollectionEventTimestamp\",\"timestampFormat\":\"YYYY-MM-DD HH:MM:SS.fffffffff\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CollectionEvent.cdm.json/CollectionEvent\",\"name\":\"CollectionEventNote\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"A note, comment or additional information related to the collection event.\",\"isNullable\":true,\"name\":\"CollectionEventNote\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CollectionEvent.cdm.json/CollectionEvent\",\"name\":\"CommunicationId\"},\"dataType\":\"long\",\"description\":\"The unique identifier of a service request/contact Communication.\",\"isNullable\":true,\"name\":\"CommunicationId\"}]}}}",
+			"Description": "A collection-related event involving a creditor.",
+			"DisplayFolderInfo": "{\"name\":\"Customer Credit & Collections\",\"colorCode\":\"#022F22\"}",
+			"PrimaryKeys": "CollectionEventId",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

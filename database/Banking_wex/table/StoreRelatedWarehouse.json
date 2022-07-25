@@ -1,0 +1,162 @@
+{
+	"name": "StoreRelatedWarehouse",
+	"properties": {
+		"Name": "StoreRelatedWarehouse",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "A relationship that exists between the store and a warehouse during the associated period.",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "StoreId",
+					"Description": "The unique identifier of a Store.",
+					"BaseAttributeReference": {
+						"Entity": "StoreRelatedWarehouse.cdm.json/StoreRelatedWarehouse",
+						"Name": "StoreId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "WarehouseId",
+					"Description": "The unique identifier of a Warehouse.",
+					"BaseAttributeReference": {
+						"Entity": "StoreRelatedWarehouse.cdm.json/StoreRelatedWarehouse",
+						"Name": "WarehouseId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "StoreWarehouseRelationshipTypeId",
+					"Description": "The unique identifier of a Store Warehouse Relationship Type.",
+					"BaseAttributeReference": {
+						"Entity": "StoreRelatedWarehouse.cdm.json/StoreRelatedWarehouse",
+						"Name": "StoreWarehouseRelationshipTypeId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "PeriodStartDate",
+					"Description": "The period start date associated with the store warehouse relationship.",
+					"BaseAttributeReference": {
+						"Entity": "StoreRelatedWarehouse.cdm.json/StoreRelatedWarehouse",
+						"Name": "PeriodStartDate"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "date",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"DateFormat": "YYYY-MM-DD",
+							"HIVE_TYPE_STRING": "date"
+						}
+					}
+				},
+				{
+					"Name": "PeriodEndDate",
+					"Description": "The period end date associated with the store warehouse relationship.",
+					"BaseAttributeReference": {
+						"Entity": "StoreRelatedWarehouse.cdm.json/StoreRelatedWarehouse",
+						"Name": "PeriodEndDate"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "date",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"DateFormat": "YYYY-MM-DD",
+							"HIVE_TYPE_STRING": "date"
+						}
+					}
+				},
+				{
+					"Name": "StoreRelatedWarehouseNote",
+					"Description": "A note, comment or additional information regarding the store related warehouse.",
+					"BaseAttributeReference": {
+						"Entity": "StoreRelatedWarehouse.cdm.json/StoreRelatedWarehouse",
+						"Name": "StoreRelatedWarehouseNote"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/StoreRelatedWarehouse",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/StoreRelatedWarehouse",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"StoreId\":{\"entity\":\"StoreRelatedWarehouse.cdm.json/StoreRelatedWarehouse\",\"name\":\"StoreId\"},\"WarehouseId\":{\"entity\":\"StoreRelatedWarehouse.cdm.json/StoreRelatedWarehouse\",\"name\":\"WarehouseId\"},\"StoreWarehouseRelationshipTypeId\":{\"entity\":\"StoreRelatedWarehouse.cdm.json/StoreRelatedWarehouse\",\"name\":\"StoreWarehouseRelationshipTypeId\"},\"PeriodStartDate\":{\"entity\":\"StoreRelatedWarehouse.cdm.json/StoreRelatedWarehouse\",\"name\":\"PeriodStartDate\"},\"PeriodEndDate\":{\"entity\":\"StoreRelatedWarehouse.cdm.json/StoreRelatedWarehouse\",\"name\":\"PeriodEndDate\"},\"StoreRelatedWarehouseNote\":{\"entity\":\"StoreRelatedWarehouse.cdm.json/StoreRelatedWarehouse\",\"name\":\"StoreRelatedWarehouseNote\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"StoreRelatedWarehouse\",\"path\":\"StoreRelatedWarehouse.cdm.json/StoreRelatedWarehouse\"},\"description\":\"A relationship that exists between the store and a warehouse during the associated period.\",\"primaryKey\":[\"StoreId\",\"WarehouseId\",\"StoreWarehouseRelationshipTypeId\",\"PeriodStartDate\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"StoreRelatedWarehouse.cdm.json/StoreRelatedWarehouse\",\"name\":\"StoreId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Store.\",\"isNullable\":false,\"name\":\"StoreId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"StoreRelatedWarehouse.cdm.json/StoreRelatedWarehouse\",\"name\":\"WarehouseId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Warehouse.\",\"isNullable\":false,\"name\":\"WarehouseId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"StoreRelatedWarehouse.cdm.json/StoreRelatedWarehouse\",\"name\":\"StoreWarehouseRelationshipTypeId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Store Warehouse Relationship Type.\",\"isNullable\":false,\"name\":\"StoreWarehouseRelationshipTypeId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"StoreRelatedWarehouse.cdm.json/StoreRelatedWarehouse\",\"name\":\"PeriodStartDate\"},\"dataType\":\"date\",\"dateFormat\":\"YYYY-MM-DD\",\"description\":\"The period start date associated with the store warehouse relationship.\",\"isNullable\":false,\"name\":\"PeriodStartDate\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"StoreRelatedWarehouse.cdm.json/StoreRelatedWarehouse\",\"name\":\"PeriodEndDate\"},\"dataType\":\"date\",\"dateFormat\":\"YYYY-MM-DD\",\"description\":\"The period end date associated with the store warehouse relationship.\",\"isNullable\":true,\"name\":\"PeriodEndDate\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"StoreRelatedWarehouse.cdm.json/StoreRelatedWarehouse\",\"name\":\"StoreRelatedWarehouseNote\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"A note, comment or additional information regarding the store related warehouse.\",\"isNullable\":true,\"name\":\"StoreRelatedWarehouseNote\"}]}}}",
+			"Description": "A relationship that exists between the store and a warehouse during the associated period.",
+			"DisplayFolderInfo": "{\"name\":\"Channel\",\"colorCode\":\"#001D3F\"}",
+			"PrimaryKeys": "StoreId,WarehouseId,StoreWarehouseRelationshipTypeId,PeriodStartDate",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

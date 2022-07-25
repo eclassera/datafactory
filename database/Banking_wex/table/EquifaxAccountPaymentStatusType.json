@@ -1,0 +1,113 @@
+{
+	"name": "EquifaxAccountPaymentStatusType",
+	"properties": {
+		"Name": "EquifaxAccountPaymentStatusType",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "The payment status type associated with the account.\n\nEx:\n- Pays 31-60 days\n- Pays 91-120 Days",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "EquifaxAccountPaymentStatusTypeId",
+					"Description": "The unique identifier of an Equifax Account Payment Status Type.",
+					"BaseAttributeReference": {
+						"Entity": "EquifaxAccountPaymentStatusType.cdm.json/EquifaxAccountPaymentStatusType",
+						"Name": "EquifaxAccountPaymentStatusTypeId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "EquifaxAccountPaymentStatusTypeName",
+					"Description": "The name of an Equifax Account Payment Status Type.",
+					"BaseAttributeReference": {
+						"Entity": "EquifaxAccountPaymentStatusType.cdm.json/EquifaxAccountPaymentStatusType",
+						"Name": "EquifaxAccountPaymentStatusTypeName"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 256,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "EquifaxAccountPaymentStatusTypeDescription",
+					"Description": "The description of an Equifax Account Payment Status Type.",
+					"BaseAttributeReference": {
+						"Entity": "EquifaxAccountPaymentStatusType.cdm.json/EquifaxAccountPaymentStatusType",
+						"Name": "EquifaxAccountPaymentStatusTypeDescription"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/EquifaxAccountPaymentStatusType",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/EquifaxAccountPaymentStatusType",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"EquifaxAccountPaymentStatusTypeId\":{\"entity\":\"EquifaxAccountPaymentStatusType.cdm.json/EquifaxAccountPaymentStatusType\",\"name\":\"EquifaxAccountPaymentStatusTypeId\"},\"EquifaxAccountPaymentStatusTypeName\":{\"entity\":\"EquifaxAccountPaymentStatusType.cdm.json/EquifaxAccountPaymentStatusType\",\"name\":\"EquifaxAccountPaymentStatusTypeName\"},\"EquifaxAccountPaymentStatusTypeDescription\":{\"entity\":\"EquifaxAccountPaymentStatusType.cdm.json/EquifaxAccountPaymentStatusType\",\"name\":\"EquifaxAccountPaymentStatusTypeDescription\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"EquifaxAccountPaymentStatusType\",\"path\":\"EquifaxAccountPaymentStatusType.cdm.json/EquifaxAccountPaymentStatusType\"},\"description\":\"The payment status type associated with the account.\\n\\nEx:\\n- Pays 31-60 days\\n- Pays 91-120 Days\",\"primaryKey\":[\"EquifaxAccountPaymentStatusTypeId\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"EquifaxAccountPaymentStatusType.cdm.json/EquifaxAccountPaymentStatusType\",\"name\":\"EquifaxAccountPaymentStatusTypeId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of an Equifax Account Payment Status Type.\",\"isNullable\":false,\"name\":\"EquifaxAccountPaymentStatusTypeId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"EquifaxAccountPaymentStatusType.cdm.json/EquifaxAccountPaymentStatusType\",\"name\":\"EquifaxAccountPaymentStatusTypeName\"},\"dataType\":\"string\",\"dataTypeLength\":256,\"description\":\"The name of an Equifax Account Payment Status Type.\",\"isNullable\":true,\"name\":\"EquifaxAccountPaymentStatusTypeName\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"EquifaxAccountPaymentStatusType.cdm.json/EquifaxAccountPaymentStatusType\",\"name\":\"EquifaxAccountPaymentStatusTypeDescription\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"The description of an Equifax Account Payment Status Type.\",\"isNullable\":true,\"name\":\"EquifaxAccountPaymentStatusTypeDescription\"}]}}}",
+			"Description": "The payment status type associated with the account.\n\nEx:\n- Pays 31-60 days\n- Pays 91-120 Days",
+			"DisplayFolderInfo": "{\"name\":\"Customer Credit & Collections\",\"colorCode\":\"#022F22\"}",
+			"PrimaryKeys": "EquifaxAccountPaymentStatusTypeId",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

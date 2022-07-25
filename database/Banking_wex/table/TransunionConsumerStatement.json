@@ -1,0 +1,112 @@
+{
+	"name": "TransunionConsumerStatement",
+	"properties": {
+		"Name": "TransunionConsumerStatement",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "Contains an explanation of facts or conditions affecting the credit file as requested by the consumer.\n\nThis section may also include statements to protect consumers against fraud.",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "TransunionReferenceNumber",
+					"Description": "The TransUnion file number.",
+					"BaseAttributeReference": {
+						"Entity": "TransunionConsumerStatement.cdm.json/TransunionConsumerStatement",
+						"Name": "TransunionReferenceNumber"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "StatementId",
+					"Description": "The unique identifier of a TransUnion consumer statement.",
+					"BaseAttributeReference": {
+						"Entity": "TransunionConsumerStatement.cdm.json/TransunionConsumerStatement",
+						"Name": "StatementId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "StatementComment",
+					"Description": "A note, comment or additional information regarding an explanation of facts or conditions affecting the credit file as requested by the consumer.\n\nEx:\n\"...this consumer has been a victim of fraud.   Call consumer directly before issuing credit...\"",
+					"BaseAttributeReference": {
+						"Entity": "TransunionConsumerStatement.cdm.json/TransunionConsumerStatement",
+						"Name": "StatementComment"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/TransunionConsumerStatement",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/TransunionConsumerStatement",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"TransunionReferenceNumber\":{\"entity\":\"TransunionConsumerStatement.cdm.json/TransunionConsumerStatement\",\"name\":\"TransunionReferenceNumber\"},\"StatementId\":{\"entity\":\"TransunionConsumerStatement.cdm.json/TransunionConsumerStatement\",\"name\":\"StatementId\"},\"StatementComment\":{\"entity\":\"TransunionConsumerStatement.cdm.json/TransunionConsumerStatement\",\"name\":\"StatementComment\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"TransunionConsumerStatement\",\"path\":\"TransunionConsumerStatement.cdm.json/TransunionConsumerStatement\"},\"description\":\"Contains an explanation of facts or conditions affecting the credit file as requested by the consumer.\\n\\nThis section may also include statements to protect consumers against fraud.\",\"primaryKey\":[\"TransunionReferenceNumber\",\"StatementId\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"TransunionConsumerStatement.cdm.json/TransunionConsumerStatement\",\"name\":\"TransunionReferenceNumber\"},\"dataType\":\"integer\",\"description\":\"The TransUnion file number.\",\"isNullable\":false,\"name\":\"TransunionReferenceNumber\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"TransunionConsumerStatement.cdm.json/TransunionConsumerStatement\",\"name\":\"StatementId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a TransUnion consumer statement.\",\"isNullable\":false,\"name\":\"StatementId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"TransunionConsumerStatement.cdm.json/TransunionConsumerStatement\",\"name\":\"StatementComment\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"A note, comment or additional information regarding an explanation of facts or conditions affecting the credit file as requested by the consumer.\\n\\nEx:\\n\\\"...this consumer has been a victim of fraud.   Call consumer directly before issuing credit...\\\"\",\"isNullable\":true,\"name\":\"StatementComment\"}]}}}",
+			"Description": "Contains an explanation of facts or conditions affecting the credit file as requested by the consumer.\n\nThis section may also include statements to protect consumers against fraud.",
+			"DisplayFolderInfo": "{\"name\":\"Customer Credit & Collections\",\"colorCode\":\"#022F22\"}",
+			"PrimaryKeys": "TransunionReferenceNumber,StatementId",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

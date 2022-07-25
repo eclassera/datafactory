@@ -1,0 +1,216 @@
+{
+	"name": "CardFraudulentActivity",
+	"properties": {
+		"Name": "CardFraudulentActivity",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "Fraudulent transactions on your card account not made by you or someone you permit to use your card.",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "PaymentCardId",
+					"Description": "The unique identifier of a Payment Card.",
+					"BaseAttributeReference": {
+						"Entity": "CardFraudulentActivity.cdm.json/CardFraudulentActivity",
+						"Name": "PaymentCardId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "FraudCommittedTimestamp",
+					"Description": "The timestamp that the fraud was committed.",
+					"BaseAttributeReference": {
+						"Entity": "CardFraudulentActivity.cdm.json/CardFraudulentActivity",
+						"Name": "FraudCommittedTimestamp"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "timestamp",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"TimestampFormat": "YYYY-MM-DD HH:MM:SS.fffffffff",
+							"HIVE_TYPE_STRING": "timestamp"
+						}
+					}
+				},
+				{
+					"Name": "FraudDetectedTimestamp",
+					"Description": "The timestamp that the fraud was detected.",
+					"BaseAttributeReference": {
+						"Entity": "CardFraudulentActivity.cdm.json/CardFraudulentActivity",
+						"Name": "FraudDetectedTimestamp"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "timestamp",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"TimestampFormat": "YYYY-MM-DD HH:MM:SS.fffffffff",
+							"HIVE_TYPE_STRING": "timestamp"
+						}
+					}
+				},
+				{
+					"Name": "WarningNoticeSentTimestamp",
+					"Description": "The timestamp that a warning notice was sent.\n\nEx: \nHot cards are cards which, due to fraudulent use or cardholder overspending, the card issuer has decided to prohibit from further transactions. When records show a hot card has been used in a certain outlet, a warning notice is issued to the customer in question.",
+					"BaseAttributeReference": {
+						"Entity": "CardFraudulentActivity.cdm.json/CardFraudulentActivity",
+						"Name": "WarningNoticeSentTimestamp"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "timestamp",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"TimestampFormat": "YYYY-MM-DD HH:MM:SS.fffffffff",
+							"HIVE_TYPE_STRING": "timestamp"
+						}
+					}
+				},
+				{
+					"Name": "WarningNoticeText",
+					"Description": "The text of the warning notice.",
+					"BaseAttributeReference": {
+						"Entity": "CardFraudulentActivity.cdm.json/CardFraudulentActivity",
+						"Name": "WarningNoticeText"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "FraudLossAmount",
+					"Description": "The amount of loss due to fraud.",
+					"BaseAttributeReference": {
+						"Entity": "CardFraudulentActivity.cdm.json/CardFraudulentActivity",
+						"Name": "FraudLossAmount"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "decimal",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Precision": 18,
+						"Scale": 2,
+						"Properties": {
+							"HIVE_TYPE_STRING": "decimal"
+						}
+					}
+				},
+				{
+					"Name": "FraudRecoveredAmount",
+					"Description": "The amount recovered.",
+					"BaseAttributeReference": {
+						"Entity": "CardFraudulentActivity.cdm.json/CardFraudulentActivity",
+						"Name": "FraudRecoveredAmount"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "decimal",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Precision": 18,
+						"Scale": 2,
+						"Properties": {
+							"HIVE_TYPE_STRING": "decimal"
+						}
+					}
+				},
+				{
+					"Name": "Note",
+					"Description": "A note, comment or additional information regarding the fraud activity or transaction.",
+					"BaseAttributeReference": {
+						"Entity": "CardFraudulentActivity.cdm.json/CardFraudulentActivity",
+						"Name": "Note"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "PaymentCardFraudulentActivityTypeId",
+					"Description": "The unique identifier of a Fraudulent Activity Type.",
+					"BaseAttributeReference": {
+						"Entity": "CardFraudulentActivity.cdm.json/CardFraudulentActivity",
+						"Name": "PaymentCardFraudulentActivityTypeId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/CardFraudulentActivity",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/CardFraudulentActivity",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"PaymentCardId\":{\"entity\":\"CardFraudulentActivity.cdm.json/CardFraudulentActivity\",\"name\":\"PaymentCardId\"},\"FraudCommittedTimestamp\":{\"entity\":\"CardFraudulentActivity.cdm.json/CardFraudulentActivity\",\"name\":\"FraudCommittedTimestamp\"},\"FraudDetectedTimestamp\":{\"entity\":\"CardFraudulentActivity.cdm.json/CardFraudulentActivity\",\"name\":\"FraudDetectedTimestamp\"},\"WarningNoticeSentTimestamp\":{\"entity\":\"CardFraudulentActivity.cdm.json/CardFraudulentActivity\",\"name\":\"WarningNoticeSentTimestamp\"},\"WarningNoticeText\":{\"entity\":\"CardFraudulentActivity.cdm.json/CardFraudulentActivity\",\"name\":\"WarningNoticeText\"},\"FraudLossAmount\":{\"entity\":\"CardFraudulentActivity.cdm.json/CardFraudulentActivity\",\"name\":\"FraudLossAmount\"},\"FraudRecoveredAmount\":{\"entity\":\"CardFraudulentActivity.cdm.json/CardFraudulentActivity\",\"name\":\"FraudRecoveredAmount\"},\"Note\":{\"entity\":\"CardFraudulentActivity.cdm.json/CardFraudulentActivity\",\"name\":\"Note\"},\"PaymentCardFraudulentActivityTypeId\":{\"entity\":\"CardFraudulentActivity.cdm.json/CardFraudulentActivity\",\"name\":\"PaymentCardFraudulentActivityTypeId\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"CardFraudulentActivity\",\"path\":\"CardFraudulentActivity.cdm.json/CardFraudulentActivity\"},\"description\":\"Fraudulent transactions on your card account not made by you or someone you permit to use your card.\",\"primaryKey\":[\"PaymentCardId\",\"FraudCommittedTimestamp\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CardFraudulentActivity.cdm.json/CardFraudulentActivity\",\"name\":\"PaymentCardId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Payment Card.\",\"isNullable\":false,\"name\":\"PaymentCardId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CardFraudulentActivity.cdm.json/CardFraudulentActivity\",\"name\":\"FraudCommittedTimestamp\"},\"dataType\":\"timestamp\",\"description\":\"The timestamp that the fraud was committed.\",\"isNullable\":false,\"name\":\"FraudCommittedTimestamp\",\"timestampFormat\":\"YYYY-MM-DD HH:MM:SS.fffffffff\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CardFraudulentActivity.cdm.json/CardFraudulentActivity\",\"name\":\"FraudDetectedTimestamp\"},\"dataType\":\"timestamp\",\"description\":\"The timestamp that the fraud was detected.\",\"isNullable\":true,\"name\":\"FraudDetectedTimestamp\",\"timestampFormat\":\"YYYY-MM-DD HH:MM:SS.fffffffff\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CardFraudulentActivity.cdm.json/CardFraudulentActivity\",\"name\":\"WarningNoticeSentTimestamp\"},\"dataType\":\"timestamp\",\"description\":\"The timestamp that a warning notice was sent.\\n\\nEx: \\nHot cards are cards which, due to fraudulent use or cardholder overspending, the card issuer has decided to prohibit from further transactions. When records show a hot card has been used in a certain outlet, a warning notice is issued to the customer in question.\",\"isNullable\":true,\"name\":\"WarningNoticeSentTimestamp\",\"timestampFormat\":\"YYYY-MM-DD HH:MM:SS.fffffffff\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CardFraudulentActivity.cdm.json/CardFraudulentActivity\",\"name\":\"WarningNoticeText\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"The text of the warning notice.\",\"isNullable\":true,\"name\":\"WarningNoticeText\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CardFraudulentActivity.cdm.json/CardFraudulentActivity\",\"name\":\"FraudLossAmount\"},\"dataType\":\"decimal\",\"dataTypeLength\":18,\"description\":\"The amount of loss due to fraud.\",\"isNullable\":true,\"scale\":2,\"name\":\"FraudLossAmount\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CardFraudulentActivity.cdm.json/CardFraudulentActivity\",\"name\":\"FraudRecoveredAmount\"},\"dataType\":\"decimal\",\"dataTypeLength\":18,\"description\":\"The amount recovered.\",\"isNullable\":true,\"scale\":2,\"name\":\"FraudRecoveredAmount\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CardFraudulentActivity.cdm.json/CardFraudulentActivity\",\"name\":\"Note\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"A note, comment or additional information regarding the fraud activity or transaction.\",\"isNullable\":true,\"name\":\"Note\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CardFraudulentActivity.cdm.json/CardFraudulentActivity\",\"name\":\"PaymentCardFraudulentActivityTypeId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Fraudulent Activity Type.\",\"isNullable\":false,\"name\":\"PaymentCardFraudulentActivityTypeId\"}]}}}",
+			"Description": "Fraudulent transactions on your card account not made by you or someone you permit to use your card.",
+			"DisplayFolderInfo": "{\"name\":\"Customer Credit & Collections\",\"colorCode\":\"#022F22\"}",
+			"PrimaryKeys": "PaymentCardId,FraudCommittedTimestamp",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

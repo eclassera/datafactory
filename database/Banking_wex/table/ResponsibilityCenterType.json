@@ -1,0 +1,113 @@
+{
+	"name": "ResponsibilityCenterType",
+	"properties": {
+		"Name": "ResponsibilityCenterType",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "The type of responsibility center:\n\nEx:\n- Cost center\n- Discretionary Cost center (Expenses)\n- Revenue center\n- Profit Center\n- Investment center\n\nwhere:\n\nCOST center is a responsibility center in which a department or organization has responsibility for controlling costs but does not have responsibility for controlling revenues or investment levels.\n\nDISCRETIONARY COST center is a responsibility center in which a department or organization only has responsibility for controlling expenses and staying within a budget.\n\nREVENUE center is a responsibility center in which a department or organization has responsibility for revenues but does not have responsibility for controlling costs or investment levels.\n\nPROFIT center is a responsibility center in which a department or organization has responsibility for revenues and controlling costs but does not have responsibility for investment levels.\n\nINVESTMENT center is a responsibility center in which a department or organization has responsibility for revenues, controlling and the level of investment in the responsibility center.",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "ResponsibilityCenterTypeId",
+					"Description": "The unique identifier of a Responsibility Center Type.",
+					"BaseAttributeReference": {
+						"Entity": "ResponsibilityCenterType.cdm.json/ResponsibilityCenterType",
+						"Name": "ResponsibilityCenterTypeId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "ResponsibilityCenterTypeName",
+					"Description": "The name of a Responsibility Center Type.",
+					"BaseAttributeReference": {
+						"Entity": "ResponsibilityCenterType.cdm.json/ResponsibilityCenterType",
+						"Name": "ResponsibilityCenterTypeName"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 256,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "ResponsibilityCenterTypeDescription",
+					"Description": "The description of a Responsibility Center Type.",
+					"BaseAttributeReference": {
+						"Entity": "ResponsibilityCenterType.cdm.json/ResponsibilityCenterType",
+						"Name": "ResponsibilityCenterTypeDescription"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/ResponsibilityCenterType",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/ResponsibilityCenterType",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"ResponsibilityCenterTypeId\":{\"entity\":\"ResponsibilityCenterType.cdm.json/ResponsibilityCenterType\",\"name\":\"ResponsibilityCenterTypeId\"},\"ResponsibilityCenterTypeName\":{\"entity\":\"ResponsibilityCenterType.cdm.json/ResponsibilityCenterType\",\"name\":\"ResponsibilityCenterTypeName\"},\"ResponsibilityCenterTypeDescription\":{\"entity\":\"ResponsibilityCenterType.cdm.json/ResponsibilityCenterType\",\"name\":\"ResponsibilityCenterTypeDescription\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"ResponsibilityCenterType\",\"path\":\"ResponsibilityCenterType.cdm.json/ResponsibilityCenterType\"},\"description\":\"The type of responsibility center:\\n\\nEx:\\n- Cost center\\n- Discretionary Cost center (Expenses)\\n- Revenue center\\n- Profit Center\\n- Investment center\\n\\nwhere:\\n\\nCOST center is a responsibility center in which a department or organization has responsibility for controlling costs but does not have responsibility for controlling revenues or investment levels.\\n\\nDISCRETIONARY COST center is a responsibility center in which a department or organization only has responsibility for controlling expenses and staying within a budget.\\n\\nREVENUE center is a responsibility center in which a department or organization has responsibility for revenues but does not have responsibility for controlling costs or investment levels.\\n\\nPROFIT center is a responsibility center in which a department or organization has responsibility for revenues and controlling costs but does not have responsibility for investment levels.\\n\\nINVESTMENT center is a responsibility center in which a department or organization has responsibility for revenues, controlling and the level of investment in the responsibility center.\",\"primaryKey\":[\"ResponsibilityCenterTypeId\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ResponsibilityCenterType.cdm.json/ResponsibilityCenterType\",\"name\":\"ResponsibilityCenterTypeId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Responsibility Center Type.\",\"isNullable\":false,\"name\":\"ResponsibilityCenterTypeId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ResponsibilityCenterType.cdm.json/ResponsibilityCenterType\",\"name\":\"ResponsibilityCenterTypeName\"},\"dataType\":\"string\",\"dataTypeLength\":256,\"description\":\"The name of a Responsibility Center Type.\",\"isNullable\":true,\"name\":\"ResponsibilityCenterTypeName\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ResponsibilityCenterType.cdm.json/ResponsibilityCenterType\",\"name\":\"ResponsibilityCenterTypeDescription\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"The description of a Responsibility Center Type.\",\"isNullable\":true,\"name\":\"ResponsibilityCenterTypeDescription\"}]}}}",
+			"Description": "The type of responsibility center:\n\nEx:\n- Cost center\n- Discretionary Cost center (Expenses)\n- Revenue center\n- Profit Center\n- Investment center\n\nwhere:\n\nCOST center is a responsibility center in which a department or organization has responsibility for controlling costs but does not have responsibility for controlling revenues or investment levels.\n\nDISCRETIONARY COST center is a responsibility center in which a department or organization only has responsibility for controlling expenses and staying within a budget.\n\nREVENUE center is a responsibility center in which a department or organization has responsibility for revenues but does not have responsibility for controlling costs or investment levels.\n\nPROFIT center is a responsibility center in which a department or organization has responsibility for revenues and controlling costs but does not have responsibility for investment levels.\n\nINVESTMENT center is a responsibility center in which a department or organization has responsibility for revenues, controlling and the level of investment in the responsibility center.",
+			"DisplayFolderInfo": "{\"name\":\"Accounting & Financial Reporting\",\"colorCode\":\"#0078D4\"}",
+			"PrimaryKeys": "ResponsibilityCenterTypeId",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

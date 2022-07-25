@@ -1,0 +1,146 @@
+{
+	"name": "CustomerWorkerClass",
+	"properties": {
+		"Name": "CustomerWorkerClass",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "The Worker Class characteristics defined for the  Individual Customer.\n\nExamples:\n\n-  Private For-Profit Wage and Salary Worker\n-  Private Not-For-Profit Wage and Salary Worker\n-  Local Government Worker\n-  State Government Worker\n-  Federal Government Worker\n-  Self-Employed Worker\n-  Unpaid Family Worker",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "CustomerId",
+					"Description": "The unique identifier of a Customer.",
+					"BaseAttributeReference": {
+						"Entity": "CustomerWorkerClass.cdm.json/CustomerWorkerClass",
+						"Name": "CustomerId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "long",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "long"
+						}
+					}
+				},
+				{
+					"Name": "WorkerClassId",
+					"Description": "The unique identifier of a Worker Class.",
+					"BaseAttributeReference": {
+						"Entity": "CustomerWorkerClass.cdm.json/CustomerWorkerClass",
+						"Name": "WorkerClassId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "PeriodStartDate",
+					"Description": "The period start date for which the associated data is effective or 'as-of'.",
+					"BaseAttributeReference": {
+						"Entity": "CustomerWorkerClass.cdm.json/CustomerWorkerClass",
+						"Name": "PeriodStartDate"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "date",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"DateFormat": "YYYY-MM-DD",
+							"HIVE_TYPE_STRING": "date"
+						}
+					}
+				},
+				{
+					"Name": "PeriodEndDate",
+					"Description": "The period end date for which the associated data is effective or 'as-of'.",
+					"BaseAttributeReference": {
+						"Entity": "CustomerWorkerClass.cdm.json/CustomerWorkerClass",
+						"Name": "PeriodEndDate"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "date",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"DateFormat": "YYYY-MM-DD",
+							"HIVE_TYPE_STRING": "date"
+						}
+					}
+				},
+				{
+					"Name": "CustomerWorkerClassNote",
+					"Description": "A note, comment or additional information regarding the Customer/Worker Class relationship.",
+					"BaseAttributeReference": {
+						"Entity": "CustomerWorkerClass.cdm.json/CustomerWorkerClass",
+						"Name": "CustomerWorkerClassNote"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/CustomerWorkerClass",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/CustomerWorkerClass",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"CustomerId\":{\"entity\":\"CustomerWorkerClass.cdm.json/CustomerWorkerClass\",\"name\":\"CustomerId\"},\"WorkerClassId\":{\"entity\":\"CustomerWorkerClass.cdm.json/CustomerWorkerClass\",\"name\":\"WorkerClassId\"},\"PeriodStartDate\":{\"entity\":\"CustomerWorkerClass.cdm.json/CustomerWorkerClass\",\"name\":\"PeriodStartDate\"},\"PeriodEndDate\":{\"entity\":\"CustomerWorkerClass.cdm.json/CustomerWorkerClass\",\"name\":\"PeriodEndDate\"},\"CustomerWorkerClassNote\":{\"entity\":\"CustomerWorkerClass.cdm.json/CustomerWorkerClass\",\"name\":\"CustomerWorkerClassNote\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"CustomerWorkerClass\",\"path\":\"CustomerWorkerClass.cdm.json/CustomerWorkerClass\"},\"description\":\"The Worker Class characteristics defined for the  Individual Customer.\\n\\nExamples:\\n\\n-  Private For-Profit Wage and Salary Worker\\n-  Private Not-For-Profit Wage and Salary Worker\\n-  Local Government Worker\\n-  State Government Worker\\n-  Federal Government Worker\\n-  Self-Employed Worker\\n-  Unpaid Family Worker\",\"primaryKey\":[\"CustomerId\",\"WorkerClassId\",\"PeriodStartDate\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CustomerWorkerClass.cdm.json/CustomerWorkerClass\",\"name\":\"CustomerId\"},\"dataType\":\"long\",\"description\":\"The unique identifier of a Customer.\",\"isNullable\":false,\"name\":\"CustomerId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CustomerWorkerClass.cdm.json/CustomerWorkerClass\",\"name\":\"WorkerClassId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Worker Class.\",\"isNullable\":false,\"name\":\"WorkerClassId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CustomerWorkerClass.cdm.json/CustomerWorkerClass\",\"name\":\"PeriodStartDate\"},\"dataType\":\"date\",\"dateFormat\":\"YYYY-MM-DD\",\"description\":\"The period start date for which the associated data is effective or 'as-of'.\",\"isNullable\":false,\"name\":\"PeriodStartDate\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CustomerWorkerClass.cdm.json/CustomerWorkerClass\",\"name\":\"PeriodEndDate\"},\"dataType\":\"date\",\"dateFormat\":\"YYYY-MM-DD\",\"description\":\"The period end date for which the associated data is effective or 'as-of'.\",\"isNullable\":true,\"name\":\"PeriodEndDate\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CustomerWorkerClass.cdm.json/CustomerWorkerClass\",\"name\":\"CustomerWorkerClassNote\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"A note, comment or additional information regarding the Customer/Worker Class relationship.\",\"isNullable\":true,\"name\":\"CustomerWorkerClassNote\"}]}}}",
+			"Description": "The Worker Class characteristics defined for the  Individual Customer.\n\nExamples:\n\n-  Private For-Profit Wage and Salary Worker\n-  Private Not-For-Profit Wage and Salary Worker\n-  Local Government Worker\n-  State Government Worker\n-  Federal Government Worker\n-  Self-Employed Worker\n-  Unpaid Family Worker",
+			"DisplayFolderInfo": "{\"name\":\"Customer\",\"colorCode\":\"#4B003F\"}",
+			"PrimaryKeys": "CustomerId,WorkerClassId,PeriodStartDate",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

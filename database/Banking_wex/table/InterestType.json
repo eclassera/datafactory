@@ -1,0 +1,113 @@
+{
+	"name": "InterestType",
+	"properties": {
+		"Name": "InterestType",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "Interest Type is a larger classification of Interests that enables them to be grouped for presentation or analysis.\n\nFor example, the Interest of 'gardening' might be classified by the Interest Type of 'Home Interests' to differentiate those interests from professional or other interests.     \n\nThis serves the purpose of grouping interests in larger classifications to give an accurate picture of the consumer in various contexts.\n\nEx:  \nInterest =  \"Professional Basketball\"\nInterest Type = \"Sports\"\n\nInterest =  \"Gardening\"\nInterest Type = \" Home Interests\"\n\nInterest =  \"Investing\"\nInterest Type = \"Finance\"\n\nEach organization will identify, define and track a specific set of AIOs to gather information about, define consumers and make decisions.",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "InterestTypeId",
+					"Description": "The unique identifier of an Interest Type.",
+					"BaseAttributeReference": {
+						"Entity": "InterestType.cdm.json/InterestType",
+						"Name": "InterestTypeId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "InterestTypeName",
+					"Description": "The name of the Interest Type.",
+					"BaseAttributeReference": {
+						"Entity": "InterestType.cdm.json/InterestType",
+						"Name": "InterestTypeName"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 256,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "InterestTypeDescription",
+					"Description": "The description of the Interest Type.",
+					"BaseAttributeReference": {
+						"Entity": "InterestType.cdm.json/InterestType",
+						"Name": "InterestTypeDescription"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/InterestType",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/InterestType",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"InterestTypeId\":{\"entity\":\"InterestType.cdm.json/InterestType\",\"name\":\"InterestTypeId\"},\"InterestTypeName\":{\"entity\":\"InterestType.cdm.json/InterestType\",\"name\":\"InterestTypeName\"},\"InterestTypeDescription\":{\"entity\":\"InterestType.cdm.json/InterestType\",\"name\":\"InterestTypeDescription\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"InterestType\",\"path\":\"InterestType.cdm.json/InterestType\"},\"description\":\"Interest Type is a larger classification of Interests that enables them to be grouped for presentation or analysis.\\n\\nFor example, the Interest of 'gardening' might be classified by the Interest Type of 'Home Interests' to differentiate those interests from professional or other interests.     \\n\\nThis serves the purpose of grouping interests in larger classifications to give an accurate picture of the consumer in various contexts.\\n\\nEx:  \\nInterest =  \\\"Professional Basketball\\\"\\nInterest Type = \\\"Sports\\\"\\n\\nInterest =  \\\"Gardening\\\"\\nInterest Type = \\\" Home Interests\\\"\\n\\nInterest =  \\\"Investing\\\"\\nInterest Type = \\\"Finance\\\"\\n\\nEach organization will identify, define and track a specific set of AIOs to gather information about, define consumers and make decisions.\",\"primaryKey\":[\"InterestTypeId\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"InterestType.cdm.json/InterestType\",\"name\":\"InterestTypeId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of an Interest Type.\",\"isNullable\":false,\"name\":\"InterestTypeId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"InterestType.cdm.json/InterestType\",\"name\":\"InterestTypeName\"},\"dataType\":\"string\",\"dataTypeLength\":256,\"description\":\"The name of the Interest Type.\",\"isNullable\":true,\"name\":\"InterestTypeName\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"InterestType.cdm.json/InterestType\",\"name\":\"InterestTypeDescription\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"The description of the Interest Type.\",\"isNullable\":true,\"name\":\"InterestTypeDescription\"}]}}}",
+			"Description": "Interest Type is a larger classification of Interests that enables them to be grouped for presentation or analysis.\n\nFor example, the Interest of 'gardening' might be classified by the Interest Type of 'Home Interests' to differentiate those interests from professional or other interests.     \n\nThis serves the purpose of grouping interests in larger classifications to give an accurate picture of the consumer in various contexts.\n\nEx:  \nInterest =  \"Professional Basketball\"\nInterest Type = \"Sports\"\n\nInterest =  \"Gardening\"\nInterest Type = \" Home Interests\"\n\nInterest =  \"Investing\"\nInterest Type = \"Finance\"\n\nEach organization will identify, define and track a specific set of AIOs to gather information about, define consumers and make decisions.",
+			"DisplayFolderInfo": "{\"name\":\"Party\",\"colorCode\":\"#00727A\"}",
+			"PrimaryKeys": "InterestTypeId",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

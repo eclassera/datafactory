@@ -1,0 +1,113 @@
+{
+	"name": "ExperianAccountType",
+	"properties": {
+		"Name": "ExperianAccountType",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "This indicates the type of credit account.\n\nEx:\n- Real Estate \n- Revolving \n- Installment\n- Option\n- Other\n- Collection",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "ExperianAccountTypeId",
+					"Description": "The unique identifier of an Experian Account Type.",
+					"BaseAttributeReference": {
+						"Entity": "ExperianAccountType.cdm.json/ExperianAccountType",
+						"Name": "ExperianAccountTypeId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "ExperianAccountTypeName",
+					"Description": "The name of an Experian Account Type.",
+					"BaseAttributeReference": {
+						"Entity": "ExperianAccountType.cdm.json/ExperianAccountType",
+						"Name": "ExperianAccountTypeName"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 256,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "ExperianAccountTypeDescription",
+					"Description": "The description of an Experian Account Type.",
+					"BaseAttributeReference": {
+						"Entity": "ExperianAccountType.cdm.json/ExperianAccountType",
+						"Name": "ExperianAccountTypeDescription"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/ExperianAccountType",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/ExperianAccountType",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"ExperianAccountTypeId\":{\"entity\":\"ExperianAccountType.cdm.json/ExperianAccountType\",\"name\":\"ExperianAccountTypeId\"},\"ExperianAccountTypeName\":{\"entity\":\"ExperianAccountType.cdm.json/ExperianAccountType\",\"name\":\"ExperianAccountTypeName\"},\"ExperianAccountTypeDescription\":{\"entity\":\"ExperianAccountType.cdm.json/ExperianAccountType\",\"name\":\"ExperianAccountTypeDescription\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"ExperianAccountType\",\"path\":\"ExperianAccountType.cdm.json/ExperianAccountType\"},\"description\":\"This indicates the type of credit account.\\n\\nEx:\\n- Real Estate \\n- Revolving \\n- Installment\\n- Option\\n- Other\\n- Collection\",\"primaryKey\":[\"ExperianAccountTypeId\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ExperianAccountType.cdm.json/ExperianAccountType\",\"name\":\"ExperianAccountTypeId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of an Experian Account Type.\",\"isNullable\":false,\"name\":\"ExperianAccountTypeId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ExperianAccountType.cdm.json/ExperianAccountType\",\"name\":\"ExperianAccountTypeName\"},\"dataType\":\"string\",\"dataTypeLength\":256,\"description\":\"The name of an Experian Account Type.\",\"isNullable\":true,\"name\":\"ExperianAccountTypeName\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ExperianAccountType.cdm.json/ExperianAccountType\",\"name\":\"ExperianAccountTypeDescription\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"The description of an Experian Account Type.\",\"isNullable\":true,\"name\":\"ExperianAccountTypeDescription\"}]}}}",
+			"Description": "This indicates the type of credit account.\n\nEx:\n- Real Estate \n- Revolving \n- Installment\n- Option\n- Other\n- Collection",
+			"DisplayFolderInfo": "{\"name\":\"Customer Credit & Collections\",\"colorCode\":\"#022F22\"}",
+			"PrimaryKeys": "ExperianAccountTypeId",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

@@ -1,0 +1,113 @@
+{
+	"name": "PromotionType",
+	"properties": {
+		"Name": "PromotionType",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "A categorization of Promotion Types based on common characteristics, objectives or incentives.\n\nEx:\n- Sales promotion\n- New product introduction promotion\n- Product awareness promotion\n- Public awareness\n- Menu Item Specials\n- AAA Discount\n- Free Cell phone recharging\n- Free gift boxes\n- Free shipping\n- Free bottled water\n- Complimentary shopping bags",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "PromotionTypeId",
+					"Description": "The unique identifier of a Promotion Type.",
+					"BaseAttributeReference": {
+						"Entity": "PromotionType.cdm.json/PromotionType",
+						"Name": "PromotionTypeId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "PromotionTypeName",
+					"Description": "The name of a Promotion Type.",
+					"BaseAttributeReference": {
+						"Entity": "PromotionType.cdm.json/PromotionType",
+						"Name": "PromotionTypeName"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 256,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "PromotionTypeDescription",
+					"Description": "The description of a Promotion Type.",
+					"BaseAttributeReference": {
+						"Entity": "PromotionType.cdm.json/PromotionType",
+						"Name": "PromotionTypeDescription"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/PromotionType",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/PromotionType",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"PromotionTypeId\":{\"entity\":\"PromotionType.cdm.json/PromotionType\",\"name\":\"PromotionTypeId\"},\"PromotionTypeName\":{\"entity\":\"PromotionType.cdm.json/PromotionType\",\"name\":\"PromotionTypeName\"},\"PromotionTypeDescription\":{\"entity\":\"PromotionType.cdm.json/PromotionType\",\"name\":\"PromotionTypeDescription\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"PromotionType\",\"path\":\"PromotionType.cdm.json/PromotionType\"},\"description\":\"A categorization of Promotion Types based on common characteristics, objectives or incentives.\\n\\nEx:\\n- Sales promotion\\n- New product introduction promotion\\n- Product awareness promotion\\n- Public awareness\\n- Menu Item Specials\\n- AAA Discount\\n- Free Cell phone recharging\\n- Free gift boxes\\n- Free shipping\\n- Free bottled water\\n- Complimentary shopping bags\",\"primaryKey\":[\"PromotionTypeId\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"PromotionType.cdm.json/PromotionType\",\"name\":\"PromotionTypeId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Promotion Type.\",\"isNullable\":false,\"name\":\"PromotionTypeId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"PromotionType.cdm.json/PromotionType\",\"name\":\"PromotionTypeName\"},\"dataType\":\"string\",\"dataTypeLength\":256,\"description\":\"The name of a Promotion Type.\",\"isNullable\":true,\"name\":\"PromotionTypeName\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"PromotionType.cdm.json/PromotionType\",\"name\":\"PromotionTypeDescription\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"The description of a Promotion Type.\",\"isNullable\":true,\"name\":\"PromotionTypeDescription\"}]}}}",
+			"Description": "A categorization of Promotion Types based on common characteristics, objectives or incentives.\n\nEx:\n- Sales promotion\n- New product introduction promotion\n- Product awareness promotion\n- Public awareness\n- Menu Item Specials\n- AAA Discount\n- Free Cell phone recharging\n- Free gift boxes\n- Free shipping\n- Free bottled water\n- Complimentary shopping bags",
+			"DisplayFolderInfo": "{\"name\":\"Marketing & Advertising\",\"colorCode\":\"#692B0C\"}",
+			"PrimaryKeys": "PromotionTypeId",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

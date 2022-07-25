@@ -1,0 +1,113 @@
+{
+	"name": "MarketType",
+	"properties": {
+		"Name": "MarketType",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "A categorization of Markets based upon common characteristics, attributes or Market Segments serviced.\n\nThere are two basic types of markets:   Consumer and Organizational\n\nThe Consumer market consists of individuals who buy products for their own use or benefit.\n\nThe Organizational market consists of businesses, institutions, industries and government bodies that purchase products for resale or to make other products.\n\nThe \"Organizational\" Market Type consists of three large Markets and the representative Market Segments (indented):\n\n1. Industrial Producers\n- Corporations\n- Independent R&D Laboratories\n\n2. Trade Industry \n- Retailers\n- Wholesalers\n\n3. Government\n- Local\n- State\n- Federal\n- Foreign",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "MarketTypeId",
+					"Description": "The unique identifier of a Market Type.",
+					"BaseAttributeReference": {
+						"Entity": "MarketType.cdm.json/MarketType",
+						"Name": "MarketTypeId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "MarketTypeName",
+					"Description": "The name of a Market Type.",
+					"BaseAttributeReference": {
+						"Entity": "MarketType.cdm.json/MarketType",
+						"Name": "MarketTypeName"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 256,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "MarketTypeDescription",
+					"Description": "The description of a Market Type.",
+					"BaseAttributeReference": {
+						"Entity": "MarketType.cdm.json/MarketType",
+						"Name": "MarketTypeDescription"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/MarketType",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/MarketType",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"MarketTypeId\":{\"entity\":\"MarketType.cdm.json/MarketType\",\"name\":\"MarketTypeId\"},\"MarketTypeName\":{\"entity\":\"MarketType.cdm.json/MarketType\",\"name\":\"MarketTypeName\"},\"MarketTypeDescription\":{\"entity\":\"MarketType.cdm.json/MarketType\",\"name\":\"MarketTypeDescription\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"MarketType\",\"path\":\"MarketType.cdm.json/MarketType\"},\"description\":\"A categorization of Markets based upon common characteristics, attributes or Market Segments serviced.\\n\\nThere are two basic types of markets:   Consumer and Organizational\\n\\nThe Consumer market consists of individuals who buy products for their own use or benefit.\\n\\nThe Organizational market consists of businesses, institutions, industries and government bodies that purchase products for resale or to make other products.\\n\\nThe \\\"Organizational\\\" Market Type consists of three large Markets and the representative Market Segments (indented):\\n\\n1. Industrial Producers\\n- Corporations\\n- Independent R&D Laboratories\\n\\n2. Trade Industry \\n- Retailers\\n- Wholesalers\\n\\n3. Government\\n- Local\\n- State\\n- Federal\\n- Foreign\",\"primaryKey\":[\"MarketTypeId\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"MarketType.cdm.json/MarketType\",\"name\":\"MarketTypeId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Market Type.\",\"isNullable\":false,\"name\":\"MarketTypeId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"MarketType.cdm.json/MarketType\",\"name\":\"MarketTypeName\"},\"dataType\":\"string\",\"dataTypeLength\":256,\"description\":\"The name of a Market Type.\",\"isNullable\":true,\"name\":\"MarketTypeName\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"MarketType.cdm.json/MarketType\",\"name\":\"MarketTypeDescription\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"The description of a Market Type.\",\"isNullable\":true,\"name\":\"MarketTypeDescription\"}]}}}",
+			"Description": "A categorization of Markets based upon common characteristics, attributes or Market Segments serviced.\n\nThere are two basic types of markets:   Consumer and Organizational\n\nThe Consumer market consists of individuals who buy products for their own use or benefit.\n\nThe Organizational market consists of businesses, institutions, industries and government bodies that purchase products for resale or to make other products.\n\nThe \"Organizational\" Market Type consists of three large Markets and the representative Market Segments (indented):\n\n1. Industrial Producers\n- Corporations\n- Independent R&D Laboratories\n\n2. Trade Industry \n- Retailers\n- Wholesalers\n\n3. Government\n- Local\n- State\n- Federal\n- Foreign",
+			"DisplayFolderInfo": "{\"name\":\"Marketing & Advertising\",\"colorCode\":\"#692B0C\"}",
+			"PrimaryKeys": "MarketTypeId",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

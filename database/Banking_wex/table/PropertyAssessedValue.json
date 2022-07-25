@@ -1,0 +1,147 @@
+{
+	"name": "PropertyAssessedValue",
+	"properties": {
+		"Name": "PropertyAssessedValue",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "The assessed value of the associated property.",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "PropertyId",
+					"Description": "The unique identifier of a Property.",
+					"BaseAttributeReference": {
+						"Entity": "PropertyAssessedValue.cdm.json/PropertyAssessedValue",
+						"Name": "PropertyId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "long",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "long"
+						}
+					}
+				},
+				{
+					"Name": "AssessorPartyId",
+					"Description": "The unique identifier of a Party.",
+					"BaseAttributeReference": {
+						"Entity": "PropertyAssessedValue.cdm.json/PropertyAssessedValue",
+						"Name": "AssessorPartyId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "long",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "long"
+						}
+					}
+				},
+				{
+					"Name": "Date",
+					"Description": "The date of the associated assessed value.",
+					"BaseAttributeReference": {
+						"Entity": "PropertyAssessedValue.cdm.json/PropertyAssessedValue",
+						"Name": "Date"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "date",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"DateFormat": "YYYY-MM-DD",
+							"HIVE_TYPE_STRING": "date"
+						}
+					}
+				},
+				{
+					"Name": "AssessedValueAmount",
+					"Description": "The valuation placed upon property by a public tax assessor for purposes of taxation.",
+					"BaseAttributeReference": {
+						"Entity": "PropertyAssessedValue.cdm.json/PropertyAssessedValue",
+						"Name": "AssessedValueAmount"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "decimal",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Precision": 18,
+						"Scale": 2,
+						"Properties": {
+							"HIVE_TYPE_STRING": "decimal"
+						}
+					}
+				},
+				{
+					"Name": "PropertyAssessedValueNote",
+					"Description": "A note, comment or additional information regarding the property assessed value.",
+					"BaseAttributeReference": {
+						"Entity": "PropertyAssessedValue.cdm.json/PropertyAssessedValue",
+						"Name": "PropertyAssessedValueNote"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/PropertyAssessedValue",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/PropertyAssessedValue",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"PropertyId\":{\"entity\":\"PropertyAssessedValue.cdm.json/PropertyAssessedValue\",\"name\":\"PropertyId\"},\"AssessorPartyId\":{\"entity\":\"PropertyAssessedValue.cdm.json/PropertyAssessedValue\",\"name\":\"AssessorPartyId\"},\"Date\":{\"entity\":\"PropertyAssessedValue.cdm.json/PropertyAssessedValue\",\"name\":\"Date\"},\"AssessedValueAmount\":{\"entity\":\"PropertyAssessedValue.cdm.json/PropertyAssessedValue\",\"name\":\"AssessedValueAmount\"},\"PropertyAssessedValueNote\":{\"entity\":\"PropertyAssessedValue.cdm.json/PropertyAssessedValue\",\"name\":\"PropertyAssessedValueNote\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"PropertyAssessedValue\",\"path\":\"PropertyAssessedValue.cdm.json/PropertyAssessedValue\"},\"description\":\"The assessed value of the associated property.\",\"primaryKey\":[\"PropertyId\",\"AssessorPartyId\",\"Date\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"PropertyAssessedValue.cdm.json/PropertyAssessedValue\",\"name\":\"PropertyId\"},\"dataType\":\"long\",\"description\":\"The unique identifier of a Property.\",\"isNullable\":false,\"name\":\"PropertyId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"PropertyAssessedValue.cdm.json/PropertyAssessedValue\",\"name\":\"AssessorPartyId\"},\"dataType\":\"long\",\"description\":\"The unique identifier of a Party.\",\"isNullable\":false,\"name\":\"AssessorPartyId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"PropertyAssessedValue.cdm.json/PropertyAssessedValue\",\"name\":\"Date\"},\"dataType\":\"date\",\"dateFormat\":\"YYYY-MM-DD\",\"description\":\"The date of the associated assessed value.\",\"isNullable\":false,\"name\":\"Date\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"PropertyAssessedValue.cdm.json/PropertyAssessedValue\",\"name\":\"AssessedValueAmount\"},\"dataType\":\"decimal\",\"dataTypeLength\":18,\"description\":\"The valuation placed upon property by a public tax assessor for purposes of taxation.\",\"isNullable\":true,\"scale\":2,\"name\":\"AssessedValueAmount\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"PropertyAssessedValue.cdm.json/PropertyAssessedValue\",\"name\":\"PropertyAssessedValueNote\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"A note, comment or additional information regarding the property assessed value.\",\"isNullable\":true,\"name\":\"PropertyAssessedValueNote\"}]}}}",
+			"Description": "The assessed value of the associated property.",
+			"DisplayFolderInfo": "{\"name\":\"Property & Equipment\",\"colorCode\":\"#7D0F6C\"}",
+			"PrimaryKeys": "PropertyId,AssessorPartyId,Date",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

@@ -1,0 +1,113 @@
+{
+	"name": "BrandRelationshipType",
+	"properties": {
+		"Name": "BrandRelationshipType",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "The nature of the relationship between two or more brands.\n\nEx:\n- Sub-Brand\n- Competitive Brand\n- Replaced By Brand",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "BrandRelationshipTypeId",
+					"Description": "The unique identifier of a Brand Relationship Type.",
+					"BaseAttributeReference": {
+						"Entity": "BrandRelationshipType.cdm.json/BrandRelationshipType",
+						"Name": "BrandRelationshipTypeId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "BrandRelationshipTypeName",
+					"Description": "The name of Brand Relationship Type.",
+					"BaseAttributeReference": {
+						"Entity": "BrandRelationshipType.cdm.json/BrandRelationshipType",
+						"Name": "BrandRelationshipTypeName"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 256,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "BrandRelationshipTypeDescription",
+					"Description": "The description of a Brand Relationship Type.",
+					"BaseAttributeReference": {
+						"Entity": "BrandRelationshipType.cdm.json/BrandRelationshipType",
+						"Name": "BrandRelationshipTypeDescription"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/BrandRelationshipType",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/BrandRelationshipType",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"BrandRelationshipTypeId\":{\"entity\":\"BrandRelationshipType.cdm.json/BrandRelationshipType\",\"name\":\"BrandRelationshipTypeId\"},\"BrandRelationshipTypeName\":{\"entity\":\"BrandRelationshipType.cdm.json/BrandRelationshipType\",\"name\":\"BrandRelationshipTypeName\"},\"BrandRelationshipTypeDescription\":{\"entity\":\"BrandRelationshipType.cdm.json/BrandRelationshipType\",\"name\":\"BrandRelationshipTypeDescription\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"BrandRelationshipType\",\"path\":\"BrandRelationshipType.cdm.json/BrandRelationshipType\"},\"description\":\"The nature of the relationship between two or more brands.\\n\\nEx:\\n- Sub-Brand\\n- Competitive Brand\\n- Replaced By Brand\",\"primaryKey\":[\"BrandRelationshipTypeId\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"BrandRelationshipType.cdm.json/BrandRelationshipType\",\"name\":\"BrandRelationshipTypeId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Brand Relationship Type.\",\"isNullable\":false,\"name\":\"BrandRelationshipTypeId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"BrandRelationshipType.cdm.json/BrandRelationshipType\",\"name\":\"BrandRelationshipTypeName\"},\"dataType\":\"string\",\"dataTypeLength\":256,\"description\":\"The name of Brand Relationship Type.\",\"isNullable\":true,\"name\":\"BrandRelationshipTypeName\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"BrandRelationshipType.cdm.json/BrandRelationshipType\",\"name\":\"BrandRelationshipTypeDescription\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"The description of a Brand Relationship Type.\",\"isNullable\":true,\"name\":\"BrandRelationshipTypeDescription\"}]}}}",
+			"Description": "The nature of the relationship between two or more brands.\n\nEx:\n- Sub-Brand\n- Competitive Brand\n- Replaced By Brand",
+			"DisplayFolderInfo": "{\"name\":\"Product\",\"colorCode\":\"#0E3D73\"}",
+			"PrimaryKeys": "BrandRelationshipTypeId",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

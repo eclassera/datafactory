@@ -1,0 +1,113 @@
+{
+	"name": "AioLevel",
+	"properties": {
+		"Name": "AioLevel",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "A level of participation or ownership by the party of an activity, interest or opinion.\n\nEx:  \n- High / Highly Committed\n- Medium / Moderately Committed\n- Low / Marginally Committed\n- Unknown\n\nSales, marketing and advertising activities are often planned for or targeted at groups exhibiting specific activities, interests or opinions levels.",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "AioLevelId",
+					"Description": "The unique identifier of an AIO Level.",
+					"BaseAttributeReference": {
+						"Entity": "AioLevel.cdm.json/AioLevel",
+						"Name": "AioLevelId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "AioLevelName",
+					"Description": "The name of the AIO Level.",
+					"BaseAttributeReference": {
+						"Entity": "AioLevel.cdm.json/AioLevel",
+						"Name": "AioLevelName"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 256,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "AioLevelDescription",
+					"Description": "The description of the AIO Level.",
+					"BaseAttributeReference": {
+						"Entity": "AioLevel.cdm.json/AioLevel",
+						"Name": "AioLevelDescription"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/AioLevel",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/AioLevel",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"AioLevelId\":{\"entity\":\"AioLevel.cdm.json/AioLevel\",\"name\":\"AioLevelId\"},\"AioLevelName\":{\"entity\":\"AioLevel.cdm.json/AioLevel\",\"name\":\"AioLevelName\"},\"AioLevelDescription\":{\"entity\":\"AioLevel.cdm.json/AioLevel\",\"name\":\"AioLevelDescription\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"AioLevel\",\"path\":\"AioLevel.cdm.json/AioLevel\"},\"description\":\"A level of participation or ownership by the party of an activity, interest or opinion.\\n\\nEx:  \\n- High / Highly Committed\\n- Medium / Moderately Committed\\n- Low / Marginally Committed\\n- Unknown\\n\\nSales, marketing and advertising activities are often planned for or targeted at groups exhibiting specific activities, interests or opinions levels.\",\"primaryKey\":[\"AioLevelId\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"AioLevel.cdm.json/AioLevel\",\"name\":\"AioLevelId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of an AIO Level.\",\"isNullable\":false,\"name\":\"AioLevelId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"AioLevel.cdm.json/AioLevel\",\"name\":\"AioLevelName\"},\"dataType\":\"string\",\"dataTypeLength\":256,\"description\":\"The name of the AIO Level.\",\"isNullable\":true,\"name\":\"AioLevelName\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"AioLevel.cdm.json/AioLevel\",\"name\":\"AioLevelDescription\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"The description of the AIO Level.\",\"isNullable\":true,\"name\":\"AioLevelDescription\"}]}}}",
+			"Description": "A level of participation or ownership by the party of an activity, interest or opinion.\n\nEx:  \n- High / Highly Committed\n- Medium / Moderately Committed\n- Low / Marginally Committed\n- Unknown\n\nSales, marketing and advertising activities are often planned for or targeted at groups exhibiting specific activities, interests or opinions levels.",
+			"DisplayFolderInfo": "{\"name\":\"Party\",\"colorCode\":\"#00727A\"}",
+			"PrimaryKeys": "AioLevelId",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

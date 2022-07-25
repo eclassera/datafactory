@@ -1,0 +1,217 @@
+{
+	"name": "ExperianFilingsAndCollections",
+	"properties": {
+		"Name": "ExperianFilingsAndCollections",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "The Experian filing and collections associated with the business.",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "ExperianFileNumber",
+					"Description": "The unique and persistent number that identifies and tracks the Experian company.",
+					"BaseAttributeReference": {
+						"Entity": "ExperianFilingsAndCollections.cdm.json/ExperianFilingsAndCollections",
+						"Name": "ExperianFileNumber"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "ProfileTimestamp",
+					"Description": "The timestamp of the Experian profile.",
+					"BaseAttributeReference": {
+						"Entity": "ExperianFilingsAndCollections.cdm.json/ExperianFilingsAndCollections",
+						"Name": "ProfileTimestamp"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "timestamp",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"TimestampFormat": "YYYY-MM-DD HH:MM:SS.fffffffff",
+							"HIVE_TYPE_STRING": "timestamp"
+						}
+					}
+				},
+				{
+					"Name": "CollectionAgencyName",
+					"Description": "The name of the collection agency.",
+					"BaseAttributeReference": {
+						"Entity": "ExperianFilingsAndCollections.cdm.json/ExperianFilingsAndCollections",
+						"Name": "CollectionAgencyName"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Length": 256,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "DatePlaced",
+					"Description": "The date that the action was placed.",
+					"BaseAttributeReference": {
+						"Entity": "ExperianFilingsAndCollections.cdm.json/ExperianFilingsAndCollections",
+						"Name": "DatePlaced"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "date",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"DateFormat": "YYYY-MM-DD",
+							"HIVE_TYPE_STRING": "date"
+						}
+					}
+				},
+				{
+					"Name": "CollectionAgencyTelephoneNumber",
+					"Description": "The collection agency's telephone number.",
+					"BaseAttributeReference": {
+						"Entity": "ExperianFilingsAndCollections.cdm.json/ExperianFilingsAndCollections",
+						"Name": "CollectionAgencyTelephoneNumber"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "decimal",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Precision": 15,
+						"Scale": 0,
+						"Properties": {
+							"HIVE_TYPE_STRING": "decimal"
+						}
+					}
+				},
+				{
+					"Name": "OriginalBalanceAmount",
+					"Description": "The action original balance amount.",
+					"BaseAttributeReference": {
+						"Entity": "ExperianFilingsAndCollections.cdm.json/ExperianFilingsAndCollections",
+						"Name": "OriginalBalanceAmount"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "decimal",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Precision": 18,
+						"Scale": 2,
+						"Properties": {
+							"HIVE_TYPE_STRING": "decimal"
+						}
+					}
+				},
+				{
+					"Name": "OutstandingBalanceAmount",
+					"Description": "The outstanding balance amount.",
+					"BaseAttributeReference": {
+						"Entity": "ExperianFilingsAndCollections.cdm.json/ExperianFilingsAndCollections",
+						"Name": "OutstandingBalanceAmount"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "decimal",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Precision": 18,
+						"Scale": 2,
+						"Properties": {
+							"HIVE_TYPE_STRING": "decimal"
+						}
+					}
+				},
+				{
+					"Name": "DateClosed",
+					"Description": "The date that the action is closed.",
+					"BaseAttributeReference": {
+						"Entity": "ExperianFilingsAndCollections.cdm.json/ExperianFilingsAndCollections",
+						"Name": "DateClosed"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "date",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"DateFormat": "YYYY-MM-DD",
+							"HIVE_TYPE_STRING": "date"
+						}
+					}
+				},
+				{
+					"Name": "ExperianFilingsAndCollectionStatusTypeId",
+					"Description": "The unique identifier of an Experian filings and collection status type.",
+					"BaseAttributeReference": {
+						"Entity": "ExperianFilingsAndCollections.cdm.json/ExperianFilingsAndCollections",
+						"Name": "ExperianFilingsAndCollectionStatusTypeId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/ExperianFilingsAndCollections",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/ExperianFilingsAndCollections",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"ExperianFileNumber\":{\"entity\":\"ExperianFilingsAndCollections.cdm.json/ExperianFilingsAndCollections\",\"name\":\"ExperianFileNumber\"},\"ProfileTimestamp\":{\"entity\":\"ExperianFilingsAndCollections.cdm.json/ExperianFilingsAndCollections\",\"name\":\"ProfileTimestamp\"},\"CollectionAgencyName\":{\"entity\":\"ExperianFilingsAndCollections.cdm.json/ExperianFilingsAndCollections\",\"name\":\"CollectionAgencyName\"},\"DatePlaced\":{\"entity\":\"ExperianFilingsAndCollections.cdm.json/ExperianFilingsAndCollections\",\"name\":\"DatePlaced\"},\"CollectionAgencyTelephoneNumber\":{\"entity\":\"ExperianFilingsAndCollections.cdm.json/ExperianFilingsAndCollections\",\"name\":\"CollectionAgencyTelephoneNumber\"},\"OriginalBalanceAmount\":{\"entity\":\"ExperianFilingsAndCollections.cdm.json/ExperianFilingsAndCollections\",\"name\":\"OriginalBalanceAmount\"},\"OutstandingBalanceAmount\":{\"entity\":\"ExperianFilingsAndCollections.cdm.json/ExperianFilingsAndCollections\",\"name\":\"OutstandingBalanceAmount\"},\"DateClosed\":{\"entity\":\"ExperianFilingsAndCollections.cdm.json/ExperianFilingsAndCollections\",\"name\":\"DateClosed\"},\"ExperianFilingsAndCollectionStatusTypeId\":{\"entity\":\"ExperianFilingsAndCollections.cdm.json/ExperianFilingsAndCollections\",\"name\":\"ExperianFilingsAndCollectionStatusTypeId\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"ExperianFilingsAndCollections\",\"path\":\"ExperianFilingsAndCollections.cdm.json/ExperianFilingsAndCollections\"},\"description\":\"The Experian filing and collections associated with the business.\",\"primaryKey\":[\"ExperianFileNumber\",\"ProfileTimestamp\",\"CollectionAgencyName\",\"DatePlaced\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ExperianFilingsAndCollections.cdm.json/ExperianFilingsAndCollections\",\"name\":\"ExperianFileNumber\"},\"dataType\":\"integer\",\"description\":\"The unique and persistent number that identifies and tracks the Experian company.\",\"isNullable\":false,\"name\":\"ExperianFileNumber\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ExperianFilingsAndCollections.cdm.json/ExperianFilingsAndCollections\",\"name\":\"ProfileTimestamp\"},\"dataType\":\"timestamp\",\"description\":\"The timestamp of the Experian profile.\",\"isNullable\":false,\"name\":\"ProfileTimestamp\",\"timestampFormat\":\"YYYY-MM-DD HH:MM:SS.fffffffff\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ExperianFilingsAndCollections.cdm.json/ExperianFilingsAndCollections\",\"name\":\"CollectionAgencyName\"},\"dataType\":\"string\",\"dataTypeLength\":256,\"description\":\"The name of the collection agency.\",\"isNullable\":false,\"name\":\"CollectionAgencyName\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ExperianFilingsAndCollections.cdm.json/ExperianFilingsAndCollections\",\"name\":\"DatePlaced\"},\"dataType\":\"date\",\"dateFormat\":\"YYYY-MM-DD\",\"description\":\"The date that the action was placed.\",\"isNullable\":false,\"name\":\"DatePlaced\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ExperianFilingsAndCollections.cdm.json/ExperianFilingsAndCollections\",\"name\":\"CollectionAgencyTelephoneNumber\"},\"dataType\":\"decimal\",\"dataTypeLength\":15,\"description\":\"The collection agency's telephone number.\",\"isNullable\":true,\"scale\":0,\"name\":\"CollectionAgencyTelephoneNumber\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ExperianFilingsAndCollections.cdm.json/ExperianFilingsAndCollections\",\"name\":\"OriginalBalanceAmount\"},\"dataType\":\"decimal\",\"dataTypeLength\":18,\"description\":\"The action original balance amount.\",\"isNullable\":true,\"scale\":2,\"name\":\"OriginalBalanceAmount\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ExperianFilingsAndCollections.cdm.json/ExperianFilingsAndCollections\",\"name\":\"OutstandingBalanceAmount\"},\"dataType\":\"decimal\",\"dataTypeLength\":18,\"description\":\"The outstanding balance amount.\",\"isNullable\":true,\"scale\":2,\"name\":\"OutstandingBalanceAmount\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ExperianFilingsAndCollections.cdm.json/ExperianFilingsAndCollections\",\"name\":\"DateClosed\"},\"dataType\":\"date\",\"dateFormat\":\"YYYY-MM-DD\",\"description\":\"The date that the action is closed.\",\"isNullable\":true,\"name\":\"DateClosed\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ExperianFilingsAndCollections.cdm.json/ExperianFilingsAndCollections\",\"name\":\"ExperianFilingsAndCollectionStatusTypeId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of an Experian filings and collection status type.\",\"isNullable\":true,\"name\":\"ExperianFilingsAndCollectionStatusTypeId\"}]}}}",
+			"Description": "The Experian filing and collections associated with the business.",
+			"DisplayFolderInfo": "{\"name\":\"Customer Credit & Collections\",\"colorCode\":\"#022F22\"}",
+			"PrimaryKeys": "ExperianFileNumber,ProfileTimestamp,CollectionAgencyName,DatePlaced",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

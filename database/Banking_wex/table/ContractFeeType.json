@@ -1,0 +1,113 @@
+{
+	"name": "ContractFeeType",
+	"properties": {
+		"Name": "ContractFeeType",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "A fee that may be associated with a contract.\n\nEx:\n- Advertising Fee\n- Assignment Fee\n- Franchise Fee\n- Advertising/Marketing Fee\n- Legal\n- Administrative\n- Arbitration",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "ContractFeeTypeId",
+					"Description": "The unique identifier of a contract fee.",
+					"BaseAttributeReference": {
+						"Entity": "ContractFeeType.cdm.json/ContractFeeType",
+						"Name": "ContractFeeTypeId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "ContractFeeTypeName",
+					"Description": "The name of a contract fee.",
+					"BaseAttributeReference": {
+						"Entity": "ContractFeeType.cdm.json/ContractFeeType",
+						"Name": "ContractFeeTypeName"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 256,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "ContractFeeTypeDescription",
+					"Description": "The description of a contract fee.",
+					"BaseAttributeReference": {
+						"Entity": "ContractFeeType.cdm.json/ContractFeeType",
+						"Name": "ContractFeeTypeDescription"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/ContractFeeType",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/ContractFeeType",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"ContractFeeTypeId\":{\"entity\":\"ContractFeeType.cdm.json/ContractFeeType\",\"name\":\"ContractFeeTypeId\"},\"ContractFeeTypeName\":{\"entity\":\"ContractFeeType.cdm.json/ContractFeeType\",\"name\":\"ContractFeeTypeName\"},\"ContractFeeTypeDescription\":{\"entity\":\"ContractFeeType.cdm.json/ContractFeeType\",\"name\":\"ContractFeeTypeDescription\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"ContractFeeType\",\"path\":\"ContractFeeType.cdm.json/ContractFeeType\"},\"description\":\"A fee that may be associated with a contract.\\n\\nEx:\\n- Advertising Fee\\n- Assignment Fee\\n- Franchise Fee\\n- Advertising/Marketing Fee\\n- Legal\\n- Administrative\\n- Arbitration\",\"primaryKey\":[\"ContractFeeTypeId\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ContractFeeType.cdm.json/ContractFeeType\",\"name\":\"ContractFeeTypeId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a contract fee.\",\"isNullable\":false,\"name\":\"ContractFeeTypeId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ContractFeeType.cdm.json/ContractFeeType\",\"name\":\"ContractFeeTypeName\"},\"dataType\":\"string\",\"dataTypeLength\":256,\"description\":\"The name of a contract fee.\",\"isNullable\":true,\"name\":\"ContractFeeTypeName\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ContractFeeType.cdm.json/ContractFeeType\",\"name\":\"ContractFeeTypeDescription\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"The description of a contract fee.\",\"isNullable\":true,\"name\":\"ContractFeeTypeDescription\"}]}}}",
+			"Description": "A fee that may be associated with a contract.\n\nEx:\n- Advertising Fee\n- Assignment Fee\n- Franchise Fee\n- Advertising/Marketing Fee\n- Legal\n- Administrative\n- Arbitration",
+			"DisplayFolderInfo": "{\"name\":\"Contract\",\"colorCode\":\"#917EDB\"}",
+			"PrimaryKeys": "ContractFeeTypeId",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

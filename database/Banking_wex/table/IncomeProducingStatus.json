@@ -1,0 +1,113 @@
+{
+	"name": "IncomeProducingStatus",
+	"properties": {
+		"Name": "IncomeProducingStatus",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "The ability of the associated family or household member to generate income.\n\nEx:\n- Full-time employment \n- Part-time employment\n- Full-time government assistance\n- Part-time government assistance\n- Minor\n- Temporary Unemployed\n- Full-time Unemployed",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "IncomeProducingStatusId",
+					"Description": "The unique identifier of an Income Producing Status.",
+					"BaseAttributeReference": {
+						"Entity": "IncomeProducingStatus.cdm.json/IncomeProducingStatus",
+						"Name": "IncomeProducingStatusId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "IncomeProducingStatusName",
+					"Description": "The name of an Income Producing Status.",
+					"BaseAttributeReference": {
+						"Entity": "IncomeProducingStatus.cdm.json/IncomeProducingStatus",
+						"Name": "IncomeProducingStatusName"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 256,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "IncomeProducingStatusDescription",
+					"Description": "The description of an Income Producing Status.",
+					"BaseAttributeReference": {
+						"Entity": "IncomeProducingStatus.cdm.json/IncomeProducingStatus",
+						"Name": "IncomeProducingStatusDescription"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/IncomeProducingStatus",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/IncomeProducingStatus",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"IncomeProducingStatusId\":{\"entity\":\"IncomeProducingStatus.cdm.json/IncomeProducingStatus\",\"name\":\"IncomeProducingStatusId\"},\"IncomeProducingStatusName\":{\"entity\":\"IncomeProducingStatus.cdm.json/IncomeProducingStatus\",\"name\":\"IncomeProducingStatusName\"},\"IncomeProducingStatusDescription\":{\"entity\":\"IncomeProducingStatus.cdm.json/IncomeProducingStatus\",\"name\":\"IncomeProducingStatusDescription\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"IncomeProducingStatus\",\"path\":\"IncomeProducingStatus.cdm.json/IncomeProducingStatus\"},\"description\":\"The ability of the associated family or household member to generate income.\\n\\nEx:\\n- Full-time employment \\n- Part-time employment\\n- Full-time government assistance\\n- Part-time government assistance\\n- Minor\\n- Temporary Unemployed\\n- Full-time Unemployed\",\"primaryKey\":[\"IncomeProducingStatusId\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"IncomeProducingStatus.cdm.json/IncomeProducingStatus\",\"name\":\"IncomeProducingStatusId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of an Income Producing Status.\",\"isNullable\":false,\"name\":\"IncomeProducingStatusId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"IncomeProducingStatus.cdm.json/IncomeProducingStatus\",\"name\":\"IncomeProducingStatusName\"},\"dataType\":\"string\",\"dataTypeLength\":256,\"description\":\"The name of an Income Producing Status.\",\"isNullable\":true,\"name\":\"IncomeProducingStatusName\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"IncomeProducingStatus.cdm.json/IncomeProducingStatus\",\"name\":\"IncomeProducingStatusDescription\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"The description of an Income Producing Status.\",\"isNullable\":true,\"name\":\"IncomeProducingStatusDescription\"}]}}}",
+			"Description": "The ability of the associated family or household member to generate income.\n\nEx:\n- Full-time employment \n- Part-time employment\n- Full-time government assistance\n- Part-time government assistance\n- Minor\n- Temporary Unemployed\n- Full-time Unemployed",
+			"DisplayFolderInfo": "{\"name\":\"Party\",\"colorCode\":\"#00727A\"}",
+			"PrimaryKeys": "IncomeProducingStatusId",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

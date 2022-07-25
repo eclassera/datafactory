@@ -1,0 +1,112 @@
+{
+	"name": "ExperianConsumerNotice",
+	"properties": {
+		"Name": "ExperianConsumerNotice",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "Notices are statements based on your personal information and credit history. Suspicious items may be listed here.\n\nEx:\nDate of birth indicates that credit may have been established before age 18.",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "ExperianReportNumber",
+					"Description": "The unique identifier of an Experian consumer.",
+					"BaseAttributeReference": {
+						"Entity": "ExperianConsumerNotice.cdm.json/ExperianConsumerNotice",
+						"Name": "ExperianReportNumber"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "NoticeId",
+					"Description": "The unique identifier of a notice.",
+					"BaseAttributeReference": {
+						"Entity": "ExperianConsumerNotice.cdm.json/ExperianConsumerNotice",
+						"Name": "NoticeId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "NoticeStatement",
+					"Description": "The notice statement.",
+					"BaseAttributeReference": {
+						"Entity": "ExperianConsumerNotice.cdm.json/ExperianConsumerNotice",
+						"Name": "NoticeStatement"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/ExperianConsumerNotice",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/ExperianConsumerNotice",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"ExperianReportNumber\":{\"entity\":\"ExperianConsumerNotice.cdm.json/ExperianConsumerNotice\",\"name\":\"ExperianReportNumber\"},\"NoticeId\":{\"entity\":\"ExperianConsumerNotice.cdm.json/ExperianConsumerNotice\",\"name\":\"NoticeId\"},\"NoticeStatement\":{\"entity\":\"ExperianConsumerNotice.cdm.json/ExperianConsumerNotice\",\"name\":\"NoticeStatement\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"ExperianConsumerNotice\",\"path\":\"ExperianConsumerNotice.cdm.json/ExperianConsumerNotice\"},\"description\":\"Notices are statements based on your personal information and credit history. Suspicious items may be listed here.\\n\\nEx:\\nDate of birth indicates that credit may have been established before age 18.\",\"primaryKey\":[\"ExperianReportNumber\",\"NoticeId\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ExperianConsumerNotice.cdm.json/ExperianConsumerNotice\",\"name\":\"ExperianReportNumber\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of an Experian consumer.\",\"isNullable\":false,\"name\":\"ExperianReportNumber\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ExperianConsumerNotice.cdm.json/ExperianConsumerNotice\",\"name\":\"NoticeId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a notice.\",\"isNullable\":false,\"name\":\"NoticeId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ExperianConsumerNotice.cdm.json/ExperianConsumerNotice\",\"name\":\"NoticeStatement\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"The notice statement.\",\"isNullable\":true,\"name\":\"NoticeStatement\"}]}}}",
+			"Description": "Notices are statements based on your personal information and credit history. Suspicious items may be listed here.\n\nEx:\nDate of birth indicates that credit may have been established before age 18.",
+			"DisplayFolderInfo": "{\"name\":\"Customer Credit & Collections\",\"colorCode\":\"#022F22\"}",
+			"PrimaryKeys": "ExperianReportNumber,NoticeId",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

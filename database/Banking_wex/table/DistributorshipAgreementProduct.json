@@ -1,0 +1,111 @@
+{
+	"name": "DistributorshipAgreementProduct",
+	"properties": {
+		"Name": "DistributorshipAgreementProduct",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "The manufacture product(s) covered by the Distributorship Agreement.",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "ContractId",
+					"Description": "The unique identifier of a Contract.",
+					"BaseAttributeReference": {
+						"Entity": "DistributorshipAgreementProduct.cdm.json/DistributorshipAgreementProduct",
+						"Name": "ContractId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "ProductId",
+					"Description": "The unique identifier of a Product.",
+					"BaseAttributeReference": {
+						"Entity": "DistributorshipAgreementProduct.cdm.json/DistributorshipAgreementProduct",
+						"Name": "ProductId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "long",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "long"
+						}
+					}
+				},
+				{
+					"Name": "ExclusiveProductDistributorshipIndicator",
+					"Description": "Indicates whether the agreement provides a distributor with exclusive rights to distribute a manufacturer's goods within a predefined territory.",
+					"BaseAttributeReference": {
+						"Entity": "DistributorshipAgreementProduct.cdm.json/DistributorshipAgreementProduct",
+						"Name": "ExclusiveProductDistributorshipIndicator"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "boolean",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"HIVE_TYPE_STRING": "boolean"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/DistributorshipAgreementProduct",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/DistributorshipAgreementProduct",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"ContractId\":{\"entity\":\"DistributorshipAgreementProduct.cdm.json/DistributorshipAgreementProduct\",\"name\":\"ContractId\"},\"ProductId\":{\"entity\":\"DistributorshipAgreementProduct.cdm.json/DistributorshipAgreementProduct\",\"name\":\"ProductId\"},\"ExclusiveProductDistributorshipIndicator\":{\"entity\":\"DistributorshipAgreementProduct.cdm.json/DistributorshipAgreementProduct\",\"name\":\"ExclusiveProductDistributorshipIndicator\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"DistributorshipAgreementProduct\",\"path\":\"DistributorshipAgreementProduct.cdm.json/DistributorshipAgreementProduct\"},\"description\":\"The manufacture product(s) covered by the Distributorship Agreement.\",\"primaryKey\":[\"ContractId\",\"ProductId\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"DistributorshipAgreementProduct.cdm.json/DistributorshipAgreementProduct\",\"name\":\"ContractId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Contract.\",\"isNullable\":false,\"name\":\"ContractId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"DistributorshipAgreementProduct.cdm.json/DistributorshipAgreementProduct\",\"name\":\"ProductId\"},\"dataType\":\"long\",\"description\":\"The unique identifier of a Product.\",\"isNullable\":false,\"name\":\"ProductId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"DistributorshipAgreementProduct.cdm.json/DistributorshipAgreementProduct\",\"name\":\"ExclusiveProductDistributorshipIndicator\"},\"dataType\":\"boolean\",\"description\":\"Indicates whether the agreement provides a distributor with exclusive rights to distribute a manufacturer's goods within a predefined territory.\",\"isNullable\":true,\"name\":\"ExclusiveProductDistributorshipIndicator\"}]}}}",
+			"Description": "The manufacture product(s) covered by the Distributorship Agreement.",
+			"DisplayFolderInfo": "{\"name\":\"Contract\",\"colorCode\":\"#917EDB\"}",
+			"PrimaryKeys": "ContractId,ProductId",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

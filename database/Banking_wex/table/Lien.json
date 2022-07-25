@@ -1,0 +1,181 @@
+{
+	"name": "Lien",
+	"properties": {
+		"Name": "Lien",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "A lien is a legal claim that attaches property in which a creditor who holds the lien can have the property sold to satisfy the lien.\n\nA lien is merely a claim until it is enforced legally, which means the lien holder has to take actions to make it occur.  \n\nHowever, the simple presence of a lien can have an effect on the credit-worthiness of a party because it is a potentially serious financial liability.\n\nIn practical terms, a lien places the legal title of the attached property in doubt and makes the sale of that property difficult or impossible.\n\nLiens also compete with UCC security interests, which is a security interest in personal property put up as collateral.",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "LienId",
+					"Description": "The unique identifier of a Lien.",
+					"BaseAttributeReference": {
+						"Entity": "Lien.cdm.json/Lien",
+						"Name": "LienId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "LienDescription",
+					"Description": "A description of the Lien.",
+					"BaseAttributeReference": {
+						"Entity": "Lien.cdm.json/Lien",
+						"Name": "LienDescription"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "LienAmount",
+					"Description": "The amount of the Lien.",
+					"BaseAttributeReference": {
+						"Entity": "Lien.cdm.json/Lien",
+						"Name": "LienAmount"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "decimal",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Precision": 18,
+						"Scale": 2,
+						"Properties": {
+							"HIVE_TYPE_STRING": "decimal"
+						}
+					}
+				},
+				{
+					"Name": "LienTypeId",
+					"Description": "The unique identifier of a Lien Type.",
+					"BaseAttributeReference": {
+						"Entity": "Lien.cdm.json/Lien",
+						"Name": "LienTypeId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "LienFiledDate",
+					"Description": "The lien date is important because liens are paid off in the order filed.",
+					"BaseAttributeReference": {
+						"Entity": "Lien.cdm.json/Lien",
+						"Name": "LienFiledDate"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "date",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"DateFormat": "YYYY-MM-DD",
+							"HIVE_TYPE_STRING": "date"
+						}
+					}
+				},
+				{
+					"Name": "LienResolvedDate",
+					"Description": "The date that the Lien was resolved.",
+					"BaseAttributeReference": {
+						"Entity": "Lien.cdm.json/Lien",
+						"Name": "LienResolvedDate"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "date",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"DateFormat": "YYYY-MM-DD",
+							"HIVE_TYPE_STRING": "date"
+						}
+					}
+				},
+				{
+					"Name": "LienResolutionDescription",
+					"Description": "A description of how a Lien was resolved.",
+					"BaseAttributeReference": {
+						"Entity": "Lien.cdm.json/Lien",
+						"Name": "LienResolutionDescription"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/Lien",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/Lien",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"LienId\":{\"entity\":\"Lien.cdm.json/Lien\",\"name\":\"LienId\"},\"LienDescription\":{\"entity\":\"Lien.cdm.json/Lien\",\"name\":\"LienDescription\"},\"LienAmount\":{\"entity\":\"Lien.cdm.json/Lien\",\"name\":\"LienAmount\"},\"LienTypeId\":{\"entity\":\"Lien.cdm.json/Lien\",\"name\":\"LienTypeId\"},\"LienFiledDate\":{\"entity\":\"Lien.cdm.json/Lien\",\"name\":\"LienFiledDate\"},\"LienResolvedDate\":{\"entity\":\"Lien.cdm.json/Lien\",\"name\":\"LienResolvedDate\"},\"LienResolutionDescription\":{\"entity\":\"Lien.cdm.json/Lien\",\"name\":\"LienResolutionDescription\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"Lien\",\"path\":\"Lien.cdm.json/Lien\"},\"description\":\"A lien is a legal claim that attaches property in which a creditor who holds the lien can have the property sold to satisfy the lien.\\n\\nA lien is merely a claim until it is enforced legally, which means the lien holder has to take actions to make it occur.  \\n\\nHowever, the simple presence of a lien can have an effect on the credit-worthiness of a party because it is a potentially serious financial liability.\\n\\nIn practical terms, a lien places the legal title of the attached property in doubt and makes the sale of that property difficult or impossible.\\n\\nLiens also compete with UCC security interests, which is a security interest in personal property put up as collateral.\",\"primaryKey\":[\"LienId\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"Lien.cdm.json/Lien\",\"name\":\"LienId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Lien.\",\"isNullable\":false,\"name\":\"LienId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"Lien.cdm.json/Lien\",\"name\":\"LienDescription\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"A description of the Lien.\",\"isNullable\":true,\"name\":\"LienDescription\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"Lien.cdm.json/Lien\",\"name\":\"LienAmount\"},\"dataType\":\"decimal\",\"dataTypeLength\":18,\"description\":\"The amount of the Lien.\",\"isNullable\":true,\"scale\":2,\"name\":\"LienAmount\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"Lien.cdm.json/Lien\",\"name\":\"LienTypeId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Lien Type.\",\"isNullable\":false,\"name\":\"LienTypeId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"Lien.cdm.json/Lien\",\"name\":\"LienFiledDate\"},\"dataType\":\"date\",\"dateFormat\":\"YYYY-MM-DD\",\"description\":\"The lien date is important because liens are paid off in the order filed.\",\"isNullable\":true,\"name\":\"LienFiledDate\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"Lien.cdm.json/Lien\",\"name\":\"LienResolvedDate\"},\"dataType\":\"date\",\"dateFormat\":\"YYYY-MM-DD\",\"description\":\"The date that the Lien was resolved.\",\"isNullable\":true,\"name\":\"LienResolvedDate\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"Lien.cdm.json/Lien\",\"name\":\"LienResolutionDescription\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"A description of how a Lien was resolved.\",\"isNullable\":true,\"name\":\"LienResolutionDescription\"}]}}}",
+			"Description": "A lien is a legal claim that attaches property in which a creditor who holds the lien can have the property sold to satisfy the lien.\n\nA lien is merely a claim until it is enforced legally, which means the lien holder has to take actions to make it occur.  \n\nHowever, the simple presence of a lien can have an effect on the credit-worthiness of a party because it is a potentially serious financial liability.\n\nIn practical terms, a lien places the legal title of the attached property in doubt and makes the sale of that property difficult or impossible.\n\nLiens also compete with UCC security interests, which is a security interest in personal property put up as collateral.",
+			"DisplayFolderInfo": "{\"name\":\"Customer Credit & Collections\",\"colorCode\":\"#022F22\"}",
+			"PrimaryKeys": "LienId",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

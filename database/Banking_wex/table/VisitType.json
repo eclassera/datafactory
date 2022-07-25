@@ -1,0 +1,113 @@
+{
+	"name": "VisitType",
+	"properties": {
+		"Name": "VisitType",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "The type of the visit.\n\nEx:\n- Sales Call\n- Customer Visit\n- Stocking\n- Inspection",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "VisitTypeId",
+					"Description": "The unique identifier of a Visit Type.",
+					"BaseAttributeReference": {
+						"Entity": "VisitType.cdm.json/VisitType",
+						"Name": "VisitTypeId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "VisitTypeName",
+					"Description": "The name of a Visit Type.",
+					"BaseAttributeReference": {
+						"Entity": "VisitType.cdm.json/VisitType",
+						"Name": "VisitTypeName"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 256,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "VisitTypeDescription",
+					"Description": "The description of a Visit Type.",
+					"BaseAttributeReference": {
+						"Entity": "VisitType.cdm.json/VisitType",
+						"Name": "VisitTypeDescription"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/VisitType",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/VisitType",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"VisitTypeId\":{\"entity\":\"VisitType.cdm.json/VisitType\",\"name\":\"VisitTypeId\"},\"VisitTypeName\":{\"entity\":\"VisitType.cdm.json/VisitType\",\"name\":\"VisitTypeName\"},\"VisitTypeDescription\":{\"entity\":\"VisitType.cdm.json/VisitType\",\"name\":\"VisitTypeDescription\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"VisitType\",\"path\":\"VisitType.cdm.json/VisitType\"},\"description\":\"The type of the visit.\\n\\nEx:\\n- Sales Call\\n- Customer Visit\\n- Stocking\\n- Inspection\",\"primaryKey\":[\"VisitTypeId\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"VisitType.cdm.json/VisitType\",\"name\":\"VisitTypeId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Visit Type.\",\"isNullable\":false,\"name\":\"VisitTypeId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"VisitType.cdm.json/VisitType\",\"name\":\"VisitTypeName\"},\"dataType\":\"string\",\"dataTypeLength\":256,\"description\":\"The name of a Visit Type.\",\"isNullable\":true,\"name\":\"VisitTypeName\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"VisitType.cdm.json/VisitType\",\"name\":\"VisitTypeDescription\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"The description of a Visit Type.\",\"isNullable\":true,\"name\":\"VisitTypeDescription\"}]}}}",
+			"Description": "The type of the visit.\n\nEx:\n- Sales Call\n- Customer Visit\n- Stocking\n- Inspection",
+			"DisplayFolderInfo": "{\"name\":\"Channel\",\"colorCode\":\"#001D3F\"}",
+			"PrimaryKeys": "VisitTypeId",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

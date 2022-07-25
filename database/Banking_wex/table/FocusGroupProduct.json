@@ -1,0 +1,146 @@
+{
+	"name": "FocusGroupProduct",
+	"properties": {
+		"Name": "FocusGroupProduct",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "The Product(s) that the Focus Group is defined for.",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "FocusGroupId",
+					"Description": "The unique identifier of the Focus Group.",
+					"BaseAttributeReference": {
+						"Entity": "FocusGroupProduct.cdm.json/FocusGroupProduct",
+						"Name": "FocusGroupId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "ProductId",
+					"Description": "The unique identifier of a Product.",
+					"BaseAttributeReference": {
+						"Entity": "FocusGroupProduct.cdm.json/FocusGroupProduct",
+						"Name": "ProductId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "long",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "long"
+						}
+					}
+				},
+				{
+					"Name": "PeriodStartDate",
+					"Description": "The period start date of the associated Product Focus Group.",
+					"BaseAttributeReference": {
+						"Entity": "FocusGroupProduct.cdm.json/FocusGroupProduct",
+						"Name": "PeriodStartDate"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "date",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"DateFormat": "YYYY-MM-DD",
+							"HIVE_TYPE_STRING": "date"
+						}
+					}
+				},
+				{
+					"Name": "PeriodEndDate",
+					"Description": "The period end date of the associated Product Focus Group.",
+					"BaseAttributeReference": {
+						"Entity": "FocusGroupProduct.cdm.json/FocusGroupProduct",
+						"Name": "PeriodEndDate"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "date",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"DateFormat": "YYYY-MM-DD",
+							"HIVE_TYPE_STRING": "date"
+						}
+					}
+				},
+				{
+					"Name": "FocusGroupProductNote",
+					"Description": "A note, comment or additional information regarding the focus group product.",
+					"BaseAttributeReference": {
+						"Entity": "FocusGroupProduct.cdm.json/FocusGroupProduct",
+						"Name": "FocusGroupProductNote"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/FocusGroupProduct",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/FocusGroupProduct",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"FocusGroupId\":{\"entity\":\"FocusGroupProduct.cdm.json/FocusGroupProduct\",\"name\":\"FocusGroupId\"},\"ProductId\":{\"entity\":\"FocusGroupProduct.cdm.json/FocusGroupProduct\",\"name\":\"ProductId\"},\"PeriodStartDate\":{\"entity\":\"FocusGroupProduct.cdm.json/FocusGroupProduct\",\"name\":\"PeriodStartDate\"},\"PeriodEndDate\":{\"entity\":\"FocusGroupProduct.cdm.json/FocusGroupProduct\",\"name\":\"PeriodEndDate\"},\"FocusGroupProductNote\":{\"entity\":\"FocusGroupProduct.cdm.json/FocusGroupProduct\",\"name\":\"FocusGroupProductNote\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"FocusGroupProduct\",\"path\":\"FocusGroupProduct.cdm.json/FocusGroupProduct\"},\"description\":\"The Product(s) that the Focus Group is defined for.\",\"primaryKey\":[\"FocusGroupId\",\"ProductId\",\"PeriodStartDate\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"FocusGroupProduct.cdm.json/FocusGroupProduct\",\"name\":\"FocusGroupId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of the Focus Group.\",\"isNullable\":false,\"name\":\"FocusGroupId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"FocusGroupProduct.cdm.json/FocusGroupProduct\",\"name\":\"ProductId\"},\"dataType\":\"long\",\"description\":\"The unique identifier of a Product.\",\"isNullable\":false,\"name\":\"ProductId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"FocusGroupProduct.cdm.json/FocusGroupProduct\",\"name\":\"PeriodStartDate\"},\"dataType\":\"date\",\"dateFormat\":\"YYYY-MM-DD\",\"description\":\"The period start date of the associated Product Focus Group.\",\"isNullable\":false,\"name\":\"PeriodStartDate\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"FocusGroupProduct.cdm.json/FocusGroupProduct\",\"name\":\"PeriodEndDate\"},\"dataType\":\"date\",\"dateFormat\":\"YYYY-MM-DD\",\"description\":\"The period end date of the associated Product Focus Group.\",\"isNullable\":false,\"name\":\"PeriodEndDate\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"FocusGroupProduct.cdm.json/FocusGroupProduct\",\"name\":\"FocusGroupProductNote\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"A note, comment or additional information regarding the focus group product.\",\"isNullable\":true,\"name\":\"FocusGroupProductNote\"}]}}}",
+			"Description": "The Product(s) that the Focus Group is defined for.",
+			"DisplayFolderInfo": "{\"name\":\"Party\",\"colorCode\":\"#00727A\"}",
+			"PrimaryKeys": "FocusGroupId,ProductId,PeriodStartDate",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

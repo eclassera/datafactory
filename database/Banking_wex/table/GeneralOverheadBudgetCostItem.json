@@ -1,0 +1,147 @@
+{
+	"name": "GeneralOverheadBudgetCostItem",
+	"properties": {
+		"Name": "GeneralOverheadBudgetCostItem",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "The individual cost items that are aggregated to make up the GENERAL OVERHEAD BUDGET.",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "GeneralOverheadBudgetId",
+					"Description": "The unique identifier of a General Overhead Budget.",
+					"BaseAttributeReference": {
+						"Entity": "GeneralOverheadBudgetCostItem.cdm.json/GeneralOverheadBudgetCostItem",
+						"Name": "GeneralOverheadBudgetId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "GeneralOverheadBudgetVersionId",
+					"Description": "The unique identifier of a General Overhead Budget Version.",
+					"BaseAttributeReference": {
+						"Entity": "GeneralOverheadBudgetCostItem.cdm.json/GeneralOverheadBudgetCostItem",
+						"Name": "GeneralOverheadBudgetVersionId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "CostItemId",
+					"Description": "The unique identifier of a Cost Item.",
+					"BaseAttributeReference": {
+						"Entity": "GeneralOverheadBudgetCostItem.cdm.json/GeneralOverheadBudgetCostItem",
+						"Name": "CostItemId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "CostItemBudgetedAmount",
+					"Description": "The amount budgeted on the associated Budget for the Cost Item.",
+					"BaseAttributeReference": {
+						"Entity": "GeneralOverheadBudgetCostItem.cdm.json/GeneralOverheadBudgetCostItem",
+						"Name": "CostItemBudgetedAmount"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "decimal",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Precision": 18,
+						"Scale": 2,
+						"Properties": {
+							"HIVE_TYPE_STRING": "decimal"
+						}
+					}
+				},
+				{
+					"Name": "CostItemActualAmount",
+					"Description": "The amount actually spent in the associated Budget for the Cost Item.",
+					"BaseAttributeReference": {
+						"Entity": "GeneralOverheadBudgetCostItem.cdm.json/GeneralOverheadBudgetCostItem",
+						"Name": "CostItemActualAmount"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "decimal",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Precision": 18,
+						"Scale": 2,
+						"Properties": {
+							"HIVE_TYPE_STRING": "decimal"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/GeneralOverheadBudgetCostItem",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/GeneralOverheadBudgetCostItem",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"GeneralOverheadBudgetId\":{\"entity\":\"GeneralOverheadBudgetCostItem.cdm.json/GeneralOverheadBudgetCostItem\",\"name\":\"GeneralOverheadBudgetId\"},\"GeneralOverheadBudgetVersionId\":{\"entity\":\"GeneralOverheadBudgetCostItem.cdm.json/GeneralOverheadBudgetCostItem\",\"name\":\"GeneralOverheadBudgetVersionId\"},\"CostItemId\":{\"entity\":\"GeneralOverheadBudgetCostItem.cdm.json/GeneralOverheadBudgetCostItem\",\"name\":\"CostItemId\"},\"CostItemBudgetedAmount\":{\"entity\":\"GeneralOverheadBudgetCostItem.cdm.json/GeneralOverheadBudgetCostItem\",\"name\":\"CostItemBudgetedAmount\"},\"CostItemActualAmount\":{\"entity\":\"GeneralOverheadBudgetCostItem.cdm.json/GeneralOverheadBudgetCostItem\",\"name\":\"CostItemActualAmount\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"GeneralOverheadBudgetCostItem\",\"path\":\"GeneralOverheadBudgetCostItem.cdm.json/GeneralOverheadBudgetCostItem\"},\"description\":\"The individual cost items that are aggregated to make up the GENERAL OVERHEAD BUDGET.\",\"primaryKey\":[\"GeneralOverheadBudgetId\",\"GeneralOverheadBudgetVersionId\",\"CostItemId\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"GeneralOverheadBudgetCostItem.cdm.json/GeneralOverheadBudgetCostItem\",\"name\":\"GeneralOverheadBudgetId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a General Overhead Budget.\",\"isNullable\":false,\"name\":\"GeneralOverheadBudgetId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"GeneralOverheadBudgetCostItem.cdm.json/GeneralOverheadBudgetCostItem\",\"name\":\"GeneralOverheadBudgetVersionId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a General Overhead Budget Version.\",\"isNullable\":false,\"name\":\"GeneralOverheadBudgetVersionId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"GeneralOverheadBudgetCostItem.cdm.json/GeneralOverheadBudgetCostItem\",\"name\":\"CostItemId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Cost Item.\",\"isNullable\":false,\"name\":\"CostItemId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"GeneralOverheadBudgetCostItem.cdm.json/GeneralOverheadBudgetCostItem\",\"name\":\"CostItemBudgetedAmount\"},\"dataType\":\"decimal\",\"dataTypeLength\":18,\"description\":\"The amount budgeted on the associated Budget for the Cost Item.\",\"isNullable\":true,\"scale\":2,\"name\":\"CostItemBudgetedAmount\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"GeneralOverheadBudgetCostItem.cdm.json/GeneralOverheadBudgetCostItem\",\"name\":\"CostItemActualAmount\"},\"dataType\":\"decimal\",\"dataTypeLength\":18,\"description\":\"The amount actually spent in the associated Budget for the Cost Item.\",\"isNullable\":true,\"scale\":2,\"name\":\"CostItemActualAmount\"}]}}}",
+			"Description": "The individual cost items that are aggregated to make up the GENERAL OVERHEAD BUDGET.",
+			"DisplayFolderInfo": "{\"name\":\"Budget & Forecasting\",\"colorCode\":\"#00188F\"}",
+			"PrimaryKeys": "GeneralOverheadBudgetId,GeneralOverheadBudgetVersionId,CostItemId",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

@@ -1,0 +1,113 @@
+{
+	"name": "ReferenceGroup",
+	"properties": {
+		"Name": "ReferenceGroup",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "Reference groups have both direct and indirect influence on consumer behavior and attitudes.\n\nMembership in and aspirations to belong to reference groups expose individuals to products, influence behavior, attitudes and create pressure to conform to reference group behavior, activities and attitudes.\n\nEx:\n-  Family\n-  Co-workers\n-  Pre-teen peers\n-  Teenage peers\n-  Parenting families",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "ReferenceGroupId",
+					"Description": "The unique identifier of a Reference Group.",
+					"BaseAttributeReference": {
+						"Entity": "ReferenceGroup.cdm.json/ReferenceGroup",
+						"Name": "ReferenceGroupId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "ReferenceGroupName",
+					"Description": "The name of the Reference Group.",
+					"BaseAttributeReference": {
+						"Entity": "ReferenceGroup.cdm.json/ReferenceGroup",
+						"Name": "ReferenceGroupName"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 256,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "ReferenceGroupDescription",
+					"Description": "The description of the Reference Group.",
+					"BaseAttributeReference": {
+						"Entity": "ReferenceGroup.cdm.json/ReferenceGroup",
+						"Name": "ReferenceGroupDescription"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/ReferenceGroup",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/ReferenceGroup",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"ReferenceGroupId\":{\"entity\":\"ReferenceGroup.cdm.json/ReferenceGroup\",\"name\":\"ReferenceGroupId\"},\"ReferenceGroupName\":{\"entity\":\"ReferenceGroup.cdm.json/ReferenceGroup\",\"name\":\"ReferenceGroupName\"},\"ReferenceGroupDescription\":{\"entity\":\"ReferenceGroup.cdm.json/ReferenceGroup\",\"name\":\"ReferenceGroupDescription\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"ReferenceGroup\",\"path\":\"ReferenceGroup.cdm.json/ReferenceGroup\"},\"description\":\"Reference groups have both direct and indirect influence on consumer behavior and attitudes.\\n\\nMembership in and aspirations to belong to reference groups expose individuals to products, influence behavior, attitudes and create pressure to conform to reference group behavior, activities and attitudes.\\n\\nEx:\\n-  Family\\n-  Co-workers\\n-  Pre-teen peers\\n-  Teenage peers\\n-  Parenting families\",\"primaryKey\":[\"ReferenceGroupId\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ReferenceGroup.cdm.json/ReferenceGroup\",\"name\":\"ReferenceGroupId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Reference Group.\",\"isNullable\":false,\"name\":\"ReferenceGroupId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ReferenceGroup.cdm.json/ReferenceGroup\",\"name\":\"ReferenceGroupName\"},\"dataType\":\"string\",\"dataTypeLength\":256,\"description\":\"The name of the Reference Group.\",\"isNullable\":true,\"name\":\"ReferenceGroupName\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ReferenceGroup.cdm.json/ReferenceGroup\",\"name\":\"ReferenceGroupDescription\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"The description of the Reference Group.\",\"isNullable\":true,\"name\":\"ReferenceGroupDescription\"}]}}}",
+			"Description": "Reference groups have both direct and indirect influence on consumer behavior and attitudes.\n\nMembership in and aspirations to belong to reference groups expose individuals to products, influence behavior, attitudes and create pressure to conform to reference group behavior, activities and attitudes.\n\nEx:\n-  Family\n-  Co-workers\n-  Pre-teen peers\n-  Teenage peers\n-  Parenting families",
+			"DisplayFolderInfo": "{\"name\":\"Party\",\"colorCode\":\"#00727A\"}",
+			"PrimaryKeys": "ReferenceGroupId",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

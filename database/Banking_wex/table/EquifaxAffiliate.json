@@ -1,0 +1,163 @@
+{
+	"name": "EquifaxAffiliate",
+	"properties": {
+		"Name": "EquifaxAffiliate",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "A list of businesses potentially associated with the business owner or principal.",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "EfxId",
+					"Description": "The EFX ID™ is a unique and persistent nine-digit number that identifies and tracks the business unit with which you have the credit relationship;",
+					"BaseAttributeReference": {
+						"Entity": "EquifaxAffiliate.cdm.json/EquifaxAffiliate",
+						"Name": "EfxId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "ProfileTimestamp",
+					"Description": "Provides the timestamp when the inquiry was made as recorded\nby Equifax (Eastern Time).",
+					"BaseAttributeReference": {
+						"Entity": "EquifaxAffiliate.cdm.json/EquifaxAffiliate",
+						"Name": "ProfileTimestamp"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "timestamp",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"TimestampFormat": "YYYY-MM-DD HH:MM:SS.fffffffff",
+							"HIVE_TYPE_STRING": "timestamp"
+						}
+					}
+				},
+				{
+					"Name": "AffiliatePrincipalCompanyName",
+					"Description": "The name of the affiliate company.",
+					"BaseAttributeReference": {
+						"Entity": "EquifaxAffiliate.cdm.json/EquifaxAffiliate",
+						"Name": "AffiliatePrincipalCompanyName"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 256,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "AffiliatePrincipalCompanyCity",
+					"Description": "The city in which the affiliate/principal company is located.",
+					"BaseAttributeReference": {
+						"Entity": "EquifaxAffiliate.cdm.json/EquifaxAffiliate",
+						"Name": "AffiliatePrincipalCompanyCity"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 256,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "AffiliatePrincipalCompanyState",
+					"Description": "The state in which the affiliate/principal company is located.",
+					"BaseAttributeReference": {
+						"Entity": "EquifaxAffiliate.cdm.json/EquifaxAffiliate",
+						"Name": "AffiliatePrincipalCompanyState"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 64,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "AffiliatePrincipalEfxId",
+					"Description": "The Equifax EFX ID of the affiliate/principal.",
+					"BaseAttributeReference": {
+						"Entity": "EquifaxAffiliate.cdm.json/EquifaxAffiliate",
+						"Name": "AffiliatePrincipalEfxId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/EquifaxAffiliate",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/EquifaxAffiliate",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"EfxId\":{\"entity\":\"EquifaxAffiliate.cdm.json/EquifaxAffiliate\",\"name\":\"EfxId\"},\"ProfileTimestamp\":{\"entity\":\"EquifaxAffiliate.cdm.json/EquifaxAffiliate\",\"name\":\"ProfileTimestamp\"},\"AffiliatePrincipalCompanyName\":{\"entity\":\"EquifaxAffiliate.cdm.json/EquifaxAffiliate\",\"name\":\"AffiliatePrincipalCompanyName\"},\"AffiliatePrincipalCompanyCity\":{\"entity\":\"EquifaxAffiliate.cdm.json/EquifaxAffiliate\",\"name\":\"AffiliatePrincipalCompanyCity\"},\"AffiliatePrincipalCompanyState\":{\"entity\":\"EquifaxAffiliate.cdm.json/EquifaxAffiliate\",\"name\":\"AffiliatePrincipalCompanyState\"},\"AffiliatePrincipalEfxId\":{\"entity\":\"EquifaxAffiliate.cdm.json/EquifaxAffiliate\",\"name\":\"AffiliatePrincipalEfxId\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"EquifaxAffiliate\",\"path\":\"EquifaxAffiliate.cdm.json/EquifaxAffiliate\"},\"description\":\"A list of businesses potentially associated with the business owner or principal.\",\"primaryKey\":[\"EfxId\",\"ProfileTimestamp\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"EquifaxAffiliate.cdm.json/EquifaxAffiliate\",\"name\":\"EfxId\"},\"dataType\":\"integer\",\"description\":\"The EFX ID™ is a unique and persistent nine-digit number that identifies and tracks the business unit with which you have the credit relationship;\",\"isNullable\":false,\"name\":\"EfxId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"EquifaxAffiliate.cdm.json/EquifaxAffiliate\",\"name\":\"ProfileTimestamp\"},\"dataType\":\"timestamp\",\"description\":\"Provides the timestamp when the inquiry was made as recorded\\nby Equifax (Eastern Time).\",\"isNullable\":false,\"name\":\"ProfileTimestamp\",\"timestampFormat\":\"YYYY-MM-DD HH:MM:SS.fffffffff\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"EquifaxAffiliate.cdm.json/EquifaxAffiliate\",\"name\":\"AffiliatePrincipalCompanyName\"},\"dataType\":\"string\",\"dataTypeLength\":256,\"description\":\"The name of the affiliate company.\",\"isNullable\":true,\"name\":\"AffiliatePrincipalCompanyName\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"EquifaxAffiliate.cdm.json/EquifaxAffiliate\",\"name\":\"AffiliatePrincipalCompanyCity\"},\"dataType\":\"string\",\"dataTypeLength\":256,\"description\":\"The city in which the affiliate/principal company is located.\",\"isNullable\":true,\"name\":\"AffiliatePrincipalCompanyCity\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"EquifaxAffiliate.cdm.json/EquifaxAffiliate\",\"name\":\"AffiliatePrincipalCompanyState\"},\"dataType\":\"string\",\"dataTypeLength\":64,\"description\":\"The state in which the affiliate/principal company is located.\",\"isNullable\":true,\"name\":\"AffiliatePrincipalCompanyState\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"EquifaxAffiliate.cdm.json/EquifaxAffiliate\",\"name\":\"AffiliatePrincipalEfxId\"},\"dataType\":\"integer\",\"description\":\"The Equifax EFX ID of the affiliate/principal.\",\"isNullable\":true,\"name\":\"AffiliatePrincipalEfxId\"}]}}}",
+			"Description": "A list of businesses potentially associated with the business owner or principal.",
+			"DisplayFolderInfo": "{\"name\":\"Customer Credit & Collections\",\"colorCode\":\"#022F22\"}",
+			"PrimaryKeys": "EfxId,ProfileTimestamp",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

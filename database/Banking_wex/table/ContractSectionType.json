@@ -1,0 +1,113 @@
+{
+	"name": "ContractSectionType",
+	"properties": {
+		"Name": "ContractSectionType",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "A categorization of sections based on business intent.\n\nEx:\n- Rights Granted Section\n- Term And Termination Section\n- Compliance With Law Section",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "ContractSectionTypeId",
+					"Description": "The unique identifier of a contract section.",
+					"BaseAttributeReference": {
+						"Entity": "ContractSectionType.cdm.json/ContractSectionType",
+						"Name": "ContractSectionTypeId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "ContractSectionTypeName",
+					"Description": "The name of a contract section.",
+					"BaseAttributeReference": {
+						"Entity": "ContractSectionType.cdm.json/ContractSectionType",
+						"Name": "ContractSectionTypeName"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 256,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "ContractSectionTypeDescription",
+					"Description": "The description of a contract section.",
+					"BaseAttributeReference": {
+						"Entity": "ContractSectionType.cdm.json/ContractSectionType",
+						"Name": "ContractSectionTypeDescription"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/ContractSectionType",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/ContractSectionType",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"ContractSectionTypeId\":{\"entity\":\"ContractSectionType.cdm.json/ContractSectionType\",\"name\":\"ContractSectionTypeId\"},\"ContractSectionTypeName\":{\"entity\":\"ContractSectionType.cdm.json/ContractSectionType\",\"name\":\"ContractSectionTypeName\"},\"ContractSectionTypeDescription\":{\"entity\":\"ContractSectionType.cdm.json/ContractSectionType\",\"name\":\"ContractSectionTypeDescription\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"ContractSectionType\",\"path\":\"ContractSectionType.cdm.json/ContractSectionType\"},\"description\":\"A categorization of sections based on business intent.\\n\\nEx:\\n- Rights Granted Section\\n- Term And Termination Section\\n- Compliance With Law Section\",\"primaryKey\":[\"ContractSectionTypeId\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ContractSectionType.cdm.json/ContractSectionType\",\"name\":\"ContractSectionTypeId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a contract section.\",\"isNullable\":false,\"name\":\"ContractSectionTypeId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ContractSectionType.cdm.json/ContractSectionType\",\"name\":\"ContractSectionTypeName\"},\"dataType\":\"string\",\"dataTypeLength\":256,\"description\":\"The name of a contract section.\",\"isNullable\":true,\"name\":\"ContractSectionTypeName\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ContractSectionType.cdm.json/ContractSectionType\",\"name\":\"ContractSectionTypeDescription\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"The description of a contract section.\",\"isNullable\":true,\"name\":\"ContractSectionTypeDescription\"}]}}}",
+			"Description": "A categorization of sections based on business intent.\n\nEx:\n- Rights Granted Section\n- Term And Termination Section\n- Compliance With Law Section",
+			"DisplayFolderInfo": "{\"name\":\"Contract\",\"colorCode\":\"#917EDB\"}",
+			"PrimaryKeys": "ContractSectionTypeId",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

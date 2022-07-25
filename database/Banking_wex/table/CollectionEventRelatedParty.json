@@ -1,0 +1,162 @@
+{
+	"name": "CollectionEventRelatedParty",
+	"properties": {
+		"Name": "CollectionEventRelatedParty",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "A party having a relationship with the collection event during the associated period.",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "CollectionEventId",
+					"Description": "The unique identifier of a collection event.",
+					"BaseAttributeReference": {
+						"Entity": "CollectionEventRelatedParty.cdm.json/CollectionEventRelatedParty",
+						"Name": "CollectionEventId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "PartyId",
+					"Description": "The unique identifier of a Party.",
+					"BaseAttributeReference": {
+						"Entity": "CollectionEventRelatedParty.cdm.json/CollectionEventRelatedParty",
+						"Name": "PartyId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "long",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "long"
+						}
+					}
+				},
+				{
+					"Name": "CollectionEventPartyRelationshipTypeId",
+					"Description": "The unique identifier of a Collection Event Party Relationship Type.",
+					"BaseAttributeReference": {
+						"Entity": "CollectionEventRelatedParty.cdm.json/CollectionEventRelatedParty",
+						"Name": "CollectionEventPartyRelationshipTypeId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "PeriodStartDate",
+					"Description": "The period start date that the collection event - party relationship exists or is effective.",
+					"BaseAttributeReference": {
+						"Entity": "CollectionEventRelatedParty.cdm.json/CollectionEventRelatedParty",
+						"Name": "PeriodStartDate"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "date",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"DateFormat": "YYYY-MM-DD",
+							"HIVE_TYPE_STRING": "date"
+						}
+					}
+				},
+				{
+					"Name": "PeriodEndDate",
+					"Description": "The period end date that the collection event - party relationship exists or is effective.",
+					"BaseAttributeReference": {
+						"Entity": "CollectionEventRelatedParty.cdm.json/CollectionEventRelatedParty",
+						"Name": "PeriodEndDate"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "date",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"DateFormat": "YYYY-MM-DD",
+							"HIVE_TYPE_STRING": "date"
+						}
+					}
+				},
+				{
+					"Name": "CollectionEventRelatedPartyNote",
+					"Description": "A note, comment or additional information regarding the collection event related party.",
+					"BaseAttributeReference": {
+						"Entity": "CollectionEventRelatedParty.cdm.json/CollectionEventRelatedParty",
+						"Name": "CollectionEventRelatedPartyNote"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/CollectionEventRelatedParty",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/CollectionEventRelatedParty",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"CollectionEventId\":{\"entity\":\"CollectionEventRelatedParty.cdm.json/CollectionEventRelatedParty\",\"name\":\"CollectionEventId\"},\"PartyId\":{\"entity\":\"CollectionEventRelatedParty.cdm.json/CollectionEventRelatedParty\",\"name\":\"PartyId\"},\"CollectionEventPartyRelationshipTypeId\":{\"entity\":\"CollectionEventRelatedParty.cdm.json/CollectionEventRelatedParty\",\"name\":\"CollectionEventPartyRelationshipTypeId\"},\"PeriodStartDate\":{\"entity\":\"CollectionEventRelatedParty.cdm.json/CollectionEventRelatedParty\",\"name\":\"PeriodStartDate\"},\"PeriodEndDate\":{\"entity\":\"CollectionEventRelatedParty.cdm.json/CollectionEventRelatedParty\",\"name\":\"PeriodEndDate\"},\"CollectionEventRelatedPartyNote\":{\"entity\":\"CollectionEventRelatedParty.cdm.json/CollectionEventRelatedParty\",\"name\":\"CollectionEventRelatedPartyNote\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"CollectionEventRelatedParty\",\"path\":\"CollectionEventRelatedParty.cdm.json/CollectionEventRelatedParty\"},\"description\":\"A party having a relationship with the collection event during the associated period.\",\"primaryKey\":[\"CollectionEventId\",\"PartyId\",\"CollectionEventPartyRelationshipTypeId\",\"PeriodStartDate\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CollectionEventRelatedParty.cdm.json/CollectionEventRelatedParty\",\"name\":\"CollectionEventId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a collection event.\",\"isNullable\":false,\"name\":\"CollectionEventId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CollectionEventRelatedParty.cdm.json/CollectionEventRelatedParty\",\"name\":\"PartyId\"},\"dataType\":\"long\",\"description\":\"The unique identifier of a Party.\",\"isNullable\":false,\"name\":\"PartyId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CollectionEventRelatedParty.cdm.json/CollectionEventRelatedParty\",\"name\":\"CollectionEventPartyRelationshipTypeId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Collection Event Party Relationship Type.\",\"isNullable\":false,\"name\":\"CollectionEventPartyRelationshipTypeId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CollectionEventRelatedParty.cdm.json/CollectionEventRelatedParty\",\"name\":\"PeriodStartDate\"},\"dataType\":\"date\",\"dateFormat\":\"YYYY-MM-DD\",\"description\":\"The period start date that the collection event - party relationship exists or is effective.\",\"isNullable\":false,\"name\":\"PeriodStartDate\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CollectionEventRelatedParty.cdm.json/CollectionEventRelatedParty\",\"name\":\"PeriodEndDate\"},\"dataType\":\"date\",\"dateFormat\":\"YYYY-MM-DD\",\"description\":\"The period end date that the collection event - party relationship exists or is effective.\",\"isNullable\":true,\"name\":\"PeriodEndDate\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CollectionEventRelatedParty.cdm.json/CollectionEventRelatedParty\",\"name\":\"CollectionEventRelatedPartyNote\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"A note, comment or additional information regarding the collection event related party.\",\"isNullable\":true,\"name\":\"CollectionEventRelatedPartyNote\"}]}}}",
+			"Description": "A party having a relationship with the collection event during the associated period.",
+			"DisplayFolderInfo": "{\"name\":\"Customer Credit & Collections\",\"colorCode\":\"#022F22\"}",
+			"PrimaryKeys": "CollectionEventId,PartyId,CollectionEventPartyRelationshipTypeId,PeriodStartDate",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

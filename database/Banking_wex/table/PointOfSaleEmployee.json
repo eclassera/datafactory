@@ -1,0 +1,147 @@
+{
+	"name": "PointOfSaleEmployee",
+	"properties": {
+		"Name": "PointOfSaleEmployee",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "The employee(s) associated with the POS for the associated period.",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "PointOfSaleId",
+					"Description": "The unique identifier of a POS.",
+					"BaseAttributeReference": {
+						"Entity": "PointOfSaleEmployee.cdm.json/PointOfSaleEmployee",
+						"Name": "PointOfSaleId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "EmployeeId",
+					"Description": "The unique identifier of an Employee.",
+					"BaseAttributeReference": {
+						"Entity": "PointOfSaleEmployee.cdm.json/PointOfSaleEmployee",
+						"Name": "EmployeeId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "PeriodStartTimestamp",
+					"Description": "The period start timestamp of the POS/Employee relationship.",
+					"BaseAttributeReference": {
+						"Entity": "PointOfSaleEmployee.cdm.json/PointOfSaleEmployee",
+						"Name": "PeriodStartTimestamp"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "timestamp",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"TimestampFormat": "YYYY-MM-DD HH:MM:SS.fffffffff",
+							"HIVE_TYPE_STRING": "timestamp"
+						}
+					}
+				},
+				{
+					"Name": "PeriodEndTimestamp",
+					"Description": "The period end timestamp of the POS/Employee relationship.",
+					"BaseAttributeReference": {
+						"Entity": "PointOfSaleEmployee.cdm.json/PointOfSaleEmployee",
+						"Name": "PeriodEndTimestamp"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "timestamp",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"TimestampFormat": "YYYY-MM-DD HH:MM:SS.fffffffff",
+							"HIVE_TYPE_STRING": "timestamp"
+						}
+					}
+				},
+				{
+					"Name": "PointOfSalePeriodEmployeeRevenueAmount",
+					"Description": "The amount of revenue realized by or assigned to the employee for the POS for the associated period.",
+					"BaseAttributeReference": {
+						"Entity": "PointOfSaleEmployee.cdm.json/PointOfSaleEmployee",
+						"Name": "PointOfSalePeriodEmployeeRevenueAmount"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "decimal",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Precision": 18,
+						"Scale": 2,
+						"Properties": {
+							"HIVE_TYPE_STRING": "decimal"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/PointOfSaleEmployee",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/PointOfSaleEmployee",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"PointOfSaleId\":{\"entity\":\"PointOfSaleEmployee.cdm.json/PointOfSaleEmployee\",\"name\":\"PointOfSaleId\"},\"EmployeeId\":{\"entity\":\"PointOfSaleEmployee.cdm.json/PointOfSaleEmployee\",\"name\":\"EmployeeId\"},\"PeriodStartTimestamp\":{\"entity\":\"PointOfSaleEmployee.cdm.json/PointOfSaleEmployee\",\"name\":\"PeriodStartTimestamp\"},\"PeriodEndTimestamp\":{\"entity\":\"PointOfSaleEmployee.cdm.json/PointOfSaleEmployee\",\"name\":\"PeriodEndTimestamp\"},\"PointOfSalePeriodEmployeeRevenueAmount\":{\"entity\":\"PointOfSaleEmployee.cdm.json/PointOfSaleEmployee\",\"name\":\"PointOfSalePeriodEmployeeRevenueAmount\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"PointOfSaleEmployee\",\"path\":\"PointOfSaleEmployee.cdm.json/PointOfSaleEmployee\"},\"description\":\"The employee(s) associated with the POS for the associated period.\",\"primaryKey\":[\"PointOfSaleId\",\"EmployeeId\",\"PeriodStartTimestamp\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"PointOfSaleEmployee.cdm.json/PointOfSaleEmployee\",\"name\":\"PointOfSaleId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a POS.\",\"isNullable\":false,\"name\":\"PointOfSaleId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"PointOfSaleEmployee.cdm.json/PointOfSaleEmployee\",\"name\":\"EmployeeId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of an Employee.\",\"isNullable\":false,\"name\":\"EmployeeId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"PointOfSaleEmployee.cdm.json/PointOfSaleEmployee\",\"name\":\"PeriodStartTimestamp\"},\"dataType\":\"timestamp\",\"description\":\"The period start timestamp of the POS/Employee relationship.\",\"isNullable\":false,\"name\":\"PeriodStartTimestamp\",\"timestampFormat\":\"YYYY-MM-DD HH:MM:SS.fffffffff\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"PointOfSaleEmployee.cdm.json/PointOfSaleEmployee\",\"name\":\"PeriodEndTimestamp\"},\"dataType\":\"timestamp\",\"description\":\"The period end timestamp of the POS/Employee relationship.\",\"isNullable\":true,\"name\":\"PeriodEndTimestamp\",\"timestampFormat\":\"YYYY-MM-DD HH:MM:SS.fffffffff\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"PointOfSaleEmployee.cdm.json/PointOfSaleEmployee\",\"name\":\"PointOfSalePeriodEmployeeRevenueAmount\"},\"dataType\":\"decimal\",\"dataTypeLength\":18,\"description\":\"The amount of revenue realized by or assigned to the employee for the POS for the associated period.\",\"isNullable\":true,\"scale\":2,\"name\":\"PointOfSalePeriodEmployeeRevenueAmount\"}]}}}",
+			"Description": "The employee(s) associated with the POS for the associated period.",
+			"DisplayFolderInfo": "{\"name\":\"Transaction\",\"colorCode\":\"#823A16\"}",
+			"PrimaryKeys": "PointOfSaleId,EmployeeId,PeriodStartTimestamp",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

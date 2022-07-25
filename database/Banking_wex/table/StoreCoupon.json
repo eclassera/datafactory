@@ -1,0 +1,112 @@
+{
+	"name": "StoreCoupon",
+	"properties": {
+		"Name": "StoreCoupon",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "The coupon(s) associated with a Store.",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "StoreId",
+					"Description": "The unique identifier of a Store.",
+					"BaseAttributeReference": {
+						"Entity": "StoreCoupon.cdm.json/StoreCoupon",
+						"Name": "StoreId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "CouponId",
+					"Description": "The unique identifier of a coupon.",
+					"BaseAttributeReference": {
+						"Entity": "StoreCoupon.cdm.json/StoreCoupon",
+						"Name": "CouponId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "StoreCouponNote",
+					"Description": "A note, comment or additional information regarding the store coupon.",
+					"BaseAttributeReference": {
+						"Entity": "StoreCoupon.cdm.json/StoreCoupon",
+						"Name": "StoreCouponNote"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/StoreCoupon",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/StoreCoupon",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"StoreId\":{\"entity\":\"StoreCoupon.cdm.json/StoreCoupon\",\"name\":\"StoreId\"},\"CouponId\":{\"entity\":\"StoreCoupon.cdm.json/StoreCoupon\",\"name\":\"CouponId\"},\"StoreCouponNote\":{\"entity\":\"StoreCoupon.cdm.json/StoreCoupon\",\"name\":\"StoreCouponNote\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"StoreCoupon\",\"path\":\"StoreCoupon.cdm.json/StoreCoupon\"},\"description\":\"The coupon(s) associated with a Store.\",\"primaryKey\":[\"StoreId\",\"CouponId\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"StoreCoupon.cdm.json/StoreCoupon\",\"name\":\"StoreId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Store.\",\"isNullable\":false,\"name\":\"StoreId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"StoreCoupon.cdm.json/StoreCoupon\",\"name\":\"CouponId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a coupon.\",\"isNullable\":false,\"name\":\"CouponId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"StoreCoupon.cdm.json/StoreCoupon\",\"name\":\"StoreCouponNote\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"A note, comment or additional information regarding the store coupon.\",\"isNullable\":true,\"name\":\"StoreCouponNote\"}]}}}",
+			"Description": "The coupon(s) associated with a Store.",
+			"DisplayFolderInfo": "{\"name\":\"Marketing & Advertising\",\"colorCode\":\"#692B0C\"}",
+			"PrimaryKeys": "StoreId,CouponId",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

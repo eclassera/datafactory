@@ -1,0 +1,181 @@
+{
+	"name": "CollectionTelephoneCall",
+	"properties": {
+		"Name": "CollectionTelephoneCall",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "A collection contact made via a telephone call,\n\nTelephone calls are an efficient way to contact a large number of parties and much less costly that personal visits.",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "CollectionEventId",
+					"Description": "The unique identifier of a collection event.",
+					"BaseAttributeReference": {
+						"Entity": "CollectionTelephoneCall.cdm.json/CollectionTelephoneCall",
+						"Name": "CollectionEventId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "ConversationNote",
+					"Description": "Notes, comment or additional details regarding the collection telephone call.",
+					"BaseAttributeReference": {
+						"Entity": "CollectionTelephoneCall.cdm.json/CollectionTelephoneCall",
+						"Name": "ConversationNote"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "OutstandingAmount",
+					"Description": "The amount of debt outstanding at the time of the collection telephone call.",
+					"BaseAttributeReference": {
+						"Entity": "CollectionTelephoneCall.cdm.json/CollectionTelephoneCall",
+						"Name": "OutstandingAmount"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "decimal",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Precision": 18,
+						"Scale": 2,
+						"Properties": {
+							"HIVE_TYPE_STRING": "decimal"
+						}
+					}
+				},
+				{
+					"Name": "CollectedAmount",
+					"Description": "The amount collected or pledged during the collection telephone call.",
+					"BaseAttributeReference": {
+						"Entity": "CollectionTelephoneCall.cdm.json/CollectionTelephoneCall",
+						"Name": "CollectedAmount"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "decimal",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Precision": 18,
+						"Scale": 2,
+						"Properties": {
+							"HIVE_TYPE_STRING": "decimal"
+						}
+					}
+				},
+				{
+					"Name": "PlannedFollowupCollectionActivityDate",
+					"Description": "The date of the planned followup activity to the collection telephone call.",
+					"BaseAttributeReference": {
+						"Entity": "CollectionTelephoneCall.cdm.json/CollectionTelephoneCall",
+						"Name": "PlannedFollowupCollectionActivityDate"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "date",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"DateFormat": "YYYY-MM-DD",
+							"HIVE_TYPE_STRING": "date"
+						}
+					}
+				},
+				{
+					"Name": "CollectionTelephoneCallTypeId",
+					"Description": "The unique identifier of the Collection Telephone Call Type.",
+					"BaseAttributeReference": {
+						"Entity": "CollectionTelephoneCall.cdm.json/CollectionTelephoneCall",
+						"Name": "CollectionTelephoneCallTypeId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "FollowupCollectionActivityId",
+					"Description": "The unique identifier of a Followup Collection Activity Type.",
+					"BaseAttributeReference": {
+						"Entity": "CollectionTelephoneCall.cdm.json/CollectionTelephoneCall",
+						"Name": "FollowupCollectionActivityId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/CollectionTelephoneCall",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/CollectionTelephoneCall",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"CollectionEventId\":{\"entity\":\"CollectionTelephoneCall.cdm.json/CollectionTelephoneCall\",\"name\":\"CollectionEventId\"},\"ConversationNote\":{\"entity\":\"CollectionTelephoneCall.cdm.json/CollectionTelephoneCall\",\"name\":\"ConversationNote\"},\"OutstandingAmount\":{\"entity\":\"CollectionTelephoneCall.cdm.json/CollectionTelephoneCall\",\"name\":\"OutstandingAmount\"},\"CollectedAmount\":{\"entity\":\"CollectionTelephoneCall.cdm.json/CollectionTelephoneCall\",\"name\":\"CollectedAmount\"},\"PlannedFollowupCollectionActivityDate\":{\"entity\":\"CollectionTelephoneCall.cdm.json/CollectionTelephoneCall\",\"name\":\"PlannedFollowupCollectionActivityDate\"},\"CollectionTelephoneCallTypeId\":{\"entity\":\"CollectionTelephoneCall.cdm.json/CollectionTelephoneCall\",\"name\":\"CollectionTelephoneCallTypeId\"},\"FollowupCollectionActivityId\":{\"entity\":\"CollectionTelephoneCall.cdm.json/CollectionTelephoneCall\",\"name\":\"FollowupCollectionActivityId\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"CollectionTelephoneCall\",\"path\":\"CollectionTelephoneCall.cdm.json/CollectionTelephoneCall\"},\"description\":\"A collection contact made via a telephone call,\\n\\nTelephone calls are an efficient way to contact a large number of parties and much less costly that personal visits.\",\"primaryKey\":[\"CollectionEventId\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CollectionTelephoneCall.cdm.json/CollectionTelephoneCall\",\"name\":\"CollectionEventId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a collection event.\",\"isNullable\":false,\"name\":\"CollectionEventId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CollectionTelephoneCall.cdm.json/CollectionTelephoneCall\",\"name\":\"ConversationNote\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"Notes, comment or additional details regarding the collection telephone call.\",\"isNullable\":true,\"name\":\"ConversationNote\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CollectionTelephoneCall.cdm.json/CollectionTelephoneCall\",\"name\":\"OutstandingAmount\"},\"dataType\":\"decimal\",\"dataTypeLength\":18,\"description\":\"The amount of debt outstanding at the time of the collection telephone call.\",\"isNullable\":true,\"scale\":2,\"name\":\"OutstandingAmount\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CollectionTelephoneCall.cdm.json/CollectionTelephoneCall\",\"name\":\"CollectedAmount\"},\"dataType\":\"decimal\",\"dataTypeLength\":18,\"description\":\"The amount collected or pledged during the collection telephone call.\",\"isNullable\":true,\"scale\":2,\"name\":\"CollectedAmount\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CollectionTelephoneCall.cdm.json/CollectionTelephoneCall\",\"name\":\"PlannedFollowupCollectionActivityDate\"},\"dataType\":\"date\",\"dateFormat\":\"YYYY-MM-DD\",\"description\":\"The date of the planned followup activity to the collection telephone call.\",\"isNullable\":true,\"name\":\"PlannedFollowupCollectionActivityDate\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CollectionTelephoneCall.cdm.json/CollectionTelephoneCall\",\"name\":\"CollectionTelephoneCallTypeId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of the Collection Telephone Call Type.\",\"isNullable\":false,\"name\":\"CollectionTelephoneCallTypeId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CollectionTelephoneCall.cdm.json/CollectionTelephoneCall\",\"name\":\"FollowupCollectionActivityId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Followup Collection Activity Type.\",\"isNullable\":false,\"name\":\"FollowupCollectionActivityId\"}]}}}",
+			"Description": "A collection contact made via a telephone call,\n\nTelephone calls are an efficient way to contact a large number of parties and much less costly that personal visits.",
+			"DisplayFolderInfo": "{\"name\":\"Customer Credit & Collections\",\"colorCode\":\"#022F22\"}",
+			"PrimaryKeys": "CollectionEventId",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

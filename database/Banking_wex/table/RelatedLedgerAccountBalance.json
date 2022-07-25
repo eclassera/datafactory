@@ -1,0 +1,196 @@
+{
+	"name": "RelatedLedgerAccountBalance",
+	"properties": {
+		"Name": "RelatedLedgerAccountBalance",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "A list of ledger account balances and their related ledger account balances.\n\nAn arbitrary way of linking the balance of a ledger account to one or more other ledger account + balances:\n\nAP Balance = Ledger Acct A Balance + Ledger Acct B Balance",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "LedgerId",
+					"Description": "The unique identifier of a Ledger.",
+					"BaseAttributeReference": {
+						"Entity": "RelatedLedgerAccountBalance.cdm.json/RelatedLedgerAccountBalance",
+						"Name": "LedgerId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "LedgerAccountNumber",
+					"Description": "The unique identifier of an Account.",
+					"BaseAttributeReference": {
+						"Entity": "RelatedLedgerAccountBalance.cdm.json/RelatedLedgerAccountBalance",
+						"Name": "LedgerAccountNumber"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Length": 20,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "Timestamp",
+					"Description": "The timestamp that the associated balance is current or effective as-of.",
+					"BaseAttributeReference": {
+						"Entity": "RelatedLedgerAccountBalance.cdm.json/RelatedLedgerAccountBalance",
+						"Name": "Timestamp"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "timestamp",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"TimestampFormat": "YYYY-MM-DD HH:MM:SS.fffffffff",
+							"HIVE_TYPE_STRING": "timestamp"
+						}
+					}
+				},
+				{
+					"Name": "RelatedLedgerId",
+					"Description": "The unique identifier of a Ledger.",
+					"BaseAttributeReference": {
+						"Entity": "RelatedLedgerAccountBalance.cdm.json/RelatedLedgerAccountBalance",
+						"Name": "RelatedLedgerId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "RelatedLedgerAccountNumber",
+					"Description": "The unique identifier of an Account.",
+					"BaseAttributeReference": {
+						"Entity": "RelatedLedgerAccountBalance.cdm.json/RelatedLedgerAccountBalance",
+						"Name": "RelatedLedgerAccountNumber"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Length": 20,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "RelatedTimestamp",
+					"Description": "The timestamp that the associated balance is current or effective as-of.",
+					"BaseAttributeReference": {
+						"Entity": "RelatedLedgerAccountBalance.cdm.json/RelatedLedgerAccountBalance",
+						"Name": "RelatedTimestamp"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "timestamp",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"TimestampFormat": "YYYY-MM-DD HH:MM:SS.fffffffff",
+							"HIVE_TYPE_STRING": "timestamp"
+						}
+					}
+				},
+				{
+					"Name": "RelatedLedgerAccountBalanceDescription",
+					"Description": "A description of the relationship between the related ledger account balances.",
+					"BaseAttributeReference": {
+						"Entity": "RelatedLedgerAccountBalance.cdm.json/RelatedLedgerAccountBalance",
+						"Name": "RelatedLedgerAccountBalanceDescription"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "RelatedLedgerAccountBalanceRelationshipTypeId",
+					"Description": "The unique identifier of a Related Account Balance Relationship Type.",
+					"BaseAttributeReference": {
+						"Entity": "RelatedLedgerAccountBalance.cdm.json/RelatedLedgerAccountBalance",
+						"Name": "RelatedLedgerAccountBalanceRelationshipTypeId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/RelatedLedgerAccountBalance",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/RelatedLedgerAccountBalance",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"LedgerId\":{\"entity\":\"RelatedLedgerAccountBalance.cdm.json/RelatedLedgerAccountBalance\",\"name\":\"LedgerId\"},\"LedgerAccountNumber\":{\"entity\":\"RelatedLedgerAccountBalance.cdm.json/RelatedLedgerAccountBalance\",\"name\":\"LedgerAccountNumber\"},\"Timestamp\":{\"entity\":\"RelatedLedgerAccountBalance.cdm.json/RelatedLedgerAccountBalance\",\"name\":\"Timestamp\"},\"RelatedLedgerId\":{\"entity\":\"RelatedLedgerAccountBalance.cdm.json/RelatedLedgerAccountBalance\",\"name\":\"RelatedLedgerId\"},\"RelatedLedgerAccountNumber\":{\"entity\":\"RelatedLedgerAccountBalance.cdm.json/RelatedLedgerAccountBalance\",\"name\":\"RelatedLedgerAccountNumber\"},\"RelatedTimestamp\":{\"entity\":\"RelatedLedgerAccountBalance.cdm.json/RelatedLedgerAccountBalance\",\"name\":\"RelatedTimestamp\"},\"RelatedLedgerAccountBalanceDescription\":{\"entity\":\"RelatedLedgerAccountBalance.cdm.json/RelatedLedgerAccountBalance\",\"name\":\"RelatedLedgerAccountBalanceDescription\"},\"RelatedLedgerAccountBalanceRelationshipTypeId\":{\"entity\":\"RelatedLedgerAccountBalance.cdm.json/RelatedLedgerAccountBalance\",\"name\":\"RelatedLedgerAccountBalanceRelationshipTypeId\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"RelatedLedgerAccountBalance\",\"path\":\"RelatedLedgerAccountBalance.cdm.json/RelatedLedgerAccountBalance\"},\"description\":\"A list of ledger account balances and their related ledger account balances.\\n\\nAn arbitrary way of linking the balance of a ledger account to one or more other ledger account + balances:\\n\\nAP Balance = Ledger Acct A Balance + Ledger Acct B Balance\",\"primaryKey\":[\"LedgerId\",\"LedgerAccountNumber\",\"Timestamp\",\"RelatedLedgerId\",\"RelatedLedgerAccountNumber\",\"RelatedTimestamp\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"RelatedLedgerAccountBalance.cdm.json/RelatedLedgerAccountBalance\",\"name\":\"LedgerId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Ledger.\",\"isNullable\":false,\"name\":\"LedgerId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"RelatedLedgerAccountBalance.cdm.json/RelatedLedgerAccountBalance\",\"name\":\"LedgerAccountNumber\"},\"dataType\":\"string\",\"dataTypeLength\":20,\"description\":\"The unique identifier of an Account.\",\"isNullable\":false,\"name\":\"LedgerAccountNumber\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"RelatedLedgerAccountBalance.cdm.json/RelatedLedgerAccountBalance\",\"name\":\"Timestamp\"},\"dataType\":\"timestamp\",\"description\":\"The timestamp that the associated balance is current or effective as-of.\",\"isNullable\":false,\"name\":\"Timestamp\",\"timestampFormat\":\"YYYY-MM-DD HH:MM:SS.fffffffff\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"RelatedLedgerAccountBalance.cdm.json/RelatedLedgerAccountBalance\",\"name\":\"RelatedLedgerId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Ledger.\",\"isNullable\":false,\"name\":\"RelatedLedgerId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"RelatedLedgerAccountBalance.cdm.json/RelatedLedgerAccountBalance\",\"name\":\"RelatedLedgerAccountNumber\"},\"dataType\":\"string\",\"dataTypeLength\":20,\"description\":\"The unique identifier of an Account.\",\"isNullable\":false,\"name\":\"RelatedLedgerAccountNumber\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"RelatedLedgerAccountBalance.cdm.json/RelatedLedgerAccountBalance\",\"name\":\"RelatedTimestamp\"},\"dataType\":\"timestamp\",\"description\":\"The timestamp that the associated balance is current or effective as-of.\",\"isNullable\":false,\"name\":\"RelatedTimestamp\",\"timestampFormat\":\"YYYY-MM-DD HH:MM:SS.fffffffff\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"RelatedLedgerAccountBalance.cdm.json/RelatedLedgerAccountBalance\",\"name\":\"RelatedLedgerAccountBalanceDescription\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"A description of the relationship between the related ledger account balances.\",\"isNullable\":true,\"name\":\"RelatedLedgerAccountBalanceDescription\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"RelatedLedgerAccountBalance.cdm.json/RelatedLedgerAccountBalance\",\"name\":\"RelatedLedgerAccountBalanceRelationshipTypeId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Related Account Balance Relationship Type.\",\"isNullable\":true,\"name\":\"RelatedLedgerAccountBalanceRelationshipTypeId\"}]}}}",
+			"Description": "A list of ledger account balances and their related ledger account balances.\n\nAn arbitrary way of linking the balance of a ledger account to one or more other ledger account + balances:\n\nAP Balance = Ledger Acct A Balance + Ledger Acct B Balance",
+			"DisplayFolderInfo": "{\"name\":\"Accounting & Financial Reporting\",\"colorCode\":\"#0078D4\"}",
+			"PrimaryKeys": "LedgerId,LedgerAccountNumber,Timestamp,RelatedLedgerId,RelatedLedgerAccountNumber,RelatedTimestamp",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

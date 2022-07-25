@@ -1,0 +1,113 @@
+{
+	"name": "FranchiseAgreementTermType",
+	"properties": {
+		"Name": "FranchiseAgreementTermType",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "The specific terms associated with a franchise agreement.\n\nEx:\n- Exclusive Territory\n- First right of refusal\n- Transfer right",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "FranchiseAgreementTermTypeId",
+					"Description": "The unique identifier of a franchise agreement term type.",
+					"BaseAttributeReference": {
+						"Entity": "FranchiseAgreementTermType.cdm.json/FranchiseAgreementTermType",
+						"Name": "FranchiseAgreementTermTypeId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "FranchiseAgreementTermTypeName",
+					"Description": "The name of a franchise agreement term type.",
+					"BaseAttributeReference": {
+						"Entity": "FranchiseAgreementTermType.cdm.json/FranchiseAgreementTermType",
+						"Name": "FranchiseAgreementTermTypeName"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 256,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "FranchiseAgreementTermTypeDescription",
+					"Description": "The description of a franchise agreement term type.",
+					"BaseAttributeReference": {
+						"Entity": "FranchiseAgreementTermType.cdm.json/FranchiseAgreementTermType",
+						"Name": "FranchiseAgreementTermTypeDescription"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/FranchiseAgreementTermType",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/FranchiseAgreementTermType",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"FranchiseAgreementTermTypeId\":{\"entity\":\"FranchiseAgreementTermType.cdm.json/FranchiseAgreementTermType\",\"name\":\"FranchiseAgreementTermTypeId\"},\"FranchiseAgreementTermTypeName\":{\"entity\":\"FranchiseAgreementTermType.cdm.json/FranchiseAgreementTermType\",\"name\":\"FranchiseAgreementTermTypeName\"},\"FranchiseAgreementTermTypeDescription\":{\"entity\":\"FranchiseAgreementTermType.cdm.json/FranchiseAgreementTermType\",\"name\":\"FranchiseAgreementTermTypeDescription\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"FranchiseAgreementTermType\",\"path\":\"FranchiseAgreementTermType.cdm.json/FranchiseAgreementTermType\"},\"description\":\"The specific terms associated with a franchise agreement.\\n\\nEx:\\n- Exclusive Territory\\n- First right of refusal\\n- Transfer right\",\"primaryKey\":[\"FranchiseAgreementTermTypeId\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"FranchiseAgreementTermType.cdm.json/FranchiseAgreementTermType\",\"name\":\"FranchiseAgreementTermTypeId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a franchise agreement term type.\",\"isNullable\":false,\"name\":\"FranchiseAgreementTermTypeId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"FranchiseAgreementTermType.cdm.json/FranchiseAgreementTermType\",\"name\":\"FranchiseAgreementTermTypeName\"},\"dataType\":\"string\",\"dataTypeLength\":256,\"description\":\"The name of a franchise agreement term type.\",\"isNullable\":true,\"name\":\"FranchiseAgreementTermTypeName\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"FranchiseAgreementTermType.cdm.json/FranchiseAgreementTermType\",\"name\":\"FranchiseAgreementTermTypeDescription\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"The description of a franchise agreement term type.\",\"isNullable\":true,\"name\":\"FranchiseAgreementTermTypeDescription\"}]}}}",
+			"Description": "The specific terms associated with a franchise agreement.\n\nEx:\n- Exclusive Territory\n- First right of refusal\n- Transfer right",
+			"DisplayFolderInfo": "{\"name\":\"Contract\",\"colorCode\":\"#917EDB\"}",
+			"PrimaryKeys": "FranchiseAgreementTermTypeId",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

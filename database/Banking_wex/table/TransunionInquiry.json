@@ -1,0 +1,146 @@
+{
+	"name": "TransunionInquiry",
+	"properties": {
+		"Name": "TransunionInquiry",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "Displays which companies viewed the consumer's credit file.\n\nIncludes date the inquiry occurred, and the inquiring subscriber's TransUnion-assigned member number and name.",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "TransunionReferenceNumber",
+					"Description": "The TransUnion file number.",
+					"BaseAttributeReference": {
+						"Entity": "TransunionInquiry.cdm.json/TransunionInquiry",
+						"Name": "TransunionReferenceNumber"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "TransunionInquiryNumber",
+					"Description": "The TransUnion Inquiry Number uniquely identifies an inquiry within a TransUnion Credit Report.",
+					"BaseAttributeReference": {
+						"Entity": "TransunionInquiry.cdm.json/TransunionInquiry",
+						"Name": "TransunionInquiryNumber"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "InquiryDate",
+					"Description": "The date of the inquiry.",
+					"BaseAttributeReference": {
+						"Entity": "TransunionInquiry.cdm.json/TransunionInquiry",
+						"Name": "InquiryDate"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "date",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"DateFormat": "YYYY-MM-DD",
+							"HIVE_TYPE_STRING": "date"
+						}
+					}
+				},
+				{
+					"Name": "SubscriberCode",
+					"Description": "The subscriber code.",
+					"BaseAttributeReference": {
+						"Entity": "TransunionInquiry.cdm.json/TransunionInquiry",
+						"Name": "SubscriberCode"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "SubscriberName",
+					"Description": "The subscriber name.",
+					"BaseAttributeReference": {
+						"Entity": "TransunionInquiry.cdm.json/TransunionInquiry",
+						"Name": "SubscriberName"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 256,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/TransunionInquiry",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/TransunionInquiry",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"TransunionReferenceNumber\":{\"entity\":\"TransunionInquiry.cdm.json/TransunionInquiry\",\"name\":\"TransunionReferenceNumber\"},\"TransunionInquiryNumber\":{\"entity\":\"TransunionInquiry.cdm.json/TransunionInquiry\",\"name\":\"TransunionInquiryNumber\"},\"InquiryDate\":{\"entity\":\"TransunionInquiry.cdm.json/TransunionInquiry\",\"name\":\"InquiryDate\"},\"SubscriberCode\":{\"entity\":\"TransunionInquiry.cdm.json/TransunionInquiry\",\"name\":\"SubscriberCode\"},\"SubscriberName\":{\"entity\":\"TransunionInquiry.cdm.json/TransunionInquiry\",\"name\":\"SubscriberName\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"TransunionInquiry\",\"path\":\"TransunionInquiry.cdm.json/TransunionInquiry\"},\"description\":\"Displays which companies viewed the consumer's credit file.\\n\\nIncludes date the inquiry occurred, and the inquiring subscriber's TransUnion-assigned member number and name.\",\"primaryKey\":[\"TransunionReferenceNumber\",\"TransunionInquiryNumber\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"TransunionInquiry.cdm.json/TransunionInquiry\",\"name\":\"TransunionReferenceNumber\"},\"dataType\":\"integer\",\"description\":\"The TransUnion file number.\",\"isNullable\":false,\"name\":\"TransunionReferenceNumber\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"TransunionInquiry.cdm.json/TransunionInquiry\",\"name\":\"TransunionInquiryNumber\"},\"dataType\":\"integer\",\"description\":\"The TransUnion Inquiry Number uniquely identifies an inquiry within a TransUnion Credit Report.\",\"isNullable\":false,\"name\":\"TransunionInquiryNumber\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"TransunionInquiry.cdm.json/TransunionInquiry\",\"name\":\"InquiryDate\"},\"dataType\":\"date\",\"dateFormat\":\"YYYY-MM-DD\",\"description\":\"The date of the inquiry.\",\"isNullable\":true,\"name\":\"InquiryDate\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"TransunionInquiry.cdm.json/TransunionInquiry\",\"name\":\"SubscriberCode\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"The subscriber code.\",\"isNullable\":true,\"name\":\"SubscriberCode\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"TransunionInquiry.cdm.json/TransunionInquiry\",\"name\":\"SubscriberName\"},\"dataType\":\"string\",\"dataTypeLength\":256,\"description\":\"The subscriber name.\",\"isNullable\":true,\"name\":\"SubscriberName\"}]}}}",
+			"Description": "Displays which companies viewed the consumer's credit file.\n\nIncludes date the inquiry occurred, and the inquiring subscriber's TransUnion-assigned member number and name.",
+			"DisplayFolderInfo": "{\"name\":\"Customer Credit & Collections\",\"colorCode\":\"#022F22\"}",
+			"PrimaryKeys": "TransunionReferenceNumber,TransunionInquiryNumber",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

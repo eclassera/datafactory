@@ -1,0 +1,113 @@
+{
+	"name": "LoanStatus",
+	"properties": {
+		"Name": "LoanStatus",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "The status of the associated loan.\n\nEx:\n- Current\n- Past due\n- 30 days past due\n- 60 days past due\n- 90 days past due\n- In collection\n- Delinquent\n- Expired\n- Over The Limit\n- In Default",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "LoanStatusId",
+					"Description": "The unique identifier of a Loan Status.",
+					"BaseAttributeReference": {
+						"Entity": "LoanStatus.cdm.json/LoanStatus",
+						"Name": "LoanStatusId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "LoanStatusName",
+					"Description": "The name of a Loan Status.",
+					"BaseAttributeReference": {
+						"Entity": "LoanStatus.cdm.json/LoanStatus",
+						"Name": "LoanStatusName"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 256,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "LoanStatusDescription",
+					"Description": "The description of a Loan Status.",
+					"BaseAttributeReference": {
+						"Entity": "LoanStatus.cdm.json/LoanStatus",
+						"Name": "LoanStatusDescription"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/LoanStatus",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/LoanStatus",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"LoanStatusId\":{\"entity\":\"LoanStatus.cdm.json/LoanStatus\",\"name\":\"LoanStatusId\"},\"LoanStatusName\":{\"entity\":\"LoanStatus.cdm.json/LoanStatus\",\"name\":\"LoanStatusName\"},\"LoanStatusDescription\":{\"entity\":\"LoanStatus.cdm.json/LoanStatus\",\"name\":\"LoanStatusDescription\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"LoanStatus\",\"path\":\"LoanStatus.cdm.json/LoanStatus\"},\"description\":\"The status of the associated loan.\\n\\nEx:\\n- Current\\n- Past due\\n- 30 days past due\\n- 60 days past due\\n- 90 days past due\\n- In collection\\n- Delinquent\\n- Expired\\n- Over The Limit\\n- In Default\",\"primaryKey\":[\"LoanStatusId\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"LoanStatus.cdm.json/LoanStatus\",\"name\":\"LoanStatusId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Loan Status.\",\"isNullable\":false,\"name\":\"LoanStatusId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"LoanStatus.cdm.json/LoanStatus\",\"name\":\"LoanStatusName\"},\"dataType\":\"string\",\"dataTypeLength\":256,\"description\":\"The name of a Loan Status.\",\"isNullable\":true,\"name\":\"LoanStatusName\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"LoanStatus.cdm.json/LoanStatus\",\"name\":\"LoanStatusDescription\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"The description of a Loan Status.\",\"isNullable\":true,\"name\":\"LoanStatusDescription\"}]}}}",
+			"Description": "The status of the associated loan.\n\nEx:\n- Current\n- Past due\n- 30 days past due\n- 60 days past due\n- 90 days past due\n- In collection\n- Delinquent\n- Expired\n- Over The Limit\n- In Default",
+			"DisplayFolderInfo": "{\"name\":\"Customer Credit & Collections\",\"colorCode\":\"#022F22\"}",
+			"PrimaryKeys": "LoanStatusId",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

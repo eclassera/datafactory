@@ -1,0 +1,162 @@
+{
+	"name": "TransactionRelatedParty",
+	"properties": {
+		"Name": "TransactionRelatedParty",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "The party(s) associated with the transaction.",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "TransactionId",
+					"Description": "The unique identifier of a Transaction.",
+					"BaseAttributeReference": {
+						"Entity": "TransactionRelatedParty.cdm.json/TransactionRelatedParty",
+						"Name": "TransactionId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "long",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "long"
+						}
+					}
+				},
+				{
+					"Name": "PartyId",
+					"Description": "The unique identifier of a Party.",
+					"BaseAttributeReference": {
+						"Entity": "TransactionRelatedParty.cdm.json/TransactionRelatedParty",
+						"Name": "PartyId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "long",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "long"
+						}
+					}
+				},
+				{
+					"Name": "TransactionPartyRelationshipTypeId",
+					"Description": "The unique identifier of a Transaction Party Relationship Type.",
+					"BaseAttributeReference": {
+						"Entity": "TransactionRelatedParty.cdm.json/TransactionRelatedParty",
+						"Name": "TransactionPartyRelationshipTypeId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "PeriodStartTimestamp",
+					"Description": "The period start timestamp for which the transaction/party relationship is defined.",
+					"BaseAttributeReference": {
+						"Entity": "TransactionRelatedParty.cdm.json/TransactionRelatedParty",
+						"Name": "PeriodStartTimestamp"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "timestamp",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"TimestampFormat": "YYYY-MM-DD HH:MM:SS.fffffffff",
+							"HIVE_TYPE_STRING": "timestamp"
+						}
+					}
+				},
+				{
+					"Name": "PeriodEndTimestamp",
+					"Description": "The period end timestamp for which the transaction/party relationship is defined.",
+					"BaseAttributeReference": {
+						"Entity": "TransactionRelatedParty.cdm.json/TransactionRelatedParty",
+						"Name": "PeriodEndTimestamp"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "timestamp",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"TimestampFormat": "YYYY-MM-DD HH:MM:SS.fffffffff",
+							"HIVE_TYPE_STRING": "timestamp"
+						}
+					}
+				},
+				{
+					"Name": "TransactionRelatedPartyNote",
+					"Description": "A note, comment or additional information regarding the transaction related party.",
+					"BaseAttributeReference": {
+						"Entity": "TransactionRelatedParty.cdm.json/TransactionRelatedParty",
+						"Name": "TransactionRelatedPartyNote"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/TransactionRelatedParty",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/TransactionRelatedParty",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"TransactionId\":{\"entity\":\"TransactionRelatedParty.cdm.json/TransactionRelatedParty\",\"name\":\"TransactionId\"},\"PartyId\":{\"entity\":\"TransactionRelatedParty.cdm.json/TransactionRelatedParty\",\"name\":\"PartyId\"},\"TransactionPartyRelationshipTypeId\":{\"entity\":\"TransactionRelatedParty.cdm.json/TransactionRelatedParty\",\"name\":\"TransactionPartyRelationshipTypeId\"},\"PeriodStartTimestamp\":{\"entity\":\"TransactionRelatedParty.cdm.json/TransactionRelatedParty\",\"name\":\"PeriodStartTimestamp\"},\"PeriodEndTimestamp\":{\"entity\":\"TransactionRelatedParty.cdm.json/TransactionRelatedParty\",\"name\":\"PeriodEndTimestamp\"},\"TransactionRelatedPartyNote\":{\"entity\":\"TransactionRelatedParty.cdm.json/TransactionRelatedParty\",\"name\":\"TransactionRelatedPartyNote\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"TransactionRelatedParty\",\"path\":\"TransactionRelatedParty.cdm.json/TransactionRelatedParty\"},\"description\":\"The party(s) associated with the transaction.\",\"primaryKey\":[\"TransactionId\",\"PartyId\",\"TransactionPartyRelationshipTypeId\",\"PeriodStartTimestamp\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"TransactionRelatedParty.cdm.json/TransactionRelatedParty\",\"name\":\"TransactionId\"},\"dataType\":\"long\",\"description\":\"The unique identifier of a Transaction.\",\"isNullable\":false,\"name\":\"TransactionId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"TransactionRelatedParty.cdm.json/TransactionRelatedParty\",\"name\":\"PartyId\"},\"dataType\":\"long\",\"description\":\"The unique identifier of a Party.\",\"isNullable\":false,\"name\":\"PartyId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"TransactionRelatedParty.cdm.json/TransactionRelatedParty\",\"name\":\"TransactionPartyRelationshipTypeId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Transaction Party Relationship Type.\",\"isNullable\":false,\"name\":\"TransactionPartyRelationshipTypeId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"TransactionRelatedParty.cdm.json/TransactionRelatedParty\",\"name\":\"PeriodStartTimestamp\"},\"dataType\":\"timestamp\",\"description\":\"The period start timestamp for which the transaction/party relationship is defined.\",\"isNullable\":false,\"name\":\"PeriodStartTimestamp\",\"timestampFormat\":\"YYYY-MM-DD HH:MM:SS.fffffffff\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"TransactionRelatedParty.cdm.json/TransactionRelatedParty\",\"name\":\"PeriodEndTimestamp\"},\"dataType\":\"timestamp\",\"description\":\"The period end timestamp for which the transaction/party relationship is defined.\",\"isNullable\":true,\"name\":\"PeriodEndTimestamp\",\"timestampFormat\":\"YYYY-MM-DD HH:MM:SS.fffffffff\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"TransactionRelatedParty.cdm.json/TransactionRelatedParty\",\"name\":\"TransactionRelatedPartyNote\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"A note, comment or additional information regarding the transaction related party.\",\"isNullable\":true,\"name\":\"TransactionRelatedPartyNote\"}]}}}",
+			"Description": "The party(s) associated with the transaction.",
+			"DisplayFolderInfo": "{\"name\":\"Transaction\",\"colorCode\":\"#823A16\"}",
+			"PrimaryKeys": "TransactionId,PartyId,TransactionPartyRelationshipTypeId,PeriodStartTimestamp",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

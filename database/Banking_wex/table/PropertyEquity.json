@@ -1,0 +1,150 @@
+{
+	"name": "PropertyEquity",
+	"properties": {
+		"Name": "PropertyEquity",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "The difference between the market value of a property and the homeowner's outstanding mortgage balance.",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "PropertyId",
+					"Description": "The unique identifier of a Property.",
+					"BaseAttributeReference": {
+						"Entity": "PropertyEquity.cdm.json/PropertyEquity",
+						"Name": "PropertyId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "long",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "long"
+						}
+					}
+				},
+				{
+					"Name": "Date",
+					"Description": "The date upon which the equity is calculated.",
+					"BaseAttributeReference": {
+						"Entity": "PropertyEquity.cdm.json/PropertyEquity",
+						"Name": "Date"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "date",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"DateFormat": "YYYY-MM-DD",
+							"HIVE_TYPE_STRING": "date"
+						}
+					}
+				},
+				{
+					"Name": "OutstandingLoanBalanceAmount",
+					"Description": "The amount of mortgage loan that is outstanding.",
+					"BaseAttributeReference": {
+						"Entity": "PropertyEquity.cdm.json/PropertyEquity",
+						"Name": "OutstandingLoanBalanceAmount"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "decimal",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Precision": 18,
+						"Scale": 2,
+						"Properties": {
+							"HIVE_TYPE_STRING": "decimal"
+						}
+					}
+				},
+				{
+					"Name": "AppraisedValueAmount",
+					"Description": "The appraised value of the property.",
+					"BaseAttributeReference": {
+						"Entity": "PropertyEquity.cdm.json/PropertyEquity",
+						"Name": "AppraisedValueAmount"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "decimal",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Precision": 18,
+						"Scale": 2,
+						"Properties": {
+							"HIVE_TYPE_STRING": "decimal"
+						}
+					}
+				},
+				{
+					"Name": "EquityAmount",
+					"Description": "The equity amount = the difference between the market value of a property and the homeowner's outstanding mortgage balance.",
+					"BaseAttributeReference": {
+						"Entity": "PropertyEquity.cdm.json/PropertyEquity",
+						"Name": "EquityAmount"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "decimal",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Precision": 18,
+						"Scale": 2,
+						"Properties": {
+							"HIVE_TYPE_STRING": "decimal"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/PropertyEquity",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/PropertyEquity",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"PropertyId\":{\"entity\":\"PropertyEquity.cdm.json/PropertyEquity\",\"name\":\"PropertyId\"},\"Date\":{\"entity\":\"PropertyEquity.cdm.json/PropertyEquity\",\"name\":\"Date\"},\"OutstandingLoanBalanceAmount\":{\"entity\":\"PropertyEquity.cdm.json/PropertyEquity\",\"name\":\"OutstandingLoanBalanceAmount\"},\"AppraisedValueAmount\":{\"entity\":\"PropertyEquity.cdm.json/PropertyEquity\",\"name\":\"AppraisedValueAmount\"},\"EquityAmount\":{\"entity\":\"PropertyEquity.cdm.json/PropertyEquity\",\"name\":\"EquityAmount\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"PropertyEquity\",\"path\":\"PropertyEquity.cdm.json/PropertyEquity\"},\"description\":\"The difference between the market value of a property and the homeowner's outstanding mortgage balance.\",\"primaryKey\":[\"PropertyId\",\"Date\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"PropertyEquity.cdm.json/PropertyEquity\",\"name\":\"PropertyId\"},\"dataType\":\"long\",\"description\":\"The unique identifier of a Property.\",\"isNullable\":false,\"name\":\"PropertyId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"PropertyEquity.cdm.json/PropertyEquity\",\"name\":\"Date\"},\"dataType\":\"date\",\"dateFormat\":\"YYYY-MM-DD\",\"description\":\"The date upon which the equity is calculated.\",\"isNullable\":false,\"name\":\"Date\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"PropertyEquity.cdm.json/PropertyEquity\",\"name\":\"OutstandingLoanBalanceAmount\"},\"dataType\":\"decimal\",\"dataTypeLength\":18,\"description\":\"The amount of mortgage loan that is outstanding.\",\"isNullable\":true,\"scale\":2,\"name\":\"OutstandingLoanBalanceAmount\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"PropertyEquity.cdm.json/PropertyEquity\",\"name\":\"AppraisedValueAmount\"},\"dataType\":\"decimal\",\"dataTypeLength\":18,\"description\":\"The appraised value of the property.\",\"isNullable\":true,\"scale\":2,\"name\":\"AppraisedValueAmount\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"PropertyEquity.cdm.json/PropertyEquity\",\"name\":\"EquityAmount\"},\"dataType\":\"decimal\",\"dataTypeLength\":18,\"description\":\"The equity amount = the difference between the market value of a property and the homeowner's outstanding mortgage balance.\",\"isNullable\":true,\"scale\":2,\"name\":\"EquityAmount\"}]}}}",
+			"Description": "The difference between the market value of a property and the homeowner's outstanding mortgage balance.",
+			"DisplayFolderInfo": "{\"name\":\"Property & Equipment\",\"colorCode\":\"#7D0F6C\"}",
+			"PrimaryKeys": "PropertyId,Date",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

@@ -1,0 +1,113 @@
+{
+	"name": "BalanceType",
+	"properties": {
+		"Name": "BalanceType",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "The type of balance (if applicable) associated with the Customer Account Balance information shown.\n\nEx:\n- 0-30 day balance\n- 31-60 day balance\n- 60-90 day balance\n- Current balance\n- Deposited\n- Available\n- Settled\n- On Hold\n- Write-off Balance\n- Average Daily Balance\n- Line Of Credit\n- Available Credit",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "BalanceTypeId",
+					"Description": "The unique identifier of a Balance Type.",
+					"BaseAttributeReference": {
+						"Entity": "BalanceType.cdm.json/BalanceType",
+						"Name": "BalanceTypeId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "BalanceTypeName",
+					"Description": "The name of a Balance Type.",
+					"BaseAttributeReference": {
+						"Entity": "BalanceType.cdm.json/BalanceType",
+						"Name": "BalanceTypeName"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 256,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "BalanceTypeDescription",
+					"Description": "The description of a Balance Type.",
+					"BaseAttributeReference": {
+						"Entity": "BalanceType.cdm.json/BalanceType",
+						"Name": "BalanceTypeDescription"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/BalanceType",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/BalanceType",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"BalanceTypeId\":{\"entity\":\"BalanceType.cdm.json/BalanceType\",\"name\":\"BalanceTypeId\"},\"BalanceTypeName\":{\"entity\":\"BalanceType.cdm.json/BalanceType\",\"name\":\"BalanceTypeName\"},\"BalanceTypeDescription\":{\"entity\":\"BalanceType.cdm.json/BalanceType\",\"name\":\"BalanceTypeDescription\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"BalanceType\",\"path\":\"BalanceType.cdm.json/BalanceType\"},\"description\":\"The type of balance (if applicable) associated with the Customer Account Balance information shown.\\n\\nEx:\\n- 0-30 day balance\\n- 31-60 day balance\\n- 60-90 day balance\\n- Current balance\\n- Deposited\\n- Available\\n- Settled\\n- On Hold\\n- Write-off Balance\\n- Average Daily Balance\\n- Line Of Credit\\n- Available Credit\",\"primaryKey\":[\"BalanceTypeId\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"BalanceType.cdm.json/BalanceType\",\"name\":\"BalanceTypeId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Balance Type.\",\"isNullable\":false,\"name\":\"BalanceTypeId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"BalanceType.cdm.json/BalanceType\",\"name\":\"BalanceTypeName\"},\"dataType\":\"string\",\"dataTypeLength\":256,\"description\":\"The name of a Balance Type.\",\"isNullable\":true,\"name\":\"BalanceTypeName\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"BalanceType.cdm.json/BalanceType\",\"name\":\"BalanceTypeDescription\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"The description of a Balance Type.\",\"isNullable\":true,\"name\":\"BalanceTypeDescription\"}]}}}",
+			"Description": "The type of balance (if applicable) associated with the Customer Account Balance information shown.\n\nEx:\n- 0-30 day balance\n- 31-60 day balance\n- 60-90 day balance\n- Current balance\n- Deposited\n- Available\n- Settled\n- On Hold\n- Write-off Balance\n- Average Daily Balance\n- Line Of Credit\n- Available Credit",
+			"DisplayFolderInfo": "{\"name\":\"Customer Account\",\"colorCode\":\"#E3008C\"}",
+			"PrimaryKeys": "BalanceTypeId",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

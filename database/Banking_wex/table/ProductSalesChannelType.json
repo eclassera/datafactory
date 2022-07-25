@@ -1,0 +1,162 @@
+{
+	"name": "ProductSalesChannelType",
+	"properties": {
+		"Name": "ProductSalesChannelType",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "The channel type by which the product can be sold during the associated period.",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "ProductId",
+					"Description": "The unique identifier of a Product.",
+					"BaseAttributeReference": {
+						"Entity": "ProductSalesChannelType.cdm.json/ProductSalesChannelType",
+						"Name": "ProductId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "long",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "long"
+						}
+					}
+				},
+				{
+					"Name": "ChannelTypeId",
+					"Description": "The unique identifier of a Channel Type.",
+					"BaseAttributeReference": {
+						"Entity": "ProductSalesChannelType.cdm.json/ProductSalesChannelType",
+						"Name": "ChannelTypeId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "CountryId",
+					"Description": "The unique identifier of the Country.",
+					"BaseAttributeReference": {
+						"Entity": "ProductSalesChannelType.cdm.json/ProductSalesChannelType",
+						"Name": "CountryId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "PeriodStartDate",
+					"Description": "The period start date for which the product can be sold in the associated channel type.",
+					"BaseAttributeReference": {
+						"Entity": "ProductSalesChannelType.cdm.json/ProductSalesChannelType",
+						"Name": "PeriodStartDate"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "date",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"DateFormat": "YYYY-MM-DD",
+							"HIVE_TYPE_STRING": "date"
+						}
+					}
+				},
+				{
+					"Name": "PeriodEndDate",
+					"Description": "The period end date for which the product can be sold in the associated channel type.",
+					"BaseAttributeReference": {
+						"Entity": "ProductSalesChannelType.cdm.json/ProductSalesChannelType",
+						"Name": "PeriodEndDate"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "date",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"DateFormat": "YYYY-MM-DD",
+							"HIVE_TYPE_STRING": "date"
+						}
+					}
+				},
+				{
+					"Name": "ProductSalesChannelTypeNote",
+					"Description": "A note, comment or additional information regarding the product sales channel type.",
+					"BaseAttributeReference": {
+						"Entity": "ProductSalesChannelType.cdm.json/ProductSalesChannelType",
+						"Name": "ProductSalesChannelTypeNote"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/ProductSalesChannelType",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/ProductSalesChannelType",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"ProductId\":{\"entity\":\"ProductSalesChannelType.cdm.json/ProductSalesChannelType\",\"name\":\"ProductId\"},\"ChannelTypeId\":{\"entity\":\"ProductSalesChannelType.cdm.json/ProductSalesChannelType\",\"name\":\"ChannelTypeId\"},\"CountryId\":{\"entity\":\"ProductSalesChannelType.cdm.json/ProductSalesChannelType\",\"name\":\"CountryId\"},\"PeriodStartDate\":{\"entity\":\"ProductSalesChannelType.cdm.json/ProductSalesChannelType\",\"name\":\"PeriodStartDate\"},\"PeriodEndDate\":{\"entity\":\"ProductSalesChannelType.cdm.json/ProductSalesChannelType\",\"name\":\"PeriodEndDate\"},\"ProductSalesChannelTypeNote\":{\"entity\":\"ProductSalesChannelType.cdm.json/ProductSalesChannelType\",\"name\":\"ProductSalesChannelTypeNote\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"ProductSalesChannelType\",\"path\":\"ProductSalesChannelType.cdm.json/ProductSalesChannelType\"},\"description\":\"The channel type by which the product can be sold during the associated period.\",\"primaryKey\":[\"ProductId\",\"ChannelTypeId\",\"CountryId\",\"PeriodStartDate\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ProductSalesChannelType.cdm.json/ProductSalesChannelType\",\"name\":\"ProductId\"},\"dataType\":\"long\",\"description\":\"The unique identifier of a Product.\",\"isNullable\":false,\"name\":\"ProductId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ProductSalesChannelType.cdm.json/ProductSalesChannelType\",\"name\":\"ChannelTypeId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Channel Type.\",\"isNullable\":false,\"name\":\"ChannelTypeId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ProductSalesChannelType.cdm.json/ProductSalesChannelType\",\"name\":\"CountryId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of the Country.\",\"isNullable\":false,\"name\":\"CountryId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ProductSalesChannelType.cdm.json/ProductSalesChannelType\",\"name\":\"PeriodStartDate\"},\"dataType\":\"date\",\"dateFormat\":\"YYYY-MM-DD\",\"description\":\"The period start date for which the product can be sold in the associated channel type.\",\"isNullable\":false,\"name\":\"PeriodStartDate\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ProductSalesChannelType.cdm.json/ProductSalesChannelType\",\"name\":\"PeriodEndDate\"},\"dataType\":\"date\",\"dateFormat\":\"YYYY-MM-DD\",\"description\":\"The period end date for which the product can be sold in the associated channel type.\",\"isNullable\":true,\"name\":\"PeriodEndDate\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ProductSalesChannelType.cdm.json/ProductSalesChannelType\",\"name\":\"ProductSalesChannelTypeNote\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"A note, comment or additional information regarding the product sales channel type.\",\"isNullable\":true,\"name\":\"ProductSalesChannelTypeNote\"}]}}}",
+			"Description": "The channel type by which the product can be sold during the associated period.",
+			"DisplayFolderInfo": "{\"name\":\"Channel\",\"colorCode\":\"#001D3F\"}",
+			"PrimaryKeys": "ProductId,ChannelTypeId,CountryId,PeriodStartDate",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

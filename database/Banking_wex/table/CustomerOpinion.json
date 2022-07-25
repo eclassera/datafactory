@@ -1,0 +1,145 @@
+{
+	"name": "CustomerOpinion",
+	"properties": {
+		"Name": "CustomerOpinion",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "The Opinion(s) that a specific Individual Customer has acknowledged was identified or recorded as of the indicated date.\n\nActivities, Interests and Opinions are the foundation of Psychographics and Psychographic Segmentation.     Activities, Interests and Opinions equate to 'lifestyle'.    Activities, Interests and Opinions (AIO) are the basis for understanding consumer buying behavior as a function of their lifestyle.\n\nOpinions describe what a consumer 'believes in', such as politics, education or social issues.\n\nImplementation Note:\nEach business organization will focus upon a specific set of AIO's to gather information about, define consumers and make decisions.    Therefore, it is the responsibility of each business organization to define what the specific domain or values of AIO's is to be and link those to specific consumers or market/product planning strategies.    The business organization selects a finite number of AIO's by which they intend to identify consumers, plan, measure and analyze.\n\nExamples:\n\nOpinions = recycling is important, government must be more efficient, TV is too violent\n\nSales, marketing and advertising activities are often planned for or targeted at groups holding specific opinions.",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "CustomerId",
+					"Description": "The unique identifier of a Customer.",
+					"BaseAttributeReference": {
+						"Entity": "CustomerOpinion.cdm.json/CustomerOpinion",
+						"Name": "CustomerId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "long",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "long"
+						}
+					}
+				},
+				{
+					"Name": "OpinionId",
+					"Description": "The unique identifier of an Opinion.",
+					"BaseAttributeReference": {
+						"Entity": "CustomerOpinion.cdm.json/CustomerOpinion",
+						"Name": "OpinionId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "Date",
+					"Description": "The date that the associated information is reported, recorded or effective as-of.",
+					"BaseAttributeReference": {
+						"Entity": "CustomerOpinion.cdm.json/CustomerOpinion",
+						"Name": "Date"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "date",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"DateFormat": "YYYY-MM-DD",
+							"HIVE_TYPE_STRING": "date"
+						}
+					}
+				},
+				{
+					"Name": "AioLevelId",
+					"Description": "The unique identifier of an AIO Level.",
+					"BaseAttributeReference": {
+						"Entity": "CustomerOpinion.cdm.json/CustomerOpinion",
+						"Name": "AioLevelId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "CustomerOpinionNote",
+					"Description": "A note, comment, additional information regarding the associated Opinion that the Customer has acknowledged or reported.",
+					"BaseAttributeReference": {
+						"Entity": "CustomerOpinion.cdm.json/CustomerOpinion",
+						"Name": "CustomerOpinionNote"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/CustomerOpinion",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/CustomerOpinion",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"CustomerId\":{\"entity\":\"CustomerOpinion.cdm.json/CustomerOpinion\",\"name\":\"CustomerId\"},\"OpinionId\":{\"entity\":\"CustomerOpinion.cdm.json/CustomerOpinion\",\"name\":\"OpinionId\"},\"Date\":{\"entity\":\"CustomerOpinion.cdm.json/CustomerOpinion\",\"name\":\"Date\"},\"AioLevelId\":{\"entity\":\"CustomerOpinion.cdm.json/CustomerOpinion\",\"name\":\"AioLevelId\"},\"CustomerOpinionNote\":{\"entity\":\"CustomerOpinion.cdm.json/CustomerOpinion\",\"name\":\"CustomerOpinionNote\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"CustomerOpinion\",\"path\":\"CustomerOpinion.cdm.json/CustomerOpinion\"},\"description\":\"The Opinion(s) that a specific Individual Customer has acknowledged was identified or recorded as of the indicated date.\\n\\nActivities, Interests and Opinions are the foundation of Psychographics and Psychographic Segmentation.     Activities, Interests and Opinions equate to 'lifestyle'.    Activities, Interests and Opinions (AIO) are the basis for understanding consumer buying behavior as a function of their lifestyle.\\n\\nOpinions describe what a consumer 'believes in', such as politics, education or social issues.\\n\\nImplementation Note:\\nEach business organization will focus upon a specific set of AIO's to gather information about, define consumers and make decisions.    Therefore, it is the responsibility of each business organization to define what the specific domain or values of AIO's is to be and link those to specific consumers or market/product planning strategies.    The business organization selects a finite number of AIO's by which they intend to identify consumers, plan, measure and analyze.\\n\\nExamples:\\n\\nOpinions = recycling is important, government must be more efficient, TV is too violent\\n\\nSales, marketing and advertising activities are often planned for or targeted at groups holding specific opinions.\",\"primaryKey\":[\"CustomerId\",\"OpinionId\",\"Date\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CustomerOpinion.cdm.json/CustomerOpinion\",\"name\":\"CustomerId\"},\"dataType\":\"long\",\"description\":\"The unique identifier of a Customer.\",\"isNullable\":false,\"name\":\"CustomerId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CustomerOpinion.cdm.json/CustomerOpinion\",\"name\":\"OpinionId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of an Opinion.\",\"isNullable\":false,\"name\":\"OpinionId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CustomerOpinion.cdm.json/CustomerOpinion\",\"name\":\"Date\"},\"dataType\":\"date\",\"dateFormat\":\"YYYY-MM-DD\",\"description\":\"The date that the associated information is reported, recorded or effective as-of.\",\"isNullable\":false,\"name\":\"Date\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CustomerOpinion.cdm.json/CustomerOpinion\",\"name\":\"AioLevelId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of an AIO Level.\",\"isNullable\":true,\"name\":\"AioLevelId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CustomerOpinion.cdm.json/CustomerOpinion\",\"name\":\"CustomerOpinionNote\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"A note, comment, additional information regarding the associated Opinion that the Customer has acknowledged or reported.\",\"isNullable\":true,\"name\":\"CustomerOpinionNote\"}]}}}",
+			"Description": "The Opinion(s) that a specific Individual Customer has acknowledged was identified or recorded as of the indicated date.\n\nActivities, Interests and Opinions are the foundation of Psychographics and Psychographic Segmentation.     Activities, Interests and Opinions equate to 'lifestyle'.    Activities, Interests and Opinions (AIO) are the basis for understanding consumer buying behavior as a function of their lifestyle.\n\nOpinions describe what a consumer 'believes in', such as politics, education or social issues.\n\nImplementation Note:\nEach business organization will focus upon a specific set of AIO's to gather information about, define consumers and make decisions.    Therefore, it is the responsibility of each business organization to define what the specific domain or values of AIO's is to be and link those to specific consumers or market/product planning strategies.    The business organization selects a finite number of AIO's by which they intend to identify consumers, plan, measure and analyze.\n\nExamples:\n\nOpinions = recycling is important, government must be more efficient, TV is too violent\n\nSales, marketing and advertising activities are often planned for or targeted at groups holding specific opinions.",
+			"DisplayFolderInfo": "{\"name\":\"Customer\",\"colorCode\":\"#4B003F\"}",
+			"PrimaryKeys": "CustomerId,OpinionId,Date",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

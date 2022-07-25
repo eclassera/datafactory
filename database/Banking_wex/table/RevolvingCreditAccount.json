@@ -1,0 +1,199 @@
+{
+	"name": "RevolvingCreditAccount",
+	"properties": {
+		"Name": "RevolvingCreditAccount",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "Credit automatically available up to a predetermined maximum limit so long as a customer makes regular payments.",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "CreditGrantorId",
+					"Description": "The unique identifier of a Credit Grantor.",
+					"BaseAttributeReference": {
+						"Entity": "RevolvingCreditAccount.cdm.json/RevolvingCreditAccount",
+						"Name": "CreditGrantorId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "AccountNumber",
+					"Description": "The account number.",
+					"BaseAttributeReference": {
+						"Entity": "RevolvingCreditAccount.cdm.json/RevolvingCreditAccount",
+						"Name": "AccountNumber"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Length": 20,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "AccountOpenedDate",
+					"Description": "The date that the account was opened.",
+					"BaseAttributeReference": {
+						"Entity": "RevolvingCreditAccount.cdm.json/RevolvingCreditAccount",
+						"Name": "AccountOpenedDate"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "date",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"DateFormat": "YYYY-MM-DD",
+							"HIVE_TYPE_STRING": "date"
+						}
+					}
+				},
+				{
+					"Name": "MaximumCreditAmount",
+					"Description": "The maximum amount of credit that may be extended upon the account.",
+					"BaseAttributeReference": {
+						"Entity": "RevolvingCreditAccount.cdm.json/RevolvingCreditAccount",
+						"Name": "MaximumCreditAmount"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "decimal",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Precision": 18,
+						"Scale": 2,
+						"Properties": {
+							"HIVE_TYPE_STRING": "decimal"
+						}
+					}
+				},
+				{
+					"Name": "MinimumPaymentAmount",
+					"Description": "The minimum period payment amount required (if any).",
+					"BaseAttributeReference": {
+						"Entity": "RevolvingCreditAccount.cdm.json/RevolvingCreditAccount",
+						"Name": "MinimumPaymentAmount"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "decimal",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Precision": 18,
+						"Scale": 2,
+						"Properties": {
+							"HIVE_TYPE_STRING": "decimal"
+						}
+					}
+				},
+				{
+					"Name": "MinimumPaymentPercentage",
+					"Description": "The minimum period payment percentage required (if any).",
+					"BaseAttributeReference": {
+						"Entity": "RevolvingCreditAccount.cdm.json/RevolvingCreditAccount",
+						"Name": "MinimumPaymentPercentage"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "decimal",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Precision": 18,
+						"Scale": 8,
+						"Properties": {
+							"HIVE_TYPE_STRING": "decimal"
+						}
+					}
+				},
+				{
+					"Name": "RevolvingCreditAccountTypeId",
+					"Description": "The unique identifier of a Revolving Account Type.",
+					"BaseAttributeReference": {
+						"Entity": "RevolvingCreditAccount.cdm.json/RevolvingCreditAccount",
+						"Name": "RevolvingCreditAccountTypeId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "CustomerId",
+					"Description": "The unique identifier of a Customer.",
+					"BaseAttributeReference": {
+						"Entity": "RevolvingCreditAccount.cdm.json/RevolvingCreditAccount",
+						"Name": "CustomerId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "long",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"HIVE_TYPE_STRING": "long"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/RevolvingCreditAccount",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/RevolvingCreditAccount",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"CreditGrantorId\":{\"entity\":\"RevolvingCreditAccount.cdm.json/RevolvingCreditAccount\",\"name\":\"CreditGrantorId\"},\"AccountNumber\":{\"entity\":\"RevolvingCreditAccount.cdm.json/RevolvingCreditAccount\",\"name\":\"AccountNumber\"},\"AccountOpenedDate\":{\"entity\":\"RevolvingCreditAccount.cdm.json/RevolvingCreditAccount\",\"name\":\"AccountOpenedDate\"},\"MaximumCreditAmount\":{\"entity\":\"RevolvingCreditAccount.cdm.json/RevolvingCreditAccount\",\"name\":\"MaximumCreditAmount\"},\"MinimumPaymentAmount\":{\"entity\":\"RevolvingCreditAccount.cdm.json/RevolvingCreditAccount\",\"name\":\"MinimumPaymentAmount\"},\"MinimumPaymentPercentage\":{\"entity\":\"RevolvingCreditAccount.cdm.json/RevolvingCreditAccount\",\"name\":\"MinimumPaymentPercentage\"},\"RevolvingCreditAccountTypeId\":{\"entity\":\"RevolvingCreditAccount.cdm.json/RevolvingCreditAccount\",\"name\":\"RevolvingCreditAccountTypeId\"},\"CustomerId\":{\"entity\":\"RevolvingCreditAccount.cdm.json/RevolvingCreditAccount\",\"name\":\"CustomerId\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"RevolvingCreditAccount\",\"path\":\"RevolvingCreditAccount.cdm.json/RevolvingCreditAccount\"},\"description\":\"Credit automatically available up to a predetermined maximum limit so long as a customer makes regular payments.\",\"primaryKey\":[\"CreditGrantorId\",\"AccountNumber\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"RevolvingCreditAccount.cdm.json/RevolvingCreditAccount\",\"name\":\"CreditGrantorId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Credit Grantor.\",\"isNullable\":false,\"name\":\"CreditGrantorId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"RevolvingCreditAccount.cdm.json/RevolvingCreditAccount\",\"name\":\"AccountNumber\"},\"dataType\":\"string\",\"dataTypeLength\":20,\"description\":\"The account number.\",\"isNullable\":false,\"name\":\"AccountNumber\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"RevolvingCreditAccount.cdm.json/RevolvingCreditAccount\",\"name\":\"AccountOpenedDate\"},\"dataType\":\"date\",\"dateFormat\":\"YYYY-MM-DD\",\"description\":\"The date that the account was opened.\",\"isNullable\":true,\"name\":\"AccountOpenedDate\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"RevolvingCreditAccount.cdm.json/RevolvingCreditAccount\",\"name\":\"MaximumCreditAmount\"},\"dataType\":\"decimal\",\"dataTypeLength\":18,\"description\":\"The maximum amount of credit that may be extended upon the account.\",\"isNullable\":true,\"scale\":2,\"name\":\"MaximumCreditAmount\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"RevolvingCreditAccount.cdm.json/RevolvingCreditAccount\",\"name\":\"MinimumPaymentAmount\"},\"dataType\":\"decimal\",\"dataTypeLength\":18,\"description\":\"The minimum period payment amount required (if any).\",\"isNullable\":true,\"scale\":2,\"name\":\"MinimumPaymentAmount\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"RevolvingCreditAccount.cdm.json/RevolvingCreditAccount\",\"name\":\"MinimumPaymentPercentage\"},\"dataType\":\"decimal\",\"dataTypeLength\":18,\"description\":\"The minimum period payment percentage required (if any).\",\"isNullable\":true,\"scale\":8,\"name\":\"MinimumPaymentPercentage\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"RevolvingCreditAccount.cdm.json/RevolvingCreditAccount\",\"name\":\"RevolvingCreditAccountTypeId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Revolving Account Type.\",\"isNullable\":true,\"name\":\"RevolvingCreditAccountTypeId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"RevolvingCreditAccount.cdm.json/RevolvingCreditAccount\",\"name\":\"CustomerId\"},\"dataType\":\"long\",\"description\":\"The unique identifier of a Customer.\",\"isNullable\":true,\"name\":\"CustomerId\"}]}}}",
+			"Description": "Credit automatically available up to a predetermined maximum limit so long as a customer makes regular payments.",
+			"DisplayFolderInfo": "{\"name\":\"Customer Credit & Collections\",\"colorCode\":\"#022F22\"}",
+			"PrimaryKeys": "CreditGrantorId,AccountNumber",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

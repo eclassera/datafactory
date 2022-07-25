@@ -1,0 +1,113 @@
+{
+	"name": "UccFilingPartyRelationshipType",
+	"properties": {
+		"Name": "UccFilingPartyRelationshipType",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "A party that has a relationship with the UC Filing over the indicated period.\n\n Ex:\n- Creditor\n- Debtor\n- Secured Party\n- Creditor Attorney\n- Trustee\n- Lessee\n- Lessor\n- Consignee\n- Consignor\n- Bailee\n- Bailor\n- Seller\n- Buyer\n- National Jurisdiction\n- State Jurisdiction\n- Provincial Jurisdiction",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "UccFilingPartyRelationshipTypeId",
+					"Description": "The unique identifier of a UCC Filing - Party  relationship type.",
+					"BaseAttributeReference": {
+						"Entity": "UccFilingPartyRelationshipType.cdm.json/UccFilingPartyRelationshipType",
+						"Name": "UccFilingPartyRelationshipTypeId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "UccFilingPartyRelationshipTypeName",
+					"Description": "The name of a UCC Filing - Party relationship type.",
+					"BaseAttributeReference": {
+						"Entity": "UccFilingPartyRelationshipType.cdm.json/UccFilingPartyRelationshipType",
+						"Name": "UccFilingPartyRelationshipTypeName"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 256,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "UccFilingPartyRelationshipTypeDescription",
+					"Description": "The description of a UCC Filing - Party  relationship type.",
+					"BaseAttributeReference": {
+						"Entity": "UccFilingPartyRelationshipType.cdm.json/UccFilingPartyRelationshipType",
+						"Name": "UccFilingPartyRelationshipTypeDescription"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/UccFilingPartyRelationshipType",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/UccFilingPartyRelationshipType",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"UccFilingPartyRelationshipTypeId\":{\"entity\":\"UccFilingPartyRelationshipType.cdm.json/UccFilingPartyRelationshipType\",\"name\":\"UccFilingPartyRelationshipTypeId\"},\"UccFilingPartyRelationshipTypeName\":{\"entity\":\"UccFilingPartyRelationshipType.cdm.json/UccFilingPartyRelationshipType\",\"name\":\"UccFilingPartyRelationshipTypeName\"},\"UccFilingPartyRelationshipTypeDescription\":{\"entity\":\"UccFilingPartyRelationshipType.cdm.json/UccFilingPartyRelationshipType\",\"name\":\"UccFilingPartyRelationshipTypeDescription\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"UccFilingPartyRelationshipType\",\"path\":\"UccFilingPartyRelationshipType.cdm.json/UccFilingPartyRelationshipType\"},\"description\":\"A party that has a relationship with the UC Filing over the indicated period.\\n\\n Ex:\\n- Creditor\\n- Debtor\\n- Secured Party\\n- Creditor Attorney\\n- Trustee\\n- Lessee\\n- Lessor\\n- Consignee\\n- Consignor\\n- Bailee\\n- Bailor\\n- Seller\\n- Buyer\\n- National Jurisdiction\\n- State Jurisdiction\\n- Provincial Jurisdiction\",\"primaryKey\":[\"UccFilingPartyRelationshipTypeId\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"UccFilingPartyRelationshipType.cdm.json/UccFilingPartyRelationshipType\",\"name\":\"UccFilingPartyRelationshipTypeId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a UCC Filing - Party  relationship type.\",\"isNullable\":false,\"name\":\"UccFilingPartyRelationshipTypeId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"UccFilingPartyRelationshipType.cdm.json/UccFilingPartyRelationshipType\",\"name\":\"UccFilingPartyRelationshipTypeName\"},\"dataType\":\"string\",\"dataTypeLength\":256,\"description\":\"The name of a UCC Filing - Party relationship type.\",\"isNullable\":true,\"name\":\"UccFilingPartyRelationshipTypeName\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"UccFilingPartyRelationshipType.cdm.json/UccFilingPartyRelationshipType\",\"name\":\"UccFilingPartyRelationshipTypeDescription\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"The description of a UCC Filing - Party  relationship type.\",\"isNullable\":true,\"name\":\"UccFilingPartyRelationshipTypeDescription\"}]}}}",
+			"Description": "A party that has a relationship with the UC Filing over the indicated period.\n\n Ex:\n- Creditor\n- Debtor\n- Secured Party\n- Creditor Attorney\n- Trustee\n- Lessee\n- Lessor\n- Consignee\n- Consignor\n- Bailee\n- Bailor\n- Seller\n- Buyer\n- National Jurisdiction\n- State Jurisdiction\n- Provincial Jurisdiction",
+			"DisplayFolderInfo": "{\"name\":\"Customer Credit & Collections\",\"colorCode\":\"#022F22\"}",
+			"PrimaryKeys": "UccFilingPartyRelationshipTypeId",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

@@ -1,0 +1,113 @@
+{
+	"name": "CashFlowStatementPreparationMethod",
+	"properties": {
+		"Name": "CashFlowStatementPreparationMethod",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "There are two methods for preparing the cash flow statement.\n\n(1)  Direct Method = Summarize debits and credits to the Cash account directly  \n\n(2)  Indirect Method = analyzing changes during the year in balance sheet items and analyzing the numbers on the income statement for the year.",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "CashFlowStatementPreparationMethodId",
+					"Description": "The unique identifier of a Cash Flow Statement Preparation Method.",
+					"BaseAttributeReference": {
+						"Entity": "CashFlowStatementPreparationMethod.cdm.json/CashFlowStatementPreparationMethod",
+						"Name": "CashFlowStatementPreparationMethodId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "CashFlowStatementPreparationMethodName",
+					"Description": "The name of a Cash Flow Statement Preparation Method.",
+					"BaseAttributeReference": {
+						"Entity": "CashFlowStatementPreparationMethod.cdm.json/CashFlowStatementPreparationMethod",
+						"Name": "CashFlowStatementPreparationMethodName"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 256,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "CashFlowStatementPreparationMethodDescription",
+					"Description": "The description of a Cash Flow Statement Preparation Method.",
+					"BaseAttributeReference": {
+						"Entity": "CashFlowStatementPreparationMethod.cdm.json/CashFlowStatementPreparationMethod",
+						"Name": "CashFlowStatementPreparationMethodDescription"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/CashFlowStatementPreparationMethod",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/CashFlowStatementPreparationMethod",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"CashFlowStatementPreparationMethodId\":{\"entity\":\"CashFlowStatementPreparationMethod.cdm.json/CashFlowStatementPreparationMethod\",\"name\":\"CashFlowStatementPreparationMethodId\"},\"CashFlowStatementPreparationMethodName\":{\"entity\":\"CashFlowStatementPreparationMethod.cdm.json/CashFlowStatementPreparationMethod\",\"name\":\"CashFlowStatementPreparationMethodName\"},\"CashFlowStatementPreparationMethodDescription\":{\"entity\":\"CashFlowStatementPreparationMethod.cdm.json/CashFlowStatementPreparationMethod\",\"name\":\"CashFlowStatementPreparationMethodDescription\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"CashFlowStatementPreparationMethod\",\"path\":\"CashFlowStatementPreparationMethod.cdm.json/CashFlowStatementPreparationMethod\"},\"description\":\"There are two methods for preparing the cash flow statement.\\n\\n(1)  Direct Method = Summarize debits and credits to the Cash account directly  \\n\\n(2)  Indirect Method = analyzing changes during the year in balance sheet items and analyzing the numbers on the income statement for the year.\",\"primaryKey\":[\"CashFlowStatementPreparationMethodId\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CashFlowStatementPreparationMethod.cdm.json/CashFlowStatementPreparationMethod\",\"name\":\"CashFlowStatementPreparationMethodId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Cash Flow Statement Preparation Method.\",\"isNullable\":false,\"name\":\"CashFlowStatementPreparationMethodId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CashFlowStatementPreparationMethod.cdm.json/CashFlowStatementPreparationMethod\",\"name\":\"CashFlowStatementPreparationMethodName\"},\"dataType\":\"string\",\"dataTypeLength\":256,\"description\":\"The name of a Cash Flow Statement Preparation Method.\",\"isNullable\":true,\"name\":\"CashFlowStatementPreparationMethodName\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CashFlowStatementPreparationMethod.cdm.json/CashFlowStatementPreparationMethod\",\"name\":\"CashFlowStatementPreparationMethodDescription\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"The description of a Cash Flow Statement Preparation Method.\",\"isNullable\":true,\"name\":\"CashFlowStatementPreparationMethodDescription\"}]}}}",
+			"Description": "There are two methods for preparing the cash flow statement.\n\n(1)  Direct Method = Summarize debits and credits to the Cash account directly  \n\n(2)  Indirect Method = analyzing changes during the year in balance sheet items and analyzing the numbers on the income statement for the year.",
+			"DisplayFolderInfo": "{\"name\":\"Accounting & Financial Reporting\",\"colorCode\":\"#0078D4\"}",
+			"PrimaryKeys": "CashFlowStatementPreparationMethodId",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

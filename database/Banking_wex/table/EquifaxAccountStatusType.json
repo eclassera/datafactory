@@ -1,0 +1,113 @@
+{
+	"name": "EquifaxAccountStatusType",
+	"properties": {
+		"Name": "EquifaxAccountStatusType",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "The status type of the account\n\nEx:\na) Paid and Closed\nb) Closed\nc) Transfer/Sold/Paid\nd) Lost/Stolen\ne) Paid\nf) Refinanced\ng) Transfer/Sold",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "EquifaxAccountStatusTypeId",
+					"Description": "The unique identifier of an Equifax Account Status Type.",
+					"BaseAttributeReference": {
+						"Entity": "EquifaxAccountStatusType.cdm.json/EquifaxAccountStatusType",
+						"Name": "EquifaxAccountStatusTypeId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "EquifaxAccountStatusTypeName",
+					"Description": "The name of an Equifax Account Status Type.",
+					"BaseAttributeReference": {
+						"Entity": "EquifaxAccountStatusType.cdm.json/EquifaxAccountStatusType",
+						"Name": "EquifaxAccountStatusTypeName"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 256,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "EquifaxAccountStatusTypeDescription",
+					"Description": "The description of an Equifax Account Status Type.",
+					"BaseAttributeReference": {
+						"Entity": "EquifaxAccountStatusType.cdm.json/EquifaxAccountStatusType",
+						"Name": "EquifaxAccountStatusTypeDescription"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/EquifaxAccountStatusType",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/EquifaxAccountStatusType",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"EquifaxAccountStatusTypeId\":{\"entity\":\"EquifaxAccountStatusType.cdm.json/EquifaxAccountStatusType\",\"name\":\"EquifaxAccountStatusTypeId\"},\"EquifaxAccountStatusTypeName\":{\"entity\":\"EquifaxAccountStatusType.cdm.json/EquifaxAccountStatusType\",\"name\":\"EquifaxAccountStatusTypeName\"},\"EquifaxAccountStatusTypeDescription\":{\"entity\":\"EquifaxAccountStatusType.cdm.json/EquifaxAccountStatusType\",\"name\":\"EquifaxAccountStatusTypeDescription\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"EquifaxAccountStatusType\",\"path\":\"EquifaxAccountStatusType.cdm.json/EquifaxAccountStatusType\"},\"description\":\"The status type of the account\\n\\nEx:\\na) Paid and Closed\\nb) Closed\\nc) Transfer/Sold/Paid\\nd) Lost/Stolen\\ne) Paid\\nf) Refinanced\\ng) Transfer/Sold\",\"primaryKey\":[\"EquifaxAccountStatusTypeId\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"EquifaxAccountStatusType.cdm.json/EquifaxAccountStatusType\",\"name\":\"EquifaxAccountStatusTypeId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of an Equifax Account Status Type.\",\"isNullable\":false,\"name\":\"EquifaxAccountStatusTypeId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"EquifaxAccountStatusType.cdm.json/EquifaxAccountStatusType\",\"name\":\"EquifaxAccountStatusTypeName\"},\"dataType\":\"string\",\"dataTypeLength\":256,\"description\":\"The name of an Equifax Account Status Type.\",\"isNullable\":true,\"name\":\"EquifaxAccountStatusTypeName\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"EquifaxAccountStatusType.cdm.json/EquifaxAccountStatusType\",\"name\":\"EquifaxAccountStatusTypeDescription\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"The description of an Equifax Account Status Type.\",\"isNullable\":true,\"name\":\"EquifaxAccountStatusTypeDescription\"}]}}}",
+			"Description": "The status type of the account\n\nEx:\na) Paid and Closed\nb) Closed\nc) Transfer/Sold/Paid\nd) Lost/Stolen\ne) Paid\nf) Refinanced\ng) Transfer/Sold",
+			"DisplayFolderInfo": "{\"name\":\"Customer Credit & Collections\",\"colorCode\":\"#022F22\"}",
+			"PrimaryKeys": "EquifaxAccountStatusTypeId",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

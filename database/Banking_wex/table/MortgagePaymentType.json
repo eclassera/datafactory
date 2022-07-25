@@ -1,0 +1,113 @@
+{
+	"name": "MortgagePaymentType",
+	"properties": {
+		"Name": "MortgagePaymentType",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "Indicates whether payments are the same across the life of the mortgage loan or whether they change as with a variable mortgage loan.\n\nEx:\n\nFIXED\n\nGRADUATED PAYMENT\nA graduated or single-amount type of payment that does not change over the course of the Mortgage Loan.\n\nVARIABLE PAYMENT\nA FHA, VA or Conventional Loan where the borrower pays a portion of the interest due each month during the first few years of the loan. This payment increases gradually during the first few years to the amount necessary to fully amortize the loan during its life.\n\nADJUSTABLE/ARM",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "MortgagePaymentTypeId",
+					"Description": "The unique identifier of a Mortgage Payment Type.",
+					"BaseAttributeReference": {
+						"Entity": "MortgagePaymentType.cdm.json/MortgagePaymentType",
+						"Name": "MortgagePaymentTypeId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "MortgagePaymentTypeName",
+					"Description": "The name of a Mortgage Payment Type.",
+					"BaseAttributeReference": {
+						"Entity": "MortgagePaymentType.cdm.json/MortgagePaymentType",
+						"Name": "MortgagePaymentTypeName"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 256,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "MortgagePaymentTypeDescription",
+					"Description": "The description of a Mortgage Payment Type.",
+					"BaseAttributeReference": {
+						"Entity": "MortgagePaymentType.cdm.json/MortgagePaymentType",
+						"Name": "MortgagePaymentTypeDescription"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/MortgagePaymentType",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/MortgagePaymentType",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"MortgagePaymentTypeId\":{\"entity\":\"MortgagePaymentType.cdm.json/MortgagePaymentType\",\"name\":\"MortgagePaymentTypeId\"},\"MortgagePaymentTypeName\":{\"entity\":\"MortgagePaymentType.cdm.json/MortgagePaymentType\",\"name\":\"MortgagePaymentTypeName\"},\"MortgagePaymentTypeDescription\":{\"entity\":\"MortgagePaymentType.cdm.json/MortgagePaymentType\",\"name\":\"MortgagePaymentTypeDescription\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"MortgagePaymentType\",\"path\":\"MortgagePaymentType.cdm.json/MortgagePaymentType\"},\"description\":\"Indicates whether payments are the same across the life of the mortgage loan or whether they change as with a variable mortgage loan.\\n\\nEx:\\n\\nFIXED\\n\\nGRADUATED PAYMENT\\nA graduated or single-amount type of payment that does not change over the course of the Mortgage Loan.\\n\\nVARIABLE PAYMENT\\nA FHA, VA or Conventional Loan where the borrower pays a portion of the interest due each month during the first few years of the loan. This payment increases gradually during the first few years to the amount necessary to fully amortize the loan during its life.\\n\\nADJUSTABLE/ARM\",\"primaryKey\":[\"MortgagePaymentTypeId\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"MortgagePaymentType.cdm.json/MortgagePaymentType\",\"name\":\"MortgagePaymentTypeId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Mortgage Payment Type.\",\"isNullable\":false,\"name\":\"MortgagePaymentTypeId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"MortgagePaymentType.cdm.json/MortgagePaymentType\",\"name\":\"MortgagePaymentTypeName\"},\"dataType\":\"string\",\"dataTypeLength\":256,\"description\":\"The name of a Mortgage Payment Type.\",\"isNullable\":true,\"name\":\"MortgagePaymentTypeName\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"MortgagePaymentType.cdm.json/MortgagePaymentType\",\"name\":\"MortgagePaymentTypeDescription\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"The description of a Mortgage Payment Type.\",\"isNullable\":true,\"name\":\"MortgagePaymentTypeDescription\"}]}}}",
+			"Description": "Indicates whether payments are the same across the life of the mortgage loan or whether they change as with a variable mortgage loan.\n\nEx:\n\nFIXED\n\nGRADUATED PAYMENT\nA graduated or single-amount type of payment that does not change over the course of the Mortgage Loan.\n\nVARIABLE PAYMENT\nA FHA, VA or Conventional Loan where the borrower pays a portion of the interest due each month during the first few years of the loan. This payment increases gradually during the first few years to the amount necessary to fully amortize the loan during its life.\n\nADJUSTABLE/ARM",
+			"DisplayFolderInfo": "{\"name\":\"Customer Account\",\"colorCode\":\"#E3008C\"}",
+			"PrimaryKeys": "MortgagePaymentTypeId",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

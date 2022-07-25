@@ -1,0 +1,112 @@
+{
+	"name": "DoNotMailRegistryLocation",
+	"properties": {
+		"Name": "DoNotMailRegistryLocation",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "A location that is restricted by the Do Not Call Registry.",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "DoNotContactRegistryId",
+					"Description": "The unique identifier of an Do Not Contact Registry.",
+					"BaseAttributeReference": {
+						"Entity": "DoNotMailRegistryLocation.cdm.json/DoNotMailRegistryLocation",
+						"Name": "DoNotContactRegistryId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "LocationId",
+					"Description": "The unique identifier of a Location.",
+					"BaseAttributeReference": {
+						"Entity": "DoNotMailRegistryLocation.cdm.json/DoNotMailRegistryLocation",
+						"Name": "LocationId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "DoNotMailRegistryLocationNote",
+					"Description": "A note, comment or additional information regarding the Do Not Contact Registry Location.",
+					"BaseAttributeReference": {
+						"Entity": "DoNotMailRegistryLocation.cdm.json/DoNotMailRegistryLocation",
+						"Name": "DoNotMailRegistryLocationNote"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/DoNotMailRegistryLocation",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/DoNotMailRegistryLocation",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"DoNotContactRegistryId\":{\"entity\":\"DoNotMailRegistryLocation.cdm.json/DoNotMailRegistryLocation\",\"name\":\"DoNotContactRegistryId\"},\"LocationId\":{\"entity\":\"DoNotMailRegistryLocation.cdm.json/DoNotMailRegistryLocation\",\"name\":\"LocationId\"},\"DoNotMailRegistryLocationNote\":{\"entity\":\"DoNotMailRegistryLocation.cdm.json/DoNotMailRegistryLocation\",\"name\":\"DoNotMailRegistryLocationNote\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"DoNotMailRegistryLocation\",\"path\":\"DoNotMailRegistryLocation.cdm.json/DoNotMailRegistryLocation\"},\"description\":\"A location that is restricted by the Do Not Call Registry.\",\"primaryKey\":[\"DoNotContactRegistryId\",\"LocationId\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"DoNotMailRegistryLocation.cdm.json/DoNotMailRegistryLocation\",\"name\":\"DoNotContactRegistryId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of an Do Not Contact Registry.\",\"isNullable\":false,\"name\":\"DoNotContactRegistryId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"DoNotMailRegistryLocation.cdm.json/DoNotMailRegistryLocation\",\"name\":\"LocationId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Location.\",\"isNullable\":false,\"name\":\"LocationId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"DoNotMailRegistryLocation.cdm.json/DoNotMailRegistryLocation\",\"name\":\"DoNotMailRegistryLocationNote\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"A note, comment or additional information regarding the Do Not Contact Registry Location.\",\"isNullable\":true,\"name\":\"DoNotMailRegistryLocationNote\"}]}}}",
+			"Description": "A location that is restricted by the Do Not Call Registry.",
+			"DisplayFolderInfo": "{\"name\":\"Party\",\"colorCode\":\"#00727A\"}",
+			"PrimaryKeys": "DoNotContactRegistryId,LocationId",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

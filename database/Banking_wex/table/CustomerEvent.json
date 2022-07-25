@@ -1,0 +1,129 @@
+{
+	"name": "CustomerEvent",
+	"properties": {
+		"Name": "CustomerEvent",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "The Event(s) that can describe the individual customer's interaction with the legal entity.",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "CustomerId",
+					"Description": "The unique identifier of a Customer.",
+					"BaseAttributeReference": {
+						"Entity": "CustomerEvent.cdm.json/CustomerEvent",
+						"Name": "CustomerId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "long",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "long"
+						}
+					}
+				},
+				{
+					"Name": "EventTypeId",
+					"Description": "The unique identifier of an Event Type.",
+					"BaseAttributeReference": {
+						"Entity": "CustomerEvent.cdm.json/CustomerEvent",
+						"Name": "EventTypeId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "EventTimestamp",
+					"Description": "The timestamp of the event.",
+					"BaseAttributeReference": {
+						"Entity": "CustomerEvent.cdm.json/CustomerEvent",
+						"Name": "EventTimestamp"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "timestamp",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"TimestampFormat": "YYYY-MM-DD HH:MM:SS.fffffffff",
+							"HIVE_TYPE_STRING": "timestamp"
+						}
+					}
+				},
+				{
+					"Name": "EventNote",
+					"Description": "A note, comment or additional information regarding the event.",
+					"BaseAttributeReference": {
+						"Entity": "CustomerEvent.cdm.json/CustomerEvent",
+						"Name": "EventNote"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/CustomerEvent",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/CustomerEvent",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"CustomerId\":{\"entity\":\"CustomerEvent.cdm.json/CustomerEvent\",\"name\":\"CustomerId\"},\"EventTypeId\":{\"entity\":\"CustomerEvent.cdm.json/CustomerEvent\",\"name\":\"EventTypeId\"},\"EventTimestamp\":{\"entity\":\"CustomerEvent.cdm.json/CustomerEvent\",\"name\":\"EventTimestamp\"},\"EventNote\":{\"entity\":\"CustomerEvent.cdm.json/CustomerEvent\",\"name\":\"EventNote\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"CustomerEvent\",\"path\":\"CustomerEvent.cdm.json/CustomerEvent\"},\"description\":\"The Event(s) that can describe the individual customer's interaction with the legal entity.\",\"primaryKey\":[\"CustomerId\",\"EventTypeId\",\"EventTimestamp\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CustomerEvent.cdm.json/CustomerEvent\",\"name\":\"CustomerId\"},\"dataType\":\"long\",\"description\":\"The unique identifier of a Customer.\",\"isNullable\":false,\"name\":\"CustomerId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CustomerEvent.cdm.json/CustomerEvent\",\"name\":\"EventTypeId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of an Event Type.\",\"isNullable\":false,\"name\":\"EventTypeId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CustomerEvent.cdm.json/CustomerEvent\",\"name\":\"EventTimestamp\"},\"dataType\":\"timestamp\",\"description\":\"The timestamp of the event.\",\"isNullable\":false,\"name\":\"EventTimestamp\",\"timestampFormat\":\"YYYY-MM-DD HH:MM:SS.fffffffff\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CustomerEvent.cdm.json/CustomerEvent\",\"name\":\"EventNote\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"A note, comment or additional information regarding the event.\",\"isNullable\":true,\"name\":\"EventNote\"}]}}}",
+			"Description": "The Event(s) that can describe the individual customer's interaction with the legal entity.",
+			"DisplayFolderInfo": "{\"name\":\"Customer\",\"colorCode\":\"#4B003F\"}",
+			"PrimaryKeys": "CustomerId,EventTypeId,EventTimestamp",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

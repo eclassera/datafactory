@@ -1,0 +1,162 @@
+{
+	"name": "CustomerAccountRelatedChannel",
+	"properties": {
+		"Name": "CustomerAccountRelatedChannel",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "The Channel associated with the Customer Account for the associated period.",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "CustomerAccountId",
+					"Description": "The unique identifier of a Customer Account.",
+					"BaseAttributeReference": {
+						"Entity": "CustomerAccountRelatedChannel.cdm.json/CustomerAccountRelatedChannel",
+						"Name": "CustomerAccountId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "long",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "long"
+						}
+					}
+				},
+				{
+					"Name": "ChannelId",
+					"Description": "The unique identifier of a Channel.",
+					"BaseAttributeReference": {
+						"Entity": "CustomerAccountRelatedChannel.cdm.json/CustomerAccountRelatedChannel",
+						"Name": "ChannelId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "CustomerAccountChannelRelationshipTypeId",
+					"Description": "The unique identifier of a Customer Account Channel Relationship Type.",
+					"BaseAttributeReference": {
+						"Entity": "CustomerAccountRelatedChannel.cdm.json/CustomerAccountRelatedChannel",
+						"Name": "CustomerAccountChannelRelationshipTypeId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "PeriodStartDate",
+					"Description": "The period start date for which the associated Customer Account Channel relationship is defined.",
+					"BaseAttributeReference": {
+						"Entity": "CustomerAccountRelatedChannel.cdm.json/CustomerAccountRelatedChannel",
+						"Name": "PeriodStartDate"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "date",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"DateFormat": "YYYY-MM-DD",
+							"HIVE_TYPE_STRING": "date"
+						}
+					}
+				},
+				{
+					"Name": "PeriodEndDate",
+					"Description": "The period end date for which the associated Customer Account Channel relationship is defined.",
+					"BaseAttributeReference": {
+						"Entity": "CustomerAccountRelatedChannel.cdm.json/CustomerAccountRelatedChannel",
+						"Name": "PeriodEndDate"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "date",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"DateFormat": "YYYY-MM-DD",
+							"HIVE_TYPE_STRING": "date"
+						}
+					}
+				},
+				{
+					"Name": "CustomerAccountRelatedChannelNote",
+					"Description": "A note, comment or additional information regarding the Customer Account Related Channel.",
+					"BaseAttributeReference": {
+						"Entity": "CustomerAccountRelatedChannel.cdm.json/CustomerAccountRelatedChannel",
+						"Name": "CustomerAccountRelatedChannelNote"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/CustomerAccountRelatedChannel",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/CustomerAccountRelatedChannel",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"CustomerAccountId\":{\"entity\":\"CustomerAccountRelatedChannel.cdm.json/CustomerAccountRelatedChannel\",\"name\":\"CustomerAccountId\"},\"ChannelId\":{\"entity\":\"CustomerAccountRelatedChannel.cdm.json/CustomerAccountRelatedChannel\",\"name\":\"ChannelId\"},\"CustomerAccountChannelRelationshipTypeId\":{\"entity\":\"CustomerAccountRelatedChannel.cdm.json/CustomerAccountRelatedChannel\",\"name\":\"CustomerAccountChannelRelationshipTypeId\"},\"PeriodStartDate\":{\"entity\":\"CustomerAccountRelatedChannel.cdm.json/CustomerAccountRelatedChannel\",\"name\":\"PeriodStartDate\"},\"PeriodEndDate\":{\"entity\":\"CustomerAccountRelatedChannel.cdm.json/CustomerAccountRelatedChannel\",\"name\":\"PeriodEndDate\"},\"CustomerAccountRelatedChannelNote\":{\"entity\":\"CustomerAccountRelatedChannel.cdm.json/CustomerAccountRelatedChannel\",\"name\":\"CustomerAccountRelatedChannelNote\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"CustomerAccountRelatedChannel\",\"path\":\"CustomerAccountRelatedChannel.cdm.json/CustomerAccountRelatedChannel\"},\"description\":\"The Channel associated with the Customer Account for the associated period.\",\"primaryKey\":[\"CustomerAccountId\",\"ChannelId\",\"CustomerAccountChannelRelationshipTypeId\",\"PeriodStartDate\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CustomerAccountRelatedChannel.cdm.json/CustomerAccountRelatedChannel\",\"name\":\"CustomerAccountId\"},\"dataType\":\"long\",\"description\":\"The unique identifier of a Customer Account.\",\"isNullable\":false,\"name\":\"CustomerAccountId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CustomerAccountRelatedChannel.cdm.json/CustomerAccountRelatedChannel\",\"name\":\"ChannelId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Channel.\",\"isNullable\":false,\"name\":\"ChannelId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CustomerAccountRelatedChannel.cdm.json/CustomerAccountRelatedChannel\",\"name\":\"CustomerAccountChannelRelationshipTypeId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Customer Account Channel Relationship Type.\",\"isNullable\":false,\"name\":\"CustomerAccountChannelRelationshipTypeId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CustomerAccountRelatedChannel.cdm.json/CustomerAccountRelatedChannel\",\"name\":\"PeriodStartDate\"},\"dataType\":\"date\",\"dateFormat\":\"YYYY-MM-DD\",\"description\":\"The period start date for which the associated Customer Account Channel relationship is defined.\",\"isNullable\":false,\"name\":\"PeriodStartDate\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CustomerAccountRelatedChannel.cdm.json/CustomerAccountRelatedChannel\",\"name\":\"PeriodEndDate\"},\"dataType\":\"date\",\"dateFormat\":\"YYYY-MM-DD\",\"description\":\"The period end date for which the associated Customer Account Channel relationship is defined.\",\"isNullable\":true,\"name\":\"PeriodEndDate\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CustomerAccountRelatedChannel.cdm.json/CustomerAccountRelatedChannel\",\"name\":\"CustomerAccountRelatedChannelNote\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"A note, comment or additional information regarding the Customer Account Related Channel.\",\"isNullable\":true,\"name\":\"CustomerAccountRelatedChannelNote\"}]}}}",
+			"Description": "The Channel associated with the Customer Account for the associated period.",
+			"DisplayFolderInfo": "{\"name\":\"Customer Account\",\"colorCode\":\"#E3008C\"}",
+			"PrimaryKeys": "CustomerAccountId,ChannelId,CustomerAccountChannelRelationshipTypeId,PeriodStartDate",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

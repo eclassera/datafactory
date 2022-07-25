@@ -1,0 +1,163 @@
+{
+	"name": "GeneralMaterialsBudget",
+	"properties": {
+		"Name": "GeneralMaterialsBudget",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "The Indirect Materials Budget details the cost items that are not related to a specific product or service but must be purchased to support the overall or combined operations of the organization.\n\nTheses materials are not directly tracked or identified with a specific product or service.",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "GeneralMaterialsBudgetId",
+					"Description": "The unique identifier of a General Materials Budget.",
+					"BaseAttributeReference": {
+						"Entity": "GeneralMaterialsBudget.cdm.json/GeneralMaterialsBudget",
+						"Name": "GeneralMaterialsBudgetId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "GeneralMaterialsBudgetVersionId",
+					"Description": "The unique identifier of a General Materials Budget Version.",
+					"BaseAttributeReference": {
+						"Entity": "GeneralMaterialsBudget.cdm.json/GeneralMaterialsBudget",
+						"Name": "GeneralMaterialsBudgetVersionId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "GeneralOperatingBudgetId",
+					"Description": "The unique identifier of a General Operating Budget.",
+					"BaseAttributeReference": {
+						"Entity": "GeneralMaterialsBudget.cdm.json/GeneralMaterialsBudget",
+						"Name": "GeneralOperatingBudgetId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "GeneralOperatingBudgetVersionId",
+					"Description": "The unique identifier of a General Operating Budget Version.",
+					"BaseAttributeReference": {
+						"Entity": "GeneralMaterialsBudget.cdm.json/GeneralMaterialsBudget",
+						"Name": "GeneralOperatingBudgetVersionId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "BudgetedMaterialsCostsAmount",
+					"Description": "The budgeted/planned Materials costs for the associated period general budget.",
+					"BaseAttributeReference": {
+						"Entity": "GeneralMaterialsBudget.cdm.json/GeneralMaterialsBudget",
+						"Name": "BudgetedMaterialsCostsAmount"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "decimal",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Precision": 18,
+						"Scale": 2,
+						"Properties": {
+							"HIVE_TYPE_STRING": "decimal"
+						}
+					}
+				},
+				{
+					"Name": "ActualMaterialsCostsAmount",
+					"Description": "The actual Indirect Materials costs for the associated period general budget.",
+					"BaseAttributeReference": {
+						"Entity": "GeneralMaterialsBudget.cdm.json/GeneralMaterialsBudget",
+						"Name": "ActualMaterialsCostsAmount"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "decimal",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Precision": 18,
+						"Scale": 2,
+						"Properties": {
+							"HIVE_TYPE_STRING": "decimal"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/GeneralMaterialsBudget",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/GeneralMaterialsBudget",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"GeneralMaterialsBudgetId\":{\"entity\":\"GeneralMaterialsBudget.cdm.json/GeneralMaterialsBudget\",\"name\":\"GeneralMaterialsBudgetId\"},\"GeneralMaterialsBudgetVersionId\":{\"entity\":\"GeneralMaterialsBudget.cdm.json/GeneralMaterialsBudget\",\"name\":\"GeneralMaterialsBudgetVersionId\"},\"GeneralOperatingBudgetId\":{\"entity\":\"GeneralMaterialsBudget.cdm.json/GeneralMaterialsBudget\",\"name\":\"GeneralOperatingBudgetId\"},\"GeneralOperatingBudgetVersionId\":{\"entity\":\"GeneralMaterialsBudget.cdm.json/GeneralMaterialsBudget\",\"name\":\"GeneralOperatingBudgetVersionId\"},\"BudgetedMaterialsCostsAmount\":{\"entity\":\"GeneralMaterialsBudget.cdm.json/GeneralMaterialsBudget\",\"name\":\"BudgetedMaterialsCostsAmount\"},\"ActualMaterialsCostsAmount\":{\"entity\":\"GeneralMaterialsBudget.cdm.json/GeneralMaterialsBudget\",\"name\":\"ActualMaterialsCostsAmount\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"GeneralMaterialsBudget\",\"path\":\"GeneralMaterialsBudget.cdm.json/GeneralMaterialsBudget\"},\"description\":\"The Indirect Materials Budget details the cost items that are not related to a specific product or service but must be purchased to support the overall or combined operations of the organization.\\n\\nTheses materials are not directly tracked or identified with a specific product or service.\",\"primaryKey\":[\"GeneralMaterialsBudgetId\",\"GeneralMaterialsBudgetVersionId\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"GeneralMaterialsBudget.cdm.json/GeneralMaterialsBudget\",\"name\":\"GeneralMaterialsBudgetId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a General Materials Budget.\",\"isNullable\":false,\"name\":\"GeneralMaterialsBudgetId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"GeneralMaterialsBudget.cdm.json/GeneralMaterialsBudget\",\"name\":\"GeneralMaterialsBudgetVersionId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a General Materials Budget Version.\",\"isNullable\":false,\"name\":\"GeneralMaterialsBudgetVersionId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"GeneralMaterialsBudget.cdm.json/GeneralMaterialsBudget\",\"name\":\"GeneralOperatingBudgetId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a General Operating Budget.\",\"isNullable\":false,\"name\":\"GeneralOperatingBudgetId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"GeneralMaterialsBudget.cdm.json/GeneralMaterialsBudget\",\"name\":\"GeneralOperatingBudgetVersionId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a General Operating Budget Version.\",\"isNullable\":false,\"name\":\"GeneralOperatingBudgetVersionId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"GeneralMaterialsBudget.cdm.json/GeneralMaterialsBudget\",\"name\":\"BudgetedMaterialsCostsAmount\"},\"dataType\":\"decimal\",\"dataTypeLength\":18,\"description\":\"The budgeted/planned Materials costs for the associated period general budget.\",\"isNullable\":true,\"scale\":2,\"name\":\"BudgetedMaterialsCostsAmount\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"GeneralMaterialsBudget.cdm.json/GeneralMaterialsBudget\",\"name\":\"ActualMaterialsCostsAmount\"},\"dataType\":\"decimal\",\"dataTypeLength\":18,\"description\":\"The actual Indirect Materials costs for the associated period general budget.\",\"isNullable\":true,\"scale\":2,\"name\":\"ActualMaterialsCostsAmount\"}]}}}",
+			"Description": "The Indirect Materials Budget details the cost items that are not related to a specific product or service but must be purchased to support the overall or combined operations of the organization.\n\nTheses materials are not directly tracked or identified with a specific product or service.",
+			"DisplayFolderInfo": "{\"name\":\"Budget & Forecasting\",\"colorCode\":\"#00188F\"}",
+			"PrimaryKeys": "GeneralMaterialsBudgetId,GeneralMaterialsBudgetVersionId",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

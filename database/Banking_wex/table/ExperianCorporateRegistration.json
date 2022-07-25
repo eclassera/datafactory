@@ -1,0 +1,193 @@
+{
+	"name": "ExperianCorporateRegistration",
+	"properties": {
+		"Name": "ExperianCorporateRegistration",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "Corporate registration data.",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "ExperianFileNumber",
+					"Description": "The unique and persistent number that identifies and tracks the Experian company.",
+					"BaseAttributeReference": {
+						"Entity": "ExperianCorporateRegistration.cdm.json/ExperianCorporateRegistration",
+						"Name": "ExperianFileNumber"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "ProfileTimestamp",
+					"Description": "The timestamp of the Experian profile.",
+					"BaseAttributeReference": {
+						"Entity": "ExperianCorporateRegistration.cdm.json/ExperianCorporateRegistration",
+						"Name": "ProfileTimestamp"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "timestamp",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"TimestampFormat": "YYYY-MM-DD HH:MM:SS.fffffffff",
+							"HIVE_TYPE_STRING": "timestamp"
+						}
+					}
+				},
+				{
+					"Name": "ExperianStateId",
+					"Description": "The unique identifier of a state as defined by Experian.",
+					"BaseAttributeReference": {
+						"Entity": "ExperianCorporateRegistration.cdm.json/ExperianCorporateRegistration",
+						"Name": "ExperianStateId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "IncorporationDate",
+					"Description": "The incorporation date.",
+					"BaseAttributeReference": {
+						"Entity": "ExperianCorporateRegistration.cdm.json/ExperianCorporateRegistration",
+						"Name": "IncorporationDate"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "date",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"DateFormat": "YYYY-MM-DD",
+							"HIVE_TYPE_STRING": "date"
+						}
+					}
+				},
+				{
+					"Name": "RegistrationCharterNumber",
+					"Description": "The registration number.",
+					"BaseAttributeReference": {
+						"Entity": "ExperianCorporateRegistration.cdm.json/ExperianCorporateRegistration",
+						"Name": "RegistrationCharterNumber"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "BusinessTaxIdentifier",
+					"Description": "The business tax identifier.",
+					"BaseAttributeReference": {
+						"Entity": "ExperianCorporateRegistration.cdm.json/ExperianCorporateRegistration",
+						"Name": "BusinessTaxIdentifier"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "ExperianBusinessTypeId",
+					"Description": "The unique identifier of an Experian business type.",
+					"BaseAttributeReference": {
+						"Entity": "ExperianCorporateRegistration.cdm.json/ExperianCorporateRegistration",
+						"Name": "ExperianBusinessTypeId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "ExperianCorporateRegistrationStatusTypeId",
+					"Description": "The unique identifier of an Experian corporate registration status type.",
+					"BaseAttributeReference": {
+						"Entity": "ExperianCorporateRegistration.cdm.json/ExperianCorporateRegistration",
+						"Name": "ExperianCorporateRegistrationStatusTypeId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/ExperianCorporateRegistration",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/ExperianCorporateRegistration",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"ExperianFileNumber\":{\"entity\":\"ExperianCorporateRegistration.cdm.json/ExperianCorporateRegistration\",\"name\":\"ExperianFileNumber\"},\"ProfileTimestamp\":{\"entity\":\"ExperianCorporateRegistration.cdm.json/ExperianCorporateRegistration\",\"name\":\"ProfileTimestamp\"},\"ExperianStateId\":{\"entity\":\"ExperianCorporateRegistration.cdm.json/ExperianCorporateRegistration\",\"name\":\"ExperianStateId\"},\"IncorporationDate\":{\"entity\":\"ExperianCorporateRegistration.cdm.json/ExperianCorporateRegistration\",\"name\":\"IncorporationDate\"},\"RegistrationCharterNumber\":{\"entity\":\"ExperianCorporateRegistration.cdm.json/ExperianCorporateRegistration\",\"name\":\"RegistrationCharterNumber\"},\"BusinessTaxIdentifier\":{\"entity\":\"ExperianCorporateRegistration.cdm.json/ExperianCorporateRegistration\",\"name\":\"BusinessTaxIdentifier\"},\"ExperianBusinessTypeId\":{\"entity\":\"ExperianCorporateRegistration.cdm.json/ExperianCorporateRegistration\",\"name\":\"ExperianBusinessTypeId\"},\"ExperianCorporateRegistrationStatusTypeId\":{\"entity\":\"ExperianCorporateRegistration.cdm.json/ExperianCorporateRegistration\",\"name\":\"ExperianCorporateRegistrationStatusTypeId\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"ExperianCorporateRegistration\",\"path\":\"ExperianCorporateRegistration.cdm.json/ExperianCorporateRegistration\"},\"description\":\"Corporate registration data.\",\"primaryKey\":[\"ExperianFileNumber\",\"ProfileTimestamp\",\"ExperianStateId\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ExperianCorporateRegistration.cdm.json/ExperianCorporateRegistration\",\"name\":\"ExperianFileNumber\"},\"dataType\":\"integer\",\"description\":\"The unique and persistent number that identifies and tracks the Experian company.\",\"isNullable\":false,\"name\":\"ExperianFileNumber\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ExperianCorporateRegistration.cdm.json/ExperianCorporateRegistration\",\"name\":\"ProfileTimestamp\"},\"dataType\":\"timestamp\",\"description\":\"The timestamp of the Experian profile.\",\"isNullable\":false,\"name\":\"ProfileTimestamp\",\"timestampFormat\":\"YYYY-MM-DD HH:MM:SS.fffffffff\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ExperianCorporateRegistration.cdm.json/ExperianCorporateRegistration\",\"name\":\"ExperianStateId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a state as defined by Experian.\",\"isNullable\":false,\"name\":\"ExperianStateId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ExperianCorporateRegistration.cdm.json/ExperianCorporateRegistration\",\"name\":\"IncorporationDate\"},\"dataType\":\"date\",\"dateFormat\":\"YYYY-MM-DD\",\"description\":\"The incorporation date.\",\"isNullable\":true,\"name\":\"IncorporationDate\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ExperianCorporateRegistration.cdm.json/ExperianCorporateRegistration\",\"name\":\"RegistrationCharterNumber\"},\"dataType\":\"integer\",\"description\":\"The registration number.\",\"isNullable\":true,\"name\":\"RegistrationCharterNumber\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ExperianCorporateRegistration.cdm.json/ExperianCorporateRegistration\",\"name\":\"BusinessTaxIdentifier\"},\"dataType\":\"integer\",\"description\":\"The business tax identifier.\",\"isNullable\":true,\"name\":\"BusinessTaxIdentifier\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ExperianCorporateRegistration.cdm.json/ExperianCorporateRegistration\",\"name\":\"ExperianBusinessTypeId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of an Experian business type.\",\"isNullable\":true,\"name\":\"ExperianBusinessTypeId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ExperianCorporateRegistration.cdm.json/ExperianCorporateRegistration\",\"name\":\"ExperianCorporateRegistrationStatusTypeId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of an Experian corporate registration status type.\",\"isNullable\":true,\"name\":\"ExperianCorporateRegistrationStatusTypeId\"}]}}}",
+			"Description": "Corporate registration data.",
+			"DisplayFolderInfo": "{\"name\":\"Customer Credit & Collections\",\"colorCode\":\"#022F22\"}",
+			"PrimaryKeys": "ExperianFileNumber,ProfileTimestamp,ExperianStateId",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

@@ -1,0 +1,163 @@
+{
+	"name": "CustomerCreditAbuse",
+	"properties": {
+		"Name": "CustomerCreditAbuse",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "Credit Abuse committed by a Customer.",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "CustomerId",
+					"Description": "The unique identifier of a Customer.",
+					"BaseAttributeReference": {
+						"Entity": "CustomerCreditAbuse.cdm.json/CustomerCreditAbuse",
+						"Name": "CustomerId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "long",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "long"
+						}
+					}
+				},
+				{
+					"Name": "CreditAbuseTypeId",
+					"Description": "The unique identifier of a type of abuse.",
+					"BaseAttributeReference": {
+						"Entity": "CustomerCreditAbuse.cdm.json/CustomerCreditAbuse",
+						"Name": "CreditAbuseTypeId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "AbuseDate",
+					"Description": "The date of the abuse.",
+					"BaseAttributeReference": {
+						"Entity": "CustomerCreditAbuse.cdm.json/CustomerCreditAbuse",
+						"Name": "AbuseDate"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "date",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"DateFormat": "YYYY-MM-DD",
+							"HIVE_TYPE_STRING": "date"
+						}
+					}
+				},
+				{
+					"Name": "AbuseStatement",
+					"Description": "A statement describing the abuse.",
+					"BaseAttributeReference": {
+						"Entity": "CustomerCreditAbuse.cdm.json/CustomerCreditAbuse",
+						"Name": "AbuseStatement"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "ActionStatement",
+					"Description": "A statement describing the action taken in response to the abuse.",
+					"BaseAttributeReference": {
+						"Entity": "CustomerCreditAbuse.cdm.json/CustomerCreditAbuse",
+						"Name": "ActionStatement"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "AbuseNote",
+					"Description": "A note, comment or additional information regarding the Abuse.",
+					"BaseAttributeReference": {
+						"Entity": "CustomerCreditAbuse.cdm.json/CustomerCreditAbuse",
+						"Name": "AbuseNote"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/CustomerCreditAbuse",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/CustomerCreditAbuse",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"CustomerId\":{\"entity\":\"CustomerCreditAbuse.cdm.json/CustomerCreditAbuse\",\"name\":\"CustomerId\"},\"CreditAbuseTypeId\":{\"entity\":\"CustomerCreditAbuse.cdm.json/CustomerCreditAbuse\",\"name\":\"CreditAbuseTypeId\"},\"AbuseDate\":{\"entity\":\"CustomerCreditAbuse.cdm.json/CustomerCreditAbuse\",\"name\":\"AbuseDate\"},\"AbuseStatement\":{\"entity\":\"CustomerCreditAbuse.cdm.json/CustomerCreditAbuse\",\"name\":\"AbuseStatement\"},\"ActionStatement\":{\"entity\":\"CustomerCreditAbuse.cdm.json/CustomerCreditAbuse\",\"name\":\"ActionStatement\"},\"AbuseNote\":{\"entity\":\"CustomerCreditAbuse.cdm.json/CustomerCreditAbuse\",\"name\":\"AbuseNote\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"CustomerCreditAbuse\",\"path\":\"CustomerCreditAbuse.cdm.json/CustomerCreditAbuse\"},\"description\":\"Credit Abuse committed by a Customer.\",\"primaryKey\":[\"CustomerId\",\"CreditAbuseTypeId\",\"AbuseDate\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CustomerCreditAbuse.cdm.json/CustomerCreditAbuse\",\"name\":\"CustomerId\"},\"dataType\":\"long\",\"description\":\"The unique identifier of a Customer.\",\"isNullable\":false,\"name\":\"CustomerId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CustomerCreditAbuse.cdm.json/CustomerCreditAbuse\",\"name\":\"CreditAbuseTypeId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a type of abuse.\",\"isNullable\":false,\"name\":\"CreditAbuseTypeId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CustomerCreditAbuse.cdm.json/CustomerCreditAbuse\",\"name\":\"AbuseDate\"},\"dataType\":\"date\",\"dateFormat\":\"YYYY-MM-DD\",\"description\":\"The date of the abuse.\",\"isNullable\":false,\"name\":\"AbuseDate\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CustomerCreditAbuse.cdm.json/CustomerCreditAbuse\",\"name\":\"AbuseStatement\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"A statement describing the abuse.\",\"isNullable\":true,\"name\":\"AbuseStatement\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CustomerCreditAbuse.cdm.json/CustomerCreditAbuse\",\"name\":\"ActionStatement\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"A statement describing the action taken in response to the abuse.\",\"isNullable\":true,\"name\":\"ActionStatement\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CustomerCreditAbuse.cdm.json/CustomerCreditAbuse\",\"name\":\"AbuseNote\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"A note, comment or additional information regarding the Abuse.\",\"isNullable\":true,\"name\":\"AbuseNote\"}]}}}",
+			"Description": "Credit Abuse committed by a Customer.",
+			"DisplayFolderInfo": "{\"name\":\"Customer Credit & Collections\",\"colorCode\":\"#022F22\"}",
+			"PrimaryKeys": "CustomerId,CreditAbuseTypeId,AbuseDate",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

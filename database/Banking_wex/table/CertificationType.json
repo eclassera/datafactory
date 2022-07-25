@@ -1,0 +1,113 @@
+{
+	"name": "CertificationType",
+	"properties": {
+		"Name": "CertificationType",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "A type of certification that may be assigned.\n\nEx:\n-  Product Certification\n-  Environmental Certification\n-  Component Certification\n-  Safety Certification\n-  Operations Certification\n-  Skill Authorization\n-  Skill Certification\n-  Degree\n-  Certified\n-  Authorized",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "CertificationTypeId",
+					"Description": "The unique identifier of a Certification Type.",
+					"BaseAttributeReference": {
+						"Entity": "CertificationType.cdm.json/CertificationType",
+						"Name": "CertificationTypeId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "CertificationTypeName",
+					"Description": "The name of the Certification Type.",
+					"BaseAttributeReference": {
+						"Entity": "CertificationType.cdm.json/CertificationType",
+						"Name": "CertificationTypeName"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 256,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "CertificationTypeDescription",
+					"Description": "The description of the Certification Type.",
+					"BaseAttributeReference": {
+						"Entity": "CertificationType.cdm.json/CertificationType",
+						"Name": "CertificationTypeDescription"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/CertificationType",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/CertificationType",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"CertificationTypeId\":{\"entity\":\"CertificationType.cdm.json/CertificationType\",\"name\":\"CertificationTypeId\"},\"CertificationTypeName\":{\"entity\":\"CertificationType.cdm.json/CertificationType\",\"name\":\"CertificationTypeName\"},\"CertificationTypeDescription\":{\"entity\":\"CertificationType.cdm.json/CertificationType\",\"name\":\"CertificationTypeDescription\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"CertificationType\",\"path\":\"CertificationType.cdm.json/CertificationType\"},\"description\":\"A type of certification that may be assigned.\\n\\nEx:\\n-  Product Certification\\n-  Environmental Certification\\n-  Component Certification\\n-  Safety Certification\\n-  Operations Certification\\n-  Skill Authorization\\n-  Skill Certification\\n-  Degree\\n-  Certified\\n-  Authorized\",\"primaryKey\":[\"CertificationTypeId\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CertificationType.cdm.json/CertificationType\",\"name\":\"CertificationTypeId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Certification Type.\",\"isNullable\":false,\"name\":\"CertificationTypeId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CertificationType.cdm.json/CertificationType\",\"name\":\"CertificationTypeName\"},\"dataType\":\"string\",\"dataTypeLength\":256,\"description\":\"The name of the Certification Type.\",\"isNullable\":true,\"name\":\"CertificationTypeName\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CertificationType.cdm.json/CertificationType\",\"name\":\"CertificationTypeDescription\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"The description of the Certification Type.\",\"isNullable\":true,\"name\":\"CertificationTypeDescription\"}]}}}",
+			"Description": "A type of certification that may be assigned.\n\nEx:\n-  Product Certification\n-  Environmental Certification\n-  Component Certification\n-  Safety Certification\n-  Operations Certification\n-  Skill Authorization\n-  Skill Certification\n-  Degree\n-  Certified\n-  Authorized",
+			"DisplayFolderInfo": "{\"name\":\"Human Resources & Payroll\",\"colorCode\":\"#042C59\"}",
+			"PrimaryKeys": "CertificationTypeId",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

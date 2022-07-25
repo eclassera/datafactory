@@ -1,0 +1,113 @@
+{
+	"name": "AssociationType",
+	"properties": {
+		"Name": "AssociationType",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "A classification of Associations based upon common characteristics, attributes, purposes or functions performed.\n\nEx:\n- Private\n- Charity\n- Professional\n- Religious\n- Sporting Club",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "AssociationTypeId",
+					"Description": "The unique identifier of an Association Type.",
+					"BaseAttributeReference": {
+						"Entity": "AssociationType.cdm.json/AssociationType",
+						"Name": "AssociationTypeId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "AssociationTypeName",
+					"Description": "The name of the Association Type.",
+					"BaseAttributeReference": {
+						"Entity": "AssociationType.cdm.json/AssociationType",
+						"Name": "AssociationTypeName"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 256,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "AssociationTypeDescription",
+					"Description": "The description of the Association Type.",
+					"BaseAttributeReference": {
+						"Entity": "AssociationType.cdm.json/AssociationType",
+						"Name": "AssociationTypeDescription"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/AssociationType",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/AssociationType",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"AssociationTypeId\":{\"entity\":\"AssociationType.cdm.json/AssociationType\",\"name\":\"AssociationTypeId\"},\"AssociationTypeName\":{\"entity\":\"AssociationType.cdm.json/AssociationType\",\"name\":\"AssociationTypeName\"},\"AssociationTypeDescription\":{\"entity\":\"AssociationType.cdm.json/AssociationType\",\"name\":\"AssociationTypeDescription\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"AssociationType\",\"path\":\"AssociationType.cdm.json/AssociationType\"},\"description\":\"A classification of Associations based upon common characteristics, attributes, purposes or functions performed.\\n\\nEx:\\n- Private\\n- Charity\\n- Professional\\n- Religious\\n- Sporting Club\",\"primaryKey\":[\"AssociationTypeId\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"AssociationType.cdm.json/AssociationType\",\"name\":\"AssociationTypeId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of an Association Type.\",\"isNullable\":false,\"name\":\"AssociationTypeId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"AssociationType.cdm.json/AssociationType\",\"name\":\"AssociationTypeName\"},\"dataType\":\"string\",\"dataTypeLength\":256,\"description\":\"The name of the Association Type.\",\"isNullable\":true,\"name\":\"AssociationTypeName\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"AssociationType.cdm.json/AssociationType\",\"name\":\"AssociationTypeDescription\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"The description of the Association Type.\",\"isNullable\":true,\"name\":\"AssociationTypeDescription\"}]}}}",
+			"Description": "A classification of Associations based upon common characteristics, attributes, purposes or functions performed.\n\nEx:\n- Private\n- Charity\n- Professional\n- Religious\n- Sporting Club",
+			"DisplayFolderInfo": "{\"name\":\"Party\",\"colorCode\":\"#00727A\"}",
+			"PrimaryKeys": "AssociationTypeId",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

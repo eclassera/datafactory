@@ -1,0 +1,180 @@
+{
+	"name": "BadDebtWriteOff",
+	"properties": {
+		"Name": "BadDebtWriteOff",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "The write-off of a bad debt(s) by the associated party as of the date indicated.",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "LegalEntityId",
+					"Description": "The unique identifier of a Legal Entity.",
+					"BaseAttributeReference": {
+						"Entity": "BadDebtWriteOff.cdm.json/BadDebtWriteOff",
+						"Name": "LegalEntityId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "PartyId",
+					"Description": "The unique identifier of a Party.",
+					"BaseAttributeReference": {
+						"Entity": "BadDebtWriteOff.cdm.json/BadDebtWriteOff",
+						"Name": "PartyId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "long",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "long"
+						}
+					}
+				},
+				{
+					"Name": "WriteOffDate",
+					"Description": "The date of the write-off.",
+					"BaseAttributeReference": {
+						"Entity": "BadDebtWriteOff.cdm.json/BadDebtWriteOff",
+						"Name": "WriteOffDate"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "date",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"DateFormat": "YYYY-MM-DD",
+							"HIVE_TYPE_STRING": "date"
+						}
+					}
+				},
+				{
+					"Name": "WriteOffAmount",
+					"Description": "The amount of the write-off.",
+					"BaseAttributeReference": {
+						"Entity": "BadDebtWriteOff.cdm.json/BadDebtWriteOff",
+						"Name": "WriteOffAmount"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "decimal",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Precision": 18,
+						"Scale": 2,
+						"Properties": {
+							"HIVE_TYPE_STRING": "decimal"
+						}
+					}
+				},
+				{
+					"Name": "WriteOffDescription",
+					"Description": "The description of the write-off.",
+					"BaseAttributeReference": {
+						"Entity": "BadDebtWriteOff.cdm.json/BadDebtWriteOff",
+						"Name": "WriteOffDescription"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "IsoCurrencyCode",
+					"Description": "The ISO 4217 currency code.",
+					"BaseAttributeReference": {
+						"Entity": "BadDebtWriteOff.cdm.json/BadDebtWriteOff",
+						"Name": "IsoCurrencyCode"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 3,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "WriteOffMethodId",
+					"Description": "The unique identifier of a write-off method.",
+					"BaseAttributeReference": {
+						"Entity": "BadDebtWriteOff.cdm.json/BadDebtWriteOff",
+						"Name": "WriteOffMethodId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/BadDebtWriteOff",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/BadDebtWriteOff",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"LegalEntityId\":{\"entity\":\"BadDebtWriteOff.cdm.json/BadDebtWriteOff\",\"name\":\"LegalEntityId\"},\"PartyId\":{\"entity\":\"BadDebtWriteOff.cdm.json/BadDebtWriteOff\",\"name\":\"PartyId\"},\"WriteOffDate\":{\"entity\":\"BadDebtWriteOff.cdm.json/BadDebtWriteOff\",\"name\":\"WriteOffDate\"},\"WriteOffAmount\":{\"entity\":\"BadDebtWriteOff.cdm.json/BadDebtWriteOff\",\"name\":\"WriteOffAmount\"},\"WriteOffDescription\":{\"entity\":\"BadDebtWriteOff.cdm.json/BadDebtWriteOff\",\"name\":\"WriteOffDescription\"},\"IsoCurrencyCode\":{\"entity\":\"BadDebtWriteOff.cdm.json/BadDebtWriteOff\",\"name\":\"IsoCurrencyCode\"},\"WriteOffMethodId\":{\"entity\":\"BadDebtWriteOff.cdm.json/BadDebtWriteOff\",\"name\":\"WriteOffMethodId\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"BadDebtWriteOff\",\"path\":\"BadDebtWriteOff.cdm.json/BadDebtWriteOff\"},\"description\":\"The write-off of a bad debt(s) by the associated party as of the date indicated.\",\"primaryKey\":[\"LegalEntityId\",\"PartyId\",\"WriteOffDate\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"BadDebtWriteOff.cdm.json/BadDebtWriteOff\",\"name\":\"LegalEntityId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Legal Entity.\",\"isNullable\":false,\"name\":\"LegalEntityId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"BadDebtWriteOff.cdm.json/BadDebtWriteOff\",\"name\":\"PartyId\"},\"dataType\":\"long\",\"description\":\"The unique identifier of a Party.\",\"isNullable\":false,\"name\":\"PartyId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"BadDebtWriteOff.cdm.json/BadDebtWriteOff\",\"name\":\"WriteOffDate\"},\"dataType\":\"date\",\"dateFormat\":\"YYYY-MM-DD\",\"description\":\"The date of the write-off.\",\"isNullable\":false,\"name\":\"WriteOffDate\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"BadDebtWriteOff.cdm.json/BadDebtWriteOff\",\"name\":\"WriteOffAmount\"},\"dataType\":\"decimal\",\"dataTypeLength\":18,\"description\":\"The amount of the write-off.\",\"isNullable\":true,\"scale\":2,\"name\":\"WriteOffAmount\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"BadDebtWriteOff.cdm.json/BadDebtWriteOff\",\"name\":\"WriteOffDescription\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"The description of the write-off.\",\"isNullable\":true,\"name\":\"WriteOffDescription\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"BadDebtWriteOff.cdm.json/BadDebtWriteOff\",\"name\":\"IsoCurrencyCode\"},\"dataType\":\"string\",\"dataTypeLength\":3,\"description\":\"The ISO 4217 currency code.\",\"isNullable\":true,\"name\":\"IsoCurrencyCode\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"BadDebtWriteOff.cdm.json/BadDebtWriteOff\",\"name\":\"WriteOffMethodId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a write-off method.\",\"isNullable\":true,\"name\":\"WriteOffMethodId\"}]}}}",
+			"Description": "The write-off of a bad debt(s) by the associated party as of the date indicated.",
+			"DisplayFolderInfo": "{\"name\":\"Accounting & Financial Reporting\",\"colorCode\":\"#0078D4\"}",
+			"PrimaryKeys": "LegalEntityId,PartyId,WriteOffDate",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

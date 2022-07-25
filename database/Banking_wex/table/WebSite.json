@@ -1,0 +1,147 @@
+{
+	"name": "WebSite",
+	"properties": {
+		"Name": "WebSite",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "A website is a collection of Web pages, images, videos or other digital assets that is hosted on one or several Web server(s), usually accessible via the Internet, cell phone or a LAN.",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "WebSiteUrl",
+					"Description": "The URL associated with the web site. Often referred to as the domain name or registered domain name.",
+					"BaseAttributeReference": {
+						"Entity": "WebSite.cdm.json/WebSite",
+						"Name": "WebSiteUrl"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Length": 2083,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "HttpServerIpAddress",
+					"Description": "Internet Protocol number or address. A unique number consisting of 4 parts separated by dots, e.g. 165.113.245.2 \n\nEvery machine that is connected to the Internet must have a unique IP address at a point in time, though those IP addresses can be either static (i.e. fixed) or they can be dynamically allocated with the result that a website may have different IP addresses over time. If a machine does not have an IP number, it is not really on the Internet. Most machines also have one or more URLs or Domain Names that are easier for people to remember and which resolve to an IP address through the use of Name Servers.",
+					"BaseAttributeReference": {
+						"Entity": "WebSite.cdm.json/WebSite",
+						"Name": "HttpServerIpAddress"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 15,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "WebsiteName",
+					"Description": "The title or name of the web site.",
+					"BaseAttributeReference": {
+						"Entity": "WebSite.cdm.json/WebSite",
+						"Name": "WebsiteName"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 256,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "WebsiteDescription",
+					"Description": "A description of a website.",
+					"BaseAttributeReference": {
+						"Entity": "WebSite.cdm.json/WebSite",
+						"Name": "WebsiteDescription"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "WebsiteOwningPartyId",
+					"Description": "The unique identifier of a Party.",
+					"BaseAttributeReference": {
+						"Entity": "WebSite.cdm.json/WebSite",
+						"Name": "WebsiteOwningPartyId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "long",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"HIVE_TYPE_STRING": "long"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/WebSite",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/WebSite",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"WebSiteUrl\":{\"entity\":\"WebSite.cdm.json/WebSite\",\"name\":\"WebSiteUrl\"},\"HttpServerIpAddress\":{\"entity\":\"WebSite.cdm.json/WebSite\",\"name\":\"HttpServerIpAddress\"},\"WebsiteName\":{\"entity\":\"WebSite.cdm.json/WebSite\",\"name\":\"WebsiteName\"},\"WebsiteDescription\":{\"entity\":\"WebSite.cdm.json/WebSite\",\"name\":\"WebsiteDescription\"},\"WebsiteOwningPartyId\":{\"entity\":\"WebSite.cdm.json/WebSite\",\"name\":\"WebsiteOwningPartyId\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"WebSite\",\"path\":\"WebSite.cdm.json/WebSite\"},\"description\":\"A website is a collection of Web pages, images, videos or other digital assets that is hosted on one or several Web server(s), usually accessible via the Internet, cell phone or a LAN.\",\"primaryKey\":[\"WebSiteUrl\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"WebSite.cdm.json/WebSite\",\"name\":\"WebSiteUrl\"},\"dataType\":\"string\",\"dataTypeLength\":2083,\"description\":\"The URL associated with the web site. Often referred to as the domain name or registered domain name.\",\"isNullable\":false,\"name\":\"WebSiteUrl\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"WebSite.cdm.json/WebSite\",\"name\":\"HttpServerIpAddress\"},\"dataType\":\"string\",\"dataTypeLength\":15,\"description\":\"Internet Protocol number or address. A unique number consisting of 4 parts separated by dots, e.g. 165.113.245.2 \\n\\nEvery machine that is connected to the Internet must have a unique IP address at a point in time, though those IP addresses can be either static (i.e. fixed) or they can be dynamically allocated with the result that a website may have different IP addresses over time. If a machine does not have an IP number, it is not really on the Internet. Most machines also have one or more URLs or Domain Names that are easier for people to remember and which resolve to an IP address through the use of Name Servers.\",\"isNullable\":true,\"name\":\"HttpServerIpAddress\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"WebSite.cdm.json/WebSite\",\"name\":\"WebsiteName\"},\"dataType\":\"string\",\"dataTypeLength\":256,\"description\":\"The title or name of the web site.\",\"isNullable\":true,\"name\":\"WebsiteName\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"WebSite.cdm.json/WebSite\",\"name\":\"WebsiteDescription\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"A description of a website.\",\"isNullable\":true,\"name\":\"WebsiteDescription\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"WebSite.cdm.json/WebSite\",\"name\":\"WebsiteOwningPartyId\"},\"dataType\":\"long\",\"description\":\"The unique identifier of a Party.\",\"isNullable\":true,\"name\":\"WebsiteOwningPartyId\"}]}}}",
+			"Description": "A website is a collection of Web pages, images, videos or other digital assets that is hosted on one or several Web server(s), usually accessible via the Internet, cell phone or a LAN.",
+			"DisplayFolderInfo": "{\"name\":\"Customer Service & Contact Management\",\"colorCode\":\"#Ef6950\"}",
+			"PrimaryKeys": "WebSiteUrl",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

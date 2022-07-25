@@ -1,0 +1,144 @@
+{
+	"name": "ExperianAccountPaymentHistory",
+	"properties": {
+		"Name": "ExperianAccountPaymentHistory",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "The payment history associated with the credit account.",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "ExperianReportNumber",
+					"Description": "The unique identifier of an Experian consumer.",
+					"BaseAttributeReference": {
+						"Entity": "ExperianAccountPaymentHistory.cdm.json/ExperianAccountPaymentHistory",
+						"Name": "ExperianReportNumber"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "AccountNumber",
+					"Description": "Full account numbers are not provided with your personal credit report. Experian truncates the numbers so that they cannot be used to commit fraud by someone who steals your report or somehow accesses it without your permission.",
+					"BaseAttributeReference": {
+						"Entity": "ExperianAccountPaymentHistory.cdm.json/ExperianAccountPaymentHistory",
+						"Name": "AccountNumber"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Length": 20,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "Year",
+					"Description": "The year of the payment history.",
+					"BaseAttributeReference": {
+						"Entity": "ExperianAccountPaymentHistory.cdm.json/ExperianAccountPaymentHistory",
+						"Name": "Year"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "Month",
+					"Description": "The month associated with the payment history.",
+					"BaseAttributeReference": {
+						"Entity": "ExperianAccountPaymentHistory.cdm.json/ExperianAccountPaymentHistory",
+						"Name": "Month"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "ExperianAccountPaymentHistoryStatusTypeId",
+					"Description": "The unique identifier of an Experian Account Payment History Status Type.",
+					"BaseAttributeReference": {
+						"Entity": "ExperianAccountPaymentHistory.cdm.json/ExperianAccountPaymentHistory",
+						"Name": "ExperianAccountPaymentHistoryStatusTypeId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/ExperianAccountPaymentHistory",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/ExperianAccountPaymentHistory",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"ExperianReportNumber\":{\"entity\":\"ExperianAccountPaymentHistory.cdm.json/ExperianAccountPaymentHistory\",\"name\":\"ExperianReportNumber\"},\"AccountNumber\":{\"entity\":\"ExperianAccountPaymentHistory.cdm.json/ExperianAccountPaymentHistory\",\"name\":\"AccountNumber\"},\"Year\":{\"entity\":\"ExperianAccountPaymentHistory.cdm.json/ExperianAccountPaymentHistory\",\"name\":\"Year\"},\"Month\":{\"entity\":\"ExperianAccountPaymentHistory.cdm.json/ExperianAccountPaymentHistory\",\"name\":\"Month\"},\"ExperianAccountPaymentHistoryStatusTypeId\":{\"entity\":\"ExperianAccountPaymentHistory.cdm.json/ExperianAccountPaymentHistory\",\"name\":\"ExperianAccountPaymentHistoryStatusTypeId\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"ExperianAccountPaymentHistory\",\"path\":\"ExperianAccountPaymentHistory.cdm.json/ExperianAccountPaymentHistory\"},\"description\":\"The payment history associated with the credit account.\",\"primaryKey\":[\"ExperianReportNumber\",\"AccountNumber\",\"Year\",\"Month\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ExperianAccountPaymentHistory.cdm.json/ExperianAccountPaymentHistory\",\"name\":\"ExperianReportNumber\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of an Experian consumer.\",\"isNullable\":false,\"name\":\"ExperianReportNumber\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ExperianAccountPaymentHistory.cdm.json/ExperianAccountPaymentHistory\",\"name\":\"AccountNumber\"},\"dataType\":\"string\",\"dataTypeLength\":20,\"description\":\"Full account numbers are not provided with your personal credit report. Experian truncates the numbers so that they cannot be used to commit fraud by someone who steals your report or somehow accesses it without your permission.\",\"isNullable\":false,\"name\":\"AccountNumber\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ExperianAccountPaymentHistory.cdm.json/ExperianAccountPaymentHistory\",\"name\":\"Year\"},\"dataType\":\"integer\",\"description\":\"The year of the payment history.\",\"isNullable\":false,\"name\":\"Year\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ExperianAccountPaymentHistory.cdm.json/ExperianAccountPaymentHistory\",\"name\":\"Month\"},\"dataType\":\"integer\",\"description\":\"The month associated with the payment history.\",\"isNullable\":false,\"name\":\"Month\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ExperianAccountPaymentHistory.cdm.json/ExperianAccountPaymentHistory\",\"name\":\"ExperianAccountPaymentHistoryStatusTypeId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of an Experian Account Payment History Status Type.\",\"isNullable\":true,\"name\":\"ExperianAccountPaymentHistoryStatusTypeId\"}]}}}",
+			"Description": "The payment history associated with the credit account.",
+			"DisplayFolderInfo": "{\"name\":\"Customer Credit & Collections\",\"colorCode\":\"#022F22\"}",
+			"PrimaryKeys": "ExperianReportNumber,AccountNumber,Year,Month",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

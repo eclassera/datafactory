@@ -1,0 +1,112 @@
+{
+	"name": "CustomerPaymentCard",
+	"properties": {
+		"Name": "CustomerPaymentCard",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "The Payment Card(s) authorized for use by the Customer to purchase Products, goods or services.",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "CustomerId",
+					"Description": "The unique identifier of a Customer.",
+					"BaseAttributeReference": {
+						"Entity": "CustomerPaymentCard.cdm.json/CustomerPaymentCard",
+						"Name": "CustomerId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "long",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "long"
+						}
+					}
+				},
+				{
+					"Name": "PaymentCardId",
+					"Description": "The unique identifier of a Payment Card.",
+					"BaseAttributeReference": {
+						"Entity": "CustomerPaymentCard.cdm.json/CustomerPaymentCard",
+						"Name": "PaymentCardId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "CustomerPaymentCardNote",
+					"Description": "A note, comment or additional information regarding the Customer Payment Card.",
+					"BaseAttributeReference": {
+						"Entity": "CustomerPaymentCard.cdm.json/CustomerPaymentCard",
+						"Name": "CustomerPaymentCardNote"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/CustomerPaymentCard",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/CustomerPaymentCard",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"CustomerId\":{\"entity\":\"CustomerPaymentCard.cdm.json/CustomerPaymentCard\",\"name\":\"CustomerId\"},\"PaymentCardId\":{\"entity\":\"CustomerPaymentCard.cdm.json/CustomerPaymentCard\",\"name\":\"PaymentCardId\"},\"CustomerPaymentCardNote\":{\"entity\":\"CustomerPaymentCard.cdm.json/CustomerPaymentCard\",\"name\":\"CustomerPaymentCardNote\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"CustomerPaymentCard\",\"path\":\"CustomerPaymentCard.cdm.json/CustomerPaymentCard\"},\"description\":\"The Payment Card(s) authorized for use by the Customer to purchase Products, goods or services.\",\"primaryKey\":[\"CustomerId\",\"PaymentCardId\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CustomerPaymentCard.cdm.json/CustomerPaymentCard\",\"name\":\"CustomerId\"},\"dataType\":\"long\",\"description\":\"The unique identifier of a Customer.\",\"isNullable\":false,\"name\":\"CustomerId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CustomerPaymentCard.cdm.json/CustomerPaymentCard\",\"name\":\"PaymentCardId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Payment Card.\",\"isNullable\":false,\"name\":\"PaymentCardId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CustomerPaymentCard.cdm.json/CustomerPaymentCard\",\"name\":\"CustomerPaymentCardNote\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"A note, comment or additional information regarding the Customer Payment Card.\",\"isNullable\":true,\"name\":\"CustomerPaymentCardNote\"}]}}}",
+			"Description": "The Payment Card(s) authorized for use by the Customer to purchase Products, goods or services.",
+			"DisplayFolderInfo": "{\"name\":\"Customer\",\"colorCode\":\"#4B003F\"}",
+			"PrimaryKeys": "CustomerId,PaymentCardId",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

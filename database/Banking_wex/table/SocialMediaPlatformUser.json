@@ -1,0 +1,179 @@
+{
+	"name": "SocialMediaPlatformUser",
+	"properties": {
+		"Name": "SocialMediaPlatformUser",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "A User of a Social Media Platform. Depending on the platform, a user can be used to represent an individual (party or customer), organization (party or customer), product, program, promotion or any other desired business object within the scope of an organization.",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "SocialMediaPlatformId",
+					"Description": "The unique identifier of a Social Media Platform.",
+					"BaseAttributeReference": {
+						"Entity": "SocialMediaPlatformUser.cdm.json/SocialMediaPlatformUser",
+						"Name": "SocialMediaPlatformId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "SocialMediaPlatformUserId",
+					"Description": "The unique identifier of a Social Media Platform User.",
+					"BaseAttributeReference": {
+						"Entity": "SocialMediaPlatformUser.cdm.json/SocialMediaPlatformUser",
+						"Name": "SocialMediaPlatformUserId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "SocialMediaPlatformUserUsername",
+					"Description": "The username used by the user of the Social Media Platform.",
+					"BaseAttributeReference": {
+						"Entity": "SocialMediaPlatformUser.cdm.json/SocialMediaPlatformUser",
+						"Name": "SocialMediaPlatformUserUsername"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 256,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "SocialMediaPlatformUserName",
+					"Description": "The name of the Social Media Platform User.",
+					"BaseAttributeReference": {
+						"Entity": "SocialMediaPlatformUser.cdm.json/SocialMediaPlatformUser",
+						"Name": "SocialMediaPlatformUserName"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 256,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "SocialMediaPlatformUserSinceDate",
+					"Description": "The date that the user created a social media platform user account.",
+					"BaseAttributeReference": {
+						"Entity": "SocialMediaPlatformUser.cdm.json/SocialMediaPlatformUser",
+						"Name": "SocialMediaPlatformUserSinceDate"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "date",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"DateFormat": "YYYY-MM-DD",
+							"HIVE_TYPE_STRING": "date"
+						}
+					}
+				},
+				{
+					"Name": "SocialMediaPlatformUserInfluencerIndicator",
+					"Description": "Indicates whether the Social Media Platform User is an influencer.",
+					"BaseAttributeReference": {
+						"Entity": "SocialMediaPlatformUser.cdm.json/SocialMediaPlatformUser",
+						"Name": "SocialMediaPlatformUserInfluencerIndicator"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "boolean",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"HIVE_TYPE_STRING": "boolean"
+						}
+					}
+				},
+				{
+					"Name": "SocialMediaPlatformUserNote",
+					"Description": "A note, comment or additional information regarding the Social Media Platform User.",
+					"BaseAttributeReference": {
+						"Entity": "SocialMediaPlatformUser.cdm.json/SocialMediaPlatformUser",
+						"Name": "SocialMediaPlatformUserNote"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/SocialMediaPlatformUser",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/SocialMediaPlatformUser",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"SocialMediaPlatformId\":{\"entity\":\"SocialMediaPlatformUser.cdm.json/SocialMediaPlatformUser\",\"name\":\"SocialMediaPlatformId\"},\"SocialMediaPlatformUserId\":{\"entity\":\"SocialMediaPlatformUser.cdm.json/SocialMediaPlatformUser\",\"name\":\"SocialMediaPlatformUserId\"},\"SocialMediaPlatformUserUsername\":{\"entity\":\"SocialMediaPlatformUser.cdm.json/SocialMediaPlatformUser\",\"name\":\"SocialMediaPlatformUserUsername\"},\"SocialMediaPlatformUserName\":{\"entity\":\"SocialMediaPlatformUser.cdm.json/SocialMediaPlatformUser\",\"name\":\"SocialMediaPlatformUserName\"},\"SocialMediaPlatformUserSinceDate\":{\"entity\":\"SocialMediaPlatformUser.cdm.json/SocialMediaPlatformUser\",\"name\":\"SocialMediaPlatformUserSinceDate\"},\"SocialMediaPlatformUserInfluencerIndicator\":{\"entity\":\"SocialMediaPlatformUser.cdm.json/SocialMediaPlatformUser\",\"name\":\"SocialMediaPlatformUserInfluencerIndicator\"},\"SocialMediaPlatformUserNote\":{\"entity\":\"SocialMediaPlatformUser.cdm.json/SocialMediaPlatformUser\",\"name\":\"SocialMediaPlatformUserNote\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"SocialMediaPlatformUser\",\"path\":\"SocialMediaPlatformUser.cdm.json/SocialMediaPlatformUser\"},\"description\":\"A User of a Social Media Platform. Depending on the platform, a user can be used to represent an individual (party or customer), organization (party or customer), product, program, promotion or any other desired business object within the scope of an organization.\",\"primaryKey\":[\"SocialMediaPlatformId\",\"SocialMediaPlatformUserId\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"SocialMediaPlatformUser.cdm.json/SocialMediaPlatformUser\",\"name\":\"SocialMediaPlatformId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Social Media Platform.\",\"isNullable\":false,\"name\":\"SocialMediaPlatformId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"SocialMediaPlatformUser.cdm.json/SocialMediaPlatformUser\",\"name\":\"SocialMediaPlatformUserId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Social Media Platform User.\",\"isNullable\":false,\"name\":\"SocialMediaPlatformUserId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"SocialMediaPlatformUser.cdm.json/SocialMediaPlatformUser\",\"name\":\"SocialMediaPlatformUserUsername\"},\"dataType\":\"string\",\"dataTypeLength\":256,\"description\":\"The username used by the user of the Social Media Platform.\",\"isNullable\":true,\"name\":\"SocialMediaPlatformUserUsername\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"SocialMediaPlatformUser.cdm.json/SocialMediaPlatformUser\",\"name\":\"SocialMediaPlatformUserName\"},\"dataType\":\"string\",\"dataTypeLength\":256,\"description\":\"The name of the Social Media Platform User.\",\"isNullable\":true,\"name\":\"SocialMediaPlatformUserName\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"SocialMediaPlatformUser.cdm.json/SocialMediaPlatformUser\",\"name\":\"SocialMediaPlatformUserSinceDate\"},\"dataType\":\"date\",\"dateFormat\":\"YYYY-MM-DD\",\"description\":\"The date that the user created a social media platform user account.\",\"isNullable\":true,\"name\":\"SocialMediaPlatformUserSinceDate\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"SocialMediaPlatformUser.cdm.json/SocialMediaPlatformUser\",\"name\":\"SocialMediaPlatformUserInfluencerIndicator\"},\"dataType\":\"boolean\",\"description\":\"Indicates whether the Social Media Platform User is an influencer.\",\"isNullable\":true,\"name\":\"SocialMediaPlatformUserInfluencerIndicator\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"SocialMediaPlatformUser.cdm.json/SocialMediaPlatformUser\",\"name\":\"SocialMediaPlatformUserNote\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"A note, comment or additional information regarding the Social Media Platform User.\",\"isNullable\":true,\"name\":\"SocialMediaPlatformUserNote\"}]}}}",
+			"Description": "A User of a Social Media Platform. Depending on the platform, a user can be used to represent an individual (party or customer), organization (party or customer), product, program, promotion or any other desired business object within the scope of an organization.",
+			"DisplayFolderInfo": "{\"name\":\"Customer Service & Contact Management\",\"colorCode\":\"#Ef6950\"}",
+			"PrimaryKeys": "SocialMediaPlatformId,SocialMediaPlatformUserId",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

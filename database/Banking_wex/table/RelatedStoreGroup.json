@@ -1,0 +1,162 @@
+{
+	"name": "RelatedStoreGroup",
+	"properties": {
+		"Name": "RelatedStoreGroup",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "The relationship of two or more Store Groups.",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "StoreGroupId",
+					"Description": "The unique identifier of a Store Group.",
+					"BaseAttributeReference": {
+						"Entity": "RelatedStoreGroup.cdm.json/RelatedStoreGroup",
+						"Name": "StoreGroupId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "RelatedStoreGroupId",
+					"Description": "The unique identifier of a Store Group.",
+					"BaseAttributeReference": {
+						"Entity": "RelatedStoreGroup.cdm.json/RelatedStoreGroup",
+						"Name": "RelatedStoreGroupId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "StoreGroupRelationshipTypeId",
+					"Description": "The unique identifier of a Store Group Relationship Type.",
+					"BaseAttributeReference": {
+						"Entity": "RelatedStoreGroup.cdm.json/RelatedStoreGroup",
+						"Name": "StoreGroupRelationshipTypeId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "PeriodStartDate",
+					"Description": "The period start date of the store relationship.",
+					"BaseAttributeReference": {
+						"Entity": "RelatedStoreGroup.cdm.json/RelatedStoreGroup",
+						"Name": "PeriodStartDate"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "date",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"DateFormat": "YYYY-MM-DD",
+							"HIVE_TYPE_STRING": "date"
+						}
+					}
+				},
+				{
+					"Name": "PeriodEndDate",
+					"Description": "The period end date of the store relationship.",
+					"BaseAttributeReference": {
+						"Entity": "RelatedStoreGroup.cdm.json/RelatedStoreGroup",
+						"Name": "PeriodEndDate"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "date",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"DateFormat": "YYYY-MM-DD",
+							"HIVE_TYPE_STRING": "date"
+						}
+					}
+				},
+				{
+					"Name": "StoreGroupRelationshipNote",
+					"Description": "A note, comment or additional information regarding the store group relationship.",
+					"BaseAttributeReference": {
+						"Entity": "RelatedStoreGroup.cdm.json/RelatedStoreGroup",
+						"Name": "StoreGroupRelationshipNote"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/RelatedStoreGroup",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/RelatedStoreGroup",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"StoreGroupId\":{\"entity\":\"RelatedStoreGroup.cdm.json/RelatedStoreGroup\",\"name\":\"StoreGroupId\"},\"RelatedStoreGroupId\":{\"entity\":\"RelatedStoreGroup.cdm.json/RelatedStoreGroup\",\"name\":\"RelatedStoreGroupId\"},\"StoreGroupRelationshipTypeId\":{\"entity\":\"RelatedStoreGroup.cdm.json/RelatedStoreGroup\",\"name\":\"StoreGroupRelationshipTypeId\"},\"PeriodStartDate\":{\"entity\":\"RelatedStoreGroup.cdm.json/RelatedStoreGroup\",\"name\":\"PeriodStartDate\"},\"PeriodEndDate\":{\"entity\":\"RelatedStoreGroup.cdm.json/RelatedStoreGroup\",\"name\":\"PeriodEndDate\"},\"StoreGroupRelationshipNote\":{\"entity\":\"RelatedStoreGroup.cdm.json/RelatedStoreGroup\",\"name\":\"StoreGroupRelationshipNote\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"RelatedStoreGroup\",\"path\":\"RelatedStoreGroup.cdm.json/RelatedStoreGroup\"},\"description\":\"The relationship of two or more Store Groups.\",\"primaryKey\":[\"StoreGroupId\",\"RelatedStoreGroupId\",\"StoreGroupRelationshipTypeId\",\"PeriodStartDate\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"RelatedStoreGroup.cdm.json/RelatedStoreGroup\",\"name\":\"StoreGroupId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Store Group.\",\"isNullable\":false,\"name\":\"StoreGroupId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"RelatedStoreGroup.cdm.json/RelatedStoreGroup\",\"name\":\"RelatedStoreGroupId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Store Group.\",\"isNullable\":false,\"name\":\"RelatedStoreGroupId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"RelatedStoreGroup.cdm.json/RelatedStoreGroup\",\"name\":\"StoreGroupRelationshipTypeId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Store Group Relationship Type.\",\"isNullable\":false,\"name\":\"StoreGroupRelationshipTypeId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"RelatedStoreGroup.cdm.json/RelatedStoreGroup\",\"name\":\"PeriodStartDate\"},\"dataType\":\"date\",\"dateFormat\":\"YYYY-MM-DD\",\"description\":\"The period start date of the store relationship.\",\"isNullable\":false,\"name\":\"PeriodStartDate\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"RelatedStoreGroup.cdm.json/RelatedStoreGroup\",\"name\":\"PeriodEndDate\"},\"dataType\":\"date\",\"dateFormat\":\"YYYY-MM-DD\",\"description\":\"The period end date of the store relationship.\",\"isNullable\":true,\"name\":\"PeriodEndDate\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"RelatedStoreGroup.cdm.json/RelatedStoreGroup\",\"name\":\"StoreGroupRelationshipNote\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"A note, comment or additional information regarding the store group relationship.\",\"isNullable\":true,\"name\":\"StoreGroupRelationshipNote\"}]}}}",
+			"Description": "The relationship of two or more Store Groups.",
+			"DisplayFolderInfo": "{\"name\":\"Product\",\"colorCode\":\"#0E3D73\"}",
+			"PrimaryKeys": "StoreGroupId,RelatedStoreGroupId,StoreGroupRelationshipTypeId,PeriodStartDate",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

@@ -1,0 +1,179 @@
+{
+	"name": "ChannelProgramProductSales",
+	"properties": {
+		"Name": "ChannelProgramProductSales",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "The Program Products/Services sold, distributed or similarly associated with a Channel Program for the indicated period.",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "ChannelId",
+					"Description": "The unique identifier of a Channel.",
+					"BaseAttributeReference": {
+						"Entity": "ChannelProgramProductSales.cdm.json/ChannelProgramProductSales",
+						"Name": "ChannelId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "MarketingProgramId",
+					"Description": "The unique identifier of a Marketing Program.",
+					"BaseAttributeReference": {
+						"Entity": "ChannelProgramProductSales.cdm.json/ChannelProgramProductSales",
+						"Name": "MarketingProgramId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "ProductId",
+					"Description": "The unique identifier of a Product.",
+					"BaseAttributeReference": {
+						"Entity": "ChannelProgramProductSales.cdm.json/ChannelProgramProductSales",
+						"Name": "ProductId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "long",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "long"
+						}
+					}
+				},
+				{
+					"Name": "PeriodStartDate",
+					"Description": "The period start date.",
+					"BaseAttributeReference": {
+						"Entity": "ChannelProgramProductSales.cdm.json/ChannelProgramProductSales",
+						"Name": "PeriodStartDate"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "date",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"DateFormat": "YYYY-MM-DD",
+							"HIVE_TYPE_STRING": "date"
+						}
+					}
+				},
+				{
+					"Name": "PeriodEndDate",
+					"Description": "The period end date.",
+					"BaseAttributeReference": {
+						"Entity": "ChannelProgramProductSales.cdm.json/ChannelProgramProductSales",
+						"Name": "PeriodEndDate"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "date",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"DateFormat": "YYYY-MM-DD",
+							"HIVE_TYPE_STRING": "date"
+						}
+					}
+				},
+				{
+					"Name": "ProductUnitSales",
+					"Description": "The total number of Product unit sales for the period defined.",
+					"BaseAttributeReference": {
+						"Entity": "ChannelProgramProductSales.cdm.json/ChannelProgramProductSales",
+						"Name": "ProductUnitSales"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "ProductTotalSalesRevenue",
+					"Description": "The total Product sales revenue realized during the period defined.",
+					"BaseAttributeReference": {
+						"Entity": "ChannelProgramProductSales.cdm.json/ChannelProgramProductSales",
+						"Name": "ProductTotalSalesRevenue"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "decimal",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Precision": 18,
+						"Scale": 2,
+						"Properties": {
+							"HIVE_TYPE_STRING": "decimal"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/ChannelProgramProductSales",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/ChannelProgramProductSales",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"ChannelId\":{\"entity\":\"ChannelProgramProductSales.cdm.json/ChannelProgramProductSales\",\"name\":\"ChannelId\"},\"MarketingProgramId\":{\"entity\":\"ChannelProgramProductSales.cdm.json/ChannelProgramProductSales\",\"name\":\"MarketingProgramId\"},\"ProductId\":{\"entity\":\"ChannelProgramProductSales.cdm.json/ChannelProgramProductSales\",\"name\":\"ProductId\"},\"PeriodStartDate\":{\"entity\":\"ChannelProgramProductSales.cdm.json/ChannelProgramProductSales\",\"name\":\"PeriodStartDate\"},\"PeriodEndDate\":{\"entity\":\"ChannelProgramProductSales.cdm.json/ChannelProgramProductSales\",\"name\":\"PeriodEndDate\"},\"ProductUnitSales\":{\"entity\":\"ChannelProgramProductSales.cdm.json/ChannelProgramProductSales\",\"name\":\"ProductUnitSales\"},\"ProductTotalSalesRevenue\":{\"entity\":\"ChannelProgramProductSales.cdm.json/ChannelProgramProductSales\",\"name\":\"ProductTotalSalesRevenue\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"ChannelProgramProductSales\",\"path\":\"ChannelProgramProductSales.cdm.json/ChannelProgramProductSales\"},\"description\":\"The Program Products/Services sold, distributed or similarly associated with a Channel Program for the indicated period.\",\"primaryKey\":[\"ChannelId\",\"MarketingProgramId\",\"ProductId\",\"PeriodStartDate\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ChannelProgramProductSales.cdm.json/ChannelProgramProductSales\",\"name\":\"ChannelId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Channel.\",\"isNullable\":false,\"name\":\"ChannelId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ChannelProgramProductSales.cdm.json/ChannelProgramProductSales\",\"name\":\"MarketingProgramId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Marketing Program.\",\"isNullable\":false,\"name\":\"MarketingProgramId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ChannelProgramProductSales.cdm.json/ChannelProgramProductSales\",\"name\":\"ProductId\"},\"dataType\":\"long\",\"description\":\"The unique identifier of a Product.\",\"isNullable\":false,\"name\":\"ProductId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ChannelProgramProductSales.cdm.json/ChannelProgramProductSales\",\"name\":\"PeriodStartDate\"},\"dataType\":\"date\",\"dateFormat\":\"YYYY-MM-DD\",\"description\":\"The period start date.\",\"isNullable\":false,\"name\":\"PeriodStartDate\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ChannelProgramProductSales.cdm.json/ChannelProgramProductSales\",\"name\":\"PeriodEndDate\"},\"dataType\":\"date\",\"dateFormat\":\"YYYY-MM-DD\",\"description\":\"The period end date.\",\"isNullable\":false,\"name\":\"PeriodEndDate\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ChannelProgramProductSales.cdm.json/ChannelProgramProductSales\",\"name\":\"ProductUnitSales\"},\"dataType\":\"integer\",\"description\":\"The total number of Product unit sales for the period defined.\",\"isNullable\":true,\"name\":\"ProductUnitSales\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ChannelProgramProductSales.cdm.json/ChannelProgramProductSales\",\"name\":\"ProductTotalSalesRevenue\"},\"dataType\":\"decimal\",\"dataTypeLength\":18,\"description\":\"The total Product sales revenue realized during the period defined.\",\"isNullable\":true,\"scale\":2,\"name\":\"ProductTotalSalesRevenue\"}]}}}",
+			"Description": "The Program Products/Services sold, distributed or similarly associated with a Channel Program for the indicated period.",
+			"DisplayFolderInfo": "{\"name\":\"Channel\",\"colorCode\":\"#001D3F\"}",
+			"PrimaryKeys": "ChannelId,MarketingProgramId,ProductId,PeriodStartDate",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

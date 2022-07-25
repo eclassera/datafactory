@@ -1,0 +1,146 @@
+{
+	"name": "CustomerTradeName",
+	"properties": {
+		"Name": "CustomerTradeName",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "The Trade Name(s) associated with the Customer.",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "CustomerId",
+					"Description": "The unique identifier of a Customer.",
+					"BaseAttributeReference": {
+						"Entity": "CustomerTradeName.cdm.json/CustomerTradeName",
+						"Name": "CustomerId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "long",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "long"
+						}
+					}
+				},
+				{
+					"Name": "TradeNameId",
+					"Description": "The unique identifier of a Trade Name.",
+					"BaseAttributeReference": {
+						"Entity": "CustomerTradeName.cdm.json/CustomerTradeName",
+						"Name": "TradeNameId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "PeriodStartDate",
+					"Description": "The period start date for which the Legal Entity Party Trade Name is effective or 'as-of'.",
+					"BaseAttributeReference": {
+						"Entity": "CustomerTradeName.cdm.json/CustomerTradeName",
+						"Name": "PeriodStartDate"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "date",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"DateFormat": "YYYY-MM-DD",
+							"HIVE_TYPE_STRING": "date"
+						}
+					}
+				},
+				{
+					"Name": "PeriodEndDate",
+					"Description": "The period end date for which the Legal Entity Party Trade Name is effective or 'as-of'.",
+					"BaseAttributeReference": {
+						"Entity": "CustomerTradeName.cdm.json/CustomerTradeName",
+						"Name": "PeriodEndDate"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "date",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"DateFormat": "YYYY-MM-DD",
+							"HIVE_TYPE_STRING": "date"
+						}
+					}
+				},
+				{
+					"Name": "CustomerTradeNameNote",
+					"Description": "Notes, comments or additional information regarding the Customer Trade Name.",
+					"BaseAttributeReference": {
+						"Entity": "CustomerTradeName.cdm.json/CustomerTradeName",
+						"Name": "CustomerTradeNameNote"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/CustomerTradeName",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/CustomerTradeName",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"CustomerId\":{\"entity\":\"CustomerTradeName.cdm.json/CustomerTradeName\",\"name\":\"CustomerId\"},\"TradeNameId\":{\"entity\":\"CustomerTradeName.cdm.json/CustomerTradeName\",\"name\":\"TradeNameId\"},\"PeriodStartDate\":{\"entity\":\"CustomerTradeName.cdm.json/CustomerTradeName\",\"name\":\"PeriodStartDate\"},\"PeriodEndDate\":{\"entity\":\"CustomerTradeName.cdm.json/CustomerTradeName\",\"name\":\"PeriodEndDate\"},\"CustomerTradeNameNote\":{\"entity\":\"CustomerTradeName.cdm.json/CustomerTradeName\",\"name\":\"CustomerTradeNameNote\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"CustomerTradeName\",\"path\":\"CustomerTradeName.cdm.json/CustomerTradeName\"},\"description\":\"The Trade Name(s) associated with the Customer.\",\"primaryKey\":[\"CustomerId\",\"TradeNameId\",\"PeriodStartDate\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CustomerTradeName.cdm.json/CustomerTradeName\",\"name\":\"CustomerId\"},\"dataType\":\"long\",\"description\":\"The unique identifier of a Customer.\",\"isNullable\":false,\"name\":\"CustomerId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CustomerTradeName.cdm.json/CustomerTradeName\",\"name\":\"TradeNameId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Trade Name.\",\"isNullable\":false,\"name\":\"TradeNameId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CustomerTradeName.cdm.json/CustomerTradeName\",\"name\":\"PeriodStartDate\"},\"dataType\":\"date\",\"dateFormat\":\"YYYY-MM-DD\",\"description\":\"The period start date for which the Legal Entity Party Trade Name is effective or 'as-of'.\",\"isNullable\":false,\"name\":\"PeriodStartDate\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CustomerTradeName.cdm.json/CustomerTradeName\",\"name\":\"PeriodEndDate\"},\"dataType\":\"date\",\"dateFormat\":\"YYYY-MM-DD\",\"description\":\"The period end date for which the Legal Entity Party Trade Name is effective or 'as-of'.\",\"isNullable\":true,\"name\":\"PeriodEndDate\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CustomerTradeName.cdm.json/CustomerTradeName\",\"name\":\"CustomerTradeNameNote\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"Notes, comments or additional information regarding the Customer Trade Name.\",\"isNullable\":true,\"name\":\"CustomerTradeNameNote\"}]}}}",
+			"Description": "The Trade Name(s) associated with the Customer.",
+			"DisplayFolderInfo": "{\"name\":\"Customer\",\"colorCode\":\"#4B003F\"}",
+			"PrimaryKeys": "CustomerId,TradeNameId,PeriodStartDate",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

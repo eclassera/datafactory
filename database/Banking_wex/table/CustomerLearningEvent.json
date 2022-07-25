@@ -1,0 +1,130 @@
+{
+	"name": "CustomerLearningEvent",
+	"properties": {
+		"Name": "CustomerLearningEvent",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "The Learning Events that a Customer has participated in.",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "CustomerId",
+					"Description": "The unique identifier of a Customer.",
+					"BaseAttributeReference": {
+						"Entity": "CustomerLearningEvent.cdm.json/CustomerLearningEvent",
+						"Name": "CustomerId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "long",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "long"
+						}
+					}
+				},
+				{
+					"Name": "ScheduledLearningEventId",
+					"Description": "The unique identifier of a Scheduled Learning Event.",
+					"BaseAttributeReference": {
+						"Entity": "CustomerLearningEvent.cdm.json/CustomerLearningEvent",
+						"Name": "ScheduledLearningEventId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "LearningEventFeeAmount",
+					"Description": "The amount of fees associated with the Learning Event.",
+					"BaseAttributeReference": {
+						"Entity": "CustomerLearningEvent.cdm.json/CustomerLearningEvent",
+						"Name": "LearningEventFeeAmount"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "decimal",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Precision": 18,
+						"Scale": 2,
+						"Properties": {
+							"HIVE_TYPE_STRING": "decimal"
+						}
+					}
+				},
+				{
+					"Name": "CustomerLearningEventNote",
+					"Description": "Note or additional information regarding the Customer Learning Event.",
+					"BaseAttributeReference": {
+						"Entity": "CustomerLearningEvent.cdm.json/CustomerLearningEvent",
+						"Name": "CustomerLearningEventNote"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/CustomerLearningEvent",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/CustomerLearningEvent",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"CustomerId\":{\"entity\":\"CustomerLearningEvent.cdm.json/CustomerLearningEvent\",\"name\":\"CustomerId\"},\"ScheduledLearningEventId\":{\"entity\":\"CustomerLearningEvent.cdm.json/CustomerLearningEvent\",\"name\":\"ScheduledLearningEventId\"},\"LearningEventFeeAmount\":{\"entity\":\"CustomerLearningEvent.cdm.json/CustomerLearningEvent\",\"name\":\"LearningEventFeeAmount\"},\"CustomerLearningEventNote\":{\"entity\":\"CustomerLearningEvent.cdm.json/CustomerLearningEvent\",\"name\":\"CustomerLearningEventNote\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"CustomerLearningEvent\",\"path\":\"CustomerLearningEvent.cdm.json/CustomerLearningEvent\"},\"description\":\"The Learning Events that a Customer has participated in.\",\"primaryKey\":[\"CustomerId\",\"ScheduledLearningEventId\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CustomerLearningEvent.cdm.json/CustomerLearningEvent\",\"name\":\"CustomerId\"},\"dataType\":\"long\",\"description\":\"The unique identifier of a Customer.\",\"isNullable\":false,\"name\":\"CustomerId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CustomerLearningEvent.cdm.json/CustomerLearningEvent\",\"name\":\"ScheduledLearningEventId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Scheduled Learning Event.\",\"isNullable\":false,\"name\":\"ScheduledLearningEventId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CustomerLearningEvent.cdm.json/CustomerLearningEvent\",\"name\":\"LearningEventFeeAmount\"},\"dataType\":\"decimal\",\"dataTypeLength\":18,\"description\":\"The amount of fees associated with the Learning Event.\",\"isNullable\":true,\"scale\":2,\"name\":\"LearningEventFeeAmount\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CustomerLearningEvent.cdm.json/CustomerLearningEvent\",\"name\":\"CustomerLearningEventNote\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"Note or additional information regarding the Customer Learning Event.\",\"isNullable\":true,\"name\":\"CustomerLearningEventNote\"}]}}}",
+			"Description": "The Learning Events that a Customer has participated in.",
+			"DisplayFolderInfo": "{\"name\":\"Customer\",\"colorCode\":\"#4B003F\"}",
+			"PrimaryKeys": "CustomerId,ScheduledLearningEventId",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

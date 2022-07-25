@@ -1,0 +1,113 @@
+{
+	"name": "LearningEventType",
+	"properties": {
+		"Name": "LearningEventType",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "The type of Learning Event.\n\nEx:\n- Seminar\n- Public Awareness \n- Certification\n- Product Introduction\n- Product Announcement\n- Employee Education\n- Customer Education\n- Continuing Education",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "LearningEventTypeId",
+					"Description": "The unique identifier of the Learning Event Type.",
+					"BaseAttributeReference": {
+						"Entity": "LearningEventType.cdm.json/LearningEventType",
+						"Name": "LearningEventTypeId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "LearningEventTypeName",
+					"Description": "The name of the Learning Event Type.",
+					"BaseAttributeReference": {
+						"Entity": "LearningEventType.cdm.json/LearningEventType",
+						"Name": "LearningEventTypeName"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 256,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "LearningEventTypeDescription",
+					"Description": "The description of the Learning Event Type.",
+					"BaseAttributeReference": {
+						"Entity": "LearningEventType.cdm.json/LearningEventType",
+						"Name": "LearningEventTypeDescription"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/LearningEventType",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/LearningEventType",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"LearningEventTypeId\":{\"entity\":\"LearningEventType.cdm.json/LearningEventType\",\"name\":\"LearningEventTypeId\"},\"LearningEventTypeName\":{\"entity\":\"LearningEventType.cdm.json/LearningEventType\",\"name\":\"LearningEventTypeName\"},\"LearningEventTypeDescription\":{\"entity\":\"LearningEventType.cdm.json/LearningEventType\",\"name\":\"LearningEventTypeDescription\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"LearningEventType\",\"path\":\"LearningEventType.cdm.json/LearningEventType\"},\"description\":\"The type of Learning Event.\\n\\nEx:\\n- Seminar\\n- Public Awareness \\n- Certification\\n- Product Introduction\\n- Product Announcement\\n- Employee Education\\n- Customer Education\\n- Continuing Education\",\"primaryKey\":[\"LearningEventTypeId\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"LearningEventType.cdm.json/LearningEventType\",\"name\":\"LearningEventTypeId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of the Learning Event Type.\",\"isNullable\":false,\"name\":\"LearningEventTypeId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"LearningEventType.cdm.json/LearningEventType\",\"name\":\"LearningEventTypeName\"},\"dataType\":\"string\",\"dataTypeLength\":256,\"description\":\"The name of the Learning Event Type.\",\"isNullable\":true,\"name\":\"LearningEventTypeName\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"LearningEventType.cdm.json/LearningEventType\",\"name\":\"LearningEventTypeDescription\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"The description of the Learning Event Type.\",\"isNullable\":true,\"name\":\"LearningEventTypeDescription\"}]}}}",
+			"Description": "The type of Learning Event.\n\nEx:\n- Seminar\n- Public Awareness \n- Certification\n- Product Introduction\n- Product Announcement\n- Employee Education\n- Customer Education\n- Continuing Education",
+			"DisplayFolderInfo": "{\"name\":\"Training & Education\",\"colorCode\":\"#BD4B37\"}",
+			"PrimaryKeys": "LearningEventTypeId",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

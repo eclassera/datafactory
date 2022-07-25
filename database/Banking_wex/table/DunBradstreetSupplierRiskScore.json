@@ -1,0 +1,113 @@
+{
+	"name": "DunBradstreetSupplierRiskScore",
+	"properties": {
+		"Name": "DunBradstreetSupplierRiskScore",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "The D&B Supplier Evaluation Risk Rating (a.k.a. SER Rating) predicts the likelihood that a company will obtain legal relief from creditors or cease operations without paying creditors in full over next 12 months. The SER Rating provides a normalized probability of supplier failure on a global basis; its statistical model more accurately reflects the risk of global supplier failure. The SER Rating harmonizes local countries' failure ratings into a single understandable Class of 1 - 9.\n\nThe Supplier Risk Score predicts the likelihood of a firm ceasing business without paying all creditors in full, or reorganizing or obtaining relief from creditors under state/federal law over the next 12 months. The score was calculated using a statistically valid model derived from D&B's extensive data files.\n\n              Lowest Risk                            Highest Risk\n                  1    2    3    4    5    6    7    8   9",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "DunBradstreetSupplierRiskScoreId",
+					"Description": "The unique identifier of the Dun Bradstreet Supplier Risk Score.",
+					"BaseAttributeReference": {
+						"Entity": "DunBradstreetSupplierRiskScore.cdm.json/DunBradstreetSupplierRiskScore",
+						"Name": "DunBradstreetSupplierRiskScoreId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "DunBradstreetSupplierRiskScoreName",
+					"Description": "The name of the Dun Bradstreet Supplier Risk Score.",
+					"BaseAttributeReference": {
+						"Entity": "DunBradstreetSupplierRiskScore.cdm.json/DunBradstreetSupplierRiskScore",
+						"Name": "DunBradstreetSupplierRiskScoreName"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 256,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "DunBradstreetSupplierRiskScoreDescription",
+					"Description": "The description of the Dun Bradstreet Supplier Risk Score.",
+					"BaseAttributeReference": {
+						"Entity": "DunBradstreetSupplierRiskScore.cdm.json/DunBradstreetSupplierRiskScore",
+						"Name": "DunBradstreetSupplierRiskScoreDescription"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/DunBradstreetSupplierRiskScore",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/DunBradstreetSupplierRiskScore",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"DunBradstreetSupplierRiskScoreId\":{\"entity\":\"DunBradstreetSupplierRiskScore.cdm.json/DunBradstreetSupplierRiskScore\",\"name\":\"DunBradstreetSupplierRiskScoreId\"},\"DunBradstreetSupplierRiskScoreName\":{\"entity\":\"DunBradstreetSupplierRiskScore.cdm.json/DunBradstreetSupplierRiskScore\",\"name\":\"DunBradstreetSupplierRiskScoreName\"},\"DunBradstreetSupplierRiskScoreDescription\":{\"entity\":\"DunBradstreetSupplierRiskScore.cdm.json/DunBradstreetSupplierRiskScore\",\"name\":\"DunBradstreetSupplierRiskScoreDescription\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"DunBradstreetSupplierRiskScore\",\"path\":\"DunBradstreetSupplierRiskScore.cdm.json/DunBradstreetSupplierRiskScore\"},\"description\":\"The D&B Supplier Evaluation Risk Rating (a.k.a. SER Rating) predicts the likelihood that a company will obtain legal relief from creditors or cease operations without paying creditors in full over next 12 months. The SER Rating provides a normalized probability of supplier failure on a global basis; its statistical model more accurately reflects the risk of global supplier failure. The SER Rating harmonizes local countries' failure ratings into a single understandable Class of 1 - 9.\\n\\nThe Supplier Risk Score predicts the likelihood of a firm ceasing business without paying all creditors in full, or reorganizing or obtaining relief from creditors under state/federal law over the next 12 months. The score was calculated using a statistically valid model derived from D&B's extensive data files.\\n\\n              Lowest Risk                            Highest Risk\\n                  1    2    3    4    5    6    7    8   9\",\"primaryKey\":[\"DunBradstreetSupplierRiskScoreId\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"DunBradstreetSupplierRiskScore.cdm.json/DunBradstreetSupplierRiskScore\",\"name\":\"DunBradstreetSupplierRiskScoreId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of the Dun Bradstreet Supplier Risk Score.\",\"isNullable\":false,\"name\":\"DunBradstreetSupplierRiskScoreId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"DunBradstreetSupplierRiskScore.cdm.json/DunBradstreetSupplierRiskScore\",\"name\":\"DunBradstreetSupplierRiskScoreName\"},\"dataType\":\"string\",\"dataTypeLength\":256,\"description\":\"The name of the Dun Bradstreet Supplier Risk Score.\",\"isNullable\":true,\"name\":\"DunBradstreetSupplierRiskScoreName\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"DunBradstreetSupplierRiskScore.cdm.json/DunBradstreetSupplierRiskScore\",\"name\":\"DunBradstreetSupplierRiskScoreDescription\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"The description of the Dun Bradstreet Supplier Risk Score.\",\"isNullable\":true,\"name\":\"DunBradstreetSupplierRiskScoreDescription\"}]}}}",
+			"Description": "The D&B Supplier Evaluation Risk Rating (a.k.a. SER Rating) predicts the likelihood that a company will obtain legal relief from creditors or cease operations without paying creditors in full over next 12 months. The SER Rating provides a normalized probability of supplier failure on a global basis; its statistical model more accurately reflects the risk of global supplier failure. The SER Rating harmonizes local countries' failure ratings into a single understandable Class of 1 - 9.\n\nThe Supplier Risk Score predicts the likelihood of a firm ceasing business without paying all creditors in full, or reorganizing or obtaining relief from creditors under state/federal law over the next 12 months. The score was calculated using a statistically valid model derived from D&B's extensive data files.\n\n              Lowest Risk                            Highest Risk\n                  1    2    3    4    5    6    7    8   9",
+			"DisplayFolderInfo": "{\"name\":\"Customer Credit & Collections\",\"colorCode\":\"#022F22\"}",
+			"PrimaryKeys": "DunBradstreetSupplierRiskScoreId",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

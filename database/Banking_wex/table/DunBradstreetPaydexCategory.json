@@ -1,0 +1,113 @@
+{
+	"name": "DunBradstreetPaydexCategory",
+	"properties": {
+		"Name": "DunBradstreetPaydexCategory",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "The D&B PAYDEX Score provides instant overview of how a firm pays its bills as reported to D&B.  This helps you determine how quickly they're likely to pay you. The PAYDEX is a 1-100 dollar weighted numerical score of payment performance, calculated using up to 875 payment experiences from trade references reported to D&B.\n\nD&B PAYDEX Score Key Use this Key to help you determine the meaning of the Score.\n\nPAYDEX   Average Days to Pay \n100 30 days sooner than terms \n99 29 days sooner than terms \n98 28 days sooner than terms \n97 27 days sooner than terms \n96 26 days sooner than terms \n95 25 days sooner than terms \n94 24 days sooner than terms \n93 23 days sooner than terms \n92 22 days sooner than terms \n91 21 days sooner than terms \n90 20 days sooner than terms \n89 18 days sooner than terms \n88 16 days sooner than terms \n87 14 days sooner than terms \n86 12 days sooner than terms \n85 10 days sooner than terms \n84 8 days sooner than terms \n83 6 days sooner than terms \n82 4 days sooner than terms \n81 2 days sooner than terms \n80 ON TERMS \n79 2 days beyond terms \n78 3 days beyond terms \n77 5 days beyond terms \n76 6 days beyond terms \n75 8 days beyond terms \n74 9 days beyond terms \n73 11 days beyond terms \n72 12 days beyond terms \n71 14 days beyond terms \n70 15 days beyond terms \n69 16 days beyond terms \n68 17 days beyond terms \n67 18 days beyond terms \n6619 days beyond terms \n65 19 days beyond terms \n64 19 days beyond terms \n63 20 days beyond terms \n62 21 days beyond terms \n61 22 days beyond terms \n60 22 days beyond terms \n59 23 days beyond terms \n58 24 days beyond terms \n57 25 days beyond terms \n56 26 days beyond terms \n55 26 days beyond terms \n54 27 days beyond terms \n53 28 days beyond terms \n52 29 days beyond terms \n51 29 days beyond terms \n50 30 days beyond terms \n49 33 days beyond terms \n48 36 days beyond terms \n47 39 days beyond terms \n46 42 days beyond terms \n45 45 days beyond terms \n44 48 days beyond terms \n43 51 days beyond terms \n42 54 days beyond terms \n41 57 days beyond terms \n40 60 days beyond terms \n39 63 days beyond terms \n38 66 days beyond terms \n37 69 days beyond terms \n36 72 days beyond terms \n35 75 days beyond terms \n34 78 days beyond terms \n33 81 days beyond terms \n32 84 days beyond terms \n31 87 days beyond terms \n30 90 days beyond terms \n29 93 days beyond terms \n28 96 days beyond terms \n27 99 days beyond terms \n26 102 days beyond terms \n25 105 days beyond terms \n24 108 days beyond terms \n23 111 days beyond terms \n22 114 days beyond terms \n21 117 days beyond terms \n20 120 days beyond terms \n1 to 19 Over 120 days beyond terms",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "DunBradstreetPaydexCategoryId",
+					"Description": "The unique identifier of a D&B Paydex Category.",
+					"BaseAttributeReference": {
+						"Entity": "DunBradstreetPaydexCategory.cdm.json/DunBradstreetPaydexCategory",
+						"Name": "DunBradstreetPaydexCategoryId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "DunBradstreetPaydexCategoryName",
+					"Description": "The name of a D&B Paydex Category.",
+					"BaseAttributeReference": {
+						"Entity": "DunBradstreetPaydexCategory.cdm.json/DunBradstreetPaydexCategory",
+						"Name": "DunBradstreetPaydexCategoryName"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 256,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "DunBradstreetPaydexCategoryDescription",
+					"Description": "The description of a D&B Paydex Category.",
+					"BaseAttributeReference": {
+						"Entity": "DunBradstreetPaydexCategory.cdm.json/DunBradstreetPaydexCategory",
+						"Name": "DunBradstreetPaydexCategoryDescription"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/DunBradstreetPaydexCategory",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/DunBradstreetPaydexCategory",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"DunBradstreetPaydexCategoryId\":{\"entity\":\"DunBradstreetPaydexCategory.cdm.json/DunBradstreetPaydexCategory\",\"name\":\"DunBradstreetPaydexCategoryId\"},\"DunBradstreetPaydexCategoryName\":{\"entity\":\"DunBradstreetPaydexCategory.cdm.json/DunBradstreetPaydexCategory\",\"name\":\"DunBradstreetPaydexCategoryName\"},\"DunBradstreetPaydexCategoryDescription\":{\"entity\":\"DunBradstreetPaydexCategory.cdm.json/DunBradstreetPaydexCategory\",\"name\":\"DunBradstreetPaydexCategoryDescription\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"DunBradstreetPaydexCategory\",\"path\":\"DunBradstreetPaydexCategory.cdm.json/DunBradstreetPaydexCategory\"},\"description\":\"The D&B PAYDEX Score provides instant overview of how a firm pays its bills as reported to D&B.  This helps you determine how quickly they're likely to pay you. The PAYDEX is a 1-100 dollar weighted numerical score of payment performance, calculated using up to 875 payment experiences from trade references reported to D&B.\\n\\nD&B PAYDEX Score Key Use this Key to help you determine the meaning of the Score.\\n\\nPAYDEX   Average Days to Pay \\n100 30 days sooner than terms \\n99 29 days sooner than terms \\n98 28 days sooner than terms \\n97 27 days sooner than terms \\n96 26 days sooner than terms \\n95 25 days sooner than terms \\n94 24 days sooner than terms \\n93 23 days sooner than terms \\n92 22 days sooner than terms \\n91 21 days sooner than terms \\n90 20 days sooner than terms \\n89 18 days sooner than terms \\n88 16 days sooner than terms \\n87 14 days sooner than terms \\n86 12 days sooner than terms \\n85 10 days sooner than terms \\n84 8 days sooner than terms \\n83 6 days sooner than terms \\n82 4 days sooner than terms \\n81 2 days sooner than terms \\n80 ON TERMS \\n79 2 days beyond terms \\n78 3 days beyond terms \\n77 5 days beyond terms \\n76 6 days beyond terms \\n75 8 days beyond terms \\n74 9 days beyond terms \\n73 11 days beyond terms \\n72 12 days beyond terms \\n71 14 days beyond terms \\n70 15 days beyond terms \\n69 16 days beyond terms \\n68 17 days beyond terms \\n67 18 days beyond terms \\n6619 days beyond terms \\n65 19 days beyond terms \\n64 19 days beyond terms \\n63 20 days beyond terms \\n62 21 days beyond terms \\n61 22 days beyond terms \\n60 22 days beyond terms \\n59 23 days beyond terms \\n58 24 days beyond terms \\n57 25 days beyond terms \\n56 26 days beyond terms \\n55 26 days beyond terms \\n54 27 days beyond terms \\n53 28 days beyond terms \\n52 29 days beyond terms \\n51 29 days beyond terms \\n50 30 days beyond terms \\n49 33 days beyond terms \\n48 36 days beyond terms \\n47 39 days beyond terms \\n46 42 days beyond terms \\n45 45 days beyond terms \\n44 48 days beyond terms \\n43 51 days beyond terms \\n42 54 days beyond terms \\n41 57 days beyond terms \\n40 60 days beyond terms \\n39 63 days beyond terms \\n38 66 days beyond terms \\n37 69 days beyond terms \\n36 72 days beyond terms \\n35 75 days beyond terms \\n34 78 days beyond terms \\n33 81 days beyond terms \\n32 84 days beyond terms \\n31 87 days beyond terms \\n30 90 days beyond terms \\n29 93 days beyond terms \\n28 96 days beyond terms \\n27 99 days beyond terms \\n26 102 days beyond terms \\n25 105 days beyond terms \\n24 108 days beyond terms \\n23 111 days beyond terms \\n22 114 days beyond terms \\n21 117 days beyond terms \\n20 120 days beyond terms \\n1 to 19 Over 120 days beyond terms\",\"primaryKey\":[\"DunBradstreetPaydexCategoryId\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"DunBradstreetPaydexCategory.cdm.json/DunBradstreetPaydexCategory\",\"name\":\"DunBradstreetPaydexCategoryId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a D&B Paydex Category.\",\"isNullable\":false,\"name\":\"DunBradstreetPaydexCategoryId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"DunBradstreetPaydexCategory.cdm.json/DunBradstreetPaydexCategory\",\"name\":\"DunBradstreetPaydexCategoryName\"},\"dataType\":\"string\",\"dataTypeLength\":256,\"description\":\"The name of a D&B Paydex Category.\",\"isNullable\":true,\"name\":\"DunBradstreetPaydexCategoryName\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"DunBradstreetPaydexCategory.cdm.json/DunBradstreetPaydexCategory\",\"name\":\"DunBradstreetPaydexCategoryDescription\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"The description of a D&B Paydex Category.\",\"isNullable\":true,\"name\":\"DunBradstreetPaydexCategoryDescription\"}]}}}",
+			"Description": "The D&B PAYDEX Score provides instant overview of how a firm pays its bills as reported to D&B.  This helps you determine how quickly they're likely to pay you. The PAYDEX is a 1-100 dollar weighted numerical score of payment performance, calculated using up to 875 payment experiences from trade references reported to D&B.\n\nD&B PAYDEX Score Key Use this Key to help you determine the meaning of the Score.\n\nPAYDEX   Average Days to Pay \n100 30 days sooner than terms \n99 29 days sooner than terms \n98 28 days sooner than terms \n97 27 days sooner than terms \n96 26 days sooner than terms \n95 25 days sooner than terms \n94 24 days sooner than terms \n93 23 days sooner than terms \n92 22 days sooner than terms \n91 21 days sooner than terms \n90 20 days sooner than terms \n89 18 days sooner than terms \n88 16 days sooner than terms \n87 14 days sooner than terms \n86 12 days sooner than terms \n85 10 days sooner than terms \n84 8 days sooner than terms \n83 6 days sooner than terms \n82 4 days sooner than terms \n81 2 days sooner than terms \n80 ON TERMS \n79 2 days beyond terms \n78 3 days beyond terms \n77 5 days beyond terms \n76 6 days beyond terms \n75 8 days beyond terms \n74 9 days beyond terms \n73 11 days beyond terms \n72 12 days beyond terms \n71 14 days beyond terms \n70 15 days beyond terms \n69 16 days beyond terms \n68 17 days beyond terms \n67 18 days beyond terms \n6619 days beyond terms \n65 19 days beyond terms \n64 19 days beyond terms \n63 20 days beyond terms \n62 21 days beyond terms \n61 22 days beyond terms \n60 22 days beyond terms \n59 23 days beyond terms \n58 24 days beyond terms \n57 25 days beyond terms \n56 26 days beyond terms \n55 26 days beyond terms \n54 27 days beyond terms \n53 28 days beyond terms \n52 29 days beyond terms \n51 29 days beyond terms \n50 30 days beyond terms \n49 33 days beyond terms \n48 36 days beyond terms \n47 39 days beyond terms \n46 42 days beyond terms \n45 45 days beyond terms \n44 48 days beyond terms \n43 51 days beyond terms \n42 54 days beyond terms \n41 57 days beyond terms \n40 60 days beyond terms \n39 63 days beyond terms \n38 66 days beyond terms \n37 69 days beyond terms \n36 72 days beyond terms \n35 75 days beyond terms \n34 78 days beyond terms \n33 81 days beyond terms \n32 84 days beyond terms \n31 87 days beyond terms \n30 90 days beyond terms \n29 93 days beyond terms \n28 96 days beyond terms \n27 99 days beyond terms \n26 102 days beyond terms \n25 105 days beyond terms \n24 108 days beyond terms \n23 111 days beyond terms \n22 114 days beyond terms \n21 117 days beyond terms \n20 120 days beyond terms \n1 to 19 Over 120 days beyond terms",
+			"DisplayFolderInfo": "{\"name\":\"Customer Credit & Collections\",\"colorCode\":\"#022F22\"}",
+			"PrimaryKeys": "DunBradstreetPaydexCategoryId",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

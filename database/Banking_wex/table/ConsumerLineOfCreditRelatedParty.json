@@ -1,0 +1,145 @@
+{
+	"name": "ConsumerLineOfCreditRelatedParty",
+	"properties": {
+		"Name": "ConsumerLineOfCreditRelatedParty",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "A party that has a relationship to the line of credit for the indicated period.",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "CreditGrantorId",
+					"Description": "The unique identifier of a Credit Grantor.",
+					"BaseAttributeReference": {
+						"Entity": "ConsumerLineOfCreditRelatedParty.cdm.json/ConsumerLineOfCreditRelatedParty",
+						"Name": "CreditGrantorId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "LineOfCreditAccountNumber",
+					"Description": "The unique identifier of a specific Line Of Credit provided to a Customer/Customer Account.",
+					"BaseAttributeReference": {
+						"Entity": "ConsumerLineOfCreditRelatedParty.cdm.json/ConsumerLineOfCreditRelatedParty",
+						"Name": "LineOfCreditAccountNumber"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Length": 20,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "PartyId",
+					"Description": "The unique identifier of a Party.",
+					"BaseAttributeReference": {
+						"Entity": "ConsumerLineOfCreditRelatedParty.cdm.json/ConsumerLineOfCreditRelatedParty",
+						"Name": "PartyId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "long",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "long"
+						}
+					}
+				},
+				{
+					"Name": "LineOfCreditPartyRelationshipTypeId",
+					"Description": "The unique identifier of a co-signer relationship.",
+					"BaseAttributeReference": {
+						"Entity": "ConsumerLineOfCreditRelatedParty.cdm.json/ConsumerLineOfCreditRelatedParty",
+						"Name": "LineOfCreditPartyRelationshipTypeId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "PaymentCardRelatedPartyNote",
+					"Description": "A note, comment or additional information regarding the Payment Card Party Relationship.",
+					"BaseAttributeReference": {
+						"Entity": "ConsumerLineOfCreditRelatedParty.cdm.json/ConsumerLineOfCreditRelatedParty",
+						"Name": "PaymentCardRelatedPartyNote"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/ConsumerLineOfCreditRelatedParty",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/ConsumerLineOfCreditRelatedParty",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"CreditGrantorId\":{\"entity\":\"ConsumerLineOfCreditRelatedParty.cdm.json/ConsumerLineOfCreditRelatedParty\",\"name\":\"CreditGrantorId\"},\"LineOfCreditAccountNumber\":{\"entity\":\"ConsumerLineOfCreditRelatedParty.cdm.json/ConsumerLineOfCreditRelatedParty\",\"name\":\"LineOfCreditAccountNumber\"},\"PartyId\":{\"entity\":\"ConsumerLineOfCreditRelatedParty.cdm.json/ConsumerLineOfCreditRelatedParty\",\"name\":\"PartyId\"},\"LineOfCreditPartyRelationshipTypeId\":{\"entity\":\"ConsumerLineOfCreditRelatedParty.cdm.json/ConsumerLineOfCreditRelatedParty\",\"name\":\"LineOfCreditPartyRelationshipTypeId\"},\"PaymentCardRelatedPartyNote\":{\"entity\":\"ConsumerLineOfCreditRelatedParty.cdm.json/ConsumerLineOfCreditRelatedParty\",\"name\":\"PaymentCardRelatedPartyNote\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"ConsumerLineOfCreditRelatedParty\",\"path\":\"ConsumerLineOfCreditRelatedParty.cdm.json/ConsumerLineOfCreditRelatedParty\"},\"description\":\"A party that has a relationship to the line of credit for the indicated period.\",\"primaryKey\":[\"CreditGrantorId\",\"LineOfCreditAccountNumber\",\"PartyId\",\"LineOfCreditPartyRelationshipTypeId\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ConsumerLineOfCreditRelatedParty.cdm.json/ConsumerLineOfCreditRelatedParty\",\"name\":\"CreditGrantorId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Credit Grantor.\",\"isNullable\":false,\"name\":\"CreditGrantorId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ConsumerLineOfCreditRelatedParty.cdm.json/ConsumerLineOfCreditRelatedParty\",\"name\":\"LineOfCreditAccountNumber\"},\"dataType\":\"string\",\"dataTypeLength\":20,\"description\":\"The unique identifier of a specific Line Of Credit provided to a Customer/Customer Account.\",\"isNullable\":false,\"name\":\"LineOfCreditAccountNumber\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ConsumerLineOfCreditRelatedParty.cdm.json/ConsumerLineOfCreditRelatedParty\",\"name\":\"PartyId\"},\"dataType\":\"long\",\"description\":\"The unique identifier of a Party.\",\"isNullable\":false,\"name\":\"PartyId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ConsumerLineOfCreditRelatedParty.cdm.json/ConsumerLineOfCreditRelatedParty\",\"name\":\"LineOfCreditPartyRelationshipTypeId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a co-signer relationship.\",\"isNullable\":false,\"name\":\"LineOfCreditPartyRelationshipTypeId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ConsumerLineOfCreditRelatedParty.cdm.json/ConsumerLineOfCreditRelatedParty\",\"name\":\"PaymentCardRelatedPartyNote\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"A note, comment or additional information regarding the Payment Card Party Relationship.\",\"isNullable\":true,\"name\":\"PaymentCardRelatedPartyNote\"}]}}}",
+			"Description": "A party that has a relationship to the line of credit for the indicated period.",
+			"DisplayFolderInfo": "{\"name\":\"Customer Credit & Collections\",\"colorCode\":\"#022F22\"}",
+			"PrimaryKeys": "CreditGrantorId,LineOfCreditAccountNumber,PartyId,LineOfCreditPartyRelationshipTypeId",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

@@ -1,0 +1,146 @@
+{
+	"name": "TransunionConsumerAkaName",
+	"properties": {
+		"Name": "TransunionConsumerAkaName",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "The 'also known as' names of the TransUnion consumer.",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "TransunionReferenceNumber",
+					"Description": "The TransUnion file number.",
+					"BaseAttributeReference": {
+						"Entity": "TransunionConsumerAkaName.cdm.json/TransunionConsumerAkaName",
+						"Name": "TransunionReferenceNumber"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "TransunionConsumerAkaNameNumber",
+					"Description": "The TransUnion Consumer AKA Name Number uniquely identifies a consumer's aka name within a TransUnion Credit Report.",
+					"BaseAttributeReference": {
+						"Entity": "TransunionConsumerAkaName.cdm.json/TransunionConsumerAkaName",
+						"Name": "TransunionConsumerAkaNameNumber"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "TransunionConsumerAkaFirstName",
+					"Description": "The aka consumer first name.",
+					"BaseAttributeReference": {
+						"Entity": "TransunionConsumerAkaName.cdm.json/TransunionConsumerAkaName",
+						"Name": "TransunionConsumerAkaFirstName"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 256,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "TransunionConsumerAkaMiddleName",
+					"Description": "The aka consumer middle name.",
+					"BaseAttributeReference": {
+						"Entity": "TransunionConsumerAkaName.cdm.json/TransunionConsumerAkaName",
+						"Name": "TransunionConsumerAkaMiddleName"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 256,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "TransunionConsumerAkaLastName",
+					"Description": "The aka consumer last name.",
+					"BaseAttributeReference": {
+						"Entity": "TransunionConsumerAkaName.cdm.json/TransunionConsumerAkaName",
+						"Name": "TransunionConsumerAkaLastName"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 256,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/TransunionConsumerAkaName",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/TransunionConsumerAkaName",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"TransunionReferenceNumber\":{\"entity\":\"TransunionConsumerAkaName.cdm.json/TransunionConsumerAkaName\",\"name\":\"TransunionReferenceNumber\"},\"TransunionConsumerAkaNameNumber\":{\"entity\":\"TransunionConsumerAkaName.cdm.json/TransunionConsumerAkaName\",\"name\":\"TransunionConsumerAkaNameNumber\"},\"TransunionConsumerAkaFirstName\":{\"entity\":\"TransunionConsumerAkaName.cdm.json/TransunionConsumerAkaName\",\"name\":\"TransunionConsumerAkaFirstName\"},\"TransunionConsumerAkaMiddleName\":{\"entity\":\"TransunionConsumerAkaName.cdm.json/TransunionConsumerAkaName\",\"name\":\"TransunionConsumerAkaMiddleName\"},\"TransunionConsumerAkaLastName\":{\"entity\":\"TransunionConsumerAkaName.cdm.json/TransunionConsumerAkaName\",\"name\":\"TransunionConsumerAkaLastName\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"TransunionConsumerAkaName\",\"path\":\"TransunionConsumerAkaName.cdm.json/TransunionConsumerAkaName\"},\"description\":\"The 'also known as' names of the TransUnion consumer.\",\"primaryKey\":[\"TransunionReferenceNumber\",\"TransunionConsumerAkaNameNumber\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"TransunionConsumerAkaName.cdm.json/TransunionConsumerAkaName\",\"name\":\"TransunionReferenceNumber\"},\"dataType\":\"integer\",\"description\":\"The TransUnion file number.\",\"isNullable\":false,\"name\":\"TransunionReferenceNumber\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"TransunionConsumerAkaName.cdm.json/TransunionConsumerAkaName\",\"name\":\"TransunionConsumerAkaNameNumber\"},\"dataType\":\"integer\",\"description\":\"The TransUnion Consumer AKA Name Number uniquely identifies a consumer's aka name within a TransUnion Credit Report.\",\"isNullable\":false,\"name\":\"TransunionConsumerAkaNameNumber\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"TransunionConsumerAkaName.cdm.json/TransunionConsumerAkaName\",\"name\":\"TransunionConsumerAkaFirstName\"},\"dataType\":\"string\",\"dataTypeLength\":256,\"description\":\"The aka consumer first name.\",\"isNullable\":true,\"name\":\"TransunionConsumerAkaFirstName\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"TransunionConsumerAkaName.cdm.json/TransunionConsumerAkaName\",\"name\":\"TransunionConsumerAkaMiddleName\"},\"dataType\":\"string\",\"dataTypeLength\":256,\"description\":\"The aka consumer middle name.\",\"isNullable\":true,\"name\":\"TransunionConsumerAkaMiddleName\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"TransunionConsumerAkaName.cdm.json/TransunionConsumerAkaName\",\"name\":\"TransunionConsumerAkaLastName\"},\"dataType\":\"string\",\"dataTypeLength\":256,\"description\":\"The aka consumer last name.\",\"isNullable\":true,\"name\":\"TransunionConsumerAkaLastName\"}]}}}",
+			"Description": "The 'also known as' names of the TransUnion consumer.",
+			"DisplayFolderInfo": "{\"name\":\"Customer Credit & Collections\",\"colorCode\":\"#022F22\"}",
+			"PrimaryKeys": "TransunionReferenceNumber,TransunionConsumerAkaNameNumber",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

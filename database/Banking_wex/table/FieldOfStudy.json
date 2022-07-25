@@ -1,0 +1,113 @@
+{
+	"name": "FieldOfStudy",
+	"properties": {
+		"Name": "FieldOfStudy",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "The field of study in which the individual is involved.\n\nEx:\n- Mathematics\n- Business\n- Computer Science\n- Philosophy\n- Nursing",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "FieldOfStudyId",
+					"Description": "The unique identifier of a Field of Study.",
+					"BaseAttributeReference": {
+						"Entity": "FieldOfStudy.cdm.json/FieldOfStudy",
+						"Name": "FieldOfStudyId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "FieldOfStudyName",
+					"Description": "The name of a Field of Study.",
+					"BaseAttributeReference": {
+						"Entity": "FieldOfStudy.cdm.json/FieldOfStudy",
+						"Name": "FieldOfStudyName"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 256,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "FieldOfStudyDescription",
+					"Description": "The description of a Field of Study.",
+					"BaseAttributeReference": {
+						"Entity": "FieldOfStudy.cdm.json/FieldOfStudy",
+						"Name": "FieldOfStudyDescription"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/FieldOfStudy",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/FieldOfStudy",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"FieldOfStudyId\":{\"entity\":\"FieldOfStudy.cdm.json/FieldOfStudy\",\"name\":\"FieldOfStudyId\"},\"FieldOfStudyName\":{\"entity\":\"FieldOfStudy.cdm.json/FieldOfStudy\",\"name\":\"FieldOfStudyName\"},\"FieldOfStudyDescription\":{\"entity\":\"FieldOfStudy.cdm.json/FieldOfStudy\",\"name\":\"FieldOfStudyDescription\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"FieldOfStudy\",\"path\":\"FieldOfStudy.cdm.json/FieldOfStudy\"},\"description\":\"The field of study in which the individual is involved.\\n\\nEx:\\n- Mathematics\\n- Business\\n- Computer Science\\n- Philosophy\\n- Nursing\",\"primaryKey\":[\"FieldOfStudyId\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"FieldOfStudy.cdm.json/FieldOfStudy\",\"name\":\"FieldOfStudyId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Field of Study.\",\"isNullable\":false,\"name\":\"FieldOfStudyId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"FieldOfStudy.cdm.json/FieldOfStudy\",\"name\":\"FieldOfStudyName\"},\"dataType\":\"string\",\"dataTypeLength\":256,\"description\":\"The name of a Field of Study.\",\"isNullable\":true,\"name\":\"FieldOfStudyName\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"FieldOfStudy.cdm.json/FieldOfStudy\",\"name\":\"FieldOfStudyDescription\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"The description of a Field of Study.\",\"isNullable\":true,\"name\":\"FieldOfStudyDescription\"}]}}}",
+			"Description": "The field of study in which the individual is involved.\n\nEx:\n- Mathematics\n- Business\n- Computer Science\n- Philosophy\n- Nursing",
+			"DisplayFolderInfo": "{\"name\":\"Customer\",\"colorCode\":\"#4B003F\"}",
+			"PrimaryKeys": "FieldOfStudyId",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

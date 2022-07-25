@@ -1,0 +1,113 @@
+{
+	"name": "EquifaxLoanType",
+	"properties": {
+		"Name": "EquifaxLoanType",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "The type o The Equifax account ownership type;\n\nEx:\nIndividual Account loan.\n\nEx: \n- Credit Card",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "EquifaxLoanTypeId",
+					"Description": "The unique identifier of an Equifax  loan type.",
+					"BaseAttributeReference": {
+						"Entity": "EquifaxLoanType.cdm.json/EquifaxLoanType",
+						"Name": "EquifaxLoanTypeId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "EquifaxLoanTypeName",
+					"Description": "The name of an Equifax  loan type.",
+					"BaseAttributeReference": {
+						"Entity": "EquifaxLoanType.cdm.json/EquifaxLoanType",
+						"Name": "EquifaxLoanTypeName"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 256,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "EquifaxLoanTypeDescription",
+					"Description": "The description of an Equifax  loan type.",
+					"BaseAttributeReference": {
+						"Entity": "EquifaxLoanType.cdm.json/EquifaxLoanType",
+						"Name": "EquifaxLoanTypeDescription"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/EquifaxLoanType",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/EquifaxLoanType",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"EquifaxLoanTypeId\":{\"entity\":\"EquifaxLoanType.cdm.json/EquifaxLoanType\",\"name\":\"EquifaxLoanTypeId\"},\"EquifaxLoanTypeName\":{\"entity\":\"EquifaxLoanType.cdm.json/EquifaxLoanType\",\"name\":\"EquifaxLoanTypeName\"},\"EquifaxLoanTypeDescription\":{\"entity\":\"EquifaxLoanType.cdm.json/EquifaxLoanType\",\"name\":\"EquifaxLoanTypeDescription\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"EquifaxLoanType\",\"path\":\"EquifaxLoanType.cdm.json/EquifaxLoanType\"},\"description\":\"The type o The Equifax account ownership type;\\n\\nEx:\\nIndividual Account loan.\\n\\nEx: \\n- Credit Card\",\"primaryKey\":[\"EquifaxLoanTypeId\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"EquifaxLoanType.cdm.json/EquifaxLoanType\",\"name\":\"EquifaxLoanTypeId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of an Equifax  loan type.\",\"isNullable\":false,\"name\":\"EquifaxLoanTypeId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"EquifaxLoanType.cdm.json/EquifaxLoanType\",\"name\":\"EquifaxLoanTypeName\"},\"dataType\":\"string\",\"dataTypeLength\":256,\"description\":\"The name of an Equifax  loan type.\",\"isNullable\":true,\"name\":\"EquifaxLoanTypeName\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"EquifaxLoanType.cdm.json/EquifaxLoanType\",\"name\":\"EquifaxLoanTypeDescription\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"The description of an Equifax  loan type.\",\"isNullable\":true,\"name\":\"EquifaxLoanTypeDescription\"}]}}}",
+			"Description": "The type o The Equifax account ownership type;\n\nEx:\nIndividual Account loan.\n\nEx: \n- Credit Card",
+			"DisplayFolderInfo": "{\"name\":\"Customer Credit & Collections\",\"colorCode\":\"#022F22\"}",
+			"PrimaryKeys": "EquifaxLoanTypeId",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

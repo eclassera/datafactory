@@ -1,0 +1,129 @@
+{
+	"name": "ContractDate",
+	"properties": {
+		"Name": "ContractDate",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "A note, comment or associated information related to the Contract Date.",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "ContractId",
+					"Description": "The unique identifier of a Contract.",
+					"BaseAttributeReference": {
+						"Entity": "ContractDate.cdm.json/ContractDate",
+						"Name": "ContractId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "ContractDateTypeId",
+					"Description": "The unique identifier of a Contract Date Type.",
+					"BaseAttributeReference": {
+						"Entity": "ContractDate.cdm.json/ContractDate",
+						"Name": "ContractDateTypeId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "ContractDateTimestamp",
+					"Description": "The timestamp of the Contract Date Type for the Contract.",
+					"BaseAttributeReference": {
+						"Entity": "ContractDate.cdm.json/ContractDate",
+						"Name": "ContractDateTimestamp"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "timestamp",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"TimestampFormat": "YYYY-MM-DD HH:MM:SS.fffffffff",
+							"HIVE_TYPE_STRING": "timestamp"
+						}
+					}
+				},
+				{
+					"Name": "ContractDateNote",
+					"Description": "A note, comment or additional information regarding the Contract Date.",
+					"BaseAttributeReference": {
+						"Entity": "ContractDate.cdm.json/ContractDate",
+						"Name": "ContractDateNote"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/ContractDate",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/ContractDate",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"ContractId\":{\"entity\":\"ContractDate.cdm.json/ContractDate\",\"name\":\"ContractId\"},\"ContractDateTypeId\":{\"entity\":\"ContractDate.cdm.json/ContractDate\",\"name\":\"ContractDateTypeId\"},\"ContractDateTimestamp\":{\"entity\":\"ContractDate.cdm.json/ContractDate\",\"name\":\"ContractDateTimestamp\"},\"ContractDateNote\":{\"entity\":\"ContractDate.cdm.json/ContractDate\",\"name\":\"ContractDateNote\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"ContractDate\",\"path\":\"ContractDate.cdm.json/ContractDate\"},\"description\":\"A note, comment or associated information related to the Contract Date.\",\"primaryKey\":[\"ContractId\",\"ContractDateTypeId\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ContractDate.cdm.json/ContractDate\",\"name\":\"ContractId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Contract.\",\"isNullable\":false,\"name\":\"ContractId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ContractDate.cdm.json/ContractDate\",\"name\":\"ContractDateTypeId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Contract Date Type.\",\"isNullable\":false,\"name\":\"ContractDateTypeId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ContractDate.cdm.json/ContractDate\",\"name\":\"ContractDateTimestamp\"},\"dataType\":\"timestamp\",\"description\":\"The timestamp of the Contract Date Type for the Contract.\",\"isNullable\":true,\"name\":\"ContractDateTimestamp\",\"timestampFormat\":\"YYYY-MM-DD HH:MM:SS.fffffffff\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ContractDate.cdm.json/ContractDate\",\"name\":\"ContractDateNote\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"A note, comment or additional information regarding the Contract Date.\",\"isNullable\":true,\"name\":\"ContractDateNote\"}]}}}",
+			"Description": "A note, comment or associated information related to the Contract Date.",
+			"DisplayFolderInfo": "{\"name\":\"Contract\",\"colorCode\":\"#917EDB\"}",
+			"PrimaryKeys": "ContractId,ContractDateTypeId",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

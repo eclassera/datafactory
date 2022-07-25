@@ -1,0 +1,198 @@
+{
+	"name": "CollectionLetter",
+	"properties": {
+		"Name": "CollectionLetter",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "A collection letter that is sent.\n\nLarger companies frequently issue collection letters.\n\nAt a minimum, you should send a duplicate bill each month.\nHandwriting gives a personal contact that can be very effective.\n\nCollection letters should always mention that the Customer is to disregard the letter if the payment has already been made.\n\nAs a rule-of-thumb, a business should get firmer after 60 days, three or more contacts or a history of problems in dealing with the Customer.",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "CollectionEventId",
+					"Description": "The unique identifier of a collection event.",
+					"BaseAttributeReference": {
+						"Entity": "CollectionLetter.cdm.json/CollectionLetter",
+						"Name": "CollectionEventId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "CollectionLetterText",
+					"Description": "The text contents of the collection letter.",
+					"BaseAttributeReference": {
+						"Entity": "CollectionLetter.cdm.json/CollectionLetter",
+						"Name": "CollectionLetterText"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "RequiredResponseDate",
+					"Description": "The date that a required response was indicated in the collection letter.",
+					"BaseAttributeReference": {
+						"Entity": "CollectionLetter.cdm.json/CollectionLetter",
+						"Name": "RequiredResponseDate"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "date",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"DateFormat": "YYYY-MM-DD",
+							"HIVE_TYPE_STRING": "date"
+						}
+					}
+				},
+				{
+					"Name": "ResponseDescription",
+					"Description": "A description of the Legal Entity response to the collection letter.",
+					"BaseAttributeReference": {
+						"Entity": "CollectionLetter.cdm.json/CollectionLetter",
+						"Name": "ResponseDescription"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "OutstandingAmount",
+					"Description": "The amount of debt outstanding at the time of the collection letter.",
+					"BaseAttributeReference": {
+						"Entity": "CollectionLetter.cdm.json/CollectionLetter",
+						"Name": "OutstandingAmount"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "decimal",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Precision": 18,
+						"Scale": 2,
+						"Properties": {
+							"HIVE_TYPE_STRING": "decimal"
+						}
+					}
+				},
+				{
+					"Name": "CollectedAmount",
+					"Description": "The amount collected or pledged in response to the collection letter.",
+					"BaseAttributeReference": {
+						"Entity": "CollectionLetter.cdm.json/CollectionLetter",
+						"Name": "CollectedAmount"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "decimal",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Precision": 18,
+						"Scale": 2,
+						"Properties": {
+							"HIVE_TYPE_STRING": "decimal"
+						}
+					}
+				},
+				{
+					"Name": "CollectionLetterTypeId",
+					"Description": "The unique identifier of the Collection Letter Type.",
+					"BaseAttributeReference": {
+						"Entity": "CollectionLetter.cdm.json/CollectionLetter",
+						"Name": "CollectionLetterTypeId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "FollowupCollectionActivityId",
+					"Description": "The unique identifier of a Followup Collection Activity Type.",
+					"BaseAttributeReference": {
+						"Entity": "CollectionLetter.cdm.json/CollectionLetter",
+						"Name": "FollowupCollectionActivityId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/CollectionLetter",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/CollectionLetter",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"CollectionEventId\":{\"entity\":\"CollectionLetter.cdm.json/CollectionLetter\",\"name\":\"CollectionEventId\"},\"CollectionLetterText\":{\"entity\":\"CollectionLetter.cdm.json/CollectionLetter\",\"name\":\"CollectionLetterText\"},\"RequiredResponseDate\":{\"entity\":\"CollectionLetter.cdm.json/CollectionLetter\",\"name\":\"RequiredResponseDate\"},\"ResponseDescription\":{\"entity\":\"CollectionLetter.cdm.json/CollectionLetter\",\"name\":\"ResponseDescription\"},\"OutstandingAmount\":{\"entity\":\"CollectionLetter.cdm.json/CollectionLetter\",\"name\":\"OutstandingAmount\"},\"CollectedAmount\":{\"entity\":\"CollectionLetter.cdm.json/CollectionLetter\",\"name\":\"CollectedAmount\"},\"CollectionLetterTypeId\":{\"entity\":\"CollectionLetter.cdm.json/CollectionLetter\",\"name\":\"CollectionLetterTypeId\"},\"FollowupCollectionActivityId\":{\"entity\":\"CollectionLetter.cdm.json/CollectionLetter\",\"name\":\"FollowupCollectionActivityId\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"CollectionLetter\",\"path\":\"CollectionLetter.cdm.json/CollectionLetter\"},\"description\":\"A collection letter that is sent.\\n\\nLarger companies frequently issue collection letters.\\n\\nAt a minimum, you should send a duplicate bill each month.\\nHandwriting gives a personal contact that can be very effective.\\n\\nCollection letters should always mention that the Customer is to disregard the letter if the payment has already been made.\\n\\nAs a rule-of-thumb, a business should get firmer after 60 days, three or more contacts or a history of problems in dealing with the Customer.\",\"primaryKey\":[\"CollectionEventId\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CollectionLetter.cdm.json/CollectionLetter\",\"name\":\"CollectionEventId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a collection event.\",\"isNullable\":false,\"name\":\"CollectionEventId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CollectionLetter.cdm.json/CollectionLetter\",\"name\":\"CollectionLetterText\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"The text contents of the collection letter.\",\"isNullable\":false,\"name\":\"CollectionLetterText\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CollectionLetter.cdm.json/CollectionLetter\",\"name\":\"RequiredResponseDate\"},\"dataType\":\"date\",\"dateFormat\":\"YYYY-MM-DD\",\"description\":\"The date that a required response was indicated in the collection letter.\",\"isNullable\":true,\"name\":\"RequiredResponseDate\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CollectionLetter.cdm.json/CollectionLetter\",\"name\":\"ResponseDescription\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"A description of the Legal Entity response to the collection letter.\",\"isNullable\":true,\"name\":\"ResponseDescription\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CollectionLetter.cdm.json/CollectionLetter\",\"name\":\"OutstandingAmount\"},\"dataType\":\"decimal\",\"dataTypeLength\":18,\"description\":\"The amount of debt outstanding at the time of the collection letter.\",\"isNullable\":true,\"scale\":2,\"name\":\"OutstandingAmount\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CollectionLetter.cdm.json/CollectionLetter\",\"name\":\"CollectedAmount\"},\"dataType\":\"decimal\",\"dataTypeLength\":18,\"description\":\"The amount collected or pledged in response to the collection letter.\",\"isNullable\":true,\"scale\":2,\"name\":\"CollectedAmount\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CollectionLetter.cdm.json/CollectionLetter\",\"name\":\"CollectionLetterTypeId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of the Collection Letter Type.\",\"isNullable\":false,\"name\":\"CollectionLetterTypeId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CollectionLetter.cdm.json/CollectionLetter\",\"name\":\"FollowupCollectionActivityId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Followup Collection Activity Type.\",\"isNullable\":true,\"name\":\"FollowupCollectionActivityId\"}]}}}",
+			"Description": "A collection letter that is sent.\n\nLarger companies frequently issue collection letters.\n\nAt a minimum, you should send a duplicate bill each month.\nHandwriting gives a personal contact that can be very effective.\n\nCollection letters should always mention that the Customer is to disregard the letter if the payment has already been made.\n\nAs a rule-of-thumb, a business should get firmer after 60 days, three or more contacts or a history of problems in dealing with the Customer.",
+			"DisplayFolderInfo": "{\"name\":\"Customer Credit & Collections\",\"colorCode\":\"#022F22\"}",
+			"PrimaryKeys": "CollectionEventId",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

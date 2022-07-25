@@ -1,0 +1,113 @@
+{
+	"name": "SourceDocumentInputType",
+	"properties": {
+		"Name": "SourceDocumentInputType",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "A categorization of source document input types based on business function, characteristics etc.\n\nEx:\n- Automated\n- Electronic\n- Manual",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "SourceDocumentInputTypeId",
+					"Description": "The unique identifier of a Source Document Input Type.",
+					"BaseAttributeReference": {
+						"Entity": "SourceDocumentInputType.cdm.json/SourceDocumentInputType",
+						"Name": "SourceDocumentInputTypeId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "SourceDocumentInputTypeName",
+					"Description": "The name of a Source Document Input Type.",
+					"BaseAttributeReference": {
+						"Entity": "SourceDocumentInputType.cdm.json/SourceDocumentInputType",
+						"Name": "SourceDocumentInputTypeName"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 256,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "SourceDocumentInputTypeDescription",
+					"Description": "The description of a Source Document Input Type.",
+					"BaseAttributeReference": {
+						"Entity": "SourceDocumentInputType.cdm.json/SourceDocumentInputType",
+						"Name": "SourceDocumentInputTypeDescription"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/SourceDocumentInputType",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/SourceDocumentInputType",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"SourceDocumentInputTypeId\":{\"entity\":\"SourceDocumentInputType.cdm.json/SourceDocumentInputType\",\"name\":\"SourceDocumentInputTypeId\"},\"SourceDocumentInputTypeName\":{\"entity\":\"SourceDocumentInputType.cdm.json/SourceDocumentInputType\",\"name\":\"SourceDocumentInputTypeName\"},\"SourceDocumentInputTypeDescription\":{\"entity\":\"SourceDocumentInputType.cdm.json/SourceDocumentInputType\",\"name\":\"SourceDocumentInputTypeDescription\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"SourceDocumentInputType\",\"path\":\"SourceDocumentInputType.cdm.json/SourceDocumentInputType\"},\"description\":\"A categorization of source document input types based on business function, characteristics etc.\\n\\nEx:\\n- Automated\\n- Electronic\\n- Manual\",\"primaryKey\":[\"SourceDocumentInputTypeId\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"SourceDocumentInputType.cdm.json/SourceDocumentInputType\",\"name\":\"SourceDocumentInputTypeId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Source Document Input Type.\",\"isNullable\":false,\"name\":\"SourceDocumentInputTypeId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"SourceDocumentInputType.cdm.json/SourceDocumentInputType\",\"name\":\"SourceDocumentInputTypeName\"},\"dataType\":\"string\",\"dataTypeLength\":256,\"description\":\"The name of a Source Document Input Type.\",\"isNullable\":true,\"name\":\"SourceDocumentInputTypeName\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"SourceDocumentInputType.cdm.json/SourceDocumentInputType\",\"name\":\"SourceDocumentInputTypeDescription\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"The description of a Source Document Input Type.\",\"isNullable\":true,\"name\":\"SourceDocumentInputTypeDescription\"}]}}}",
+			"Description": "A categorization of source document input types based on business function, characteristics etc.\n\nEx:\n- Automated\n- Electronic\n- Manual",
+			"DisplayFolderInfo": "{\"name\":\"Accounting & Financial Reporting\",\"colorCode\":\"#0078D4\"}",
+			"PrimaryKeys": "SourceDocumentInputTypeId",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

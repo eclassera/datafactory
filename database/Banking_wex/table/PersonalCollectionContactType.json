@@ -1,0 +1,113 @@
+{
+	"name": "PersonalCollectionContactType",
+	"properties": {
+		"Name": "PersonalCollectionContactType",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "A classification of personal collection contacts based upon common characteristics or functions performed.\n\nExamples:\n-  Reminder\n-  Debt discussion\n-  Workout agreement\n-  Legal referral",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "PersonalCollectionContactTypeId",
+					"Description": "The unique identifier of the Personal Collection Contact Type.",
+					"BaseAttributeReference": {
+						"Entity": "PersonalCollectionContactType.cdm.json/PersonalCollectionContactType",
+						"Name": "PersonalCollectionContactTypeId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "PersonalCollectionContactTypeName",
+					"Description": "The name of the Personal Collection Contact Type.",
+					"BaseAttributeReference": {
+						"Entity": "PersonalCollectionContactType.cdm.json/PersonalCollectionContactType",
+						"Name": "PersonalCollectionContactTypeName"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 256,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "PersonalCollectionContactTypeDescription",
+					"Description": "The description of the Personal Collection Contact Type.",
+					"BaseAttributeReference": {
+						"Entity": "PersonalCollectionContactType.cdm.json/PersonalCollectionContactType",
+						"Name": "PersonalCollectionContactTypeDescription"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/PersonalCollectionContactType",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/PersonalCollectionContactType",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"PersonalCollectionContactTypeId\":{\"entity\":\"PersonalCollectionContactType.cdm.json/PersonalCollectionContactType\",\"name\":\"PersonalCollectionContactTypeId\"},\"PersonalCollectionContactTypeName\":{\"entity\":\"PersonalCollectionContactType.cdm.json/PersonalCollectionContactType\",\"name\":\"PersonalCollectionContactTypeName\"},\"PersonalCollectionContactTypeDescription\":{\"entity\":\"PersonalCollectionContactType.cdm.json/PersonalCollectionContactType\",\"name\":\"PersonalCollectionContactTypeDescription\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"PersonalCollectionContactType\",\"path\":\"PersonalCollectionContactType.cdm.json/PersonalCollectionContactType\"},\"description\":\"A classification of personal collection contacts based upon common characteristics or functions performed.\\n\\nExamples:\\n-  Reminder\\n-  Debt discussion\\n-  Workout agreement\\n-  Legal referral\",\"primaryKey\":[\"PersonalCollectionContactTypeId\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"PersonalCollectionContactType.cdm.json/PersonalCollectionContactType\",\"name\":\"PersonalCollectionContactTypeId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of the Personal Collection Contact Type.\",\"isNullable\":false,\"name\":\"PersonalCollectionContactTypeId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"PersonalCollectionContactType.cdm.json/PersonalCollectionContactType\",\"name\":\"PersonalCollectionContactTypeName\"},\"dataType\":\"string\",\"dataTypeLength\":256,\"description\":\"The name of the Personal Collection Contact Type.\",\"isNullable\":true,\"name\":\"PersonalCollectionContactTypeName\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"PersonalCollectionContactType.cdm.json/PersonalCollectionContactType\",\"name\":\"PersonalCollectionContactTypeDescription\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"The description of the Personal Collection Contact Type.\",\"isNullable\":true,\"name\":\"PersonalCollectionContactTypeDescription\"}]}}}",
+			"Description": "A classification of personal collection contacts based upon common characteristics or functions performed.\n\nExamples:\n-  Reminder\n-  Debt discussion\n-  Workout agreement\n-  Legal referral",
+			"DisplayFolderInfo": "{\"name\":\"Customer Credit & Collections\",\"colorCode\":\"#022F22\"}",
+			"PrimaryKeys": "PersonalCollectionContactTypeId",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

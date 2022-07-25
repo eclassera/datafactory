@@ -1,0 +1,133 @@
+{
+	"name": "SicIndustry",
+	"properties": {
+		"Name": "SicIndustry",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "The SIC Industry.",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "SicIndustryCode",
+					"Description": "The unique identifier of the SIC Industry.",
+					"BaseAttributeReference": {
+						"Entity": "SicIndustry.cdm.json/SicIndustry",
+						"Name": "SicIndustryCode"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "decimal",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Precision": 4,
+						"Scale": 0,
+						"Properties": {
+							"HIVE_TYPE_STRING": "decimal"
+						}
+					}
+				},
+				{
+					"Name": "SicIndustryName",
+					"Description": "The name of the SIC Industry.",
+					"BaseAttributeReference": {
+						"Entity": "SicIndustry.cdm.json/SicIndustry",
+						"Name": "SicIndustryName"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 256,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "SicIndustryDescription",
+					"Description": "The description of the SIC Industry.",
+					"BaseAttributeReference": {
+						"Entity": "SicIndustry.cdm.json/SicIndustry",
+						"Name": "SicIndustryDescription"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "SicIndustryGroupCode",
+					"Description": "The unique identifier of the SIC Industry Group.",
+					"BaseAttributeReference": {
+						"Entity": "SicIndustry.cdm.json/SicIndustry",
+						"Name": "SicIndustryGroupCode"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "decimal",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Precision": 3,
+						"Scale": 0,
+						"Properties": {
+							"HIVE_TYPE_STRING": "decimal"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/SicIndustry",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/SicIndustry",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"SicIndustryCode\":{\"entity\":\"SicIndustry.cdm.json/SicIndustry\",\"name\":\"SicIndustryCode\"},\"SicIndustryName\":{\"entity\":\"SicIndustry.cdm.json/SicIndustry\",\"name\":\"SicIndustryName\"},\"SicIndustryDescription\":{\"entity\":\"SicIndustry.cdm.json/SicIndustry\",\"name\":\"SicIndustryDescription\"},\"SicIndustryGroupCode\":{\"entity\":\"SicIndustry.cdm.json/SicIndustry\",\"name\":\"SicIndustryGroupCode\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"SicIndustry\",\"path\":\"SicIndustry.cdm.json/SicIndustry\"},\"description\":\"The SIC Industry.\",\"primaryKey\":[\"SicIndustryCode\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"SicIndustry.cdm.json/SicIndustry\",\"name\":\"SicIndustryCode\"},\"dataType\":\"decimal\",\"dataTypeLength\":4,\"description\":\"The unique identifier of the SIC Industry.\",\"isNullable\":false,\"scale\":0,\"name\":\"SicIndustryCode\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"SicIndustry.cdm.json/SicIndustry\",\"name\":\"SicIndustryName\"},\"dataType\":\"string\",\"dataTypeLength\":256,\"description\":\"The name of the SIC Industry.\",\"isNullable\":true,\"name\":\"SicIndustryName\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"SicIndustry.cdm.json/SicIndustry\",\"name\":\"SicIndustryDescription\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"The description of the SIC Industry.\",\"isNullable\":true,\"name\":\"SicIndustryDescription\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"SicIndustry.cdm.json/SicIndustry\",\"name\":\"SicIndustryGroupCode\"},\"dataType\":\"decimal\",\"dataTypeLength\":3,\"description\":\"The unique identifier of the SIC Industry Group.\",\"isNullable\":true,\"scale\":0,\"name\":\"SicIndustryGroupCode\"}]}}}",
+			"Description": "The SIC Industry.",
+			"DisplayFolderInfo": "{\"name\":\"Party\",\"colorCode\":\"#00727A\"}",
+			"PrimaryKeys": "SicIndustryCode",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

@@ -1,0 +1,113 @@
+{
+	"name": "ContractEventType",
+	"properties": {
+		"Name": "ContractEventType",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "A categorization of contract events based on common function, characteristics or objectives.\n\nEx:\n- Renewed\n- In Effect\n- Contract Agreement\n- Terminated\n- Arbitrated\n- Assessed\n- Disputed\n- Lawsuit Initiated\n- Service Discontinued\n- Received\n- Executed\n- Settled\n- Delivered\n- Cancelled\n- Opted Out of Smart Meter\n- Opted In to Smart Meter",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "ContractEventTypeId",
+					"Description": "The unique identifier of a Contract Event Type.",
+					"BaseAttributeReference": {
+						"Entity": "ContractEventType.cdm.json/ContractEventType",
+						"Name": "ContractEventTypeId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "ContractEventTypeName",
+					"Description": "The name of a Contract Event Type.",
+					"BaseAttributeReference": {
+						"Entity": "ContractEventType.cdm.json/ContractEventType",
+						"Name": "ContractEventTypeName"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 256,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "ContractEventTypeDescription",
+					"Description": "The description of a Contract Event Type.",
+					"BaseAttributeReference": {
+						"Entity": "ContractEventType.cdm.json/ContractEventType",
+						"Name": "ContractEventTypeDescription"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/ContractEventType",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/ContractEventType",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"ContractEventTypeId\":{\"entity\":\"ContractEventType.cdm.json/ContractEventType\",\"name\":\"ContractEventTypeId\"},\"ContractEventTypeName\":{\"entity\":\"ContractEventType.cdm.json/ContractEventType\",\"name\":\"ContractEventTypeName\"},\"ContractEventTypeDescription\":{\"entity\":\"ContractEventType.cdm.json/ContractEventType\",\"name\":\"ContractEventTypeDescription\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"ContractEventType\",\"path\":\"ContractEventType.cdm.json/ContractEventType\"},\"description\":\"A categorization of contract events based on common function, characteristics or objectives.\\n\\nEx:\\n- Renewed\\n- In Effect\\n- Contract Agreement\\n- Terminated\\n- Arbitrated\\n- Assessed\\n- Disputed\\n- Lawsuit Initiated\\n- Service Discontinued\\n- Received\\n- Executed\\n- Settled\\n- Delivered\\n- Cancelled\\n- Opted Out of Smart Meter\\n- Opted In to Smart Meter\",\"primaryKey\":[\"ContractEventTypeId\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ContractEventType.cdm.json/ContractEventType\",\"name\":\"ContractEventTypeId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Contract Event Type.\",\"isNullable\":false,\"name\":\"ContractEventTypeId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ContractEventType.cdm.json/ContractEventType\",\"name\":\"ContractEventTypeName\"},\"dataType\":\"string\",\"dataTypeLength\":256,\"description\":\"The name of a Contract Event Type.\",\"isNullable\":true,\"name\":\"ContractEventTypeName\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ContractEventType.cdm.json/ContractEventType\",\"name\":\"ContractEventTypeDescription\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"The description of a Contract Event Type.\",\"isNullable\":true,\"name\":\"ContractEventTypeDescription\"}]}}}",
+			"Description": "A categorization of contract events based on common function, characteristics or objectives.\n\nEx:\n- Renewed\n- In Effect\n- Contract Agreement\n- Terminated\n- Arbitrated\n- Assessed\n- Disputed\n- Lawsuit Initiated\n- Service Discontinued\n- Received\n- Executed\n- Settled\n- Delivered\n- Cancelled\n- Opted Out of Smart Meter\n- Opted In to Smart Meter",
+			"DisplayFolderInfo": "{\"name\":\"Contract\",\"colorCode\":\"#917EDB\"}",
+			"PrimaryKeys": "ContractEventTypeId",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

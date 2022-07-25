@@ -1,0 +1,231 @@
+{
+	"name": "LegalAction",
+	"properties": {
+		"Name": "LegalAction",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "A judicial proceeding brought by one party against another.",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "LegalActionId",
+					"Description": "The unique identifier of a Legal Action.",
+					"BaseAttributeReference": {
+						"Entity": "LegalAction.cdm.json/LegalAction",
+						"Name": "LegalActionId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "LegalActionDescription",
+					"Description": "The description of a Legal Action.",
+					"BaseAttributeReference": {
+						"Entity": "LegalAction.cdm.json/LegalAction",
+						"Name": "LegalActionDescription"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "LegalActionInitiatedDate",
+					"Description": "The date that the legal action was initiated.",
+					"BaseAttributeReference": {
+						"Entity": "LegalAction.cdm.json/LegalAction",
+						"Name": "LegalActionInitiatedDate"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "date",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"DateFormat": "YYYY-MM-DD",
+							"HIVE_TYPE_STRING": "date"
+						}
+					}
+				},
+				{
+					"Name": "LegalActionTerminatedDate",
+					"Description": "The date that the legal action was terminated or concluded.",
+					"BaseAttributeReference": {
+						"Entity": "LegalAction.cdm.json/LegalAction",
+						"Name": "LegalActionTerminatedDate"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "date",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"DateFormat": "YYYY-MM-DD",
+							"HIVE_TYPE_STRING": "date"
+						}
+					}
+				},
+				{
+					"Name": "LegalActionRequestedAmount",
+					"Description": "The amount requested in conjunction with the Legal Action.",
+					"BaseAttributeReference": {
+						"Entity": "LegalAction.cdm.json/LegalAction",
+						"Name": "LegalActionRequestedAmount"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "decimal",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Precision": 18,
+						"Scale": 2,
+						"Properties": {
+							"HIVE_TYPE_STRING": "decimal"
+						}
+					}
+				},
+				{
+					"Name": "LegalActionAwardAmount",
+					"Description": "The amount awarded in conjunction with the Legal Action.",
+					"BaseAttributeReference": {
+						"Entity": "LegalAction.cdm.json/LegalAction",
+						"Name": "LegalActionAwardAmount"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "decimal",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Precision": 18,
+						"Scale": 2,
+						"Properties": {
+							"HIVE_TYPE_STRING": "decimal"
+						}
+					}
+				},
+				{
+					"Name": "LegalActionNote",
+					"Description": "A note, comment or additional information regarding the legal action.",
+					"BaseAttributeReference": {
+						"Entity": "LegalAction.cdm.json/LegalAction",
+						"Name": "LegalActionNote"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "LegalActionTypeId",
+					"Description": "The unique identifier of a Legal Action Type.",
+					"BaseAttributeReference": {
+						"Entity": "LegalAction.cdm.json/LegalAction",
+						"Name": "LegalActionTypeId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "LegalActionStatusId",
+					"Description": "The unique identifier of a Legal Action Status.",
+					"BaseAttributeReference": {
+						"Entity": "LegalAction.cdm.json/LegalAction",
+						"Name": "LegalActionStatusId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "LegalActionFiledInLocationId",
+					"Description": "The unique identifier of a Location.",
+					"BaseAttributeReference": {
+						"Entity": "LegalAction.cdm.json/LegalAction",
+						"Name": "LegalActionFiledInLocationId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/LegalAction",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/LegalAction",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"LegalActionId\":{\"entity\":\"LegalAction.cdm.json/LegalAction\",\"name\":\"LegalActionId\"},\"LegalActionDescription\":{\"entity\":\"LegalAction.cdm.json/LegalAction\",\"name\":\"LegalActionDescription\"},\"LegalActionInitiatedDate\":{\"entity\":\"LegalAction.cdm.json/LegalAction\",\"name\":\"LegalActionInitiatedDate\"},\"LegalActionTerminatedDate\":{\"entity\":\"LegalAction.cdm.json/LegalAction\",\"name\":\"LegalActionTerminatedDate\"},\"LegalActionRequestedAmount\":{\"entity\":\"LegalAction.cdm.json/LegalAction\",\"name\":\"LegalActionRequestedAmount\"},\"LegalActionAwardAmount\":{\"entity\":\"LegalAction.cdm.json/LegalAction\",\"name\":\"LegalActionAwardAmount\"},\"LegalActionNote\":{\"entity\":\"LegalAction.cdm.json/LegalAction\",\"name\":\"LegalActionNote\"},\"LegalActionTypeId\":{\"entity\":\"LegalAction.cdm.json/LegalAction\",\"name\":\"LegalActionTypeId\"},\"LegalActionStatusId\":{\"entity\":\"LegalAction.cdm.json/LegalAction\",\"name\":\"LegalActionStatusId\"},\"LegalActionFiledInLocationId\":{\"entity\":\"LegalAction.cdm.json/LegalAction\",\"name\":\"LegalActionFiledInLocationId\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"LegalAction\",\"path\":\"LegalAction.cdm.json/LegalAction\"},\"description\":\"A judicial proceeding brought by one party against another.\",\"primaryKey\":[\"LegalActionId\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"LegalAction.cdm.json/LegalAction\",\"name\":\"LegalActionId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Legal Action.\",\"isNullable\":false,\"name\":\"LegalActionId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"LegalAction.cdm.json/LegalAction\",\"name\":\"LegalActionDescription\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"The description of a Legal Action.\",\"isNullable\":true,\"name\":\"LegalActionDescription\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"LegalAction.cdm.json/LegalAction\",\"name\":\"LegalActionInitiatedDate\"},\"dataType\":\"date\",\"dateFormat\":\"YYYY-MM-DD\",\"description\":\"The date that the legal action was initiated.\",\"isNullable\":true,\"name\":\"LegalActionInitiatedDate\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"LegalAction.cdm.json/LegalAction\",\"name\":\"LegalActionTerminatedDate\"},\"dataType\":\"date\",\"dateFormat\":\"YYYY-MM-DD\",\"description\":\"The date that the legal action was terminated or concluded.\",\"isNullable\":true,\"name\":\"LegalActionTerminatedDate\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"LegalAction.cdm.json/LegalAction\",\"name\":\"LegalActionRequestedAmount\"},\"dataType\":\"decimal\",\"dataTypeLength\":18,\"description\":\"The amount requested in conjunction with the Legal Action.\",\"isNullable\":true,\"scale\":2,\"name\":\"LegalActionRequestedAmount\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"LegalAction.cdm.json/LegalAction\",\"name\":\"LegalActionAwardAmount\"},\"dataType\":\"decimal\",\"dataTypeLength\":18,\"description\":\"The amount awarded in conjunction with the Legal Action.\",\"isNullable\":true,\"scale\":2,\"name\":\"LegalActionAwardAmount\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"LegalAction.cdm.json/LegalAction\",\"name\":\"LegalActionNote\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"A note, comment or additional information regarding the legal action.\",\"isNullable\":true,\"name\":\"LegalActionNote\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"LegalAction.cdm.json/LegalAction\",\"name\":\"LegalActionTypeId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Legal Action Type.\",\"isNullable\":true,\"name\":\"LegalActionTypeId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"LegalAction.cdm.json/LegalAction\",\"name\":\"LegalActionStatusId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Legal Action Status.\",\"isNullable\":true,\"name\":\"LegalActionStatusId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"LegalAction.cdm.json/LegalAction\",\"name\":\"LegalActionFiledInLocationId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Location.\",\"isNullable\":true,\"name\":\"LegalActionFiledInLocationId\"}]}}}",
+			"Description": "A judicial proceeding brought by one party against another.",
+			"DisplayFolderInfo": "{\"name\":\"Party\",\"colorCode\":\"#00727A\"}",
+			"PrimaryKeys": "LegalActionId",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

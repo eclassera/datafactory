@@ -1,0 +1,113 @@
+{
+	"name": "EmploymentClassification",
+	"properties": {
+		"Name": "EmploymentClassification",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "A US Census Bureau employment classification.\n\nEx:\nFull-Time Employment \nRegular Part-Time w/Benefits \nRegular Part-Time No PTO/EST \nOn Call / Per Diem \nTemporary Employees \nProbationary Employment \nArmed Forces\nNot In Labor Force",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "EmploymentClassificationId",
+					"Description": "The unique identifier of an Employment Classification.",
+					"BaseAttributeReference": {
+						"Entity": "EmploymentClassification.cdm.json/EmploymentClassification",
+						"Name": "EmploymentClassificationId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "EmploymentClassificationName",
+					"Description": "The name of an Employment Classification.",
+					"BaseAttributeReference": {
+						"Entity": "EmploymentClassification.cdm.json/EmploymentClassification",
+						"Name": "EmploymentClassificationName"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 256,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "EmploymentClassificationDescription",
+					"Description": "The description of an Employment Classification.",
+					"BaseAttributeReference": {
+						"Entity": "EmploymentClassification.cdm.json/EmploymentClassification",
+						"Name": "EmploymentClassificationDescription"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/EmploymentClassification",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/EmploymentClassification",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"EmploymentClassificationId\":{\"entity\":\"EmploymentClassification.cdm.json/EmploymentClassification\",\"name\":\"EmploymentClassificationId\"},\"EmploymentClassificationName\":{\"entity\":\"EmploymentClassification.cdm.json/EmploymentClassification\",\"name\":\"EmploymentClassificationName\"},\"EmploymentClassificationDescription\":{\"entity\":\"EmploymentClassification.cdm.json/EmploymentClassification\",\"name\":\"EmploymentClassificationDescription\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"EmploymentClassification\",\"path\":\"EmploymentClassification.cdm.json/EmploymentClassification\"},\"description\":\"A US Census Bureau employment classification.\\n\\nEx:\\nFull-Time Employment \\nRegular Part-Time w/Benefits \\nRegular Part-Time No PTO/EST \\nOn Call / Per Diem \\nTemporary Employees \\nProbationary Employment \\nArmed Forces\\nNot In Labor Force\",\"primaryKey\":[\"EmploymentClassificationId\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"EmploymentClassification.cdm.json/EmploymentClassification\",\"name\":\"EmploymentClassificationId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of an Employment Classification.\",\"isNullable\":false,\"name\":\"EmploymentClassificationId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"EmploymentClassification.cdm.json/EmploymentClassification\",\"name\":\"EmploymentClassificationName\"},\"dataType\":\"string\",\"dataTypeLength\":256,\"description\":\"The name of an Employment Classification.\",\"isNullable\":true,\"name\":\"EmploymentClassificationName\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"EmploymentClassification.cdm.json/EmploymentClassification\",\"name\":\"EmploymentClassificationDescription\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"The description of an Employment Classification.\",\"isNullable\":true,\"name\":\"EmploymentClassificationDescription\"}]}}}",
+			"Description": "A US Census Bureau employment classification.\n\nEx:\nFull-Time Employment \nRegular Part-Time w/Benefits \nRegular Part-Time No PTO/EST \nOn Call / Per Diem \nTemporary Employees \nProbationary Employment \nArmed Forces\nNot In Labor Force",
+			"DisplayFolderInfo": "{\"name\":\"Human Resources & Payroll\",\"colorCode\":\"#042C59\"}",
+			"PrimaryKeys": "EmploymentClassificationId",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

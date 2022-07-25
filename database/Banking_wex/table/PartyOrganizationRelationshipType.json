@@ -1,0 +1,113 @@
+{
+	"name": "PartyOrganizationRelationshipType",
+	"properties": {
+		"Name": "PartyOrganizationRelationshipType",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "The nature of the relationship between organizations.\n\nEx:\n- Subsidiary\n- Acquisition\n- Merged-with\n- Financial Reports-to\n- Organization Reports to",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "PartyOrganizationRelationshipTypeId",
+					"Description": "The unique identifier of a Party Organization Relationship Type.",
+					"BaseAttributeReference": {
+						"Entity": "PartyOrganizationRelationshipType.cdm.json/PartyOrganizationRelationshipType",
+						"Name": "PartyOrganizationRelationshipTypeId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "PartyOrganizationRelationshipTypeName",
+					"Description": "The name of a Party Organization Relationship Type.",
+					"BaseAttributeReference": {
+						"Entity": "PartyOrganizationRelationshipType.cdm.json/PartyOrganizationRelationshipType",
+						"Name": "PartyOrganizationRelationshipTypeName"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 256,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "PartyOrganizationRelationshipTypeDescription",
+					"Description": "The description of a Party Organization Relationship Type.",
+					"BaseAttributeReference": {
+						"Entity": "PartyOrganizationRelationshipType.cdm.json/PartyOrganizationRelationshipType",
+						"Name": "PartyOrganizationRelationshipTypeDescription"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/PartyOrganizationRelationshipType",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/PartyOrganizationRelationshipType",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"PartyOrganizationRelationshipTypeId\":{\"entity\":\"PartyOrganizationRelationshipType.cdm.json/PartyOrganizationRelationshipType\",\"name\":\"PartyOrganizationRelationshipTypeId\"},\"PartyOrganizationRelationshipTypeName\":{\"entity\":\"PartyOrganizationRelationshipType.cdm.json/PartyOrganizationRelationshipType\",\"name\":\"PartyOrganizationRelationshipTypeName\"},\"PartyOrganizationRelationshipTypeDescription\":{\"entity\":\"PartyOrganizationRelationshipType.cdm.json/PartyOrganizationRelationshipType\",\"name\":\"PartyOrganizationRelationshipTypeDescription\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"PartyOrganizationRelationshipType\",\"path\":\"PartyOrganizationRelationshipType.cdm.json/PartyOrganizationRelationshipType\"},\"description\":\"The nature of the relationship between organizations.\\n\\nEx:\\n- Subsidiary\\n- Acquisition\\n- Merged-with\\n- Financial Reports-to\\n- Organization Reports to\",\"primaryKey\":[\"PartyOrganizationRelationshipTypeId\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"PartyOrganizationRelationshipType.cdm.json/PartyOrganizationRelationshipType\",\"name\":\"PartyOrganizationRelationshipTypeId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Party Organization Relationship Type.\",\"isNullable\":false,\"name\":\"PartyOrganizationRelationshipTypeId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"PartyOrganizationRelationshipType.cdm.json/PartyOrganizationRelationshipType\",\"name\":\"PartyOrganizationRelationshipTypeName\"},\"dataType\":\"string\",\"dataTypeLength\":256,\"description\":\"The name of a Party Organization Relationship Type.\",\"isNullable\":true,\"name\":\"PartyOrganizationRelationshipTypeName\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"PartyOrganizationRelationshipType.cdm.json/PartyOrganizationRelationshipType\",\"name\":\"PartyOrganizationRelationshipTypeDescription\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"The description of a Party Organization Relationship Type.\",\"isNullable\":true,\"name\":\"PartyOrganizationRelationshipTypeDescription\"}]}}}",
+			"Description": "The nature of the relationship between organizations.\n\nEx:\n- Subsidiary\n- Acquisition\n- Merged-with\n- Financial Reports-to\n- Organization Reports to",
+			"DisplayFolderInfo": "{\"name\":\"Party\",\"colorCode\":\"#00727A\"}",
+			"PrimaryKeys": "PartyOrganizationRelationshipTypeId",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

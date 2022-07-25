@@ -1,0 +1,113 @@
+{
+	"name": "ChannelEmployeeRelationshipType",
+	"properties": {
+		"Name": "ChannelEmployeeRelationshipType",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "The nature of the relationship between the employee and the channel over the indicated period.\n\nEx:\n- Channel Account Representative\n- Channel Sales Rep\n- Channel Manager\n- Channel Liaison\n- Channel Prospect",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "ChannelEmployeeRelationshipTypeId",
+					"Description": "The unique identifier of a Channel Employee Relationship Type.",
+					"BaseAttributeReference": {
+						"Entity": "ChannelEmployeeRelationshipType.cdm.json/ChannelEmployeeRelationshipType",
+						"Name": "ChannelEmployeeRelationshipTypeId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "ChannelEmployeeRelationshipTypeName",
+					"Description": "The name of a Channel Employee Relationship Type.",
+					"BaseAttributeReference": {
+						"Entity": "ChannelEmployeeRelationshipType.cdm.json/ChannelEmployeeRelationshipType",
+						"Name": "ChannelEmployeeRelationshipTypeName"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 256,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "ChannelEmployeeRelationshipTypeDescription",
+					"Description": "The description of a Channel Employee Relationship Type.",
+					"BaseAttributeReference": {
+						"Entity": "ChannelEmployeeRelationshipType.cdm.json/ChannelEmployeeRelationshipType",
+						"Name": "ChannelEmployeeRelationshipTypeDescription"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/ChannelEmployeeRelationshipType",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/ChannelEmployeeRelationshipType",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"ChannelEmployeeRelationshipTypeId\":{\"entity\":\"ChannelEmployeeRelationshipType.cdm.json/ChannelEmployeeRelationshipType\",\"name\":\"ChannelEmployeeRelationshipTypeId\"},\"ChannelEmployeeRelationshipTypeName\":{\"entity\":\"ChannelEmployeeRelationshipType.cdm.json/ChannelEmployeeRelationshipType\",\"name\":\"ChannelEmployeeRelationshipTypeName\"},\"ChannelEmployeeRelationshipTypeDescription\":{\"entity\":\"ChannelEmployeeRelationshipType.cdm.json/ChannelEmployeeRelationshipType\",\"name\":\"ChannelEmployeeRelationshipTypeDescription\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"ChannelEmployeeRelationshipType\",\"path\":\"ChannelEmployeeRelationshipType.cdm.json/ChannelEmployeeRelationshipType\"},\"description\":\"The nature of the relationship between the employee and the channel over the indicated period.\\n\\nEx:\\n- Channel Account Representative\\n- Channel Sales Rep\\n- Channel Manager\\n- Channel Liaison\\n- Channel Prospect\",\"primaryKey\":[\"ChannelEmployeeRelationshipTypeId\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ChannelEmployeeRelationshipType.cdm.json/ChannelEmployeeRelationshipType\",\"name\":\"ChannelEmployeeRelationshipTypeId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Channel Employee Relationship Type.\",\"isNullable\":false,\"name\":\"ChannelEmployeeRelationshipTypeId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ChannelEmployeeRelationshipType.cdm.json/ChannelEmployeeRelationshipType\",\"name\":\"ChannelEmployeeRelationshipTypeName\"},\"dataType\":\"string\",\"dataTypeLength\":256,\"description\":\"The name of a Channel Employee Relationship Type.\",\"isNullable\":true,\"name\":\"ChannelEmployeeRelationshipTypeName\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ChannelEmployeeRelationshipType.cdm.json/ChannelEmployeeRelationshipType\",\"name\":\"ChannelEmployeeRelationshipTypeDescription\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"The description of a Channel Employee Relationship Type.\",\"isNullable\":true,\"name\":\"ChannelEmployeeRelationshipTypeDescription\"}]}}}",
+			"Description": "The nature of the relationship between the employee and the channel over the indicated period.\n\nEx:\n- Channel Account Representative\n- Channel Sales Rep\n- Channel Manager\n- Channel Liaison\n- Channel Prospect",
+			"DisplayFolderInfo": "{\"name\":\"Channel\",\"colorCode\":\"#001D3F\"}",
+			"PrimaryKeys": "ChannelEmployeeRelationshipTypeId",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

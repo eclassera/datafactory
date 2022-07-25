@@ -1,0 +1,113 @@
+{
+	"name": "BankruptcyStatusType",
+	"properties": {
+		"Name": "BankruptcyStatusType",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "A classification of legal action status that may be applied to or used to identify a Legal Entity.\n\nEx:\n- Filed\n- In Court\n- Proceeding Started\n- Discharged\n- Dismissed\n- Automatic Stay",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "BankruptcyStatusTypeId",
+					"Description": "The unique identifier of a Bankruptcy Status Type.",
+					"BaseAttributeReference": {
+						"Entity": "BankruptcyStatusType.cdm.json/BankruptcyStatusType",
+						"Name": "BankruptcyStatusTypeId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "BankruptcyStatusTypeName",
+					"Description": "The name of a Bankruptcy Status Type.",
+					"BaseAttributeReference": {
+						"Entity": "BankruptcyStatusType.cdm.json/BankruptcyStatusType",
+						"Name": "BankruptcyStatusTypeName"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 256,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "BankruptcyStatusTypeDescription",
+					"Description": "The description of a Bankruptcy Status Type.",
+					"BaseAttributeReference": {
+						"Entity": "BankruptcyStatusType.cdm.json/BankruptcyStatusType",
+						"Name": "BankruptcyStatusTypeDescription"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/BankruptcyStatusType",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/BankruptcyStatusType",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"BankruptcyStatusTypeId\":{\"entity\":\"BankruptcyStatusType.cdm.json/BankruptcyStatusType\",\"name\":\"BankruptcyStatusTypeId\"},\"BankruptcyStatusTypeName\":{\"entity\":\"BankruptcyStatusType.cdm.json/BankruptcyStatusType\",\"name\":\"BankruptcyStatusTypeName\"},\"BankruptcyStatusTypeDescription\":{\"entity\":\"BankruptcyStatusType.cdm.json/BankruptcyStatusType\",\"name\":\"BankruptcyStatusTypeDescription\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"BankruptcyStatusType\",\"path\":\"BankruptcyStatusType.cdm.json/BankruptcyStatusType\"},\"description\":\"A classification of legal action status that may be applied to or used to identify a Legal Entity.\\n\\nEx:\\n- Filed\\n- In Court\\n- Proceeding Started\\n- Discharged\\n- Dismissed\\n- Automatic Stay\",\"primaryKey\":[\"BankruptcyStatusTypeId\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"BankruptcyStatusType.cdm.json/BankruptcyStatusType\",\"name\":\"BankruptcyStatusTypeId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Bankruptcy Status Type.\",\"isNullable\":false,\"name\":\"BankruptcyStatusTypeId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"BankruptcyStatusType.cdm.json/BankruptcyStatusType\",\"name\":\"BankruptcyStatusTypeName\"},\"dataType\":\"string\",\"dataTypeLength\":256,\"description\":\"The name of a Bankruptcy Status Type.\",\"isNullable\":true,\"name\":\"BankruptcyStatusTypeName\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"BankruptcyStatusType.cdm.json/BankruptcyStatusType\",\"name\":\"BankruptcyStatusTypeDescription\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"The description of a Bankruptcy Status Type.\",\"isNullable\":true,\"name\":\"BankruptcyStatusTypeDescription\"}]}}}",
+			"Description": "A classification of legal action status that may be applied to or used to identify a Legal Entity.\n\nEx:\n- Filed\n- In Court\n- Proceeding Started\n- Discharged\n- Dismissed\n- Automatic Stay",
+			"DisplayFolderInfo": "{\"name\":\"Customer Credit & Collections\",\"colorCode\":\"#022F22\"}",
+			"PrimaryKeys": "BankruptcyStatusTypeId",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

@@ -1,0 +1,113 @@
+{
+	"name": "CommunicationPriority",
+	"properties": {
+		"Name": "CommunicationPriority",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "The priority assigned to the communication.\n\nEx:\n- Critical\n- High\n- Medium\n- Low\n- Administrative\n- Unknown\n- N/A",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "CommunicationPriorityId",
+					"Description": "The unique identifier of a Communication Priority.",
+					"BaseAttributeReference": {
+						"Entity": "CommunicationPriority.cdm.json/CommunicationPriority",
+						"Name": "CommunicationPriorityId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "CommunicationPriorityName",
+					"Description": "The name of a Communication Priority.",
+					"BaseAttributeReference": {
+						"Entity": "CommunicationPriority.cdm.json/CommunicationPriority",
+						"Name": "CommunicationPriorityName"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 256,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "CommunicationPriorityDescription",
+					"Description": "The description of a Communication Priority.",
+					"BaseAttributeReference": {
+						"Entity": "CommunicationPriority.cdm.json/CommunicationPriority",
+						"Name": "CommunicationPriorityDescription"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/CommunicationPriority",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/CommunicationPriority",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"CommunicationPriorityId\":{\"entity\":\"CommunicationPriority.cdm.json/CommunicationPriority\",\"name\":\"CommunicationPriorityId\"},\"CommunicationPriorityName\":{\"entity\":\"CommunicationPriority.cdm.json/CommunicationPriority\",\"name\":\"CommunicationPriorityName\"},\"CommunicationPriorityDescription\":{\"entity\":\"CommunicationPriority.cdm.json/CommunicationPriority\",\"name\":\"CommunicationPriorityDescription\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"CommunicationPriority\",\"path\":\"CommunicationPriority.cdm.json/CommunicationPriority\"},\"description\":\"The priority assigned to the communication.\\n\\nEx:\\n- Critical\\n- High\\n- Medium\\n- Low\\n- Administrative\\n- Unknown\\n- N/A\",\"primaryKey\":[\"CommunicationPriorityId\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CommunicationPriority.cdm.json/CommunicationPriority\",\"name\":\"CommunicationPriorityId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Communication Priority.\",\"isNullable\":false,\"name\":\"CommunicationPriorityId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CommunicationPriority.cdm.json/CommunicationPriority\",\"name\":\"CommunicationPriorityName\"},\"dataType\":\"string\",\"dataTypeLength\":256,\"description\":\"The name of a Communication Priority.\",\"isNullable\":true,\"name\":\"CommunicationPriorityName\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CommunicationPriority.cdm.json/CommunicationPriority\",\"name\":\"CommunicationPriorityDescription\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"The description of a Communication Priority.\",\"isNullable\":true,\"name\":\"CommunicationPriorityDescription\"}]}}}",
+			"Description": "The priority assigned to the communication.\n\nEx:\n- Critical\n- High\n- Medium\n- Low\n- Administrative\n- Unknown\n- N/A",
+			"DisplayFolderInfo": "{\"name\":\"Customer Service & Contact Management\",\"colorCode\":\"#Ef6950\"}",
+			"PrimaryKeys": "CommunicationPriorityId",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

@@ -1,0 +1,114 @@
+{
+	"name": "PaymentCardBalance",
+	"properties": {
+		"Name": "PaymentCardBalance",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "A payment card balance refers to the amount owed.",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "PaymentCardId",
+					"Description": "Primary Account Number (PAN) = The number that is embossed, encoded, or both, on a plastic card that identifies the issuer and the particular cardholder account.\n\nThe account number on the card, which is unique to every cardholder. The card number is used to identify the purchaser for authorization and billing purposes.",
+					"BaseAttributeReference": {
+						"Entity": "PaymentCardBalance.cdm.json/PaymentCardBalance",
+						"Name": "PaymentCardId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "Timestamp",
+					"Description": "The timestamp of the associated payment card balance.",
+					"BaseAttributeReference": {
+						"Entity": "PaymentCardBalance.cdm.json/PaymentCardBalance",
+						"Name": "Timestamp"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "timestamp",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"TimestampFormat": "YYYY-MM-DD HH:MM:SS.fffffffff",
+							"HIVE_TYPE_STRING": "timestamp"
+						}
+					}
+				},
+				{
+					"Name": "BalanceAmount",
+					"Description": "The balance amount.",
+					"BaseAttributeReference": {
+						"Entity": "PaymentCardBalance.cdm.json/PaymentCardBalance",
+						"Name": "BalanceAmount"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "decimal",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Precision": 18,
+						"Scale": 2,
+						"Properties": {
+							"HIVE_TYPE_STRING": "decimal"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/PaymentCardBalance",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/PaymentCardBalance",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"PaymentCardId\":{\"entity\":\"PaymentCardBalance.cdm.json/PaymentCardBalance\",\"name\":\"PaymentCardId\"},\"Timestamp\":{\"entity\":\"PaymentCardBalance.cdm.json/PaymentCardBalance\",\"name\":\"Timestamp\"},\"BalanceAmount\":{\"entity\":\"PaymentCardBalance.cdm.json/PaymentCardBalance\",\"name\":\"BalanceAmount\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"PaymentCardBalance\",\"path\":\"PaymentCardBalance.cdm.json/PaymentCardBalance\"},\"description\":\"A payment card balance refers to the amount owed.\",\"primaryKey\":[\"PaymentCardId\",\"Timestamp\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"PaymentCardBalance.cdm.json/PaymentCardBalance\",\"name\":\"PaymentCardId\"},\"dataType\":\"integer\",\"description\":\"Primary Account Number (PAN) = The number that is embossed, encoded, or both, on a plastic card that identifies the issuer and the particular cardholder account.\\n\\nThe account number on the card, which is unique to every cardholder. The card number is used to identify the purchaser for authorization and billing purposes.\",\"isNullable\":false,\"name\":\"PaymentCardId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"PaymentCardBalance.cdm.json/PaymentCardBalance\",\"name\":\"Timestamp\"},\"dataType\":\"timestamp\",\"description\":\"The timestamp of the associated payment card balance.\",\"isNullable\":false,\"name\":\"Timestamp\",\"timestampFormat\":\"YYYY-MM-DD HH:MM:SS.fffffffff\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"PaymentCardBalance.cdm.json/PaymentCardBalance\",\"name\":\"BalanceAmount\"},\"dataType\":\"decimal\",\"dataTypeLength\":18,\"description\":\"The balance amount.\",\"isNullable\":true,\"scale\":2,\"name\":\"BalanceAmount\"}]}}}",
+			"Description": "A payment card balance refers to the amount owed.",
+			"DisplayFolderInfo": "{\"name\":\"Customer Credit & Collections\",\"colorCode\":\"#022F22\"}",
+			"PrimaryKeys": "PaymentCardId,Timestamp",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

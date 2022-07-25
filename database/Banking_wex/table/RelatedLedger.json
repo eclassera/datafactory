@@ -1,0 +1,145 @@
+{
+	"name": "RelatedLedger",
+	"properties": {
+		"Name": "RelatedLedger",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "The relationship between two or more Ledgers.\n\nIn the case of a subledger the Ledger Account Number represents the account to which the related ledger is a subledger for. i.e.. The total of all account balances for the subledger should equal the balance of the Ledger Account Number.\n\nFor example:\nGeneral Ledger Account 3100 - Accounts Receivable has a balance of $50,000\nThe Subledger associated with this account is the Accounts Receivable Ledger and it has 250 ledger accounts. The total of all 250 ledger accounts should equal $50,000.",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "LedgerId",
+					"Description": "The unique identifier of a Ledger.",
+					"BaseAttributeReference": {
+						"Entity": "RelatedLedger.cdm.json/RelatedLedger",
+						"Name": "LedgerId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "RelatedLedgerId",
+					"Description": "The unique identifier of a Ledger.",
+					"BaseAttributeReference": {
+						"Entity": "RelatedLedger.cdm.json/RelatedLedger",
+						"Name": "RelatedLedgerId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "LedgerRelationshipTypeId",
+					"Description": "The unique identifier of a Ledger Relationship Type.",
+					"BaseAttributeReference": {
+						"Entity": "RelatedLedger.cdm.json/RelatedLedger",
+						"Name": "LedgerRelationshipTypeId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "LedgerRelationshipNote",
+					"Description": "A note, comment or additional information regarding the ledger relationship.",
+					"BaseAttributeReference": {
+						"Entity": "RelatedLedger.cdm.json/RelatedLedger",
+						"Name": "LedgerRelationshipNote"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "LedgerAccountNumber",
+					"Description": "The unique identifier of a Ledger Account.",
+					"BaseAttributeReference": {
+						"Entity": "RelatedLedger.cdm.json/RelatedLedger",
+						"Name": "LedgerAccountNumber"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 20,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/RelatedLedger",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/RelatedLedger",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"LedgerId\":{\"entity\":\"RelatedLedger.cdm.json/RelatedLedger\",\"name\":\"LedgerId\"},\"RelatedLedgerId\":{\"entity\":\"RelatedLedger.cdm.json/RelatedLedger\",\"name\":\"RelatedLedgerId\"},\"LedgerRelationshipTypeId\":{\"entity\":\"RelatedLedger.cdm.json/RelatedLedger\",\"name\":\"LedgerRelationshipTypeId\"},\"LedgerRelationshipNote\":{\"entity\":\"RelatedLedger.cdm.json/RelatedLedger\",\"name\":\"LedgerRelationshipNote\"},\"LedgerAccountNumber\":{\"entity\":\"RelatedLedger.cdm.json/RelatedLedger\",\"name\":\"LedgerAccountNumber\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"RelatedLedger\",\"path\":\"RelatedLedger.cdm.json/RelatedLedger\"},\"description\":\"The relationship between two or more Ledgers.\\n\\nIn the case of a subledger the Ledger Account Number represents the account to which the related ledger is a subledger for. i.e.. The total of all account balances for the subledger should equal the balance of the Ledger Account Number.\\n\\nFor example:\\nGeneral Ledger Account 3100 - Accounts Receivable has a balance of $50,000\\nThe Subledger associated with this account is the Accounts Receivable Ledger and it has 250 ledger accounts. The total of all 250 ledger accounts should equal $50,000.\",\"primaryKey\":[\"LedgerId\",\"RelatedLedgerId\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"RelatedLedger.cdm.json/RelatedLedger\",\"name\":\"LedgerId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Ledger.\",\"isNullable\":false,\"name\":\"LedgerId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"RelatedLedger.cdm.json/RelatedLedger\",\"name\":\"RelatedLedgerId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Ledger.\",\"isNullable\":false,\"name\":\"RelatedLedgerId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"RelatedLedger.cdm.json/RelatedLedger\",\"name\":\"LedgerRelationshipTypeId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Ledger Relationship Type.\",\"isNullable\":true,\"name\":\"LedgerRelationshipTypeId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"RelatedLedger.cdm.json/RelatedLedger\",\"name\":\"LedgerRelationshipNote\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"A note, comment or additional information regarding the ledger relationship.\",\"isNullable\":true,\"name\":\"LedgerRelationshipNote\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"RelatedLedger.cdm.json/RelatedLedger\",\"name\":\"LedgerAccountNumber\"},\"dataType\":\"string\",\"dataTypeLength\":20,\"description\":\"The unique identifier of a Ledger Account.\",\"isNullable\":true,\"name\":\"LedgerAccountNumber\"}]}}}",
+			"Description": "The relationship between two or more Ledgers.\n\nIn the case of a subledger the Ledger Account Number represents the account to which the related ledger is a subledger for. i.e.. The total of all account balances for the subledger should equal the balance of the Ledger Account Number.\n\nFor example:\nGeneral Ledger Account 3100 - Accounts Receivable has a balance of $50,000\nThe Subledger associated with this account is the Accounts Receivable Ledger and it has 250 ledger accounts. The total of all 250 ledger accounts should equal $50,000.",
+			"DisplayFolderInfo": "{\"name\":\"Accounting & Financial Reporting\",\"colorCode\":\"#0078D4\"}",
+			"PrimaryKeys": "LedgerId,RelatedLedgerId",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

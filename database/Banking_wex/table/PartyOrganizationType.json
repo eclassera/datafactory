@@ -1,0 +1,113 @@
+{
+	"name": "PartyOrganizationType",
+	"properties": {
+		"Name": "PartyOrganizationType",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "A categorization of Organizations based on organization responsibility, reporting structure, function etc.\n\nEx:\n- Corporate\n- Business Unit\n- Department\n- Group",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "PartyOrganizationTypeId",
+					"Description": "The unique identifier of a Party Organization Type.",
+					"BaseAttributeReference": {
+						"Entity": "PartyOrganizationType.cdm.json/PartyOrganizationType",
+						"Name": "PartyOrganizationTypeId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "PartyOrganizationTypeName",
+					"Description": "The unique identifier of a Party Organization Name.",
+					"BaseAttributeReference": {
+						"Entity": "PartyOrganizationType.cdm.json/PartyOrganizationType",
+						"Name": "PartyOrganizationTypeName"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 256,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "PartyOrganizationTypeDescription",
+					"Description": "The unique identifier of a Party Organization Description.",
+					"BaseAttributeReference": {
+						"Entity": "PartyOrganizationType.cdm.json/PartyOrganizationType",
+						"Name": "PartyOrganizationTypeDescription"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/PartyOrganizationType",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/PartyOrganizationType",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"PartyOrganizationTypeId\":{\"entity\":\"PartyOrganizationType.cdm.json/PartyOrganizationType\",\"name\":\"PartyOrganizationTypeId\"},\"PartyOrganizationTypeName\":{\"entity\":\"PartyOrganizationType.cdm.json/PartyOrganizationType\",\"name\":\"PartyOrganizationTypeName\"},\"PartyOrganizationTypeDescription\":{\"entity\":\"PartyOrganizationType.cdm.json/PartyOrganizationType\",\"name\":\"PartyOrganizationTypeDescription\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"PartyOrganizationType\",\"path\":\"PartyOrganizationType.cdm.json/PartyOrganizationType\"},\"description\":\"A categorization of Organizations based on organization responsibility, reporting structure, function etc.\\n\\nEx:\\n- Corporate\\n- Business Unit\\n- Department\\n- Group\",\"primaryKey\":[\"PartyOrganizationTypeId\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"PartyOrganizationType.cdm.json/PartyOrganizationType\",\"name\":\"PartyOrganizationTypeId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Party Organization Type.\",\"isNullable\":false,\"name\":\"PartyOrganizationTypeId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"PartyOrganizationType.cdm.json/PartyOrganizationType\",\"name\":\"PartyOrganizationTypeName\"},\"dataType\":\"string\",\"dataTypeLength\":256,\"description\":\"The unique identifier of a Party Organization Name.\",\"isNullable\":true,\"name\":\"PartyOrganizationTypeName\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"PartyOrganizationType.cdm.json/PartyOrganizationType\",\"name\":\"PartyOrganizationTypeDescription\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"The unique identifier of a Party Organization Description.\",\"isNullable\":true,\"name\":\"PartyOrganizationTypeDescription\"}]}}}",
+			"Description": "A categorization of Organizations based on organization responsibility, reporting structure, function etc.\n\nEx:\n- Corporate\n- Business Unit\n- Department\n- Group",
+			"DisplayFolderInfo": "{\"name\":\"Legal Entity\",\"colorCode\":\"#630454\"}",
+			"PrimaryKeys": "PartyOrganizationTypeId",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

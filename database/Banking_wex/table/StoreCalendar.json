@@ -1,0 +1,146 @@
+{
+	"name": "StoreCalendar",
+	"properties": {
+		"Name": "StoreCalendar",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "The calendar that is utilized by the store during the specified period.",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "CalendarId",
+					"Description": "The unique identifier of a Calendar.",
+					"BaseAttributeReference": {
+						"Entity": "StoreCalendar.cdm.json/StoreCalendar",
+						"Name": "CalendarId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "ChannelCalendarStartTimestamp",
+					"Description": "The start timestamp for the Channel Calendar relationship.",
+					"BaseAttributeReference": {
+						"Entity": "StoreCalendar.cdm.json/StoreCalendar",
+						"Name": "ChannelCalendarStartTimestamp"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "timestamp",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"TimestampFormat": "YYYY-MM-DD HH:MM:SS.fffffffff",
+							"HIVE_TYPE_STRING": "timestamp"
+						}
+					}
+				},
+				{
+					"Name": "StoreId",
+					"Description": "The unique identifier of a Store.",
+					"BaseAttributeReference": {
+						"Entity": "StoreCalendar.cdm.json/StoreCalendar",
+						"Name": "StoreId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "ChannelCalendarEndTimestamp",
+					"Description": "The end timestamp for the Channel Calendar relationship.",
+					"BaseAttributeReference": {
+						"Entity": "StoreCalendar.cdm.json/StoreCalendar",
+						"Name": "ChannelCalendarEndTimestamp"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "timestamp",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"TimestampFormat": "YYYY-MM-DD HH:MM:SS.fffffffff",
+							"HIVE_TYPE_STRING": "timestamp"
+						}
+					}
+				},
+				{
+					"Name": "ChannelCalendarNote",
+					"Description": "A note, comment or additional information regarding the Channel Calendar.",
+					"BaseAttributeReference": {
+						"Entity": "StoreCalendar.cdm.json/StoreCalendar",
+						"Name": "ChannelCalendarNote"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/StoreCalendar",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/StoreCalendar",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"CalendarId\":{\"entity\":\"StoreCalendar.cdm.json/StoreCalendar\",\"name\":\"CalendarId\"},\"ChannelCalendarStartTimestamp\":{\"entity\":\"StoreCalendar.cdm.json/StoreCalendar\",\"name\":\"ChannelCalendarStartTimestamp\"},\"StoreId\":{\"entity\":\"StoreCalendar.cdm.json/StoreCalendar\",\"name\":\"StoreId\"},\"ChannelCalendarEndTimestamp\":{\"entity\":\"StoreCalendar.cdm.json/StoreCalendar\",\"name\":\"ChannelCalendarEndTimestamp\"},\"ChannelCalendarNote\":{\"entity\":\"StoreCalendar.cdm.json/StoreCalendar\",\"name\":\"ChannelCalendarNote\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"StoreCalendar\",\"path\":\"StoreCalendar.cdm.json/StoreCalendar\"},\"description\":\"The calendar that is utilized by the store during the specified period.\",\"primaryKey\":[\"CalendarId\",\"ChannelCalendarStartTimestamp\",\"StoreId\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"StoreCalendar.cdm.json/StoreCalendar\",\"name\":\"CalendarId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Calendar.\",\"isNullable\":false,\"name\":\"CalendarId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"StoreCalendar.cdm.json/StoreCalendar\",\"name\":\"ChannelCalendarStartTimestamp\"},\"dataType\":\"timestamp\",\"description\":\"The start timestamp for the Channel Calendar relationship.\",\"isNullable\":false,\"name\":\"ChannelCalendarStartTimestamp\",\"timestampFormat\":\"YYYY-MM-DD HH:MM:SS.fffffffff\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"StoreCalendar.cdm.json/StoreCalendar\",\"name\":\"StoreId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Store.\",\"isNullable\":false,\"name\":\"StoreId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"StoreCalendar.cdm.json/StoreCalendar\",\"name\":\"ChannelCalendarEndTimestamp\"},\"dataType\":\"timestamp\",\"description\":\"The end timestamp for the Channel Calendar relationship.\",\"isNullable\":true,\"name\":\"ChannelCalendarEndTimestamp\",\"timestampFormat\":\"YYYY-MM-DD HH:MM:SS.fffffffff\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"StoreCalendar.cdm.json/StoreCalendar\",\"name\":\"ChannelCalendarNote\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"A note, comment or additional information regarding the Channel Calendar.\",\"isNullable\":true,\"name\":\"ChannelCalendarNote\"}]}}}",
+			"Description": "The calendar that is utilized by the store during the specified period.",
+			"DisplayFolderInfo": "{\"name\":\"Channel\",\"colorCode\":\"#001D3F\"}",
+			"PrimaryKeys": "CalendarId,ChannelCalendarStartTimestamp,StoreId",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

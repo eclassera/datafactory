@@ -1,0 +1,129 @@
+{
+	"name": "FinancialStatementType",
+	"properties": {
+		"Name": "FinancialStatementType",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "The type of financial statement.\n\nEx:\nIFRS\n- Statement of Financial Position\n- Statement of Comprehensive Income\n- Statement of Cash Flows\n- Statement of Changes in Equity\n\nGAAP\n- Balance Sheet\n- Income Statement (\"Profit & Loss\")\n- Statement of Retained Earnings\n- Statement of Cash Flows\n\nFERC\n- Comparative Balance Sheet\n- Statement of Income and Retained Earnings\n- Statement of Cash Flows\n- Statement of Accumulated Comprehensive Income and Hedging Activities",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "FinancialStatementTypeId",
+					"Description": "The unique identifier of a Financial Statement.",
+					"BaseAttributeReference": {
+						"Entity": "FinancialStatementType.cdm.json/FinancialStatementType",
+						"Name": "FinancialStatementTypeId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "FinancialStatementTypeName",
+					"Description": "The name of a Financial Statement.",
+					"BaseAttributeReference": {
+						"Entity": "FinancialStatementType.cdm.json/FinancialStatementType",
+						"Name": "FinancialStatementTypeName"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 256,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "FinancialStatementTypeDescription",
+					"Description": "The description of a Financial Statement.",
+					"BaseAttributeReference": {
+						"Entity": "FinancialStatementType.cdm.json/FinancialStatementType",
+						"Name": "FinancialStatementTypeDescription"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "AccountingFrameworkId",
+					"Description": "The unique identifier of an Accounting Framework.",
+					"BaseAttributeReference": {
+						"Entity": "FinancialStatementType.cdm.json/FinancialStatementType",
+						"Name": "AccountingFrameworkId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/FinancialStatementType",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/FinancialStatementType",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"FinancialStatementTypeId\":{\"entity\":\"FinancialStatementType.cdm.json/FinancialStatementType\",\"name\":\"FinancialStatementTypeId\"},\"FinancialStatementTypeName\":{\"entity\":\"FinancialStatementType.cdm.json/FinancialStatementType\",\"name\":\"FinancialStatementTypeName\"},\"FinancialStatementTypeDescription\":{\"entity\":\"FinancialStatementType.cdm.json/FinancialStatementType\",\"name\":\"FinancialStatementTypeDescription\"},\"AccountingFrameworkId\":{\"entity\":\"FinancialStatementType.cdm.json/FinancialStatementType\",\"name\":\"AccountingFrameworkId\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"FinancialStatementType\",\"path\":\"FinancialStatementType.cdm.json/FinancialStatementType\"},\"description\":\"The type of financial statement.\\n\\nEx:\\nIFRS\\n- Statement of Financial Position\\n- Statement of Comprehensive Income\\n- Statement of Cash Flows\\n- Statement of Changes in Equity\\n\\nGAAP\\n- Balance Sheet\\n- Income Statement (\\\"Profit & Loss\\\")\\n- Statement of Retained Earnings\\n- Statement of Cash Flows\\n\\nFERC\\n- Comparative Balance Sheet\\n- Statement of Income and Retained Earnings\\n- Statement of Cash Flows\\n- Statement of Accumulated Comprehensive Income and Hedging Activities\",\"primaryKey\":[\"FinancialStatementTypeId\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"FinancialStatementType.cdm.json/FinancialStatementType\",\"name\":\"FinancialStatementTypeId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Financial Statement.\",\"isNullable\":false,\"name\":\"FinancialStatementTypeId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"FinancialStatementType.cdm.json/FinancialStatementType\",\"name\":\"FinancialStatementTypeName\"},\"dataType\":\"string\",\"dataTypeLength\":256,\"description\":\"The name of a Financial Statement.\",\"isNullable\":true,\"name\":\"FinancialStatementTypeName\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"FinancialStatementType.cdm.json/FinancialStatementType\",\"name\":\"FinancialStatementTypeDescription\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"The description of a Financial Statement.\",\"isNullable\":true,\"name\":\"FinancialStatementTypeDescription\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"FinancialStatementType.cdm.json/FinancialStatementType\",\"name\":\"AccountingFrameworkId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of an Accounting Framework.\",\"isNullable\":true,\"name\":\"AccountingFrameworkId\"}]}}}",
+			"Description": "The type of financial statement.\n\nEx:\nIFRS\n- Statement of Financial Position\n- Statement of Comprehensive Income\n- Statement of Cash Flows\n- Statement of Changes in Equity\n\nGAAP\n- Balance Sheet\n- Income Statement (\"Profit & Loss\")\n- Statement of Retained Earnings\n- Statement of Cash Flows\n\nFERC\n- Comparative Balance Sheet\n- Statement of Income and Retained Earnings\n- Statement of Cash Flows\n- Statement of Accumulated Comprehensive Income and Hedging Activities",
+			"DisplayFolderInfo": "{\"name\":\"Accounting & Financial Reporting\",\"colorCode\":\"#0078D4\"}",
+			"PrimaryKeys": "FinancialStatementTypeId",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

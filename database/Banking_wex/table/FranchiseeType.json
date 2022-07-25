@@ -1,0 +1,113 @@
+{
+	"name": "FranchiseeType",
+	"properties": {
+		"Name": "FranchiseeType",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "The type of franchisee.\n\nEx:\n- Single-unit\n- Multi-unit\n- Area-development\n\nwhere:\n\nSingle-Unit Franchise Ownership\nThe most common type of franchise ownership is one that is offered as a single-unit franchise. This type of franchisee purchases the right to own and operate one franchise location. Most entrepreneurs who invest in a franchise---whether as a business format franchisee, a product franchisee or a manufacturer franchisee---buy into the franchise as this type of franchise owner.\n\nMulti-Unit & Area Development Franchise Ownership\nAggressive or experienced franchisees may opt for a more involved type of franchise ownership such as multi-unit franchise ownership or area development franchise ownership. The two types of franchise ownership types are similar in that the franchise owner has more to manage than a single-unit franchise owner and they differ only in how and what is managed. The multi-unit franchise owner manages multiple franchise locations while the area development franchise owner typically owns a single franchise that has the right to do business across a vast area---multiple cities or states, for instance.",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "FranchiseeTypeId",
+					"Description": "The unique identifier of a franchisee type.",
+					"BaseAttributeReference": {
+						"Entity": "FranchiseeType.cdm.json/FranchiseeType",
+						"Name": "FranchiseeTypeId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "FranchiseeTypeName",
+					"Description": "The name of a franchisee type.",
+					"BaseAttributeReference": {
+						"Entity": "FranchiseeType.cdm.json/FranchiseeType",
+						"Name": "FranchiseeTypeName"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 256,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "FranchiseeTypeDescription",
+					"Description": "The description of a franchisee type.",
+					"BaseAttributeReference": {
+						"Entity": "FranchiseeType.cdm.json/FranchiseeType",
+						"Name": "FranchiseeTypeDescription"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/FranchiseeType",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/FranchiseeType",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"FranchiseeTypeId\":{\"entity\":\"FranchiseeType.cdm.json/FranchiseeType\",\"name\":\"FranchiseeTypeId\"},\"FranchiseeTypeName\":{\"entity\":\"FranchiseeType.cdm.json/FranchiseeType\",\"name\":\"FranchiseeTypeName\"},\"FranchiseeTypeDescription\":{\"entity\":\"FranchiseeType.cdm.json/FranchiseeType\",\"name\":\"FranchiseeTypeDescription\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"FranchiseeType\",\"path\":\"FranchiseeType.cdm.json/FranchiseeType\"},\"description\":\"The type of franchisee.\\n\\nEx:\\n- Single-unit\\n- Multi-unit\\n- Area-development\\n\\nwhere:\\n\\nSingle-Unit Franchise Ownership\\nThe most common type of franchise ownership is one that is offered as a single-unit franchise. This type of franchisee purchases the right to own and operate one franchise location. Most entrepreneurs who invest in a franchise---whether as a business format franchisee, a product franchisee or a manufacturer franchisee---buy into the franchise as this type of franchise owner.\\n\\nMulti-Unit & Area Development Franchise Ownership\\nAggressive or experienced franchisees may opt for a more involved type of franchise ownership such as multi-unit franchise ownership or area development franchise ownership. The two types of franchise ownership types are similar in that the franchise owner has more to manage than a single-unit franchise owner and they differ only in how and what is managed. The multi-unit franchise owner manages multiple franchise locations while the area development franchise owner typically owns a single franchise that has the right to do business across a vast area---multiple cities or states, for instance.\",\"primaryKey\":[\"FranchiseeTypeId\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"FranchiseeType.cdm.json/FranchiseeType\",\"name\":\"FranchiseeTypeId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a franchisee type.\",\"isNullable\":false,\"name\":\"FranchiseeTypeId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"FranchiseeType.cdm.json/FranchiseeType\",\"name\":\"FranchiseeTypeName\"},\"dataType\":\"string\",\"dataTypeLength\":256,\"description\":\"The name of a franchisee type.\",\"isNullable\":true,\"name\":\"FranchiseeTypeName\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"FranchiseeType.cdm.json/FranchiseeType\",\"name\":\"FranchiseeTypeDescription\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"The description of a franchisee type.\",\"isNullable\":true,\"name\":\"FranchiseeTypeDescription\"}]}}}",
+			"Description": "The type of franchisee.\n\nEx:\n- Single-unit\n- Multi-unit\n- Area-development\n\nwhere:\n\nSingle-Unit Franchise Ownership\nThe most common type of franchise ownership is one that is offered as a single-unit franchise. This type of franchisee purchases the right to own and operate one franchise location. Most entrepreneurs who invest in a franchise---whether as a business format franchisee, a product franchisee or a manufacturer franchisee---buy into the franchise as this type of franchise owner.\n\nMulti-Unit & Area Development Franchise Ownership\nAggressive or experienced franchisees may opt for a more involved type of franchise ownership such as multi-unit franchise ownership or area development franchise ownership. The two types of franchise ownership types are similar in that the franchise owner has more to manage than a single-unit franchise owner and they differ only in how and what is managed. The multi-unit franchise owner manages multiple franchise locations while the area development franchise owner typically owns a single franchise that has the right to do business across a vast area---multiple cities or states, for instance.",
+			"DisplayFolderInfo": "{\"name\":\"Legal Entity\",\"colorCode\":\"#630454\"}",
+			"PrimaryKeys": "FranchiseeTypeId",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

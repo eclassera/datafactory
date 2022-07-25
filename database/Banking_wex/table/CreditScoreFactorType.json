@@ -1,0 +1,113 @@
+{
+	"name": "CreditScoreFactorType",
+	"properties": {
+		"Name": "CreditScoreFactorType",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "The credit score factor(s) that are applied to a consumer by TransUnion and other Credit Rating Agencies to determine a credit score.\n\nEx:\n\n00 No adverse factor \n01 Amount owed on accounts is too high \n02 Level of delinquency on accounts \n03 TU - Proportion of loan balances to loan amounts is too high  \nEFX & XPN - Too few bank/national revolving accounts \n04 TU - Lack of recent installment loan information \nEFX & XPN - Too many bank/national revolving accounts \n05 Too many accounts with balances \n06 Too many consumer finance company accounts \n07 Account payment history is too new to rate approved but not used \n08 Too many inquiries last 12 months \n09 Too many accounts recently opened \n10 Proportion of balances to credit limits on bank/national  revolving or other revolving accounts is too high   \n11 Amount owed on revolving accounts is too high   \n12 Length of time revolving accounts have been established   \n13 Time since delinquency is too recent or unknown   \n14 Length of time accounts have been established  \n15 Lack of recent bank/national revolving information   \n16 Lack of recent revolving account information   \n17 No recent non-mortgage balance information  \n18 Number of accounts with delinquency   \n19 TU - Date of last inquiry too recent   \nEFX & XPN - Too few accounts currently paid as agreed   \n20 Time since derogatory public record or collection is too short  \n21 Amount past due on accounts MOP 09 or 9B \n22 Serious delinquency, derogatory public record or collection filed \n23 Number of bank/national revolving accounts with balances \n24 No recent revolving balances \n26 TU - Number of bank/national revolving or other revolving accounts \nEFX & XPN - Number of revolving accounts \n27 Too few accounts currently paid as agreed \n28 Number of established accounts   \n29 No recent bank/national revolving balances   \n30 Time since most recent account opening is too short   \n31 TU - Amount owed on delinquent accounts   \nEFX & XPN - Too few accounts with recent payment information I Individual \n32 Lack of recent installment loan information \n33 Proportion of loan balances to loan amounts is too high   \n34 Amount owed on delinquent accounts   \n38 Serious delinquency, and public record or collection filed   \n39 Serious delinquency   \n40 Derogatory public record or collection filed   \n46 Payments due on accounts",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "CreditScoreFactorTypeId",
+					"Description": "The unique identifier of a credit score factor type.",
+					"BaseAttributeReference": {
+						"Entity": "CreditScoreFactorType.cdm.json/CreditScoreFactorType",
+						"Name": "CreditScoreFactorTypeId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "CreditScoreFactorTypeName",
+					"Description": "The name of a credit score factor type.",
+					"BaseAttributeReference": {
+						"Entity": "CreditScoreFactorType.cdm.json/CreditScoreFactorType",
+						"Name": "CreditScoreFactorTypeName"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 256,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "CreditScoreFactorTypeDescription",
+					"Description": "The description of a credit score factor type.",
+					"BaseAttributeReference": {
+						"Entity": "CreditScoreFactorType.cdm.json/CreditScoreFactorType",
+						"Name": "CreditScoreFactorTypeDescription"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/CreditScoreFactorType",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/CreditScoreFactorType",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"CreditScoreFactorTypeId\":{\"entity\":\"CreditScoreFactorType.cdm.json/CreditScoreFactorType\",\"name\":\"CreditScoreFactorTypeId\"},\"CreditScoreFactorTypeName\":{\"entity\":\"CreditScoreFactorType.cdm.json/CreditScoreFactorType\",\"name\":\"CreditScoreFactorTypeName\"},\"CreditScoreFactorTypeDescription\":{\"entity\":\"CreditScoreFactorType.cdm.json/CreditScoreFactorType\",\"name\":\"CreditScoreFactorTypeDescription\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"CreditScoreFactorType\",\"path\":\"CreditScoreFactorType.cdm.json/CreditScoreFactorType\"},\"description\":\"The credit score factor(s) that are applied to a consumer by TransUnion and other Credit Rating Agencies to determine a credit score.\\n\\nEx:\\n\\n00 No adverse factor \\n01 Amount owed on accounts is too high \\n02 Level of delinquency on accounts \\n03 TU - Proportion of loan balances to loan amounts is too high  \\nEFX & XPN - Too few bank/national revolving accounts \\n04 TU - Lack of recent installment loan information \\nEFX & XPN - Too many bank/national revolving accounts \\n05 Too many accounts with balances \\n06 Too many consumer finance company accounts \\n07 Account payment history is too new to rate approved but not used \\n08 Too many inquiries last 12 months \\n09 Too many accounts recently opened \\n10 Proportion of balances to credit limits on bank/national  revolving or other revolving accounts is too high   \\n11 Amount owed on revolving accounts is too high   \\n12 Length of time revolving accounts have been established   \\n13 Time since delinquency is too recent or unknown   \\n14 Length of time accounts have been established  \\n15 Lack of recent bank/national revolving information   \\n16 Lack of recent revolving account information   \\n17 No recent non-mortgage balance information  \\n18 Number of accounts with delinquency   \\n19 TU - Date of last inquiry too recent   \\nEFX & XPN - Too few accounts currently paid as agreed   \\n20 Time since derogatory public record or collection is too short  \\n21 Amount past due on accounts MOP 09 or 9B \\n22 Serious delinquency, derogatory public record or collection filed \\n23 Number of bank/national revolving accounts with balances \\n24 No recent revolving balances \\n26 TU - Number of bank/national revolving or other revolving accounts \\nEFX & XPN - Number of revolving accounts \\n27 Too few accounts currently paid as agreed \\n28 Number of established accounts   \\n29 No recent bank/national revolving balances   \\n30 Time since most recent account opening is too short   \\n31 TU - Amount owed on delinquent accounts   \\nEFX & XPN - Too few accounts with recent payment information I Individual \\n32 Lack of recent installment loan information \\n33 Proportion of loan balances to loan amounts is too high   \\n34 Amount owed on delinquent accounts   \\n38 Serious delinquency, and public record or collection filed   \\n39 Serious delinquency   \\n40 Derogatory public record or collection filed   \\n46 Payments due on accounts\",\"primaryKey\":[\"CreditScoreFactorTypeId\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CreditScoreFactorType.cdm.json/CreditScoreFactorType\",\"name\":\"CreditScoreFactorTypeId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a credit score factor type.\",\"isNullable\":false,\"name\":\"CreditScoreFactorTypeId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CreditScoreFactorType.cdm.json/CreditScoreFactorType\",\"name\":\"CreditScoreFactorTypeName\"},\"dataType\":\"string\",\"dataTypeLength\":256,\"description\":\"The name of a credit score factor type.\",\"isNullable\":true,\"name\":\"CreditScoreFactorTypeName\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CreditScoreFactorType.cdm.json/CreditScoreFactorType\",\"name\":\"CreditScoreFactorTypeDescription\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"The description of a credit score factor type.\",\"isNullable\":true,\"name\":\"CreditScoreFactorTypeDescription\"}]}}}",
+			"Description": "The credit score factor(s) that are applied to a consumer by TransUnion and other Credit Rating Agencies to determine a credit score.\n\nEx:\n\n00 No adverse factor \n01 Amount owed on accounts is too high \n02 Level of delinquency on accounts \n03 TU - Proportion of loan balances to loan amounts is too high  \nEFX & XPN - Too few bank/national revolving accounts \n04 TU - Lack of recent installment loan information \nEFX & XPN - Too many bank/national revolving accounts \n05 Too many accounts with balances \n06 Too many consumer finance company accounts \n07 Account payment history is too new to rate approved but not used \n08 Too many inquiries last 12 months \n09 Too many accounts recently opened \n10 Proportion of balances to credit limits on bank/national  revolving or other revolving accounts is too high   \n11 Amount owed on revolving accounts is too high   \n12 Length of time revolving accounts have been established   \n13 Time since delinquency is too recent or unknown   \n14 Length of time accounts have been established  \n15 Lack of recent bank/national revolving information   \n16 Lack of recent revolving account information   \n17 No recent non-mortgage balance information  \n18 Number of accounts with delinquency   \n19 TU - Date of last inquiry too recent   \nEFX & XPN - Too few accounts currently paid as agreed   \n20 Time since derogatory public record or collection is too short  \n21 Amount past due on accounts MOP 09 or 9B \n22 Serious delinquency, derogatory public record or collection filed \n23 Number of bank/national revolving accounts with balances \n24 No recent revolving balances \n26 TU - Number of bank/national revolving or other revolving accounts \nEFX & XPN - Number of revolving accounts \n27 Too few accounts currently paid as agreed \n28 Number of established accounts   \n29 No recent bank/national revolving balances   \n30 Time since most recent account opening is too short   \n31 TU - Amount owed on delinquent accounts   \nEFX & XPN - Too few accounts with recent payment information I Individual \n32 Lack of recent installment loan information \n33 Proportion of loan balances to loan amounts is too high   \n34 Amount owed on delinquent accounts   \n38 Serious delinquency, and public record or collection filed   \n39 Serious delinquency   \n40 Derogatory public record or collection filed   \n46 Payments due on accounts",
+			"DisplayFolderInfo": "{\"name\":\"Customer Credit & Collections\",\"colorCode\":\"#022F22\"}",
+			"PrimaryKeys": "CreditScoreFactorTypeId",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

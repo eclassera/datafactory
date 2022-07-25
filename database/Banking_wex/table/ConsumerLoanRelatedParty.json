@@ -1,0 +1,145 @@
+{
+	"name": "ConsumerLoanRelatedParty",
+	"properties": {
+		"Name": "ConsumerLoanRelatedParty",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "A party that has a relationship to the consumer loan for the indicated period.",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "CreditGrantorId",
+					"Description": "The unique identifier of a Credit Grantor.",
+					"BaseAttributeReference": {
+						"Entity": "ConsumerLoanRelatedParty.cdm.json/ConsumerLoanRelatedParty",
+						"Name": "CreditGrantorId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "LoanAccountNumber",
+					"Description": "The unique identifier of a loan.",
+					"BaseAttributeReference": {
+						"Entity": "ConsumerLoanRelatedParty.cdm.json/ConsumerLoanRelatedParty",
+						"Name": "LoanAccountNumber"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Length": 20,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "PartyId",
+					"Description": "The unique identifier of a Party.",
+					"BaseAttributeReference": {
+						"Entity": "ConsumerLoanRelatedParty.cdm.json/ConsumerLoanRelatedParty",
+						"Name": "PartyId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "long",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "long"
+						}
+					}
+				},
+				{
+					"Name": "ConsumerLoanPartyRelationshipTypeId",
+					"Description": "The unique identifier of a co-signer relationship.",
+					"BaseAttributeReference": {
+						"Entity": "ConsumerLoanRelatedParty.cdm.json/ConsumerLoanRelatedParty",
+						"Name": "ConsumerLoanPartyRelationshipTypeId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "ConsumerLoanRelatedPartyNote",
+					"Description": "A note, comment or additional information regarding the Consumer Loan Party Relationship.",
+					"BaseAttributeReference": {
+						"Entity": "ConsumerLoanRelatedParty.cdm.json/ConsumerLoanRelatedParty",
+						"Name": "ConsumerLoanRelatedPartyNote"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/ConsumerLoanRelatedParty",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/ConsumerLoanRelatedParty",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"CreditGrantorId\":{\"entity\":\"ConsumerLoanRelatedParty.cdm.json/ConsumerLoanRelatedParty\",\"name\":\"CreditGrantorId\"},\"LoanAccountNumber\":{\"entity\":\"ConsumerLoanRelatedParty.cdm.json/ConsumerLoanRelatedParty\",\"name\":\"LoanAccountNumber\"},\"PartyId\":{\"entity\":\"ConsumerLoanRelatedParty.cdm.json/ConsumerLoanRelatedParty\",\"name\":\"PartyId\"},\"ConsumerLoanPartyRelationshipTypeId\":{\"entity\":\"ConsumerLoanRelatedParty.cdm.json/ConsumerLoanRelatedParty\",\"name\":\"ConsumerLoanPartyRelationshipTypeId\"},\"ConsumerLoanRelatedPartyNote\":{\"entity\":\"ConsumerLoanRelatedParty.cdm.json/ConsumerLoanRelatedParty\",\"name\":\"ConsumerLoanRelatedPartyNote\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"ConsumerLoanRelatedParty\",\"path\":\"ConsumerLoanRelatedParty.cdm.json/ConsumerLoanRelatedParty\"},\"description\":\"A party that has a relationship to the consumer loan for the indicated period.\",\"primaryKey\":[\"CreditGrantorId\",\"LoanAccountNumber\",\"PartyId\",\"ConsumerLoanPartyRelationshipTypeId\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ConsumerLoanRelatedParty.cdm.json/ConsumerLoanRelatedParty\",\"name\":\"CreditGrantorId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Credit Grantor.\",\"isNullable\":false,\"name\":\"CreditGrantorId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ConsumerLoanRelatedParty.cdm.json/ConsumerLoanRelatedParty\",\"name\":\"LoanAccountNumber\"},\"dataType\":\"string\",\"dataTypeLength\":20,\"description\":\"The unique identifier of a loan.\",\"isNullable\":false,\"name\":\"LoanAccountNumber\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ConsumerLoanRelatedParty.cdm.json/ConsumerLoanRelatedParty\",\"name\":\"PartyId\"},\"dataType\":\"long\",\"description\":\"The unique identifier of a Party.\",\"isNullable\":false,\"name\":\"PartyId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ConsumerLoanRelatedParty.cdm.json/ConsumerLoanRelatedParty\",\"name\":\"ConsumerLoanPartyRelationshipTypeId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a co-signer relationship.\",\"isNullable\":false,\"name\":\"ConsumerLoanPartyRelationshipTypeId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ConsumerLoanRelatedParty.cdm.json/ConsumerLoanRelatedParty\",\"name\":\"ConsumerLoanRelatedPartyNote\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"A note, comment or additional information regarding the Consumer Loan Party Relationship.\",\"isNullable\":true,\"name\":\"ConsumerLoanRelatedPartyNote\"}]}}}",
+			"Description": "A party that has a relationship to the consumer loan for the indicated period.",
+			"DisplayFolderInfo": "{\"name\":\"Customer Credit & Collections\",\"colorCode\":\"#022F22\"}",
+			"PrimaryKeys": "CreditGrantorId,LoanAccountNumber,PartyId,ConsumerLoanPartyRelationshipTypeId",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

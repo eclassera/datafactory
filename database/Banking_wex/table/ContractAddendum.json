@@ -1,0 +1,162 @@
+{
+	"name": "ContractAddendum",
+	"properties": {
+		"Name": "ContractAddendum",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "A document that describes additions, alterations or removal of the scope (or terms of a contract). An addendum is mutually agreed upon by the parties to the contract.",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "ContractId",
+					"Description": "The unique identifier of a Contract.",
+					"BaseAttributeReference": {
+						"Entity": "ContractAddendum.cdm.json/ContractAddendum",
+						"Name": "ContractId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "ContractAddendumId",
+					"Description": "The unique identifier of a Contract Addendum.",
+					"BaseAttributeReference": {
+						"Entity": "ContractAddendum.cdm.json/ContractAddendum",
+						"Name": "ContractAddendumId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "ContractAddendumEffectiveTimestamp",
+					"Description": "The timestamp which the contract addendum became effective.",
+					"BaseAttributeReference": {
+						"Entity": "ContractAddendum.cdm.json/ContractAddendum",
+						"Name": "ContractAddendumEffectiveTimestamp"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "timestamp",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"TimestampFormat": "YYYY-MM-DD HH:MM:SS.fffffffff",
+							"HIVE_TYPE_STRING": "timestamp"
+						}
+					}
+				},
+				{
+					"Name": "ContractAddendumText",
+					"Description": "The text of the Contract Addendum.",
+					"BaseAttributeReference": {
+						"Entity": "ContractAddendum.cdm.json/ContractAddendum",
+						"Name": "ContractAddendumText"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "ContractAddendumTypeId",
+					"Description": "The unique identifier of a contract section.",
+					"BaseAttributeReference": {
+						"Entity": "ContractAddendum.cdm.json/ContractAddendum",
+						"Name": "ContractAddendumTypeId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "ContractAddendumNote",
+					"Description": "A note, comment or additional information regarding the contract addendum.",
+					"BaseAttributeReference": {
+						"Entity": "ContractAddendum.cdm.json/ContractAddendum",
+						"Name": "ContractAddendumNote"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/ContractAddendum",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/ContractAddendum",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"ContractId\":{\"entity\":\"ContractAddendum.cdm.json/ContractAddendum\",\"name\":\"ContractId\"},\"ContractAddendumId\":{\"entity\":\"ContractAddendum.cdm.json/ContractAddendum\",\"name\":\"ContractAddendumId\"},\"ContractAddendumEffectiveTimestamp\":{\"entity\":\"ContractAddendum.cdm.json/ContractAddendum\",\"name\":\"ContractAddendumEffectiveTimestamp\"},\"ContractAddendumText\":{\"entity\":\"ContractAddendum.cdm.json/ContractAddendum\",\"name\":\"ContractAddendumText\"},\"ContractAddendumTypeId\":{\"entity\":\"ContractAddendum.cdm.json/ContractAddendum\",\"name\":\"ContractAddendumTypeId\"},\"ContractAddendumNote\":{\"entity\":\"ContractAddendum.cdm.json/ContractAddendum\",\"name\":\"ContractAddendumNote\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"ContractAddendum\",\"path\":\"ContractAddendum.cdm.json/ContractAddendum\"},\"description\":\"A document that describes additions, alterations or removal of the scope (or terms of a contract). An addendum is mutually agreed upon by the parties to the contract.\",\"primaryKey\":[\"ContractId\",\"ContractAddendumId\",\"ContractAddendumEffectiveTimestamp\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ContractAddendum.cdm.json/ContractAddendum\",\"name\":\"ContractId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Contract.\",\"isNullable\":false,\"name\":\"ContractId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ContractAddendum.cdm.json/ContractAddendum\",\"name\":\"ContractAddendumId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Contract Addendum.\",\"isNullable\":false,\"name\":\"ContractAddendumId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ContractAddendum.cdm.json/ContractAddendum\",\"name\":\"ContractAddendumEffectiveTimestamp\"},\"dataType\":\"timestamp\",\"description\":\"The timestamp which the contract addendum became effective.\",\"isNullable\":false,\"name\":\"ContractAddendumEffectiveTimestamp\",\"timestampFormat\":\"YYYY-MM-DD HH:MM:SS.fffffffff\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ContractAddendum.cdm.json/ContractAddendum\",\"name\":\"ContractAddendumText\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"The text of the Contract Addendum.\",\"isNullable\":true,\"name\":\"ContractAddendumText\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ContractAddendum.cdm.json/ContractAddendum\",\"name\":\"ContractAddendumTypeId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a contract section.\",\"isNullable\":true,\"name\":\"ContractAddendumTypeId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ContractAddendum.cdm.json/ContractAddendum\",\"name\":\"ContractAddendumNote\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"A note, comment or additional information regarding the contract addendum.\",\"isNullable\":true,\"name\":\"ContractAddendumNote\"}]}}}",
+			"Description": "A document that describes additions, alterations or removal of the scope (or terms of a contract). An addendum is mutually agreed upon by the parties to the contract.",
+			"DisplayFolderInfo": "{\"name\":\"Contract\",\"colorCode\":\"#917EDB\"}",
+			"PrimaryKeys": "ContractId,ContractAddendumId,ContractAddendumEffectiveTimestamp",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

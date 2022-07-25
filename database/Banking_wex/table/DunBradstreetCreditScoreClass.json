@@ -1,0 +1,113 @@
+{
+	"name": "DunBradstreetCreditScoreClass",
+	"properties": {
+		"Name": "DunBradstreetCreditScoreClass",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "The Dun & Bradstreet Credit Score Class is an assessment of the company's probable payment habits. \n\nAssesses the company's probable payment habits. A 1 to 5 Credit Score Class indicated the likelihood of an account becoming delinquent within the next 12 months. A 1 denotes low risk, 5 denotes high risk, and 0 denotes open bankruptcy and/or out of business at this location.\n\nCommercial Credit Score Credit Score Percentile Credit Score Class Incidence of Delinquency \n1   536-670 91-100 1 2.5% \n2   493-535 71-90 2 4.8% \n3   423-492 31-70 3 12.9% \n4   376-422 11-30 4 24.2% \n5   101-375 1-10 5 58.8%",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "DunBradstreetCreditScoreClassId",
+					"Description": "The unique identifier of a Dun & Bradstreet Credit Score Class.",
+					"BaseAttributeReference": {
+						"Entity": "DunBradstreetCreditScoreClass.cdm.json/DunBradstreetCreditScoreClass",
+						"Name": "DunBradstreetCreditScoreClassId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "DunBradstreetCreditScoreClassName",
+					"Description": "The name of a Dun & Bradstreet Credit Score Class.",
+					"BaseAttributeReference": {
+						"Entity": "DunBradstreetCreditScoreClass.cdm.json/DunBradstreetCreditScoreClass",
+						"Name": "DunBradstreetCreditScoreClassName"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 256,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "DunBradstreetCreditScoreClassDescription",
+					"Description": "The description of a Dun & Bradstreet Credit Score Class.",
+					"BaseAttributeReference": {
+						"Entity": "DunBradstreetCreditScoreClass.cdm.json/DunBradstreetCreditScoreClass",
+						"Name": "DunBradstreetCreditScoreClassDescription"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/DunBradstreetCreditScoreClass",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/DunBradstreetCreditScoreClass",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"DunBradstreetCreditScoreClassId\":{\"entity\":\"DunBradstreetCreditScoreClass.cdm.json/DunBradstreetCreditScoreClass\",\"name\":\"DunBradstreetCreditScoreClassId\"},\"DunBradstreetCreditScoreClassName\":{\"entity\":\"DunBradstreetCreditScoreClass.cdm.json/DunBradstreetCreditScoreClass\",\"name\":\"DunBradstreetCreditScoreClassName\"},\"DunBradstreetCreditScoreClassDescription\":{\"entity\":\"DunBradstreetCreditScoreClass.cdm.json/DunBradstreetCreditScoreClass\",\"name\":\"DunBradstreetCreditScoreClassDescription\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"DunBradstreetCreditScoreClass\",\"path\":\"DunBradstreetCreditScoreClass.cdm.json/DunBradstreetCreditScoreClass\"},\"description\":\"The Dun & Bradstreet Credit Score Class is an assessment of the company's probable payment habits. \\n\\nAssesses the company's probable payment habits. A 1 to 5 Credit Score Class indicated the likelihood of an account becoming delinquent within the next 12 months. A 1 denotes low risk, 5 denotes high risk, and 0 denotes open bankruptcy and/or out of business at this location.\\n\\nCommercial Credit Score Credit Score Percentile Credit Score Class Incidence of Delinquency \\n1   536-670 91-100 1 2.5% \\n2   493-535 71-90 2 4.8% \\n3   423-492 31-70 3 12.9% \\n4   376-422 11-30 4 24.2% \\n5   101-375 1-10 5 58.8%\",\"primaryKey\":[\"DunBradstreetCreditScoreClassId\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"DunBradstreetCreditScoreClass.cdm.json/DunBradstreetCreditScoreClass\",\"name\":\"DunBradstreetCreditScoreClassId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Dun & Bradstreet Credit Score Class.\",\"isNullable\":false,\"name\":\"DunBradstreetCreditScoreClassId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"DunBradstreetCreditScoreClass.cdm.json/DunBradstreetCreditScoreClass\",\"name\":\"DunBradstreetCreditScoreClassName\"},\"dataType\":\"string\",\"dataTypeLength\":256,\"description\":\"The name of a Dun & Bradstreet Credit Score Class.\",\"isNullable\":true,\"name\":\"DunBradstreetCreditScoreClassName\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"DunBradstreetCreditScoreClass.cdm.json/DunBradstreetCreditScoreClass\",\"name\":\"DunBradstreetCreditScoreClassDescription\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"The description of a Dun & Bradstreet Credit Score Class.\",\"isNullable\":true,\"name\":\"DunBradstreetCreditScoreClassDescription\"}]}}}",
+			"Description": "The Dun & Bradstreet Credit Score Class is an assessment of the company's probable payment habits. \n\nAssesses the company's probable payment habits. A 1 to 5 Credit Score Class indicated the likelihood of an account becoming delinquent within the next 12 months. A 1 denotes low risk, 5 denotes high risk, and 0 denotes open bankruptcy and/or out of business at this location.\n\nCommercial Credit Score Credit Score Percentile Credit Score Class Incidence of Delinquency \n1   536-670 91-100 1 2.5% \n2   493-535 71-90 2 4.8% \n3   423-492 31-70 3 12.9% \n4   376-422 11-30 4 24.2% \n5   101-375 1-10 5 58.8%",
+			"DisplayFolderInfo": "{\"name\":\"Customer Credit & Collections\",\"colorCode\":\"#022F22\"}",
+			"PrimaryKeys": "DunBradstreetCreditScoreClassId",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

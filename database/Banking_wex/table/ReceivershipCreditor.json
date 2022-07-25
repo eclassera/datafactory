@@ -1,0 +1,148 @@
+{
+	"name": "ReceivershipCreditor",
+	"properties": {
+		"Name": "ReceivershipCreditor",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "Creditor(s) specified for the associated Receivership action.",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "ReceivershipProceedingId",
+					"Description": "The unique identifier of a Receivership Action.",
+					"BaseAttributeReference": {
+						"Entity": "ReceivershipCreditor.cdm.json/ReceivershipCreditor",
+						"Name": "ReceivershipProceedingId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "CreditorPartyId",
+					"Description": "The unique identifier of a Party.",
+					"BaseAttributeReference": {
+						"Entity": "ReceivershipCreditor.cdm.json/ReceivershipCreditor",
+						"Name": "CreditorPartyId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "long",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "long"
+						}
+					}
+				},
+				{
+					"Name": "Date",
+					"Description": "The date for which the associated receivership creditor relationship is identified.",
+					"BaseAttributeReference": {
+						"Entity": "ReceivershipCreditor.cdm.json/ReceivershipCreditor",
+						"Name": "Date"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "date",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"DateFormat": "YYYY-MM-DD",
+							"HIVE_TYPE_STRING": "date"
+						}
+					}
+				},
+				{
+					"Name": "CreditorAmountDue",
+					"Description": "The amount due to a Creditor under the associated receivership proceeding during the associated period.",
+					"BaseAttributeReference": {
+						"Entity": "ReceivershipCreditor.cdm.json/ReceivershipCreditor",
+						"Name": "CreditorAmountDue"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "decimal",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Precision": 18,
+						"Scale": 2,
+						"Properties": {
+							"HIVE_TYPE_STRING": "decimal"
+						}
+					}
+				},
+				{
+					"Name": "CreditorAmountPaid",
+					"Description": "The amount paid to a Creditor under the associated receivership proceeding during the associated period.",
+					"BaseAttributeReference": {
+						"Entity": "ReceivershipCreditor.cdm.json/ReceivershipCreditor",
+						"Name": "CreditorAmountPaid"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "decimal",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Precision": 18,
+						"Scale": 2,
+						"Properties": {
+							"HIVE_TYPE_STRING": "decimal"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/ReceivershipCreditor",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/ReceivershipCreditor",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"ReceivershipProceedingId\":{\"entity\":\"ReceivershipCreditor.cdm.json/ReceivershipCreditor\",\"name\":\"ReceivershipProceedingId\"},\"CreditorPartyId\":{\"entity\":\"ReceivershipCreditor.cdm.json/ReceivershipCreditor\",\"name\":\"CreditorPartyId\"},\"Date\":{\"entity\":\"ReceivershipCreditor.cdm.json/ReceivershipCreditor\",\"name\":\"Date\"},\"CreditorAmountDue\":{\"entity\":\"ReceivershipCreditor.cdm.json/ReceivershipCreditor\",\"name\":\"CreditorAmountDue\"},\"CreditorAmountPaid\":{\"entity\":\"ReceivershipCreditor.cdm.json/ReceivershipCreditor\",\"name\":\"CreditorAmountPaid\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"ReceivershipCreditor\",\"path\":\"ReceivershipCreditor.cdm.json/ReceivershipCreditor\"},\"description\":\"Creditor(s) specified for the associated Receivership action.\",\"primaryKey\":[\"ReceivershipProceedingId\",\"CreditorPartyId\",\"Date\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ReceivershipCreditor.cdm.json/ReceivershipCreditor\",\"name\":\"ReceivershipProceedingId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Receivership Action.\",\"isNullable\":false,\"name\":\"ReceivershipProceedingId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ReceivershipCreditor.cdm.json/ReceivershipCreditor\",\"name\":\"CreditorPartyId\"},\"dataType\":\"long\",\"description\":\"The unique identifier of a Party.\",\"isNullable\":false,\"name\":\"CreditorPartyId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ReceivershipCreditor.cdm.json/ReceivershipCreditor\",\"name\":\"Date\"},\"dataType\":\"date\",\"dateFormat\":\"YYYY-MM-DD\",\"description\":\"The date for which the associated receivership creditor relationship is identified.\",\"isNullable\":false,\"name\":\"Date\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ReceivershipCreditor.cdm.json/ReceivershipCreditor\",\"name\":\"CreditorAmountDue\"},\"dataType\":\"decimal\",\"dataTypeLength\":18,\"description\":\"The amount due to a Creditor under the associated receivership proceeding during the associated period.\",\"isNullable\":true,\"scale\":2,\"name\":\"CreditorAmountDue\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ReceivershipCreditor.cdm.json/ReceivershipCreditor\",\"name\":\"CreditorAmountPaid\"},\"dataType\":\"decimal\",\"dataTypeLength\":18,\"description\":\"The amount paid to a Creditor under the associated receivership proceeding during the associated period.\",\"isNullable\":true,\"scale\":2,\"name\":\"CreditorAmountPaid\"}]}}}",
+			"Description": "Creditor(s) specified for the associated Receivership action.",
+			"DisplayFolderInfo": "{\"name\":\"Customer Credit & Collections\",\"colorCode\":\"#022F22\"}",
+			"PrimaryKeys": "ReceivershipProceedingId,CreditorPartyId,Date",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

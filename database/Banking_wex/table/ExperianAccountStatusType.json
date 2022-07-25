@@ -1,0 +1,113 @@
+{
+	"name": "ExperianAccountStatusType",
+	"properties": {
+		"Name": "ExperianAccountStatusType",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "The status indicates the state of the account as reported by the creditor. One of the most common are past due amounts and can be reported as 30, 60, 90, 120, or 150 days late. Typically, lenders will send accounts to collections within 3 to 6 months after a payment defaults. Other common statuses include:\n\nEx:\n- Open\n- Paid\n- Closed\n- Refinanced\n- Transferred\n- Foreclosed\n- 30\n- 60\n- 90\n- 120\n- 150",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "ExperianAccountStatusTypeId",
+					"Description": "The unique identifier of an Experian Account Status Type.",
+					"BaseAttributeReference": {
+						"Entity": "ExperianAccountStatusType.cdm.json/ExperianAccountStatusType",
+						"Name": "ExperianAccountStatusTypeId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "ExperianAccountStatusTypeName",
+					"Description": "The name of an Experian Account Status Type.",
+					"BaseAttributeReference": {
+						"Entity": "ExperianAccountStatusType.cdm.json/ExperianAccountStatusType",
+						"Name": "ExperianAccountStatusTypeName"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 256,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "ExperianAccountStatusTypeDescription",
+					"Description": "The description of an Experian Account Status Type.",
+					"BaseAttributeReference": {
+						"Entity": "ExperianAccountStatusType.cdm.json/ExperianAccountStatusType",
+						"Name": "ExperianAccountStatusTypeDescription"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/ExperianAccountStatusType",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/ExperianAccountStatusType",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"ExperianAccountStatusTypeId\":{\"entity\":\"ExperianAccountStatusType.cdm.json/ExperianAccountStatusType\",\"name\":\"ExperianAccountStatusTypeId\"},\"ExperianAccountStatusTypeName\":{\"entity\":\"ExperianAccountStatusType.cdm.json/ExperianAccountStatusType\",\"name\":\"ExperianAccountStatusTypeName\"},\"ExperianAccountStatusTypeDescription\":{\"entity\":\"ExperianAccountStatusType.cdm.json/ExperianAccountStatusType\",\"name\":\"ExperianAccountStatusTypeDescription\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"ExperianAccountStatusType\",\"path\":\"ExperianAccountStatusType.cdm.json/ExperianAccountStatusType\"},\"description\":\"The status indicates the state of the account as reported by the creditor. One of the most common are past due amounts and can be reported as 30, 60, 90, 120, or 150 days late. Typically, lenders will send accounts to collections within 3 to 6 months after a payment defaults. Other common statuses include:\\n\\nEx:\\n- Open\\n- Paid\\n- Closed\\n- Refinanced\\n- Transferred\\n- Foreclosed\\n- 30\\n- 60\\n- 90\\n- 120\\n- 150\",\"primaryKey\":[\"ExperianAccountStatusTypeId\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ExperianAccountStatusType.cdm.json/ExperianAccountStatusType\",\"name\":\"ExperianAccountStatusTypeId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of an Experian Account Status Type.\",\"isNullable\":false,\"name\":\"ExperianAccountStatusTypeId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ExperianAccountStatusType.cdm.json/ExperianAccountStatusType\",\"name\":\"ExperianAccountStatusTypeName\"},\"dataType\":\"string\",\"dataTypeLength\":256,\"description\":\"The name of an Experian Account Status Type.\",\"isNullable\":true,\"name\":\"ExperianAccountStatusTypeName\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ExperianAccountStatusType.cdm.json/ExperianAccountStatusType\",\"name\":\"ExperianAccountStatusTypeDescription\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"The description of an Experian Account Status Type.\",\"isNullable\":true,\"name\":\"ExperianAccountStatusTypeDescription\"}]}}}",
+			"Description": "The status indicates the state of the account as reported by the creditor. One of the most common are past due amounts and can be reported as 30, 60, 90, 120, or 150 days late. Typically, lenders will send accounts to collections within 3 to 6 months after a payment defaults. Other common statuses include:\n\nEx:\n- Open\n- Paid\n- Closed\n- Refinanced\n- Transferred\n- Foreclosed\n- 30\n- 60\n- 90\n- 120\n- 150",
+			"DisplayFolderInfo": "{\"name\":\"Customer Credit & Collections\",\"colorCode\":\"#022F22\"}",
+			"PrimaryKeys": "ExperianAccountStatusTypeId",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

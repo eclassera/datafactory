@@ -1,0 +1,113 @@
+{
+	"name": "ExperianConsumerSocialSecurityNumberVariation",
+	"properties": {
+		"Name": "ExperianConsumerSocialSecurityNumberVariation",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "Experian lists all variations of Social Security numbers reported by creditors. In most instances the variations aren't cause for great concern and can be rectified easily. Unrecognized names and Social Security numbers also can be a sign that you are a victim of identity theft. Typically, the social security number used to request the report is not reported.",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "ExperianReportNumber",
+					"Description": "The unique identifier of an Experian consumer.",
+					"BaseAttributeReference": {
+						"Entity": "ExperianConsumerSocialSecurityNumberVariation.cdm.json/ExperianConsumerSocialSecurityNumberVariation",
+						"Name": "ExperianReportNumber"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "SocialSecurityNumberId",
+					"Description": "The unique identifier of a social security number.",
+					"BaseAttributeReference": {
+						"Entity": "ExperianConsumerSocialSecurityNumberVariation.cdm.json/ExperianConsumerSocialSecurityNumberVariation",
+						"Name": "SocialSecurityNumberId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "SocialSecurityNumber",
+					"Description": "A US social security number.",
+					"BaseAttributeReference": {
+						"Entity": "ExperianConsumerSocialSecurityNumberVariation.cdm.json/ExperianConsumerSocialSecurityNumberVariation",
+						"Name": "SocialSecurityNumber"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "decimal",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Precision": 9,
+						"Scale": 0,
+						"Properties": {
+							"HIVE_TYPE_STRING": "decimal"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/ExperianConsumerSocialSecurityNumberVariation",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/ExperianConsumerSocialSecurityNumberVariation",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"ExperianReportNumber\":{\"entity\":\"ExperianConsumerSocialSecurityNumberVariation.cdm.json/ExperianConsumerSocialSecurityNumberVariation\",\"name\":\"ExperianReportNumber\"},\"SocialSecurityNumberId\":{\"entity\":\"ExperianConsumerSocialSecurityNumberVariation.cdm.json/ExperianConsumerSocialSecurityNumberVariation\",\"name\":\"SocialSecurityNumberId\"},\"SocialSecurityNumber\":{\"entity\":\"ExperianConsumerSocialSecurityNumberVariation.cdm.json/ExperianConsumerSocialSecurityNumberVariation\",\"name\":\"SocialSecurityNumber\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"ExperianConsumerSocialSecurityNumberVariation\",\"path\":\"ExperianConsumerSocialSecurityNumberVariation.cdm.json/ExperianConsumerSocialSecurityNumberVariation\"},\"description\":\"Experian lists all variations of Social Security numbers reported by creditors. In most instances the variations aren't cause for great concern and can be rectified easily. Unrecognized names and Social Security numbers also can be a sign that you are a victim of identity theft. Typically, the social security number used to request the report is not reported.\",\"primaryKey\":[\"ExperianReportNumber\",\"SocialSecurityNumberId\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ExperianConsumerSocialSecurityNumberVariation.cdm.json/ExperianConsumerSocialSecurityNumberVariation\",\"name\":\"ExperianReportNumber\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of an Experian consumer.\",\"isNullable\":false,\"name\":\"ExperianReportNumber\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ExperianConsumerSocialSecurityNumberVariation.cdm.json/ExperianConsumerSocialSecurityNumberVariation\",\"name\":\"SocialSecurityNumberId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a social security number.\",\"isNullable\":false,\"name\":\"SocialSecurityNumberId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ExperianConsumerSocialSecurityNumberVariation.cdm.json/ExperianConsumerSocialSecurityNumberVariation\",\"name\":\"SocialSecurityNumber\"},\"dataType\":\"decimal\",\"dataTypeLength\":9,\"description\":\"A US social security number.\",\"isNullable\":true,\"scale\":0,\"name\":\"SocialSecurityNumber\"}]}}}",
+			"Description": "Experian lists all variations of Social Security numbers reported by creditors. In most instances the variations aren't cause for great concern and can be rectified easily. Unrecognized names and Social Security numbers also can be a sign that you are a victim of identity theft. Typically, the social security number used to request the report is not reported.",
+			"DisplayFolderInfo": "{\"name\":\"Customer Credit & Collections\",\"colorCode\":\"#022F22\"}",
+			"PrimaryKeys": "ExperianReportNumber,SocialSecurityNumberId",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

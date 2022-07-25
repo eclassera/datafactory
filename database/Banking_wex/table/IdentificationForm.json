@@ -1,0 +1,113 @@
+{
+	"name": "IdentificationForm",
+	"properties": {
+		"Name": "IdentificationForm",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "The form of identification.\n\nEx:\n- Card\n- Paper Wristband\n- PVC Wristband\n- FOB\n- Lanyard\n- Jewelry\n- Intangible (Identification Number issued but no physical form)",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "IdentificationFormId",
+					"Description": "The unique identifier of an Identification Form.",
+					"BaseAttributeReference": {
+						"Entity": "IdentificationForm.cdm.json/IdentificationForm",
+						"Name": "IdentificationFormId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "IdentificationFormName",
+					"Description": "The name of an Identification Form.",
+					"BaseAttributeReference": {
+						"Entity": "IdentificationForm.cdm.json/IdentificationForm",
+						"Name": "IdentificationFormName"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 256,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "IdentificationFormDescription",
+					"Description": "The description of an Identification Form.",
+					"BaseAttributeReference": {
+						"Entity": "IdentificationForm.cdm.json/IdentificationForm",
+						"Name": "IdentificationFormDescription"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/IdentificationForm",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/IdentificationForm",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"IdentificationFormId\":{\"entity\":\"IdentificationForm.cdm.json/IdentificationForm\",\"name\":\"IdentificationFormId\"},\"IdentificationFormName\":{\"entity\":\"IdentificationForm.cdm.json/IdentificationForm\",\"name\":\"IdentificationFormName\"},\"IdentificationFormDescription\":{\"entity\":\"IdentificationForm.cdm.json/IdentificationForm\",\"name\":\"IdentificationFormDescription\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"IdentificationForm\",\"path\":\"IdentificationForm.cdm.json/IdentificationForm\"},\"description\":\"The form of identification.\\n\\nEx:\\n- Card\\n- Paper Wristband\\n- PVC Wristband\\n- FOB\\n- Lanyard\\n- Jewelry\\n- Intangible (Identification Number issued but no physical form)\",\"primaryKey\":[\"IdentificationFormId\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"IdentificationForm.cdm.json/IdentificationForm\",\"name\":\"IdentificationFormId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of an Identification Form.\",\"isNullable\":false,\"name\":\"IdentificationFormId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"IdentificationForm.cdm.json/IdentificationForm\",\"name\":\"IdentificationFormName\"},\"dataType\":\"string\",\"dataTypeLength\":256,\"description\":\"The name of an Identification Form.\",\"isNullable\":true,\"name\":\"IdentificationFormName\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"IdentificationForm.cdm.json/IdentificationForm\",\"name\":\"IdentificationFormDescription\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"The description of an Identification Form.\",\"isNullable\":true,\"name\":\"IdentificationFormDescription\"}]}}}",
+			"Description": "The form of identification.\n\nEx:\n- Card\n- Paper Wristband\n- PVC Wristband\n- FOB\n- Lanyard\n- Jewelry\n- Intangible (Identification Number issued but no physical form)",
+			"DisplayFolderInfo": "{\"name\":\"Party\",\"colorCode\":\"#00727A\"}",
+			"PrimaryKeys": "IdentificationFormId",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

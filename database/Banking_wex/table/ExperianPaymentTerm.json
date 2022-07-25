@@ -1,0 +1,113 @@
+{
+	"name": "ExperianPaymentTerm",
+	"properties": {
+		"Name": "ExperianPaymentTerm",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "An Experian payment term.\n\nEx:\n- NET 15\n- NET 30\n- 2/10N30\n- VARIED\n- CONTRCT",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "ExperianPaymentTermId",
+					"Description": "The unique identifier of an Experian payment term.",
+					"BaseAttributeReference": {
+						"Entity": "ExperianPaymentTerm.cdm.json/ExperianPaymentTerm",
+						"Name": "ExperianPaymentTermId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "ExperianPaymentTermName",
+					"Description": "The name of an Experian payment term.",
+					"BaseAttributeReference": {
+						"Entity": "ExperianPaymentTerm.cdm.json/ExperianPaymentTerm",
+						"Name": "ExperianPaymentTermName"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 256,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "ExperianPaymentTermDescription",
+					"Description": "The description of an Experian payment term.",
+					"BaseAttributeReference": {
+						"Entity": "ExperianPaymentTerm.cdm.json/ExperianPaymentTerm",
+						"Name": "ExperianPaymentTermDescription"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/ExperianPaymentTerm",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/ExperianPaymentTerm",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"ExperianPaymentTermId\":{\"entity\":\"ExperianPaymentTerm.cdm.json/ExperianPaymentTerm\",\"name\":\"ExperianPaymentTermId\"},\"ExperianPaymentTermName\":{\"entity\":\"ExperianPaymentTerm.cdm.json/ExperianPaymentTerm\",\"name\":\"ExperianPaymentTermName\"},\"ExperianPaymentTermDescription\":{\"entity\":\"ExperianPaymentTerm.cdm.json/ExperianPaymentTerm\",\"name\":\"ExperianPaymentTermDescription\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"ExperianPaymentTerm\",\"path\":\"ExperianPaymentTerm.cdm.json/ExperianPaymentTerm\"},\"description\":\"An Experian payment term.\\n\\nEx:\\n- NET 15\\n- NET 30\\n- 2/10N30\\n- VARIED\\n- CONTRCT\",\"primaryKey\":[\"ExperianPaymentTermId\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ExperianPaymentTerm.cdm.json/ExperianPaymentTerm\",\"name\":\"ExperianPaymentTermId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of an Experian payment term.\",\"isNullable\":false,\"name\":\"ExperianPaymentTermId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ExperianPaymentTerm.cdm.json/ExperianPaymentTerm\",\"name\":\"ExperianPaymentTermName\"},\"dataType\":\"string\",\"dataTypeLength\":256,\"description\":\"The name of an Experian payment term.\",\"isNullable\":true,\"name\":\"ExperianPaymentTermName\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ExperianPaymentTerm.cdm.json/ExperianPaymentTerm\",\"name\":\"ExperianPaymentTermDescription\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"The description of an Experian payment term.\",\"isNullable\":true,\"name\":\"ExperianPaymentTermDescription\"}]}}}",
+			"Description": "An Experian payment term.\n\nEx:\n- NET 15\n- NET 30\n- 2/10N30\n- VARIED\n- CONTRCT",
+			"DisplayFolderInfo": "{\"name\":\"Customer Credit & Collections\",\"colorCode\":\"#022F22\"}",
+			"PrimaryKeys": "ExperianPaymentTermId",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

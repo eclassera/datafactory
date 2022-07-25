@@ -1,0 +1,131 @@
+{
+	"name": "CustomerLifetimeValue",
+	"properties": {
+		"Name": "CustomerLifetimeValue",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "The total amount the customer is expected to spend on your products during their lifetime.",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "CustomerId",
+					"Description": "The unique identifier of a Customer.",
+					"BaseAttributeReference": {
+						"Entity": "CustomerLifetimeValue.cdm.json/CustomerLifetimeValue",
+						"Name": "CustomerId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "long",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "long"
+						}
+					}
+				},
+				{
+					"Name": "ClvTimestamp",
+					"Description": "The timestamp that the CLV was evaluated as of.",
+					"BaseAttributeReference": {
+						"Entity": "CustomerLifetimeValue.cdm.json/CustomerLifetimeValue",
+						"Name": "ClvTimestamp"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "timestamp",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"TimestampFormat": "YYYY-MM-DD HH:MM:SS.fffffffff",
+							"HIVE_TYPE_STRING": "timestamp"
+						}
+					}
+				},
+				{
+					"Name": "CustomerLifetimeValueAmount",
+					"Description": "The amount associated with the Customer Lifetime Value.",
+					"BaseAttributeReference": {
+						"Entity": "CustomerLifetimeValue.cdm.json/CustomerLifetimeValue",
+						"Name": "CustomerLifetimeValueAmount"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "decimal",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Precision": 18,
+						"Scale": 2,
+						"Properties": {
+							"HIVE_TYPE_STRING": "decimal"
+						}
+					}
+				},
+				{
+					"Name": "CustomerLifetimeValueNote",
+					"Description": "A note, comment or additional information regarding the Customer Lifetime Value.",
+					"BaseAttributeReference": {
+						"Entity": "CustomerLifetimeValue.cdm.json/CustomerLifetimeValue",
+						"Name": "CustomerLifetimeValueNote"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/CustomerLifetimeValue",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/CustomerLifetimeValue",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"CustomerId\":{\"entity\":\"CustomerLifetimeValue.cdm.json/CustomerLifetimeValue\",\"name\":\"CustomerId\"},\"ClvTimestamp\":{\"entity\":\"CustomerLifetimeValue.cdm.json/CustomerLifetimeValue\",\"name\":\"ClvTimestamp\"},\"CustomerLifetimeValueAmount\":{\"entity\":\"CustomerLifetimeValue.cdm.json/CustomerLifetimeValue\",\"name\":\"CustomerLifetimeValueAmount\"},\"CustomerLifetimeValueNote\":{\"entity\":\"CustomerLifetimeValue.cdm.json/CustomerLifetimeValue\",\"name\":\"CustomerLifetimeValueNote\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"CustomerLifetimeValue\",\"path\":\"CustomerLifetimeValue.cdm.json/CustomerLifetimeValue\"},\"description\":\"The total amount the customer is expected to spend on your products during their lifetime.\",\"primaryKey\":[\"CustomerId\",\"ClvTimestamp\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CustomerLifetimeValue.cdm.json/CustomerLifetimeValue\",\"name\":\"CustomerId\"},\"dataType\":\"long\",\"description\":\"The unique identifier of a Customer.\",\"isNullable\":false,\"name\":\"CustomerId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CustomerLifetimeValue.cdm.json/CustomerLifetimeValue\",\"name\":\"ClvTimestamp\"},\"dataType\":\"timestamp\",\"description\":\"The timestamp that the CLV was evaluated as of.\",\"isNullable\":false,\"name\":\"ClvTimestamp\",\"timestampFormat\":\"YYYY-MM-DD HH:MM:SS.fffffffff\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CustomerLifetimeValue.cdm.json/CustomerLifetimeValue\",\"name\":\"CustomerLifetimeValueAmount\"},\"dataType\":\"decimal\",\"dataTypeLength\":18,\"description\":\"The amount associated with the Customer Lifetime Value.\",\"isNullable\":true,\"scale\":2,\"name\":\"CustomerLifetimeValueAmount\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CustomerLifetimeValue.cdm.json/CustomerLifetimeValue\",\"name\":\"CustomerLifetimeValueNote\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"A note, comment or additional information regarding the Customer Lifetime Value.\",\"isNullable\":true,\"name\":\"CustomerLifetimeValueNote\"}]}}}",
+			"Description": "The total amount the customer is expected to spend on your products during their lifetime.",
+			"DisplayFolderInfo": "{\"name\":\"Customer\",\"colorCode\":\"#4B003F\"}",
+			"PrimaryKeys": "CustomerId,ClvTimestamp",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

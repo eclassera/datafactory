@@ -1,0 +1,215 @@
+{
+	"name": "OfferOfEmployment",
+	"properties": {
+		"Name": "OfferOfEmployment",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "The Offer of Employment makes a written offer of employment to a prospective employee.",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "ContractId",
+					"Description": "The unique identifier of a Contract.",
+					"BaseAttributeReference": {
+						"Entity": "OfferOfEmployment.cdm.json/OfferOfEmployment",
+						"Name": "ContractId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "OfferDate",
+					"Description": "The date that the offer is extended.",
+					"BaseAttributeReference": {
+						"Entity": "OfferOfEmployment.cdm.json/OfferOfEmployment",
+						"Name": "OfferDate"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "date",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"DateFormat": "YYYY-MM-DD",
+							"HIVE_TYPE_STRING": "date"
+						}
+					}
+				},
+				{
+					"Name": "EmployeeLocationId",
+					"Description": "The unique identifier of a Location.",
+					"BaseAttributeReference": {
+						"Entity": "OfferOfEmployment.cdm.json/OfferOfEmployment",
+						"Name": "EmployeeLocationId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "TitleOfPosition",
+					"Description": "The title of the position being offered.",
+					"BaseAttributeReference": {
+						"Entity": "OfferOfEmployment.cdm.json/OfferOfEmployment",
+						"Name": "TitleOfPosition"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 16,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "DescriptionOfPosition",
+					"Description": "A description of the position being offered.",
+					"BaseAttributeReference": {
+						"Entity": "OfferOfEmployment.cdm.json/OfferOfEmployment",
+						"Name": "DescriptionOfPosition"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "JobStartDate",
+					"Description": "The date that the job will start.",
+					"BaseAttributeReference": {
+						"Entity": "OfferOfEmployment.cdm.json/OfferOfEmployment",
+						"Name": "JobStartDate"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "date",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"DateFormat": "YYYY-MM-DD",
+							"HIVE_TYPE_STRING": "date"
+						}
+					}
+				},
+				{
+					"Name": "JobPayRate",
+					"Description": "The rate of pay for the position.",
+					"BaseAttributeReference": {
+						"Entity": "OfferOfEmployment.cdm.json/OfferOfEmployment",
+						"Name": "JobPayRate"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "decimal",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Precision": 18,
+						"Scale": 2,
+						"Properties": {
+							"HIVE_TYPE_STRING": "decimal"
+						}
+					}
+				},
+				{
+					"Name": "DateOfferExpires",
+					"Description": "The date that the offer to prospective employee expires.",
+					"BaseAttributeReference": {
+						"Entity": "OfferOfEmployment.cdm.json/OfferOfEmployment",
+						"Name": "DateOfferExpires"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "date",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"DateFormat": "YYYY-MM-DD",
+							"HIVE_TYPE_STRING": "date"
+						}
+					}
+				},
+				{
+					"Name": "EmployerRepresentativeName",
+					"Description": "The name of the employer representative extending the job offer to the prospective employee.",
+					"BaseAttributeReference": {
+						"Entity": "OfferOfEmployment.cdm.json/OfferOfEmployment",
+						"Name": "EmployerRepresentativeName"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 256,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/OfferOfEmployment",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/OfferOfEmployment",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"ContractId\":{\"entity\":\"OfferOfEmployment.cdm.json/OfferOfEmployment\",\"name\":\"ContractId\"},\"OfferDate\":{\"entity\":\"OfferOfEmployment.cdm.json/OfferOfEmployment\",\"name\":\"OfferDate\"},\"EmployeeLocationId\":{\"entity\":\"OfferOfEmployment.cdm.json/OfferOfEmployment\",\"name\":\"EmployeeLocationId\"},\"TitleOfPosition\":{\"entity\":\"OfferOfEmployment.cdm.json/OfferOfEmployment\",\"name\":\"TitleOfPosition\"},\"DescriptionOfPosition\":{\"entity\":\"OfferOfEmployment.cdm.json/OfferOfEmployment\",\"name\":\"DescriptionOfPosition\"},\"JobStartDate\":{\"entity\":\"OfferOfEmployment.cdm.json/OfferOfEmployment\",\"name\":\"JobStartDate\"},\"JobPayRate\":{\"entity\":\"OfferOfEmployment.cdm.json/OfferOfEmployment\",\"name\":\"JobPayRate\"},\"DateOfferExpires\":{\"entity\":\"OfferOfEmployment.cdm.json/OfferOfEmployment\",\"name\":\"DateOfferExpires\"},\"EmployerRepresentativeName\":{\"entity\":\"OfferOfEmployment.cdm.json/OfferOfEmployment\",\"name\":\"EmployerRepresentativeName\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"OfferOfEmployment\",\"path\":\"OfferOfEmployment.cdm.json/OfferOfEmployment\"},\"description\":\"The Offer of Employment makes a written offer of employment to a prospective employee.\",\"primaryKey\":[\"ContractId\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"OfferOfEmployment.cdm.json/OfferOfEmployment\",\"name\":\"ContractId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Contract.\",\"isNullable\":false,\"name\":\"ContractId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"OfferOfEmployment.cdm.json/OfferOfEmployment\",\"name\":\"OfferDate\"},\"dataType\":\"date\",\"dateFormat\":\"YYYY-MM-DD\",\"description\":\"The date that the offer is extended.\",\"isNullable\":true,\"name\":\"OfferDate\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"OfferOfEmployment.cdm.json/OfferOfEmployment\",\"name\":\"EmployeeLocationId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Location.\",\"isNullable\":false,\"name\":\"EmployeeLocationId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"OfferOfEmployment.cdm.json/OfferOfEmployment\",\"name\":\"TitleOfPosition\"},\"dataType\":\"string\",\"dataTypeLength\":16,\"description\":\"The title of the position being offered.\",\"isNullable\":true,\"name\":\"TitleOfPosition\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"OfferOfEmployment.cdm.json/OfferOfEmployment\",\"name\":\"DescriptionOfPosition\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"A description of the position being offered.\",\"isNullable\":true,\"name\":\"DescriptionOfPosition\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"OfferOfEmployment.cdm.json/OfferOfEmployment\",\"name\":\"JobStartDate\"},\"dataType\":\"date\",\"dateFormat\":\"YYYY-MM-DD\",\"description\":\"The date that the job will start.\",\"isNullable\":true,\"name\":\"JobStartDate\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"OfferOfEmployment.cdm.json/OfferOfEmployment\",\"name\":\"JobPayRate\"},\"dataType\":\"decimal\",\"dataTypeLength\":18,\"description\":\"The rate of pay for the position.\",\"isNullable\":true,\"scale\":2,\"name\":\"JobPayRate\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"OfferOfEmployment.cdm.json/OfferOfEmployment\",\"name\":\"DateOfferExpires\"},\"dataType\":\"date\",\"dateFormat\":\"YYYY-MM-DD\",\"description\":\"The date that the offer to prospective employee expires.\",\"isNullable\":true,\"name\":\"DateOfferExpires\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"OfferOfEmployment.cdm.json/OfferOfEmployment\",\"name\":\"EmployerRepresentativeName\"},\"dataType\":\"string\",\"dataTypeLength\":256,\"description\":\"The name of the employer representative extending the job offer to the prospective employee.\",\"isNullable\":true,\"name\":\"EmployerRepresentativeName\"}]}}}",
+			"Description": "The Offer of Employment makes a written offer of employment to a prospective employee.",
+			"DisplayFolderInfo": "{\"name\":\"Contract\",\"colorCode\":\"#917EDB\"}",
+			"PrimaryKeys": "ContractId",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

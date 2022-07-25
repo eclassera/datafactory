@@ -1,0 +1,113 @@
+{
+	"name": "TelephoneNumberType",
+	"properties": {
+		"Name": "TelephoneNumberType",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "The type of telephone number:\n\nEx:\nINDIVIDUAL\n- Primary Residence\n- Alternate\n- Mobile\n- Business\n- Emergency Contact\n- Vacation Residence\n\nLEGAL ENTITY\n- Headquarters\n- Boston Office\n- Support\n- Marketing\n- Legal\n- Emergency",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "TelephoneNumberTypeId",
+					"Description": "The unique identifier of a Telephone Number Type.",
+					"BaseAttributeReference": {
+						"Entity": "TelephoneNumberType.cdm.json/TelephoneNumberType",
+						"Name": "TelephoneNumberTypeId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "TelephoneNumberTypeName",
+					"Description": "The name of a Telephone Number Type.",
+					"BaseAttributeReference": {
+						"Entity": "TelephoneNumberType.cdm.json/TelephoneNumberType",
+						"Name": "TelephoneNumberTypeName"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 256,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "TelephoneNumberTypeDescription",
+					"Description": "The description of a Telephone Number Type.",
+					"BaseAttributeReference": {
+						"Entity": "TelephoneNumberType.cdm.json/TelephoneNumberType",
+						"Name": "TelephoneNumberTypeDescription"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/TelephoneNumberType",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/TelephoneNumberType",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"TelephoneNumberTypeId\":{\"entity\":\"TelephoneNumberType.cdm.json/TelephoneNumberType\",\"name\":\"TelephoneNumberTypeId\"},\"TelephoneNumberTypeName\":{\"entity\":\"TelephoneNumberType.cdm.json/TelephoneNumberType\",\"name\":\"TelephoneNumberTypeName\"},\"TelephoneNumberTypeDescription\":{\"entity\":\"TelephoneNumberType.cdm.json/TelephoneNumberType\",\"name\":\"TelephoneNumberTypeDescription\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"TelephoneNumberType\",\"path\":\"TelephoneNumberType.cdm.json/TelephoneNumberType\"},\"description\":\"The type of telephone number:\\n\\nEx:\\nINDIVIDUAL\\n- Primary Residence\\n- Alternate\\n- Mobile\\n- Business\\n- Emergency Contact\\n- Vacation Residence\\n\\nLEGAL ENTITY\\n- Headquarters\\n- Boston Office\\n- Support\\n- Marketing\\n- Legal\\n- Emergency\",\"primaryKey\":[\"TelephoneNumberTypeId\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"TelephoneNumberType.cdm.json/TelephoneNumberType\",\"name\":\"TelephoneNumberTypeId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Telephone Number Type.\",\"isNullable\":false,\"name\":\"TelephoneNumberTypeId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"TelephoneNumberType.cdm.json/TelephoneNumberType\",\"name\":\"TelephoneNumberTypeName\"},\"dataType\":\"string\",\"dataTypeLength\":256,\"description\":\"The name of a Telephone Number Type.\",\"isNullable\":true,\"name\":\"TelephoneNumberTypeName\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"TelephoneNumberType.cdm.json/TelephoneNumberType\",\"name\":\"TelephoneNumberTypeDescription\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"The description of a Telephone Number Type.\",\"isNullable\":true,\"name\":\"TelephoneNumberTypeDescription\"}]}}}",
+			"Description": "The type of telephone number:\n\nEx:\nINDIVIDUAL\n- Primary Residence\n- Alternate\n- Mobile\n- Business\n- Emergency Contact\n- Vacation Residence\n\nLEGAL ENTITY\n- Headquarters\n- Boston Office\n- Support\n- Marketing\n- Legal\n- Emergency",
+			"DisplayFolderInfo": "{\"name\":\"Party\",\"colorCode\":\"#00727A\"}",
+			"PrimaryKeys": "TelephoneNumberTypeId",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

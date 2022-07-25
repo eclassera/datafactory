@@ -1,0 +1,196 @@
+{
+	"name": "StoreDisplaySection",
+	"properties": {
+		"Name": "StoreDisplaySection",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "A grocery store/department aisle is divided into Rows.",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "StoreId",
+					"Description": "The unique identifier of a Store.",
+					"BaseAttributeReference": {
+						"Entity": "StoreDisplaySection.cdm.json/StoreDisplaySection",
+						"Name": "StoreId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "SectionId",
+					"Description": "The unique identifier of a Row.",
+					"BaseAttributeReference": {
+						"Entity": "StoreDisplaySection.cdm.json/StoreDisplaySection",
+						"Name": "SectionId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "AisleId",
+					"Description": "The unique identifier of an Aisle.\n\nAn Aisle is the space between storage devices that is used by material handlers for access.",
+					"BaseAttributeReference": {
+						"Entity": "StoreDisplaySection.cdm.json/StoreDisplaySection",
+						"Name": "AisleId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "LocationAddress",
+					"Description": "A unique address within a Warehouse that may identify a Building, Storeroom, Area, Aisle, Shelf, Tier, Bin etc.",
+					"BaseAttributeReference": {
+						"Entity": "StoreDisplaySection.cdm.json/StoreDisplaySection",
+						"Name": "LocationAddress"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Length": 512,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "FloorLocationXCoordinate",
+					"Description": "The floor location x-coordinate of the Row.",
+					"BaseAttributeReference": {
+						"Entity": "StoreDisplaySection.cdm.json/StoreDisplaySection",
+						"Name": "FloorLocationXCoordinate"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "FloorLocationYCoordinate",
+					"Description": "The floor location y-coordinate of the Row.",
+					"BaseAttributeReference": {
+						"Entity": "StoreDisplaySection.cdm.json/StoreDisplaySection",
+						"Name": "FloorLocationYCoordinate"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "SectionLength",
+					"Description": "The length of the section measured in the unit of measure specified by the Unit of Measure ID.",
+					"BaseAttributeReference": {
+						"Entity": "StoreDisplaySection.cdm.json/StoreDisplaySection",
+						"Name": "SectionLength"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "decimal",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Precision": 18,
+						"Scale": 8,
+						"Properties": {
+							"HIVE_TYPE_STRING": "decimal"
+						}
+					}
+				},
+				{
+					"Name": "SectionHeight",
+					"Description": "The height of the section measured in the unit of measure specified by the Unit of Measure ID.",
+					"BaseAttributeReference": {
+						"Entity": "StoreDisplaySection.cdm.json/StoreDisplaySection",
+						"Name": "SectionHeight"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "decimal",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Precision": 18,
+						"Scale": 8,
+						"Properties": {
+							"HIVE_TYPE_STRING": "decimal"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/StoreDisplaySection",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/StoreDisplaySection",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"StoreId\":{\"entity\":\"StoreDisplaySection.cdm.json/StoreDisplaySection\",\"name\":\"StoreId\"},\"SectionId\":{\"entity\":\"StoreDisplaySection.cdm.json/StoreDisplaySection\",\"name\":\"SectionId\"},\"AisleId\":{\"entity\":\"StoreDisplaySection.cdm.json/StoreDisplaySection\",\"name\":\"AisleId\"},\"LocationAddress\":{\"entity\":\"StoreDisplaySection.cdm.json/StoreDisplaySection\",\"name\":\"LocationAddress\"},\"FloorLocationXCoordinate\":{\"entity\":\"StoreDisplaySection.cdm.json/StoreDisplaySection\",\"name\":\"FloorLocationXCoordinate\"},\"FloorLocationYCoordinate\":{\"entity\":\"StoreDisplaySection.cdm.json/StoreDisplaySection\",\"name\":\"FloorLocationYCoordinate\"},\"SectionLength\":{\"entity\":\"StoreDisplaySection.cdm.json/StoreDisplaySection\",\"name\":\"SectionLength\"},\"SectionHeight\":{\"entity\":\"StoreDisplaySection.cdm.json/StoreDisplaySection\",\"name\":\"SectionHeight\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"StoreDisplaySection\",\"path\":\"StoreDisplaySection.cdm.json/StoreDisplaySection\"},\"description\":\"A grocery store/department aisle is divided into Rows.\",\"primaryKey\":[\"StoreId\",\"SectionId\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"StoreDisplaySection.cdm.json/StoreDisplaySection\",\"name\":\"StoreId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Store.\",\"isNullable\":false,\"name\":\"StoreId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"StoreDisplaySection.cdm.json/StoreDisplaySection\",\"name\":\"SectionId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Row.\",\"isNullable\":false,\"name\":\"SectionId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"StoreDisplaySection.cdm.json/StoreDisplaySection\",\"name\":\"AisleId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of an Aisle.\\n\\nAn Aisle is the space between storage devices that is used by material handlers for access.\",\"isNullable\":false,\"name\":\"AisleId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"StoreDisplaySection.cdm.json/StoreDisplaySection\",\"name\":\"LocationAddress\"},\"dataType\":\"string\",\"dataTypeLength\":512,\"description\":\"A unique address within a Warehouse that may identify a Building, Storeroom, Area, Aisle, Shelf, Tier, Bin etc.\",\"isNullable\":false,\"name\":\"LocationAddress\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"StoreDisplaySection.cdm.json/StoreDisplaySection\",\"name\":\"FloorLocationXCoordinate\"},\"dataType\":\"integer\",\"description\":\"The floor location x-coordinate of the Row.\",\"isNullable\":true,\"name\":\"FloorLocationXCoordinate\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"StoreDisplaySection.cdm.json/StoreDisplaySection\",\"name\":\"FloorLocationYCoordinate\"},\"dataType\":\"integer\",\"description\":\"The floor location y-coordinate of the Row.\",\"isNullable\":true,\"name\":\"FloorLocationYCoordinate\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"StoreDisplaySection.cdm.json/StoreDisplaySection\",\"name\":\"SectionLength\"},\"dataType\":\"decimal\",\"dataTypeLength\":18,\"description\":\"The length of the section measured in the unit of measure specified by the Unit of Measure ID.\",\"isNullable\":true,\"scale\":8,\"name\":\"SectionLength\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"StoreDisplaySection.cdm.json/StoreDisplaySection\",\"name\":\"SectionHeight\"},\"dataType\":\"decimal\",\"dataTypeLength\":18,\"description\":\"The height of the section measured in the unit of measure specified by the Unit of Measure ID.\",\"isNullable\":true,\"scale\":8,\"name\":\"SectionHeight\"}]}}}",
+			"Description": "A grocery store/department aisle is divided into Rows.",
+			"DisplayFolderInfo": "{\"name\":\"Channel\",\"colorCode\":\"#001D3F\"}",
+			"PrimaryKeys": "StoreId,SectionId",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

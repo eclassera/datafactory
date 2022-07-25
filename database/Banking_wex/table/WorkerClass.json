@@ -1,0 +1,113 @@
+{
+	"name": "WorkerClass",
+	"properties": {
+		"Name": "WorkerClass",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "A classification of workers or occupations based upon common government-defined classifications:\n\nEx:\n-  Private For-Profit Wage and Salary Worker\n-  Private Not-For-Profit Wage and Salary Worker\n-  Local Government Worker\n-  State Government Worker\n-  Federal Government Worker\n-  Self-Employed Worker\n-  Unpaid Family Worker",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "WorkerClassId",
+					"Description": "The unique identifier of a Worker Class.",
+					"BaseAttributeReference": {
+						"Entity": "WorkerClass.cdm.json/WorkerClass",
+						"Name": "WorkerClassId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "WorkerClassName",
+					"Description": "The name of the Worker Class.",
+					"BaseAttributeReference": {
+						"Entity": "WorkerClass.cdm.json/WorkerClass",
+						"Name": "WorkerClassName"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 256,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "WorkerClassDescription",
+					"Description": "The description of the Worker Class.",
+					"BaseAttributeReference": {
+						"Entity": "WorkerClass.cdm.json/WorkerClass",
+						"Name": "WorkerClassDescription"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/WorkerClass",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/WorkerClass",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"WorkerClassId\":{\"entity\":\"WorkerClass.cdm.json/WorkerClass\",\"name\":\"WorkerClassId\"},\"WorkerClassName\":{\"entity\":\"WorkerClass.cdm.json/WorkerClass\",\"name\":\"WorkerClassName\"},\"WorkerClassDescription\":{\"entity\":\"WorkerClass.cdm.json/WorkerClass\",\"name\":\"WorkerClassDescription\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"WorkerClass\",\"path\":\"WorkerClass.cdm.json/WorkerClass\"},\"description\":\"A classification of workers or occupations based upon common government-defined classifications:\\n\\nEx:\\n-  Private For-Profit Wage and Salary Worker\\n-  Private Not-For-Profit Wage and Salary Worker\\n-  Local Government Worker\\n-  State Government Worker\\n-  Federal Government Worker\\n-  Self-Employed Worker\\n-  Unpaid Family Worker\",\"primaryKey\":[\"WorkerClassId\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"WorkerClass.cdm.json/WorkerClass\",\"name\":\"WorkerClassId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Worker Class.\",\"isNullable\":false,\"name\":\"WorkerClassId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"WorkerClass.cdm.json/WorkerClass\",\"name\":\"WorkerClassName\"},\"dataType\":\"string\",\"dataTypeLength\":256,\"description\":\"The name of the Worker Class.\",\"isNullable\":true,\"name\":\"WorkerClassName\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"WorkerClass.cdm.json/WorkerClass\",\"name\":\"WorkerClassDescription\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"The description of the Worker Class.\",\"isNullable\":true,\"name\":\"WorkerClassDescription\"}]}}}",
+			"Description": "A classification of workers or occupations based upon common government-defined classifications:\n\nEx:\n-  Private For-Profit Wage and Salary Worker\n-  Private Not-For-Profit Wage and Salary Worker\n-  Local Government Worker\n-  State Government Worker\n-  Federal Government Worker\n-  Self-Employed Worker\n-  Unpaid Family Worker",
+			"DisplayFolderInfo": "{\"name\":\"Party\",\"colorCode\":\"#00727A\"}",
+			"PrimaryKeys": "WorkerClassId",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

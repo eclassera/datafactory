@@ -1,0 +1,113 @@
+{
+	"name": "CustomerActionType",
+	"properties": {
+		"Name": "CustomerActionType",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "A categorization of Customer related Action Types.\n\nEx:\n- Initiate Know Your Customer Review\n- Conclude Know Your Customer Review\n- Request Credit Check\n- Receive Credit Check",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "CustomerActionTypeId",
+					"Description": "The unique identifier of a Customer Action Type.",
+					"BaseAttributeReference": {
+						"Entity": "CustomerActionType.cdm.json/CustomerActionType",
+						"Name": "CustomerActionTypeId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "CustomerActionTypeName",
+					"Description": "The name of a Customer Action Type.",
+					"BaseAttributeReference": {
+						"Entity": "CustomerActionType.cdm.json/CustomerActionType",
+						"Name": "CustomerActionTypeName"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 256,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "CustomerActionTypeDescription",
+					"Description": "The description of a Customer Action Type.",
+					"BaseAttributeReference": {
+						"Entity": "CustomerActionType.cdm.json/CustomerActionType",
+						"Name": "CustomerActionTypeDescription"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/CustomerActionType",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/CustomerActionType",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"CustomerActionTypeId\":{\"entity\":\"CustomerActionType.cdm.json/CustomerActionType\",\"name\":\"CustomerActionTypeId\"},\"CustomerActionTypeName\":{\"entity\":\"CustomerActionType.cdm.json/CustomerActionType\",\"name\":\"CustomerActionTypeName\"},\"CustomerActionTypeDescription\":{\"entity\":\"CustomerActionType.cdm.json/CustomerActionType\",\"name\":\"CustomerActionTypeDescription\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"CustomerActionType\",\"path\":\"CustomerActionType.cdm.json/CustomerActionType\"},\"description\":\"A categorization of Customer related Action Types.\\n\\nEx:\\n- Initiate Know Your Customer Review\\n- Conclude Know Your Customer Review\\n- Request Credit Check\\n- Receive Credit Check\",\"primaryKey\":[\"CustomerActionTypeId\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CustomerActionType.cdm.json/CustomerActionType\",\"name\":\"CustomerActionTypeId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Customer Action Type.\",\"isNullable\":false,\"name\":\"CustomerActionTypeId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CustomerActionType.cdm.json/CustomerActionType\",\"name\":\"CustomerActionTypeName\"},\"dataType\":\"string\",\"dataTypeLength\":256,\"description\":\"The name of a Customer Action Type.\",\"isNullable\":true,\"name\":\"CustomerActionTypeName\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CustomerActionType.cdm.json/CustomerActionType\",\"name\":\"CustomerActionTypeDescription\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"The description of a Customer Action Type.\",\"isNullable\":true,\"name\":\"CustomerActionTypeDescription\"}]}}}",
+			"Description": "A categorization of Customer related Action Types.\n\nEx:\n- Initiate Know Your Customer Review\n- Conclude Know Your Customer Review\n- Request Credit Check\n- Receive Credit Check",
+			"DisplayFolderInfo": "{\"name\":\"Customer\",\"colorCode\":\"#4B003F\"}",
+			"PrimaryKeys": "CustomerActionTypeId",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

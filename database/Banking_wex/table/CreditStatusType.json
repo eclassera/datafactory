@@ -1,0 +1,113 @@
+{
+	"name": "CreditStatusType",
+	"properties": {
+		"Name": "CreditStatusType",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "A credit status that may be applied for a period to reflect credit-worthiness.\n\nEx:\n- Excellent\n- Above Average\n- Average\n- Below Average\n- Poor\n- Unrated \n- Credit available for purchases\n- Credit purchases require management approval\n- Credit denied to future purchases\n- Requires management approval",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "CreditStatusTypeId",
+					"Description": "The unique identifier of a Credit Status Type.",
+					"BaseAttributeReference": {
+						"Entity": "CreditStatusType.cdm.json/CreditStatusType",
+						"Name": "CreditStatusTypeId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "CreditStatusTypeName",
+					"Description": "The name of a Credit Status Type.",
+					"BaseAttributeReference": {
+						"Entity": "CreditStatusType.cdm.json/CreditStatusType",
+						"Name": "CreditStatusTypeName"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 256,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "CreditStatusTypeDescription",
+					"Description": "The description of a Credit Status Type.",
+					"BaseAttributeReference": {
+						"Entity": "CreditStatusType.cdm.json/CreditStatusType",
+						"Name": "CreditStatusTypeDescription"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/CreditStatusType",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/CreditStatusType",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"CreditStatusTypeId\":{\"entity\":\"CreditStatusType.cdm.json/CreditStatusType\",\"name\":\"CreditStatusTypeId\"},\"CreditStatusTypeName\":{\"entity\":\"CreditStatusType.cdm.json/CreditStatusType\",\"name\":\"CreditStatusTypeName\"},\"CreditStatusTypeDescription\":{\"entity\":\"CreditStatusType.cdm.json/CreditStatusType\",\"name\":\"CreditStatusTypeDescription\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"CreditStatusType\",\"path\":\"CreditStatusType.cdm.json/CreditStatusType\"},\"description\":\"A credit status that may be applied for a period to reflect credit-worthiness.\\n\\nEx:\\n- Excellent\\n- Above Average\\n- Average\\n- Below Average\\n- Poor\\n- Unrated \\n- Credit available for purchases\\n- Credit purchases require management approval\\n- Credit denied to future purchases\\n- Requires management approval\",\"primaryKey\":[\"CreditStatusTypeId\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CreditStatusType.cdm.json/CreditStatusType\",\"name\":\"CreditStatusTypeId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Credit Status Type.\",\"isNullable\":false,\"name\":\"CreditStatusTypeId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CreditStatusType.cdm.json/CreditStatusType\",\"name\":\"CreditStatusTypeName\"},\"dataType\":\"string\",\"dataTypeLength\":256,\"description\":\"The name of a Credit Status Type.\",\"isNullable\":true,\"name\":\"CreditStatusTypeName\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CreditStatusType.cdm.json/CreditStatusType\",\"name\":\"CreditStatusTypeDescription\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"The description of a Credit Status Type.\",\"isNullable\":true,\"name\":\"CreditStatusTypeDescription\"}]}}}",
+			"Description": "A credit status that may be applied for a period to reflect credit-worthiness.\n\nEx:\n- Excellent\n- Above Average\n- Average\n- Below Average\n- Poor\n- Unrated \n- Credit available for purchases\n- Credit purchases require management approval\n- Credit denied to future purchases\n- Requires management approval",
+			"DisplayFolderInfo": "{\"name\":\"Customer Credit & Collections\",\"colorCode\":\"#022F22\"}",
+			"PrimaryKeys": "CreditStatusTypeId",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

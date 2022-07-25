@@ -1,0 +1,113 @@
+{
+	"name": "CollectionTelephoneCallType",
+	"properties": {
+		"Name": "CollectionTelephoneCallType",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "A classification of telephone calls based upon common characteristics or functions performed.\n\nExamples:\n-  Reminder\n-  Overdue collection attempt\n-  Referral to collection agency\n-  Account suspended",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "CollectionTelephoneCallTypeId",
+					"Description": "The unique identifier of the Collection Telephone Call Type.",
+					"BaseAttributeReference": {
+						"Entity": "CollectionTelephoneCallType.cdm.json/CollectionTelephoneCallType",
+						"Name": "CollectionTelephoneCallTypeId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "CollectionTelephoneCallTypeName",
+					"Description": "The name of the Collection Telephone Call Type.",
+					"BaseAttributeReference": {
+						"Entity": "CollectionTelephoneCallType.cdm.json/CollectionTelephoneCallType",
+						"Name": "CollectionTelephoneCallTypeName"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 256,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "CollectionTelephoneCallTypeDescription",
+					"Description": "The description of the Collection Telephone Call Type.",
+					"BaseAttributeReference": {
+						"Entity": "CollectionTelephoneCallType.cdm.json/CollectionTelephoneCallType",
+						"Name": "CollectionTelephoneCallTypeDescription"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/CollectionTelephoneCallType",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/CollectionTelephoneCallType",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"CollectionTelephoneCallTypeId\":{\"entity\":\"CollectionTelephoneCallType.cdm.json/CollectionTelephoneCallType\",\"name\":\"CollectionTelephoneCallTypeId\"},\"CollectionTelephoneCallTypeName\":{\"entity\":\"CollectionTelephoneCallType.cdm.json/CollectionTelephoneCallType\",\"name\":\"CollectionTelephoneCallTypeName\"},\"CollectionTelephoneCallTypeDescription\":{\"entity\":\"CollectionTelephoneCallType.cdm.json/CollectionTelephoneCallType\",\"name\":\"CollectionTelephoneCallTypeDescription\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"CollectionTelephoneCallType\",\"path\":\"CollectionTelephoneCallType.cdm.json/CollectionTelephoneCallType\"},\"description\":\"A classification of telephone calls based upon common characteristics or functions performed.\\n\\nExamples:\\n-  Reminder\\n-  Overdue collection attempt\\n-  Referral to collection agency\\n-  Account suspended\",\"primaryKey\":[\"CollectionTelephoneCallTypeId\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CollectionTelephoneCallType.cdm.json/CollectionTelephoneCallType\",\"name\":\"CollectionTelephoneCallTypeId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of the Collection Telephone Call Type.\",\"isNullable\":false,\"name\":\"CollectionTelephoneCallTypeId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CollectionTelephoneCallType.cdm.json/CollectionTelephoneCallType\",\"name\":\"CollectionTelephoneCallTypeName\"},\"dataType\":\"string\",\"dataTypeLength\":256,\"description\":\"The name of the Collection Telephone Call Type.\",\"isNullable\":true,\"name\":\"CollectionTelephoneCallTypeName\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CollectionTelephoneCallType.cdm.json/CollectionTelephoneCallType\",\"name\":\"CollectionTelephoneCallTypeDescription\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"The description of the Collection Telephone Call Type.\",\"isNullable\":true,\"name\":\"CollectionTelephoneCallTypeDescription\"}]}}}",
+			"Description": "A classification of telephone calls based upon common characteristics or functions performed.\n\nExamples:\n-  Reminder\n-  Overdue collection attempt\n-  Referral to collection agency\n-  Account suspended",
+			"DisplayFolderInfo": "{\"name\":\"Customer Credit & Collections\",\"colorCode\":\"#022F22\"}",
+			"PrimaryKeys": "CollectionTelephoneCallTypeId",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

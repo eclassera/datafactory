@@ -1,0 +1,229 @@
+{
+	"name": "CustomerAccountChannelProductSummary",
+	"properties": {
+		"Name": "CustomerAccountChannelProductSummary",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "A summary of customer account transactions via the associated channel for the associated product for the period.",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "CustomerAccountId",
+					"Description": "The unique identifier of a Customer Account.",
+					"BaseAttributeReference": {
+						"Entity": "CustomerAccountChannelProductSummary.cdm.json/CustomerAccountChannelProductSummary",
+						"Name": "CustomerAccountId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "long",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "long"
+						}
+					}
+				},
+				{
+					"Name": "ChannelId",
+					"Description": "The unique identifier of a Channel.",
+					"BaseAttributeReference": {
+						"Entity": "CustomerAccountChannelProductSummary.cdm.json/CustomerAccountChannelProductSummary",
+						"Name": "ChannelId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "ProductId",
+					"Description": "The unique identifier of a Product.",
+					"BaseAttributeReference": {
+						"Entity": "CustomerAccountChannelProductSummary.cdm.json/CustomerAccountChannelProductSummary",
+						"Name": "ProductId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "long",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "long"
+						}
+					}
+				},
+				{
+					"Name": "PeriodStartDate",
+					"Description": "The period start date for which the information is calculated.",
+					"BaseAttributeReference": {
+						"Entity": "CustomerAccountChannelProductSummary.cdm.json/CustomerAccountChannelProductSummary",
+						"Name": "PeriodStartDate"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "date",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"DateFormat": "YYYY-MM-DD",
+							"HIVE_TYPE_STRING": "date"
+						}
+					}
+				},
+				{
+					"Name": "PeriodEndDate",
+					"Description": "The period end date for which the information is calculated.",
+					"BaseAttributeReference": {
+						"Entity": "CustomerAccountChannelProductSummary.cdm.json/CustomerAccountChannelProductSummary",
+						"Name": "PeriodEndDate"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "date",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"DateFormat": "YYYY-MM-DD",
+							"HIVE_TYPE_STRING": "date"
+						}
+					}
+				},
+				{
+					"Name": "NumberOfChannelProductTransactions",
+					"Description": "The number of channel product transaction for the period.",
+					"BaseAttributeReference": {
+						"Entity": "CustomerAccountChannelProductSummary.cdm.json/CustomerAccountChannelProductSummary",
+						"Name": "NumberOfChannelProductTransactions"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "QuantityOfProductSold",
+					"Description": "The quantity of product sold via the associated channel during the period.",
+					"BaseAttributeReference": {
+						"Entity": "CustomerAccountChannelProductSummary.cdm.json/CustomerAccountChannelProductSummary",
+						"Name": "QuantityOfProductSold"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "ValueOfProductSold",
+					"Description": "The valuation or amount of product sold via the channel to the customer account during the associated period.",
+					"BaseAttributeReference": {
+						"Entity": "CustomerAccountChannelProductSummary.cdm.json/CustomerAccountChannelProductSummary",
+						"Name": "ValueOfProductSold"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "decimal",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Precision": 18,
+						"Scale": 2,
+						"Properties": {
+							"HIVE_TYPE_STRING": "decimal"
+						}
+					}
+				},
+				{
+					"Name": "QuantityOfProductDistributed",
+					"Description": "The quantity of product distributed via the associated channel during the period.",
+					"BaseAttributeReference": {
+						"Entity": "CustomerAccountChannelProductSummary.cdm.json/CustomerAccountChannelProductSummary",
+						"Name": "QuantityOfProductDistributed"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "ValueOfProductDistributed",
+					"Description": "The valuation or amount of product distributed via the channel to the customer account during the associated period.",
+					"BaseAttributeReference": {
+						"Entity": "CustomerAccountChannelProductSummary.cdm.json/CustomerAccountChannelProductSummary",
+						"Name": "ValueOfProductDistributed"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "decimal",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Precision": 18,
+						"Scale": 2,
+						"Properties": {
+							"HIVE_TYPE_STRING": "decimal"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/CustomerAccountChannelProductSummary",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/CustomerAccountChannelProductSummary",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"CustomerAccountId\":{\"entity\":\"CustomerAccountChannelProductSummary.cdm.json/CustomerAccountChannelProductSummary\",\"name\":\"CustomerAccountId\"},\"ChannelId\":{\"entity\":\"CustomerAccountChannelProductSummary.cdm.json/CustomerAccountChannelProductSummary\",\"name\":\"ChannelId\"},\"ProductId\":{\"entity\":\"CustomerAccountChannelProductSummary.cdm.json/CustomerAccountChannelProductSummary\",\"name\":\"ProductId\"},\"PeriodStartDate\":{\"entity\":\"CustomerAccountChannelProductSummary.cdm.json/CustomerAccountChannelProductSummary\",\"name\":\"PeriodStartDate\"},\"PeriodEndDate\":{\"entity\":\"CustomerAccountChannelProductSummary.cdm.json/CustomerAccountChannelProductSummary\",\"name\":\"PeriodEndDate\"},\"NumberOfChannelProductTransactions\":{\"entity\":\"CustomerAccountChannelProductSummary.cdm.json/CustomerAccountChannelProductSummary\",\"name\":\"NumberOfChannelProductTransactions\"},\"QuantityOfProductSold\":{\"entity\":\"CustomerAccountChannelProductSummary.cdm.json/CustomerAccountChannelProductSummary\",\"name\":\"QuantityOfProductSold\"},\"ValueOfProductSold\":{\"entity\":\"CustomerAccountChannelProductSummary.cdm.json/CustomerAccountChannelProductSummary\",\"name\":\"ValueOfProductSold\"},\"QuantityOfProductDistributed\":{\"entity\":\"CustomerAccountChannelProductSummary.cdm.json/CustomerAccountChannelProductSummary\",\"name\":\"QuantityOfProductDistributed\"},\"ValueOfProductDistributed\":{\"entity\":\"CustomerAccountChannelProductSummary.cdm.json/CustomerAccountChannelProductSummary\",\"name\":\"ValueOfProductDistributed\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"CustomerAccountChannelProductSummary\",\"path\":\"CustomerAccountChannelProductSummary.cdm.json/CustomerAccountChannelProductSummary\"},\"description\":\"A summary of customer account transactions via the associated channel for the associated product for the period.\",\"primaryKey\":[\"CustomerAccountId\",\"ChannelId\",\"ProductId\",\"PeriodStartDate\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CustomerAccountChannelProductSummary.cdm.json/CustomerAccountChannelProductSummary\",\"name\":\"CustomerAccountId\"},\"dataType\":\"long\",\"description\":\"The unique identifier of a Customer Account.\",\"isNullable\":false,\"name\":\"CustomerAccountId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CustomerAccountChannelProductSummary.cdm.json/CustomerAccountChannelProductSummary\",\"name\":\"ChannelId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Channel.\",\"isNullable\":false,\"name\":\"ChannelId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CustomerAccountChannelProductSummary.cdm.json/CustomerAccountChannelProductSummary\",\"name\":\"ProductId\"},\"dataType\":\"long\",\"description\":\"The unique identifier of a Product.\",\"isNullable\":false,\"name\":\"ProductId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CustomerAccountChannelProductSummary.cdm.json/CustomerAccountChannelProductSummary\",\"name\":\"PeriodStartDate\"},\"dataType\":\"date\",\"dateFormat\":\"YYYY-MM-DD\",\"description\":\"The period start date for which the information is calculated.\",\"isNullable\":false,\"name\":\"PeriodStartDate\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CustomerAccountChannelProductSummary.cdm.json/CustomerAccountChannelProductSummary\",\"name\":\"PeriodEndDate\"},\"dataType\":\"date\",\"dateFormat\":\"YYYY-MM-DD\",\"description\":\"The period end date for which the information is calculated.\",\"isNullable\":false,\"name\":\"PeriodEndDate\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CustomerAccountChannelProductSummary.cdm.json/CustomerAccountChannelProductSummary\",\"name\":\"NumberOfChannelProductTransactions\"},\"dataType\":\"integer\",\"description\":\"The number of channel product transaction for the period.\",\"isNullable\":true,\"name\":\"NumberOfChannelProductTransactions\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CustomerAccountChannelProductSummary.cdm.json/CustomerAccountChannelProductSummary\",\"name\":\"QuantityOfProductSold\"},\"dataType\":\"integer\",\"description\":\"The quantity of product sold via the associated channel during the period.\",\"isNullable\":true,\"name\":\"QuantityOfProductSold\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CustomerAccountChannelProductSummary.cdm.json/CustomerAccountChannelProductSummary\",\"name\":\"ValueOfProductSold\"},\"dataType\":\"decimal\",\"dataTypeLength\":18,\"description\":\"The valuation or amount of product sold via the channel to the customer account during the associated period.\",\"isNullable\":true,\"scale\":2,\"name\":\"ValueOfProductSold\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CustomerAccountChannelProductSummary.cdm.json/CustomerAccountChannelProductSummary\",\"name\":\"QuantityOfProductDistributed\"},\"dataType\":\"integer\",\"description\":\"The quantity of product distributed via the associated channel during the period.\",\"isNullable\":true,\"name\":\"QuantityOfProductDistributed\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CustomerAccountChannelProductSummary.cdm.json/CustomerAccountChannelProductSummary\",\"name\":\"ValueOfProductDistributed\"},\"dataType\":\"decimal\",\"dataTypeLength\":18,\"description\":\"The valuation or amount of product distributed via the channel to the customer account during the associated period.\",\"isNullable\":true,\"scale\":2,\"name\":\"ValueOfProductDistributed\"}]}}}",
+			"Description": "A summary of customer account transactions via the associated channel for the associated product for the period.",
+			"DisplayFolderInfo": "{\"name\":\"Channel\",\"colorCode\":\"#001D3F\"}",
+			"PrimaryKeys": "CustomerAccountId,ChannelId,ProductId,PeriodStartDate",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

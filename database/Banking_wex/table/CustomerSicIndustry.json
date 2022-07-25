@@ -1,0 +1,164 @@
+{
+	"name": "CustomerSicIndustry",
+	"properties": {
+		"Name": "CustomerSicIndustry",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "The SIC Industry associated with the Customer during a given period.",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "CustomerId",
+					"Description": "The unique identifier of a Customer.",
+					"BaseAttributeReference": {
+						"Entity": "CustomerSicIndustry.cdm.json/CustomerSicIndustry",
+						"Name": "CustomerId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "long",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "long"
+						}
+					}
+				},
+				{
+					"Name": "IndustryPreferenceId",
+					"Description": "The unique identifier of an Industry Preference.",
+					"BaseAttributeReference": {
+						"Entity": "CustomerSicIndustry.cdm.json/CustomerSicIndustry",
+						"Name": "IndustryPreferenceId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "PeriodStartDate",
+					"Description": "The period start date for which the Customer National Industry is effective or 'as-of' for the given preference.",
+					"BaseAttributeReference": {
+						"Entity": "CustomerSicIndustry.cdm.json/CustomerSicIndustry",
+						"Name": "PeriodStartDate"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "date",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"DateFormat": "YYYY-MM-DD",
+							"HIVE_TYPE_STRING": "date"
+						}
+					}
+				},
+				{
+					"Name": "PeriodEndDate",
+					"Description": "The period end date for which the Customer SIC Industry is effective or 'as-of' for the given preference.",
+					"BaseAttributeReference": {
+						"Entity": "CustomerSicIndustry.cdm.json/CustomerSicIndustry",
+						"Name": "PeriodEndDate"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "date",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"DateFormat": "YYYY-MM-DD",
+							"HIVE_TYPE_STRING": "date"
+						}
+					}
+				},
+				{
+					"Name": "SicIndustryCode",
+					"Description": "The unique identifier of the SIC Industry.",
+					"BaseAttributeReference": {
+						"Entity": "CustomerSicIndustry.cdm.json/CustomerSicIndustry",
+						"Name": "SicIndustryCode"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "decimal",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Precision": 4,
+						"Scale": 0,
+						"Properties": {
+							"HIVE_TYPE_STRING": "decimal"
+						}
+					}
+				},
+				{
+					"Name": "CustomerSicIndustryNote",
+					"Description": "Notes, comments or additional information regarding the Customer SIC Industry.",
+					"BaseAttributeReference": {
+						"Entity": "CustomerSicIndustry.cdm.json/CustomerSicIndustry",
+						"Name": "CustomerSicIndustryNote"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/CustomerSicIndustry",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/CustomerSicIndustry",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"CustomerId\":{\"entity\":\"CustomerSicIndustry.cdm.json/CustomerSicIndustry\",\"name\":\"CustomerId\"},\"IndustryPreferenceId\":{\"entity\":\"CustomerSicIndustry.cdm.json/CustomerSicIndustry\",\"name\":\"IndustryPreferenceId\"},\"PeriodStartDate\":{\"entity\":\"CustomerSicIndustry.cdm.json/CustomerSicIndustry\",\"name\":\"PeriodStartDate\"},\"PeriodEndDate\":{\"entity\":\"CustomerSicIndustry.cdm.json/CustomerSicIndustry\",\"name\":\"PeriodEndDate\"},\"SicIndustryCode\":{\"entity\":\"CustomerSicIndustry.cdm.json/CustomerSicIndustry\",\"name\":\"SicIndustryCode\"},\"CustomerSicIndustryNote\":{\"entity\":\"CustomerSicIndustry.cdm.json/CustomerSicIndustry\",\"name\":\"CustomerSicIndustryNote\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"CustomerSicIndustry\",\"path\":\"CustomerSicIndustry.cdm.json/CustomerSicIndustry\"},\"description\":\"The SIC Industry associated with the Customer during a given period.\",\"primaryKey\":[\"CustomerId\",\"IndustryPreferenceId\",\"PeriodStartDate\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CustomerSicIndustry.cdm.json/CustomerSicIndustry\",\"name\":\"CustomerId\"},\"dataType\":\"long\",\"description\":\"The unique identifier of a Customer.\",\"isNullable\":false,\"name\":\"CustomerId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CustomerSicIndustry.cdm.json/CustomerSicIndustry\",\"name\":\"IndustryPreferenceId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of an Industry Preference.\",\"isNullable\":false,\"name\":\"IndustryPreferenceId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CustomerSicIndustry.cdm.json/CustomerSicIndustry\",\"name\":\"PeriodStartDate\"},\"dataType\":\"date\",\"dateFormat\":\"YYYY-MM-DD\",\"description\":\"The period start date for which the Customer National Industry is effective or 'as-of' for the given preference.\",\"isNullable\":false,\"name\":\"PeriodStartDate\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CustomerSicIndustry.cdm.json/CustomerSicIndustry\",\"name\":\"PeriodEndDate\"},\"dataType\":\"date\",\"dateFormat\":\"YYYY-MM-DD\",\"description\":\"The period end date for which the Customer SIC Industry is effective or 'as-of' for the given preference.\",\"isNullable\":true,\"name\":\"PeriodEndDate\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CustomerSicIndustry.cdm.json/CustomerSicIndustry\",\"name\":\"SicIndustryCode\"},\"dataType\":\"decimal\",\"dataTypeLength\":4,\"description\":\"The unique identifier of the SIC Industry.\",\"isNullable\":true,\"scale\":0,\"name\":\"SicIndustryCode\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CustomerSicIndustry.cdm.json/CustomerSicIndustry\",\"name\":\"CustomerSicIndustryNote\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"Notes, comments or additional information regarding the Customer SIC Industry.\",\"isNullable\":true,\"name\":\"CustomerSicIndustryNote\"}]}}}",
+			"Description": "The SIC Industry associated with the Customer during a given period.",
+			"DisplayFolderInfo": "{\"name\":\"Party\",\"colorCode\":\"#00727A\"}",
+			"PrimaryKeys": "CustomerId,IndustryPreferenceId,PeriodStartDate",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

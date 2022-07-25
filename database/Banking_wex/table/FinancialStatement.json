@@ -1,0 +1,213 @@
+{
+	"name": "FinancialStatement",
+	"properties": {
+		"Name": "FinancialStatement",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "Financial statements provide a format for the reporting of accounting information. The format and names of the required financial statements is different for each of the accounting frameworks.",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "LegalEntityId",
+					"Description": "The unique identifier of a Legal Entity.",
+					"BaseAttributeReference": {
+						"Entity": "FinancialStatement.cdm.json/FinancialStatement",
+						"Name": "LegalEntityId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "FinancialStatementId",
+					"Description": "The unique identifier of a Financial Statement.",
+					"BaseAttributeReference": {
+						"Entity": "FinancialStatement.cdm.json/FinancialStatement",
+						"Name": "FinancialStatementId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "PeriodStartDate",
+					"Description": "The period start date for which the financial statement is prepared.",
+					"BaseAttributeReference": {
+						"Entity": "FinancialStatement.cdm.json/FinancialStatement",
+						"Name": "PeriodStartDate"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "date",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"DateFormat": "YYYY-MM-DD",
+							"HIVE_TYPE_STRING": "date"
+						}
+					}
+				},
+				{
+					"Name": "PeriodEndDate",
+					"Description": "The period end date for which the financial statement is prepared.",
+					"BaseAttributeReference": {
+						"Entity": "FinancialStatement.cdm.json/FinancialStatement",
+						"Name": "PeriodEndDate"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "date",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"DateFormat": "YYYY-MM-DD",
+							"HIVE_TYPE_STRING": "date"
+						}
+					}
+				},
+				{
+					"Name": "FinancialStatementName",
+					"Description": "The name of the Financial Statement.",
+					"BaseAttributeReference": {
+						"Entity": "FinancialStatement.cdm.json/FinancialStatement",
+						"Name": "FinancialStatementName"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 256,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "FinancialStatementDescription",
+					"Description": "The description of the Financial Statement.",
+					"BaseAttributeReference": {
+						"Entity": "FinancialStatement.cdm.json/FinancialStatement",
+						"Name": "FinancialStatementDescription"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "FinancialStatementPreparationDate",
+					"Description": "The date that the Financial Statement was prepared.",
+					"BaseAttributeReference": {
+						"Entity": "FinancialStatement.cdm.json/FinancialStatement",
+						"Name": "FinancialStatementPreparationDate"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "date",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"DateFormat": "YYYY-MM-DD",
+							"HIVE_TYPE_STRING": "date"
+						}
+					}
+				},
+				{
+					"Name": "AccountantsOpinionStatement",
+					"Description": "A signed statement regarding the financial status of an entity from an independent public accountant after examination of that entities records and accounts.",
+					"BaseAttributeReference": {
+						"Entity": "FinancialStatement.cdm.json/FinancialStatement",
+						"Name": "AccountantsOpinionStatement"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "FinancialStatementTypeId",
+					"Description": "The unique identifier of a Financial Statement Type.",
+					"BaseAttributeReference": {
+						"Entity": "FinancialStatement.cdm.json/FinancialStatement",
+						"Name": "FinancialStatementTypeId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/FinancialStatement",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/FinancialStatement",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"LegalEntityId\":{\"entity\":\"FinancialStatement.cdm.json/FinancialStatement\",\"name\":\"LegalEntityId\"},\"FinancialStatementId\":{\"entity\":\"FinancialStatement.cdm.json/FinancialStatement\",\"name\":\"FinancialStatementId\"},\"PeriodStartDate\":{\"entity\":\"FinancialStatement.cdm.json/FinancialStatement\",\"name\":\"PeriodStartDate\"},\"PeriodEndDate\":{\"entity\":\"FinancialStatement.cdm.json/FinancialStatement\",\"name\":\"PeriodEndDate\"},\"FinancialStatementName\":{\"entity\":\"FinancialStatement.cdm.json/FinancialStatement\",\"name\":\"FinancialStatementName\"},\"FinancialStatementDescription\":{\"entity\":\"FinancialStatement.cdm.json/FinancialStatement\",\"name\":\"FinancialStatementDescription\"},\"FinancialStatementPreparationDate\":{\"entity\":\"FinancialStatement.cdm.json/FinancialStatement\",\"name\":\"FinancialStatementPreparationDate\"},\"AccountantsOpinionStatement\":{\"entity\":\"FinancialStatement.cdm.json/FinancialStatement\",\"name\":\"AccountantsOpinionStatement\"},\"FinancialStatementTypeId\":{\"entity\":\"FinancialStatement.cdm.json/FinancialStatement\",\"name\":\"FinancialStatementTypeId\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"FinancialStatement\",\"path\":\"FinancialStatement.cdm.json/FinancialStatement\"},\"description\":\"Financial statements provide a format for the reporting of accounting information. The format and names of the required financial statements is different for each of the accounting frameworks.\",\"primaryKey\":[\"LegalEntityId\",\"FinancialStatementId\",\"PeriodStartDate\",\"PeriodEndDate\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"FinancialStatement.cdm.json/FinancialStatement\",\"name\":\"LegalEntityId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Legal Entity.\",\"isNullable\":false,\"name\":\"LegalEntityId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"FinancialStatement.cdm.json/FinancialStatement\",\"name\":\"FinancialStatementId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Financial Statement.\",\"isNullable\":false,\"name\":\"FinancialStatementId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"FinancialStatement.cdm.json/FinancialStatement\",\"name\":\"PeriodStartDate\"},\"dataType\":\"date\",\"dateFormat\":\"YYYY-MM-DD\",\"description\":\"The period start date for which the financial statement is prepared.\",\"isNullable\":false,\"name\":\"PeriodStartDate\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"FinancialStatement.cdm.json/FinancialStatement\",\"name\":\"PeriodEndDate\"},\"dataType\":\"date\",\"dateFormat\":\"YYYY-MM-DD\",\"description\":\"The period end date for which the financial statement is prepared.\",\"isNullable\":false,\"name\":\"PeriodEndDate\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"FinancialStatement.cdm.json/FinancialStatement\",\"name\":\"FinancialStatementName\"},\"dataType\":\"string\",\"dataTypeLength\":256,\"description\":\"The name of the Financial Statement.\",\"isNullable\":true,\"name\":\"FinancialStatementName\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"FinancialStatement.cdm.json/FinancialStatement\",\"name\":\"FinancialStatementDescription\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"The description of the Financial Statement.\",\"isNullable\":true,\"name\":\"FinancialStatementDescription\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"FinancialStatement.cdm.json/FinancialStatement\",\"name\":\"FinancialStatementPreparationDate\"},\"dataType\":\"date\",\"dateFormat\":\"YYYY-MM-DD\",\"description\":\"The date that the Financial Statement was prepared.\",\"isNullable\":true,\"name\":\"FinancialStatementPreparationDate\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"FinancialStatement.cdm.json/FinancialStatement\",\"name\":\"AccountantsOpinionStatement\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"A signed statement regarding the financial status of an entity from an independent public accountant after examination of that entities records and accounts.\",\"isNullable\":true,\"name\":\"AccountantsOpinionStatement\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"FinancialStatement.cdm.json/FinancialStatement\",\"name\":\"FinancialStatementTypeId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Financial Statement Type.\",\"isNullable\":true,\"name\":\"FinancialStatementTypeId\"}]}}}",
+			"Description": "Financial statements provide a format for the reporting of accounting information. The format and names of the required financial statements is different for each of the accounting frameworks.",
+			"DisplayFolderInfo": "{\"name\":\"Accounting & Financial Reporting\",\"colorCode\":\"#0078D4\"}",
+			"PrimaryKeys": "LegalEntityId,FinancialStatementId,PeriodStartDate,PeriodEndDate",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

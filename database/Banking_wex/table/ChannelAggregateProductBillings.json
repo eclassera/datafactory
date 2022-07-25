@@ -1,0 +1,165 @@
+{
+	"name": "ChannelAggregateProductBillings",
+	"properties": {
+		"Name": "ChannelAggregateProductBillings",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "The total Product bookings expressed in terms of unit quantity and billed valuation for the associated timestamp.\n\nBillings represent actual sales that have been made and have been invoiced to customers.   In this case billings are summarized for a product across all customers.",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "ChannelId",
+					"Description": "The unique identifier of a Channel.",
+					"BaseAttributeReference": {
+						"Entity": "ChannelAggregateProductBillings.cdm.json/ChannelAggregateProductBillings",
+						"Name": "ChannelId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "ProductId",
+					"Description": "The unique identifier of a Product.",
+					"BaseAttributeReference": {
+						"Entity": "ChannelAggregateProductBillings.cdm.json/ChannelAggregateProductBillings",
+						"Name": "ProductId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "long",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "long"
+						}
+					}
+				},
+				{
+					"Name": "Timestamp",
+					"Description": "The timestamp that the associated information is reported, recorded or effective as-of.",
+					"BaseAttributeReference": {
+						"Entity": "ChannelAggregateProductBillings.cdm.json/ChannelAggregateProductBillings",
+						"Name": "Timestamp"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "timestamp",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"TimestampFormat": "YYYY-MM-DD HH:MM:SS.fffffffff",
+							"HIVE_TYPE_STRING": "timestamp"
+						}
+					}
+				},
+				{
+					"Name": "TotalBilledProductUnitsQuantity",
+					"Description": "The total quantity of Product billed for the associated date.",
+					"BaseAttributeReference": {
+						"Entity": "ChannelAggregateProductBillings.cdm.json/ChannelAggregateProductBillings",
+						"Name": "TotalBilledProductUnitsQuantity"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "decimal",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Precision": 18,
+						"Scale": 2,
+						"Properties": {
+							"HIVE_TYPE_STRING": "decimal"
+						}
+					}
+				},
+				{
+					"Name": "TotalBilledProductUnitsValuationAmount",
+					"Description": "The total valuation of Product billed during the associated period and valued at actual invoiced values.",
+					"BaseAttributeReference": {
+						"Entity": "ChannelAggregateProductBillings.cdm.json/ChannelAggregateProductBillings",
+						"Name": "TotalBilledProductUnitsValuationAmount"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "decimal",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Precision": 18,
+						"Scale": 2,
+						"Properties": {
+							"HIVE_TYPE_STRING": "decimal"
+						}
+					}
+				},
+				{
+					"Name": "IsoCurrencyCode",
+					"Description": "The ISO 4217 currency code.\n\nEx:\nCurrency Code = AED\nCurrency Name = Dirham\nCountry Name = United Arab Emirates",
+					"BaseAttributeReference": {
+						"Entity": "ChannelAggregateProductBillings.cdm.json/ChannelAggregateProductBillings",
+						"Name": "IsoCurrencyCode"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 3,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/ChannelAggregateProductBillings",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/ChannelAggregateProductBillings",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"ChannelId\":{\"entity\":\"ChannelAggregateProductBillings.cdm.json/ChannelAggregateProductBillings\",\"name\":\"ChannelId\"},\"ProductId\":{\"entity\":\"ChannelAggregateProductBillings.cdm.json/ChannelAggregateProductBillings\",\"name\":\"ProductId\"},\"Timestamp\":{\"entity\":\"ChannelAggregateProductBillings.cdm.json/ChannelAggregateProductBillings\",\"name\":\"Timestamp\"},\"TotalBilledProductUnitsQuantity\":{\"entity\":\"ChannelAggregateProductBillings.cdm.json/ChannelAggregateProductBillings\",\"name\":\"TotalBilledProductUnitsQuantity\"},\"TotalBilledProductUnitsValuationAmount\":{\"entity\":\"ChannelAggregateProductBillings.cdm.json/ChannelAggregateProductBillings\",\"name\":\"TotalBilledProductUnitsValuationAmount\"},\"IsoCurrencyCode\":{\"entity\":\"ChannelAggregateProductBillings.cdm.json/ChannelAggregateProductBillings\",\"name\":\"IsoCurrencyCode\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"ChannelAggregateProductBillings\",\"path\":\"ChannelAggregateProductBillings.cdm.json/ChannelAggregateProductBillings\"},\"description\":\"The total Product bookings expressed in terms of unit quantity and billed valuation for the associated timestamp.\\n\\nBillings represent actual sales that have been made and have been invoiced to customers.   In this case billings are summarized for a product across all customers.\",\"primaryKey\":[\"ChannelId\",\"ProductId\",\"Timestamp\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ChannelAggregateProductBillings.cdm.json/ChannelAggregateProductBillings\",\"name\":\"ChannelId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Channel.\",\"isNullable\":false,\"name\":\"ChannelId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ChannelAggregateProductBillings.cdm.json/ChannelAggregateProductBillings\",\"name\":\"ProductId\"},\"dataType\":\"long\",\"description\":\"The unique identifier of a Product.\",\"isNullable\":false,\"name\":\"ProductId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ChannelAggregateProductBillings.cdm.json/ChannelAggregateProductBillings\",\"name\":\"Timestamp\"},\"dataType\":\"timestamp\",\"description\":\"The timestamp that the associated information is reported, recorded or effective as-of.\",\"isNullable\":false,\"name\":\"Timestamp\",\"timestampFormat\":\"YYYY-MM-DD HH:MM:SS.fffffffff\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ChannelAggregateProductBillings.cdm.json/ChannelAggregateProductBillings\",\"name\":\"TotalBilledProductUnitsQuantity\"},\"dataType\":\"decimal\",\"dataTypeLength\":18,\"description\":\"The total quantity of Product billed for the associated date.\",\"isNullable\":true,\"scale\":2,\"name\":\"TotalBilledProductUnitsQuantity\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ChannelAggregateProductBillings.cdm.json/ChannelAggregateProductBillings\",\"name\":\"TotalBilledProductUnitsValuationAmount\"},\"dataType\":\"decimal\",\"dataTypeLength\":18,\"description\":\"The total valuation of Product billed during the associated period and valued at actual invoiced values.\",\"isNullable\":true,\"scale\":2,\"name\":\"TotalBilledProductUnitsValuationAmount\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ChannelAggregateProductBillings.cdm.json/ChannelAggregateProductBillings\",\"name\":\"IsoCurrencyCode\"},\"dataType\":\"string\",\"dataTypeLength\":3,\"description\":\"The ISO 4217 currency code.\\n\\nEx:\\nCurrency Code = AED\\nCurrency Name = Dirham\\nCountry Name = United Arab Emirates\",\"isNullable\":true,\"name\":\"IsoCurrencyCode\"}]}}}",
+			"Description": "The total Product bookings expressed in terms of unit quantity and billed valuation for the associated timestamp.\n\nBillings represent actual sales that have been made and have been invoiced to customers.   In this case billings are summarized for a product across all customers.",
+			"DisplayFolderInfo": "{\"name\":\"Channel\",\"colorCode\":\"#001D3F\"}",
+			"PrimaryKeys": "ChannelId,ProductId,Timestamp",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

@@ -1,0 +1,113 @@
+{
+	"name": "ExperianLegalFilingType",
+	"properties": {
+		"Name": "ExperianLegalFilingType",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "The type of Experian legal filing type.\n\nEx:\n- Federal Tax Lien",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "ExperianLegalFilingTypeId",
+					"Description": "The unique identifier of an Experian legal filing type.",
+					"BaseAttributeReference": {
+						"Entity": "ExperianLegalFilingType.cdm.json/ExperianLegalFilingType",
+						"Name": "ExperianLegalFilingTypeId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "ExperianLegalFilingTypeName",
+					"Description": "The name of an Experian legal filing type.",
+					"BaseAttributeReference": {
+						"Entity": "ExperianLegalFilingType.cdm.json/ExperianLegalFilingType",
+						"Name": "ExperianLegalFilingTypeName"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 256,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "ExperianLegalFilingTypeDescription",
+					"Description": "The description of an Experian legal filing type.",
+					"BaseAttributeReference": {
+						"Entity": "ExperianLegalFilingType.cdm.json/ExperianLegalFilingType",
+						"Name": "ExperianLegalFilingTypeDescription"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/ExperianLegalFilingType",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/ExperianLegalFilingType",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"ExperianLegalFilingTypeId\":{\"entity\":\"ExperianLegalFilingType.cdm.json/ExperianLegalFilingType\",\"name\":\"ExperianLegalFilingTypeId\"},\"ExperianLegalFilingTypeName\":{\"entity\":\"ExperianLegalFilingType.cdm.json/ExperianLegalFilingType\",\"name\":\"ExperianLegalFilingTypeName\"},\"ExperianLegalFilingTypeDescription\":{\"entity\":\"ExperianLegalFilingType.cdm.json/ExperianLegalFilingType\",\"name\":\"ExperianLegalFilingTypeDescription\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"ExperianLegalFilingType\",\"path\":\"ExperianLegalFilingType.cdm.json/ExperianLegalFilingType\"},\"description\":\"The type of Experian legal filing type.\\n\\nEx:\\n- Federal Tax Lien\",\"primaryKey\":[\"ExperianLegalFilingTypeId\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ExperianLegalFilingType.cdm.json/ExperianLegalFilingType\",\"name\":\"ExperianLegalFilingTypeId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of an Experian legal filing type.\",\"isNullable\":false,\"name\":\"ExperianLegalFilingTypeId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ExperianLegalFilingType.cdm.json/ExperianLegalFilingType\",\"name\":\"ExperianLegalFilingTypeName\"},\"dataType\":\"string\",\"dataTypeLength\":256,\"description\":\"The name of an Experian legal filing type.\",\"isNullable\":true,\"name\":\"ExperianLegalFilingTypeName\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ExperianLegalFilingType.cdm.json/ExperianLegalFilingType\",\"name\":\"ExperianLegalFilingTypeDescription\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"The description of an Experian legal filing type.\",\"isNullable\":true,\"name\":\"ExperianLegalFilingTypeDescription\"}]}}}",
+			"Description": "The type of Experian legal filing type.\n\nEx:\n- Federal Tax Lien",
+			"DisplayFolderInfo": "{\"name\":\"Customer Credit & Collections\",\"colorCode\":\"#022F22\"}",
+			"PrimaryKeys": "ExperianLegalFilingTypeId",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

@@ -1,0 +1,162 @@
+{
+	"name": "ChannelPromotionProduct",
+	"properties": {
+		"Name": "ChannelPromotionProduct",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "The Product(s) offered by Channel in conjunction with Promotion(s) for the period indicated.",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "ChannelId",
+					"Description": "The unique identifier of a Channel.",
+					"BaseAttributeReference": {
+						"Entity": "ChannelPromotionProduct.cdm.json/ChannelPromotionProduct",
+						"Name": "ChannelId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "PromotionId",
+					"Description": "The unique identifier of a Promotion.",
+					"BaseAttributeReference": {
+						"Entity": "ChannelPromotionProduct.cdm.json/ChannelPromotionProduct",
+						"Name": "PromotionId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "ProductId",
+					"Description": "The unique identifier of a Product.",
+					"BaseAttributeReference": {
+						"Entity": "ChannelPromotionProduct.cdm.json/ChannelPromotionProduct",
+						"Name": "ProductId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "long",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "long"
+						}
+					}
+				},
+				{
+					"Name": "PeriodStartDate",
+					"Description": "The effective start or period start date for the associated offering promotion.",
+					"BaseAttributeReference": {
+						"Entity": "ChannelPromotionProduct.cdm.json/ChannelPromotionProduct",
+						"Name": "PeriodStartDate"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "date",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"DateFormat": "YYYY-MM-DD",
+							"HIVE_TYPE_STRING": "date"
+						}
+					}
+				},
+				{
+					"Name": "PeriodEndDate",
+					"Description": "The effective end or period end date for the associated offering promotion.",
+					"BaseAttributeReference": {
+						"Entity": "ChannelPromotionProduct.cdm.json/ChannelPromotionProduct",
+						"Name": "PeriodEndDate"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "date",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"DateFormat": "YYYY-MM-DD",
+							"HIVE_TYPE_STRING": "date"
+						}
+					}
+				},
+				{
+					"Name": "PromotionNote",
+					"Description": "A comment, note or additional information regarding the associated offering promotion.",
+					"BaseAttributeReference": {
+						"Entity": "ChannelPromotionProduct.cdm.json/ChannelPromotionProduct",
+						"Name": "PromotionNote"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/ChannelPromotionProduct",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/ChannelPromotionProduct",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"ChannelId\":{\"entity\":\"ChannelPromotionProduct.cdm.json/ChannelPromotionProduct\",\"name\":\"ChannelId\"},\"PromotionId\":{\"entity\":\"ChannelPromotionProduct.cdm.json/ChannelPromotionProduct\",\"name\":\"PromotionId\"},\"ProductId\":{\"entity\":\"ChannelPromotionProduct.cdm.json/ChannelPromotionProduct\",\"name\":\"ProductId\"},\"PeriodStartDate\":{\"entity\":\"ChannelPromotionProduct.cdm.json/ChannelPromotionProduct\",\"name\":\"PeriodStartDate\"},\"PeriodEndDate\":{\"entity\":\"ChannelPromotionProduct.cdm.json/ChannelPromotionProduct\",\"name\":\"PeriodEndDate\"},\"PromotionNote\":{\"entity\":\"ChannelPromotionProduct.cdm.json/ChannelPromotionProduct\",\"name\":\"PromotionNote\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"ChannelPromotionProduct\",\"path\":\"ChannelPromotionProduct.cdm.json/ChannelPromotionProduct\"},\"description\":\"The Product(s) offered by Channel in conjunction with Promotion(s) for the period indicated.\",\"primaryKey\":[\"ChannelId\",\"PromotionId\",\"ProductId\",\"PeriodStartDate\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ChannelPromotionProduct.cdm.json/ChannelPromotionProduct\",\"name\":\"ChannelId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Channel.\",\"isNullable\":false,\"name\":\"ChannelId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ChannelPromotionProduct.cdm.json/ChannelPromotionProduct\",\"name\":\"PromotionId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Promotion.\",\"isNullable\":false,\"name\":\"PromotionId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ChannelPromotionProduct.cdm.json/ChannelPromotionProduct\",\"name\":\"ProductId\"},\"dataType\":\"long\",\"description\":\"The unique identifier of a Product.\",\"isNullable\":false,\"name\":\"ProductId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ChannelPromotionProduct.cdm.json/ChannelPromotionProduct\",\"name\":\"PeriodStartDate\"},\"dataType\":\"date\",\"dateFormat\":\"YYYY-MM-DD\",\"description\":\"The effective start or period start date for the associated offering promotion.\",\"isNullable\":false,\"name\":\"PeriodStartDate\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ChannelPromotionProduct.cdm.json/ChannelPromotionProduct\",\"name\":\"PeriodEndDate\"},\"dataType\":\"date\",\"dateFormat\":\"YYYY-MM-DD\",\"description\":\"The effective end or period end date for the associated offering promotion.\",\"isNullable\":true,\"name\":\"PeriodEndDate\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ChannelPromotionProduct.cdm.json/ChannelPromotionProduct\",\"name\":\"PromotionNote\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"A comment, note or additional information regarding the associated offering promotion.\",\"isNullable\":true,\"name\":\"PromotionNote\"}]}}}",
+			"Description": "The Product(s) offered by Channel in conjunction with Promotion(s) for the period indicated.",
+			"DisplayFolderInfo": "{\"name\":\"Channel\",\"colorCode\":\"#001D3F\"}",
+			"PrimaryKeys": "ChannelId,PromotionId,ProductId,PeriodStartDate",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

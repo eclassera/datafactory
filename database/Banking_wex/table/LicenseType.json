@@ -1,0 +1,146 @@
+{
+	"name": "LicenseType",
+	"properties": {
+		"Name": "LicenseType",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "The type of license.\n\nEx:\n- Ambulatory Surgical License\n- MD Practice License\n- Nursing License\n- Facility License\n- Insurance Selling License",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "LicenseTypeId",
+					"Description": "The unique identifier of a License Type.",
+					"BaseAttributeReference": {
+						"Entity": "LicenseType.cdm.json/LicenseType",
+						"Name": "LicenseTypeId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "LicenseTypeName",
+					"Description": "The name of a License Type.",
+					"BaseAttributeReference": {
+						"Entity": "LicenseType.cdm.json/LicenseType",
+						"Name": "LicenseTypeName"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 256,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "LicenseTypeDescription",
+					"Description": "The description of a License Type.",
+					"BaseAttributeReference": {
+						"Entity": "LicenseType.cdm.json/LicenseType",
+						"Name": "LicenseTypeDescription"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "LicenseTypeText",
+					"Description": "The complete text related to the License Type.",
+					"BaseAttributeReference": {
+						"Entity": "LicenseType.cdm.json/LicenseType",
+						"Name": "LicenseTypeText"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "LicenseTypeIssuingGoverningPartyId",
+					"Description": "The unique identifier of a Party.",
+					"BaseAttributeReference": {
+						"Entity": "LicenseType.cdm.json/LicenseType",
+						"Name": "LicenseTypeIssuingGoverningPartyId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "long",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"HIVE_TYPE_STRING": "long"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/LicenseType",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/LicenseType",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"LicenseTypeId\":{\"entity\":\"LicenseType.cdm.json/LicenseType\",\"name\":\"LicenseTypeId\"},\"LicenseTypeName\":{\"entity\":\"LicenseType.cdm.json/LicenseType\",\"name\":\"LicenseTypeName\"},\"LicenseTypeDescription\":{\"entity\":\"LicenseType.cdm.json/LicenseType\",\"name\":\"LicenseTypeDescription\"},\"LicenseTypeText\":{\"entity\":\"LicenseType.cdm.json/LicenseType\",\"name\":\"LicenseTypeText\"},\"LicenseTypeIssuingGoverningPartyId\":{\"entity\":\"LicenseType.cdm.json/LicenseType\",\"name\":\"LicenseTypeIssuingGoverningPartyId\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"LicenseType\",\"path\":\"LicenseType.cdm.json/LicenseType\"},\"description\":\"The type of license.\\n\\nEx:\\n- Ambulatory Surgical License\\n- MD Practice License\\n- Nursing License\\n- Facility License\\n- Insurance Selling License\",\"primaryKey\":[\"LicenseTypeId\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"LicenseType.cdm.json/LicenseType\",\"name\":\"LicenseTypeId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a License Type.\",\"isNullable\":false,\"name\":\"LicenseTypeId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"LicenseType.cdm.json/LicenseType\",\"name\":\"LicenseTypeName\"},\"dataType\":\"string\",\"dataTypeLength\":256,\"description\":\"The name of a License Type.\",\"isNullable\":true,\"name\":\"LicenseTypeName\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"LicenseType.cdm.json/LicenseType\",\"name\":\"LicenseTypeDescription\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"The description of a License Type.\",\"isNullable\":true,\"name\":\"LicenseTypeDescription\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"LicenseType.cdm.json/LicenseType\",\"name\":\"LicenseTypeText\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"The complete text related to the License Type.\",\"isNullable\":true,\"name\":\"LicenseTypeText\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"LicenseType.cdm.json/LicenseType\",\"name\":\"LicenseTypeIssuingGoverningPartyId\"},\"dataType\":\"long\",\"description\":\"The unique identifier of a Party.\",\"isNullable\":true,\"name\":\"LicenseTypeIssuingGoverningPartyId\"}]}}}",
+			"Description": "The type of license.\n\nEx:\n- Ambulatory Surgical License\n- MD Practice License\n- Nursing License\n- Facility License\n- Insurance Selling License",
+			"DisplayFolderInfo": "{\"name\":\"Human Resources & Payroll\",\"colorCode\":\"#042C59\"}",
+			"PrimaryKeys": "LicenseTypeId",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

@@ -1,0 +1,165 @@
+{
+	"name": "DunBradstreetReportPaymentIndex",
+	"properties": {
+		"Name": "DunBradstreetReportPaymentIndex",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "The Customer Dun Bradstreet Payment Index for the indicated range of dates.\n\nThe D&B index rating it's ability to pay its invoices.",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "DunsNumber",
+					"Description": "Dun & Bradstreet (D&B) provides a D-U-N-S Number, a unique nine digit identification number, for each physical location of your business.",
+					"BaseAttributeReference": {
+						"Entity": "DunBradstreetReportPaymentIndex.cdm.json/DunBradstreetReportPaymentIndex",
+						"Name": "DunsNumber"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "decimal",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Precision": 9,
+						"Scale": 0,
+						"Properties": {
+							"HIVE_TYPE_STRING": "decimal"
+						}
+					}
+				},
+				{
+					"Name": "ReportPurchaseDate",
+					"Description": "The purchase date of the report.",
+					"BaseAttributeReference": {
+						"Entity": "DunBradstreetReportPaymentIndex.cdm.json/DunBradstreetReportPaymentIndex",
+						"Name": "ReportPurchaseDate"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "date",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"DateFormat": "YYYY-MM-DD",
+							"HIVE_TYPE_STRING": "date"
+						}
+					}
+				},
+				{
+					"Name": "PeriodStartDate",
+					"Description": "The period start date for which the associated D&B data is effective or 'as-of'.",
+					"BaseAttributeReference": {
+						"Entity": "DunBradstreetReportPaymentIndex.cdm.json/DunBradstreetReportPaymentIndex",
+						"Name": "PeriodStartDate"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "date",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"DateFormat": "YYYY-MM-DD",
+							"HIVE_TYPE_STRING": "date"
+						}
+					}
+				},
+				{
+					"Name": "PeriodEndDate",
+					"Description": "The period end date for which the associated D&B data is effective or 'as-of'.",
+					"BaseAttributeReference": {
+						"Entity": "DunBradstreetReportPaymentIndex.cdm.json/DunBradstreetReportPaymentIndex",
+						"Name": "PeriodEndDate"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "date",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"DateFormat": "YYYY-MM-DD",
+							"HIVE_TYPE_STRING": "date"
+						}
+					}
+				},
+				{
+					"Name": "DunBradstreetPaymentIndexId",
+					"Description": "The unique identifier of a D&B Payment Index.",
+					"BaseAttributeReference": {
+						"Entity": "DunBradstreetReportPaymentIndex.cdm.json/DunBradstreetReportPaymentIndex",
+						"Name": "DunBradstreetPaymentIndexId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "CustomerPaymentIndexNote",
+					"Description": "Notes, comments or additional information regarding the period D&B Payment Index.",
+					"BaseAttributeReference": {
+						"Entity": "DunBradstreetReportPaymentIndex.cdm.json/DunBradstreetReportPaymentIndex",
+						"Name": "CustomerPaymentIndexNote"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/DunBradstreetReportPaymentIndex",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/DunBradstreetReportPaymentIndex",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"DunsNumber\":{\"entity\":\"DunBradstreetReportPaymentIndex.cdm.json/DunBradstreetReportPaymentIndex\",\"name\":\"DunsNumber\"},\"ReportPurchaseDate\":{\"entity\":\"DunBradstreetReportPaymentIndex.cdm.json/DunBradstreetReportPaymentIndex\",\"name\":\"ReportPurchaseDate\"},\"PeriodStartDate\":{\"entity\":\"DunBradstreetReportPaymentIndex.cdm.json/DunBradstreetReportPaymentIndex\",\"name\":\"PeriodStartDate\"},\"PeriodEndDate\":{\"entity\":\"DunBradstreetReportPaymentIndex.cdm.json/DunBradstreetReportPaymentIndex\",\"name\":\"PeriodEndDate\"},\"DunBradstreetPaymentIndexId\":{\"entity\":\"DunBradstreetReportPaymentIndex.cdm.json/DunBradstreetReportPaymentIndex\",\"name\":\"DunBradstreetPaymentIndexId\"},\"CustomerPaymentIndexNote\":{\"entity\":\"DunBradstreetReportPaymentIndex.cdm.json/DunBradstreetReportPaymentIndex\",\"name\":\"CustomerPaymentIndexNote\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"DunBradstreetReportPaymentIndex\",\"path\":\"DunBradstreetReportPaymentIndex.cdm.json/DunBradstreetReportPaymentIndex\"},\"description\":\"The Customer Dun Bradstreet Payment Index for the indicated range of dates.\\n\\nThe D&B index rating it's ability to pay its invoices.\",\"primaryKey\":[\"DunsNumber\",\"ReportPurchaseDate\",\"PeriodStartDate\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"DunBradstreetReportPaymentIndex.cdm.json/DunBradstreetReportPaymentIndex\",\"name\":\"DunsNumber\"},\"dataType\":\"decimal\",\"dataTypeLength\":9,\"description\":\"Dun & Bradstreet (D&B) provides a D-U-N-S Number, a unique nine digit identification number, for each physical location of your business.\",\"isNullable\":false,\"scale\":0,\"name\":\"DunsNumber\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"DunBradstreetReportPaymentIndex.cdm.json/DunBradstreetReportPaymentIndex\",\"name\":\"ReportPurchaseDate\"},\"dataType\":\"date\",\"dateFormat\":\"YYYY-MM-DD\",\"description\":\"The purchase date of the report.\",\"isNullable\":false,\"name\":\"ReportPurchaseDate\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"DunBradstreetReportPaymentIndex.cdm.json/DunBradstreetReportPaymentIndex\",\"name\":\"PeriodStartDate\"},\"dataType\":\"date\",\"dateFormat\":\"YYYY-MM-DD\",\"description\":\"The period start date for which the associated D&B data is effective or 'as-of'.\",\"isNullable\":false,\"name\":\"PeriodStartDate\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"DunBradstreetReportPaymentIndex.cdm.json/DunBradstreetReportPaymentIndex\",\"name\":\"PeriodEndDate\"},\"dataType\":\"date\",\"dateFormat\":\"YYYY-MM-DD\",\"description\":\"The period end date for which the associated D&B data is effective or 'as-of'.\",\"isNullable\":true,\"name\":\"PeriodEndDate\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"DunBradstreetReportPaymentIndex.cdm.json/DunBradstreetReportPaymentIndex\",\"name\":\"DunBradstreetPaymentIndexId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a D&B Payment Index.\",\"isNullable\":true,\"name\":\"DunBradstreetPaymentIndexId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"DunBradstreetReportPaymentIndex.cdm.json/DunBradstreetReportPaymentIndex\",\"name\":\"CustomerPaymentIndexNote\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"Notes, comments or additional information regarding the period D&B Payment Index.\",\"isNullable\":true,\"name\":\"CustomerPaymentIndexNote\"}]}}}",
+			"Description": "The Customer Dun Bradstreet Payment Index for the indicated range of dates.\n\nThe D&B index rating it's ability to pay its invoices.",
+			"DisplayFolderInfo": "{\"name\":\"Customer Credit & Collections\",\"colorCode\":\"#022F22\"}",
+			"PrimaryKeys": "DunsNumber,ReportPurchaseDate,PeriodStartDate",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

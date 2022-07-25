@@ -1,0 +1,113 @@
+{
+	"name": "Consent",
+	"properties": {
+		"Name": "Consent",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "The consent that is requested / granted.",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "ConsentId",
+					"Description": "The unique identifier of the Consent.",
+					"BaseAttributeReference": {
+						"Entity": "Consent.cdm.json/Consent",
+						"Name": "ConsentId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "ConsentName",
+					"Description": "The name of the Consent.",
+					"BaseAttributeReference": {
+						"Entity": "Consent.cdm.json/Consent",
+						"Name": "ConsentName"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 256,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "ConsentDescription",
+					"Description": "The description of the Consent.",
+					"BaseAttributeReference": {
+						"Entity": "Consent.cdm.json/Consent",
+						"Name": "ConsentDescription"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/Consent",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/Consent",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"ConsentId\":{\"entity\":\"Consent.cdm.json/Consent\",\"name\":\"ConsentId\"},\"ConsentName\":{\"entity\":\"Consent.cdm.json/Consent\",\"name\":\"ConsentName\"},\"ConsentDescription\":{\"entity\":\"Consent.cdm.json/Consent\",\"name\":\"ConsentDescription\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"Consent\",\"path\":\"Consent.cdm.json/Consent\"},\"description\":\"The consent that is requested / granted.\",\"primaryKey\":[\"ConsentId\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"Consent.cdm.json/Consent\",\"name\":\"ConsentId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of the Consent.\",\"isNullable\":false,\"name\":\"ConsentId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"Consent.cdm.json/Consent\",\"name\":\"ConsentName\"},\"dataType\":\"string\",\"dataTypeLength\":256,\"description\":\"The name of the Consent.\",\"isNullable\":true,\"name\":\"ConsentName\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"Consent.cdm.json/Consent\",\"name\":\"ConsentDescription\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"The description of the Consent.\",\"isNullable\":true,\"name\":\"ConsentDescription\"}]}}}",
+			"Description": "The consent that is requested / granted.",
+			"DisplayFolderInfo": "{\"name\":\"Party\",\"colorCode\":\"#00727A\"}",
+			"PrimaryKeys": "ConsentId",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

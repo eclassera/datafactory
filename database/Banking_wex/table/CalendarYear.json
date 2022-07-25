@@ -1,0 +1,179 @@
+{
+	"name": "CalendarYear",
+	"properties": {
+		"Name": "CalendarYear",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "A calendar year is used to define a set of calendar dates / weeks / quarters which belong to the calendar year.",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "CalendarId",
+					"Description": "The unique identifier of a Calendar.",
+					"BaseAttributeReference": {
+						"Entity": "CalendarYear.cdm.json/CalendarYear",
+						"Name": "CalendarId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "CalendarYearId",
+					"Description": "The unique identifier of a Calendar Year.",
+					"BaseAttributeReference": {
+						"Entity": "CalendarYear.cdm.json/CalendarYear",
+						"Name": "CalendarYearId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "CalendarYearName",
+					"Description": "The name of the associated calendar year.",
+					"BaseAttributeReference": {
+						"Entity": "CalendarYear.cdm.json/CalendarYear",
+						"Name": "CalendarYearName"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 256,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "CalendarYearDescription",
+					"Description": "The description of the calendar year.",
+					"BaseAttributeReference": {
+						"Entity": "CalendarYear.cdm.json/CalendarYear",
+						"Name": "CalendarYearDescription"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "CalendarYearStartDate",
+					"Description": "The start date of the calendar year.",
+					"BaseAttributeReference": {
+						"Entity": "CalendarYear.cdm.json/CalendarYear",
+						"Name": "CalendarYearStartDate"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "date",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"DateFormat": "YYYY-MM-DD",
+							"HIVE_TYPE_STRING": "date"
+						}
+					}
+				},
+				{
+					"Name": "CalendarYearEndDate",
+					"Description": "The end date of the calendar year.",
+					"BaseAttributeReference": {
+						"Entity": "CalendarYear.cdm.json/CalendarYear",
+						"Name": "CalendarYearEndDate"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "date",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"DateFormat": "YYYY-MM-DD",
+							"HIVE_TYPE_STRING": "date"
+						}
+					}
+				},
+				{
+					"Name": "CalendarYearNumber",
+					"Description": "The year number associated with the calendar year.",
+					"BaseAttributeReference": {
+						"Entity": "CalendarYear.cdm.json/CalendarYear",
+						"Name": "CalendarYearNumber"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/CalendarYear",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/CalendarYear",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"CalendarId\":{\"entity\":\"CalendarYear.cdm.json/CalendarYear\",\"name\":\"CalendarId\"},\"CalendarYearId\":{\"entity\":\"CalendarYear.cdm.json/CalendarYear\",\"name\":\"CalendarYearId\"},\"CalendarYearName\":{\"entity\":\"CalendarYear.cdm.json/CalendarYear\",\"name\":\"CalendarYearName\"},\"CalendarYearDescription\":{\"entity\":\"CalendarYear.cdm.json/CalendarYear\",\"name\":\"CalendarYearDescription\"},\"CalendarYearStartDate\":{\"entity\":\"CalendarYear.cdm.json/CalendarYear\",\"name\":\"CalendarYearStartDate\"},\"CalendarYearEndDate\":{\"entity\":\"CalendarYear.cdm.json/CalendarYear\",\"name\":\"CalendarYearEndDate\"},\"CalendarYearNumber\":{\"entity\":\"CalendarYear.cdm.json/CalendarYear\",\"name\":\"CalendarYearNumber\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"CalendarYear\",\"path\":\"CalendarYear.cdm.json/CalendarYear\"},\"description\":\"A calendar year is used to define a set of calendar dates / weeks / quarters which belong to the calendar year.\",\"primaryKey\":[\"CalendarId\",\"CalendarYearId\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CalendarYear.cdm.json/CalendarYear\",\"name\":\"CalendarId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Calendar.\",\"isNullable\":false,\"name\":\"CalendarId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CalendarYear.cdm.json/CalendarYear\",\"name\":\"CalendarYearId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Calendar Year.\",\"isNullable\":false,\"name\":\"CalendarYearId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CalendarYear.cdm.json/CalendarYear\",\"name\":\"CalendarYearName\"},\"dataType\":\"string\",\"dataTypeLength\":256,\"description\":\"The name of the associated calendar year.\",\"isNullable\":true,\"name\":\"CalendarYearName\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CalendarYear.cdm.json/CalendarYear\",\"name\":\"CalendarYearDescription\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"The description of the calendar year.\",\"isNullable\":true,\"name\":\"CalendarYearDescription\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CalendarYear.cdm.json/CalendarYear\",\"name\":\"CalendarYearStartDate\"},\"dataType\":\"date\",\"dateFormat\":\"YYYY-MM-DD\",\"description\":\"The start date of the calendar year.\",\"isNullable\":true,\"name\":\"CalendarYearStartDate\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CalendarYear.cdm.json/CalendarYear\",\"name\":\"CalendarYearEndDate\"},\"dataType\":\"date\",\"dateFormat\":\"YYYY-MM-DD\",\"description\":\"The end date of the calendar year.\",\"isNullable\":true,\"name\":\"CalendarYearEndDate\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CalendarYear.cdm.json/CalendarYear\",\"name\":\"CalendarYearNumber\"},\"dataType\":\"integer\",\"description\":\"The year number associated with the calendar year.\",\"isNullable\":true,\"name\":\"CalendarYearNumber\"}]}}}",
+			"Description": "A calendar year is used to define a set of calendar dates / weeks / quarters which belong to the calendar year.",
+			"DisplayFolderInfo": "{\"name\":\"Human Resources & Payroll\",\"colorCode\":\"#042C59\"}",
+			"PrimaryKeys": "CalendarId,CalendarYearId",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

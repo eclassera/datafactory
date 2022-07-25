@@ -1,0 +1,113 @@
+{
+	"name": "DunBradstreetCorporationType",
+	"properties": {
+		"Name": "DunBradstreetCorporationType",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "The type of a Dun Bradstreet-defined corporation type.\n\nEx:\n- PROFIT",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "DunBradstreetCorporationTypeId",
+					"Description": "The unique identifier of a Dun Bradstreet Corporation Type.",
+					"BaseAttributeReference": {
+						"Entity": "DunBradstreetCorporationType.cdm.json/DunBradstreetCorporationType",
+						"Name": "DunBradstreetCorporationTypeId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "DunBradstreetCorporationTypeName",
+					"Description": "The name of a Dun Bradstreet Corporation Type.",
+					"BaseAttributeReference": {
+						"Entity": "DunBradstreetCorporationType.cdm.json/DunBradstreetCorporationType",
+						"Name": "DunBradstreetCorporationTypeName"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 256,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "DunBradstreetCorporationTypeDescription",
+					"Description": "The description of a Dun Bradstreet Corporation Type.",
+					"BaseAttributeReference": {
+						"Entity": "DunBradstreetCorporationType.cdm.json/DunBradstreetCorporationType",
+						"Name": "DunBradstreetCorporationTypeDescription"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/DunBradstreetCorporationType",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/DunBradstreetCorporationType",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"DunBradstreetCorporationTypeId\":{\"entity\":\"DunBradstreetCorporationType.cdm.json/DunBradstreetCorporationType\",\"name\":\"DunBradstreetCorporationTypeId\"},\"DunBradstreetCorporationTypeName\":{\"entity\":\"DunBradstreetCorporationType.cdm.json/DunBradstreetCorporationType\",\"name\":\"DunBradstreetCorporationTypeName\"},\"DunBradstreetCorporationTypeDescription\":{\"entity\":\"DunBradstreetCorporationType.cdm.json/DunBradstreetCorporationType\",\"name\":\"DunBradstreetCorporationTypeDescription\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"DunBradstreetCorporationType\",\"path\":\"DunBradstreetCorporationType.cdm.json/DunBradstreetCorporationType\"},\"description\":\"The type of a Dun Bradstreet-defined corporation type.\\n\\nEx:\\n- PROFIT\",\"primaryKey\":[\"DunBradstreetCorporationTypeId\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"DunBradstreetCorporationType.cdm.json/DunBradstreetCorporationType\",\"name\":\"DunBradstreetCorporationTypeId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Dun Bradstreet Corporation Type.\",\"isNullable\":false,\"name\":\"DunBradstreetCorporationTypeId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"DunBradstreetCorporationType.cdm.json/DunBradstreetCorporationType\",\"name\":\"DunBradstreetCorporationTypeName\"},\"dataType\":\"string\",\"dataTypeLength\":256,\"description\":\"The name of a Dun Bradstreet Corporation Type.\",\"isNullable\":true,\"name\":\"DunBradstreetCorporationTypeName\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"DunBradstreetCorporationType.cdm.json/DunBradstreetCorporationType\",\"name\":\"DunBradstreetCorporationTypeDescription\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"The description of a Dun Bradstreet Corporation Type.\",\"isNullable\":true,\"name\":\"DunBradstreetCorporationTypeDescription\"}]}}}",
+			"Description": "The type of a Dun Bradstreet-defined corporation type.\n\nEx:\n- PROFIT",
+			"DisplayFolderInfo": "{\"name\":\"Customer Credit & Collections\",\"colorCode\":\"#022F22\"}",
+			"PrimaryKeys": "DunBradstreetCorporationTypeId",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

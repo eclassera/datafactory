@@ -1,0 +1,111 @@
+{
+	"name": "EquifaxCreditReportSummaryRateType",
+	"properties": {
+		"Name": "EquifaxCreditReportSummaryRateType",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "The rate type(s) and number of associated accounts related to the credit report.",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "EquifaxReportNumber",
+					"Description": "The Equifax report number.",
+					"BaseAttributeReference": {
+						"Entity": "EquifaxCreditReportSummaryRateType.cdm.json/EquifaxCreditReportSummaryRateType",
+						"Name": "EquifaxReportNumber"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "EquifaxMannerOfPaymentRateTypeId",
+					"Description": "The unique identifier of a Manner of Payment Rate Type.",
+					"BaseAttributeReference": {
+						"Entity": "EquifaxCreditReportSummaryRateType.cdm.json/EquifaxCreditReportSummaryRateType",
+						"Name": "EquifaxMannerOfPaymentRateTypeId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "NumberOfAccounts",
+					"Description": "The number of accounts with the associated rate type reported on the credit report.",
+					"BaseAttributeReference": {
+						"Entity": "EquifaxCreditReportSummaryRateType.cdm.json/EquifaxCreditReportSummaryRateType",
+						"Name": "NumberOfAccounts"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/EquifaxCreditReportSummaryRateType",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/EquifaxCreditReportSummaryRateType",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"EquifaxReportNumber\":{\"entity\":\"EquifaxCreditReportSummaryRateType.cdm.json/EquifaxCreditReportSummaryRateType\",\"name\":\"EquifaxReportNumber\"},\"EquifaxMannerOfPaymentRateTypeId\":{\"entity\":\"EquifaxCreditReportSummaryRateType.cdm.json/EquifaxCreditReportSummaryRateType\",\"name\":\"EquifaxMannerOfPaymentRateTypeId\"},\"NumberOfAccounts\":{\"entity\":\"EquifaxCreditReportSummaryRateType.cdm.json/EquifaxCreditReportSummaryRateType\",\"name\":\"NumberOfAccounts\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"EquifaxCreditReportSummaryRateType\",\"path\":\"EquifaxCreditReportSummaryRateType.cdm.json/EquifaxCreditReportSummaryRateType\"},\"description\":\"The rate type(s) and number of associated accounts related to the credit report.\",\"primaryKey\":[\"EquifaxReportNumber\",\"EquifaxMannerOfPaymentRateTypeId\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"EquifaxCreditReportSummaryRateType.cdm.json/EquifaxCreditReportSummaryRateType\",\"name\":\"EquifaxReportNumber\"},\"dataType\":\"integer\",\"description\":\"The Equifax report number.\",\"isNullable\":false,\"name\":\"EquifaxReportNumber\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"EquifaxCreditReportSummaryRateType.cdm.json/EquifaxCreditReportSummaryRateType\",\"name\":\"EquifaxMannerOfPaymentRateTypeId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Manner of Payment Rate Type.\",\"isNullable\":false,\"name\":\"EquifaxMannerOfPaymentRateTypeId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"EquifaxCreditReportSummaryRateType.cdm.json/EquifaxCreditReportSummaryRateType\",\"name\":\"NumberOfAccounts\"},\"dataType\":\"integer\",\"description\":\"The number of accounts with the associated rate type reported on the credit report.\",\"isNullable\":true,\"name\":\"NumberOfAccounts\"}]}}}",
+			"Description": "The rate type(s) and number of associated accounts related to the credit report.",
+			"DisplayFolderInfo": "{\"name\":\"Customer Credit & Collections\",\"colorCode\":\"#022F22\"}",
+			"PrimaryKeys": "EquifaxReportNumber,EquifaxMannerOfPaymentRateTypeId",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

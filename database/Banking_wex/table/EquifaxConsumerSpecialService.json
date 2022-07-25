@@ -1,0 +1,199 @@
+{
+	"name": "EquifaxConsumerSpecialService",
+	"properties": {
+		"Name": "EquifaxConsumerSpecialService",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "Information accessed through a soft inquiry in order to locate you using the personal information in the credit file.",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "EquifaxReportNumber",
+					"Description": "The Equifax report number.",
+					"BaseAttributeReference": {
+						"Entity": "EquifaxConsumerSpecialService.cdm.json/EquifaxConsumerSpecialService",
+						"Name": "EquifaxReportNumber"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "EquifaxConsumerSpecialServiceId",
+					"Description": "The unique identifier of an Equifax Consumer Special Service.",
+					"BaseAttributeReference": {
+						"Entity": "EquifaxConsumerSpecialService.cdm.json/EquifaxConsumerSpecialService",
+						"Name": "EquifaxConsumerSpecialServiceId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "RequestingMemberName",
+					"Description": "The requesting member name.",
+					"BaseAttributeReference": {
+						"Entity": "EquifaxConsumerSpecialService.cdm.json/EquifaxConsumerSpecialService",
+						"Name": "RequestingMemberName"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 256,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "RequestingMemberAddress",
+					"Description": "The requesting member street/po address.",
+					"BaseAttributeReference": {
+						"Entity": "EquifaxConsumerSpecialService.cdm.json/EquifaxConsumerSpecialService",
+						"Name": "RequestingMemberAddress"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 512,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "RequestingMemberCity",
+					"Description": "The requesting member city.",
+					"BaseAttributeReference": {
+						"Entity": "EquifaxConsumerSpecialService.cdm.json/EquifaxConsumerSpecialService",
+						"Name": "RequestingMemberCity"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 256,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "RequestingMemberState",
+					"Description": "The requesting member state.",
+					"BaseAttributeReference": {
+						"Entity": "EquifaxConsumerSpecialService.cdm.json/EquifaxConsumerSpecialService",
+						"Name": "RequestingMemberState"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 64,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "RequestingMemberZipCode",
+					"Description": "The requesting member zip code.",
+					"BaseAttributeReference": {
+						"Entity": "EquifaxConsumerSpecialService.cdm.json/EquifaxConsumerSpecialService",
+						"Name": "RequestingMemberZipCode"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "decimal",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Precision": 11,
+						"Scale": 0,
+						"Properties": {
+							"HIVE_TYPE_STRING": "decimal"
+						}
+					}
+				},
+				{
+					"Name": "RequestingMemberTelephoneNumber",
+					"Description": "The requesting member telephone number..",
+					"BaseAttributeReference": {
+						"Entity": "EquifaxConsumerSpecialService.cdm.json/EquifaxConsumerSpecialService",
+						"Name": "RequestingMemberTelephoneNumber"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "decimal",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Precision": 15,
+						"Scale": 0,
+						"Properties": {
+							"HIVE_TYPE_STRING": "decimal"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/EquifaxConsumerSpecialService",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/EquifaxConsumerSpecialService",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"EquifaxReportNumber\":{\"entity\":\"EquifaxConsumerSpecialService.cdm.json/EquifaxConsumerSpecialService\",\"name\":\"EquifaxReportNumber\"},\"EquifaxConsumerSpecialServiceId\":{\"entity\":\"EquifaxConsumerSpecialService.cdm.json/EquifaxConsumerSpecialService\",\"name\":\"EquifaxConsumerSpecialServiceId\"},\"RequestingMemberName\":{\"entity\":\"EquifaxConsumerSpecialService.cdm.json/EquifaxConsumerSpecialService\",\"name\":\"RequestingMemberName\"},\"RequestingMemberAddress\":{\"entity\":\"EquifaxConsumerSpecialService.cdm.json/EquifaxConsumerSpecialService\",\"name\":\"RequestingMemberAddress\"},\"RequestingMemberCity\":{\"entity\":\"EquifaxConsumerSpecialService.cdm.json/EquifaxConsumerSpecialService\",\"name\":\"RequestingMemberCity\"},\"RequestingMemberState\":{\"entity\":\"EquifaxConsumerSpecialService.cdm.json/EquifaxConsumerSpecialService\",\"name\":\"RequestingMemberState\"},\"RequestingMemberZipCode\":{\"entity\":\"EquifaxConsumerSpecialService.cdm.json/EquifaxConsumerSpecialService\",\"name\":\"RequestingMemberZipCode\"},\"RequestingMemberTelephoneNumber\":{\"entity\":\"EquifaxConsumerSpecialService.cdm.json/EquifaxConsumerSpecialService\",\"name\":\"RequestingMemberTelephoneNumber\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"EquifaxConsumerSpecialService\",\"path\":\"EquifaxConsumerSpecialService.cdm.json/EquifaxConsumerSpecialService\"},\"description\":\"Information accessed through a soft inquiry in order to locate you using the personal information in the credit file.\",\"primaryKey\":[\"EquifaxReportNumber\",\"EquifaxConsumerSpecialServiceId\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"EquifaxConsumerSpecialService.cdm.json/EquifaxConsumerSpecialService\",\"name\":\"EquifaxReportNumber\"},\"dataType\":\"integer\",\"description\":\"The Equifax report number.\",\"isNullable\":false,\"name\":\"EquifaxReportNumber\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"EquifaxConsumerSpecialService.cdm.json/EquifaxConsumerSpecialService\",\"name\":\"EquifaxConsumerSpecialServiceId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of an Equifax Consumer Special Service.\",\"isNullable\":false,\"name\":\"EquifaxConsumerSpecialServiceId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"EquifaxConsumerSpecialService.cdm.json/EquifaxConsumerSpecialService\",\"name\":\"RequestingMemberName\"},\"dataType\":\"string\",\"dataTypeLength\":256,\"description\":\"The requesting member name.\",\"isNullable\":true,\"name\":\"RequestingMemberName\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"EquifaxConsumerSpecialService.cdm.json/EquifaxConsumerSpecialService\",\"name\":\"RequestingMemberAddress\"},\"dataType\":\"string\",\"dataTypeLength\":512,\"description\":\"The requesting member street/po address.\",\"isNullable\":true,\"name\":\"RequestingMemberAddress\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"EquifaxConsumerSpecialService.cdm.json/EquifaxConsumerSpecialService\",\"name\":\"RequestingMemberCity\"},\"dataType\":\"string\",\"dataTypeLength\":256,\"description\":\"The requesting member city.\",\"isNullable\":true,\"name\":\"RequestingMemberCity\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"EquifaxConsumerSpecialService.cdm.json/EquifaxConsumerSpecialService\",\"name\":\"RequestingMemberState\"},\"dataType\":\"string\",\"dataTypeLength\":64,\"description\":\"The requesting member state.\",\"isNullable\":true,\"name\":\"RequestingMemberState\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"EquifaxConsumerSpecialService.cdm.json/EquifaxConsumerSpecialService\",\"name\":\"RequestingMemberZipCode\"},\"dataType\":\"decimal\",\"dataTypeLength\":11,\"description\":\"The requesting member zip code.\",\"isNullable\":true,\"scale\":0,\"name\":\"RequestingMemberZipCode\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"EquifaxConsumerSpecialService.cdm.json/EquifaxConsumerSpecialService\",\"name\":\"RequestingMemberTelephoneNumber\"},\"dataType\":\"decimal\",\"dataTypeLength\":15,\"description\":\"The requesting member telephone number..\",\"isNullable\":true,\"scale\":0,\"name\":\"RequestingMemberTelephoneNumber\"}]}}}",
+			"Description": "Information accessed through a soft inquiry in order to locate you using the personal information in the credit file.",
+			"DisplayFolderInfo": "{\"name\":\"Customer Credit & Collections\",\"colorCode\":\"#022F22\"}",
+			"PrimaryKeys": "EquifaxReportNumber,EquifaxConsumerSpecialServiceId",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

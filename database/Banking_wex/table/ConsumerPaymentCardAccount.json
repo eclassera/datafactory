@@ -1,0 +1,655 @@
+{
+	"name": "ConsumerPaymentCardAccount",
+	"properties": {
+		"Name": "ConsumerPaymentCardAccount",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "A plastic card that with a coded magnetic stripe that, when signed, entitles its bearer to a revolving line of credit, whose size and interest rate are determined by the borrower's income and credit report. Credit cards began in the late '40s when banks began giving out paper certificates that could be used like cash in local stores. The first real credit card was issued in 1951 by Franklin National Bank in New\n\nA credit card allows you to make partial payments for purchases, but charges interest on the amount owed. You can also pay your balance off in full to avoid interest payments. Banks and other card issuers set interest rates and fees.",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "PaymentCardId",
+					"Description": "The unique identifier of a Payment Card.",
+					"BaseAttributeReference": {
+						"Entity": "ConsumerPaymentCardAccount.cdm.json/ConsumerPaymentCardAccount",
+						"Name": "PaymentCardId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "CreditGrantorId",
+					"Description": "The unique identifier of a Credit Grantor.",
+					"BaseAttributeReference": {
+						"Entity": "ConsumerPaymentCardAccount.cdm.json/ConsumerPaymentCardAccount",
+						"Name": "CreditGrantorId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "CardInformationEffectiveDate",
+					"Description": "The effective or as-of-date that the associated card information is current or effective as-of.",
+					"BaseAttributeReference": {
+						"Entity": "ConsumerPaymentCardAccount.cdm.json/ConsumerPaymentCardAccount",
+						"Name": "CardInformationEffectiveDate"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "date",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"DateFormat": "YYYY-MM-DD",
+							"HIVE_TYPE_STRING": "date"
+						}
+					}
+				},
+				{
+					"Name": "PrimaryCreditCardHolderName",
+					"Description": "The name of the primary holder of the credit card.",
+					"BaseAttributeReference": {
+						"Entity": "ConsumerPaymentCardAccount.cdm.json/ConsumerPaymentCardAccount",
+						"Name": "PrimaryCreditCardHolderName"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 256,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "CreditCardIssuedDate",
+					"Description": "The date that the credit card was issued.",
+					"BaseAttributeReference": {
+						"Entity": "ConsumerPaymentCardAccount.cdm.json/ConsumerPaymentCardAccount",
+						"Name": "CreditCardIssuedDate"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "date",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"DateFormat": "YYYY-MM-DD",
+							"HIVE_TYPE_STRING": "date"
+						}
+					}
+				},
+				{
+					"Name": "CreditCardExpirationDate",
+					"Description": "The expiration date of the credit card.",
+					"BaseAttributeReference": {
+						"Entity": "ConsumerPaymentCardAccount.cdm.json/ConsumerPaymentCardAccount",
+						"Name": "CreditCardExpirationDate"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "date",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"DateFormat": "YYYY-MM-DD",
+							"HIVE_TYPE_STRING": "date"
+						}
+					}
+				},
+				{
+					"Name": "AnnualPercentageRate",
+					"Description": "This is the annual period rate or the interest rate described in relation to a specific amount of time - a year in this case.  The monthly periodic rate, for example, is the cost of credit per month; the daily periodic rate is the cost of credit per day.\n\nThe APR is a measure of the cost of credit, expressed as a yearly rate. It also must be disclosed before you become obligated on the account and on your account statements.",
+					"BaseAttributeReference": {
+						"Entity": "ConsumerPaymentCardAccount.cdm.json/ConsumerPaymentCardAccount",
+						"Name": "AnnualPercentageRate"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "decimal",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Precision": 18,
+						"Scale": 8,
+						"Properties": {
+							"HIVE_TYPE_STRING": "decimal"
+						}
+					}
+				},
+				{
+					"Name": "MonthlyPeriodicRate",
+					"Description": "The Monthly periodic rate\n\nThis provides a historical view of APR of the card over it's history.\n\nCurrent fees and terms are carried also in the CREDIT/PAYMENT CARD entity.   This provides a historical perspective of how terms and fees have changed over the course of the card's history.",
+					"BaseAttributeReference": {
+						"Entity": "ConsumerPaymentCardAccount.cdm.json/ConsumerPaymentCardAccount",
+						"Name": "MonthlyPeriodicRate"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "decimal",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Precision": 18,
+						"Scale": 8,
+						"Properties": {
+							"HIVE_TYPE_STRING": "decimal"
+						}
+					}
+				},
+				{
+					"Name": "DailyPeriodicRate",
+					"Description": "The annual interest rate expressed on a daily basis for the associated period.  It equals 1/365th of your annual percentage rate.\n\nThis provides a historical view of APR of the card over it's history.\n\nCurrent fees and terms are carried also in the CREDIT/PAYMENT CARD entity.   This provides a historical perspective of how terms and fees have changed over the course of the card's history.",
+					"BaseAttributeReference": {
+						"Entity": "ConsumerPaymentCardAccount.cdm.json/ConsumerPaymentCardAccount",
+						"Name": "DailyPeriodicRate"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "decimal",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Precision": 18,
+						"Scale": 8,
+						"Properties": {
+							"HIVE_TYPE_STRING": "decimal"
+						}
+					}
+				},
+				{
+					"Name": "FixedInterestRateIndicator",
+					"Description": "Indicates that the APR is fixed interest.\n\nThe APR is a measure of the cost of credit, expressed as a yearly rate. It also must be disclosed before you become obligated on the account and on your account statements.",
+					"BaseAttributeReference": {
+						"Entity": "ConsumerPaymentCardAccount.cdm.json/ConsumerPaymentCardAccount",
+						"Name": "FixedInterestRateIndicator"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "boolean",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"HIVE_TYPE_STRING": "boolean"
+						}
+					}
+				},
+				{
+					"Name": "VariableInterestRateIndicator",
+					"Description": "Indicates that the APR is variable interest.\n\nPercentage that a borrower pays for the use of money, and which moves up or down periodically based on changes in other interest rates.\n\nThe APR is a measure of the cost of credit, expressed as a yearly rate. It also must be disclosed before you become obligated on the account and on your account statements.",
+					"BaseAttributeReference": {
+						"Entity": "ConsumerPaymentCardAccount.cdm.json/ConsumerPaymentCardAccount",
+						"Name": "VariableInterestRateIndicator"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "boolean",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"HIVE_TYPE_STRING": "boolean"
+						}
+					}
+				},
+				{
+					"Name": "CreditCardMaximumCreditAmount",
+					"Description": "The maximum amount of credit or charges that may be applied to or incurred by the credit card.",
+					"BaseAttributeReference": {
+						"Entity": "ConsumerPaymentCardAccount.cdm.json/ConsumerPaymentCardAccount",
+						"Name": "CreditCardMaximumCreditAmount"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "decimal",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Precision": 18,
+						"Scale": 2,
+						"Properties": {
+							"HIVE_TYPE_STRING": "decimal"
+						}
+					}
+				},
+				{
+					"Name": "MinimumVariableRateLoanFloorPercentage",
+					"Description": "The minimum rate possible on a variable-rate loan, after any initial introductory rate period. For example, on a credit card with the Prime rate as its index, no matter how low the Prime rate drops, the rate on the line may never decrease below the stated rate floor.",
+					"BaseAttributeReference": {
+						"Entity": "ConsumerPaymentCardAccount.cdm.json/ConsumerPaymentCardAccount",
+						"Name": "MinimumVariableRateLoanFloorPercentage"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "decimal",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Precision": 18,
+						"Scale": 8,
+						"Properties": {
+							"HIVE_TYPE_STRING": "decimal"
+						}
+					}
+				},
+				{
+					"Name": "MinimumLineOfCreditPercentage",
+					"Description": "The minimum rate possible on a line of credit, after any initial introductory rate period. For example, on a credit card with the Prime rate as its index, no matter how low the Prime rate drops, the rate on the line may never decrease below the stated rate floor.",
+					"BaseAttributeReference": {
+						"Entity": "ConsumerPaymentCardAccount.cdm.json/ConsumerPaymentCardAccount",
+						"Name": "MinimumLineOfCreditPercentage"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "decimal",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Precision": 18,
+						"Scale": 8,
+						"Properties": {
+							"HIVE_TYPE_STRING": "decimal"
+						}
+					}
+				},
+				{
+					"Name": "BillingCycleNumberOfDays",
+					"Description": "The length of time between billing statements. A billing cycle is typically 30 days.",
+					"BaseAttributeReference": {
+						"Entity": "ConsumerPaymentCardAccount.cdm.json/ConsumerPaymentCardAccount",
+						"Name": "BillingCycleNumberOfDays"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "ClosingDayNumberOfBillingCycle",
+					"Description": "The last day that transactions are posted on your account for that billing cycle.",
+					"BaseAttributeReference": {
+						"Entity": "ConsumerPaymentCardAccount.cdm.json/ConsumerPaymentCardAccount",
+						"Name": "ClosingDayNumberOfBillingCycle"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "GracePeriodNumberOfDays",
+					"Description": "If the card user does not carry a balance, the grace period is the interest-free time a lender allows between the transaction date and the billing date. The standard grace period is usually between 20 and 30 days. If there is no grace period, finance charges will accrue the moment a purchase is made with the credit card. People who carry a balance on their credit cards have no grace period.",
+					"BaseAttributeReference": {
+						"Entity": "ConsumerPaymentCardAccount.cdm.json/ConsumerPaymentCardAccount",
+						"Name": "GracePeriodNumberOfDays"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "CreditCardIndicator",
+					"Description": "Indicates that the associated card is a credit card.\n\nA type of payment card that involves a revolving line of credit that is issued to the cardholder. Credit cards provide flexibility, allowing you to pay your whole bill at once or over time in increments. If you do not choose to pay your balance in full each month, you will be required to make at least the minimum payment and to pay finance charges on the remaining balance. Credit cards are issued by banks, credit unions, and some retailers like department stores and gasoline companies, among others.",
+					"BaseAttributeReference": {
+						"Entity": "ConsumerPaymentCardAccount.cdm.json/ConsumerPaymentCardAccount",
+						"Name": "CreditCardIndicator"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "boolean",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"HIVE_TYPE_STRING": "boolean"
+						}
+					}
+				},
+				{
+					"Name": "DebitCardIndicator",
+					"Description": "A debit card deducts the amount of your purchase directly from your checking account.",
+					"BaseAttributeReference": {
+						"Entity": "ConsumerPaymentCardAccount.cdm.json/ConsumerPaymentCardAccount",
+						"Name": "DebitCardIndicator"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "boolean",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"HIVE_TYPE_STRING": "boolean"
+						}
+					}
+				},
+				{
+					"Name": "PurchasingCardIndicator",
+					"Description": "This card allows a company to place orders directly with suppliers and charges them to the card.",
+					"BaseAttributeReference": {
+						"Entity": "ConsumerPaymentCardAccount.cdm.json/ConsumerPaymentCardAccount",
+						"Name": "PurchasingCardIndicator"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "boolean",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"HIVE_TYPE_STRING": "boolean"
+						}
+					}
+				},
+				{
+					"Name": "CashCardIndicator",
+					"Description": "A card similar to a pre-paid phone card with a set amount of value, which can be read by a special cash card reader. Participating retailers will use the reader to debit the card in increments until the value is gone. The card is like cash -- it has no built-in security, so it can be used by anyone if lost or stolen.",
+					"BaseAttributeReference": {
+						"Entity": "ConsumerPaymentCardAccount.cdm.json/ConsumerPaymentCardAccount",
+						"Name": "CashCardIndicator"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "boolean",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"HIVE_TYPE_STRING": "boolean"
+						}
+					}
+				},
+				{
+					"Name": "SmartCardIndicator",
+					"Description": "A card with a microprocessor chip in it. Smart Chip adds security capabilities and enhanced online shopping security.",
+					"BaseAttributeReference": {
+						"Entity": "ConsumerPaymentCardAccount.cdm.json/ConsumerPaymentCardAccount",
+						"Name": "SmartCardIndicator"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "boolean",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"HIVE_TYPE_STRING": "boolean"
+						}
+					}
+				},
+				{
+					"Name": "ChargeCardIndicator",
+					"Description": "The charge card must be paid in full every month. An example of a charge card is American Express card.",
+					"BaseAttributeReference": {
+						"Entity": "ConsumerPaymentCardAccount.cdm.json/ConsumerPaymentCardAccount",
+						"Name": "ChargeCardIndicator"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "boolean",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"HIVE_TYPE_STRING": "boolean"
+						}
+					}
+				},
+				{
+					"Name": "CommercialCardIndicator",
+					"Description": "Commercial cards are the broad definition of a special class of credit or bank card. They differ from consumer cards in that they frequently offer Level-3 (level III) line item detail information and special usage controls to the corporate or governmental user. Another frequently used term is corporate card.\n\nA general name for cards typically issued for business use and may include Corporate Cards, Purchase Cards, Business Cards, Travel and Entertainment Cards.",
+					"BaseAttributeReference": {
+						"Entity": "ConsumerPaymentCardAccount.cdm.json/ConsumerPaymentCardAccount",
+						"Name": "CommercialCardIndicator"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "boolean",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"HIVE_TYPE_STRING": "boolean"
+						}
+					}
+				},
+				{
+					"Name": "UnsecuredCardIndicator",
+					"Description": "A credit card based on a consumer's promise to pay, without savings or cash deposit as a guarantee.",
+					"BaseAttributeReference": {
+						"Entity": "ConsumerPaymentCardAccount.cdm.json/ConsumerPaymentCardAccount",
+						"Name": "UnsecuredCardIndicator"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "boolean",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"HIVE_TYPE_STRING": "boolean"
+						}
+					}
+				},
+				{
+					"Name": "OnlineDebitCardIndicator",
+					"Description": "An online debit card that deducts funds from the bank account immediately, as soon as the card is used. It may have the VISA or MasterCard logo, or only the issuing bank's logo, like an ATM card. There is no delay for processing the transaction -- the money is immediately deducted from your account. In the U.S., if you entered a Personal Identification Number (PIN) during the transaction, it was online.",
+					"BaseAttributeReference": {
+						"Entity": "ConsumerPaymentCardAccount.cdm.json/ConsumerPaymentCardAccount",
+						"Name": "OnlineDebitCardIndicator"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "boolean",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"HIVE_TYPE_STRING": "boolean"
+						}
+					}
+				},
+				{
+					"Name": "OfflineDebitCardIndicator",
+					"Description": "A card that shares traits of both ATM and credit cards. Offline debit cards have the VISA or MasterCard logo on them and can be issued by a bank, instead of, or in addition to, an ATM card. These cards can be used at any establishment that displays the VISA or MasterCard logo, but using them does not access a line of credit -- it debits a customer's checking account. It is \"offline\" because the account is not directly accessed -- there's a delay of 24 to 72 hours before the debit is made in the account. If you sign a slip of paper to conclude the transaction, it was offline. In the U.S., no Personal Identification Number (PIN) is required to use an offline debit card.",
+					"BaseAttributeReference": {
+						"Entity": "ConsumerPaymentCardAccount.cdm.json/ConsumerPaymentCardAccount",
+						"Name": "OfflineDebitCardIndicator"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "boolean",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"HIVE_TYPE_STRING": "boolean"
+						}
+					}
+				},
+				{
+					"Name": "PrivateLabelCardIndicator",
+					"Description": "A card issued by a retail outlet, such as a department store or gasoline company, that contains the logo of the private company. It is generally accepted only by the retailer who issued it. Retailers partner with a bank or a card-issuing management company to back the cards.",
+					"BaseAttributeReference": {
+						"Entity": "ConsumerPaymentCardAccount.cdm.json/ConsumerPaymentCardAccount",
+						"Name": "PrivateLabelCardIndicator"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "boolean",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"HIVE_TYPE_STRING": "boolean"
+						}
+					}
+				},
+				{
+					"Name": "PreApprovedCreditCardIndicator",
+					"Description": "A credit card offer with \"pre-approved\" only means that a potential customer has passed a preliminary credit-information screening.",
+					"BaseAttributeReference": {
+						"Entity": "ConsumerPaymentCardAccount.cdm.json/ConsumerPaymentCardAccount",
+						"Name": "PreApprovedCreditCardIndicator"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "boolean",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"HIVE_TYPE_STRING": "boolean"
+						}
+					}
+				},
+				{
+					"Name": "SecuredCreditCardIndicator",
+					"Description": "A credit card that a cardholder secures with a savings deposit to ensure payment of the outstanding balance if the cardholder defaults on payments. It is used by people new to credit, or people trying to rebuild their poor credit ratings.",
+					"BaseAttributeReference": {
+						"Entity": "ConsumerPaymentCardAccount.cdm.json/ConsumerPaymentCardAccount",
+						"Name": "SecuredCreditCardIndicator"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "boolean",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"HIVE_TYPE_STRING": "boolean"
+						}
+					}
+				},
+				{
+					"Name": "AffinityCardIndicator",
+					"Description": "A credit card endorsed by groups such as colleges, sports teams, professional organizations, or special interest groups that are offered to their alumni, fans or members.",
+					"BaseAttributeReference": {
+						"Entity": "ConsumerPaymentCardAccount.cdm.json/ConsumerPaymentCardAccount",
+						"Name": "AffinityCardIndicator"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "boolean",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"HIVE_TYPE_STRING": "boolean"
+						}
+					}
+				},
+				{
+					"Name": "RebateCardIndicator",
+					"Description": "A card that allows the customer to accumulate cash, merchandise or services based on card usage.",
+					"BaseAttributeReference": {
+						"Entity": "ConsumerPaymentCardAccount.cdm.json/ConsumerPaymentCardAccount",
+						"Name": "RebateCardIndicator"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "boolean",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"HIVE_TYPE_STRING": "boolean"
+						}
+					}
+				},
+				{
+					"Name": "CoBrandedCardIndicator",
+					"Description": "A co-branded credit card is sponsored by both the issuing bank and a retail organization such as a department store or an airline. Cardholders may get benefits such as discounts or free merchandise from the sponsoring merchant based on account usage and terms.",
+					"BaseAttributeReference": {
+						"Entity": "ConsumerPaymentCardAccount.cdm.json/ConsumerPaymentCardAccount",
+						"Name": "CoBrandedCardIndicator"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "boolean",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"HIVE_TYPE_STRING": "boolean"
+						}
+					}
+				},
+				{
+					"Name": "CardAssociationId",
+					"Description": "The unique identifier of a Card Association.",
+					"BaseAttributeReference": {
+						"Entity": "ConsumerPaymentCardAccount.cdm.json/ConsumerPaymentCardAccount",
+						"Name": "CardAssociationId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "PaymentCardTypeId",
+					"Description": "The unique identifier of a Payment Card Type.",
+					"BaseAttributeReference": {
+						"Entity": "ConsumerPaymentCardAccount.cdm.json/ConsumerPaymentCardAccount",
+						"Name": "PaymentCardTypeId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "CustomerId",
+					"Description": "The unique identifier of a Customer.",
+					"BaseAttributeReference": {
+						"Entity": "ConsumerPaymentCardAccount.cdm.json/ConsumerPaymentCardAccount",
+						"Name": "CustomerId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "long",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"HIVE_TYPE_STRING": "long"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/ConsumerPaymentCardAccount",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/ConsumerPaymentCardAccount",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"PaymentCardId\":{\"entity\":\"ConsumerPaymentCardAccount.cdm.json/ConsumerPaymentCardAccount\",\"name\":\"PaymentCardId\"},\"CreditGrantorId\":{\"entity\":\"ConsumerPaymentCardAccount.cdm.json/ConsumerPaymentCardAccount\",\"name\":\"CreditGrantorId\"},\"CardInformationEffectiveDate\":{\"entity\":\"ConsumerPaymentCardAccount.cdm.json/ConsumerPaymentCardAccount\",\"name\":\"CardInformationEffectiveDate\"},\"PrimaryCreditCardHolderName\":{\"entity\":\"ConsumerPaymentCardAccount.cdm.json/ConsumerPaymentCardAccount\",\"name\":\"PrimaryCreditCardHolderName\"},\"CreditCardIssuedDate\":{\"entity\":\"ConsumerPaymentCardAccount.cdm.json/ConsumerPaymentCardAccount\",\"name\":\"CreditCardIssuedDate\"},\"CreditCardExpirationDate\":{\"entity\":\"ConsumerPaymentCardAccount.cdm.json/ConsumerPaymentCardAccount\",\"name\":\"CreditCardExpirationDate\"},\"AnnualPercentageRate\":{\"entity\":\"ConsumerPaymentCardAccount.cdm.json/ConsumerPaymentCardAccount\",\"name\":\"AnnualPercentageRate\"},\"MonthlyPeriodicRate\":{\"entity\":\"ConsumerPaymentCardAccount.cdm.json/ConsumerPaymentCardAccount\",\"name\":\"MonthlyPeriodicRate\"},\"DailyPeriodicRate\":{\"entity\":\"ConsumerPaymentCardAccount.cdm.json/ConsumerPaymentCardAccount\",\"name\":\"DailyPeriodicRate\"},\"FixedInterestRateIndicator\":{\"entity\":\"ConsumerPaymentCardAccount.cdm.json/ConsumerPaymentCardAccount\",\"name\":\"FixedInterestRateIndicator\"},\"VariableInterestRateIndicator\":{\"entity\":\"ConsumerPaymentCardAccount.cdm.json/ConsumerPaymentCardAccount\",\"name\":\"VariableInterestRateIndicator\"},\"CreditCardMaximumCreditAmount\":{\"entity\":\"ConsumerPaymentCardAccount.cdm.json/ConsumerPaymentCardAccount\",\"name\":\"CreditCardMaximumCreditAmount\"},\"MinimumVariableRateLoanFloorPercentage\":{\"entity\":\"ConsumerPaymentCardAccount.cdm.json/ConsumerPaymentCardAccount\",\"name\":\"MinimumVariableRateLoanFloorPercentage\"},\"MinimumLineOfCreditPercentage\":{\"entity\":\"ConsumerPaymentCardAccount.cdm.json/ConsumerPaymentCardAccount\",\"name\":\"MinimumLineOfCreditPercentage\"},\"BillingCycleNumberOfDays\":{\"entity\":\"ConsumerPaymentCardAccount.cdm.json/ConsumerPaymentCardAccount\",\"name\":\"BillingCycleNumberOfDays\"},\"ClosingDayNumberOfBillingCycle\":{\"entity\":\"ConsumerPaymentCardAccount.cdm.json/ConsumerPaymentCardAccount\",\"name\":\"ClosingDayNumberOfBillingCycle\"},\"GracePeriodNumberOfDays\":{\"entity\":\"ConsumerPaymentCardAccount.cdm.json/ConsumerPaymentCardAccount\",\"name\":\"GracePeriodNumberOfDays\"},\"CreditCardIndicator\":{\"entity\":\"ConsumerPaymentCardAccount.cdm.json/ConsumerPaymentCardAccount\",\"name\":\"CreditCardIndicator\"},\"DebitCardIndicator\":{\"entity\":\"ConsumerPaymentCardAccount.cdm.json/ConsumerPaymentCardAccount\",\"name\":\"DebitCardIndicator\"},\"PurchasingCardIndicator\":{\"entity\":\"ConsumerPaymentCardAccount.cdm.json/ConsumerPaymentCardAccount\",\"name\":\"PurchasingCardIndicator\"},\"CashCardIndicator\":{\"entity\":\"ConsumerPaymentCardAccount.cdm.json/ConsumerPaymentCardAccount\",\"name\":\"CashCardIndicator\"},\"SmartCardIndicator\":{\"entity\":\"ConsumerPaymentCardAccount.cdm.json/ConsumerPaymentCardAccount\",\"name\":\"SmartCardIndicator\"},\"ChargeCardIndicator\":{\"entity\":\"ConsumerPaymentCardAccount.cdm.json/ConsumerPaymentCardAccount\",\"name\":\"ChargeCardIndicator\"},\"CommercialCardIndicator\":{\"entity\":\"ConsumerPaymentCardAccount.cdm.json/ConsumerPaymentCardAccount\",\"name\":\"CommercialCardIndicator\"},\"UnsecuredCardIndicator\":{\"entity\":\"ConsumerPaymentCardAccount.cdm.json/ConsumerPaymentCardAccount\",\"name\":\"UnsecuredCardIndicator\"},\"OnlineDebitCardIndicator\":{\"entity\":\"ConsumerPaymentCardAccount.cdm.json/ConsumerPaymentCardAccount\",\"name\":\"OnlineDebitCardIndicator\"},\"OfflineDebitCardIndicator\":{\"entity\":\"ConsumerPaymentCardAccount.cdm.json/ConsumerPaymentCardAccount\",\"name\":\"OfflineDebitCardIndicator\"},\"PrivateLabelCardIndicator\":{\"entity\":\"ConsumerPaymentCardAccount.cdm.json/ConsumerPaymentCardAccount\",\"name\":\"PrivateLabelCardIndicator\"},\"PreApprovedCreditCardIndicator\":{\"entity\":\"ConsumerPaymentCardAccount.cdm.json/ConsumerPaymentCardAccount\",\"name\":\"PreApprovedCreditCardIndicator\"},\"SecuredCreditCardIndicator\":{\"entity\":\"ConsumerPaymentCardAccount.cdm.json/ConsumerPaymentCardAccount\",\"name\":\"SecuredCreditCardIndicator\"},\"AffinityCardIndicator\":{\"entity\":\"ConsumerPaymentCardAccount.cdm.json/ConsumerPaymentCardAccount\",\"name\":\"AffinityCardIndicator\"},\"RebateCardIndicator\":{\"entity\":\"ConsumerPaymentCardAccount.cdm.json/ConsumerPaymentCardAccount\",\"name\":\"RebateCardIndicator\"},\"CoBrandedCardIndicator\":{\"entity\":\"ConsumerPaymentCardAccount.cdm.json/ConsumerPaymentCardAccount\",\"name\":\"CoBrandedCardIndicator\"},\"CardAssociationId\":{\"entity\":\"ConsumerPaymentCardAccount.cdm.json/ConsumerPaymentCardAccount\",\"name\":\"CardAssociationId\"},\"PaymentCardTypeId\":{\"entity\":\"ConsumerPaymentCardAccount.cdm.json/ConsumerPaymentCardAccount\",\"name\":\"PaymentCardTypeId\"},\"CustomerId\":{\"entity\":\"ConsumerPaymentCardAccount.cdm.json/ConsumerPaymentCardAccount\",\"name\":\"CustomerId\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"ConsumerPaymentCardAccount\",\"path\":\"ConsumerPaymentCardAccount.cdm.json/ConsumerPaymentCardAccount\"},\"description\":\"A plastic card that with a coded magnetic stripe that, when signed, entitles its bearer to a revolving line of credit, whose size and interest rate are determined by the borrower's income and credit report. Credit cards began in the late '40s when banks began giving out paper certificates that could be used like cash in local stores. The first real credit card was issued in 1951 by Franklin National Bank in New\\n\\nA credit card allows you to make partial payments for purchases, but charges interest on the amount owed. You can also pay your balance off in full to avoid interest payments. Banks and other card issuers set interest rates and fees.\",\"primaryKey\":[\"PaymentCardId\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ConsumerPaymentCardAccount.cdm.json/ConsumerPaymentCardAccount\",\"name\":\"PaymentCardId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Payment Card.\",\"isNullable\":false,\"name\":\"PaymentCardId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ConsumerPaymentCardAccount.cdm.json/ConsumerPaymentCardAccount\",\"name\":\"CreditGrantorId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Credit Grantor.\",\"isNullable\":false,\"name\":\"CreditGrantorId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ConsumerPaymentCardAccount.cdm.json/ConsumerPaymentCardAccount\",\"name\":\"CardInformationEffectiveDate\"},\"dataType\":\"date\",\"dateFormat\":\"YYYY-MM-DD\",\"description\":\"The effective or as-of-date that the associated card information is current or effective as-of.\",\"isNullable\":false,\"name\":\"CardInformationEffectiveDate\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ConsumerPaymentCardAccount.cdm.json/ConsumerPaymentCardAccount\",\"name\":\"PrimaryCreditCardHolderName\"},\"dataType\":\"string\",\"dataTypeLength\":256,\"description\":\"The name of the primary holder of the credit card.\",\"isNullable\":true,\"name\":\"PrimaryCreditCardHolderName\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ConsumerPaymentCardAccount.cdm.json/ConsumerPaymentCardAccount\",\"name\":\"CreditCardIssuedDate\"},\"dataType\":\"date\",\"dateFormat\":\"YYYY-MM-DD\",\"description\":\"The date that the credit card was issued.\",\"isNullable\":true,\"name\":\"CreditCardIssuedDate\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ConsumerPaymentCardAccount.cdm.json/ConsumerPaymentCardAccount\",\"name\":\"CreditCardExpirationDate\"},\"dataType\":\"date\",\"dateFormat\":\"YYYY-MM-DD\",\"description\":\"The expiration date of the credit card.\",\"isNullable\":true,\"name\":\"CreditCardExpirationDate\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ConsumerPaymentCardAccount.cdm.json/ConsumerPaymentCardAccount\",\"name\":\"AnnualPercentageRate\"},\"dataType\":\"decimal\",\"dataTypeLength\":18,\"description\":\"This is the annual period rate or the interest rate described in relation to a specific amount of time - a year in this case.  The monthly periodic rate, for example, is the cost of credit per month; the daily periodic rate is the cost of credit per day.\\n\\nThe APR is a measure of the cost of credit, expressed as a yearly rate. It also must be disclosed before you become obligated on the account and on your account statements.\",\"isNullable\":false,\"scale\":8,\"name\":\"AnnualPercentageRate\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ConsumerPaymentCardAccount.cdm.json/ConsumerPaymentCardAccount\",\"name\":\"MonthlyPeriodicRate\"},\"dataType\":\"decimal\",\"dataTypeLength\":18,\"description\":\"The Monthly periodic rate\\n\\nThis provides a historical view of APR of the card over it's history.\\n\\nCurrent fees and terms are carried also in the CREDIT/PAYMENT CARD entity.   This provides a historical perspective of how terms and fees have changed over the course of the card's history.\",\"isNullable\":true,\"scale\":8,\"name\":\"MonthlyPeriodicRate\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ConsumerPaymentCardAccount.cdm.json/ConsumerPaymentCardAccount\",\"name\":\"DailyPeriodicRate\"},\"dataType\":\"decimal\",\"dataTypeLength\":18,\"description\":\"The annual interest rate expressed on a daily basis for the associated period.  It equals 1/365th of your annual percentage rate.\\n\\nThis provides a historical view of APR of the card over it's history.\\n\\nCurrent fees and terms are carried also in the CREDIT/PAYMENT CARD entity.   This provides a historical perspective of how terms and fees have changed over the course of the card's history.\",\"isNullable\":true,\"scale\":8,\"name\":\"DailyPeriodicRate\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ConsumerPaymentCardAccount.cdm.json/ConsumerPaymentCardAccount\",\"name\":\"FixedInterestRateIndicator\"},\"dataType\":\"boolean\",\"description\":\"Indicates that the APR is fixed interest.\\n\\nThe APR is a measure of the cost of credit, expressed as a yearly rate. It also must be disclosed before you become obligated on the account and on your account statements.\",\"isNullable\":true,\"name\":\"FixedInterestRateIndicator\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ConsumerPaymentCardAccount.cdm.json/ConsumerPaymentCardAccount\",\"name\":\"VariableInterestRateIndicator\"},\"dataType\":\"boolean\",\"description\":\"Indicates that the APR is variable interest.\\n\\nPercentage that a borrower pays for the use of money, and which moves up or down periodically based on changes in other interest rates.\\n\\nThe APR is a measure of the cost of credit, expressed as a yearly rate. It also must be disclosed before you become obligated on the account and on your account statements.\",\"isNullable\":true,\"name\":\"VariableInterestRateIndicator\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ConsumerPaymentCardAccount.cdm.json/ConsumerPaymentCardAccount\",\"name\":\"CreditCardMaximumCreditAmount\"},\"dataType\":\"decimal\",\"dataTypeLength\":18,\"description\":\"The maximum amount of credit or charges that may be applied to or incurred by the credit card.\",\"isNullable\":true,\"scale\":2,\"name\":\"CreditCardMaximumCreditAmount\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ConsumerPaymentCardAccount.cdm.json/ConsumerPaymentCardAccount\",\"name\":\"MinimumVariableRateLoanFloorPercentage\"},\"dataType\":\"decimal\",\"dataTypeLength\":18,\"description\":\"The minimum rate possible on a variable-rate loan, after any initial introductory rate period. For example, on a credit card with the Prime rate as its index, no matter how low the Prime rate drops, the rate on the line may never decrease below the stated rate floor.\",\"isNullable\":true,\"scale\":8,\"name\":\"MinimumVariableRateLoanFloorPercentage\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ConsumerPaymentCardAccount.cdm.json/ConsumerPaymentCardAccount\",\"name\":\"MinimumLineOfCreditPercentage\"},\"dataType\":\"decimal\",\"dataTypeLength\":18,\"description\":\"The minimum rate possible on a line of credit, after any initial introductory rate period. For example, on a credit card with the Prime rate as its index, no matter how low the Prime rate drops, the rate on the line may never decrease below the stated rate floor.\",\"isNullable\":true,\"scale\":8,\"name\":\"MinimumLineOfCreditPercentage\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ConsumerPaymentCardAccount.cdm.json/ConsumerPaymentCardAccount\",\"name\":\"BillingCycleNumberOfDays\"},\"dataType\":\"integer\",\"description\":\"The length of time between billing statements. A billing cycle is typically 30 days.\",\"isNullable\":true,\"name\":\"BillingCycleNumberOfDays\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ConsumerPaymentCardAccount.cdm.json/ConsumerPaymentCardAccount\",\"name\":\"ClosingDayNumberOfBillingCycle\"},\"dataType\":\"integer\",\"description\":\"The last day that transactions are posted on your account for that billing cycle.\",\"isNullable\":true,\"name\":\"ClosingDayNumberOfBillingCycle\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ConsumerPaymentCardAccount.cdm.json/ConsumerPaymentCardAccount\",\"name\":\"GracePeriodNumberOfDays\"},\"dataType\":\"integer\",\"description\":\"If the card user does not carry a balance, the grace period is the interest-free time a lender allows between the transaction date and the billing date. The standard grace period is usually between 20 and 30 days. If there is no grace period, finance charges will accrue the moment a purchase is made with the credit card. People who carry a balance on their credit cards have no grace period.\",\"isNullable\":true,\"name\":\"GracePeriodNumberOfDays\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ConsumerPaymentCardAccount.cdm.json/ConsumerPaymentCardAccount\",\"name\":\"CreditCardIndicator\"},\"dataType\":\"boolean\",\"description\":\"Indicates that the associated card is a credit card.\\n\\nA type of payment card that involves a revolving line of credit that is issued to the cardholder. Credit cards provide flexibility, allowing you to pay your whole bill at once or over time in increments. If you do not choose to pay your balance in full each month, you will be required to make at least the minimum payment and to pay finance charges on the remaining balance. Credit cards are issued by banks, credit unions, and some retailers like department stores and gasoline companies, among others.\",\"isNullable\":true,\"name\":\"CreditCardIndicator\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ConsumerPaymentCardAccount.cdm.json/ConsumerPaymentCardAccount\",\"name\":\"DebitCardIndicator\"},\"dataType\":\"boolean\",\"description\":\"A debit card deducts the amount of your purchase directly from your checking account.\",\"isNullable\":true,\"name\":\"DebitCardIndicator\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ConsumerPaymentCardAccount.cdm.json/ConsumerPaymentCardAccount\",\"name\":\"PurchasingCardIndicator\"},\"dataType\":\"boolean\",\"description\":\"This card allows a company to place orders directly with suppliers and charges them to the card.\",\"isNullable\":true,\"name\":\"PurchasingCardIndicator\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ConsumerPaymentCardAccount.cdm.json/ConsumerPaymentCardAccount\",\"name\":\"CashCardIndicator\"},\"dataType\":\"boolean\",\"description\":\"A card similar to a pre-paid phone card with a set amount of value, which can be read by a special cash card reader. Participating retailers will use the reader to debit the card in increments until the value is gone. The card is like cash -- it has no built-in security, so it can be used by anyone if lost or stolen.\",\"isNullable\":true,\"name\":\"CashCardIndicator\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ConsumerPaymentCardAccount.cdm.json/ConsumerPaymentCardAccount\",\"name\":\"SmartCardIndicator\"},\"dataType\":\"boolean\",\"description\":\"A card with a microprocessor chip in it. Smart Chip adds security capabilities and enhanced online shopping security.\",\"isNullable\":true,\"name\":\"SmartCardIndicator\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ConsumerPaymentCardAccount.cdm.json/ConsumerPaymentCardAccount\",\"name\":\"ChargeCardIndicator\"},\"dataType\":\"boolean\",\"description\":\"The charge card must be paid in full every month. An example of a charge card is American Express card.\",\"isNullable\":true,\"name\":\"ChargeCardIndicator\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ConsumerPaymentCardAccount.cdm.json/ConsumerPaymentCardAccount\",\"name\":\"CommercialCardIndicator\"},\"dataType\":\"boolean\",\"description\":\"Commercial cards are the broad definition of a special class of credit or bank card. They differ from consumer cards in that they frequently offer Level-3 (level III) line item detail information and special usage controls to the corporate or governmental user. Another frequently used term is corporate card.\\n\\nA general name for cards typically issued for business use and may include Corporate Cards, Purchase Cards, Business Cards, Travel and Entertainment Cards.\",\"isNullable\":true,\"name\":\"CommercialCardIndicator\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ConsumerPaymentCardAccount.cdm.json/ConsumerPaymentCardAccount\",\"name\":\"UnsecuredCardIndicator\"},\"dataType\":\"boolean\",\"description\":\"A credit card based on a consumer's promise to pay, without savings or cash deposit as a guarantee.\",\"isNullable\":true,\"name\":\"UnsecuredCardIndicator\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ConsumerPaymentCardAccount.cdm.json/ConsumerPaymentCardAccount\",\"name\":\"OnlineDebitCardIndicator\"},\"dataType\":\"boolean\",\"description\":\"An online debit card that deducts funds from the bank account immediately, as soon as the card is used. It may have the VISA or MasterCard logo, or only the issuing bank's logo, like an ATM card. There is no delay for processing the transaction -- the money is immediately deducted from your account. In the U.S., if you entered a Personal Identification Number (PIN) during the transaction, it was online.\",\"isNullable\":true,\"name\":\"OnlineDebitCardIndicator\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ConsumerPaymentCardAccount.cdm.json/ConsumerPaymentCardAccount\",\"name\":\"OfflineDebitCardIndicator\"},\"dataType\":\"boolean\",\"description\":\"A card that shares traits of both ATM and credit cards. Offline debit cards have the VISA or MasterCard logo on them and can be issued by a bank, instead of, or in addition to, an ATM card. These cards can be used at any establishment that displays the VISA or MasterCard logo, but using them does not access a line of credit -- it debits a customer's checking account. It is \\\"offline\\\" because the account is not directly accessed -- there's a delay of 24 to 72 hours before the debit is made in the account. If you sign a slip of paper to conclude the transaction, it was offline. In the U.S., no Personal Identification Number (PIN) is required to use an offline debit card.\",\"isNullable\":true,\"name\":\"OfflineDebitCardIndicator\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ConsumerPaymentCardAccount.cdm.json/ConsumerPaymentCardAccount\",\"name\":\"PrivateLabelCardIndicator\"},\"dataType\":\"boolean\",\"description\":\"A card issued by a retail outlet, such as a department store or gasoline company, that contains the logo of the private company. It is generally accepted only by the retailer who issued it. Retailers partner with a bank or a card-issuing management company to back the cards.\",\"isNullable\":true,\"name\":\"PrivateLabelCardIndicator\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ConsumerPaymentCardAccount.cdm.json/ConsumerPaymentCardAccount\",\"name\":\"PreApprovedCreditCardIndicator\"},\"dataType\":\"boolean\",\"description\":\"A credit card offer with \\\"pre-approved\\\" only means that a potential customer has passed a preliminary credit-information screening.\",\"isNullable\":true,\"name\":\"PreApprovedCreditCardIndicator\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ConsumerPaymentCardAccount.cdm.json/ConsumerPaymentCardAccount\",\"name\":\"SecuredCreditCardIndicator\"},\"dataType\":\"boolean\",\"description\":\"A credit card that a cardholder secures with a savings deposit to ensure payment of the outstanding balance if the cardholder defaults on payments. It is used by people new to credit, or people trying to rebuild their poor credit ratings.\",\"isNullable\":true,\"name\":\"SecuredCreditCardIndicator\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ConsumerPaymentCardAccount.cdm.json/ConsumerPaymentCardAccount\",\"name\":\"AffinityCardIndicator\"},\"dataType\":\"boolean\",\"description\":\"A credit card endorsed by groups such as colleges, sports teams, professional organizations, or special interest groups that are offered to their alumni, fans or members.\",\"isNullable\":true,\"name\":\"AffinityCardIndicator\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ConsumerPaymentCardAccount.cdm.json/ConsumerPaymentCardAccount\",\"name\":\"RebateCardIndicator\"},\"dataType\":\"boolean\",\"description\":\"A card that allows the customer to accumulate cash, merchandise or services based on card usage.\",\"isNullable\":true,\"name\":\"RebateCardIndicator\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ConsumerPaymentCardAccount.cdm.json/ConsumerPaymentCardAccount\",\"name\":\"CoBrandedCardIndicator\"},\"dataType\":\"boolean\",\"description\":\"A co-branded credit card is sponsored by both the issuing bank and a retail organization such as a department store or an airline. Cardholders may get benefits such as discounts or free merchandise from the sponsoring merchant based on account usage and terms.\",\"isNullable\":true,\"name\":\"CoBrandedCardIndicator\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ConsumerPaymentCardAccount.cdm.json/ConsumerPaymentCardAccount\",\"name\":\"CardAssociationId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Card Association.\",\"isNullable\":true,\"name\":\"CardAssociationId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ConsumerPaymentCardAccount.cdm.json/ConsumerPaymentCardAccount\",\"name\":\"PaymentCardTypeId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Payment Card Type.\",\"isNullable\":true,\"name\":\"PaymentCardTypeId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ConsumerPaymentCardAccount.cdm.json/ConsumerPaymentCardAccount\",\"name\":\"CustomerId\"},\"dataType\":\"long\",\"description\":\"The unique identifier of a Customer.\",\"isNullable\":true,\"name\":\"CustomerId\"}]}}}",
+			"Description": "A plastic card that with a coded magnetic stripe that, when signed, entitles its bearer to a revolving line of credit, whose size and interest rate are determined by the borrower's income and credit report. Credit cards began in the late '40s when banks began giving out paper certificates that could be used like cash in local stores. The first real credit card was issued in 1951 by Franklin National Bank in New\n\nA credit card allows you to make partial payments for purchases, but charges interest on the amount owed. You can also pay your balance off in full to avoid interest payments. Banks and other card issuers set interest rates and fees.",
+			"DisplayFolderInfo": "{\"name\":\"Customer Credit & Collections\",\"colorCode\":\"#022F22\"}",
+			"PrimaryKeys": "PaymentCardId",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

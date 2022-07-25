@@ -1,0 +1,113 @@
+{
+	"name": "EquifaxRateHistoryType",
+	"properties": {
+		"Name": "EquifaxRateHistoryType",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "This provides a summary of historical delinquencies. This may also include additional fields listed in MOP Rates.\n\nEx:\na. Not more than two payments past due\nb. Not more than three payments past due\nc. Not more than four payments past due\nd. At least 120 days or more than four payments past due\ne. Collection account\nf. Repossession\ng. Charge-off",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "EquifaxRateHistoryTypeId",
+					"Description": "The unique identifier of a rate history type.",
+					"BaseAttributeReference": {
+						"Entity": "EquifaxRateHistoryType.cdm.json/EquifaxRateHistoryType",
+						"Name": "EquifaxRateHistoryTypeId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "EquifaxRateHistoryTypeName",
+					"Description": "The name of a rate history type.",
+					"BaseAttributeReference": {
+						"Entity": "EquifaxRateHistoryType.cdm.json/EquifaxRateHistoryType",
+						"Name": "EquifaxRateHistoryTypeName"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 256,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "EquifaxRateHistoryTypeDescription",
+					"Description": "The description of a rate history type.",
+					"BaseAttributeReference": {
+						"Entity": "EquifaxRateHistoryType.cdm.json/EquifaxRateHistoryType",
+						"Name": "EquifaxRateHistoryTypeDescription"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/EquifaxRateHistoryType",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/EquifaxRateHistoryType",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"EquifaxRateHistoryTypeId\":{\"entity\":\"EquifaxRateHistoryType.cdm.json/EquifaxRateHistoryType\",\"name\":\"EquifaxRateHistoryTypeId\"},\"EquifaxRateHistoryTypeName\":{\"entity\":\"EquifaxRateHistoryType.cdm.json/EquifaxRateHistoryType\",\"name\":\"EquifaxRateHistoryTypeName\"},\"EquifaxRateHistoryTypeDescription\":{\"entity\":\"EquifaxRateHistoryType.cdm.json/EquifaxRateHistoryType\",\"name\":\"EquifaxRateHistoryTypeDescription\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"EquifaxRateHistoryType\",\"path\":\"EquifaxRateHistoryType.cdm.json/EquifaxRateHistoryType\"},\"description\":\"This provides a summary of historical delinquencies. This may also include additional fields listed in MOP Rates.\\n\\nEx:\\na. Not more than two payments past due\\nb. Not more than three payments past due\\nc. Not more than four payments past due\\nd. At least 120 days or more than four payments past due\\ne. Collection account\\nf. Repossession\\ng. Charge-off\",\"primaryKey\":[\"EquifaxRateHistoryTypeId\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"EquifaxRateHistoryType.cdm.json/EquifaxRateHistoryType\",\"name\":\"EquifaxRateHistoryTypeId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a rate history type.\",\"isNullable\":false,\"name\":\"EquifaxRateHistoryTypeId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"EquifaxRateHistoryType.cdm.json/EquifaxRateHistoryType\",\"name\":\"EquifaxRateHistoryTypeName\"},\"dataType\":\"string\",\"dataTypeLength\":256,\"description\":\"The name of a rate history type.\",\"isNullable\":true,\"name\":\"EquifaxRateHistoryTypeName\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"EquifaxRateHistoryType.cdm.json/EquifaxRateHistoryType\",\"name\":\"EquifaxRateHistoryTypeDescription\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"The description of a rate history type.\",\"isNullable\":true,\"name\":\"EquifaxRateHistoryTypeDescription\"}]}}}",
+			"Description": "This provides a summary of historical delinquencies. This may also include additional fields listed in MOP Rates.\n\nEx:\na. Not more than two payments past due\nb. Not more than three payments past due\nc. Not more than four payments past due\nd. At least 120 days or more than four payments past due\ne. Collection account\nf. Repossession\ng. Charge-off",
+			"DisplayFolderInfo": "{\"name\":\"Customer Credit & Collections\",\"colorCode\":\"#022F22\"}",
+			"PrimaryKeys": "EquifaxRateHistoryTypeId",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

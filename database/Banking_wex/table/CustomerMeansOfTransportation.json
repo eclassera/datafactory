@@ -1,0 +1,178 @@
+{
+	"name": "CustomerMeansOfTransportation",
+	"properties": {
+		"Name": "CustomerMeansOfTransportation",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "The specific transportation used by the Individual Customer under various scenarios.\n\nEx:\nCustomer ID: 1000\nTransportation Requirement:  Transport to Work \nTransportation Mode: Personal Auto\nCustomer Preference: Primary\n \n\nCustomer ID: 1000\nTransportation Requirement:  Transport to Work \nTransportation Mode: Bus\nCustomer Preference: Alternate",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "CustomerId",
+					"Description": "The unique identifier of a Customer.",
+					"BaseAttributeReference": {
+						"Entity": "CustomerMeansOfTransportation.cdm.json/CustomerMeansOfTransportation",
+						"Name": "CustomerId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "long",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "long"
+						}
+					}
+				},
+				{
+					"Name": "TransportationRequirementId",
+					"Description": "The unique identifier of a Transportation Requirement.",
+					"BaseAttributeReference": {
+						"Entity": "CustomerMeansOfTransportation.cdm.json/CustomerMeansOfTransportation",
+						"Name": "TransportationRequirementId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "TransportationModeId",
+					"Description": "The unique identifier of a Transportation Mode.",
+					"BaseAttributeReference": {
+						"Entity": "CustomerMeansOfTransportation.cdm.json/CustomerMeansOfTransportation",
+						"Name": "TransportationModeId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "PeriodStartDate",
+					"Description": "The period start date for which the associated data is effective or 'as-of'.",
+					"BaseAttributeReference": {
+						"Entity": "CustomerMeansOfTransportation.cdm.json/CustomerMeansOfTransportation",
+						"Name": "PeriodStartDate"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "date",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"DateFormat": "YYYY-MM-DD",
+							"HIVE_TYPE_STRING": "date"
+						}
+					}
+				},
+				{
+					"Name": "PeriodEndDate",
+					"Description": "The period end date for which the associated data is effective or 'as-of'.",
+					"BaseAttributeReference": {
+						"Entity": "CustomerMeansOfTransportation.cdm.json/CustomerMeansOfTransportation",
+						"Name": "PeriodEndDate"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "date",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"DateFormat": "YYYY-MM-DD",
+							"HIVE_TYPE_STRING": "date"
+						}
+					}
+				},
+				{
+					"Name": "PreferenceId",
+					"Description": "The unique identifier of a Preference.",
+					"BaseAttributeReference": {
+						"Entity": "CustomerMeansOfTransportation.cdm.json/CustomerMeansOfTransportation",
+						"Name": "PreferenceId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "CustomerTransportationNote",
+					"Description": "Notes, comments or additional information regarding the customer means of transportation.",
+					"BaseAttributeReference": {
+						"Entity": "CustomerMeansOfTransportation.cdm.json/CustomerMeansOfTransportation",
+						"Name": "CustomerTransportationNote"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/CustomerMeansOfTransportation",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/CustomerMeansOfTransportation",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"CustomerId\":{\"entity\":\"CustomerMeansOfTransportation.cdm.json/CustomerMeansOfTransportation\",\"name\":\"CustomerId\"},\"TransportationRequirementId\":{\"entity\":\"CustomerMeansOfTransportation.cdm.json/CustomerMeansOfTransportation\",\"name\":\"TransportationRequirementId\"},\"TransportationModeId\":{\"entity\":\"CustomerMeansOfTransportation.cdm.json/CustomerMeansOfTransportation\",\"name\":\"TransportationModeId\"},\"PeriodStartDate\":{\"entity\":\"CustomerMeansOfTransportation.cdm.json/CustomerMeansOfTransportation\",\"name\":\"PeriodStartDate\"},\"PeriodEndDate\":{\"entity\":\"CustomerMeansOfTransportation.cdm.json/CustomerMeansOfTransportation\",\"name\":\"PeriodEndDate\"},\"PreferenceId\":{\"entity\":\"CustomerMeansOfTransportation.cdm.json/CustomerMeansOfTransportation\",\"name\":\"PreferenceId\"},\"CustomerTransportationNote\":{\"entity\":\"CustomerMeansOfTransportation.cdm.json/CustomerMeansOfTransportation\",\"name\":\"CustomerTransportationNote\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"CustomerMeansOfTransportation\",\"path\":\"CustomerMeansOfTransportation.cdm.json/CustomerMeansOfTransportation\"},\"description\":\"The specific transportation used by the Individual Customer under various scenarios.\\n\\nEx:\\nCustomer ID: 1000\\nTransportation Requirement:  Transport to Work \\nTransportation Mode: Personal Auto\\nCustomer Preference: Primary\\n \\n\\nCustomer ID: 1000\\nTransportation Requirement:  Transport to Work \\nTransportation Mode: Bus\\nCustomer Preference: Alternate\",\"primaryKey\":[\"CustomerId\",\"TransportationRequirementId\",\"TransportationModeId\",\"PeriodStartDate\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CustomerMeansOfTransportation.cdm.json/CustomerMeansOfTransportation\",\"name\":\"CustomerId\"},\"dataType\":\"long\",\"description\":\"The unique identifier of a Customer.\",\"isNullable\":false,\"name\":\"CustomerId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CustomerMeansOfTransportation.cdm.json/CustomerMeansOfTransportation\",\"name\":\"TransportationRequirementId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Transportation Requirement.\",\"isNullable\":false,\"name\":\"TransportationRequirementId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CustomerMeansOfTransportation.cdm.json/CustomerMeansOfTransportation\",\"name\":\"TransportationModeId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Transportation Mode.\",\"isNullable\":false,\"name\":\"TransportationModeId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CustomerMeansOfTransportation.cdm.json/CustomerMeansOfTransportation\",\"name\":\"PeriodStartDate\"},\"dataType\":\"date\",\"dateFormat\":\"YYYY-MM-DD\",\"description\":\"The period start date for which the associated data is effective or 'as-of'.\",\"isNullable\":false,\"name\":\"PeriodStartDate\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CustomerMeansOfTransportation.cdm.json/CustomerMeansOfTransportation\",\"name\":\"PeriodEndDate\"},\"dataType\":\"date\",\"dateFormat\":\"YYYY-MM-DD\",\"description\":\"The period end date for which the associated data is effective or 'as-of'.\",\"isNullable\":true,\"name\":\"PeriodEndDate\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CustomerMeansOfTransportation.cdm.json/CustomerMeansOfTransportation\",\"name\":\"PreferenceId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Preference.\",\"isNullable\":false,\"name\":\"PreferenceId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CustomerMeansOfTransportation.cdm.json/CustomerMeansOfTransportation\",\"name\":\"CustomerTransportationNote\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"Notes, comments or additional information regarding the customer means of transportation.\",\"isNullable\":true,\"name\":\"CustomerTransportationNote\"}]}}}",
+			"Description": "The specific transportation used by the Individual Customer under various scenarios.\n\nEx:\nCustomer ID: 1000\nTransportation Requirement:  Transport to Work \nTransportation Mode: Personal Auto\nCustomer Preference: Primary\n \n\nCustomer ID: 1000\nTransportation Requirement:  Transport to Work \nTransportation Mode: Bus\nCustomer Preference: Alternate",
+			"DisplayFolderInfo": "{\"name\":\"Customer\",\"colorCode\":\"#4B003F\"}",
+			"PrimaryKeys": "CustomerId,TransportationRequirementId,TransportationModeId,PeriodStartDate",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

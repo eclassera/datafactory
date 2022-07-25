@@ -1,0 +1,113 @@
+{
+	"name": "ActivityType",
+	"properties": {
+		"Name": "ActivityType",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "Activity Type is a larger classification of Activities that enables them to be grouped for presentation or analysis.\n\nFor example, the Activity of 'gardening' might be classified by the Activity Type of 'Home Interests' to differentiate those interests from professional or other interests.     \n\nThis serves the purpose of grouping interests in larger classifications to give an accurate picture of the consumer in various contexts.\n\nEx:\nActivity =  \"Cooking\"\nActivity Type = \"Personal Interest\"\n\nActivity =  \"Golf\"\nActivity Type = \"Personal Sports\n\nActivity =  \"Mutual Fund Investing\"\nActivity Type = \"Finance\"\n\nEach organization will identify, define and track a specific set of AIOs to gather information about, define consumers and make decisions.",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "ActivityTypeId",
+					"Description": "The unique identifier of an Activity Type.",
+					"BaseAttributeReference": {
+						"Entity": "ActivityType.cdm.json/ActivityType",
+						"Name": "ActivityTypeId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "ActivityTypeName",
+					"Description": "The name of the Activity Type.",
+					"BaseAttributeReference": {
+						"Entity": "ActivityType.cdm.json/ActivityType",
+						"Name": "ActivityTypeName"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 256,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "ActivityTypeDescription",
+					"Description": "The description of the Activity Type.",
+					"BaseAttributeReference": {
+						"Entity": "ActivityType.cdm.json/ActivityType",
+						"Name": "ActivityTypeDescription"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/ActivityType",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/ActivityType",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"ActivityTypeId\":{\"entity\":\"ActivityType.cdm.json/ActivityType\",\"name\":\"ActivityTypeId\"},\"ActivityTypeName\":{\"entity\":\"ActivityType.cdm.json/ActivityType\",\"name\":\"ActivityTypeName\"},\"ActivityTypeDescription\":{\"entity\":\"ActivityType.cdm.json/ActivityType\",\"name\":\"ActivityTypeDescription\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"ActivityType\",\"path\":\"ActivityType.cdm.json/ActivityType\"},\"description\":\"Activity Type is a larger classification of Activities that enables them to be grouped for presentation or analysis.\\n\\nFor example, the Activity of 'gardening' might be classified by the Activity Type of 'Home Interests' to differentiate those interests from professional or other interests.     \\n\\nThis serves the purpose of grouping interests in larger classifications to give an accurate picture of the consumer in various contexts.\\n\\nEx:\\nActivity =  \\\"Cooking\\\"\\nActivity Type = \\\"Personal Interest\\\"\\n\\nActivity =  \\\"Golf\\\"\\nActivity Type = \\\"Personal Sports\\n\\nActivity =  \\\"Mutual Fund Investing\\\"\\nActivity Type = \\\"Finance\\\"\\n\\nEach organization will identify, define and track a specific set of AIOs to gather information about, define consumers and make decisions.\",\"primaryKey\":[\"ActivityTypeId\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ActivityType.cdm.json/ActivityType\",\"name\":\"ActivityTypeId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of an Activity Type.\",\"isNullable\":false,\"name\":\"ActivityTypeId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ActivityType.cdm.json/ActivityType\",\"name\":\"ActivityTypeName\"},\"dataType\":\"string\",\"dataTypeLength\":256,\"description\":\"The name of the Activity Type.\",\"isNullable\":true,\"name\":\"ActivityTypeName\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ActivityType.cdm.json/ActivityType\",\"name\":\"ActivityTypeDescription\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"The description of the Activity Type.\",\"isNullable\":true,\"name\":\"ActivityTypeDescription\"}]}}}",
+			"Description": "Activity Type is a larger classification of Activities that enables them to be grouped for presentation or analysis.\n\nFor example, the Activity of 'gardening' might be classified by the Activity Type of 'Home Interests' to differentiate those interests from professional or other interests.     \n\nThis serves the purpose of grouping interests in larger classifications to give an accurate picture of the consumer in various contexts.\n\nEx:\nActivity =  \"Cooking\"\nActivity Type = \"Personal Interest\"\n\nActivity =  \"Golf\"\nActivity Type = \"Personal Sports\n\nActivity =  \"Mutual Fund Investing\"\nActivity Type = \"Finance\"\n\nEach organization will identify, define and track a specific set of AIOs to gather information about, define consumers and make decisions.",
+			"DisplayFolderInfo": "{\"name\":\"Party\",\"colorCode\":\"#00727A\"}",
+			"PrimaryKeys": "ActivityTypeId",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

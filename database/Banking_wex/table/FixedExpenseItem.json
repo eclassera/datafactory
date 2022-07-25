@@ -1,0 +1,113 @@
+{
+	"name": "FixedExpenseItem",
+	"properties": {
+		"Name": "FixedExpenseItem",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "A fixed expense item that is applied to the Budgeted Income Statement.\n\nEx:\n- Factory Overhead\n- Selling And Administration",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "FixedExpenseItemId",
+					"Description": "The unique identifier of a Fixed Expense Item.",
+					"BaseAttributeReference": {
+						"Entity": "FixedExpenseItem.cdm.json/FixedExpenseItem",
+						"Name": "FixedExpenseItemId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "FixedExpenseItemName",
+					"Description": "The name of a Fixed Expense Item.",
+					"BaseAttributeReference": {
+						"Entity": "FixedExpenseItem.cdm.json/FixedExpenseItem",
+						"Name": "FixedExpenseItemName"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 256,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "FixedExpenseItemDescription",
+					"Description": "The description of a Fixed Expense Item.",
+					"BaseAttributeReference": {
+						"Entity": "FixedExpenseItem.cdm.json/FixedExpenseItem",
+						"Name": "FixedExpenseItemDescription"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/FixedExpenseItem",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/FixedExpenseItem",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"FixedExpenseItemId\":{\"entity\":\"FixedExpenseItem.cdm.json/FixedExpenseItem\",\"name\":\"FixedExpenseItemId\"},\"FixedExpenseItemName\":{\"entity\":\"FixedExpenseItem.cdm.json/FixedExpenseItem\",\"name\":\"FixedExpenseItemName\"},\"FixedExpenseItemDescription\":{\"entity\":\"FixedExpenseItem.cdm.json/FixedExpenseItem\",\"name\":\"FixedExpenseItemDescription\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"FixedExpenseItem\",\"path\":\"FixedExpenseItem.cdm.json/FixedExpenseItem\"},\"description\":\"A fixed expense item that is applied to the Budgeted Income Statement.\\n\\nEx:\\n- Factory Overhead\\n- Selling And Administration\",\"primaryKey\":[\"FixedExpenseItemId\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"FixedExpenseItem.cdm.json/FixedExpenseItem\",\"name\":\"FixedExpenseItemId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Fixed Expense Item.\",\"isNullable\":false,\"name\":\"FixedExpenseItemId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"FixedExpenseItem.cdm.json/FixedExpenseItem\",\"name\":\"FixedExpenseItemName\"},\"dataType\":\"string\",\"dataTypeLength\":256,\"description\":\"The name of a Fixed Expense Item.\",\"isNullable\":true,\"name\":\"FixedExpenseItemName\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"FixedExpenseItem.cdm.json/FixedExpenseItem\",\"name\":\"FixedExpenseItemDescription\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"The description of a Fixed Expense Item.\",\"isNullable\":true,\"name\":\"FixedExpenseItemDescription\"}]}}}",
+			"Description": "A fixed expense item that is applied to the Budgeted Income Statement.\n\nEx:\n- Factory Overhead\n- Selling And Administration",
+			"DisplayFolderInfo": "{\"name\":\"Budget & Forecasting\",\"colorCode\":\"#00188F\"}",
+			"PrimaryKeys": "FixedExpenseItemId",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

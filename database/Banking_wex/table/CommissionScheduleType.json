@@ -1,0 +1,113 @@
+{
+	"name": "CommissionScheduleType",
+	"properties": {
+		"Name": "CommissionScheduleType",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "A categorization of Commissions based on common characteristics, objectives or functions performed.\n\nEx:\n\n- GOODWILL COMMISSION SCHEDULE\nA Commission Schedule established to promote a special relationship with an existing customer or one that the firm wishes to establish a larger relationship with.  A Goodwill Commission Schedule contains terms that are more favorable than would normally be available to the general public.\n\n- STANDARD COMMISSION SCHEDULE\nThe standard (basic or default) Commission applied to any Product transaction, which equates to the house 'standard commission'.\n\n- NEGOTIATED COMMISSION SCHEDULE\nA brokerage commission that is determined through negotiation.  Prior to 1975 commissions were fixed.    Since then brokerage firms have been free to charge whatever they want for commissions.\n\n- PROMOTIONAL COMMISSION SCHEDULE\nA special Commission Schedule that is limited in time, has specific objectives or meant to feature a specific Product, market or channel.",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "CommissionScheduleTypeId",
+					"Description": "The unique identifier of a Commission Schedule.",
+					"BaseAttributeReference": {
+						"Entity": "CommissionScheduleType.cdm.json/CommissionScheduleType",
+						"Name": "CommissionScheduleTypeId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "CommissionScheduleTypeName",
+					"Description": "The name of a Commission Schedule.",
+					"BaseAttributeReference": {
+						"Entity": "CommissionScheduleType.cdm.json/CommissionScheduleType",
+						"Name": "CommissionScheduleTypeName"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 256,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "CommissionScheduleTypeDescription",
+					"Description": "The description of a Commission Schedule.",
+					"BaseAttributeReference": {
+						"Entity": "CommissionScheduleType.cdm.json/CommissionScheduleType",
+						"Name": "CommissionScheduleTypeDescription"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/CommissionScheduleType",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/CommissionScheduleType",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"CommissionScheduleTypeId\":{\"entity\":\"CommissionScheduleType.cdm.json/CommissionScheduleType\",\"name\":\"CommissionScheduleTypeId\"},\"CommissionScheduleTypeName\":{\"entity\":\"CommissionScheduleType.cdm.json/CommissionScheduleType\",\"name\":\"CommissionScheduleTypeName\"},\"CommissionScheduleTypeDescription\":{\"entity\":\"CommissionScheduleType.cdm.json/CommissionScheduleType\",\"name\":\"CommissionScheduleTypeDescription\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"CommissionScheduleType\",\"path\":\"CommissionScheduleType.cdm.json/CommissionScheduleType\"},\"description\":\"A categorization of Commissions based on common characteristics, objectives or functions performed.\\n\\nEx:\\n\\n- GOODWILL COMMISSION SCHEDULE\\nA Commission Schedule established to promote a special relationship with an existing customer or one that the firm wishes to establish a larger relationship with.  A Goodwill Commission Schedule contains terms that are more favorable than would normally be available to the general public.\\n\\n- STANDARD COMMISSION SCHEDULE\\nThe standard (basic or default) Commission applied to any Product transaction, which equates to the house 'standard commission'.\\n\\n- NEGOTIATED COMMISSION SCHEDULE\\nA brokerage commission that is determined through negotiation.  Prior to 1975 commissions were fixed.    Since then brokerage firms have been free to charge whatever they want for commissions.\\n\\n- PROMOTIONAL COMMISSION SCHEDULE\\nA special Commission Schedule that is limited in time, has specific objectives or meant to feature a specific Product, market or channel.\",\"primaryKey\":[\"CommissionScheduleTypeId\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CommissionScheduleType.cdm.json/CommissionScheduleType\",\"name\":\"CommissionScheduleTypeId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Commission Schedule.\",\"isNullable\":false,\"name\":\"CommissionScheduleTypeId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CommissionScheduleType.cdm.json/CommissionScheduleType\",\"name\":\"CommissionScheduleTypeName\"},\"dataType\":\"string\",\"dataTypeLength\":256,\"description\":\"The name of a Commission Schedule.\",\"isNullable\":true,\"name\":\"CommissionScheduleTypeName\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CommissionScheduleType.cdm.json/CommissionScheduleType\",\"name\":\"CommissionScheduleTypeDescription\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"The description of a Commission Schedule.\",\"isNullable\":true,\"name\":\"CommissionScheduleTypeDescription\"}]}}}",
+			"Description": "A categorization of Commissions based on common characteristics, objectives or functions performed.\n\nEx:\n\n- GOODWILL COMMISSION SCHEDULE\nA Commission Schedule established to promote a special relationship with an existing customer or one that the firm wishes to establish a larger relationship with.  A Goodwill Commission Schedule contains terms that are more favorable than would normally be available to the general public.\n\n- STANDARD COMMISSION SCHEDULE\nThe standard (basic or default) Commission applied to any Product transaction, which equates to the house 'standard commission'.\n\n- NEGOTIATED COMMISSION SCHEDULE\nA brokerage commission that is determined through negotiation.  Prior to 1975 commissions were fixed.    Since then brokerage firms have been free to charge whatever they want for commissions.\n\n- PROMOTIONAL COMMISSION SCHEDULE\nA special Commission Schedule that is limited in time, has specific objectives or meant to feature a specific Product, market or channel.",
+			"DisplayFolderInfo": "{\"name\":\"Product\",\"colorCode\":\"#0E3D73\"}",
+			"PrimaryKeys": "CommissionScheduleTypeId",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

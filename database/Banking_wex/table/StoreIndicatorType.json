@@ -1,0 +1,113 @@
+{
+	"name": "StoreIndicatorType",
+	"properties": {
+		"Name": "StoreIndicatorType",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "A means of categorizing Store Indicators by functions performed, characteristics or similar common characteristics.\n\nEx:\n- Online Ordering Available\n- Pharmacy\n- Pharmacy open to Midnight\n- 24-hour Pharmacy\n- 24-Hour Store\n- Optician\n- Public Bathroom",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "StoreIndicatorTypeId",
+					"Description": "The unique identifier of a Store Indicator Type.",
+					"BaseAttributeReference": {
+						"Entity": "StoreIndicatorType.cdm.json/StoreIndicatorType",
+						"Name": "StoreIndicatorTypeId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "StoreIndicatorTypeName",
+					"Description": "The name of a Store Indicator Type.",
+					"BaseAttributeReference": {
+						"Entity": "StoreIndicatorType.cdm.json/StoreIndicatorType",
+						"Name": "StoreIndicatorTypeName"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 256,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "StoreIndicatorTypeDescription",
+					"Description": "The description of a Store Indicator Type.",
+					"BaseAttributeReference": {
+						"Entity": "StoreIndicatorType.cdm.json/StoreIndicatorType",
+						"Name": "StoreIndicatorTypeDescription"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/StoreIndicatorType",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/StoreIndicatorType",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"StoreIndicatorTypeId\":{\"entity\":\"StoreIndicatorType.cdm.json/StoreIndicatorType\",\"name\":\"StoreIndicatorTypeId\"},\"StoreIndicatorTypeName\":{\"entity\":\"StoreIndicatorType.cdm.json/StoreIndicatorType\",\"name\":\"StoreIndicatorTypeName\"},\"StoreIndicatorTypeDescription\":{\"entity\":\"StoreIndicatorType.cdm.json/StoreIndicatorType\",\"name\":\"StoreIndicatorTypeDescription\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"StoreIndicatorType\",\"path\":\"StoreIndicatorType.cdm.json/StoreIndicatorType\"},\"description\":\"A means of categorizing Store Indicators by functions performed, characteristics or similar common characteristics.\\n\\nEx:\\n- Online Ordering Available\\n- Pharmacy\\n- Pharmacy open to Midnight\\n- 24-hour Pharmacy\\n- 24-Hour Store\\n- Optician\\n- Public Bathroom\",\"primaryKey\":[\"StoreIndicatorTypeId\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"StoreIndicatorType.cdm.json/StoreIndicatorType\",\"name\":\"StoreIndicatorTypeId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Store Indicator Type.\",\"isNullable\":false,\"name\":\"StoreIndicatorTypeId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"StoreIndicatorType.cdm.json/StoreIndicatorType\",\"name\":\"StoreIndicatorTypeName\"},\"dataType\":\"string\",\"dataTypeLength\":256,\"description\":\"The name of a Store Indicator Type.\",\"isNullable\":true,\"name\":\"StoreIndicatorTypeName\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"StoreIndicatorType.cdm.json/StoreIndicatorType\",\"name\":\"StoreIndicatorTypeDescription\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"The description of a Store Indicator Type.\",\"isNullable\":true,\"name\":\"StoreIndicatorTypeDescription\"}]}}}",
+			"Description": "A means of categorizing Store Indicators by functions performed, characteristics or similar common characteristics.\n\nEx:\n- Online Ordering Available\n- Pharmacy\n- Pharmacy open to Midnight\n- 24-hour Pharmacy\n- 24-Hour Store\n- Optician\n- Public Bathroom",
+			"DisplayFolderInfo": "{\"name\":\"Channel\",\"colorCode\":\"#001D3F\"}",
+			"PrimaryKeys": "StoreIndicatorTypeId",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

@@ -1,0 +1,180 @@
+{
+	"name": "ExperianCompanyUccFiling",
+	"properties": {
+		"Name": "ExperianCompanyUccFiling",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "Uniform Commercial Code (UCC) filings allow creditors to notify other creditors about a debtor's assets used as collateral for a secured transaction.\n\n UCC liens filed with secretary of state offices act as a public notice by the \"creditor\" of the creditor's interest in the property.",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "ExperianFileNumber",
+					"Description": "The unique and persistent number that identifies and tracks the Experian company.",
+					"BaseAttributeReference": {
+						"Entity": "ExperianCompanyUccFiling.cdm.json/ExperianCompanyUccFiling",
+						"Name": "ExperianFileNumber"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "ProfileTimestamp",
+					"Description": "The timestamp of the Experian profile.",
+					"BaseAttributeReference": {
+						"Entity": "ExperianCompanyUccFiling.cdm.json/ExperianCompanyUccFiling",
+						"Name": "ProfileTimestamp"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "timestamp",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"TimestampFormat": "YYYY-MM-DD HH:MM:SS.fffffffff",
+							"HIVE_TYPE_STRING": "timestamp"
+						}
+					}
+				},
+				{
+					"Name": "FilingNumber",
+					"Description": "The UCC filing number.",
+					"BaseAttributeReference": {
+						"Entity": "ExperianCompanyUccFiling.cdm.json/ExperianCompanyUccFiling",
+						"Name": "FilingNumber"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "UccContinuedDate",
+					"Description": "The date of the UCC continuance.",
+					"BaseAttributeReference": {
+						"Entity": "ExperianCompanyUccFiling.cdm.json/ExperianCompanyUccFiling",
+						"Name": "UccContinuedDate"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "date",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"DateFormat": "YYYY-MM-DD",
+							"HIVE_TYPE_STRING": "date"
+						}
+					}
+				},
+				{
+					"Name": "JurisdictionName",
+					"Description": "The name of the filing jurisdiction.\n\nEx:\n- SEC OF STATE DELAWARE",
+					"BaseAttributeReference": {
+						"Entity": "ExperianCompanyUccFiling.cdm.json/ExperianCompanyUccFiling",
+						"Name": "JurisdictionName"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 256,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "SecuredPartyName",
+					"Description": "The name of the secured.\n\nEx:\nSecured Party: NATIONAL CREDIT CORPORATION NJ PARSIPPANY 07054",
+					"BaseAttributeReference": {
+						"Entity": "ExperianCompanyUccFiling.cdm.json/ExperianCompanyUccFiling",
+						"Name": "SecuredPartyName"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 256,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "CollateralDescription",
+					"Description": "A description of the collateral related to the filing.\n\nEx:\nCollateral: EQUIP, HEREAFTER ACQUIRED PROP",
+					"BaseAttributeReference": {
+						"Entity": "ExperianCompanyUccFiling.cdm.json/ExperianCompanyUccFiling",
+						"Name": "CollateralDescription"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/ExperianCompanyUccFiling",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/ExperianCompanyUccFiling",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"ExperianFileNumber\":{\"entity\":\"ExperianCompanyUccFiling.cdm.json/ExperianCompanyUccFiling\",\"name\":\"ExperianFileNumber\"},\"ProfileTimestamp\":{\"entity\":\"ExperianCompanyUccFiling.cdm.json/ExperianCompanyUccFiling\",\"name\":\"ProfileTimestamp\"},\"FilingNumber\":{\"entity\":\"ExperianCompanyUccFiling.cdm.json/ExperianCompanyUccFiling\",\"name\":\"FilingNumber\"},\"UccContinuedDate\":{\"entity\":\"ExperianCompanyUccFiling.cdm.json/ExperianCompanyUccFiling\",\"name\":\"UccContinuedDate\"},\"JurisdictionName\":{\"entity\":\"ExperianCompanyUccFiling.cdm.json/ExperianCompanyUccFiling\",\"name\":\"JurisdictionName\"},\"SecuredPartyName\":{\"entity\":\"ExperianCompanyUccFiling.cdm.json/ExperianCompanyUccFiling\",\"name\":\"SecuredPartyName\"},\"CollateralDescription\":{\"entity\":\"ExperianCompanyUccFiling.cdm.json/ExperianCompanyUccFiling\",\"name\":\"CollateralDescription\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"ExperianCompanyUccFiling\",\"path\":\"ExperianCompanyUccFiling.cdm.json/ExperianCompanyUccFiling\"},\"description\":\"Uniform Commercial Code (UCC) filings allow creditors to notify other creditors about a debtor's assets used as collateral for a secured transaction.\\n\\n UCC liens filed with secretary of state offices act as a public notice by the \\\"creditor\\\" of the creditor's interest in the property.\",\"primaryKey\":[\"ExperianFileNumber\",\"ProfileTimestamp\",\"FilingNumber\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ExperianCompanyUccFiling.cdm.json/ExperianCompanyUccFiling\",\"name\":\"ExperianFileNumber\"},\"dataType\":\"integer\",\"description\":\"The unique and persistent number that identifies and tracks the Experian company.\",\"isNullable\":false,\"name\":\"ExperianFileNumber\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ExperianCompanyUccFiling.cdm.json/ExperianCompanyUccFiling\",\"name\":\"ProfileTimestamp\"},\"dataType\":\"timestamp\",\"description\":\"The timestamp of the Experian profile.\",\"isNullable\":false,\"name\":\"ProfileTimestamp\",\"timestampFormat\":\"YYYY-MM-DD HH:MM:SS.fffffffff\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ExperianCompanyUccFiling.cdm.json/ExperianCompanyUccFiling\",\"name\":\"FilingNumber\"},\"dataType\":\"integer\",\"description\":\"The UCC filing number.\",\"isNullable\":false,\"name\":\"FilingNumber\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ExperianCompanyUccFiling.cdm.json/ExperianCompanyUccFiling\",\"name\":\"UccContinuedDate\"},\"dataType\":\"date\",\"dateFormat\":\"YYYY-MM-DD\",\"description\":\"The date of the UCC continuance.\",\"isNullable\":true,\"name\":\"UccContinuedDate\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ExperianCompanyUccFiling.cdm.json/ExperianCompanyUccFiling\",\"name\":\"JurisdictionName\"},\"dataType\":\"string\",\"dataTypeLength\":256,\"description\":\"The name of the filing jurisdiction.\\n\\nEx:\\n- SEC OF STATE DELAWARE\",\"isNullable\":true,\"name\":\"JurisdictionName\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ExperianCompanyUccFiling.cdm.json/ExperianCompanyUccFiling\",\"name\":\"SecuredPartyName\"},\"dataType\":\"string\",\"dataTypeLength\":256,\"description\":\"The name of the secured.\\n\\nEx:\\nSecured Party: NATIONAL CREDIT CORPORATION NJ PARSIPPANY 07054\",\"isNullable\":true,\"name\":\"SecuredPartyName\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ExperianCompanyUccFiling.cdm.json/ExperianCompanyUccFiling\",\"name\":\"CollateralDescription\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"A description of the collateral related to the filing.\\n\\nEx:\\nCollateral: EQUIP, HEREAFTER ACQUIRED PROP\",\"isNullable\":true,\"name\":\"CollateralDescription\"}]}}}",
+			"Description": "Uniform Commercial Code (UCC) filings allow creditors to notify other creditors about a debtor's assets used as collateral for a secured transaction.\n\n UCC liens filed with secretary of state offices act as a public notice by the \"creditor\" of the creditor's interest in the property.",
+			"DisplayFolderInfo": "{\"name\":\"Customer Credit & Collections\",\"colorCode\":\"#022F22\"}",
+			"PrimaryKeys": "ExperianFileNumber,ProfileTimestamp,FilingNumber",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

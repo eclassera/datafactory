@@ -1,0 +1,113 @@
+{
+	"name": "EquifaxAccountOwnershipType",
+	"properties": {
+		"Name": "EquifaxAccountOwnershipType",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "The Equifax account ownership type;\n\nEx:\nIndividual Account",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "EquifaxAccountOwnershipTypeId",
+					"Description": "The unique identifier of an Equifax account ownership type.",
+					"BaseAttributeReference": {
+						"Entity": "EquifaxAccountOwnershipType.cdm.json/EquifaxAccountOwnershipType",
+						"Name": "EquifaxAccountOwnershipTypeId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "EquifaxAccountOwnershipTypeName",
+					"Description": "The name of an Equifax account ownership type.",
+					"BaseAttributeReference": {
+						"Entity": "EquifaxAccountOwnershipType.cdm.json/EquifaxAccountOwnershipType",
+						"Name": "EquifaxAccountOwnershipTypeName"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 256,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "EquifaxAccountOwnershipTypeDescription",
+					"Description": "The description of an Equifax account ownership type.",
+					"BaseAttributeReference": {
+						"Entity": "EquifaxAccountOwnershipType.cdm.json/EquifaxAccountOwnershipType",
+						"Name": "EquifaxAccountOwnershipTypeDescription"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/EquifaxAccountOwnershipType",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/EquifaxAccountOwnershipType",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"EquifaxAccountOwnershipTypeId\":{\"entity\":\"EquifaxAccountOwnershipType.cdm.json/EquifaxAccountOwnershipType\",\"name\":\"EquifaxAccountOwnershipTypeId\"},\"EquifaxAccountOwnershipTypeName\":{\"entity\":\"EquifaxAccountOwnershipType.cdm.json/EquifaxAccountOwnershipType\",\"name\":\"EquifaxAccountOwnershipTypeName\"},\"EquifaxAccountOwnershipTypeDescription\":{\"entity\":\"EquifaxAccountOwnershipType.cdm.json/EquifaxAccountOwnershipType\",\"name\":\"EquifaxAccountOwnershipTypeDescription\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"EquifaxAccountOwnershipType\",\"path\":\"EquifaxAccountOwnershipType.cdm.json/EquifaxAccountOwnershipType\"},\"description\":\"The Equifax account ownership type;\\n\\nEx:\\nIndividual Account\",\"primaryKey\":[\"EquifaxAccountOwnershipTypeId\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"EquifaxAccountOwnershipType.cdm.json/EquifaxAccountOwnershipType\",\"name\":\"EquifaxAccountOwnershipTypeId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of an Equifax account ownership type.\",\"isNullable\":false,\"name\":\"EquifaxAccountOwnershipTypeId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"EquifaxAccountOwnershipType.cdm.json/EquifaxAccountOwnershipType\",\"name\":\"EquifaxAccountOwnershipTypeName\"},\"dataType\":\"string\",\"dataTypeLength\":256,\"description\":\"The name of an Equifax account ownership type.\",\"isNullable\":true,\"name\":\"EquifaxAccountOwnershipTypeName\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"EquifaxAccountOwnershipType.cdm.json/EquifaxAccountOwnershipType\",\"name\":\"EquifaxAccountOwnershipTypeDescription\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"The description of an Equifax account ownership type.\",\"isNullable\":true,\"name\":\"EquifaxAccountOwnershipTypeDescription\"}]}}}",
+			"Description": "The Equifax account ownership type;\n\nEx:\nIndividual Account",
+			"DisplayFolderInfo": "{\"name\":\"Customer Credit & Collections\",\"colorCode\":\"#022F22\"}",
+			"PrimaryKeys": "EquifaxAccountOwnershipTypeId",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

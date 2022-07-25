@@ -1,0 +1,113 @@
+{
+	"name": "JournalEntryRelationshipType",
+	"properties": {
+		"Name": "JournalEntryRelationshipType",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "The nature of the relationship between two or more journal entries.\n\nEx:\nReverse Journal Entry\nCorrect Journal Entry\nDuplicate Journal Entry for FERC Ledger\nSummarize Sub-Ledger Entries for General Ledger",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "JournalEntryRelationshipTypeId",
+					"Description": "The unique identifier of a Journal Entry Relationship Type.",
+					"BaseAttributeReference": {
+						"Entity": "JournalEntryRelationshipType.cdm.json/JournalEntryRelationshipType",
+						"Name": "JournalEntryRelationshipTypeId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "JournalEntryRelationshipTypeName",
+					"Description": "The name of a Journal Entry Relationship Type.",
+					"BaseAttributeReference": {
+						"Entity": "JournalEntryRelationshipType.cdm.json/JournalEntryRelationshipType",
+						"Name": "JournalEntryRelationshipTypeName"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 256,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "JournalEntryRelationshipTypeDescription",
+					"Description": "The description of a Journal Entry Relationship Type.",
+					"BaseAttributeReference": {
+						"Entity": "JournalEntryRelationshipType.cdm.json/JournalEntryRelationshipType",
+						"Name": "JournalEntryRelationshipTypeDescription"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/JournalEntryRelationshipType",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/JournalEntryRelationshipType",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"JournalEntryRelationshipTypeId\":{\"entity\":\"JournalEntryRelationshipType.cdm.json/JournalEntryRelationshipType\",\"name\":\"JournalEntryRelationshipTypeId\"},\"JournalEntryRelationshipTypeName\":{\"entity\":\"JournalEntryRelationshipType.cdm.json/JournalEntryRelationshipType\",\"name\":\"JournalEntryRelationshipTypeName\"},\"JournalEntryRelationshipTypeDescription\":{\"entity\":\"JournalEntryRelationshipType.cdm.json/JournalEntryRelationshipType\",\"name\":\"JournalEntryRelationshipTypeDescription\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"JournalEntryRelationshipType\",\"path\":\"JournalEntryRelationshipType.cdm.json/JournalEntryRelationshipType\"},\"description\":\"The nature of the relationship between two or more journal entries.\\n\\nEx:\\nReverse Journal Entry\\nCorrect Journal Entry\\nDuplicate Journal Entry for FERC Ledger\\nSummarize Sub-Ledger Entries for General Ledger\",\"primaryKey\":[\"JournalEntryRelationshipTypeId\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"JournalEntryRelationshipType.cdm.json/JournalEntryRelationshipType\",\"name\":\"JournalEntryRelationshipTypeId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Journal Entry Relationship Type.\",\"isNullable\":false,\"name\":\"JournalEntryRelationshipTypeId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"JournalEntryRelationshipType.cdm.json/JournalEntryRelationshipType\",\"name\":\"JournalEntryRelationshipTypeName\"},\"dataType\":\"string\",\"dataTypeLength\":256,\"description\":\"The name of a Journal Entry Relationship Type.\",\"isNullable\":true,\"name\":\"JournalEntryRelationshipTypeName\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"JournalEntryRelationshipType.cdm.json/JournalEntryRelationshipType\",\"name\":\"JournalEntryRelationshipTypeDescription\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"The description of a Journal Entry Relationship Type.\",\"isNullable\":true,\"name\":\"JournalEntryRelationshipTypeDescription\"}]}}}",
+			"Description": "The nature of the relationship between two or more journal entries.\n\nEx:\nReverse Journal Entry\nCorrect Journal Entry\nDuplicate Journal Entry for FERC Ledger\nSummarize Sub-Ledger Entries for General Ledger",
+			"DisplayFolderInfo": "{\"name\":\"Accounting & Financial Reporting\",\"colorCode\":\"#0078D4\"}",
+			"PrimaryKeys": "JournalEntryRelationshipTypeId",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

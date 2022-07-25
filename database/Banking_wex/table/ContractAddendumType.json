@@ -1,0 +1,113 @@
+{
+	"name": "ContractAddendumType",
+	"properties": {
+		"Name": "ContractAddendumType",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "A categorization of contract addendum based on common characteristics.\n\nEx:\n- Replaces Contract Section\n- Modifies Contract Section\n- Replaces Contract Section Clause\n- Modifies Contract Section Clause\n- Replaces Multiple Contract Sections\n- Modifies Multiple Contract Section Clauses",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "ContractAddendumTypeId",
+					"Description": "The unique identifier of a contract addendum type.",
+					"BaseAttributeReference": {
+						"Entity": "ContractAddendumType.cdm.json/ContractAddendumType",
+						"Name": "ContractAddendumTypeId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "ContractAddendumTypeName",
+					"Description": "The name of a contract addendum type.",
+					"BaseAttributeReference": {
+						"Entity": "ContractAddendumType.cdm.json/ContractAddendumType",
+						"Name": "ContractAddendumTypeName"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 256,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "ContractAddendumTypeDescription",
+					"Description": "The description of a contract addendum type.",
+					"BaseAttributeReference": {
+						"Entity": "ContractAddendumType.cdm.json/ContractAddendumType",
+						"Name": "ContractAddendumTypeDescription"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/ContractAddendumType",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/ContractAddendumType",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"ContractAddendumTypeId\":{\"entity\":\"ContractAddendumType.cdm.json/ContractAddendumType\",\"name\":\"ContractAddendumTypeId\"},\"ContractAddendumTypeName\":{\"entity\":\"ContractAddendumType.cdm.json/ContractAddendumType\",\"name\":\"ContractAddendumTypeName\"},\"ContractAddendumTypeDescription\":{\"entity\":\"ContractAddendumType.cdm.json/ContractAddendumType\",\"name\":\"ContractAddendumTypeDescription\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"ContractAddendumType\",\"path\":\"ContractAddendumType.cdm.json/ContractAddendumType\"},\"description\":\"A categorization of contract addendum based on common characteristics.\\n\\nEx:\\n- Replaces Contract Section\\n- Modifies Contract Section\\n- Replaces Contract Section Clause\\n- Modifies Contract Section Clause\\n- Replaces Multiple Contract Sections\\n- Modifies Multiple Contract Section Clauses\",\"primaryKey\":[\"ContractAddendumTypeId\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ContractAddendumType.cdm.json/ContractAddendumType\",\"name\":\"ContractAddendumTypeId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a contract addendum type.\",\"isNullable\":false,\"name\":\"ContractAddendumTypeId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ContractAddendumType.cdm.json/ContractAddendumType\",\"name\":\"ContractAddendumTypeName\"},\"dataType\":\"string\",\"dataTypeLength\":256,\"description\":\"The name of a contract addendum type.\",\"isNullable\":true,\"name\":\"ContractAddendumTypeName\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ContractAddendumType.cdm.json/ContractAddendumType\",\"name\":\"ContractAddendumTypeDescription\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"The description of a contract addendum type.\",\"isNullable\":true,\"name\":\"ContractAddendumTypeDescription\"}]}}}",
+			"Description": "A categorization of contract addendum based on common characteristics.\n\nEx:\n- Replaces Contract Section\n- Modifies Contract Section\n- Replaces Contract Section Clause\n- Modifies Contract Section Clause\n- Replaces Multiple Contract Sections\n- Modifies Multiple Contract Section Clauses",
+			"DisplayFolderInfo": "{\"name\":\"Contract\",\"colorCode\":\"#917EDB\"}",
+			"PrimaryKeys": "ContractAddendumTypeId",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

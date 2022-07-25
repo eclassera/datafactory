@@ -1,0 +1,181 @@
+{
+	"name": "BankruptcyAssetLiquidation",
+	"properties": {
+		"Name": "BankruptcyAssetLiquidation",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "The Asset(s) assigned to the Creditor via the associated Bankruptcy.",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "BankruptcyProceedingId",
+					"Description": "The unique identifier of a Bankruptcy Proceeding.",
+					"BaseAttributeReference": {
+						"Entity": "BankruptcyAssetLiquidation.cdm.json/BankruptcyAssetLiquidation",
+						"Name": "BankruptcyProceedingId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "AssetId",
+					"Description": "The unique identifier of an Asset.",
+					"BaseAttributeReference": {
+						"Entity": "BankruptcyAssetLiquidation.cdm.json/BankruptcyAssetLiquidation",
+						"Name": "AssetId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "long",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "long"
+						}
+					}
+				},
+				{
+					"Name": "SaleDate",
+					"Description": "The date that the asset sale was made.",
+					"BaseAttributeReference": {
+						"Entity": "BankruptcyAssetLiquidation.cdm.json/BankruptcyAssetLiquidation",
+						"Name": "SaleDate"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "date",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"DateFormat": "YYYY-MM-DD",
+							"HIVE_TYPE_STRING": "date"
+						}
+					}
+				},
+				{
+					"Name": "EstimatedValue",
+					"Description": "The estimated value of the asset.",
+					"BaseAttributeReference": {
+						"Entity": "BankruptcyAssetLiquidation.cdm.json/BankruptcyAssetLiquidation",
+						"Name": "EstimatedValue"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "decimal",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Precision": 18,
+						"Scale": 2,
+						"Properties": {
+							"HIVE_TYPE_STRING": "decimal"
+						}
+					}
+				},
+				{
+					"Name": "SaleAmount",
+					"Description": "The amount of sale received.",
+					"BaseAttributeReference": {
+						"Entity": "BankruptcyAssetLiquidation.cdm.json/BankruptcyAssetLiquidation",
+						"Name": "SaleAmount"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "decimal",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Precision": 18,
+						"Scale": 2,
+						"Properties": {
+							"HIVE_TYPE_STRING": "decimal"
+						}
+					}
+				},
+				{
+					"Name": "BankruptcyAssetLiquidationNote",
+					"Description": "Notes, comments or additional information regarding the sale of the Asset under the associated Bankruptcy.",
+					"BaseAttributeReference": {
+						"Entity": "BankruptcyAssetLiquidation.cdm.json/BankruptcyAssetLiquidation",
+						"Name": "BankruptcyAssetLiquidationNote"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "SoldToPartyId",
+					"Description": "The unique identifier of a Party.",
+					"BaseAttributeReference": {
+						"Entity": "BankruptcyAssetLiquidation.cdm.json/BankruptcyAssetLiquidation",
+						"Name": "SoldToPartyId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "long",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"HIVE_TYPE_STRING": "long"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/BankruptcyAssetLiquidation",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/BankruptcyAssetLiquidation",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"BankruptcyProceedingId\":{\"entity\":\"BankruptcyAssetLiquidation.cdm.json/BankruptcyAssetLiquidation\",\"name\":\"BankruptcyProceedingId\"},\"AssetId\":{\"entity\":\"BankruptcyAssetLiquidation.cdm.json/BankruptcyAssetLiquidation\",\"name\":\"AssetId\"},\"SaleDate\":{\"entity\":\"BankruptcyAssetLiquidation.cdm.json/BankruptcyAssetLiquidation\",\"name\":\"SaleDate\"},\"EstimatedValue\":{\"entity\":\"BankruptcyAssetLiquidation.cdm.json/BankruptcyAssetLiquidation\",\"name\":\"EstimatedValue\"},\"SaleAmount\":{\"entity\":\"BankruptcyAssetLiquidation.cdm.json/BankruptcyAssetLiquidation\",\"name\":\"SaleAmount\"},\"BankruptcyAssetLiquidationNote\":{\"entity\":\"BankruptcyAssetLiquidation.cdm.json/BankruptcyAssetLiquidation\",\"name\":\"BankruptcyAssetLiquidationNote\"},\"SoldToPartyId\":{\"entity\":\"BankruptcyAssetLiquidation.cdm.json/BankruptcyAssetLiquidation\",\"name\":\"SoldToPartyId\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"BankruptcyAssetLiquidation\",\"path\":\"BankruptcyAssetLiquidation.cdm.json/BankruptcyAssetLiquidation\"},\"description\":\"The Asset(s) assigned to the Creditor via the associated Bankruptcy.\",\"primaryKey\":[\"BankruptcyProceedingId\",\"AssetId\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"BankruptcyAssetLiquidation.cdm.json/BankruptcyAssetLiquidation\",\"name\":\"BankruptcyProceedingId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Bankruptcy Proceeding.\",\"isNullable\":false,\"name\":\"BankruptcyProceedingId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"BankruptcyAssetLiquidation.cdm.json/BankruptcyAssetLiquidation\",\"name\":\"AssetId\"},\"dataType\":\"long\",\"description\":\"The unique identifier of an Asset.\",\"isNullable\":false,\"name\":\"AssetId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"BankruptcyAssetLiquidation.cdm.json/BankruptcyAssetLiquidation\",\"name\":\"SaleDate\"},\"dataType\":\"date\",\"dateFormat\":\"YYYY-MM-DD\",\"description\":\"The date that the asset sale was made.\",\"isNullable\":true,\"name\":\"SaleDate\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"BankruptcyAssetLiquidation.cdm.json/BankruptcyAssetLiquidation\",\"name\":\"EstimatedValue\"},\"dataType\":\"decimal\",\"dataTypeLength\":18,\"description\":\"The estimated value of the asset.\",\"isNullable\":true,\"scale\":2,\"name\":\"EstimatedValue\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"BankruptcyAssetLiquidation.cdm.json/BankruptcyAssetLiquidation\",\"name\":\"SaleAmount\"},\"dataType\":\"decimal\",\"dataTypeLength\":18,\"description\":\"The amount of sale received.\",\"isNullable\":true,\"scale\":2,\"name\":\"SaleAmount\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"BankruptcyAssetLiquidation.cdm.json/BankruptcyAssetLiquidation\",\"name\":\"BankruptcyAssetLiquidationNote\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"Notes, comments or additional information regarding the sale of the Asset under the associated Bankruptcy.\",\"isNullable\":true,\"name\":\"BankruptcyAssetLiquidationNote\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"BankruptcyAssetLiquidation.cdm.json/BankruptcyAssetLiquidation\",\"name\":\"SoldToPartyId\"},\"dataType\":\"long\",\"description\":\"The unique identifier of a Party.\",\"isNullable\":true,\"name\":\"SoldToPartyId\"}]}}}",
+			"Description": "The Asset(s) assigned to the Creditor via the associated Bankruptcy.",
+			"DisplayFolderInfo": "{\"name\":\"Customer Credit & Collections\",\"colorCode\":\"#022F22\"}",
+			"PrimaryKeys": "BankruptcyProceedingId,AssetId",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

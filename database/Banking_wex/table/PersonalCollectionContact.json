@@ -1,0 +1,181 @@
+{
+	"name": "PersonalCollectionContact",
+	"properties": {
+		"Name": "PersonalCollectionContact",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "A collection attempt or contact that is performed in person with the customer.\n\nPersonal contact with customers is likely to ensure that bills get paid.\nSmall businesses typically do this sort of collections work better because they have a better, more intimate knowledge of their customers.\n\nPrior to a contact the staff person should learn as much about the customer as possible, such as payment habits, who has signing authority over invoices and past collection efforts.",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "CollectionEventId",
+					"Description": "The unique identifier of a collection event.",
+					"BaseAttributeReference": {
+						"Entity": "PersonalCollectionContact.cdm.json/PersonalCollectionContact",
+						"Name": "CollectionEventId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "ContactDescription",
+					"Description": "A description of the personal collection contact.",
+					"BaseAttributeReference": {
+						"Entity": "PersonalCollectionContact.cdm.json/PersonalCollectionContact",
+						"Name": "ContactDescription"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "OutstandingAmount",
+					"Description": "The amount of debt outstanding at the time of the personal contact.",
+					"BaseAttributeReference": {
+						"Entity": "PersonalCollectionContact.cdm.json/PersonalCollectionContact",
+						"Name": "OutstandingAmount"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "decimal",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Precision": 18,
+						"Scale": 2,
+						"Properties": {
+							"HIVE_TYPE_STRING": "decimal"
+						}
+					}
+				},
+				{
+					"Name": "CollectedAmount",
+					"Description": "The amount collected.",
+					"BaseAttributeReference": {
+						"Entity": "PersonalCollectionContact.cdm.json/PersonalCollectionContact",
+						"Name": "CollectedAmount"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "decimal",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Precision": 18,
+						"Scale": 2,
+						"Properties": {
+							"HIVE_TYPE_STRING": "decimal"
+						}
+					}
+				},
+				{
+					"Name": "PlannedFollowupCollectionActivityDate",
+					"Description": "The date of the planned followup activity.",
+					"BaseAttributeReference": {
+						"Entity": "PersonalCollectionContact.cdm.json/PersonalCollectionContact",
+						"Name": "PlannedFollowupCollectionActivityDate"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "date",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"DateFormat": "YYYY-MM-DD",
+							"HIVE_TYPE_STRING": "date"
+						}
+					}
+				},
+				{
+					"Name": "PersonalCollectionContactTypeId",
+					"Description": "The unique identifier of the Personal Collection Contact Type.",
+					"BaseAttributeReference": {
+						"Entity": "PersonalCollectionContact.cdm.json/PersonalCollectionContact",
+						"Name": "PersonalCollectionContactTypeId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "FollowupCollectionActivityId",
+					"Description": "The unique identifier of a Followup Collection Activity Type.",
+					"BaseAttributeReference": {
+						"Entity": "PersonalCollectionContact.cdm.json/PersonalCollectionContact",
+						"Name": "FollowupCollectionActivityId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/PersonalCollectionContact",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/PersonalCollectionContact",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"CollectionEventId\":{\"entity\":\"PersonalCollectionContact.cdm.json/PersonalCollectionContact\",\"name\":\"CollectionEventId\"},\"ContactDescription\":{\"entity\":\"PersonalCollectionContact.cdm.json/PersonalCollectionContact\",\"name\":\"ContactDescription\"},\"OutstandingAmount\":{\"entity\":\"PersonalCollectionContact.cdm.json/PersonalCollectionContact\",\"name\":\"OutstandingAmount\"},\"CollectedAmount\":{\"entity\":\"PersonalCollectionContact.cdm.json/PersonalCollectionContact\",\"name\":\"CollectedAmount\"},\"PlannedFollowupCollectionActivityDate\":{\"entity\":\"PersonalCollectionContact.cdm.json/PersonalCollectionContact\",\"name\":\"PlannedFollowupCollectionActivityDate\"},\"PersonalCollectionContactTypeId\":{\"entity\":\"PersonalCollectionContact.cdm.json/PersonalCollectionContact\",\"name\":\"PersonalCollectionContactTypeId\"},\"FollowupCollectionActivityId\":{\"entity\":\"PersonalCollectionContact.cdm.json/PersonalCollectionContact\",\"name\":\"FollowupCollectionActivityId\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"PersonalCollectionContact\",\"path\":\"PersonalCollectionContact.cdm.json/PersonalCollectionContact\"},\"description\":\"A collection attempt or contact that is performed in person with the customer.\\n\\nPersonal contact with customers is likely to ensure that bills get paid.\\nSmall businesses typically do this sort of collections work better because they have a better, more intimate knowledge of their customers.\\n\\nPrior to a contact the staff person should learn as much about the customer as possible, such as payment habits, who has signing authority over invoices and past collection efforts.\",\"primaryKey\":[\"CollectionEventId\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"PersonalCollectionContact.cdm.json/PersonalCollectionContact\",\"name\":\"CollectionEventId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a collection event.\",\"isNullable\":false,\"name\":\"CollectionEventId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"PersonalCollectionContact.cdm.json/PersonalCollectionContact\",\"name\":\"ContactDescription\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"A description of the personal collection contact.\",\"isNullable\":true,\"name\":\"ContactDescription\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"PersonalCollectionContact.cdm.json/PersonalCollectionContact\",\"name\":\"OutstandingAmount\"},\"dataType\":\"decimal\",\"dataTypeLength\":18,\"description\":\"The amount of debt outstanding at the time of the personal contact.\",\"isNullable\":true,\"scale\":2,\"name\":\"OutstandingAmount\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"PersonalCollectionContact.cdm.json/PersonalCollectionContact\",\"name\":\"CollectedAmount\"},\"dataType\":\"decimal\",\"dataTypeLength\":18,\"description\":\"The amount collected.\",\"isNullable\":true,\"scale\":2,\"name\":\"CollectedAmount\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"PersonalCollectionContact.cdm.json/PersonalCollectionContact\",\"name\":\"PlannedFollowupCollectionActivityDate\"},\"dataType\":\"date\",\"dateFormat\":\"YYYY-MM-DD\",\"description\":\"The date of the planned followup activity.\",\"isNullable\":true,\"name\":\"PlannedFollowupCollectionActivityDate\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"PersonalCollectionContact.cdm.json/PersonalCollectionContact\",\"name\":\"PersonalCollectionContactTypeId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of the Personal Collection Contact Type.\",\"isNullable\":false,\"name\":\"PersonalCollectionContactTypeId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"PersonalCollectionContact.cdm.json/PersonalCollectionContact\",\"name\":\"FollowupCollectionActivityId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Followup Collection Activity Type.\",\"isNullable\":false,\"name\":\"FollowupCollectionActivityId\"}]}}}",
+			"Description": "A collection attempt or contact that is performed in person with the customer.\n\nPersonal contact with customers is likely to ensure that bills get paid.\nSmall businesses typically do this sort of collections work better because they have a better, more intimate knowledge of their customers.\n\nPrior to a contact the staff person should learn as much about the customer as possible, such as payment habits, who has signing authority over invoices and past collection efforts.",
+			"DisplayFolderInfo": "{\"name\":\"Customer Credit & Collections\",\"colorCode\":\"#022F22\"}",
+			"PrimaryKeys": "CollectionEventId",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

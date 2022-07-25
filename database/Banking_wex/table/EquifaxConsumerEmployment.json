@@ -1,0 +1,213 @@
+{
+	"name": "EquifaxConsumerEmployment",
+	"properties": {
+		"Name": "EquifaxConsumerEmployment",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "Reported consumer employment.",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "EquifaxReportNumber",
+					"Description": "The Equifax report number.",
+					"BaseAttributeReference": {
+						"Entity": "EquifaxConsumerEmployment.cdm.json/EquifaxConsumerEmployment",
+						"Name": "EquifaxReportNumber"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "EquifaxConsumerEmploymentId",
+					"Description": "The unique identifier of an Equifax Consumer Employment.",
+					"BaseAttributeReference": {
+						"Entity": "EquifaxConsumerEmployment.cdm.json/EquifaxConsumerEmployment",
+						"Name": "EquifaxConsumerEmploymentId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "EmployerName",
+					"Description": "The employer name.",
+					"BaseAttributeReference": {
+						"Entity": "EquifaxConsumerEmployment.cdm.json/EquifaxConsumerEmployment",
+						"Name": "EmployerName"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 256,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "EmployerCity",
+					"Description": "The employer city.",
+					"BaseAttributeReference": {
+						"Entity": "EquifaxConsumerEmployment.cdm.json/EquifaxConsumerEmployment",
+						"Name": "EmployerCity"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 256,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "EmployerState",
+					"Description": "The employer state.",
+					"BaseAttributeReference": {
+						"Entity": "EquifaxConsumerEmployment.cdm.json/EquifaxConsumerEmployment",
+						"Name": "EmployerState"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 64,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "EmployedSinceDate",
+					"Description": "The date that the consumer has been employed by the employer.",
+					"BaseAttributeReference": {
+						"Entity": "EquifaxConsumerEmployment.cdm.json/EquifaxConsumerEmployment",
+						"Name": "EmployedSinceDate"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "date",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"DateFormat": "YYYY-MM-DD",
+							"HIVE_TYPE_STRING": "date"
+						}
+					}
+				},
+				{
+					"Name": "EmploymentVerifiedDate",
+					"Description": "The date that the employment was verified.",
+					"BaseAttributeReference": {
+						"Entity": "EquifaxConsumerEmployment.cdm.json/EquifaxConsumerEmployment",
+						"Name": "EmploymentVerifiedDate"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "date",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"DateFormat": "YYYY-MM-DD",
+							"HIVE_TYPE_STRING": "date"
+						}
+					}
+				},
+				{
+					"Name": "LeftEmploymentDate",
+					"Description": "The date the consumer left the employment.",
+					"BaseAttributeReference": {
+						"Entity": "EquifaxConsumerEmployment.cdm.json/EquifaxConsumerEmployment",
+						"Name": "LeftEmploymentDate"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "date",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"DateFormat": "YYYY-MM-DD",
+							"HIVE_TYPE_STRING": "date"
+						}
+					}
+				},
+				{
+					"Name": "EquifaxOccupationTypeId",
+					"Description": "The unique identifier of an Equifax occupation type.",
+					"BaseAttributeReference": {
+						"Entity": "EquifaxConsumerEmployment.cdm.json/EquifaxConsumerEmployment",
+						"Name": "EquifaxOccupationTypeId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/EquifaxConsumerEmployment",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/EquifaxConsumerEmployment",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"EquifaxReportNumber\":{\"entity\":\"EquifaxConsumerEmployment.cdm.json/EquifaxConsumerEmployment\",\"name\":\"EquifaxReportNumber\"},\"EquifaxConsumerEmploymentId\":{\"entity\":\"EquifaxConsumerEmployment.cdm.json/EquifaxConsumerEmployment\",\"name\":\"EquifaxConsumerEmploymentId\"},\"EmployerName\":{\"entity\":\"EquifaxConsumerEmployment.cdm.json/EquifaxConsumerEmployment\",\"name\":\"EmployerName\"},\"EmployerCity\":{\"entity\":\"EquifaxConsumerEmployment.cdm.json/EquifaxConsumerEmployment\",\"name\":\"EmployerCity\"},\"EmployerState\":{\"entity\":\"EquifaxConsumerEmployment.cdm.json/EquifaxConsumerEmployment\",\"name\":\"EmployerState\"},\"EmployedSinceDate\":{\"entity\":\"EquifaxConsumerEmployment.cdm.json/EquifaxConsumerEmployment\",\"name\":\"EmployedSinceDate\"},\"EmploymentVerifiedDate\":{\"entity\":\"EquifaxConsumerEmployment.cdm.json/EquifaxConsumerEmployment\",\"name\":\"EmploymentVerifiedDate\"},\"LeftEmploymentDate\":{\"entity\":\"EquifaxConsumerEmployment.cdm.json/EquifaxConsumerEmployment\",\"name\":\"LeftEmploymentDate\"},\"EquifaxOccupationTypeId\":{\"entity\":\"EquifaxConsumerEmployment.cdm.json/EquifaxConsumerEmployment\",\"name\":\"EquifaxOccupationTypeId\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"EquifaxConsumerEmployment\",\"path\":\"EquifaxConsumerEmployment.cdm.json/EquifaxConsumerEmployment\"},\"description\":\"Reported consumer employment.\",\"primaryKey\":[\"EquifaxReportNumber\",\"EquifaxConsumerEmploymentId\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"EquifaxConsumerEmployment.cdm.json/EquifaxConsumerEmployment\",\"name\":\"EquifaxReportNumber\"},\"dataType\":\"integer\",\"description\":\"The Equifax report number.\",\"isNullable\":false,\"name\":\"EquifaxReportNumber\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"EquifaxConsumerEmployment.cdm.json/EquifaxConsumerEmployment\",\"name\":\"EquifaxConsumerEmploymentId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of an Equifax Consumer Employment.\",\"isNullable\":false,\"name\":\"EquifaxConsumerEmploymentId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"EquifaxConsumerEmployment.cdm.json/EquifaxConsumerEmployment\",\"name\":\"EmployerName\"},\"dataType\":\"string\",\"dataTypeLength\":256,\"description\":\"The employer name.\",\"isNullable\":true,\"name\":\"EmployerName\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"EquifaxConsumerEmployment.cdm.json/EquifaxConsumerEmployment\",\"name\":\"EmployerCity\"},\"dataType\":\"string\",\"dataTypeLength\":256,\"description\":\"The employer city.\",\"isNullable\":true,\"name\":\"EmployerCity\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"EquifaxConsumerEmployment.cdm.json/EquifaxConsumerEmployment\",\"name\":\"EmployerState\"},\"dataType\":\"string\",\"dataTypeLength\":64,\"description\":\"The employer state.\",\"isNullable\":true,\"name\":\"EmployerState\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"EquifaxConsumerEmployment.cdm.json/EquifaxConsumerEmployment\",\"name\":\"EmployedSinceDate\"},\"dataType\":\"date\",\"dateFormat\":\"YYYY-MM-DD\",\"description\":\"The date that the consumer has been employed by the employer.\",\"isNullable\":true,\"name\":\"EmployedSinceDate\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"EquifaxConsumerEmployment.cdm.json/EquifaxConsumerEmployment\",\"name\":\"EmploymentVerifiedDate\"},\"dataType\":\"date\",\"dateFormat\":\"YYYY-MM-DD\",\"description\":\"The date that the employment was verified.\",\"isNullable\":true,\"name\":\"EmploymentVerifiedDate\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"EquifaxConsumerEmployment.cdm.json/EquifaxConsumerEmployment\",\"name\":\"LeftEmploymentDate\"},\"dataType\":\"date\",\"dateFormat\":\"YYYY-MM-DD\",\"description\":\"The date the consumer left the employment.\",\"isNullable\":true,\"name\":\"LeftEmploymentDate\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"EquifaxConsumerEmployment.cdm.json/EquifaxConsumerEmployment\",\"name\":\"EquifaxOccupationTypeId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of an Equifax occupation type.\",\"isNullable\":true,\"name\":\"EquifaxOccupationTypeId\"}]}}}",
+			"Description": "Reported consumer employment.",
+			"DisplayFolderInfo": "{\"name\":\"Customer Credit & Collections\",\"colorCode\":\"#022F22\"}",
+			"PrimaryKeys": "EquifaxReportNumber,EquifaxConsumerEmploymentId",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

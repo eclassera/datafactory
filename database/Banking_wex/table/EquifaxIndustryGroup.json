@@ -1,0 +1,96 @@
+{
+	"name": "EquifaxIndustryGroup",
+	"properties": {
+		"Name": "EquifaxIndustryGroup",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "An Equifax industry group.\n\nEx:\n- Communications\n- Optical Mfg\n- Transportation By Air\n -Bldg Construction Gnrl Contractors & Operative Bdlers\n- Cnstrctn Spcl Trade Contractors",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "EquifaxIndustryGroupId",
+					"Description": "The unique identifier of an Equifax Industry Group.",
+					"BaseAttributeReference": {
+						"Entity": "EquifaxIndustryGroup.cdm.json/EquifaxIndustryGroup",
+						"Name": "EquifaxIndustryGroupId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "EquifaxIndustryGroupName",
+					"Description": "The name of an Equifax Industry Group.",
+					"BaseAttributeReference": {
+						"Entity": "EquifaxIndustryGroup.cdm.json/EquifaxIndustryGroup",
+						"Name": "EquifaxIndustryGroupName"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 256,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/EquifaxIndustryGroup",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/EquifaxIndustryGroup",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"EquifaxIndustryGroupId\":{\"entity\":\"EquifaxIndustryGroup.cdm.json/EquifaxIndustryGroup\",\"name\":\"EquifaxIndustryGroupId\"},\"EquifaxIndustryGroupName\":{\"entity\":\"EquifaxIndustryGroup.cdm.json/EquifaxIndustryGroup\",\"name\":\"EquifaxIndustryGroupName\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"EquifaxIndustryGroup\",\"path\":\"EquifaxIndustryGroup.cdm.json/EquifaxIndustryGroup\"},\"description\":\"An Equifax industry group.\\n\\nEx:\\n- Communications\\n- Optical Mfg\\n- Transportation By Air\\n -Bldg Construction Gnrl Contractors & Operative Bdlers\\n- Cnstrctn Spcl Trade Contractors\",\"primaryKey\":[\"EquifaxIndustryGroupId\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"EquifaxIndustryGroup.cdm.json/EquifaxIndustryGroup\",\"name\":\"EquifaxIndustryGroupId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of an Equifax Industry Group.\",\"isNullable\":false,\"name\":\"EquifaxIndustryGroupId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"EquifaxIndustryGroup.cdm.json/EquifaxIndustryGroup\",\"name\":\"EquifaxIndustryGroupName\"},\"dataType\":\"string\",\"dataTypeLength\":256,\"description\":\"The name of an Equifax Industry Group.\",\"isNullable\":true,\"name\":\"EquifaxIndustryGroupName\"}]}}}",
+			"Description": "An Equifax industry group.\n\nEx:\n- Communications\n- Optical Mfg\n- Transportation By Air\n -Bldg Construction Gnrl Contractors & Operative Bdlers\n- Cnstrctn Spcl Trade Contractors",
+			"DisplayFolderInfo": "{\"name\":\"Customer Credit & Collections\",\"colorCode\":\"#022F22\"}",
+			"PrimaryKeys": "EquifaxIndustryGroupId",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

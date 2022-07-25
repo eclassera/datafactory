@@ -1,0 +1,113 @@
+{
+	"name": "OptInStatusType",
+	"properties": {
+		"Name": "OptInStatusType",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "A type of Opt-in status that may be associated with contact.\n\nEx:\n- Opt-In (default value)\n- Opt-In (user selection)\n- Opt-Out (default value)\n- Opt-Out (user selection)",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "OptInStatusTypeId",
+					"Description": "The unique identifier of an Opt-In Status Type.",
+					"BaseAttributeReference": {
+						"Entity": "OptInStatusType.cdm.json/OptInStatusType",
+						"Name": "OptInStatusTypeId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "OptInStatusTypeName",
+					"Description": "The name of the Opt-In Status Type.",
+					"BaseAttributeReference": {
+						"Entity": "OptInStatusType.cdm.json/OptInStatusType",
+						"Name": "OptInStatusTypeName"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 256,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "OptInStatusTypeDescription",
+					"Description": "The description of the Opt-In Status Type.",
+					"BaseAttributeReference": {
+						"Entity": "OptInStatusType.cdm.json/OptInStatusType",
+						"Name": "OptInStatusTypeDescription"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/OptInStatusType",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/OptInStatusType",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"OptInStatusTypeId\":{\"entity\":\"OptInStatusType.cdm.json/OptInStatusType\",\"name\":\"OptInStatusTypeId\"},\"OptInStatusTypeName\":{\"entity\":\"OptInStatusType.cdm.json/OptInStatusType\",\"name\":\"OptInStatusTypeName\"},\"OptInStatusTypeDescription\":{\"entity\":\"OptInStatusType.cdm.json/OptInStatusType\",\"name\":\"OptInStatusTypeDescription\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"OptInStatusType\",\"path\":\"OptInStatusType.cdm.json/OptInStatusType\"},\"description\":\"A type of Opt-in status that may be associated with contact.\\n\\nEx:\\n- Opt-In (default value)\\n- Opt-In (user selection)\\n- Opt-Out (default value)\\n- Opt-Out (user selection)\",\"primaryKey\":[\"OptInStatusTypeId\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"OptInStatusType.cdm.json/OptInStatusType\",\"name\":\"OptInStatusTypeId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of an Opt-In Status Type.\",\"isNullable\":false,\"name\":\"OptInStatusTypeId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"OptInStatusType.cdm.json/OptInStatusType\",\"name\":\"OptInStatusTypeName\"},\"dataType\":\"string\",\"dataTypeLength\":256,\"description\":\"The name of the Opt-In Status Type.\",\"isNullable\":true,\"name\":\"OptInStatusTypeName\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"OptInStatusType.cdm.json/OptInStatusType\",\"name\":\"OptInStatusTypeDescription\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"The description of the Opt-In Status Type.\",\"isNullable\":true,\"name\":\"OptInStatusTypeDescription\"}]}}}",
+			"Description": "A type of Opt-in status that may be associated with contact.\n\nEx:\n- Opt-In (default value)\n- Opt-In (user selection)\n- Opt-Out (default value)\n- Opt-Out (user selection)",
+			"DisplayFolderInfo": "{\"name\":\"Party\",\"colorCode\":\"#00727A\"}",
+			"PrimaryKeys": "OptInStatusTypeId",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

@@ -1,0 +1,524 @@
+{
+	"name": "ExperianConsumerAccount",
+	"properties": {
+		"Name": "ExperianConsumerAccount",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "A credit account held by the consumer.",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "ExperianReportNumber",
+					"Description": "The unique identifier of an Experian consumer.",
+					"BaseAttributeReference": {
+						"Entity": "ExperianConsumerAccount.cdm.json/ExperianConsumerAccount",
+						"Name": "ExperianReportNumber"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "AccountNumber",
+					"Description": "Full account numbers are not provided with your personal credit report. Experian truncates the numbers so that they cannot be used to commit fraud by someone who steals your report or somehow accesses it without your permission.",
+					"BaseAttributeReference": {
+						"Entity": "ExperianConsumerAccount.cdm.json/ExperianConsumerAccount",
+						"Name": "AccountNumber"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Length": 20,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "AccountName",
+					"Description": "The name of the lender or account holder. In some cases, this name may be different from the name you see on your credit card or account statement. If you do not recognize the name displayed here, you can use other identifying information, such as the account open date, original amount or limit, etc. in order to identify the account. Contact information for your account holder may also be reported, such as a mailing address and/or phone number.",
+					"BaseAttributeReference": {
+						"Entity": "ExperianConsumerAccount.cdm.json/ExperianConsumerAccount",
+						"Name": "AccountName"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 256,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "DateOpened",
+					"Description": "The date when your account was opened an as reported by your creditor.",
+					"BaseAttributeReference": {
+						"Entity": "ExperianConsumerAccount.cdm.json/ExperianConsumerAccount",
+						"Name": "DateOpened"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "date",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"DateFormat": "YYYY-MM-DD",
+							"HIVE_TYPE_STRING": "date"
+						}
+					}
+				},
+				{
+					"Name": "PersonalStatement",
+					"Description": "This type of personal statement is an account-specific statement, which is linked to a specific entry in your credit history. Account-specific statements are deleted at the same time as the account. Account specific statements can take one of two forms: \"statement of excuse\" and \"statement of dispute\". Both the consumer's and creditor's statements of the account status will appear on the credit report.",
+					"BaseAttributeReference": {
+						"Entity": "ExperianConsumerAccount.cdm.json/ExperianConsumerAccount",
+						"Name": "PersonalStatement"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "AddressId",
+					"Description": "The address identification number is used to identify which accounts are associated with each individual address variation.",
+					"BaseAttributeReference": {
+						"Entity": "ExperianConsumerAccount.cdm.json/ExperianConsumerAccount",
+						"Name": "AddressId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "ContactStreetPoBox",
+					"Description": "The 'street/po box' component of the consumer account contact address.\n\nThis is the contact information provided by the creditor for this account. In some cases, there may only be an address available.",
+					"BaseAttributeReference": {
+						"Entity": "ExperianConsumerAccount.cdm.json/ExperianConsumerAccount",
+						"Name": "ContactStreetPoBox"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 512,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "ContactCity",
+					"Description": "The 'city' component of the consumer account contact address.\n\nThis is the contact information provided by the creditor for this account. In some cases, there may only be an address available.",
+					"BaseAttributeReference": {
+						"Entity": "ExperianConsumerAccount.cdm.json/ExperianConsumerAccount",
+						"Name": "ContactCity"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 256,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "ContactState",
+					"Description": "The 'state' component of the consumer account contact address.\n\nThis is the contact information provided by the creditor for this account. In some cases, there may only be an address available.",
+					"BaseAttributeReference": {
+						"Entity": "ExperianConsumerAccount.cdm.json/ExperianConsumerAccount",
+						"Name": "ContactState"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 64,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "ContactTelephoneNumber",
+					"Description": "The contact telephone number.",
+					"BaseAttributeReference": {
+						"Entity": "ExperianConsumerAccount.cdm.json/ExperianConsumerAccount",
+						"Name": "ContactTelephoneNumber"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "decimal",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Precision": 15,
+						"Scale": 0,
+						"Properties": {
+							"HIVE_TYPE_STRING": "decimal"
+						}
+					}
+				},
+				{
+					"Name": "AccountTerms",
+					"Description": "States the length of an installment loan. Typically, payments are required on a monthly basis. If the loan is not of an installment type, a short description of the agreement may be shown. For example, \"Bank Credit Cards\" may be shown if the account is a credit card.",
+					"BaseAttributeReference": {
+						"Entity": "ExperianConsumerAccount.cdm.json/ExperianConsumerAccount",
+						"Name": "AccountTerms"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "OnRecordUntilDate",
+					"Description": "The date at which this record will be removed from your credit report.",
+					"BaseAttributeReference": {
+						"Entity": "ExperianConsumerAccount.cdm.json/ExperianConsumerAccount",
+						"Name": "OnRecordUntilDate"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "date",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"DateFormat": "YYYY-MM-DD",
+							"HIVE_TYPE_STRING": "date"
+						}
+					}
+				},
+				{
+					"Name": "RecentBalanceAmount",
+					"Description": "The most recent balance as reported by your creditor. If you have made a payment recently, it may not be reflected here until your creditor updates again during their next reporting cycle.",
+					"BaseAttributeReference": {
+						"Entity": "ExperianConsumerAccount.cdm.json/ExperianConsumerAccount",
+						"Name": "RecentBalanceAmount"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "decimal",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Precision": 18,
+						"Scale": 2,
+						"Properties": {
+							"HIVE_TYPE_STRING": "decimal"
+						}
+					}
+				},
+				{
+					"Name": "CreditLimitOriginalAmount",
+					"Description": "For revolving accounts, this would indicate the current credit limit on the account. If the account is an installment loan, this will show the original amount of the loan.",
+					"BaseAttributeReference": {
+						"Entity": "ExperianConsumerAccount.cdm.json/ExperianConsumerAccount",
+						"Name": "CreditLimitOriginalAmount"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "decimal",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Precision": 18,
+						"Scale": 2,
+						"Properties": {
+							"HIVE_TYPE_STRING": "decimal"
+						}
+					}
+				},
+				{
+					"Name": "HighBalanceAmount",
+					"Description": "Represents the highest amount owed during the lifetime of the account. For installment type accounts, this amount is typically the Original Amount. For revolving accounts, this number represents the highest amount owed as reported by your creditor.",
+					"BaseAttributeReference": {
+						"Entity": "ExperianConsumerAccount.cdm.json/ExperianConsumerAccount",
+						"Name": "HighBalanceAmount"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "decimal",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Precision": 18,
+						"Scale": 2,
+						"Properties": {
+							"HIVE_TYPE_STRING": "decimal"
+						}
+					}
+				},
+				{
+					"Name": "BalanceAmount",
+					"Description": "The current amount owed on the account.",
+					"BaseAttributeReference": {
+						"Entity": "ExperianConsumerAccount.cdm.json/ExperianConsumerAccount",
+						"Name": "BalanceAmount"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "decimal",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Precision": 18,
+						"Scale": 2,
+						"Properties": {
+							"HIVE_TYPE_STRING": "decimal"
+						}
+					}
+				},
+				{
+					"Name": "BalanceUpdatedDate",
+					"Description": "The date when your account balance was last reported by your creditor.",
+					"BaseAttributeReference": {
+						"Entity": "ExperianConsumerAccount.cdm.json/ExperianConsumerAccount",
+						"Name": "BalanceUpdatedDate"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "date",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"DateFormat": "YYYY-MM-DD",
+							"HIVE_TYPE_STRING": "date"
+						}
+					}
+				},
+				{
+					"Name": "MonthlyPaymentAmount",
+					"Description": "For installment type accounts, this is the monthly payment amount agreed upon with your creditor. For revolving accounts, this is typically the minimum monthly payment due on the balance of your account.",
+					"BaseAttributeReference": {
+						"Entity": "ExperianConsumerAccount.cdm.json/ExperianConsumerAccount",
+						"Name": "MonthlyPaymentAmount"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "decimal",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Precision": 18,
+						"Scale": 2,
+						"Properties": {
+							"HIVE_TYPE_STRING": "decimal"
+						}
+					}
+				},
+				{
+					"Name": "RecentPaymentAmount",
+					"Description": "For installment type accounts, this is the monthly payment amount agreed upon with your creditor. For revolving accounts, this is typically the minimum monthly payment due on the balance of your account.",
+					"BaseAttributeReference": {
+						"Entity": "ExperianConsumerAccount.cdm.json/ExperianConsumerAccount",
+						"Name": "RecentPaymentAmount"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "decimal",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Precision": 18,
+						"Scale": 2,
+						"Properties": {
+							"HIVE_TYPE_STRING": "decimal"
+						}
+					}
+				},
+				{
+					"Name": "PastDueAmount",
+					"Description": "The amount currently past due as reported by the creditor. The past due amount would only reflect the amount past due, and not necessarily the total amount owed. For instance, an account could have a past due balance of $25 but a current cumulative balance of $50.",
+					"BaseAttributeReference": {
+						"Entity": "ExperianConsumerAccount.cdm.json/ExperianConsumerAccount",
+						"Name": "PastDueAmount"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "decimal",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Precision": 18,
+						"Scale": 2,
+						"Properties": {
+							"HIVE_TYPE_STRING": "decimal"
+						}
+					}
+				},
+				{
+					"Name": "StatusUpdatedDate",
+					"Description": "This is the date the creditor last updated the account. This date does not affect how long an account remains on the report, and should not be confused with the \"Original Delinquency Date.\" The original delinquency date is the date an account first became delinquent and after which it was never again brought current.",
+					"BaseAttributeReference": {
+						"Entity": "ExperianConsumerAccount.cdm.json/ExperianConsumerAccount",
+						"Name": "StatusUpdatedDate"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "date",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"DateFormat": "YYYY-MM-DD",
+							"HIVE_TYPE_STRING": "date"
+						}
+					}
+				},
+				{
+					"Name": "FirstReportedDate",
+					"Description": "The date when the first account status was reported by the account holder.",
+					"BaseAttributeReference": {
+						"Entity": "ExperianConsumerAccount.cdm.json/ExperianConsumerAccount",
+						"Name": "FirstReportedDate"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "date",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"DateFormat": "YYYY-MM-DD",
+							"HIVE_TYPE_STRING": "date"
+						}
+					}
+				},
+				{
+					"Name": "Comments",
+					"Description": "A comment related to the consumer account.\n\nEx:\n- Charge",
+					"BaseAttributeReference": {
+						"Entity": "ExperianConsumerAccount.cdm.json/ExperianConsumerAccount",
+						"Name": "Comments"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "ExperianPaymentStatusTypeId",
+					"Description": "The unique identifier of an Experian Payment Status Type.",
+					"BaseAttributeReference": {
+						"Entity": "ExperianConsumerAccount.cdm.json/ExperianConsumerAccount",
+						"Name": "ExperianPaymentStatusTypeId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "ExperianAccountTypeId",
+					"Description": "The unique identifier of an Experian Account Type.",
+					"BaseAttributeReference": {
+						"Entity": "ExperianConsumerAccount.cdm.json/ExperianConsumerAccount",
+						"Name": "ExperianAccountTypeId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "ExperianAccountResponsibilityTypeId",
+					"Description": "The unique identifier of an Experian Account Responsibility Type.",
+					"BaseAttributeReference": {
+						"Entity": "ExperianConsumerAccount.cdm.json/ExperianConsumerAccount",
+						"Name": "ExperianAccountResponsibilityTypeId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "ExperianAccountStatusTypeId",
+					"Description": "The unique identifier of an Experian Account Status Type.",
+					"BaseAttributeReference": {
+						"Entity": "ExperianConsumerAccount.cdm.json/ExperianConsumerAccount",
+						"Name": "ExperianAccountStatusTypeId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/ExperianConsumerAccount",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/ExperianConsumerAccount",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"ExperianReportNumber\":{\"entity\":\"ExperianConsumerAccount.cdm.json/ExperianConsumerAccount\",\"name\":\"ExperianReportNumber\"},\"AccountNumber\":{\"entity\":\"ExperianConsumerAccount.cdm.json/ExperianConsumerAccount\",\"name\":\"AccountNumber\"},\"AccountName\":{\"entity\":\"ExperianConsumerAccount.cdm.json/ExperianConsumerAccount\",\"name\":\"AccountName\"},\"DateOpened\":{\"entity\":\"ExperianConsumerAccount.cdm.json/ExperianConsumerAccount\",\"name\":\"DateOpened\"},\"PersonalStatement\":{\"entity\":\"ExperianConsumerAccount.cdm.json/ExperianConsumerAccount\",\"name\":\"PersonalStatement\"},\"AddressId\":{\"entity\":\"ExperianConsumerAccount.cdm.json/ExperianConsumerAccount\",\"name\":\"AddressId\"},\"ContactStreetPoBox\":{\"entity\":\"ExperianConsumerAccount.cdm.json/ExperianConsumerAccount\",\"name\":\"ContactStreetPoBox\"},\"ContactCity\":{\"entity\":\"ExperianConsumerAccount.cdm.json/ExperianConsumerAccount\",\"name\":\"ContactCity\"},\"ContactState\":{\"entity\":\"ExperianConsumerAccount.cdm.json/ExperianConsumerAccount\",\"name\":\"ContactState\"},\"ContactTelephoneNumber\":{\"entity\":\"ExperianConsumerAccount.cdm.json/ExperianConsumerAccount\",\"name\":\"ContactTelephoneNumber\"},\"AccountTerms\":{\"entity\":\"ExperianConsumerAccount.cdm.json/ExperianConsumerAccount\",\"name\":\"AccountTerms\"},\"OnRecordUntilDate\":{\"entity\":\"ExperianConsumerAccount.cdm.json/ExperianConsumerAccount\",\"name\":\"OnRecordUntilDate\"},\"RecentBalanceAmount\":{\"entity\":\"ExperianConsumerAccount.cdm.json/ExperianConsumerAccount\",\"name\":\"RecentBalanceAmount\"},\"CreditLimitOriginalAmount\":{\"entity\":\"ExperianConsumerAccount.cdm.json/ExperianConsumerAccount\",\"name\":\"CreditLimitOriginalAmount\"},\"HighBalanceAmount\":{\"entity\":\"ExperianConsumerAccount.cdm.json/ExperianConsumerAccount\",\"name\":\"HighBalanceAmount\"},\"BalanceAmount\":{\"entity\":\"ExperianConsumerAccount.cdm.json/ExperianConsumerAccount\",\"name\":\"BalanceAmount\"},\"BalanceUpdatedDate\":{\"entity\":\"ExperianConsumerAccount.cdm.json/ExperianConsumerAccount\",\"name\":\"BalanceUpdatedDate\"},\"MonthlyPaymentAmount\":{\"entity\":\"ExperianConsumerAccount.cdm.json/ExperianConsumerAccount\",\"name\":\"MonthlyPaymentAmount\"},\"RecentPaymentAmount\":{\"entity\":\"ExperianConsumerAccount.cdm.json/ExperianConsumerAccount\",\"name\":\"RecentPaymentAmount\"},\"PastDueAmount\":{\"entity\":\"ExperianConsumerAccount.cdm.json/ExperianConsumerAccount\",\"name\":\"PastDueAmount\"},\"StatusUpdatedDate\":{\"entity\":\"ExperianConsumerAccount.cdm.json/ExperianConsumerAccount\",\"name\":\"StatusUpdatedDate\"},\"FirstReportedDate\":{\"entity\":\"ExperianConsumerAccount.cdm.json/ExperianConsumerAccount\",\"name\":\"FirstReportedDate\"},\"Comments\":{\"entity\":\"ExperianConsumerAccount.cdm.json/ExperianConsumerAccount\",\"name\":\"Comments\"},\"ExperianPaymentStatusTypeId\":{\"entity\":\"ExperianConsumerAccount.cdm.json/ExperianConsumerAccount\",\"name\":\"ExperianPaymentStatusTypeId\"},\"ExperianAccountTypeId\":{\"entity\":\"ExperianConsumerAccount.cdm.json/ExperianConsumerAccount\",\"name\":\"ExperianAccountTypeId\"},\"ExperianAccountResponsibilityTypeId\":{\"entity\":\"ExperianConsumerAccount.cdm.json/ExperianConsumerAccount\",\"name\":\"ExperianAccountResponsibilityTypeId\"},\"ExperianAccountStatusTypeId\":{\"entity\":\"ExperianConsumerAccount.cdm.json/ExperianConsumerAccount\",\"name\":\"ExperianAccountStatusTypeId\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"ExperianConsumerAccount\",\"path\":\"ExperianConsumerAccount.cdm.json/ExperianConsumerAccount\"},\"description\":\"A credit account held by the consumer.\",\"primaryKey\":[\"ExperianReportNumber\",\"AccountNumber\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ExperianConsumerAccount.cdm.json/ExperianConsumerAccount\",\"name\":\"ExperianReportNumber\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of an Experian consumer.\",\"isNullable\":false,\"name\":\"ExperianReportNumber\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ExperianConsumerAccount.cdm.json/ExperianConsumerAccount\",\"name\":\"AccountNumber\"},\"dataType\":\"string\",\"dataTypeLength\":20,\"description\":\"Full account numbers are not provided with your personal credit report. Experian truncates the numbers so that they cannot be used to commit fraud by someone who steals your report or somehow accesses it without your permission.\",\"isNullable\":false,\"name\":\"AccountNumber\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ExperianConsumerAccount.cdm.json/ExperianConsumerAccount\",\"name\":\"AccountName\"},\"dataType\":\"string\",\"dataTypeLength\":256,\"description\":\"The name of the lender or account holder. In some cases, this name may be different from the name you see on your credit card or account statement. If you do not recognize the name displayed here, you can use other identifying information, such as the account open date, original amount or limit, etc. in order to identify the account. Contact information for your account holder may also be reported, such as a mailing address and/or phone number.\",\"isNullable\":true,\"name\":\"AccountName\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ExperianConsumerAccount.cdm.json/ExperianConsumerAccount\",\"name\":\"DateOpened\"},\"dataType\":\"date\",\"dateFormat\":\"YYYY-MM-DD\",\"description\":\"The date when your account was opened an as reported by your creditor.\",\"isNullable\":true,\"name\":\"DateOpened\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ExperianConsumerAccount.cdm.json/ExperianConsumerAccount\",\"name\":\"PersonalStatement\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"This type of personal statement is an account-specific statement, which is linked to a specific entry in your credit history. Account-specific statements are deleted at the same time as the account. Account specific statements can take one of two forms: \\\"statement of excuse\\\" and \\\"statement of dispute\\\". Both the consumer's and creditor's statements of the account status will appear on the credit report.\",\"isNullable\":true,\"name\":\"PersonalStatement\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ExperianConsumerAccount.cdm.json/ExperianConsumerAccount\",\"name\":\"AddressId\"},\"dataType\":\"integer\",\"description\":\"The address identification number is used to identify which accounts are associated with each individual address variation.\",\"isNullable\":true,\"name\":\"AddressId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ExperianConsumerAccount.cdm.json/ExperianConsumerAccount\",\"name\":\"ContactStreetPoBox\"},\"dataType\":\"string\",\"dataTypeLength\":512,\"description\":\"The 'street/po box' component of the consumer account contact address.\\n\\nThis is the contact information provided by the creditor for this account. In some cases, there may only be an address available.\",\"isNullable\":true,\"name\":\"ContactStreetPoBox\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ExperianConsumerAccount.cdm.json/ExperianConsumerAccount\",\"name\":\"ContactCity\"},\"dataType\":\"string\",\"dataTypeLength\":256,\"description\":\"The 'city' component of the consumer account contact address.\\n\\nThis is the contact information provided by the creditor for this account. In some cases, there may only be an address available.\",\"isNullable\":true,\"name\":\"ContactCity\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ExperianConsumerAccount.cdm.json/ExperianConsumerAccount\",\"name\":\"ContactState\"},\"dataType\":\"string\",\"dataTypeLength\":64,\"description\":\"The 'state' component of the consumer account contact address.\\n\\nThis is the contact information provided by the creditor for this account. In some cases, there may only be an address available.\",\"isNullable\":true,\"name\":\"ContactState\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ExperianConsumerAccount.cdm.json/ExperianConsumerAccount\",\"name\":\"ContactTelephoneNumber\"},\"dataType\":\"decimal\",\"dataTypeLength\":15,\"description\":\"The contact telephone number.\",\"isNullable\":true,\"scale\":0,\"name\":\"ContactTelephoneNumber\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ExperianConsumerAccount.cdm.json/ExperianConsumerAccount\",\"name\":\"AccountTerms\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"States the length of an installment loan. Typically, payments are required on a monthly basis. If the loan is not of an installment type, a short description of the agreement may be shown. For example, \\\"Bank Credit Cards\\\" may be shown if the account is a credit card.\",\"isNullable\":true,\"name\":\"AccountTerms\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ExperianConsumerAccount.cdm.json/ExperianConsumerAccount\",\"name\":\"OnRecordUntilDate\"},\"dataType\":\"date\",\"dateFormat\":\"YYYY-MM-DD\",\"description\":\"The date at which this record will be removed from your credit report.\",\"isNullable\":true,\"name\":\"OnRecordUntilDate\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ExperianConsumerAccount.cdm.json/ExperianConsumerAccount\",\"name\":\"RecentBalanceAmount\"},\"dataType\":\"decimal\",\"dataTypeLength\":18,\"description\":\"The most recent balance as reported by your creditor. If you have made a payment recently, it may not be reflected here until your creditor updates again during their next reporting cycle.\",\"isNullable\":true,\"scale\":2,\"name\":\"RecentBalanceAmount\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ExperianConsumerAccount.cdm.json/ExperianConsumerAccount\",\"name\":\"CreditLimitOriginalAmount\"},\"dataType\":\"decimal\",\"dataTypeLength\":18,\"description\":\"For revolving accounts, this would indicate the current credit limit on the account. If the account is an installment loan, this will show the original amount of the loan.\",\"isNullable\":true,\"scale\":2,\"name\":\"CreditLimitOriginalAmount\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ExperianConsumerAccount.cdm.json/ExperianConsumerAccount\",\"name\":\"HighBalanceAmount\"},\"dataType\":\"decimal\",\"dataTypeLength\":18,\"description\":\"Represents the highest amount owed during the lifetime of the account. For installment type accounts, this amount is typically the Original Amount. For revolving accounts, this number represents the highest amount owed as reported by your creditor.\",\"isNullable\":true,\"scale\":2,\"name\":\"HighBalanceAmount\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ExperianConsumerAccount.cdm.json/ExperianConsumerAccount\",\"name\":\"BalanceAmount\"},\"dataType\":\"decimal\",\"dataTypeLength\":18,\"description\":\"The current amount owed on the account.\",\"isNullable\":true,\"scale\":2,\"name\":\"BalanceAmount\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ExperianConsumerAccount.cdm.json/ExperianConsumerAccount\",\"name\":\"BalanceUpdatedDate\"},\"dataType\":\"date\",\"dateFormat\":\"YYYY-MM-DD\",\"description\":\"The date when your account balance was last reported by your creditor.\",\"isNullable\":true,\"name\":\"BalanceUpdatedDate\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ExperianConsumerAccount.cdm.json/ExperianConsumerAccount\",\"name\":\"MonthlyPaymentAmount\"},\"dataType\":\"decimal\",\"dataTypeLength\":18,\"description\":\"For installment type accounts, this is the monthly payment amount agreed upon with your creditor. For revolving accounts, this is typically the minimum monthly payment due on the balance of your account.\",\"isNullable\":true,\"scale\":2,\"name\":\"MonthlyPaymentAmount\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ExperianConsumerAccount.cdm.json/ExperianConsumerAccount\",\"name\":\"RecentPaymentAmount\"},\"dataType\":\"decimal\",\"dataTypeLength\":18,\"description\":\"For installment type accounts, this is the monthly payment amount agreed upon with your creditor. For revolving accounts, this is typically the minimum monthly payment due on the balance of your account.\",\"isNullable\":true,\"scale\":2,\"name\":\"RecentPaymentAmount\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ExperianConsumerAccount.cdm.json/ExperianConsumerAccount\",\"name\":\"PastDueAmount\"},\"dataType\":\"decimal\",\"dataTypeLength\":18,\"description\":\"The amount currently past due as reported by the creditor. The past due amount would only reflect the amount past due, and not necessarily the total amount owed. For instance, an account could have a past due balance of $25 but a current cumulative balance of $50.\",\"isNullable\":true,\"scale\":2,\"name\":\"PastDueAmount\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ExperianConsumerAccount.cdm.json/ExperianConsumerAccount\",\"name\":\"StatusUpdatedDate\"},\"dataType\":\"date\",\"dateFormat\":\"YYYY-MM-DD\",\"description\":\"This is the date the creditor last updated the account. This date does not affect how long an account remains on the report, and should not be confused with the \\\"Original Delinquency Date.\\\" The original delinquency date is the date an account first became delinquent and after which it was never again brought current.\",\"isNullable\":true,\"name\":\"StatusUpdatedDate\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ExperianConsumerAccount.cdm.json/ExperianConsumerAccount\",\"name\":\"FirstReportedDate\"},\"dataType\":\"date\",\"dateFormat\":\"YYYY-MM-DD\",\"description\":\"The date when the first account status was reported by the account holder.\",\"isNullable\":true,\"name\":\"FirstReportedDate\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ExperianConsumerAccount.cdm.json/ExperianConsumerAccount\",\"name\":\"Comments\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"A comment related to the consumer account.\\n\\nEx:\\n- Charge\",\"isNullable\":true,\"name\":\"Comments\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ExperianConsumerAccount.cdm.json/ExperianConsumerAccount\",\"name\":\"ExperianPaymentStatusTypeId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of an Experian Payment Status Type.\",\"isNullable\":true,\"name\":\"ExperianPaymentStatusTypeId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ExperianConsumerAccount.cdm.json/ExperianConsumerAccount\",\"name\":\"ExperianAccountTypeId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of an Experian Account Type.\",\"isNullable\":true,\"name\":\"ExperianAccountTypeId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ExperianConsumerAccount.cdm.json/ExperianConsumerAccount\",\"name\":\"ExperianAccountResponsibilityTypeId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of an Experian Account Responsibility Type.\",\"isNullable\":true,\"name\":\"ExperianAccountResponsibilityTypeId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ExperianConsumerAccount.cdm.json/ExperianConsumerAccount\",\"name\":\"ExperianAccountStatusTypeId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of an Experian Account Status Type.\",\"isNullable\":true,\"name\":\"ExperianAccountStatusTypeId\"}]}}}",
+			"Description": "A credit account held by the consumer.",
+			"DisplayFolderInfo": "{\"name\":\"Customer Credit & Collections\",\"colorCode\":\"#022F22\"}",
+			"PrimaryKeys": "ExperianReportNumber,AccountNumber",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

@@ -1,0 +1,113 @@
+{
+	"name": "EquifaxPaymentTerm",
+	"properties": {
+		"Name": "EquifaxPaymentTerm",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "The type of Equifax payment.\n\nPayment Terms is the payment due date agreed upon by the creditor and the business.\n\nEx:\n- N30",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "EquifaxPaymentTermId",
+					"Description": "The unique identifier of an Equifax Payment Term.",
+					"BaseAttributeReference": {
+						"Entity": "EquifaxPaymentTerm.cdm.json/EquifaxPaymentTerm",
+						"Name": "EquifaxPaymentTermId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "EquifaxPaymentTermName",
+					"Description": "The name of an Equifax Payment Term.",
+					"BaseAttributeReference": {
+						"Entity": "EquifaxPaymentTerm.cdm.json/EquifaxPaymentTerm",
+						"Name": "EquifaxPaymentTermName"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 256,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "EquifaxPaymentTermDescription",
+					"Description": "The description of an Equifax Payment Term.",
+					"BaseAttributeReference": {
+						"Entity": "EquifaxPaymentTerm.cdm.json/EquifaxPaymentTerm",
+						"Name": "EquifaxPaymentTermDescription"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/EquifaxPaymentTerm",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/EquifaxPaymentTerm",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"EquifaxPaymentTermId\":{\"entity\":\"EquifaxPaymentTerm.cdm.json/EquifaxPaymentTerm\",\"name\":\"EquifaxPaymentTermId\"},\"EquifaxPaymentTermName\":{\"entity\":\"EquifaxPaymentTerm.cdm.json/EquifaxPaymentTerm\",\"name\":\"EquifaxPaymentTermName\"},\"EquifaxPaymentTermDescription\":{\"entity\":\"EquifaxPaymentTerm.cdm.json/EquifaxPaymentTerm\",\"name\":\"EquifaxPaymentTermDescription\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"EquifaxPaymentTerm\",\"path\":\"EquifaxPaymentTerm.cdm.json/EquifaxPaymentTerm\"},\"description\":\"The type of Equifax payment.\\n\\nPayment Terms is the payment due date agreed upon by the creditor and the business.\\n\\nEx:\\n- N30\",\"primaryKey\":[\"EquifaxPaymentTermId\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"EquifaxPaymentTerm.cdm.json/EquifaxPaymentTerm\",\"name\":\"EquifaxPaymentTermId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of an Equifax Payment Term.\",\"isNullable\":false,\"name\":\"EquifaxPaymentTermId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"EquifaxPaymentTerm.cdm.json/EquifaxPaymentTerm\",\"name\":\"EquifaxPaymentTermName\"},\"dataType\":\"string\",\"dataTypeLength\":256,\"description\":\"The name of an Equifax Payment Term.\",\"isNullable\":true,\"name\":\"EquifaxPaymentTermName\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"EquifaxPaymentTerm.cdm.json/EquifaxPaymentTerm\",\"name\":\"EquifaxPaymentTermDescription\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"The description of an Equifax Payment Term.\",\"isNullable\":true,\"name\":\"EquifaxPaymentTermDescription\"}]}}}",
+			"Description": "The type of Equifax payment.\n\nPayment Terms is the payment due date agreed upon by the creditor and the business.\n\nEx:\n- N30",
+			"DisplayFolderInfo": "{\"name\":\"Customer Credit & Collections\",\"colorCode\":\"#022F22\"}",
+			"PrimaryKeys": "EquifaxPaymentTermId",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

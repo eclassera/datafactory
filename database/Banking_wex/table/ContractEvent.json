@@ -1,0 +1,129 @@
+{
+	"name": "ContractEvent",
+	"properties": {
+		"Name": "ContractEvent",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "The significant event(s) associated with the contract.",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "ContractId",
+					"Description": "The unique identifier of a Contract.",
+					"BaseAttributeReference": {
+						"Entity": "ContractEvent.cdm.json/ContractEvent",
+						"Name": "ContractId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "ContractEventTypeId",
+					"Description": "The unique identifier of a Contract Event Type.",
+					"BaseAttributeReference": {
+						"Entity": "ContractEvent.cdm.json/ContractEvent",
+						"Name": "ContractEventTypeId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "ContractEventTimestamp",
+					"Description": "The timestamp of the contract event.",
+					"BaseAttributeReference": {
+						"Entity": "ContractEvent.cdm.json/ContractEvent",
+						"Name": "ContractEventTimestamp"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "timestamp",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"TimestampFormat": "YYYY-MM-DD HH:MM:SS.fffffffff",
+							"HIVE_TYPE_STRING": "timestamp"
+						}
+					}
+				},
+				{
+					"Name": "ContractEventNote",
+					"Description": "A note, comment or additional information regarding the contract event.",
+					"BaseAttributeReference": {
+						"Entity": "ContractEvent.cdm.json/ContractEvent",
+						"Name": "ContractEventNote"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/ContractEvent",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/ContractEvent",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"ContractId\":{\"entity\":\"ContractEvent.cdm.json/ContractEvent\",\"name\":\"ContractId\"},\"ContractEventTypeId\":{\"entity\":\"ContractEvent.cdm.json/ContractEvent\",\"name\":\"ContractEventTypeId\"},\"ContractEventTimestamp\":{\"entity\":\"ContractEvent.cdm.json/ContractEvent\",\"name\":\"ContractEventTimestamp\"},\"ContractEventNote\":{\"entity\":\"ContractEvent.cdm.json/ContractEvent\",\"name\":\"ContractEventNote\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"ContractEvent\",\"path\":\"ContractEvent.cdm.json/ContractEvent\"},\"description\":\"The significant event(s) associated with the contract.\",\"primaryKey\":[\"ContractId\",\"ContractEventTypeId\",\"ContractEventTimestamp\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ContractEvent.cdm.json/ContractEvent\",\"name\":\"ContractId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Contract.\",\"isNullable\":false,\"name\":\"ContractId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ContractEvent.cdm.json/ContractEvent\",\"name\":\"ContractEventTypeId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Contract Event Type.\",\"isNullable\":false,\"name\":\"ContractEventTypeId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ContractEvent.cdm.json/ContractEvent\",\"name\":\"ContractEventTimestamp\"},\"dataType\":\"timestamp\",\"description\":\"The timestamp of the contract event.\",\"isNullable\":false,\"name\":\"ContractEventTimestamp\",\"timestampFormat\":\"YYYY-MM-DD HH:MM:SS.fffffffff\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ContractEvent.cdm.json/ContractEvent\",\"name\":\"ContractEventNote\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"A note, comment or additional information regarding the contract event.\",\"isNullable\":true,\"name\":\"ContractEventNote\"}]}}}",
+			"Description": "The significant event(s) associated with the contract.",
+			"DisplayFolderInfo": "{\"name\":\"Contract\",\"colorCode\":\"#917EDB\"}",
+			"PrimaryKeys": "ContractId,ContractEventTypeId,ContractEventTimestamp",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

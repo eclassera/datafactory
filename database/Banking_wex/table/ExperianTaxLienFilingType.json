@@ -1,0 +1,113 @@
+{
+	"name": "ExperianTaxLienFilingType",
+	"properties": {
+		"Name": "ExperianTaxLienFilingType",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "The Experian tax lien filing type.\n\nEx:\n- State Tax Lien\n- Federal Tax Lien",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "ExperianTaxLienFilingTypeId",
+					"Description": "The unique identifier of an Experian tax lien filing type.",
+					"BaseAttributeReference": {
+						"Entity": "ExperianTaxLienFilingType.cdm.json/ExperianTaxLienFilingType",
+						"Name": "ExperianTaxLienFilingTypeId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "ExperianTaxLienFilingTypeName",
+					"Description": "The name of an Experian tax lien filing type.",
+					"BaseAttributeReference": {
+						"Entity": "ExperianTaxLienFilingType.cdm.json/ExperianTaxLienFilingType",
+						"Name": "ExperianTaxLienFilingTypeName"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 256,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "ExperianTaxLienFilingTypeDescription",
+					"Description": "The description of an Experian tax lien filing type.",
+					"BaseAttributeReference": {
+						"Entity": "ExperianTaxLienFilingType.cdm.json/ExperianTaxLienFilingType",
+						"Name": "ExperianTaxLienFilingTypeDescription"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/ExperianTaxLienFilingType",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/ExperianTaxLienFilingType",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"ExperianTaxLienFilingTypeId\":{\"entity\":\"ExperianTaxLienFilingType.cdm.json/ExperianTaxLienFilingType\",\"name\":\"ExperianTaxLienFilingTypeId\"},\"ExperianTaxLienFilingTypeName\":{\"entity\":\"ExperianTaxLienFilingType.cdm.json/ExperianTaxLienFilingType\",\"name\":\"ExperianTaxLienFilingTypeName\"},\"ExperianTaxLienFilingTypeDescription\":{\"entity\":\"ExperianTaxLienFilingType.cdm.json/ExperianTaxLienFilingType\",\"name\":\"ExperianTaxLienFilingTypeDescription\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"ExperianTaxLienFilingType\",\"path\":\"ExperianTaxLienFilingType.cdm.json/ExperianTaxLienFilingType\"},\"description\":\"The Experian tax lien filing type.\\n\\nEx:\\n- State Tax Lien\\n- Federal Tax Lien\",\"primaryKey\":[\"ExperianTaxLienFilingTypeId\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ExperianTaxLienFilingType.cdm.json/ExperianTaxLienFilingType\",\"name\":\"ExperianTaxLienFilingTypeId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of an Experian tax lien filing type.\",\"isNullable\":false,\"name\":\"ExperianTaxLienFilingTypeId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ExperianTaxLienFilingType.cdm.json/ExperianTaxLienFilingType\",\"name\":\"ExperianTaxLienFilingTypeName\"},\"dataType\":\"string\",\"dataTypeLength\":256,\"description\":\"The name of an Experian tax lien filing type.\",\"isNullable\":true,\"name\":\"ExperianTaxLienFilingTypeName\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ExperianTaxLienFilingType.cdm.json/ExperianTaxLienFilingType\",\"name\":\"ExperianTaxLienFilingTypeDescription\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"The description of an Experian tax lien filing type.\",\"isNullable\":true,\"name\":\"ExperianTaxLienFilingTypeDescription\"}]}}}",
+			"Description": "The Experian tax lien filing type.\n\nEx:\n- State Tax Lien\n- Federal Tax Lien",
+			"DisplayFolderInfo": "{\"name\":\"Customer Credit & Collections\",\"colorCode\":\"#022F22\"}",
+			"PrimaryKeys": "ExperianTaxLienFilingTypeId",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

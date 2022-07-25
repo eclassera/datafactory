@@ -1,0 +1,112 @@
+{
+	"name": "ExperianPersonalStatement",
+	"properties": {
+		"Name": "ExperianPersonalStatement",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "Personal statement(s) reported in conjunction with the credit report.",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "ExperianReportNumber",
+					"Description": "The unique identifier of an Experian consumer.",
+					"BaseAttributeReference": {
+						"Entity": "ExperianPersonalStatement.cdm.json/ExperianPersonalStatement",
+						"Name": "ExperianReportNumber"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "PersonalStatementId",
+					"Description": "The unique identifier of a personal statement.",
+					"BaseAttributeReference": {
+						"Entity": "ExperianPersonalStatement.cdm.json/ExperianPersonalStatement",
+						"Name": "PersonalStatementId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "PersonalStatement",
+					"Description": "The personal statement.\n\nEx:\n- File frozen due to state legislation.",
+					"BaseAttributeReference": {
+						"Entity": "ExperianPersonalStatement.cdm.json/ExperianPersonalStatement",
+						"Name": "PersonalStatement"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/ExperianPersonalStatement",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/ExperianPersonalStatement",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"ExperianReportNumber\":{\"entity\":\"ExperianPersonalStatement.cdm.json/ExperianPersonalStatement\",\"name\":\"ExperianReportNumber\"},\"PersonalStatementId\":{\"entity\":\"ExperianPersonalStatement.cdm.json/ExperianPersonalStatement\",\"name\":\"PersonalStatementId\"},\"PersonalStatement\":{\"entity\":\"ExperianPersonalStatement.cdm.json/ExperianPersonalStatement\",\"name\":\"PersonalStatement\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"ExperianPersonalStatement\",\"path\":\"ExperianPersonalStatement.cdm.json/ExperianPersonalStatement\"},\"description\":\"Personal statement(s) reported in conjunction with the credit report.\",\"primaryKey\":[\"ExperianReportNumber\",\"PersonalStatementId\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ExperianPersonalStatement.cdm.json/ExperianPersonalStatement\",\"name\":\"ExperianReportNumber\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of an Experian consumer.\",\"isNullable\":false,\"name\":\"ExperianReportNumber\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ExperianPersonalStatement.cdm.json/ExperianPersonalStatement\",\"name\":\"PersonalStatementId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a personal statement.\",\"isNullable\":false,\"name\":\"PersonalStatementId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ExperianPersonalStatement.cdm.json/ExperianPersonalStatement\",\"name\":\"PersonalStatement\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"The personal statement.\\n\\nEx:\\n- File frozen due to state legislation.\",\"isNullable\":true,\"name\":\"PersonalStatement\"}]}}}",
+			"Description": "Personal statement(s) reported in conjunction with the credit report.",
+			"DisplayFolderInfo": "{\"name\":\"Customer Credit & Collections\",\"colorCode\":\"#022F22\"}",
+			"PrimaryKeys": "ExperianReportNumber,PersonalStatementId",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

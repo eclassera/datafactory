@@ -1,0 +1,146 @@
+{
+	"name": "ProductLegalAction",
+	"properties": {
+		"Name": "ProductLegalAction",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "The legal action(s) in which the product is involved during the associated period.",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "ProductId",
+					"Description": "The unique identifier of a Product.",
+					"BaseAttributeReference": {
+						"Entity": "ProductLegalAction.cdm.json/ProductLegalAction",
+						"Name": "ProductId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "long",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "long"
+						}
+					}
+				},
+				{
+					"Name": "LegalActionId",
+					"Description": "The unique identifier of a Legal Action.",
+					"BaseAttributeReference": {
+						"Entity": "ProductLegalAction.cdm.json/ProductLegalAction",
+						"Name": "LegalActionId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "PeriodStartDate",
+					"Description": "The period start date associated with the product legal action.",
+					"BaseAttributeReference": {
+						"Entity": "ProductLegalAction.cdm.json/ProductLegalAction",
+						"Name": "PeriodStartDate"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "date",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"DateFormat": "YYYY-MM-DD",
+							"HIVE_TYPE_STRING": "date"
+						}
+					}
+				},
+				{
+					"Name": "PeriodEndDate",
+					"Description": "The period end date associated with the product legal action.",
+					"BaseAttributeReference": {
+						"Entity": "ProductLegalAction.cdm.json/ProductLegalAction",
+						"Name": "PeriodEndDate"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "date",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"DateFormat": "YYYY-MM-DD",
+							"HIVE_TYPE_STRING": "date"
+						}
+					}
+				},
+				{
+					"Name": "ProductLegalActionNote",
+					"Description": "A note, comment or additional information regarding the product legal action.",
+					"BaseAttributeReference": {
+						"Entity": "ProductLegalAction.cdm.json/ProductLegalAction",
+						"Name": "ProductLegalActionNote"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/ProductLegalAction",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/ProductLegalAction",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"ProductId\":{\"entity\":\"ProductLegalAction.cdm.json/ProductLegalAction\",\"name\":\"ProductId\"},\"LegalActionId\":{\"entity\":\"ProductLegalAction.cdm.json/ProductLegalAction\",\"name\":\"LegalActionId\"},\"PeriodStartDate\":{\"entity\":\"ProductLegalAction.cdm.json/ProductLegalAction\",\"name\":\"PeriodStartDate\"},\"PeriodEndDate\":{\"entity\":\"ProductLegalAction.cdm.json/ProductLegalAction\",\"name\":\"PeriodEndDate\"},\"ProductLegalActionNote\":{\"entity\":\"ProductLegalAction.cdm.json/ProductLegalAction\",\"name\":\"ProductLegalActionNote\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"ProductLegalAction\",\"path\":\"ProductLegalAction.cdm.json/ProductLegalAction\"},\"description\":\"The legal action(s) in which the product is involved during the associated period.\",\"primaryKey\":[\"ProductId\",\"LegalActionId\",\"PeriodStartDate\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ProductLegalAction.cdm.json/ProductLegalAction\",\"name\":\"ProductId\"},\"dataType\":\"long\",\"description\":\"The unique identifier of a Product.\",\"isNullable\":false,\"name\":\"ProductId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ProductLegalAction.cdm.json/ProductLegalAction\",\"name\":\"LegalActionId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Legal Action.\",\"isNullable\":false,\"name\":\"LegalActionId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ProductLegalAction.cdm.json/ProductLegalAction\",\"name\":\"PeriodStartDate\"},\"dataType\":\"date\",\"dateFormat\":\"YYYY-MM-DD\",\"description\":\"The period start date associated with the product legal action.\",\"isNullable\":false,\"name\":\"PeriodStartDate\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ProductLegalAction.cdm.json/ProductLegalAction\",\"name\":\"PeriodEndDate\"},\"dataType\":\"date\",\"dateFormat\":\"YYYY-MM-DD\",\"description\":\"The period end date associated with the product legal action.\",\"isNullable\":true,\"name\":\"PeriodEndDate\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ProductLegalAction.cdm.json/ProductLegalAction\",\"name\":\"ProductLegalActionNote\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"A note, comment or additional information regarding the product legal action.\",\"isNullable\":true,\"name\":\"ProductLegalActionNote\"}]}}}",
+			"Description": "The legal action(s) in which the product is involved during the associated period.",
+			"DisplayFolderInfo": "{\"name\":\"Contract\",\"colorCode\":\"#917EDB\"}",
+			"PrimaryKeys": "ProductId,LegalActionId,PeriodStartDate",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

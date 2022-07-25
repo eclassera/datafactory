@@ -1,0 +1,113 @@
+{
+	"name": "TransunionSpecialMessageType",
+	"properties": {
+		"Name": "TransunionSpecialMessageType",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "The type of special message.\n\nEx:\n- ID mismatch alert\n- High risk fraud alert\n- SSN year of issuance\n- Identity manager verification\n- OFAC name screen\n\nwhere:\n\nID mismatch alert messages (optional) appear when the input address, SSN or surname does not match what is on file; when a minimum of four inquiries have been made against the file within the last 60 days; or when an invalid ZIP code is entered.\n\nHigh risk fraud alert messages (optional) appear if address, SSN or phone number have been used in suspected fraudulent activity; if the information on an application is inappropriate, such as a commercial or institutional address; or if the SSN has not been\nissued by the Social Security Administration or is that of a deceased person as reported by the Social Security Administration.\n\nSSN year of issuance (optional) provides state, year/range of years and age of consumer when SSN was issued.\n\nIdentity manager verification (optional) combines sophisticated data analytics and multisourced databases to verify and validate consumer provided information, detect suspicious information, and identify potentially fraudulent transactions and/or\naccounts. Fraud messages are generated to alert subscribers of suspicious data. And, an identity/ fraud score is provided which assesses the level of risk associated with the account. The ID Score® from ID Analytics® is available as an option for an additional lift in fraud detection.\n\nOFAC name screen (optional) is designed to screen an applicant's name against an enhanced U.S. Treasury Department's Office of Foreign Assets Control (OFAC) database of specially designated nationals (SDNs), drug traffickers and money\nlaunderers.",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "TransunionSpecialMessageTypeId",
+					"Description": "The unique identifier of a TransUnion special message type.",
+					"BaseAttributeReference": {
+						"Entity": "TransunionSpecialMessageType.cdm.json/TransunionSpecialMessageType",
+						"Name": "TransunionSpecialMessageTypeId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "TransunionSpecialMessageTypeName",
+					"Description": "The name of a TransUnion special message type.",
+					"BaseAttributeReference": {
+						"Entity": "TransunionSpecialMessageType.cdm.json/TransunionSpecialMessageType",
+						"Name": "TransunionSpecialMessageTypeName"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 256,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "TransunionSpecialMessageTypeDescription",
+					"Description": "The description of a TransUnion special message type.",
+					"BaseAttributeReference": {
+						"Entity": "TransunionSpecialMessageType.cdm.json/TransunionSpecialMessageType",
+						"Name": "TransunionSpecialMessageTypeDescription"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/TransunionSpecialMessageType",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/TransunionSpecialMessageType",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"TransunionSpecialMessageTypeId\":{\"entity\":\"TransunionSpecialMessageType.cdm.json/TransunionSpecialMessageType\",\"name\":\"TransunionSpecialMessageTypeId\"},\"TransunionSpecialMessageTypeName\":{\"entity\":\"TransunionSpecialMessageType.cdm.json/TransunionSpecialMessageType\",\"name\":\"TransunionSpecialMessageTypeName\"},\"TransunionSpecialMessageTypeDescription\":{\"entity\":\"TransunionSpecialMessageType.cdm.json/TransunionSpecialMessageType\",\"name\":\"TransunionSpecialMessageTypeDescription\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"TransunionSpecialMessageType\",\"path\":\"TransunionSpecialMessageType.cdm.json/TransunionSpecialMessageType\"},\"description\":\"The type of special message.\\n\\nEx:\\n- ID mismatch alert\\n- High risk fraud alert\\n- SSN year of issuance\\n- Identity manager verification\\n- OFAC name screen\\n\\nwhere:\\n\\nID mismatch alert messages (optional) appear when the input address, SSN or surname does not match what is on file; when a minimum of four inquiries have been made against the file within the last 60 days; or when an invalid ZIP code is entered.\\n\\nHigh risk fraud alert messages (optional) appear if address, SSN or phone number have been used in suspected fraudulent activity; if the information on an application is inappropriate, such as a commercial or institutional address; or if the SSN has not been\\nissued by the Social Security Administration or is that of a deceased person as reported by the Social Security Administration.\\n\\nSSN year of issuance (optional) provides state, year/range of years and age of consumer when SSN was issued.\\n\\nIdentity manager verification (optional) combines sophisticated data analytics and multisourced databases to verify and validate consumer provided information, detect suspicious information, and identify potentially fraudulent transactions and/or\\naccounts. Fraud messages are generated to alert subscribers of suspicious data. And, an identity/ fraud score is provided which assesses the level of risk associated with the account. The ID Score® from ID Analytics® is available as an option for an additional lift in fraud detection.\\n\\nOFAC name screen (optional) is designed to screen an applicant's name against an enhanced U.S. Treasury Department's Office of Foreign Assets Control (OFAC) database of specially designated nationals (SDNs), drug traffickers and money\\nlaunderers.\",\"primaryKey\":[\"TransunionSpecialMessageTypeId\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"TransunionSpecialMessageType.cdm.json/TransunionSpecialMessageType\",\"name\":\"TransunionSpecialMessageTypeId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a TransUnion special message type.\",\"isNullable\":false,\"name\":\"TransunionSpecialMessageTypeId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"TransunionSpecialMessageType.cdm.json/TransunionSpecialMessageType\",\"name\":\"TransunionSpecialMessageTypeName\"},\"dataType\":\"string\",\"dataTypeLength\":256,\"description\":\"The name of a TransUnion special message type.\",\"isNullable\":true,\"name\":\"TransunionSpecialMessageTypeName\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"TransunionSpecialMessageType.cdm.json/TransunionSpecialMessageType\",\"name\":\"TransunionSpecialMessageTypeDescription\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"The description of a TransUnion special message type.\",\"isNullable\":true,\"name\":\"TransunionSpecialMessageTypeDescription\"}]}}}",
+			"Description": "The type of special message.\n\nEx:\n- ID mismatch alert\n- High risk fraud alert\n- SSN year of issuance\n- Identity manager verification\n- OFAC name screen\n\nwhere:\n\nID mismatch alert messages (optional) appear when the input address, SSN or surname does not match what is on file; when a minimum of four inquiries have been made against the file within the last 60 days; or when an invalid ZIP code is entered.\n\nHigh risk fraud alert messages (optional) appear if address, SSN or phone number have been used in suspected fraudulent activity; if the information on an application is inappropriate, such as a commercial or institutional address; or if the SSN has not been\nissued by the Social Security Administration or is that of a deceased person as reported by the Social Security Administration.\n\nSSN year of issuance (optional) provides state, year/range of years and age of consumer when SSN was issued.\n\nIdentity manager verification (optional) combines sophisticated data analytics and multisourced databases to verify and validate consumer provided information, detect suspicious information, and identify potentially fraudulent transactions and/or\naccounts. Fraud messages are generated to alert subscribers of suspicious data. And, an identity/ fraud score is provided which assesses the level of risk associated with the account. The ID Score® from ID Analytics® is available as an option for an additional lift in fraud detection.\n\nOFAC name screen (optional) is designed to screen an applicant's name against an enhanced U.S. Treasury Department's Office of Foreign Assets Control (OFAC) database of specially designated nationals (SDNs), drug traffickers and money\nlaunderers.",
+			"DisplayFolderInfo": "{\"name\":\"Customer Credit & Collections\",\"colorCode\":\"#022F22\"}",
+			"PrimaryKeys": "TransunionSpecialMessageTypeId",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

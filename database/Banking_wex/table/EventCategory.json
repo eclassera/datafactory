@@ -1,0 +1,113 @@
+{
+	"name": "EventCategory",
+	"properties": {
+		"Name": "EventCategory",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "A categorization of event types.\n\nEx:\nIndividual\nEvent Type = Birth Of Child\nEvent Category = Family Event\n\nEvent Type = Employment Layoff\nEvent Category = Employment Event\n\nLegal Entity\nEvent Type = Incorporation\nEvent Category = Corporate Administration\n\nEvent Type = Annual Reports Filed\nEvent Category = Corporate Administration\n\nEvent Type = Bankruptcy Filing\nEvent Category = Corporate Administration",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "EventCategoryId",
+					"Description": "The unique identifier of an event category.",
+					"BaseAttributeReference": {
+						"Entity": "EventCategory.cdm.json/EventCategory",
+						"Name": "EventCategoryId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "EventCategoryName",
+					"Description": "The name of an event category.",
+					"BaseAttributeReference": {
+						"Entity": "EventCategory.cdm.json/EventCategory",
+						"Name": "EventCategoryName"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 256,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "EventCategoryDescription",
+					"Description": "The description of an event category.",
+					"BaseAttributeReference": {
+						"Entity": "EventCategory.cdm.json/EventCategory",
+						"Name": "EventCategoryDescription"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/EventCategory",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/EventCategory",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"EventCategoryId\":{\"entity\":\"EventCategory.cdm.json/EventCategory\",\"name\":\"EventCategoryId\"},\"EventCategoryName\":{\"entity\":\"EventCategory.cdm.json/EventCategory\",\"name\":\"EventCategoryName\"},\"EventCategoryDescription\":{\"entity\":\"EventCategory.cdm.json/EventCategory\",\"name\":\"EventCategoryDescription\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"EventCategory\",\"path\":\"EventCategory.cdm.json/EventCategory\"},\"description\":\"A categorization of event types.\\n\\nEx:\\nIndividual\\nEvent Type = Birth Of Child\\nEvent Category = Family Event\\n\\nEvent Type = Employment Layoff\\nEvent Category = Employment Event\\n\\nLegal Entity\\nEvent Type = Incorporation\\nEvent Category = Corporate Administration\\n\\nEvent Type = Annual Reports Filed\\nEvent Category = Corporate Administration\\n\\nEvent Type = Bankruptcy Filing\\nEvent Category = Corporate Administration\",\"primaryKey\":[\"EventCategoryId\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"EventCategory.cdm.json/EventCategory\",\"name\":\"EventCategoryId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of an event category.\",\"isNullable\":false,\"name\":\"EventCategoryId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"EventCategory.cdm.json/EventCategory\",\"name\":\"EventCategoryName\"},\"dataType\":\"string\",\"dataTypeLength\":256,\"description\":\"The name of an event category.\",\"isNullable\":true,\"name\":\"EventCategoryName\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"EventCategory.cdm.json/EventCategory\",\"name\":\"EventCategoryDescription\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"The description of an event category.\",\"isNullable\":true,\"name\":\"EventCategoryDescription\"}]}}}",
+			"Description": "A categorization of event types.\n\nEx:\nIndividual\nEvent Type = Birth Of Child\nEvent Category = Family Event\n\nEvent Type = Employment Layoff\nEvent Category = Employment Event\n\nLegal Entity\nEvent Type = Incorporation\nEvent Category = Corporate Administration\n\nEvent Type = Annual Reports Filed\nEvent Category = Corporate Administration\n\nEvent Type = Bankruptcy Filing\nEvent Category = Corporate Administration",
+			"DisplayFolderInfo": "{\"name\":\"Party\",\"colorCode\":\"#00727A\"}",
+			"PrimaryKeys": "EventCategoryId",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

@@ -1,0 +1,113 @@
+{
+	"name": "StoreType",
+	"properties": {
+		"Name": "StoreType",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "A categorization of stores based upon common characteristics or functionality.\n\nEx:\n- Central Business District\n- Community Center\n- Convenience Store\n- Discount Store\n- Discount-Anchored Center\n- Gas Station\n- Neighborhood Center\n- Pad Site \n- Power Shopping Center\n- Regional Center\n- Strip Center\n- Superstore \n- Warehouse Club\n- Warehouse Store\n\nwhere:\n\nCENTRAL BUSINESS DISTRICT\n The traditional downtown business area of a city or town.\n \nCOMMUNITY CENTER\n A large shopping center that includes a discount store, specialty department store, super drugstore, home-improvement center and other convenience and shopping goods stores.\n \nCONVENIENCE STORE\n A shopping center that typically includes such stores as a convenience store and a dry cleaner.\n \nDISCOUNT STORE\n A general merchandise retailer offering a wide variety of merchandise,  limited service and low prices:\n\nEx:\n- Target \n- Kmart\n \nDISCOUNT-ANCHORED CENTER\n A shopping center that contains one or more discount stores plus smaller retail tenants.\n \nNEIGHBORHOOD CENTER\n A shopping center that includes a supermarket, drugstore, home-improvement center or variety store.  \n\nNeighborhood centers often include small stores, such as apparel, shoe, camera and other shopping goods stores.\n \nPAD SITE\n A location for a free-standing retail building that sits in front of a mall or shopping center.\n \nPOWER SHOPPING CENTER\n A large, open-air shopping center with the majority of space pre-leased to several well-known anchor retail tenants.  \n\nConvenient access and parking are emphasized.  These centers usually sit on major intersections.\n \nREGIONAL CENTER\n A shopping center or mall which includes up to three department stores plus shopping or specialty stores rather than convenience stores.  \nSuper-regionals are similar but have at least four department stores.\n \nSTRIP CENTER\n A small shopping center that comprises several adjacent stores located along a major street or highway.\n \nSUPERSTORE A large supermarket or specialty store, usually between 20,000 and 100,000 square feet.\n \nWAREHOUSE CLUB\n A retail store that sells a limited assortment of general merchandise to customers who are members of the club. Memberships are generally fee-based, margins are small and there is little customer service provided to the members.\n \nWAREHOUSE STORE\n A discount retailer offering merchandise in a no-frills environment.",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "StoreTypeId",
+					"Description": "The unique identifier of a Store Type.",
+					"BaseAttributeReference": {
+						"Entity": "StoreType.cdm.json/StoreType",
+						"Name": "StoreTypeId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "StoreTypeName",
+					"Description": "The name of a Store Type.",
+					"BaseAttributeReference": {
+						"Entity": "StoreType.cdm.json/StoreType",
+						"Name": "StoreTypeName"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 256,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "StoreTypeDescription",
+					"Description": "The description of a Store Type.",
+					"BaseAttributeReference": {
+						"Entity": "StoreType.cdm.json/StoreType",
+						"Name": "StoreTypeDescription"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/StoreType",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/StoreType",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"StoreTypeId\":{\"entity\":\"StoreType.cdm.json/StoreType\",\"name\":\"StoreTypeId\"},\"StoreTypeName\":{\"entity\":\"StoreType.cdm.json/StoreType\",\"name\":\"StoreTypeName\"},\"StoreTypeDescription\":{\"entity\":\"StoreType.cdm.json/StoreType\",\"name\":\"StoreTypeDescription\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"StoreType\",\"path\":\"StoreType.cdm.json/StoreType\"},\"description\":\"A categorization of stores based upon common characteristics or functionality.\\n\\nEx:\\n- Central Business District\\n- Community Center\\n- Convenience Store\\n- Discount Store\\n- Discount-Anchored Center\\n- Gas Station\\n- Neighborhood Center\\n- Pad Site \\n- Power Shopping Center\\n- Regional Center\\n- Strip Center\\n- Superstore \\n- Warehouse Club\\n- Warehouse Store\\n\\nwhere:\\n\\nCENTRAL BUSINESS DISTRICT\\n The traditional downtown business area of a city or town.\\n \\nCOMMUNITY CENTER\\n A large shopping center that includes a discount store, specialty department store, super drugstore, home-improvement center and other convenience and shopping goods stores.\\n \\nCONVENIENCE STORE\\n A shopping center that typically includes such stores as a convenience store and a dry cleaner.\\n \\nDISCOUNT STORE\\n A general merchandise retailer offering a wide variety of merchandise,  limited service and low prices:\\n\\nEx:\\n- Target \\n- Kmart\\n \\nDISCOUNT-ANCHORED CENTER\\n A shopping center that contains one or more discount stores plus smaller retail tenants.\\n \\nNEIGHBORHOOD CENTER\\n A shopping center that includes a supermarket, drugstore, home-improvement center or variety store.  \\n\\nNeighborhood centers often include small stores, such as apparel, shoe, camera and other shopping goods stores.\\n \\nPAD SITE\\n A location for a free-standing retail building that sits in front of a mall or shopping center.\\n \\nPOWER SHOPPING CENTER\\n A large, open-air shopping center with the majority of space pre-leased to several well-known anchor retail tenants.  \\n\\nConvenient access and parking are emphasized.  These centers usually sit on major intersections.\\n \\nREGIONAL CENTER\\n A shopping center or mall which includes up to three department stores plus shopping or specialty stores rather than convenience stores.  \\nSuper-regionals are similar but have at least four department stores.\\n \\nSTRIP CENTER\\n A small shopping center that comprises several adjacent stores located along a major street or highway.\\n \\nSUPERSTORE A large supermarket or specialty store, usually between 20,000 and 100,000 square feet.\\n \\nWAREHOUSE CLUB\\n A retail store that sells a limited assortment of general merchandise to customers who are members of the club. Memberships are generally fee-based, margins are small and there is little customer service provided to the members.\\n \\nWAREHOUSE STORE\\n A discount retailer offering merchandise in a no-frills environment.\",\"primaryKey\":[\"StoreTypeId\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"StoreType.cdm.json/StoreType\",\"name\":\"StoreTypeId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Store Type.\",\"isNullable\":false,\"name\":\"StoreTypeId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"StoreType.cdm.json/StoreType\",\"name\":\"StoreTypeName\"},\"dataType\":\"string\",\"dataTypeLength\":256,\"description\":\"The name of a Store Type.\",\"isNullable\":true,\"name\":\"StoreTypeName\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"StoreType.cdm.json/StoreType\",\"name\":\"StoreTypeDescription\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"The description of a Store Type.\",\"isNullable\":true,\"name\":\"StoreTypeDescription\"}]}}}",
+			"Description": "A categorization of stores based upon common characteristics or functionality.\n\nEx:\n- Central Business District\n- Community Center\n- Convenience Store\n- Discount Store\n- Discount-Anchored Center\n- Gas Station\n- Neighborhood Center\n- Pad Site \n- Power Shopping Center\n- Regional Center\n- Strip Center\n- Superstore \n- Warehouse Club\n- Warehouse Store\n\nwhere:\n\nCENTRAL BUSINESS DISTRICT\n The traditional downtown business area of a city or town.\n \nCOMMUNITY CENTER\n A large shopping center that includes a discount store, specialty department store, super drugstore, home-improvement center and other convenience and shopping goods stores.\n \nCONVENIENCE STORE\n A shopping center that typically includes such stores as a convenience store and a dry cleaner.\n \nDISCOUNT STORE\n A general merchandise retailer offering a wide variety of merchandise,  limited service and low prices:\n\nEx:\n- Target \n- Kmart\n \nDISCOUNT-ANCHORED CENTER\n A shopping center that contains one or more discount stores plus smaller retail tenants.\n \nNEIGHBORHOOD CENTER\n A shopping center that includes a supermarket, drugstore, home-improvement center or variety store.  \n\nNeighborhood centers often include small stores, such as apparel, shoe, camera and other shopping goods stores.\n \nPAD SITE\n A location for a free-standing retail building that sits in front of a mall or shopping center.\n \nPOWER SHOPPING CENTER\n A large, open-air shopping center with the majority of space pre-leased to several well-known anchor retail tenants.  \n\nConvenient access and parking are emphasized.  These centers usually sit on major intersections.\n \nREGIONAL CENTER\n A shopping center or mall which includes up to three department stores plus shopping or specialty stores rather than convenience stores.  \nSuper-regionals are similar but have at least four department stores.\n \nSTRIP CENTER\n A small shopping center that comprises several adjacent stores located along a major street or highway.\n \nSUPERSTORE A large supermarket or specialty store, usually between 20,000 and 100,000 square feet.\n \nWAREHOUSE CLUB\n A retail store that sells a limited assortment of general merchandise to customers who are members of the club. Memberships are generally fee-based, margins are small and there is little customer service provided to the members.\n \nWAREHOUSE STORE\n A discount retailer offering merchandise in a no-frills environment.",
+			"DisplayFolderInfo": "{\"name\":\"Channel\",\"colorCode\":\"#001D3F\"}",
+			"PrimaryKeys": "StoreTypeId",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

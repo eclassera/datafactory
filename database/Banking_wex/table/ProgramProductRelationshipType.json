@@ -1,0 +1,113 @@
+{
+	"name": "ProgramProductRelationshipType",
+	"properties": {
+		"Name": "ProgramProductRelationshipType",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "The nature of the relationship between a program and a product.\n\nEx:\n- Only Available Via Channel Partner\n- Must Be Purchased from Issuer\n- Bank Authorization Required",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "ProgramProductRelationshipTypeId",
+					"Description": "The unique identifier of a Program Product Relationship Type.",
+					"BaseAttributeReference": {
+						"Entity": "ProgramProductRelationshipType.cdm.json/ProgramProductRelationshipType",
+						"Name": "ProgramProductRelationshipTypeId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "ProgramProductRelationshipTypeName",
+					"Description": "The name of a Program Product Relationship Type.",
+					"BaseAttributeReference": {
+						"Entity": "ProgramProductRelationshipType.cdm.json/ProgramProductRelationshipType",
+						"Name": "ProgramProductRelationshipTypeName"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 256,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "ProgramProductRelationshipTypeDescription",
+					"Description": "The description of a Program Product Relationship Type.",
+					"BaseAttributeReference": {
+						"Entity": "ProgramProductRelationshipType.cdm.json/ProgramProductRelationshipType",
+						"Name": "ProgramProductRelationshipTypeDescription"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/ProgramProductRelationshipType",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/ProgramProductRelationshipType",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"ProgramProductRelationshipTypeId\":{\"entity\":\"ProgramProductRelationshipType.cdm.json/ProgramProductRelationshipType\",\"name\":\"ProgramProductRelationshipTypeId\"},\"ProgramProductRelationshipTypeName\":{\"entity\":\"ProgramProductRelationshipType.cdm.json/ProgramProductRelationshipType\",\"name\":\"ProgramProductRelationshipTypeName\"},\"ProgramProductRelationshipTypeDescription\":{\"entity\":\"ProgramProductRelationshipType.cdm.json/ProgramProductRelationshipType\",\"name\":\"ProgramProductRelationshipTypeDescription\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"ProgramProductRelationshipType\",\"path\":\"ProgramProductRelationshipType.cdm.json/ProgramProductRelationshipType\"},\"description\":\"The nature of the relationship between a program and a product.\\n\\nEx:\\n- Only Available Via Channel Partner\\n- Must Be Purchased from Issuer\\n- Bank Authorization Required\",\"primaryKey\":[\"ProgramProductRelationshipTypeId\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ProgramProductRelationshipType.cdm.json/ProgramProductRelationshipType\",\"name\":\"ProgramProductRelationshipTypeId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Program Product Relationship Type.\",\"isNullable\":false,\"name\":\"ProgramProductRelationshipTypeId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ProgramProductRelationshipType.cdm.json/ProgramProductRelationshipType\",\"name\":\"ProgramProductRelationshipTypeName\"},\"dataType\":\"string\",\"dataTypeLength\":256,\"description\":\"The name of a Program Product Relationship Type.\",\"isNullable\":true,\"name\":\"ProgramProductRelationshipTypeName\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ProgramProductRelationshipType.cdm.json/ProgramProductRelationshipType\",\"name\":\"ProgramProductRelationshipTypeDescription\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"The description of a Program Product Relationship Type.\",\"isNullable\":true,\"name\":\"ProgramProductRelationshipTypeDescription\"}]}}}",
+			"Description": "The nature of the relationship between a program and a product.\n\nEx:\n- Only Available Via Channel Partner\n- Must Be Purchased from Issuer\n- Bank Authorization Required",
+			"DisplayFolderInfo": "{\"name\":\"Channel\",\"colorCode\":\"#001D3F\"}",
+			"PrimaryKeys": "ProgramProductRelationshipTypeId",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

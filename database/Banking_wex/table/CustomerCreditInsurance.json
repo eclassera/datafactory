@@ -1,0 +1,216 @@
+{
+	"name": "CustomerCreditInsurance",
+	"properties": {
+		"Name": "CustomerCreditInsurance",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "Insurance that guarantees the collectability of Customer accounts receivables.",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "CustomerId",
+					"Description": "The unique identifier of a Customer.",
+					"BaseAttributeReference": {
+						"Entity": "CustomerCreditInsurance.cdm.json/CustomerCreditInsurance",
+						"Name": "CustomerId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "long",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "long"
+						}
+					}
+				},
+				{
+					"Name": "CreditInsuranceCompanyId",
+					"Description": "The unique identifier of a Credit Insurance Company.",
+					"BaseAttributeReference": {
+						"Entity": "CustomerCreditInsurance.cdm.json/CustomerCreditInsurance",
+						"Name": "CreditInsuranceCompanyId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "PeriodStartDate",
+					"Description": "The period start date for which the associated Credit Insurance is defined for the Legal Entity.",
+					"BaseAttributeReference": {
+						"Entity": "CustomerCreditInsurance.cdm.json/CustomerCreditInsurance",
+						"Name": "PeriodStartDate"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "date",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"DateFormat": "YYYY-MM-DD",
+							"HIVE_TYPE_STRING": "date"
+						}
+					}
+				},
+				{
+					"Name": "PeriodEndDate",
+					"Description": "The period end date for which the associated Credit Insurance is defined for the Legal Entity.",
+					"BaseAttributeReference": {
+						"Entity": "CustomerCreditInsurance.cdm.json/CustomerCreditInsurance",
+						"Name": "PeriodEndDate"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "date",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"DateFormat": "YYYY-MM-DD",
+							"HIVE_TYPE_STRING": "date"
+						}
+					}
+				},
+				{
+					"Name": "PolicyNumberId",
+					"Description": "The credit insurance policy number.",
+					"BaseAttributeReference": {
+						"Entity": "CustomerCreditInsurance.cdm.json/CustomerCreditInsurance",
+						"Name": "PolicyNumberId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "PolicyPeriod",
+					"Description": "The policy period expressed in number of days.",
+					"BaseAttributeReference": {
+						"Entity": "CustomerCreditInsurance.cdm.json/CustomerCreditInsurance",
+						"Name": "PolicyPeriod"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "decimal",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Precision": 3,
+						"Scale": 0,
+						"Properties": {
+							"HIVE_TYPE_STRING": "decimal"
+						}
+					}
+				},
+				{
+					"Name": "PolicyPremium",
+					"Description": "The period premium amount.\n\nThis would be an unusual arrangement.\nThe typical arrangement is a percentage of insured account debts as the premium (1-2%).",
+					"BaseAttributeReference": {
+						"Entity": "CustomerCreditInsurance.cdm.json/CustomerCreditInsurance",
+						"Name": "PolicyPremium"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "decimal",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Precision": 18,
+						"Scale": 2,
+						"Properties": {
+							"HIVE_TYPE_STRING": "decimal"
+						}
+					}
+				},
+				{
+					"Name": "PolicyPercentageOfInsuredAccount",
+					"Description": "The percentage of insured accounts that is the period premium for the credit insurance.",
+					"BaseAttributeReference": {
+						"Entity": "CustomerCreditInsurance.cdm.json/CustomerCreditInsurance",
+						"Name": "PolicyPercentageOfInsuredAccount"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "decimal",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Precision": 18,
+						"Scale": 8,
+						"Properties": {
+							"HIVE_TYPE_STRING": "decimal"
+						}
+					}
+				},
+				{
+					"Name": "LegalEntityCustomerCreditInsuranceNote",
+					"Description": "A note, comment or additional information regarding the Legal Entity Customer Credit Insurance.",
+					"BaseAttributeReference": {
+						"Entity": "CustomerCreditInsurance.cdm.json/CustomerCreditInsurance",
+						"Name": "LegalEntityCustomerCreditInsuranceNote"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/CustomerCreditInsurance",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/CustomerCreditInsurance",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"CustomerId\":{\"entity\":\"CustomerCreditInsurance.cdm.json/CustomerCreditInsurance\",\"name\":\"CustomerId\"},\"CreditInsuranceCompanyId\":{\"entity\":\"CustomerCreditInsurance.cdm.json/CustomerCreditInsurance\",\"name\":\"CreditInsuranceCompanyId\"},\"PeriodStartDate\":{\"entity\":\"CustomerCreditInsurance.cdm.json/CustomerCreditInsurance\",\"name\":\"PeriodStartDate\"},\"PeriodEndDate\":{\"entity\":\"CustomerCreditInsurance.cdm.json/CustomerCreditInsurance\",\"name\":\"PeriodEndDate\"},\"PolicyNumberId\":{\"entity\":\"CustomerCreditInsurance.cdm.json/CustomerCreditInsurance\",\"name\":\"PolicyNumberId\"},\"PolicyPeriod\":{\"entity\":\"CustomerCreditInsurance.cdm.json/CustomerCreditInsurance\",\"name\":\"PolicyPeriod\"},\"PolicyPremium\":{\"entity\":\"CustomerCreditInsurance.cdm.json/CustomerCreditInsurance\",\"name\":\"PolicyPremium\"},\"PolicyPercentageOfInsuredAccount\":{\"entity\":\"CustomerCreditInsurance.cdm.json/CustomerCreditInsurance\",\"name\":\"PolicyPercentageOfInsuredAccount\"},\"LegalEntityCustomerCreditInsuranceNote\":{\"entity\":\"CustomerCreditInsurance.cdm.json/CustomerCreditInsurance\",\"name\":\"LegalEntityCustomerCreditInsuranceNote\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"CustomerCreditInsurance\",\"path\":\"CustomerCreditInsurance.cdm.json/CustomerCreditInsurance\"},\"description\":\"Insurance that guarantees the collectability of Customer accounts receivables.\",\"primaryKey\":[\"CustomerId\",\"CreditInsuranceCompanyId\",\"PeriodStartDate\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CustomerCreditInsurance.cdm.json/CustomerCreditInsurance\",\"name\":\"CustomerId\"},\"dataType\":\"long\",\"description\":\"The unique identifier of a Customer.\",\"isNullable\":false,\"name\":\"CustomerId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CustomerCreditInsurance.cdm.json/CustomerCreditInsurance\",\"name\":\"CreditInsuranceCompanyId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Credit Insurance Company.\",\"isNullable\":false,\"name\":\"CreditInsuranceCompanyId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CustomerCreditInsurance.cdm.json/CustomerCreditInsurance\",\"name\":\"PeriodStartDate\"},\"dataType\":\"date\",\"dateFormat\":\"YYYY-MM-DD\",\"description\":\"The period start date for which the associated Credit Insurance is defined for the Legal Entity.\",\"isNullable\":false,\"name\":\"PeriodStartDate\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CustomerCreditInsurance.cdm.json/CustomerCreditInsurance\",\"name\":\"PeriodEndDate\"},\"dataType\":\"date\",\"dateFormat\":\"YYYY-MM-DD\",\"description\":\"The period end date for which the associated Credit Insurance is defined for the Legal Entity.\",\"isNullable\":true,\"name\":\"PeriodEndDate\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CustomerCreditInsurance.cdm.json/CustomerCreditInsurance\",\"name\":\"PolicyNumberId\"},\"dataType\":\"integer\",\"description\":\"The credit insurance policy number.\",\"isNullable\":false,\"name\":\"PolicyNumberId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CustomerCreditInsurance.cdm.json/CustomerCreditInsurance\",\"name\":\"PolicyPeriod\"},\"dataType\":\"decimal\",\"dataTypeLength\":3,\"description\":\"The policy period expressed in number of days.\",\"isNullable\":true,\"scale\":0,\"name\":\"PolicyPeriod\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CustomerCreditInsurance.cdm.json/CustomerCreditInsurance\",\"name\":\"PolicyPremium\"},\"dataType\":\"decimal\",\"dataTypeLength\":18,\"description\":\"The period premium amount.\\n\\nThis would be an unusual arrangement.\\nThe typical arrangement is a percentage of insured account debts as the premium (1-2%).\",\"isNullable\":true,\"scale\":2,\"name\":\"PolicyPremium\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CustomerCreditInsurance.cdm.json/CustomerCreditInsurance\",\"name\":\"PolicyPercentageOfInsuredAccount\"},\"dataType\":\"decimal\",\"dataTypeLength\":18,\"description\":\"The percentage of insured accounts that is the period premium for the credit insurance.\",\"isNullable\":true,\"scale\":8,\"name\":\"PolicyPercentageOfInsuredAccount\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CustomerCreditInsurance.cdm.json/CustomerCreditInsurance\",\"name\":\"LegalEntityCustomerCreditInsuranceNote\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"A note, comment or additional information regarding the Legal Entity Customer Credit Insurance.\",\"isNullable\":true,\"name\":\"LegalEntityCustomerCreditInsuranceNote\"}]}}}",
+			"Description": "Insurance that guarantees the collectability of Customer accounts receivables.",
+			"DisplayFolderInfo": "{\"name\":\"Customer Credit & Collections\",\"colorCode\":\"#022F22\"}",
+			"PrimaryKeys": "CustomerId,CreditInsuranceCompanyId,PeriodStartDate",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

@@ -1,0 +1,113 @@
+{
+	"name": "RevenueItem",
+	"properties": {
+		"Name": "RevenueItem",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "A revenue item such as:\n\n- Commissions\n- In-house trading\n- Fee receipt\n- Product sales",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "RevenueItemId",
+					"Description": "The unique identifier of a revenue item.",
+					"BaseAttributeReference": {
+						"Entity": "RevenueItem.cdm.json/RevenueItem",
+						"Name": "RevenueItemId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "RevenueItemName",
+					"Description": "The name of a revenue item.",
+					"BaseAttributeReference": {
+						"Entity": "RevenueItem.cdm.json/RevenueItem",
+						"Name": "RevenueItemName"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 256,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "RevenueItemDescription",
+					"Description": "The description of a revenue item.",
+					"BaseAttributeReference": {
+						"Entity": "RevenueItem.cdm.json/RevenueItem",
+						"Name": "RevenueItemDescription"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/RevenueItem",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/RevenueItem",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"RevenueItemId\":{\"entity\":\"RevenueItem.cdm.json/RevenueItem\",\"name\":\"RevenueItemId\"},\"RevenueItemName\":{\"entity\":\"RevenueItem.cdm.json/RevenueItem\",\"name\":\"RevenueItemName\"},\"RevenueItemDescription\":{\"entity\":\"RevenueItem.cdm.json/RevenueItem\",\"name\":\"RevenueItemDescription\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"RevenueItem\",\"path\":\"RevenueItem.cdm.json/RevenueItem\"},\"description\":\"A revenue item such as:\\n\\n- Commissions\\n- In-house trading\\n- Fee receipt\\n- Product sales\",\"primaryKey\":[\"RevenueItemId\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"RevenueItem.cdm.json/RevenueItem\",\"name\":\"RevenueItemId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a revenue item.\",\"isNullable\":false,\"name\":\"RevenueItemId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"RevenueItem.cdm.json/RevenueItem\",\"name\":\"RevenueItemName\"},\"dataType\":\"string\",\"dataTypeLength\":256,\"description\":\"The name of a revenue item.\",\"isNullable\":true,\"name\":\"RevenueItemName\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"RevenueItem.cdm.json/RevenueItem\",\"name\":\"RevenueItemDescription\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"The description of a revenue item.\",\"isNullable\":true,\"name\":\"RevenueItemDescription\"}]}}}",
+			"Description": "A revenue item such as:\n\n- Commissions\n- In-house trading\n- Fee receipt\n- Product sales",
+			"DisplayFolderInfo": "{\"name\":\"Budget & Forecasting\",\"colorCode\":\"#00188F\"}",
+			"PrimaryKeys": "RevenueItemId",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

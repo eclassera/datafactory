@@ -1,0 +1,180 @@
+{
+	"name": "ExperianConsumerPublicRecord",
+	"properties": {
+		"Name": "ExperianConsumerPublicRecord",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "The Experian reported consumer public records.",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "ExperianReportNumber",
+					"Description": "The unique identifier of an Experian consumer.",
+					"BaseAttributeReference": {
+						"Entity": "ExperianConsumerPublicRecord.cdm.json/ExperianConsumerPublicRecord",
+						"Name": "ExperianReportNumber"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "ReferenceId",
+					"Description": "The number that corresponds to where the public record was recorded at the court. For tax liens it often shows the book-page-sequence number; for bankruptcies it would be the Docket number.",
+					"BaseAttributeReference": {
+						"Entity": "ExperianConsumerPublicRecord.cdm.json/ExperianConsumerPublicRecord",
+						"Name": "ReferenceId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "FilingDate",
+					"Description": "The date the judgment was filed on as reported by the court involved.\n\nCivil judgments remain on your credit report 7 years from the filing date.\nChapter 13 bankruptcy will remain in the credit report for 7 years from the filing date.\nChapter 7 bankruptcy remains on the credit report for 10 years from the filing date.\nA paid tax lien is deleted 7 years from the filing date.",
+					"BaseAttributeReference": {
+						"Entity": "ExperianConsumerPublicRecord.cdm.json/ExperianConsumerPublicRecord",
+						"Name": "FilingDate"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "date",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"DateFormat": "YYYY-MM-DD",
+							"HIVE_TYPE_STRING": "date"
+						}
+					}
+				},
+				{
+					"Name": "CourtName",
+					"Description": "The name of the court in which the public record was filed.\n\nEx:\nClayton County Magistrate",
+					"BaseAttributeReference": {
+						"Entity": "ExperianConsumerPublicRecord.cdm.json/ExperianConsumerPublicRecord",
+						"Name": "CourtName"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 256,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "PlaintiffName",
+					"Description": "The name, company or organization who brought the case against you in a court of law.",
+					"BaseAttributeReference": {
+						"Entity": "ExperianConsumerPublicRecord.cdm.json/ExperianConsumerPublicRecord",
+						"Name": "PlaintiffName"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 256,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "AwardedAmount",
+					"Description": "The monetary amount in damages awarded to the plaintiff.",
+					"BaseAttributeReference": {
+						"Entity": "ExperianConsumerPublicRecord.cdm.json/ExperianConsumerPublicRecord",
+						"Name": "AwardedAmount"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "decimal",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Precision": 18,
+						"Scale": 2,
+						"Properties": {
+							"HIVE_TYPE_STRING": "decimal"
+						}
+					}
+				},
+				{
+					"Name": "ExperianPublicRecordTypeId",
+					"Description": "The unique identifies of a Experian Public Record Type.",
+					"BaseAttributeReference": {
+						"Entity": "ExperianConsumerPublicRecord.cdm.json/ExperianConsumerPublicRecord",
+						"Name": "ExperianPublicRecordTypeId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/ExperianConsumerPublicRecord",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/ExperianConsumerPublicRecord",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"ExperianReportNumber\":{\"entity\":\"ExperianConsumerPublicRecord.cdm.json/ExperianConsumerPublicRecord\",\"name\":\"ExperianReportNumber\"},\"ReferenceId\":{\"entity\":\"ExperianConsumerPublicRecord.cdm.json/ExperianConsumerPublicRecord\",\"name\":\"ReferenceId\"},\"FilingDate\":{\"entity\":\"ExperianConsumerPublicRecord.cdm.json/ExperianConsumerPublicRecord\",\"name\":\"FilingDate\"},\"CourtName\":{\"entity\":\"ExperianConsumerPublicRecord.cdm.json/ExperianConsumerPublicRecord\",\"name\":\"CourtName\"},\"PlaintiffName\":{\"entity\":\"ExperianConsumerPublicRecord.cdm.json/ExperianConsumerPublicRecord\",\"name\":\"PlaintiffName\"},\"AwardedAmount\":{\"entity\":\"ExperianConsumerPublicRecord.cdm.json/ExperianConsumerPublicRecord\",\"name\":\"AwardedAmount\"},\"ExperianPublicRecordTypeId\":{\"entity\":\"ExperianConsumerPublicRecord.cdm.json/ExperianConsumerPublicRecord\",\"name\":\"ExperianPublicRecordTypeId\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"ExperianConsumerPublicRecord\",\"path\":\"ExperianConsumerPublicRecord.cdm.json/ExperianConsumerPublicRecord\"},\"description\":\"The Experian reported consumer public records.\",\"primaryKey\":[\"ExperianReportNumber\",\"ReferenceId\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ExperianConsumerPublicRecord.cdm.json/ExperianConsumerPublicRecord\",\"name\":\"ExperianReportNumber\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of an Experian consumer.\",\"isNullable\":false,\"name\":\"ExperianReportNumber\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ExperianConsumerPublicRecord.cdm.json/ExperianConsumerPublicRecord\",\"name\":\"ReferenceId\"},\"dataType\":\"integer\",\"description\":\"The number that corresponds to where the public record was recorded at the court. For tax liens it often shows the book-page-sequence number; for bankruptcies it would be the Docket number.\",\"isNullable\":false,\"name\":\"ReferenceId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ExperianConsumerPublicRecord.cdm.json/ExperianConsumerPublicRecord\",\"name\":\"FilingDate\"},\"dataType\":\"date\",\"dateFormat\":\"YYYY-MM-DD\",\"description\":\"The date the judgment was filed on as reported by the court involved.\\n\\nCivil judgments remain on your credit report 7 years from the filing date.\\nChapter 13 bankruptcy will remain in the credit report for 7 years from the filing date.\\nChapter 7 bankruptcy remains on the credit report for 10 years from the filing date.\\nA paid tax lien is deleted 7 years from the filing date.\",\"isNullable\":true,\"name\":\"FilingDate\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ExperianConsumerPublicRecord.cdm.json/ExperianConsumerPublicRecord\",\"name\":\"CourtName\"},\"dataType\":\"string\",\"dataTypeLength\":256,\"description\":\"The name of the court in which the public record was filed.\\n\\nEx:\\nClayton County Magistrate\",\"isNullable\":true,\"name\":\"CourtName\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ExperianConsumerPublicRecord.cdm.json/ExperianConsumerPublicRecord\",\"name\":\"PlaintiffName\"},\"dataType\":\"string\",\"dataTypeLength\":256,\"description\":\"The name, company or organization who brought the case against you in a court of law.\",\"isNullable\":true,\"name\":\"PlaintiffName\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ExperianConsumerPublicRecord.cdm.json/ExperianConsumerPublicRecord\",\"name\":\"AwardedAmount\"},\"dataType\":\"decimal\",\"dataTypeLength\":18,\"description\":\"The monetary amount in damages awarded to the plaintiff.\",\"isNullable\":true,\"scale\":2,\"name\":\"AwardedAmount\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ExperianConsumerPublicRecord.cdm.json/ExperianConsumerPublicRecord\",\"name\":\"ExperianPublicRecordTypeId\"},\"dataType\":\"integer\",\"description\":\"The unique identifies of a Experian Public Record Type.\",\"isNullable\":true,\"name\":\"ExperianPublicRecordTypeId\"}]}}}",
+			"Description": "The Experian reported consumer public records.",
+			"DisplayFolderInfo": "{\"name\":\"Customer Credit & Collections\",\"colorCode\":\"#022F22\"}",
+			"PrimaryKeys": "ExperianReportNumber,ReferenceId",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

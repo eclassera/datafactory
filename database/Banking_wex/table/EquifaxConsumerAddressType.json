@@ -1,0 +1,113 @@
+{
+	"name": "EquifaxConsumerAddressType",
+	"properties": {
+		"Name": "EquifaxConsumerAddressType",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "The Equifax address type.\n\nEx:\n- Current Address\n- Former Address\n- Linked Address",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "EquifaxConsumerAddressTypeId",
+					"Description": "The unique identifier of an Equifax Consumer Address Type.",
+					"BaseAttributeReference": {
+						"Entity": "EquifaxConsumerAddressType.cdm.json/EquifaxConsumerAddressType",
+						"Name": "EquifaxConsumerAddressTypeId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "EquifaxConsumerAddressTypeName",
+					"Description": "The name of an Equifax Consumer Address Type.",
+					"BaseAttributeReference": {
+						"Entity": "EquifaxConsumerAddressType.cdm.json/EquifaxConsumerAddressType",
+						"Name": "EquifaxConsumerAddressTypeName"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 256,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "EquifaxConsumerAddressTypeDescription",
+					"Description": "The description of an Equifax Consumer Address Type.",
+					"BaseAttributeReference": {
+						"Entity": "EquifaxConsumerAddressType.cdm.json/EquifaxConsumerAddressType",
+						"Name": "EquifaxConsumerAddressTypeDescription"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/EquifaxConsumerAddressType",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/EquifaxConsumerAddressType",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"EquifaxConsumerAddressTypeId\":{\"entity\":\"EquifaxConsumerAddressType.cdm.json/EquifaxConsumerAddressType\",\"name\":\"EquifaxConsumerAddressTypeId\"},\"EquifaxConsumerAddressTypeName\":{\"entity\":\"EquifaxConsumerAddressType.cdm.json/EquifaxConsumerAddressType\",\"name\":\"EquifaxConsumerAddressTypeName\"},\"EquifaxConsumerAddressTypeDescription\":{\"entity\":\"EquifaxConsumerAddressType.cdm.json/EquifaxConsumerAddressType\",\"name\":\"EquifaxConsumerAddressTypeDescription\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"EquifaxConsumerAddressType\",\"path\":\"EquifaxConsumerAddressType.cdm.json/EquifaxConsumerAddressType\"},\"description\":\"The Equifax address type.\\n\\nEx:\\n- Current Address\\n- Former Address\\n- Linked Address\",\"primaryKey\":[\"EquifaxConsumerAddressTypeId\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"EquifaxConsumerAddressType.cdm.json/EquifaxConsumerAddressType\",\"name\":\"EquifaxConsumerAddressTypeId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of an Equifax Consumer Address Type.\",\"isNullable\":false,\"name\":\"EquifaxConsumerAddressTypeId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"EquifaxConsumerAddressType.cdm.json/EquifaxConsumerAddressType\",\"name\":\"EquifaxConsumerAddressTypeName\"},\"dataType\":\"string\",\"dataTypeLength\":256,\"description\":\"The name of an Equifax Consumer Address Type.\",\"isNullable\":true,\"name\":\"EquifaxConsumerAddressTypeName\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"EquifaxConsumerAddressType.cdm.json/EquifaxConsumerAddressType\",\"name\":\"EquifaxConsumerAddressTypeDescription\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"The description of an Equifax Consumer Address Type.\",\"isNullable\":true,\"name\":\"EquifaxConsumerAddressTypeDescription\"}]}}}",
+			"Description": "The Equifax address type.\n\nEx:\n- Current Address\n- Former Address\n- Linked Address",
+			"DisplayFolderInfo": "{\"name\":\"Customer Credit & Collections\",\"colorCode\":\"#022F22\"}",
+			"PrimaryKeys": "EquifaxConsumerAddressTypeId",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

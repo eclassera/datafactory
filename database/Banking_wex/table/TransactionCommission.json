@@ -1,0 +1,112 @@
+{
+	"name": "TransactionCommission",
+	"properties": {
+		"Name": "TransactionCommission",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "The Transaction(s) for which the Commission is generated.",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "TransactionId",
+					"Description": "The unique identifier of a Transaction.",
+					"BaseAttributeReference": {
+						"Entity": "TransactionCommission.cdm.json/TransactionCommission",
+						"Name": "TransactionId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "long",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "long"
+						}
+					}
+				},
+				{
+					"Name": "CommissionId",
+					"Description": "The unique identifier of a commission.",
+					"BaseAttributeReference": {
+						"Entity": "TransactionCommission.cdm.json/TransactionCommission",
+						"Name": "CommissionId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "TransactionCommissionNote",
+					"Description": "Notes, comments or additional information regarding the Transaction Commission.",
+					"BaseAttributeReference": {
+						"Entity": "TransactionCommission.cdm.json/TransactionCommission",
+						"Name": "TransactionCommissionNote"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/TransactionCommission",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/TransactionCommission",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"TransactionId\":{\"entity\":\"TransactionCommission.cdm.json/TransactionCommission\",\"name\":\"TransactionId\"},\"CommissionId\":{\"entity\":\"TransactionCommission.cdm.json/TransactionCommission\",\"name\":\"CommissionId\"},\"TransactionCommissionNote\":{\"entity\":\"TransactionCommission.cdm.json/TransactionCommission\",\"name\":\"TransactionCommissionNote\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"TransactionCommission\",\"path\":\"TransactionCommission.cdm.json/TransactionCommission\"},\"description\":\"The Transaction(s) for which the Commission is generated.\",\"primaryKey\":[\"TransactionId\",\"CommissionId\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"TransactionCommission.cdm.json/TransactionCommission\",\"name\":\"TransactionId\"},\"dataType\":\"long\",\"description\":\"The unique identifier of a Transaction.\",\"isNullable\":false,\"name\":\"TransactionId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"TransactionCommission.cdm.json/TransactionCommission\",\"name\":\"CommissionId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a commission.\",\"isNullable\":false,\"name\":\"CommissionId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"TransactionCommission.cdm.json/TransactionCommission\",\"name\":\"TransactionCommissionNote\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"Notes, comments or additional information regarding the Transaction Commission.\",\"isNullable\":true,\"name\":\"TransactionCommissionNote\"}]}}}",
+			"Description": "The Transaction(s) for which the Commission is generated.",
+			"DisplayFolderInfo": "{\"name\":\"Transaction\",\"colorCode\":\"#823A16\"}",
+			"PrimaryKeys": "TransactionId,CommissionId",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

@@ -1,0 +1,164 @@
+{
+	"name": "CustomerNationalIndustry",
+	"properties": {
+		"Name": "CustomerNationalIndustry",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "The NAICS National Industry associated with the Customer during a given period.",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "CustomerId",
+					"Description": "The unique identifier of a Customer.",
+					"BaseAttributeReference": {
+						"Entity": "CustomerNationalIndustry.cdm.json/CustomerNationalIndustry",
+						"Name": "CustomerId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "long",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "long"
+						}
+					}
+				},
+				{
+					"Name": "IndustryPreferenceId",
+					"Description": "The unique identifier of an Industry Preference.",
+					"BaseAttributeReference": {
+						"Entity": "CustomerNationalIndustry.cdm.json/CustomerNationalIndustry",
+						"Name": "IndustryPreferenceId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "PeriodStartDate",
+					"Description": "The period start date for which the Customer National Industry is effective or 'as-of' for the given preference.",
+					"BaseAttributeReference": {
+						"Entity": "CustomerNationalIndustry.cdm.json/CustomerNationalIndustry",
+						"Name": "PeriodStartDate"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "date",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"DateFormat": "YYYY-MM-DD",
+							"HIVE_TYPE_STRING": "date"
+						}
+					}
+				},
+				{
+					"Name": "PeriodEndDate",
+					"Description": "The period end date for which the Customer National Industry is effective or 'as-of' for the given preference.",
+					"BaseAttributeReference": {
+						"Entity": "CustomerNationalIndustry.cdm.json/CustomerNationalIndustry",
+						"Name": "PeriodEndDate"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "date",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"DateFormat": "YYYY-MM-DD",
+							"HIVE_TYPE_STRING": "date"
+						}
+					}
+				},
+				{
+					"Name": "NaicsNationalIndustryCode",
+					"Description": "The unique identifier of a NAICS National Industry Code.",
+					"BaseAttributeReference": {
+						"Entity": "CustomerNationalIndustry.cdm.json/CustomerNationalIndustry",
+						"Name": "NaicsNationalIndustryCode"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "decimal",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Precision": 6,
+						"Scale": 0,
+						"Properties": {
+							"HIVE_TYPE_STRING": "decimal"
+						}
+					}
+				},
+				{
+					"Name": "CustomerNationalIndustryNote",
+					"Description": "Notes, comments or additional information regarding the Customer National Industry.",
+					"BaseAttributeReference": {
+						"Entity": "CustomerNationalIndustry.cdm.json/CustomerNationalIndustry",
+						"Name": "CustomerNationalIndustryNote"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/CustomerNationalIndustry",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/CustomerNationalIndustry",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"CustomerId\":{\"entity\":\"CustomerNationalIndustry.cdm.json/CustomerNationalIndustry\",\"name\":\"CustomerId\"},\"IndustryPreferenceId\":{\"entity\":\"CustomerNationalIndustry.cdm.json/CustomerNationalIndustry\",\"name\":\"IndustryPreferenceId\"},\"PeriodStartDate\":{\"entity\":\"CustomerNationalIndustry.cdm.json/CustomerNationalIndustry\",\"name\":\"PeriodStartDate\"},\"PeriodEndDate\":{\"entity\":\"CustomerNationalIndustry.cdm.json/CustomerNationalIndustry\",\"name\":\"PeriodEndDate\"},\"NaicsNationalIndustryCode\":{\"entity\":\"CustomerNationalIndustry.cdm.json/CustomerNationalIndustry\",\"name\":\"NaicsNationalIndustryCode\"},\"CustomerNationalIndustryNote\":{\"entity\":\"CustomerNationalIndustry.cdm.json/CustomerNationalIndustry\",\"name\":\"CustomerNationalIndustryNote\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"CustomerNationalIndustry\",\"path\":\"CustomerNationalIndustry.cdm.json/CustomerNationalIndustry\"},\"description\":\"The NAICS National Industry associated with the Customer during a given period.\",\"primaryKey\":[\"CustomerId\",\"IndustryPreferenceId\",\"PeriodStartDate\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CustomerNationalIndustry.cdm.json/CustomerNationalIndustry\",\"name\":\"CustomerId\"},\"dataType\":\"long\",\"description\":\"The unique identifier of a Customer.\",\"isNullable\":false,\"name\":\"CustomerId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CustomerNationalIndustry.cdm.json/CustomerNationalIndustry\",\"name\":\"IndustryPreferenceId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of an Industry Preference.\",\"isNullable\":false,\"name\":\"IndustryPreferenceId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CustomerNationalIndustry.cdm.json/CustomerNationalIndustry\",\"name\":\"PeriodStartDate\"},\"dataType\":\"date\",\"dateFormat\":\"YYYY-MM-DD\",\"description\":\"The period start date for which the Customer National Industry is effective or 'as-of' for the given preference.\",\"isNullable\":false,\"name\":\"PeriodStartDate\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CustomerNationalIndustry.cdm.json/CustomerNationalIndustry\",\"name\":\"PeriodEndDate\"},\"dataType\":\"date\",\"dateFormat\":\"YYYY-MM-DD\",\"description\":\"The period end date for which the Customer National Industry is effective or 'as-of' for the given preference.\",\"isNullable\":true,\"name\":\"PeriodEndDate\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CustomerNationalIndustry.cdm.json/CustomerNationalIndustry\",\"name\":\"NaicsNationalIndustryCode\"},\"dataType\":\"decimal\",\"dataTypeLength\":6,\"description\":\"The unique identifier of a NAICS National Industry Code.\",\"isNullable\":false,\"scale\":0,\"name\":\"NaicsNationalIndustryCode\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CustomerNationalIndustry.cdm.json/CustomerNationalIndustry\",\"name\":\"CustomerNationalIndustryNote\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"Notes, comments or additional information regarding the Customer National Industry.\",\"isNullable\":true,\"name\":\"CustomerNationalIndustryNote\"}]}}}",
+			"Description": "The NAICS National Industry associated with the Customer during a given period.",
+			"DisplayFolderInfo": "{\"name\":\"Party\",\"colorCode\":\"#00727A\"}",
+			"PrimaryKeys": "CustomerId,IndustryPreferenceId,PeriodStartDate",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

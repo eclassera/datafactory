@@ -1,0 +1,178 @@
+{
+	"name": "CustomerShipmentMethod",
+	"properties": {
+		"Name": "CustomerShipmentMethod",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "The customer shipment parameters associated with a customer for the indicated period defined by:\n\n- Shipment Method\n- Carrier",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "CustomerId",
+					"Description": "The unique identifier of a Customer.",
+					"BaseAttributeReference": {
+						"Entity": "CustomerShipmentMethod.cdm.json/CustomerShipmentMethod",
+						"Name": "CustomerId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "long",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "long"
+						}
+					}
+				},
+				{
+					"Name": "ShipmentMethodId",
+					"Description": "The unique identifier of a Shipment Method.",
+					"BaseAttributeReference": {
+						"Entity": "CustomerShipmentMethod.cdm.json/CustomerShipmentMethod",
+						"Name": "ShipmentMethodId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "CarrierId",
+					"Description": "The unique identifier of a Carrier.",
+					"BaseAttributeReference": {
+						"Entity": "CustomerShipmentMethod.cdm.json/CustomerShipmentMethod",
+						"Name": "CarrierId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "PeriodStartDate",
+					"Description": "The period start date for which the associated customer shipment method information is defined.",
+					"BaseAttributeReference": {
+						"Entity": "CustomerShipmentMethod.cdm.json/CustomerShipmentMethod",
+						"Name": "PeriodStartDate"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "date",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"DateFormat": "YYYY-MM-DD",
+							"HIVE_TYPE_STRING": "date"
+						}
+					}
+				},
+				{
+					"Name": "PeriodEndDate",
+					"Description": "The period end date for which the associated customer shipment method information is defined.",
+					"BaseAttributeReference": {
+						"Entity": "CustomerShipmentMethod.cdm.json/CustomerShipmentMethod",
+						"Name": "PeriodEndDate"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "date",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"DateFormat": "YYYY-MM-DD",
+							"HIVE_TYPE_STRING": "date"
+						}
+					}
+				},
+				{
+					"Name": "PreferenceId",
+					"Description": "The unique identifier of a Preference.",
+					"BaseAttributeReference": {
+						"Entity": "CustomerShipmentMethod.cdm.json/CustomerShipmentMethod",
+						"Name": "PreferenceId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "CustomerShipmentMethodNote",
+					"Description": "A note, comment or additional information regarding the associated customer shipment method.",
+					"BaseAttributeReference": {
+						"Entity": "CustomerShipmentMethod.cdm.json/CustomerShipmentMethod",
+						"Name": "CustomerShipmentMethodNote"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/CustomerShipmentMethod",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/CustomerShipmentMethod",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"CustomerId\":{\"entity\":\"CustomerShipmentMethod.cdm.json/CustomerShipmentMethod\",\"name\":\"CustomerId\"},\"ShipmentMethodId\":{\"entity\":\"CustomerShipmentMethod.cdm.json/CustomerShipmentMethod\",\"name\":\"ShipmentMethodId\"},\"CarrierId\":{\"entity\":\"CustomerShipmentMethod.cdm.json/CustomerShipmentMethod\",\"name\":\"CarrierId\"},\"PeriodStartDate\":{\"entity\":\"CustomerShipmentMethod.cdm.json/CustomerShipmentMethod\",\"name\":\"PeriodStartDate\"},\"PeriodEndDate\":{\"entity\":\"CustomerShipmentMethod.cdm.json/CustomerShipmentMethod\",\"name\":\"PeriodEndDate\"},\"PreferenceId\":{\"entity\":\"CustomerShipmentMethod.cdm.json/CustomerShipmentMethod\",\"name\":\"PreferenceId\"},\"CustomerShipmentMethodNote\":{\"entity\":\"CustomerShipmentMethod.cdm.json/CustomerShipmentMethod\",\"name\":\"CustomerShipmentMethodNote\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"CustomerShipmentMethod\",\"path\":\"CustomerShipmentMethod.cdm.json/CustomerShipmentMethod\"},\"description\":\"The customer shipment parameters associated with a customer for the indicated period defined by:\\n\\n- Shipment Method\\n- Carrier\",\"primaryKey\":[\"CustomerId\",\"ShipmentMethodId\",\"CarrierId\",\"PeriodStartDate\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CustomerShipmentMethod.cdm.json/CustomerShipmentMethod\",\"name\":\"CustomerId\"},\"dataType\":\"long\",\"description\":\"The unique identifier of a Customer.\",\"isNullable\":false,\"name\":\"CustomerId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CustomerShipmentMethod.cdm.json/CustomerShipmentMethod\",\"name\":\"ShipmentMethodId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Shipment Method.\",\"isNullable\":false,\"name\":\"ShipmentMethodId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CustomerShipmentMethod.cdm.json/CustomerShipmentMethod\",\"name\":\"CarrierId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Carrier.\",\"isNullable\":false,\"name\":\"CarrierId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CustomerShipmentMethod.cdm.json/CustomerShipmentMethod\",\"name\":\"PeriodStartDate\"},\"dataType\":\"date\",\"dateFormat\":\"YYYY-MM-DD\",\"description\":\"The period start date for which the associated customer shipment method information is defined.\",\"isNullable\":false,\"name\":\"PeriodStartDate\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CustomerShipmentMethod.cdm.json/CustomerShipmentMethod\",\"name\":\"PeriodEndDate\"},\"dataType\":\"date\",\"dateFormat\":\"YYYY-MM-DD\",\"description\":\"The period end date for which the associated customer shipment method information is defined.\",\"isNullable\":true,\"name\":\"PeriodEndDate\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CustomerShipmentMethod.cdm.json/CustomerShipmentMethod\",\"name\":\"PreferenceId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Preference.\",\"isNullable\":false,\"name\":\"PreferenceId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CustomerShipmentMethod.cdm.json/CustomerShipmentMethod\",\"name\":\"CustomerShipmentMethodNote\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"A note, comment or additional information regarding the associated customer shipment method.\",\"isNullable\":true,\"name\":\"CustomerShipmentMethodNote\"}]}}}",
+			"Description": "The customer shipment parameters associated with a customer for the indicated period defined by:\n\n- Shipment Method\n- Carrier",
+			"DisplayFolderInfo": "{\"name\":\"Customer\",\"colorCode\":\"#4B003F\"}",
+			"PrimaryKeys": "CustomerId,ShipmentMethodId,CarrierId,PeriodStartDate",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

@@ -1,0 +1,113 @@
+{
+	"name": "ExperianPaymentStatusType",
+	"properties": {
+		"Name": "ExperianPaymentStatusType",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "The current payment status reported by the account holder.  \n\nEx:\n- Current\n- Pays account as agreed\n- To new to rate",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "ExperianPaymentStatusTypeId",
+					"Description": "The unique identifier of an Experian Payment Status Type.",
+					"BaseAttributeReference": {
+						"Entity": "ExperianPaymentStatusType.cdm.json/ExperianPaymentStatusType",
+						"Name": "ExperianPaymentStatusTypeId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "ExperianPaymentStatusTypeName",
+					"Description": "The name of an Experian Payment Status Type.",
+					"BaseAttributeReference": {
+						"Entity": "ExperianPaymentStatusType.cdm.json/ExperianPaymentStatusType",
+						"Name": "ExperianPaymentStatusTypeName"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 256,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "ExperianPaymentStatusTypeDescription",
+					"Description": "The description of an Experian Payment Status Type.",
+					"BaseAttributeReference": {
+						"Entity": "ExperianPaymentStatusType.cdm.json/ExperianPaymentStatusType",
+						"Name": "ExperianPaymentStatusTypeDescription"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/ExperianPaymentStatusType",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/ExperianPaymentStatusType",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"ExperianPaymentStatusTypeId\":{\"entity\":\"ExperianPaymentStatusType.cdm.json/ExperianPaymentStatusType\",\"name\":\"ExperianPaymentStatusTypeId\"},\"ExperianPaymentStatusTypeName\":{\"entity\":\"ExperianPaymentStatusType.cdm.json/ExperianPaymentStatusType\",\"name\":\"ExperianPaymentStatusTypeName\"},\"ExperianPaymentStatusTypeDescription\":{\"entity\":\"ExperianPaymentStatusType.cdm.json/ExperianPaymentStatusType\",\"name\":\"ExperianPaymentStatusTypeDescription\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"ExperianPaymentStatusType\",\"path\":\"ExperianPaymentStatusType.cdm.json/ExperianPaymentStatusType\"},\"description\":\"The current payment status reported by the account holder.  \\n\\nEx:\\n- Current\\n- Pays account as agreed\\n- To new to rate\",\"primaryKey\":[\"ExperianPaymentStatusTypeId\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ExperianPaymentStatusType.cdm.json/ExperianPaymentStatusType\",\"name\":\"ExperianPaymentStatusTypeId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of an Experian Payment Status Type.\",\"isNullable\":false,\"name\":\"ExperianPaymentStatusTypeId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ExperianPaymentStatusType.cdm.json/ExperianPaymentStatusType\",\"name\":\"ExperianPaymentStatusTypeName\"},\"dataType\":\"string\",\"dataTypeLength\":256,\"description\":\"The name of an Experian Payment Status Type.\",\"isNullable\":true,\"name\":\"ExperianPaymentStatusTypeName\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ExperianPaymentStatusType.cdm.json/ExperianPaymentStatusType\",\"name\":\"ExperianPaymentStatusTypeDescription\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"The description of an Experian Payment Status Type.\",\"isNullable\":true,\"name\":\"ExperianPaymentStatusTypeDescription\"}]}}}",
+			"Description": "The current payment status reported by the account holder.  \n\nEx:\n- Current\n- Pays account as agreed\n- To new to rate",
+			"DisplayFolderInfo": "{\"name\":\"Customer Credit & Collections\",\"colorCode\":\"#022F22\"}",
+			"PrimaryKeys": "ExperianPaymentStatusTypeId",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

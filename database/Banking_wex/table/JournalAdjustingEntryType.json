@@ -1,0 +1,113 @@
+{
+	"name": "JournalAdjustingEntryType",
+	"properties": {
+		"Name": "JournalAdjustingEntryType",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "Adjusting entries are journal entries that are adjust expense or income items that have already been recorded in order to properly reflect the appropriate balances in the ledger accounts for a specific accounting period.\n\nThere are basically three types of adjusting entries:\n\n- Accruals\n- Deferrals\n- Reversing \n- Closing \n\nFor example expenses that have been incurred but not recorded may be recorded as an adjusting entry.\n\nA deferral represents the postponement of the recognition of either an expense or a revenue item.\n\nA closing entry is recorded at the end of the accounting period and close temporary capital accounts.   The balances either increase or decrease the owner's permanent capital.\n\nReversing entries are recorded at the beginning of the new accounting period.   These make it easier for the accountant to monitor the daily transactions recorded.",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "JournalAdjustingEntryTypeId",
+					"Description": "The unique identifier of a journal adjusting entry type.",
+					"BaseAttributeReference": {
+						"Entity": "JournalAdjustingEntryType.cdm.json/JournalAdjustingEntryType",
+						"Name": "JournalAdjustingEntryTypeId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "JournalAdjustingEntryTypeName",
+					"Description": "The name of a journal adjusting entry type.",
+					"BaseAttributeReference": {
+						"Entity": "JournalAdjustingEntryType.cdm.json/JournalAdjustingEntryType",
+						"Name": "JournalAdjustingEntryTypeName"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 256,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "JournalAdjustingEntryTypeDescription",
+					"Description": "The description of a journal adjusting entry type.",
+					"BaseAttributeReference": {
+						"Entity": "JournalAdjustingEntryType.cdm.json/JournalAdjustingEntryType",
+						"Name": "JournalAdjustingEntryTypeDescription"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/JournalAdjustingEntryType",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/JournalAdjustingEntryType",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"JournalAdjustingEntryTypeId\":{\"entity\":\"JournalAdjustingEntryType.cdm.json/JournalAdjustingEntryType\",\"name\":\"JournalAdjustingEntryTypeId\"},\"JournalAdjustingEntryTypeName\":{\"entity\":\"JournalAdjustingEntryType.cdm.json/JournalAdjustingEntryType\",\"name\":\"JournalAdjustingEntryTypeName\"},\"JournalAdjustingEntryTypeDescription\":{\"entity\":\"JournalAdjustingEntryType.cdm.json/JournalAdjustingEntryType\",\"name\":\"JournalAdjustingEntryTypeDescription\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"JournalAdjustingEntryType\",\"path\":\"JournalAdjustingEntryType.cdm.json/JournalAdjustingEntryType\"},\"description\":\"Adjusting entries are journal entries that are adjust expense or income items that have already been recorded in order to properly reflect the appropriate balances in the ledger accounts for a specific accounting period.\\n\\nThere are basically three types of adjusting entries:\\n\\n- Accruals\\n- Deferrals\\n- Reversing \\n- Closing \\n\\nFor example expenses that have been incurred but not recorded may be recorded as an adjusting entry.\\n\\nA deferral represents the postponement of the recognition of either an expense or a revenue item.\\n\\nA closing entry is recorded at the end of the accounting period and close temporary capital accounts.   The balances either increase or decrease the owner's permanent capital.\\n\\nReversing entries are recorded at the beginning of the new accounting period.   These make it easier for the accountant to monitor the daily transactions recorded.\",\"primaryKey\":[\"JournalAdjustingEntryTypeId\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"JournalAdjustingEntryType.cdm.json/JournalAdjustingEntryType\",\"name\":\"JournalAdjustingEntryTypeId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a journal adjusting entry type.\",\"isNullable\":false,\"name\":\"JournalAdjustingEntryTypeId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"JournalAdjustingEntryType.cdm.json/JournalAdjustingEntryType\",\"name\":\"JournalAdjustingEntryTypeName\"},\"dataType\":\"string\",\"dataTypeLength\":256,\"description\":\"The name of a journal adjusting entry type.\",\"isNullable\":true,\"name\":\"JournalAdjustingEntryTypeName\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"JournalAdjustingEntryType.cdm.json/JournalAdjustingEntryType\",\"name\":\"JournalAdjustingEntryTypeDescription\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"The description of a journal adjusting entry type.\",\"isNullable\":true,\"name\":\"JournalAdjustingEntryTypeDescription\"}]}}}",
+			"Description": "Adjusting entries are journal entries that are adjust expense or income items that have already been recorded in order to properly reflect the appropriate balances in the ledger accounts for a specific accounting period.\n\nThere are basically three types of adjusting entries:\n\n- Accruals\n- Deferrals\n- Reversing \n- Closing \n\nFor example expenses that have been incurred but not recorded may be recorded as an adjusting entry.\n\nA deferral represents the postponement of the recognition of either an expense or a revenue item.\n\nA closing entry is recorded at the end of the accounting period and close temporary capital accounts.   The balances either increase or decrease the owner's permanent capital.\n\nReversing entries are recorded at the beginning of the new accounting period.   These make it easier for the accountant to monitor the daily transactions recorded.",
+			"DisplayFolderInfo": "{\"name\":\"Accounting & Financial Reporting\",\"colorCode\":\"#0078D4\"}",
+			"PrimaryKeys": "JournalAdjustingEntryTypeId",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

@@ -1,0 +1,113 @@
+{
+	"name": "PointOfSaleType",
+	"properties": {
+		"Name": "PointOfSaleType",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "The type of POS based on functionality.\n\nEx:\n- Full-Service\n- Self-Service",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "PointOfSaleTypeId",
+					"Description": "The unique identifier of the POS Type.",
+					"BaseAttributeReference": {
+						"Entity": "PointOfSaleType.cdm.json/PointOfSaleType",
+						"Name": "PointOfSaleTypeId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "PointOfSaleTypeName",
+					"Description": "The name of the POS Type.",
+					"BaseAttributeReference": {
+						"Entity": "PointOfSaleType.cdm.json/PointOfSaleType",
+						"Name": "PointOfSaleTypeName"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 256,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "PointOfSaleTypeDescription",
+					"Description": "The description of the POS Type.",
+					"BaseAttributeReference": {
+						"Entity": "PointOfSaleType.cdm.json/PointOfSaleType",
+						"Name": "PointOfSaleTypeDescription"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/PointOfSaleType",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/PointOfSaleType",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"PointOfSaleTypeId\":{\"entity\":\"PointOfSaleType.cdm.json/PointOfSaleType\",\"name\":\"PointOfSaleTypeId\"},\"PointOfSaleTypeName\":{\"entity\":\"PointOfSaleType.cdm.json/PointOfSaleType\",\"name\":\"PointOfSaleTypeName\"},\"PointOfSaleTypeDescription\":{\"entity\":\"PointOfSaleType.cdm.json/PointOfSaleType\",\"name\":\"PointOfSaleTypeDescription\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"PointOfSaleType\",\"path\":\"PointOfSaleType.cdm.json/PointOfSaleType\"},\"description\":\"The type of POS based on functionality.\\n\\nEx:\\n- Full-Service\\n- Self-Service\",\"primaryKey\":[\"PointOfSaleTypeId\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"PointOfSaleType.cdm.json/PointOfSaleType\",\"name\":\"PointOfSaleTypeId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of the POS Type.\",\"isNullable\":false,\"name\":\"PointOfSaleTypeId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"PointOfSaleType.cdm.json/PointOfSaleType\",\"name\":\"PointOfSaleTypeName\"},\"dataType\":\"string\",\"dataTypeLength\":256,\"description\":\"The name of the POS Type.\",\"isNullable\":true,\"name\":\"PointOfSaleTypeName\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"PointOfSaleType.cdm.json/PointOfSaleType\",\"name\":\"PointOfSaleTypeDescription\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"The description of the POS Type.\",\"isNullable\":true,\"name\":\"PointOfSaleTypeDescription\"}]}}}",
+			"Description": "The type of POS based on functionality.\n\nEx:\n- Full-Service\n- Self-Service",
+			"DisplayFolderInfo": "{\"name\":\"Transaction\",\"colorCode\":\"#823A16\"}",
+			"PrimaryKeys": "PointOfSaleTypeId",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

@@ -1,0 +1,162 @@
+{
+	"name": "ChannelRelatedEmployee",
+	"properties": {
+		"Name": "ChannelRelatedEmployee",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "An employee that has a relationship with a channel.",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "ChannelId",
+					"Description": "The unique identifier of a Channel.",
+					"BaseAttributeReference": {
+						"Entity": "ChannelRelatedEmployee.cdm.json/ChannelRelatedEmployee",
+						"Name": "ChannelId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "EmployeeId",
+					"Description": "The unique identifier of an Employee.",
+					"BaseAttributeReference": {
+						"Entity": "ChannelRelatedEmployee.cdm.json/ChannelRelatedEmployee",
+						"Name": "EmployeeId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "ChannelEmployeeRelationshipTypeId",
+					"Description": "The unique identifier of a Channel Relationship Type.",
+					"BaseAttributeReference": {
+						"Entity": "ChannelRelatedEmployee.cdm.json/ChannelRelatedEmployee",
+						"Name": "ChannelEmployeeRelationshipTypeId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "PeriodStartDate",
+					"Description": "The period start date for which the channel employee relationship is valid of defined.",
+					"BaseAttributeReference": {
+						"Entity": "ChannelRelatedEmployee.cdm.json/ChannelRelatedEmployee",
+						"Name": "PeriodStartDate"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "date",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"DateFormat": "YYYY-MM-DD",
+							"HIVE_TYPE_STRING": "date"
+						}
+					}
+				},
+				{
+					"Name": "PeriodEndDate",
+					"Description": "The period end date for which the channel employee relationship is valid of defined.",
+					"BaseAttributeReference": {
+						"Entity": "ChannelRelatedEmployee.cdm.json/ChannelRelatedEmployee",
+						"Name": "PeriodEndDate"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "date",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"DateFormat": "YYYY-MM-DD",
+							"HIVE_TYPE_STRING": "date"
+						}
+					}
+				},
+				{
+					"Name": "ChannelEmployeeRelationshipNote",
+					"Description": "A note, comment or additional information regarding a channel related employee.",
+					"BaseAttributeReference": {
+						"Entity": "ChannelRelatedEmployee.cdm.json/ChannelRelatedEmployee",
+						"Name": "ChannelEmployeeRelationshipNote"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/ChannelRelatedEmployee",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/ChannelRelatedEmployee",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"ChannelId\":{\"entity\":\"ChannelRelatedEmployee.cdm.json/ChannelRelatedEmployee\",\"name\":\"ChannelId\"},\"EmployeeId\":{\"entity\":\"ChannelRelatedEmployee.cdm.json/ChannelRelatedEmployee\",\"name\":\"EmployeeId\"},\"ChannelEmployeeRelationshipTypeId\":{\"entity\":\"ChannelRelatedEmployee.cdm.json/ChannelRelatedEmployee\",\"name\":\"ChannelEmployeeRelationshipTypeId\"},\"PeriodStartDate\":{\"entity\":\"ChannelRelatedEmployee.cdm.json/ChannelRelatedEmployee\",\"name\":\"PeriodStartDate\"},\"PeriodEndDate\":{\"entity\":\"ChannelRelatedEmployee.cdm.json/ChannelRelatedEmployee\",\"name\":\"PeriodEndDate\"},\"ChannelEmployeeRelationshipNote\":{\"entity\":\"ChannelRelatedEmployee.cdm.json/ChannelRelatedEmployee\",\"name\":\"ChannelEmployeeRelationshipNote\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"ChannelRelatedEmployee\",\"path\":\"ChannelRelatedEmployee.cdm.json/ChannelRelatedEmployee\"},\"description\":\"An employee that has a relationship with a channel.\",\"primaryKey\":[\"ChannelId\",\"EmployeeId\",\"ChannelEmployeeRelationshipTypeId\",\"PeriodStartDate\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ChannelRelatedEmployee.cdm.json/ChannelRelatedEmployee\",\"name\":\"ChannelId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Channel.\",\"isNullable\":false,\"name\":\"ChannelId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ChannelRelatedEmployee.cdm.json/ChannelRelatedEmployee\",\"name\":\"EmployeeId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of an Employee.\",\"isNullable\":false,\"name\":\"EmployeeId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ChannelRelatedEmployee.cdm.json/ChannelRelatedEmployee\",\"name\":\"ChannelEmployeeRelationshipTypeId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Channel Relationship Type.\",\"isNullable\":false,\"name\":\"ChannelEmployeeRelationshipTypeId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ChannelRelatedEmployee.cdm.json/ChannelRelatedEmployee\",\"name\":\"PeriodStartDate\"},\"dataType\":\"date\",\"dateFormat\":\"YYYY-MM-DD\",\"description\":\"The period start date for which the channel employee relationship is valid of defined.\",\"isNullable\":false,\"name\":\"PeriodStartDate\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ChannelRelatedEmployee.cdm.json/ChannelRelatedEmployee\",\"name\":\"PeriodEndDate\"},\"dataType\":\"date\",\"dateFormat\":\"YYYY-MM-DD\",\"description\":\"The period end date for which the channel employee relationship is valid of defined.\",\"isNullable\":true,\"name\":\"PeriodEndDate\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ChannelRelatedEmployee.cdm.json/ChannelRelatedEmployee\",\"name\":\"ChannelEmployeeRelationshipNote\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"A note, comment or additional information regarding a channel related employee.\",\"isNullable\":true,\"name\":\"ChannelEmployeeRelationshipNote\"}]}}}",
+			"Description": "An employee that has a relationship with a channel.",
+			"DisplayFolderInfo": "{\"name\":\"Channel\",\"colorCode\":\"#001D3F\"}",
+			"PrimaryKeys": "ChannelId,EmployeeId,ChannelEmployeeRelationshipTypeId,PeriodStartDate",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

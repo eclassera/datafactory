@@ -1,0 +1,129 @@
+{
+	"name": "BenefitCriteria",
+	"properties": {
+		"Name": "BenefitCriteria",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "Benefit market segmentation is a strategy for defining consumers by the benefits they seek from a product or service.    \n\nFor example, benefits for a product may include price, flavor, health, investment objectives.\n\nThe business organization identifies a finite number of Benefit Criteria that are used to identify individuals and prospective individuals.   These criteria will be unique to each business organization and focus upon that organization's specific information requirements.\n\nThe Benefit Criteria is the specific variable or value that may be linked to a Market Segment.\n\nThe Benefit Type is the larger category to which the Benefit Criteria belongs.\n\nBenefit Criteria Type is a means of classifying, grouping or categorizing specific Benefit Criteria at a higher level for analysis and presentation.\n\nThe Benefit Criteria is the specific variable or value that may be linked to a Market Segment.\n\nThe Benefit Type is the larger category to which the Benefit Criteria belongs.\n\nThe following are examples:\n\nBenefit Criteria:  Long Term Appreciation\nBenefit Criteria Type:  Investment Objective\n\nBenefit Criteria:  Retirement Savings\nBenefit Criteria Type:  Investment Objective",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "BenefitCriteriaId",
+					"Description": "The unique identifier of a Benefit Criteria.",
+					"BaseAttributeReference": {
+						"Entity": "BenefitCriteria.cdm.json/BenefitCriteria",
+						"Name": "BenefitCriteriaId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "BenefitCriteriaName",
+					"Description": "The name of the Benefit Criteria.",
+					"BaseAttributeReference": {
+						"Entity": "BenefitCriteria.cdm.json/BenefitCriteria",
+						"Name": "BenefitCriteriaName"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 256,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "BenefitCriteriaDescription",
+					"Description": "The description of the Benefit Criteria.",
+					"BaseAttributeReference": {
+						"Entity": "BenefitCriteria.cdm.json/BenefitCriteria",
+						"Name": "BenefitCriteriaDescription"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "BenefitCriteriaTypeId",
+					"Description": "The unique identifier of a Benefit Criteria Type.",
+					"BaseAttributeReference": {
+						"Entity": "BenefitCriteria.cdm.json/BenefitCriteria",
+						"Name": "BenefitCriteriaTypeId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/BenefitCriteria",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/BenefitCriteria",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"BenefitCriteriaId\":{\"entity\":\"BenefitCriteria.cdm.json/BenefitCriteria\",\"name\":\"BenefitCriteriaId\"},\"BenefitCriteriaName\":{\"entity\":\"BenefitCriteria.cdm.json/BenefitCriteria\",\"name\":\"BenefitCriteriaName\"},\"BenefitCriteriaDescription\":{\"entity\":\"BenefitCriteria.cdm.json/BenefitCriteria\",\"name\":\"BenefitCriteriaDescription\"},\"BenefitCriteriaTypeId\":{\"entity\":\"BenefitCriteria.cdm.json/BenefitCriteria\",\"name\":\"BenefitCriteriaTypeId\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"BenefitCriteria\",\"path\":\"BenefitCriteria.cdm.json/BenefitCriteria\"},\"description\":\"Benefit market segmentation is a strategy for defining consumers by the benefits they seek from a product or service.    \\n\\nFor example, benefits for a product may include price, flavor, health, investment objectives.\\n\\nThe business organization identifies a finite number of Benefit Criteria that are used to identify individuals and prospective individuals.   These criteria will be unique to each business organization and focus upon that organization's specific information requirements.\\n\\nThe Benefit Criteria is the specific variable or value that may be linked to a Market Segment.\\n\\nThe Benefit Type is the larger category to which the Benefit Criteria belongs.\\n\\nBenefit Criteria Type is a means of classifying, grouping or categorizing specific Benefit Criteria at a higher level for analysis and presentation.\\n\\nThe Benefit Criteria is the specific variable or value that may be linked to a Market Segment.\\n\\nThe Benefit Type is the larger category to which the Benefit Criteria belongs.\\n\\nThe following are examples:\\n\\nBenefit Criteria:  Long Term Appreciation\\nBenefit Criteria Type:  Investment Objective\\n\\nBenefit Criteria:  Retirement Savings\\nBenefit Criteria Type:  Investment Objective\",\"primaryKey\":[\"BenefitCriteriaId\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"BenefitCriteria.cdm.json/BenefitCriteria\",\"name\":\"BenefitCriteriaId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Benefit Criteria.\",\"isNullable\":false,\"name\":\"BenefitCriteriaId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"BenefitCriteria.cdm.json/BenefitCriteria\",\"name\":\"BenefitCriteriaName\"},\"dataType\":\"string\",\"dataTypeLength\":256,\"description\":\"The name of the Benefit Criteria.\",\"isNullable\":true,\"name\":\"BenefitCriteriaName\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"BenefitCriteria.cdm.json/BenefitCriteria\",\"name\":\"BenefitCriteriaDescription\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"The description of the Benefit Criteria.\",\"isNullable\":true,\"name\":\"BenefitCriteriaDescription\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"BenefitCriteria.cdm.json/BenefitCriteria\",\"name\":\"BenefitCriteriaTypeId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Benefit Criteria Type.\",\"isNullable\":true,\"name\":\"BenefitCriteriaTypeId\"}]}}}",
+			"Description": "Benefit market segmentation is a strategy for defining consumers by the benefits they seek from a product or service.    \n\nFor example, benefits for a product may include price, flavor, health, investment objectives.\n\nThe business organization identifies a finite number of Benefit Criteria that are used to identify individuals and prospective individuals.   These criteria will be unique to each business organization and focus upon that organization's specific information requirements.\n\nThe Benefit Criteria is the specific variable or value that may be linked to a Market Segment.\n\nThe Benefit Type is the larger category to which the Benefit Criteria belongs.\n\nBenefit Criteria Type is a means of classifying, grouping or categorizing specific Benefit Criteria at a higher level for analysis and presentation.\n\nThe Benefit Criteria is the specific variable or value that may be linked to a Market Segment.\n\nThe Benefit Type is the larger category to which the Benefit Criteria belongs.\n\nThe following are examples:\n\nBenefit Criteria:  Long Term Appreciation\nBenefit Criteria Type:  Investment Objective\n\nBenefit Criteria:  Retirement Savings\nBenefit Criteria Type:  Investment Objective",
+			"DisplayFolderInfo": "{\"name\":\"Product\",\"colorCode\":\"#0E3D73\"}",
+			"PrimaryKeys": "BenefitCriteriaId",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

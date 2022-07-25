@@ -1,0 +1,113 @@
+{
+	"name": "OwnershipType",
+	"properties": {
+		"Name": "OwnershipType",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "The legal formation of the ownership of the associated property.\n\nEx:\n \nJOINT TENANCY WITH RIGHT OF SURVIVORSHIP\nJoin tenancy is the concurrent ownership by two or more persons of a parcel of property which the ownership and control would be shared equally among all the joint owners during their lifetimes \n\nThe entire property may only be sold or transferred with the written consent of all joint owners. Upon the death of one of the joint owners the remaining joint owners would receive their departed joint owner's interest. The surviving joint owners would then share equally in the ownership and control over the property\n\nLIMITED LIABILITY COMPANY\nThe LLC attempts to combine the benefits of the corporation and the partnership. \n\nPARTNERSHIP\nIn a general partnership, all partners are jointly and severally liable for the acts of other partners that are performed on behalf of the partnership.  In a limited partnership, the general partners have the same liabilities as above, while limited partners are usually liable only to the amount of their investment.  In both cases tax benefits flow through to the partners, with the allocations not necessary based upon share of capital contribution.\n\nSOLE OWNERSHIP\nSole proprietorship means that one person has complete ownership of, and control over, the property. As the sole owner, you decide how you want to dispose of your property. You may sell it, divide it, gift it, or bequeath it to your heirs in accordance with your desires. \n\nUpon your death the property would pass in accordance with your wishes pursuant to your will.\n\nSOLE PROPRIETORSHIP\nA single person owns the business, receives all tax benefits, and is personally liable for all matters related to the business.\n\nTENANCY BY THE ENTIRETIES\nTenancy by the entireties is basically a joint tenancy with right of survivorship between a husband and wife. Only a husband and wife may hold property as tenants by the entireties. As in joint tenancy, both spouses must consent in writing for the transfer or sale of the property. as in joint tenancy, the surviving spouse would receive the entire property upon the death of his or her spouse.\n\nTENANCY IN COMMON\nTenancy in common is a type of concurrent ownership in which each tenant owns and controls an undivided interest in the property. The amount of their interest may not necessarily be equal. The entire property however, can only be transferred or sold with the written consent of all owners. However, a co-owner can sell, transfer or dispose of their interest in the property at any time, including bequeathing it to their heirs by will or otherwise.\n\nThere are several problems and risks in inherent in owning or attempting to transfer your property to your heirs or others by one of these types of concurrent ownership:\n\n a. Property which is held as either joint tenancy with right of survivorship, tenants by the entireties or tenants in common requires the written consent of all owners to transfer the entire property to another person. If a parent wants to sell a property which has their children on the deed, that parent must get their children's consent. In addition, all of the co-owners are entitled to their undivided proportional share of the use or income of the property during their lifetimes. If a co-owner has a falling out with one of their other co-owners, which occurs quite often, the co-owner would be unable to transfer the entire property without their co-owner's consent.\n\nb. Property which is held as joint tenancy or as tenants in common may be attached by the creditors of any one of the co-owners as to that co-owner's share. If one co-owner were to have a creditor, such as from personal injury claim, their undivided interest in the property could potentially be at risk and attached by such a creditor. In addition, if any co-owner gets divorced, their spouse may claim a portion of the co-owner's share in the property.\n\nc. In either joint tenancy or tenancy by the entireties, there is no control over the property after your death. It would go directly to the surviving co owners. in addition, if all your co-owners predecease you, then the property would not \"avoid probate\" nor necessarily be transferred to the persons you intended.\n\nd. Joint tenancy does not guarantee that all of your heirs would receive equal shares of your estate. Certain parcels of property or other accounts may appreciate differently or earn different amounts of income. Without consent monitoring and changing the shares or interest of the co-owners, it would be almost impossible to guarantee that all of your heirs receive their intended shares of your",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "OwnershipTypeId",
+					"Description": "The unique identifier of an Ownership Type.",
+					"BaseAttributeReference": {
+						"Entity": "OwnershipType.cdm.json/OwnershipType",
+						"Name": "OwnershipTypeId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "OwnershipTypeName",
+					"Description": "The name of an Ownership Type.",
+					"BaseAttributeReference": {
+						"Entity": "OwnershipType.cdm.json/OwnershipType",
+						"Name": "OwnershipTypeName"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 256,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "OwnershipTypeDescription",
+					"Description": "The description of an Ownership Type.",
+					"BaseAttributeReference": {
+						"Entity": "OwnershipType.cdm.json/OwnershipType",
+						"Name": "OwnershipTypeDescription"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/OwnershipType",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/OwnershipType",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"OwnershipTypeId\":{\"entity\":\"OwnershipType.cdm.json/OwnershipType\",\"name\":\"OwnershipTypeId\"},\"OwnershipTypeName\":{\"entity\":\"OwnershipType.cdm.json/OwnershipType\",\"name\":\"OwnershipTypeName\"},\"OwnershipTypeDescription\":{\"entity\":\"OwnershipType.cdm.json/OwnershipType\",\"name\":\"OwnershipTypeDescription\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"OwnershipType\",\"path\":\"OwnershipType.cdm.json/OwnershipType\"},\"description\":\"The legal formation of the ownership of the associated property.\\n\\nEx:\\n \\nJOINT TENANCY WITH RIGHT OF SURVIVORSHIP\\nJoin tenancy is the concurrent ownership by two or more persons of a parcel of property which the ownership and control would be shared equally among all the joint owners during their lifetimes \\n\\nThe entire property may only be sold or transferred with the written consent of all joint owners. Upon the death of one of the joint owners the remaining joint owners would receive their departed joint owner's interest. The surviving joint owners would then share equally in the ownership and control over the property\\n\\nLIMITED LIABILITY COMPANY\\nThe LLC attempts to combine the benefits of the corporation and the partnership. \\n\\nPARTNERSHIP\\nIn a general partnership, all partners are jointly and severally liable for the acts of other partners that are performed on behalf of the partnership.  In a limited partnership, the general partners have the same liabilities as above, while limited partners are usually liable only to the amount of their investment.  In both cases tax benefits flow through to the partners, with the allocations not necessary based upon share of capital contribution.\\n\\nSOLE OWNERSHIP\\nSole proprietorship means that one person has complete ownership of, and control over, the property. As the sole owner, you decide how you want to dispose of your property. You may sell it, divide it, gift it, or bequeath it to your heirs in accordance with your desires. \\n\\nUpon your death the property would pass in accordance with your wishes pursuant to your will.\\n\\nSOLE PROPRIETORSHIP\\nA single person owns the business, receives all tax benefits, and is personally liable for all matters related to the business.\\n\\nTENANCY BY THE ENTIRETIES\\nTenancy by the entireties is basically a joint tenancy with right of survivorship between a husband and wife. Only a husband and wife may hold property as tenants by the entireties. As in joint tenancy, both spouses must consent in writing for the transfer or sale of the property. as in joint tenancy, the surviving spouse would receive the entire property upon the death of his or her spouse.\\n\\nTENANCY IN COMMON\\nTenancy in common is a type of concurrent ownership in which each tenant owns and controls an undivided interest in the property. The amount of their interest may not necessarily be equal. The entire property however, can only be transferred or sold with the written consent of all owners. However, a co-owner can sell, transfer or dispose of their interest in the property at any time, including bequeathing it to their heirs by will or otherwise.\\n\\nThere are several problems and risks in inherent in owning or attempting to transfer your property to your heirs or others by one of these types of concurrent ownership:\\n\\n a. Property which is held as either joint tenancy with right of survivorship, tenants by the entireties or tenants in common requires the written consent of all owners to transfer the entire property to another person. If a parent wants to sell a property which has their children on the deed, that parent must get their children's consent. In addition, all of the co-owners are entitled to their undivided proportional share of the use or income of the property during their lifetimes. If a co-owner has a falling out with one of their other co-owners, which occurs quite often, the co-owner would be unable to transfer the entire property without their co-owner's consent.\\n\\nb. Property which is held as joint tenancy or as tenants in common may be attached by the creditors of any one of the co-owners as to that co-owner's share. If one co-owner were to have a creditor, such as from personal injury claim, their undivided interest in the property could potentially be at risk and attached by such a creditor. In addition, if any co-owner gets divorced, their spouse may claim a portion of the co-owner's share in the property.\\n\\nc. In either joint tenancy or tenancy by the entireties, there is no control over the property after your death. It would go directly to the surviving co owners. in addition, if all your co-owners predecease you, then the property would not \\\"avoid probate\\\" nor necessarily be transferred to the persons you intended.\\n\\nd. Joint tenancy does not guarantee that all of your heirs would receive equal shares of your estate. Certain parcels of property or other accounts may appreciate differently or earn different amounts of income. Without consent monitoring and changing the shares or interest of the co-owners, it would be almost impossible to guarantee that all of your heirs receive their intended shares of your\",\"primaryKey\":[\"OwnershipTypeId\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"OwnershipType.cdm.json/OwnershipType\",\"name\":\"OwnershipTypeId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of an Ownership Type.\",\"isNullable\":false,\"name\":\"OwnershipTypeId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"OwnershipType.cdm.json/OwnershipType\",\"name\":\"OwnershipTypeName\"},\"dataType\":\"string\",\"dataTypeLength\":256,\"description\":\"The name of an Ownership Type.\",\"isNullable\":true,\"name\":\"OwnershipTypeName\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"OwnershipType.cdm.json/OwnershipType\",\"name\":\"OwnershipTypeDescription\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"The description of an Ownership Type.\",\"isNullable\":true,\"name\":\"OwnershipTypeDescription\"}]}}}",
+			"Description": "The legal formation of the ownership of the associated property.\n\nEx:\n \nJOINT TENANCY WITH RIGHT OF SURVIVORSHIP\nJoin tenancy is the concurrent ownership by two or more persons of a parcel of property which the ownership and control would be shared equally among all the joint owners during their lifetimes \n\nThe entire property may only be sold or transferred with the written consent of all joint owners. Upon the death of one of the joint owners the remaining joint owners would receive their departed joint owner's interest. The surviving joint owners would then share equally in the ownership and control over the property\n\nLIMITED LIABILITY COMPANY\nThe LLC attempts to combine the benefits of the corporation and the partnership. \n\nPARTNERSHIP\nIn a general partnership, all partners are jointly and severally liable for the acts of other partners that are performed on behalf of the partnership.  In a limited partnership, the general partners have the same liabilities as above, while limited partners are usually liable only to the amount of their investment.  In both cases tax benefits flow through to the partners, with the allocations not necessary based upon share of capital contribution.\n\nSOLE OWNERSHIP\nSole proprietorship means that one person has complete ownership of, and control over, the property. As the sole owner, you decide how you want to dispose of your property. You may sell it, divide it, gift it, or bequeath it to your heirs in accordance with your desires. \n\nUpon your death the property would pass in accordance with your wishes pursuant to your will.\n\nSOLE PROPRIETORSHIP\nA single person owns the business, receives all tax benefits, and is personally liable for all matters related to the business.\n\nTENANCY BY THE ENTIRETIES\nTenancy by the entireties is basically a joint tenancy with right of survivorship between a husband and wife. Only a husband and wife may hold property as tenants by the entireties. As in joint tenancy, both spouses must consent in writing for the transfer or sale of the property. as in joint tenancy, the surviving spouse would receive the entire property upon the death of his or her spouse.\n\nTENANCY IN COMMON\nTenancy in common is a type of concurrent ownership in which each tenant owns and controls an undivided interest in the property. The amount of their interest may not necessarily be equal. The entire property however, can only be transferred or sold with the written consent of all owners. However, a co-owner can sell, transfer or dispose of their interest in the property at any time, including bequeathing it to their heirs by will or otherwise.\n\nThere are several problems and risks in inherent in owning or attempting to transfer your property to your heirs or others by one of these types of concurrent ownership:\n\n a. Property which is held as either joint tenancy with right of survivorship, tenants by the entireties or tenants in common requires the written consent of all owners to transfer the entire property to another person. If a parent wants to sell a property which has their children on the deed, that parent must get their children's consent. In addition, all of the co-owners are entitled to their undivided proportional share of the use or income of the property during their lifetimes. If a co-owner has a falling out with one of their other co-owners, which occurs quite often, the co-owner would be unable to transfer the entire property without their co-owner's consent.\n\nb. Property which is held as joint tenancy or as tenants in common may be attached by the creditors of any one of the co-owners as to that co-owner's share. If one co-owner were to have a creditor, such as from personal injury claim, their undivided interest in the property could potentially be at risk and attached by such a creditor. In addition, if any co-owner gets divorced, their spouse may claim a portion of the co-owner's share in the property.\n\nc. In either joint tenancy or tenancy by the entireties, there is no control over the property after your death. It would go directly to the surviving co owners. in addition, if all your co-owners predecease you, then the property would not \"avoid probate\" nor necessarily be transferred to the persons you intended.\n\nd. Joint tenancy does not guarantee that all of your heirs would receive equal shares of your estate. Certain parcels of property or other accounts may appreciate differently or earn different amounts of income. Without consent monitoring and changing the shares or interest of the co-owners, it would be almost impossible to guarantee that all of your heirs receive their intended shares of your",
+			"DisplayFolderInfo": "{\"name\":\"Property & Equipment\",\"colorCode\":\"#7D0F6C\"}",
+			"PrimaryKeys": "OwnershipTypeId",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

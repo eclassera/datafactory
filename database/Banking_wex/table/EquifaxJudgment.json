@@ -1,0 +1,229 @@
+{
+	"name": "EquifaxJudgment",
+	"properties": {
+		"Name": "EquifaxJudgment",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "The Equifax judgment record(s).",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "EquifaxReportNumber",
+					"Description": "The Equifax report number.",
+					"BaseAttributeReference": {
+						"Entity": "EquifaxJudgment.cdm.json/EquifaxJudgment",
+						"Name": "EquifaxReportNumber"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "EquifaxJudgmentId",
+					"Description": "The unique identifier of an Equifax Judgment.",
+					"BaseAttributeReference": {
+						"Entity": "EquifaxJudgment.cdm.json/EquifaxJudgment",
+						"Name": "EquifaxJudgmentId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "CourtNumber",
+					"Description": "The customer number assigned by the court",
+					"BaseAttributeReference": {
+						"Entity": "EquifaxJudgment.cdm.json/EquifaxJudgment",
+						"Name": "CourtNumber"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "CaseNumber",
+					"Description": "Number assigned to the case.",
+					"BaseAttributeReference": {
+						"Entity": "EquifaxJudgment.cdm.json/EquifaxJudgment",
+						"Name": "CaseNumber"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "FilingDate",
+					"Description": "The date when the legal item was filed or reported",
+					"BaseAttributeReference": {
+						"Entity": "EquifaxJudgment.cdm.json/EquifaxJudgment",
+						"Name": "FilingDate"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "date",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"DateFormat": "YYYY-MM-DD",
+							"HIVE_TYPE_STRING": "date"
+						}
+					}
+				},
+				{
+					"Name": "Amount",
+					"Description": "Number assigned to the case",
+					"BaseAttributeReference": {
+						"Entity": "EquifaxJudgment.cdm.json/EquifaxJudgment",
+						"Name": "Amount"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "decimal",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Precision": 18,
+						"Scale": 2,
+						"Properties": {
+							"HIVE_TYPE_STRING": "decimal"
+						}
+					}
+				},
+				{
+					"Name": "DateSatisfied",
+					"Description": "The date when the legal item was satisfied",
+					"BaseAttributeReference": {
+						"Entity": "EquifaxJudgment.cdm.json/EquifaxJudgment",
+						"Name": "DateSatisfied"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "date",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"DateFormat": "YYYY-MM-DD",
+							"HIVE_TYPE_STRING": "date"
+						}
+					}
+				},
+				{
+					"Name": "DateVerified",
+					"Description": "The date when the judgement information was verified",
+					"BaseAttributeReference": {
+						"Entity": "EquifaxJudgment.cdm.json/EquifaxJudgment",
+						"Name": "DateVerified"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "date",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"DateFormat": "YYYY-MM-DD",
+							"HIVE_TYPE_STRING": "date"
+						}
+					}
+				},
+				{
+					"Name": "ConsumerNarrative",
+					"Description": "This indicates specific account conditions.",
+					"BaseAttributeReference": {
+						"Entity": "EquifaxJudgment.cdm.json/EquifaxJudgment",
+						"Name": "ConsumerNarrative"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "EquifaxJudgmentTypeId",
+					"Description": "The unique identifier of an Equifax judgment type.",
+					"BaseAttributeReference": {
+						"Entity": "EquifaxJudgment.cdm.json/EquifaxJudgment",
+						"Name": "EquifaxJudgmentTypeId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/EquifaxJudgment",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/EquifaxJudgment",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"EquifaxReportNumber\":{\"entity\":\"EquifaxJudgment.cdm.json/EquifaxJudgment\",\"name\":\"EquifaxReportNumber\"},\"EquifaxJudgmentId\":{\"entity\":\"EquifaxJudgment.cdm.json/EquifaxJudgment\",\"name\":\"EquifaxJudgmentId\"},\"CourtNumber\":{\"entity\":\"EquifaxJudgment.cdm.json/EquifaxJudgment\",\"name\":\"CourtNumber\"},\"CaseNumber\":{\"entity\":\"EquifaxJudgment.cdm.json/EquifaxJudgment\",\"name\":\"CaseNumber\"},\"FilingDate\":{\"entity\":\"EquifaxJudgment.cdm.json/EquifaxJudgment\",\"name\":\"FilingDate\"},\"Amount\":{\"entity\":\"EquifaxJudgment.cdm.json/EquifaxJudgment\",\"name\":\"Amount\"},\"DateSatisfied\":{\"entity\":\"EquifaxJudgment.cdm.json/EquifaxJudgment\",\"name\":\"DateSatisfied\"},\"DateVerified\":{\"entity\":\"EquifaxJudgment.cdm.json/EquifaxJudgment\",\"name\":\"DateVerified\"},\"ConsumerNarrative\":{\"entity\":\"EquifaxJudgment.cdm.json/EquifaxJudgment\",\"name\":\"ConsumerNarrative\"},\"EquifaxJudgmentTypeId\":{\"entity\":\"EquifaxJudgment.cdm.json/EquifaxJudgment\",\"name\":\"EquifaxJudgmentTypeId\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"EquifaxJudgment\",\"path\":\"EquifaxJudgment.cdm.json/EquifaxJudgment\"},\"description\":\"The Equifax judgment record(s).\",\"primaryKey\":[\"EquifaxReportNumber\",\"EquifaxJudgmentId\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"EquifaxJudgment.cdm.json/EquifaxJudgment\",\"name\":\"EquifaxReportNumber\"},\"dataType\":\"integer\",\"description\":\"The Equifax report number.\",\"isNullable\":false,\"name\":\"EquifaxReportNumber\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"EquifaxJudgment.cdm.json/EquifaxJudgment\",\"name\":\"EquifaxJudgmentId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of an Equifax Judgment.\",\"isNullable\":false,\"name\":\"EquifaxJudgmentId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"EquifaxJudgment.cdm.json/EquifaxJudgment\",\"name\":\"CourtNumber\"},\"dataType\":\"integer\",\"description\":\"The customer number assigned by the court\",\"isNullable\":true,\"name\":\"CourtNumber\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"EquifaxJudgment.cdm.json/EquifaxJudgment\",\"name\":\"CaseNumber\"},\"dataType\":\"integer\",\"description\":\"Number assigned to the case.\",\"isNullable\":true,\"name\":\"CaseNumber\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"EquifaxJudgment.cdm.json/EquifaxJudgment\",\"name\":\"FilingDate\"},\"dataType\":\"date\",\"dateFormat\":\"YYYY-MM-DD\",\"description\":\"The date when the legal item was filed or reported\",\"isNullable\":true,\"name\":\"FilingDate\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"EquifaxJudgment.cdm.json/EquifaxJudgment\",\"name\":\"Amount\"},\"dataType\":\"decimal\",\"dataTypeLength\":18,\"description\":\"Number assigned to the case\",\"isNullable\":true,\"scale\":2,\"name\":\"Amount\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"EquifaxJudgment.cdm.json/EquifaxJudgment\",\"name\":\"DateSatisfied\"},\"dataType\":\"date\",\"dateFormat\":\"YYYY-MM-DD\",\"description\":\"The date when the legal item was satisfied\",\"isNullable\":true,\"name\":\"DateSatisfied\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"EquifaxJudgment.cdm.json/EquifaxJudgment\",\"name\":\"DateVerified\"},\"dataType\":\"date\",\"dateFormat\":\"YYYY-MM-DD\",\"description\":\"The date when the judgement information was verified\",\"isNullable\":true,\"name\":\"DateVerified\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"EquifaxJudgment.cdm.json/EquifaxJudgment\",\"name\":\"ConsumerNarrative\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"This indicates specific account conditions.\",\"isNullable\":true,\"name\":\"ConsumerNarrative\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"EquifaxJudgment.cdm.json/EquifaxJudgment\",\"name\":\"EquifaxJudgmentTypeId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of an Equifax judgment type.\",\"isNullable\":true,\"name\":\"EquifaxJudgmentTypeId\"}]}}}",
+			"Description": "The Equifax judgment record(s).",
+			"DisplayFolderInfo": "{\"name\":\"Customer Credit & Collections\",\"colorCode\":\"#022F22\"}",
+			"PrimaryKeys": "EquifaxReportNumber,EquifaxJudgmentId",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

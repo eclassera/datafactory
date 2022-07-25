@@ -1,0 +1,113 @@
+{
+	"name": "DisplayType",
+	"properties": {
+		"Name": "DisplayType",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "The type of display.\n\nEx:\n- Shelf Display Ready Packaging\n- Floor Display Ready Packaging\n- Shelf Non-Assembled Display Packaging\n- Floor Non-Assembled Display Packaging\n- Unspecified\n\nwhere:\n\nShelf Display Ready Packaging - A display unit that is ready for display on a shelf or counter.\n\nFloor Display Ready Packaging - A display unit that is ready for display on the  floor.\n\nShelf Non-Assembled Display Packaging - A display unit that needs to be assembled before display on a shelf or counter.\n\nFloor Non-Assembled Display Packaging - A display unit that needs to be assembled before display on the  floor. Products types that were originally associated with unit descriptors MX and DS would use this at- tribute if they were display type.\n\nUnspecified for cases where the supplier is unable to provide the precise type at that moment (or the type of display does not exist in the list yet), but still wants to communicate a display",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "DisplayTypeId",
+					"Description": "The unique identifier of a display type.",
+					"BaseAttributeReference": {
+						"Entity": "DisplayType.cdm.json/DisplayType",
+						"Name": "DisplayTypeId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "DisplayTypeName",
+					"Description": "The name of a display type.",
+					"BaseAttributeReference": {
+						"Entity": "DisplayType.cdm.json/DisplayType",
+						"Name": "DisplayTypeName"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 256,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "DisplayTypeDescription",
+					"Description": "The description of a display type.",
+					"BaseAttributeReference": {
+						"Entity": "DisplayType.cdm.json/DisplayType",
+						"Name": "DisplayTypeDescription"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/DisplayType",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/DisplayType",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"DisplayTypeId\":{\"entity\":\"DisplayType.cdm.json/DisplayType\",\"name\":\"DisplayTypeId\"},\"DisplayTypeName\":{\"entity\":\"DisplayType.cdm.json/DisplayType\",\"name\":\"DisplayTypeName\"},\"DisplayTypeDescription\":{\"entity\":\"DisplayType.cdm.json/DisplayType\",\"name\":\"DisplayTypeDescription\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"DisplayType\",\"path\":\"DisplayType.cdm.json/DisplayType\"},\"description\":\"The type of display.\\n\\nEx:\\n- Shelf Display Ready Packaging\\n- Floor Display Ready Packaging\\n- Shelf Non-Assembled Display Packaging\\n- Floor Non-Assembled Display Packaging\\n- Unspecified\\n\\nwhere:\\n\\nShelf Display Ready Packaging - A display unit that is ready for display on a shelf or counter.\\n\\nFloor Display Ready Packaging - A display unit that is ready for display on the  floor.\\n\\nShelf Non-Assembled Display Packaging - A display unit that needs to be assembled before display on a shelf or counter.\\n\\nFloor Non-Assembled Display Packaging - A display unit that needs to be assembled before display on the  floor. Products types that were originally associated with unit descriptors MX and DS would use this at- tribute if they were display type.\\n\\nUnspecified for cases where the supplier is unable to provide the precise type at that moment (or the type of display does not exist in the list yet), but still wants to communicate a display\",\"primaryKey\":[\"DisplayTypeId\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"DisplayType.cdm.json/DisplayType\",\"name\":\"DisplayTypeId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a display type.\",\"isNullable\":false,\"name\":\"DisplayTypeId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"DisplayType.cdm.json/DisplayType\",\"name\":\"DisplayTypeName\"},\"dataType\":\"string\",\"dataTypeLength\":256,\"description\":\"The name of a display type.\",\"isNullable\":true,\"name\":\"DisplayTypeName\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"DisplayType.cdm.json/DisplayType\",\"name\":\"DisplayTypeDescription\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"The description of a display type.\",\"isNullable\":true,\"name\":\"DisplayTypeDescription\"}]}}}",
+			"Description": "The type of display.\n\nEx:\n- Shelf Display Ready Packaging\n- Floor Display Ready Packaging\n- Shelf Non-Assembled Display Packaging\n- Floor Non-Assembled Display Packaging\n- Unspecified\n\nwhere:\n\nShelf Display Ready Packaging - A display unit that is ready for display on a shelf or counter.\n\nFloor Display Ready Packaging - A display unit that is ready for display on the  floor.\n\nShelf Non-Assembled Display Packaging - A display unit that needs to be assembled before display on a shelf or counter.\n\nFloor Non-Assembled Display Packaging - A display unit that needs to be assembled before display on the  floor. Products types that were originally associated with unit descriptors MX and DS would use this at- tribute if they were display type.\n\nUnspecified for cases where the supplier is unable to provide the precise type at that moment (or the type of display does not exist in the list yet), but still wants to communicate a display",
+			"DisplayFolderInfo": "{\"name\":\"Channel\",\"colorCode\":\"#001D3F\"}",
+			"PrimaryKeys": "DisplayTypeId",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

@@ -1,0 +1,180 @@
+{
+	"name": "StorageContainerActualStorage",
+	"properties": {
+		"Name": "StorageContainerActualStorage",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "The actual storage associated with the Product for the period.",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "StorageContainerId",
+					"Description": "The unique identifier of a Storage Container.",
+					"BaseAttributeReference": {
+						"Entity": "StorageContainerActualStorage.cdm.json/StorageContainerActualStorage",
+						"Name": "StorageContainerId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "long",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "long"
+						}
+					}
+				},
+				{
+					"Name": "ProductId",
+					"Description": "The unique identifier of a Product.",
+					"BaseAttributeReference": {
+						"Entity": "StorageContainerActualStorage.cdm.json/StorageContainerActualStorage",
+						"Name": "ProductId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "long",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "long"
+						}
+					}
+				},
+				{
+					"Name": "PeriodStartTimestamp",
+					"Description": "The period start timestamp.",
+					"BaseAttributeReference": {
+						"Entity": "StorageContainerActualStorage.cdm.json/StorageContainerActualStorage",
+						"Name": "PeriodStartTimestamp"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "timestamp",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"TimestampFormat": "YYYY-MM-DD HH:MM:SS.fffffffff",
+							"HIVE_TYPE_STRING": "timestamp"
+						}
+					}
+				},
+				{
+					"Name": "PeriodEndTimestamp",
+					"Description": "The period end timestamp.",
+					"BaseAttributeReference": {
+						"Entity": "StorageContainerActualStorage.cdm.json/StorageContainerActualStorage",
+						"Name": "PeriodEndTimestamp"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "timestamp",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"TimestampFormat": "YYYY-MM-DD HH:MM:SS.fffffffff",
+							"HIVE_TYPE_STRING": "timestamp"
+						}
+					}
+				},
+				{
+					"Name": "ActualStorageUnits",
+					"Description": "The units associated with the actual storage.",
+					"BaseAttributeReference": {
+						"Entity": "StorageContainerActualStorage.cdm.json/StorageContainerActualStorage",
+						"Name": "ActualStorageUnits"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "decimal",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Precision": 18,
+						"Scale": 8,
+						"Properties": {
+							"HIVE_TYPE_STRING": "decimal"
+						}
+					}
+				},
+				{
+					"Name": "ActualStorageUomId",
+					"Description": "The unique identifier of a Unit Of Measure.",
+					"BaseAttributeReference": {
+						"Entity": "StorageContainerActualStorage.cdm.json/StorageContainerActualStorage",
+						"Name": "ActualStorageUomId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "StorageContainerActualStorageNote",
+					"Description": "A note, comment or additional information regarding the storage container actual storage.",
+					"BaseAttributeReference": {
+						"Entity": "StorageContainerActualStorage.cdm.json/StorageContainerActualStorage",
+						"Name": "StorageContainerActualStorageNote"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/StorageContainerActualStorage",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/StorageContainerActualStorage",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"StorageContainerId\":{\"entity\":\"StorageContainerActualStorage.cdm.json/StorageContainerActualStorage\",\"name\":\"StorageContainerId\"},\"ProductId\":{\"entity\":\"StorageContainerActualStorage.cdm.json/StorageContainerActualStorage\",\"name\":\"ProductId\"},\"PeriodStartTimestamp\":{\"entity\":\"StorageContainerActualStorage.cdm.json/StorageContainerActualStorage\",\"name\":\"PeriodStartTimestamp\"},\"PeriodEndTimestamp\":{\"entity\":\"StorageContainerActualStorage.cdm.json/StorageContainerActualStorage\",\"name\":\"PeriodEndTimestamp\"},\"ActualStorageUnits\":{\"entity\":\"StorageContainerActualStorage.cdm.json/StorageContainerActualStorage\",\"name\":\"ActualStorageUnits\"},\"ActualStorageUomId\":{\"entity\":\"StorageContainerActualStorage.cdm.json/StorageContainerActualStorage\",\"name\":\"ActualStorageUomId\"},\"StorageContainerActualStorageNote\":{\"entity\":\"StorageContainerActualStorage.cdm.json/StorageContainerActualStorage\",\"name\":\"StorageContainerActualStorageNote\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"StorageContainerActualStorage\",\"path\":\"StorageContainerActualStorage.cdm.json/StorageContainerActualStorage\"},\"description\":\"The actual storage associated with the Product for the period.\",\"primaryKey\":[\"StorageContainerId\",\"ProductId\",\"PeriodStartTimestamp\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"StorageContainerActualStorage.cdm.json/StorageContainerActualStorage\",\"name\":\"StorageContainerId\"},\"dataType\":\"long\",\"description\":\"The unique identifier of a Storage Container.\",\"isNullable\":false,\"name\":\"StorageContainerId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"StorageContainerActualStorage.cdm.json/StorageContainerActualStorage\",\"name\":\"ProductId\"},\"dataType\":\"long\",\"description\":\"The unique identifier of a Product.\",\"isNullable\":false,\"name\":\"ProductId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"StorageContainerActualStorage.cdm.json/StorageContainerActualStorage\",\"name\":\"PeriodStartTimestamp\"},\"dataType\":\"timestamp\",\"description\":\"The period start timestamp.\",\"isNullable\":false,\"name\":\"PeriodStartTimestamp\",\"timestampFormat\":\"YYYY-MM-DD HH:MM:SS.fffffffff\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"StorageContainerActualStorage.cdm.json/StorageContainerActualStorage\",\"name\":\"PeriodEndTimestamp\"},\"dataType\":\"timestamp\",\"description\":\"The period end timestamp.\",\"isNullable\":true,\"name\":\"PeriodEndTimestamp\",\"timestampFormat\":\"YYYY-MM-DD HH:MM:SS.fffffffff\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"StorageContainerActualStorage.cdm.json/StorageContainerActualStorage\",\"name\":\"ActualStorageUnits\"},\"dataType\":\"decimal\",\"dataTypeLength\":18,\"description\":\"The units associated with the actual storage.\",\"isNullable\":true,\"scale\":8,\"name\":\"ActualStorageUnits\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"StorageContainerActualStorage.cdm.json/StorageContainerActualStorage\",\"name\":\"ActualStorageUomId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Unit Of Measure.\",\"isNullable\":true,\"name\":\"ActualStorageUomId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"StorageContainerActualStorage.cdm.json/StorageContainerActualStorage\",\"name\":\"StorageContainerActualStorageNote\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"A note, comment or additional information regarding the storage container actual storage.\",\"isNullable\":true,\"name\":\"StorageContainerActualStorageNote\"}]}}}",
+			"Description": "The actual storage associated with the Product for the period.",
+			"DisplayFolderInfo": "{\"name\":\"Network\",\"colorCode\":\"#0050AC\"}",
+			"PrimaryKeys": "StorageContainerId,ProductId,PeriodStartTimestamp",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

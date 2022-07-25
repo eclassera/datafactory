@@ -1,0 +1,195 @@
+{
+	"name": "CreditReport",
+	"properties": {
+		"Name": "CreditReport",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "A summarization of an insurance applicants credit history performed by a Credit Rating Agency that has investigated the Customer/Applicants credit standing.",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "CreditReportId",
+					"Description": "The unique identifier of the Credit Report.",
+					"BaseAttributeReference": {
+						"Entity": "CreditReport.cdm.json/CreditReport",
+						"Name": "CreditReportId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "CustomerId",
+					"Description": "The unique identifier of a Customer.",
+					"BaseAttributeReference": {
+						"Entity": "CreditReport.cdm.json/CreditReport",
+						"Name": "CustomerId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "long",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"HIVE_TYPE_STRING": "long"
+						}
+					}
+				},
+				{
+					"Name": "CreditRatingAgencyId",
+					"Description": "The unique identifier of a Credit Rating Agency.",
+					"BaseAttributeReference": {
+						"Entity": "CreditReport.cdm.json/CreditReport",
+						"Name": "CreditRatingAgencyId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "CreditReportPeriodStartDate",
+					"Description": "The period starting date for which the associated Credit Report is performed.",
+					"BaseAttributeReference": {
+						"Entity": "CreditReport.cdm.json/CreditReport",
+						"Name": "CreditReportPeriodStartDate"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "date",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"DateFormat": "YYYY-MM-DD",
+							"HIVE_TYPE_STRING": "date"
+						}
+					}
+				},
+				{
+					"Name": "CreditReportPeriodEndDate",
+					"Description": "The period ending date for which the associated Credit Report is performed.",
+					"BaseAttributeReference": {
+						"Entity": "CreditReport.cdm.json/CreditReport",
+						"Name": "CreditReportPeriodEndDate"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "date",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"DateFormat": "YYYY-MM-DD",
+							"HIVE_TYPE_STRING": "date"
+						}
+					}
+				},
+				{
+					"Name": "CreditReportCompletedDate",
+					"Description": "The date that the Credit Report was completed.",
+					"BaseAttributeReference": {
+						"Entity": "CreditReport.cdm.json/CreditReport",
+						"Name": "CreditReportCompletedDate"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "date",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"DateFormat": "YYYY-MM-DD",
+							"HIVE_TYPE_STRING": "date"
+						}
+					}
+				},
+				{
+					"Name": "CreditReportCommentary",
+					"Description": "Notes or comments regarding the Credit Report.",
+					"BaseAttributeReference": {
+						"Entity": "CreditReport.cdm.json/CreditReport",
+						"Name": "CreditReportCommentary"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "CreditRiskId",
+					"Description": "The unique identifier of a Credit Risk.",
+					"BaseAttributeReference": {
+						"Entity": "CreditReport.cdm.json/CreditReport",
+						"Name": "CreditRiskId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/CreditReport",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/CreditReport",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"CreditReportId\":{\"entity\":\"CreditReport.cdm.json/CreditReport\",\"name\":\"CreditReportId\"},\"CustomerId\":{\"entity\":\"CreditReport.cdm.json/CreditReport\",\"name\":\"CustomerId\"},\"CreditRatingAgencyId\":{\"entity\":\"CreditReport.cdm.json/CreditReport\",\"name\":\"CreditRatingAgencyId\"},\"CreditReportPeriodStartDate\":{\"entity\":\"CreditReport.cdm.json/CreditReport\",\"name\":\"CreditReportPeriodStartDate\"},\"CreditReportPeriodEndDate\":{\"entity\":\"CreditReport.cdm.json/CreditReport\",\"name\":\"CreditReportPeriodEndDate\"},\"CreditReportCompletedDate\":{\"entity\":\"CreditReport.cdm.json/CreditReport\",\"name\":\"CreditReportCompletedDate\"},\"CreditReportCommentary\":{\"entity\":\"CreditReport.cdm.json/CreditReport\",\"name\":\"CreditReportCommentary\"},\"CreditRiskId\":{\"entity\":\"CreditReport.cdm.json/CreditReport\",\"name\":\"CreditRiskId\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"CreditReport\",\"path\":\"CreditReport.cdm.json/CreditReport\"},\"description\":\"A summarization of an insurance applicants credit history performed by a Credit Rating Agency that has investigated the Customer/Applicants credit standing.\",\"primaryKey\":[\"CreditReportId\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CreditReport.cdm.json/CreditReport\",\"name\":\"CreditReportId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of the Credit Report.\",\"isNullable\":false,\"name\":\"CreditReportId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CreditReport.cdm.json/CreditReport\",\"name\":\"CustomerId\"},\"dataType\":\"long\",\"description\":\"The unique identifier of a Customer.\",\"isNullable\":true,\"name\":\"CustomerId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CreditReport.cdm.json/CreditReport\",\"name\":\"CreditRatingAgencyId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Credit Rating Agency.\",\"isNullable\":false,\"name\":\"CreditRatingAgencyId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CreditReport.cdm.json/CreditReport\",\"name\":\"CreditReportPeriodStartDate\"},\"dataType\":\"date\",\"dateFormat\":\"YYYY-MM-DD\",\"description\":\"The period starting date for which the associated Credit Report is performed.\",\"isNullable\":true,\"name\":\"CreditReportPeriodStartDate\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CreditReport.cdm.json/CreditReport\",\"name\":\"CreditReportPeriodEndDate\"},\"dataType\":\"date\",\"dateFormat\":\"YYYY-MM-DD\",\"description\":\"The period ending date for which the associated Credit Report is performed.\",\"isNullable\":true,\"name\":\"CreditReportPeriodEndDate\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CreditReport.cdm.json/CreditReport\",\"name\":\"CreditReportCompletedDate\"},\"dataType\":\"date\",\"dateFormat\":\"YYYY-MM-DD\",\"description\":\"The date that the Credit Report was completed.\",\"isNullable\":true,\"name\":\"CreditReportCompletedDate\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CreditReport.cdm.json/CreditReport\",\"name\":\"CreditReportCommentary\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"Notes or comments regarding the Credit Report.\",\"isNullable\":true,\"name\":\"CreditReportCommentary\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CreditReport.cdm.json/CreditReport\",\"name\":\"CreditRiskId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Credit Risk.\",\"isNullable\":true,\"name\":\"CreditRiskId\"}]}}}",
+			"Description": "A summarization of an insurance applicants credit history performed by a Credit Rating Agency that has investigated the Customer/Applicants credit standing.",
+			"DisplayFolderInfo": "{\"name\":\"Customer Credit & Collections\",\"colorCode\":\"#022F22\"}",
+			"PrimaryKeys": "CreditReportId",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

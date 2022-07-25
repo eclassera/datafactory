@@ -1,0 +1,112 @@
+{
+	"name": "ContractDocument",
+	"properties": {
+		"Name": "ContractDocument",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "The documents that form a contract. \n\nA single contract can be formed from several documents. For instance the RFI, RFQ, ..., PO together can form a contract. A single document such as the RFI can be used as part of several documents.",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "ContractId",
+					"Description": "The unique identifier of a Contract.",
+					"BaseAttributeReference": {
+						"Entity": "ContractDocument.cdm.json/ContractDocument",
+						"Name": "ContractId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "DocumentId",
+					"Description": "The unique identifier of a Document.",
+					"BaseAttributeReference": {
+						"Entity": "ContractDocument.cdm.json/ContractDocument",
+						"Name": "DocumentId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "long",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "long"
+						}
+					}
+				},
+				{
+					"Name": "ContractDocumentNote",
+					"Description": "A note, comment or additional information regarding the contract document.",
+					"BaseAttributeReference": {
+						"Entity": "ContractDocument.cdm.json/ContractDocument",
+						"Name": "ContractDocumentNote"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/ContractDocument",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/ContractDocument",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"ContractId\":{\"entity\":\"ContractDocument.cdm.json/ContractDocument\",\"name\":\"ContractId\"},\"DocumentId\":{\"entity\":\"ContractDocument.cdm.json/ContractDocument\",\"name\":\"DocumentId\"},\"ContractDocumentNote\":{\"entity\":\"ContractDocument.cdm.json/ContractDocument\",\"name\":\"ContractDocumentNote\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"ContractDocument\",\"path\":\"ContractDocument.cdm.json/ContractDocument\"},\"description\":\"The documents that form a contract. \\n\\nA single contract can be formed from several documents. For instance the RFI, RFQ, ..., PO together can form a contract. A single document such as the RFI can be used as part of several documents.\",\"primaryKey\":[\"ContractId\",\"DocumentId\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ContractDocument.cdm.json/ContractDocument\",\"name\":\"ContractId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Contract.\",\"isNullable\":false,\"name\":\"ContractId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ContractDocument.cdm.json/ContractDocument\",\"name\":\"DocumentId\"},\"dataType\":\"long\",\"description\":\"The unique identifier of a Document.\",\"isNullable\":false,\"name\":\"DocumentId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ContractDocument.cdm.json/ContractDocument\",\"name\":\"ContractDocumentNote\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"A note, comment or additional information regarding the contract document.\",\"isNullable\":true,\"name\":\"ContractDocumentNote\"}]}}}",
+			"Description": "The documents that form a contract. \n\nA single contract can be formed from several documents. For instance the RFI, RFQ, ..., PO together can form a contract. A single document such as the RFI can be used as part of several documents.",
+			"DisplayFolderInfo": "{\"name\":\"Contract\",\"colorCode\":\"#917EDB\"}",
+			"PrimaryKeys": "ContractId,DocumentId",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

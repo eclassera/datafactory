@@ -1,0 +1,113 @@
+{
+	"name": "PaymentCardPartyRelationshipType",
+	"properties": {
+		"Name": "PaymentCardPartyRelationshipType",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "The nature of the relationship between the payment card and the related party.\n\nEx:\nISSUER\nThe cardholder's bank, or the bank which has issued a MasterCard, Visa or other payment card to an individual. A card issuer is the acceptor and approver of a transaction - the entity that maintains the account relationship with the cardholder.\n\nAny association member financial institution, bank, credit union, or company that issues, or causes to be issued, plastic cards to cardholders.\n\nAny association member financial institution, bank, credit union, or company that issues, or causes to be issued, plastic cards to cardholders.\n\nCARDHOLDER\nA customer that are entitled to use the card as either the primary or secondary cardholders.\n\nACQUIRER\nA financial institution that provides merchant accounts. A merchant account allows you to accept payment cards. Acquiring banks are also called merchant banks, or acquirers. Acquirers are so named because they acquire a merchant's sales tickets and credit the order value to the merchant's account.\n\nCO-BRANDED AFFILIATE\nA co-branded payment card is sponsored by both the issuing bank and a retail organization such as a department store or an airline. Cardholders may get benefits such as discounts or free merchandise from the sponsoring merchant based on account usage and terms.\n\nAFFINITY ORGANIZATION\nA card offered by a lending institution in conjunction with another organization. Schools, non-profit groups, pro wrestlers, popular singers and airlines are among those featured on these types of cards. Frequently, use of this card entitles holders to special discounts or deals from the non-financial group.\n\nBORROWER\nThe person who signs and agrees to the terms of a promissory note and is responsible for repaying the loan. \n\nCO-SIGNER\nA person who signs a payment card application with the primary applicant. The co-signer agrees to be legally liable for any balance incurred on the payment card, regardless of who used the card.\n\nAUTHORIZED USER\nA user authorized to use the associated payment card.\n\nGUARANTOR\nAn individual or legal entity customer that is financially liable for an account and does not have charging privileges.",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "PaymentCardPartyRelationshipTypeId",
+					"Description": "The unique identifier of a Payment Card Party Relationship Type.",
+					"BaseAttributeReference": {
+						"Entity": "PaymentCardPartyRelationshipType.cdm.json/PaymentCardPartyRelationshipType",
+						"Name": "PaymentCardPartyRelationshipTypeId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "PaymentCardPartyRelationshipTypeName",
+					"Description": "The name of a Payment Card Party Relationship Type.",
+					"BaseAttributeReference": {
+						"Entity": "PaymentCardPartyRelationshipType.cdm.json/PaymentCardPartyRelationshipType",
+						"Name": "PaymentCardPartyRelationshipTypeName"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 256,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "PaymentCardPartyRelationshipTypeDescription",
+					"Description": "The description of a Payment Card Party Relationship Type.",
+					"BaseAttributeReference": {
+						"Entity": "PaymentCardPartyRelationshipType.cdm.json/PaymentCardPartyRelationshipType",
+						"Name": "PaymentCardPartyRelationshipTypeDescription"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/PaymentCardPartyRelationshipType",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/PaymentCardPartyRelationshipType",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"PaymentCardPartyRelationshipTypeId\":{\"entity\":\"PaymentCardPartyRelationshipType.cdm.json/PaymentCardPartyRelationshipType\",\"name\":\"PaymentCardPartyRelationshipTypeId\"},\"PaymentCardPartyRelationshipTypeName\":{\"entity\":\"PaymentCardPartyRelationshipType.cdm.json/PaymentCardPartyRelationshipType\",\"name\":\"PaymentCardPartyRelationshipTypeName\"},\"PaymentCardPartyRelationshipTypeDescription\":{\"entity\":\"PaymentCardPartyRelationshipType.cdm.json/PaymentCardPartyRelationshipType\",\"name\":\"PaymentCardPartyRelationshipTypeDescription\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"PaymentCardPartyRelationshipType\",\"path\":\"PaymentCardPartyRelationshipType.cdm.json/PaymentCardPartyRelationshipType\"},\"description\":\"The nature of the relationship between the payment card and the related party.\\n\\nEx:\\nISSUER\\nThe cardholder's bank, or the bank which has issued a MasterCard, Visa or other payment card to an individual. A card issuer is the acceptor and approver of a transaction - the entity that maintains the account relationship with the cardholder.\\n\\nAny association member financial institution, bank, credit union, or company that issues, or causes to be issued, plastic cards to cardholders.\\n\\nAny association member financial institution, bank, credit union, or company that issues, or causes to be issued, plastic cards to cardholders.\\n\\nCARDHOLDER\\nA customer that are entitled to use the card as either the primary or secondary cardholders.\\n\\nACQUIRER\\nA financial institution that provides merchant accounts. A merchant account allows you to accept payment cards. Acquiring banks are also called merchant banks, or acquirers. Acquirers are so named because they acquire a merchant's sales tickets and credit the order value to the merchant's account.\\n\\nCO-BRANDED AFFILIATE\\nA co-branded payment card is sponsored by both the issuing bank and a retail organization such as a department store or an airline. Cardholders may get benefits such as discounts or free merchandise from the sponsoring merchant based on account usage and terms.\\n\\nAFFINITY ORGANIZATION\\nA card offered by a lending institution in conjunction with another organization. Schools, non-profit groups, pro wrestlers, popular singers and airlines are among those featured on these types of cards. Frequently, use of this card entitles holders to special discounts or deals from the non-financial group.\\n\\nBORROWER\\nThe person who signs and agrees to the terms of a promissory note and is responsible for repaying the loan. \\n\\nCO-SIGNER\\nA person who signs a payment card application with the primary applicant. The co-signer agrees to be legally liable for any balance incurred on the payment card, regardless of who used the card.\\n\\nAUTHORIZED USER\\nA user authorized to use the associated payment card.\\n\\nGUARANTOR\\nAn individual or legal entity customer that is financially liable for an account and does not have charging privileges.\",\"primaryKey\":[\"PaymentCardPartyRelationshipTypeId\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"PaymentCardPartyRelationshipType.cdm.json/PaymentCardPartyRelationshipType\",\"name\":\"PaymentCardPartyRelationshipTypeId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Payment Card Party Relationship Type.\",\"isNullable\":false,\"name\":\"PaymentCardPartyRelationshipTypeId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"PaymentCardPartyRelationshipType.cdm.json/PaymentCardPartyRelationshipType\",\"name\":\"PaymentCardPartyRelationshipTypeName\"},\"dataType\":\"string\",\"dataTypeLength\":256,\"description\":\"The name of a Payment Card Party Relationship Type.\",\"isNullable\":true,\"name\":\"PaymentCardPartyRelationshipTypeName\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"PaymentCardPartyRelationshipType.cdm.json/PaymentCardPartyRelationshipType\",\"name\":\"PaymentCardPartyRelationshipTypeDescription\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"The description of a Payment Card Party Relationship Type.\",\"isNullable\":true,\"name\":\"PaymentCardPartyRelationshipTypeDescription\"}]}}}",
+			"Description": "The nature of the relationship between the payment card and the related party.\n\nEx:\nISSUER\nThe cardholder's bank, or the bank which has issued a MasterCard, Visa or other payment card to an individual. A card issuer is the acceptor and approver of a transaction - the entity that maintains the account relationship with the cardholder.\n\nAny association member financial institution, bank, credit union, or company that issues, or causes to be issued, plastic cards to cardholders.\n\nAny association member financial institution, bank, credit union, or company that issues, or causes to be issued, plastic cards to cardholders.\n\nCARDHOLDER\nA customer that are entitled to use the card as either the primary or secondary cardholders.\n\nACQUIRER\nA financial institution that provides merchant accounts. A merchant account allows you to accept payment cards. Acquiring banks are also called merchant banks, or acquirers. Acquirers are so named because they acquire a merchant's sales tickets and credit the order value to the merchant's account.\n\nCO-BRANDED AFFILIATE\nA co-branded payment card is sponsored by both the issuing bank and a retail organization such as a department store or an airline. Cardholders may get benefits such as discounts or free merchandise from the sponsoring merchant based on account usage and terms.\n\nAFFINITY ORGANIZATION\nA card offered by a lending institution in conjunction with another organization. Schools, non-profit groups, pro wrestlers, popular singers and airlines are among those featured on these types of cards. Frequently, use of this card entitles holders to special discounts or deals from the non-financial group.\n\nBORROWER\nThe person who signs and agrees to the terms of a promissory note and is responsible for repaying the loan. \n\nCO-SIGNER\nA person who signs a payment card application with the primary applicant. The co-signer agrees to be legally liable for any balance incurred on the payment card, regardless of who used the card.\n\nAUTHORIZED USER\nA user authorized to use the associated payment card.\n\nGUARANTOR\nAn individual or legal entity customer that is financially liable for an account and does not have charging privileges.",
+			"DisplayFolderInfo": "{\"name\":\"Transaction\",\"colorCode\":\"#823A16\"}",
+			"PrimaryKeys": "PaymentCardPartyRelationshipTypeId",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

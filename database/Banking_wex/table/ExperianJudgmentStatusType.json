@@ -1,0 +1,113 @@
+{
+	"name": "ExperianJudgmentStatusType",
+	"properties": {
+		"Name": "ExperianJudgmentStatusType",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "The type of Experian judgment status.\n\nEx:\n- Filed\n- Satisfied",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "ExperianJudgmentStatusTypeId",
+					"Description": "The unique identifier of an Experian judgment status type.",
+					"BaseAttributeReference": {
+						"Entity": "ExperianJudgmentStatusType.cdm.json/ExperianJudgmentStatusType",
+						"Name": "ExperianJudgmentStatusTypeId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "ExperianJudgmentStatusTypeName",
+					"Description": "The name of an Experian judgment status type.",
+					"BaseAttributeReference": {
+						"Entity": "ExperianJudgmentStatusType.cdm.json/ExperianJudgmentStatusType",
+						"Name": "ExperianJudgmentStatusTypeName"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 256,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "ExperianJudgmentStatusTypeDescription",
+					"Description": "The description of an Experian judgment status type.",
+					"BaseAttributeReference": {
+						"Entity": "ExperianJudgmentStatusType.cdm.json/ExperianJudgmentStatusType",
+						"Name": "ExperianJudgmentStatusTypeDescription"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/ExperianJudgmentStatusType",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/ExperianJudgmentStatusType",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"ExperianJudgmentStatusTypeId\":{\"entity\":\"ExperianJudgmentStatusType.cdm.json/ExperianJudgmentStatusType\",\"name\":\"ExperianJudgmentStatusTypeId\"},\"ExperianJudgmentStatusTypeName\":{\"entity\":\"ExperianJudgmentStatusType.cdm.json/ExperianJudgmentStatusType\",\"name\":\"ExperianJudgmentStatusTypeName\"},\"ExperianJudgmentStatusTypeDescription\":{\"entity\":\"ExperianJudgmentStatusType.cdm.json/ExperianJudgmentStatusType\",\"name\":\"ExperianJudgmentStatusTypeDescription\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"ExperianJudgmentStatusType\",\"path\":\"ExperianJudgmentStatusType.cdm.json/ExperianJudgmentStatusType\"},\"description\":\"The type of Experian judgment status.\\n\\nEx:\\n- Filed\\n- Satisfied\",\"primaryKey\":[\"ExperianJudgmentStatusTypeId\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ExperianJudgmentStatusType.cdm.json/ExperianJudgmentStatusType\",\"name\":\"ExperianJudgmentStatusTypeId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of an Experian judgment status type.\",\"isNullable\":false,\"name\":\"ExperianJudgmentStatusTypeId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ExperianJudgmentStatusType.cdm.json/ExperianJudgmentStatusType\",\"name\":\"ExperianJudgmentStatusTypeName\"},\"dataType\":\"string\",\"dataTypeLength\":256,\"description\":\"The name of an Experian judgment status type.\",\"isNullable\":true,\"name\":\"ExperianJudgmentStatusTypeName\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ExperianJudgmentStatusType.cdm.json/ExperianJudgmentStatusType\",\"name\":\"ExperianJudgmentStatusTypeDescription\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"The description of an Experian judgment status type.\",\"isNullable\":true,\"name\":\"ExperianJudgmentStatusTypeDescription\"}]}}}",
+			"Description": "The type of Experian judgment status.\n\nEx:\n- Filed\n- Satisfied",
+			"DisplayFolderInfo": "{\"name\":\"Customer Credit & Collections\",\"colorCode\":\"#022F22\"}",
+			"PrimaryKeys": "ExperianJudgmentStatusTypeId",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

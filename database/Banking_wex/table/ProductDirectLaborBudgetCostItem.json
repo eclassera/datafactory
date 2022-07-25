@@ -1,0 +1,147 @@
+{
+	"name": "ProductDirectLaborBudgetCostItem",
+	"properties": {
+		"Name": "ProductDirectLaborBudgetCostItem",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "The individual cost items that are aggregated to make up the PRODUCT (\"Service\")  DIRECT LABOR BUDGET.  \n\nEx:\n- Salaries\n- Healthcare Benefits\n- Retirement Benefits\n- Travel",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "ProductDirectLaborBudgetId",
+					"Description": "The unique identifier of a Product Direct Labor Budget.",
+					"BaseAttributeReference": {
+						"Entity": "ProductDirectLaborBudgetCostItem.cdm.json/ProductDirectLaborBudgetCostItem",
+						"Name": "ProductDirectLaborBudgetId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "ProductDirectLaborBudgetVersionId",
+					"Description": "The unique identifier of a Product Direct Labor Budget Sales Version.",
+					"BaseAttributeReference": {
+						"Entity": "ProductDirectLaborBudgetCostItem.cdm.json/ProductDirectLaborBudgetCostItem",
+						"Name": "ProductDirectLaborBudgetVersionId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "CostItemId",
+					"Description": "The unique identifier of a Cost Item.",
+					"BaseAttributeReference": {
+						"Entity": "ProductDirectLaborBudgetCostItem.cdm.json/ProductDirectLaborBudgetCostItem",
+						"Name": "CostItemId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "BudgetedCostItemAmount",
+					"Description": "The amount budgeted/planned in the associated Budget for the Cost Item.",
+					"BaseAttributeReference": {
+						"Entity": "ProductDirectLaborBudgetCostItem.cdm.json/ProductDirectLaborBudgetCostItem",
+						"Name": "BudgetedCostItemAmount"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "decimal",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Precision": 18,
+						"Scale": 2,
+						"Properties": {
+							"HIVE_TYPE_STRING": "decimal"
+						}
+					}
+				},
+				{
+					"Name": "ActualCostItemAmount",
+					"Description": "The amount actually spent in the associated Budget for the Cost Item.",
+					"BaseAttributeReference": {
+						"Entity": "ProductDirectLaborBudgetCostItem.cdm.json/ProductDirectLaborBudgetCostItem",
+						"Name": "ActualCostItemAmount"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "decimal",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Precision": 18,
+						"Scale": 2,
+						"Properties": {
+							"HIVE_TYPE_STRING": "decimal"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/ProductDirectLaborBudgetCostItem",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/ProductDirectLaborBudgetCostItem",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"ProductDirectLaborBudgetId\":{\"entity\":\"ProductDirectLaborBudgetCostItem.cdm.json/ProductDirectLaborBudgetCostItem\",\"name\":\"ProductDirectLaborBudgetId\"},\"ProductDirectLaborBudgetVersionId\":{\"entity\":\"ProductDirectLaborBudgetCostItem.cdm.json/ProductDirectLaborBudgetCostItem\",\"name\":\"ProductDirectLaborBudgetVersionId\"},\"CostItemId\":{\"entity\":\"ProductDirectLaborBudgetCostItem.cdm.json/ProductDirectLaborBudgetCostItem\",\"name\":\"CostItemId\"},\"BudgetedCostItemAmount\":{\"entity\":\"ProductDirectLaborBudgetCostItem.cdm.json/ProductDirectLaborBudgetCostItem\",\"name\":\"BudgetedCostItemAmount\"},\"ActualCostItemAmount\":{\"entity\":\"ProductDirectLaborBudgetCostItem.cdm.json/ProductDirectLaborBudgetCostItem\",\"name\":\"ActualCostItemAmount\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"ProductDirectLaborBudgetCostItem\",\"path\":\"ProductDirectLaborBudgetCostItem.cdm.json/ProductDirectLaborBudgetCostItem\"},\"description\":\"The individual cost items that are aggregated to make up the PRODUCT (\\\"Service\\\")  DIRECT LABOR BUDGET.  \\n\\nEx:\\n- Salaries\\n- Healthcare Benefits\\n- Retirement Benefits\\n- Travel\",\"primaryKey\":[\"ProductDirectLaborBudgetId\",\"ProductDirectLaborBudgetVersionId\",\"CostItemId\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ProductDirectLaborBudgetCostItem.cdm.json/ProductDirectLaborBudgetCostItem\",\"name\":\"ProductDirectLaborBudgetId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Product Direct Labor Budget.\",\"isNullable\":false,\"name\":\"ProductDirectLaborBudgetId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ProductDirectLaborBudgetCostItem.cdm.json/ProductDirectLaborBudgetCostItem\",\"name\":\"ProductDirectLaborBudgetVersionId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Product Direct Labor Budget Sales Version.\",\"isNullable\":false,\"name\":\"ProductDirectLaborBudgetVersionId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ProductDirectLaborBudgetCostItem.cdm.json/ProductDirectLaborBudgetCostItem\",\"name\":\"CostItemId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Cost Item.\",\"isNullable\":false,\"name\":\"CostItemId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ProductDirectLaborBudgetCostItem.cdm.json/ProductDirectLaborBudgetCostItem\",\"name\":\"BudgetedCostItemAmount\"},\"dataType\":\"decimal\",\"dataTypeLength\":18,\"description\":\"The amount budgeted/planned in the associated Budget for the Cost Item.\",\"isNullable\":true,\"scale\":2,\"name\":\"BudgetedCostItemAmount\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ProductDirectLaborBudgetCostItem.cdm.json/ProductDirectLaborBudgetCostItem\",\"name\":\"ActualCostItemAmount\"},\"dataType\":\"decimal\",\"dataTypeLength\":18,\"description\":\"The amount actually spent in the associated Budget for the Cost Item.\",\"isNullable\":true,\"scale\":2,\"name\":\"ActualCostItemAmount\"}]}}}",
+			"Description": "The individual cost items that are aggregated to make up the PRODUCT (\"Service\")  DIRECT LABOR BUDGET.  \n\nEx:\n- Salaries\n- Healthcare Benefits\n- Retirement Benefits\n- Travel",
+			"DisplayFolderInfo": "{\"name\":\"Budget & Forecasting\",\"colorCode\":\"#00188F\"}",
+			"PrimaryKeys": "ProductDirectLaborBudgetId,ProductDirectLaborBudgetVersionId,CostItemId",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

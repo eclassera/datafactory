@@ -1,0 +1,113 @@
+{
+	"name": "CollectionLetterType",
+	"properties": {
+		"Name": "CollectionLetterType",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "A classification of Collection Letters based upon common characteristics or functions performed.\n\nExamples:\n-  Reminder\n-  30 Days Overdue\n-  60 Days Overdue\n-  Plan to refer to third-party collection service\n-  Referral to third-party collection service\n-  Legal action will result\n-  Legal action has been initiated",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "CollectionLetterTypeId",
+					"Description": "The unique identifier of the Collection Letter Type.",
+					"BaseAttributeReference": {
+						"Entity": "CollectionLetterType.cdm.json/CollectionLetterType",
+						"Name": "CollectionLetterTypeId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "CollectionLetterTypeName",
+					"Description": "The name of the Collection Letter Type.",
+					"BaseAttributeReference": {
+						"Entity": "CollectionLetterType.cdm.json/CollectionLetterType",
+						"Name": "CollectionLetterTypeName"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 256,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "CollectionLetterTypeDescription",
+					"Description": "The description of the Collection Letter Type.",
+					"BaseAttributeReference": {
+						"Entity": "CollectionLetterType.cdm.json/CollectionLetterType",
+						"Name": "CollectionLetterTypeDescription"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/CollectionLetterType",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/CollectionLetterType",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"CollectionLetterTypeId\":{\"entity\":\"CollectionLetterType.cdm.json/CollectionLetterType\",\"name\":\"CollectionLetterTypeId\"},\"CollectionLetterTypeName\":{\"entity\":\"CollectionLetterType.cdm.json/CollectionLetterType\",\"name\":\"CollectionLetterTypeName\"},\"CollectionLetterTypeDescription\":{\"entity\":\"CollectionLetterType.cdm.json/CollectionLetterType\",\"name\":\"CollectionLetterTypeDescription\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"CollectionLetterType\",\"path\":\"CollectionLetterType.cdm.json/CollectionLetterType\"},\"description\":\"A classification of Collection Letters based upon common characteristics or functions performed.\\n\\nExamples:\\n-  Reminder\\n-  30 Days Overdue\\n-  60 Days Overdue\\n-  Plan to refer to third-party collection service\\n-  Referral to third-party collection service\\n-  Legal action will result\\n-  Legal action has been initiated\",\"primaryKey\":[\"CollectionLetterTypeId\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CollectionLetterType.cdm.json/CollectionLetterType\",\"name\":\"CollectionLetterTypeId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of the Collection Letter Type.\",\"isNullable\":false,\"name\":\"CollectionLetterTypeId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CollectionLetterType.cdm.json/CollectionLetterType\",\"name\":\"CollectionLetterTypeName\"},\"dataType\":\"string\",\"dataTypeLength\":256,\"description\":\"The name of the Collection Letter Type.\",\"isNullable\":true,\"name\":\"CollectionLetterTypeName\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CollectionLetterType.cdm.json/CollectionLetterType\",\"name\":\"CollectionLetterTypeDescription\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"The description of the Collection Letter Type.\",\"isNullable\":true,\"name\":\"CollectionLetterTypeDescription\"}]}}}",
+			"Description": "A classification of Collection Letters based upon common characteristics or functions performed.\n\nExamples:\n-  Reminder\n-  30 Days Overdue\n-  60 Days Overdue\n-  Plan to refer to third-party collection service\n-  Referral to third-party collection service\n-  Legal action will result\n-  Legal action has been initiated",
+			"DisplayFolderInfo": "{\"name\":\"Customer Credit & Collections\",\"colorCode\":\"#022F22\"}",
+			"PrimaryKeys": "CollectionLetterTypeId",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

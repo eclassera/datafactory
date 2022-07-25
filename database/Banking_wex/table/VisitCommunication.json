@@ -1,0 +1,112 @@
+{
+	"name": "VisitCommunication",
+	"properties": {
+		"Name": "VisitCommunication",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "A communication related to a visit.",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "VisitId",
+					"Description": "The unique identifier of a Visit.",
+					"BaseAttributeReference": {
+						"Entity": "VisitCommunication.cdm.json/VisitCommunication",
+						"Name": "VisitId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "CommunicationId",
+					"Description": "The unique identifier of a service request/contact Communication.",
+					"BaseAttributeReference": {
+						"Entity": "VisitCommunication.cdm.json/VisitCommunication",
+						"Name": "CommunicationId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "long",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "long"
+						}
+					}
+				},
+				{
+					"Name": "MarketingEventCommunicationNote",
+					"Description": "A note, comment or additional information regarding the marketing event communication.",
+					"BaseAttributeReference": {
+						"Entity": "VisitCommunication.cdm.json/VisitCommunication",
+						"Name": "MarketingEventCommunicationNote"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/VisitCommunication",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/VisitCommunication",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"VisitId\":{\"entity\":\"VisitCommunication.cdm.json/VisitCommunication\",\"name\":\"VisitId\"},\"CommunicationId\":{\"entity\":\"VisitCommunication.cdm.json/VisitCommunication\",\"name\":\"CommunicationId\"},\"MarketingEventCommunicationNote\":{\"entity\":\"VisitCommunication.cdm.json/VisitCommunication\",\"name\":\"MarketingEventCommunicationNote\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"VisitCommunication\",\"path\":\"VisitCommunication.cdm.json/VisitCommunication\"},\"description\":\"A communication related to a visit.\",\"primaryKey\":[\"VisitId\",\"CommunicationId\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"VisitCommunication.cdm.json/VisitCommunication\",\"name\":\"VisitId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Visit.\",\"isNullable\":false,\"name\":\"VisitId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"VisitCommunication.cdm.json/VisitCommunication\",\"name\":\"CommunicationId\"},\"dataType\":\"long\",\"description\":\"The unique identifier of a service request/contact Communication.\",\"isNullable\":false,\"name\":\"CommunicationId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"VisitCommunication.cdm.json/VisitCommunication\",\"name\":\"MarketingEventCommunicationNote\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"A note, comment or additional information regarding the marketing event communication.\",\"isNullable\":true,\"name\":\"MarketingEventCommunicationNote\"}]}}}",
+			"Description": "A communication related to a visit.",
+			"DisplayFolderInfo": "{\"name\":\"Channel\",\"colorCode\":\"#001D3F\"}",
+			"PrimaryKeys": "VisitId,CommunicationId",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

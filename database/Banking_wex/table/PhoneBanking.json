@@ -1,0 +1,129 @@
+{
+	"name": "PhoneBanking",
+	"properties": {
+		"Name": "PhoneBanking",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "The telephone number that offers banking services.",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "PhoneBankingId",
+					"Description": "The unique identifier of a Phone Banking Channel.",
+					"BaseAttributeReference": {
+						"Entity": "PhoneBanking.cdm.json/PhoneBanking",
+						"Name": "PhoneBankingId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "TelephoneBankingTelephoneNumber",
+					"Description": "The telephone number of Telephone Banking.",
+					"BaseAttributeReference": {
+						"Entity": "PhoneBanking.cdm.json/PhoneBanking",
+						"Name": "TelephoneBankingTelephoneNumber"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "decimal",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Precision": 15,
+						"Scale": 0,
+						"Properties": {
+							"HIVE_TYPE_STRING": "decimal"
+						}
+					}
+				},
+				{
+					"Name": "FinancialInstitutionId",
+					"Description": "The unique identifier of a Financial Institution.",
+					"BaseAttributeReference": {
+						"Entity": "PhoneBanking.cdm.json/PhoneBanking",
+						"Name": "FinancialInstitutionId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "ChannelId",
+					"Description": "The unique identifier of a Channel.",
+					"BaseAttributeReference": {
+						"Entity": "PhoneBanking.cdm.json/PhoneBanking",
+						"Name": "ChannelId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/PhoneBanking",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/PhoneBanking",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"PhoneBankingId\":{\"entity\":\"PhoneBanking.cdm.json/PhoneBanking\",\"name\":\"PhoneBankingId\"},\"TelephoneBankingTelephoneNumber\":{\"entity\":\"PhoneBanking.cdm.json/PhoneBanking\",\"name\":\"TelephoneBankingTelephoneNumber\"},\"FinancialInstitutionId\":{\"entity\":\"PhoneBanking.cdm.json/PhoneBanking\",\"name\":\"FinancialInstitutionId\"},\"ChannelId\":{\"entity\":\"PhoneBanking.cdm.json/PhoneBanking\",\"name\":\"ChannelId\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"PhoneBanking\",\"path\":\"PhoneBanking.cdm.json/PhoneBanking\"},\"description\":\"The telephone number that offers banking services.\",\"primaryKey\":[\"PhoneBankingId\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"PhoneBanking.cdm.json/PhoneBanking\",\"name\":\"PhoneBankingId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Phone Banking Channel.\",\"isNullable\":false,\"name\":\"PhoneBankingId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"PhoneBanking.cdm.json/PhoneBanking\",\"name\":\"TelephoneBankingTelephoneNumber\"},\"dataType\":\"decimal\",\"dataTypeLength\":15,\"description\":\"The telephone number of Telephone Banking.\",\"isNullable\":true,\"scale\":0,\"name\":\"TelephoneBankingTelephoneNumber\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"PhoneBanking.cdm.json/PhoneBanking\",\"name\":\"FinancialInstitutionId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Financial Institution.\",\"isNullable\":true,\"name\":\"FinancialInstitutionId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"PhoneBanking.cdm.json/PhoneBanking\",\"name\":\"ChannelId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Channel.\",\"isNullable\":true,\"name\":\"ChannelId\"}]}}}",
+			"Description": "The telephone number that offers banking services.",
+			"DisplayFolderInfo": "{\"name\":\"Channel\",\"colorCode\":\"#001D3F\"}",
+			"PrimaryKeys": "PhoneBankingId",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

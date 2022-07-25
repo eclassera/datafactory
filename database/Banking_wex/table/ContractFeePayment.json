@@ -1,0 +1,163 @@
+{
+	"name": "ContractFeePayment",
+	"properties": {
+		"Name": "ContractFeePayment",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "The fees paid in conjunction with the contract for the associated period.",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "ContractId",
+					"Description": "The unique identifier of a Contract.",
+					"BaseAttributeReference": {
+						"Entity": "ContractFeePayment.cdm.json/ContractFeePayment",
+						"Name": "ContractId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "ContractFeeTypeId",
+					"Description": "The unique identifier of a contract fee.",
+					"BaseAttributeReference": {
+						"Entity": "ContractFeePayment.cdm.json/ContractFeePayment",
+						"Name": "ContractFeeTypeId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "ContractFeeTimestamp",
+					"Description": "The timestamp associated with the contract fee.",
+					"BaseAttributeReference": {
+						"Entity": "ContractFeePayment.cdm.json/ContractFeePayment",
+						"Name": "ContractFeeTimestamp"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "timestamp",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"TimestampFormat": "YYYY-MM-DD HH:MM:SS.fffffffff",
+							"HIVE_TYPE_STRING": "timestamp"
+						}
+					}
+				},
+				{
+					"Name": "PaymentId",
+					"Description": "The unique identifier of a Payment.",
+					"BaseAttributeReference": {
+						"Entity": "ContractFeePayment.cdm.json/ContractFeePayment",
+						"Name": "PaymentId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "AmountAppliedToContractFee",
+					"Description": "The amount of the associated payment applied to the contract fee.",
+					"BaseAttributeReference": {
+						"Entity": "ContractFeePayment.cdm.json/ContractFeePayment",
+						"Name": "AmountAppliedToContractFee"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "decimal",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Precision": 18,
+						"Scale": 2,
+						"Properties": {
+							"HIVE_TYPE_STRING": "decimal"
+						}
+					}
+				},
+				{
+					"Name": "ContractFeePaymentNote",
+					"Description": "Notes, comments or additional information regarding the Contract Fee Payment.",
+					"BaseAttributeReference": {
+						"Entity": "ContractFeePayment.cdm.json/ContractFeePayment",
+						"Name": "ContractFeePaymentNote"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/ContractFeePayment",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/ContractFeePayment",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"ContractId\":{\"entity\":\"ContractFeePayment.cdm.json/ContractFeePayment\",\"name\":\"ContractId\"},\"ContractFeeTypeId\":{\"entity\":\"ContractFeePayment.cdm.json/ContractFeePayment\",\"name\":\"ContractFeeTypeId\"},\"ContractFeeTimestamp\":{\"entity\":\"ContractFeePayment.cdm.json/ContractFeePayment\",\"name\":\"ContractFeeTimestamp\"},\"PaymentId\":{\"entity\":\"ContractFeePayment.cdm.json/ContractFeePayment\",\"name\":\"PaymentId\"},\"AmountAppliedToContractFee\":{\"entity\":\"ContractFeePayment.cdm.json/ContractFeePayment\",\"name\":\"AmountAppliedToContractFee\"},\"ContractFeePaymentNote\":{\"entity\":\"ContractFeePayment.cdm.json/ContractFeePayment\",\"name\":\"ContractFeePaymentNote\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"ContractFeePayment\",\"path\":\"ContractFeePayment.cdm.json/ContractFeePayment\"},\"description\":\"The fees paid in conjunction with the contract for the associated period.\",\"primaryKey\":[\"ContractId\",\"ContractFeeTypeId\",\"ContractFeeTimestamp\",\"PaymentId\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ContractFeePayment.cdm.json/ContractFeePayment\",\"name\":\"ContractId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Contract.\",\"isNullable\":false,\"name\":\"ContractId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ContractFeePayment.cdm.json/ContractFeePayment\",\"name\":\"ContractFeeTypeId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a contract fee.\",\"isNullable\":false,\"name\":\"ContractFeeTypeId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ContractFeePayment.cdm.json/ContractFeePayment\",\"name\":\"ContractFeeTimestamp\"},\"dataType\":\"timestamp\",\"description\":\"The timestamp associated with the contract fee.\",\"isNullable\":false,\"name\":\"ContractFeeTimestamp\",\"timestampFormat\":\"YYYY-MM-DD HH:MM:SS.fffffffff\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ContractFeePayment.cdm.json/ContractFeePayment\",\"name\":\"PaymentId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Payment.\",\"isNullable\":false,\"name\":\"PaymentId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ContractFeePayment.cdm.json/ContractFeePayment\",\"name\":\"AmountAppliedToContractFee\"},\"dataType\":\"decimal\",\"dataTypeLength\":18,\"description\":\"The amount of the associated payment applied to the contract fee.\",\"isNullable\":true,\"scale\":2,\"name\":\"AmountAppliedToContractFee\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ContractFeePayment.cdm.json/ContractFeePayment\",\"name\":\"ContractFeePaymentNote\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"Notes, comments or additional information regarding the Contract Fee Payment.\",\"isNullable\":true,\"name\":\"ContractFeePaymentNote\"}]}}}",
+			"Description": "The fees paid in conjunction with the contract for the associated period.",
+			"DisplayFolderInfo": "{\"name\":\"Contract\",\"colorCode\":\"#917EDB\"}",
+			"PrimaryKeys": "ContractId,ContractFeeTypeId,ContractFeeTimestamp,PaymentId",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

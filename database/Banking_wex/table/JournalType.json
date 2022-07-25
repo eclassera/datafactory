@@ -1,0 +1,113 @@
+{
+	"name": "JournalType",
+	"properties": {
+		"Name": "JournalType",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "A classification of journal types based on their usage.\n\nEx:\n- General Journal\n- A/P Journal\n- A/R Journal\n- Sales Journal\n- Cash Receipts Journal\n- Cash Payments Journal\n- Purchases Journal\n\nwhere:\n\nGENERAL JOURNAL records all business transaction not recorded in the special journals below. \n\nSALES JOURNAL records sales of goods and/or services to customers\n\nPURCHASES JOURNAL records purchases of goods and/or services on credit\n\nCASH RECEIPTS JOURNAL records the receipt of cash\n\nSALES RETURNS AND ALLOWANCES JOURNAL records issue of credit memos giving the buyer credit for the return of merchandise to the seller and a credit for the return.\n\nPURCHASES RETURNS AND ALLOWANCES JOURNAL acknowledges the receipt of a credit memo from the seller authorizing the return of goods and the reduction or elimination of the buyers obligation to the seller.",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "JournalTypeId",
+					"Description": "The unique identifier of a Journal Type.",
+					"BaseAttributeReference": {
+						"Entity": "JournalType.cdm.json/JournalType",
+						"Name": "JournalTypeId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "JournalTypeName",
+					"Description": "The name of a Journal Type.",
+					"BaseAttributeReference": {
+						"Entity": "JournalType.cdm.json/JournalType",
+						"Name": "JournalTypeName"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 256,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "JournalTypeDescription",
+					"Description": "The description of a Journal Type.",
+					"BaseAttributeReference": {
+						"Entity": "JournalType.cdm.json/JournalType",
+						"Name": "JournalTypeDescription"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/JournalType",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/JournalType",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"JournalTypeId\":{\"entity\":\"JournalType.cdm.json/JournalType\",\"name\":\"JournalTypeId\"},\"JournalTypeName\":{\"entity\":\"JournalType.cdm.json/JournalType\",\"name\":\"JournalTypeName\"},\"JournalTypeDescription\":{\"entity\":\"JournalType.cdm.json/JournalType\",\"name\":\"JournalTypeDescription\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"JournalType\",\"path\":\"JournalType.cdm.json/JournalType\"},\"description\":\"A classification of journal types based on their usage.\\n\\nEx:\\n- General Journal\\n- A/P Journal\\n- A/R Journal\\n- Sales Journal\\n- Cash Receipts Journal\\n- Cash Payments Journal\\n- Purchases Journal\\n\\nwhere:\\n\\nGENERAL JOURNAL records all business transaction not recorded in the special journals below. \\n\\nSALES JOURNAL records sales of goods and/or services to customers\\n\\nPURCHASES JOURNAL records purchases of goods and/or services on credit\\n\\nCASH RECEIPTS JOURNAL records the receipt of cash\\n\\nSALES RETURNS AND ALLOWANCES JOURNAL records issue of credit memos giving the buyer credit for the return of merchandise to the seller and a credit for the return.\\n\\nPURCHASES RETURNS AND ALLOWANCES JOURNAL acknowledges the receipt of a credit memo from the seller authorizing the return of goods and the reduction or elimination of the buyers obligation to the seller.\",\"primaryKey\":[\"JournalTypeId\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"JournalType.cdm.json/JournalType\",\"name\":\"JournalTypeId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Journal Type.\",\"isNullable\":false,\"name\":\"JournalTypeId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"JournalType.cdm.json/JournalType\",\"name\":\"JournalTypeName\"},\"dataType\":\"string\",\"dataTypeLength\":256,\"description\":\"The name of a Journal Type.\",\"isNullable\":true,\"name\":\"JournalTypeName\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"JournalType.cdm.json/JournalType\",\"name\":\"JournalTypeDescription\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"The description of a Journal Type.\",\"isNullable\":true,\"name\":\"JournalTypeDescription\"}]}}}",
+			"Description": "A classification of journal types based on their usage.\n\nEx:\n- General Journal\n- A/P Journal\n- A/R Journal\n- Sales Journal\n- Cash Receipts Journal\n- Cash Payments Journal\n- Purchases Journal\n\nwhere:\n\nGENERAL JOURNAL records all business transaction not recorded in the special journals below. \n\nSALES JOURNAL records sales of goods and/or services to customers\n\nPURCHASES JOURNAL records purchases of goods and/or services on credit\n\nCASH RECEIPTS JOURNAL records the receipt of cash\n\nSALES RETURNS AND ALLOWANCES JOURNAL records issue of credit memos giving the buyer credit for the return of merchandise to the seller and a credit for the return.\n\nPURCHASES RETURNS AND ALLOWANCES JOURNAL acknowledges the receipt of a credit memo from the seller authorizing the return of goods and the reduction or elimination of the buyers obligation to the seller.",
+			"DisplayFolderInfo": "{\"name\":\"Accounting & Financial Reporting\",\"colorCode\":\"#0078D4\"}",
+			"PrimaryKeys": "JournalTypeId",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

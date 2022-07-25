@@ -1,0 +1,146 @@
+{
+	"name": "CustomerRacialCategory",
+	"properties": {
+		"Name": "CustomerRacialCategory",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "The racial category of the Customer.\n\nThese criteria can change over a period of time and are represented with 'period start date/period end date' qualifications, which represented the best case for knowing this information. If the  data is only randomly sampled or recorded then you could use a single 'date' to identify its recording or effective as-of date.",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "CustomerId",
+					"Description": "The unique identifier of a Customer.",
+					"BaseAttributeReference": {
+						"Entity": "CustomerRacialCategory.cdm.json/CustomerRacialCategory",
+						"Name": "CustomerId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "long",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "long"
+						}
+					}
+				},
+				{
+					"Name": "RacialCategoryId",
+					"Description": "The unique identifier of a Racial Category.",
+					"BaseAttributeReference": {
+						"Entity": "CustomerRacialCategory.cdm.json/CustomerRacialCategory",
+						"Name": "RacialCategoryId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "PeriodStartDate",
+					"Description": "The period start date for which the associated data is effective or 'as-of'.",
+					"BaseAttributeReference": {
+						"Entity": "CustomerRacialCategory.cdm.json/CustomerRacialCategory",
+						"Name": "PeriodStartDate"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "date",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"DateFormat": "YYYY-MM-DD",
+							"HIVE_TYPE_STRING": "date"
+						}
+					}
+				},
+				{
+					"Name": "PeriodEndDate",
+					"Description": "The period end date for which the associated data is effective or 'as-of'.",
+					"BaseAttributeReference": {
+						"Entity": "CustomerRacialCategory.cdm.json/CustomerRacialCategory",
+						"Name": "PeriodEndDate"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "date",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"DateFormat": "YYYY-MM-DD",
+							"HIVE_TYPE_STRING": "date"
+						}
+					}
+				},
+				{
+					"Name": "CustomerRacialCategoryNote",
+					"Description": "A note, comment or additional information regarding the Customer's racial category.",
+					"BaseAttributeReference": {
+						"Entity": "CustomerRacialCategory.cdm.json/CustomerRacialCategory",
+						"Name": "CustomerRacialCategoryNote"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/CustomerRacialCategory",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/CustomerRacialCategory",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"CustomerId\":{\"entity\":\"CustomerRacialCategory.cdm.json/CustomerRacialCategory\",\"name\":\"CustomerId\"},\"RacialCategoryId\":{\"entity\":\"CustomerRacialCategory.cdm.json/CustomerRacialCategory\",\"name\":\"RacialCategoryId\"},\"PeriodStartDate\":{\"entity\":\"CustomerRacialCategory.cdm.json/CustomerRacialCategory\",\"name\":\"PeriodStartDate\"},\"PeriodEndDate\":{\"entity\":\"CustomerRacialCategory.cdm.json/CustomerRacialCategory\",\"name\":\"PeriodEndDate\"},\"CustomerRacialCategoryNote\":{\"entity\":\"CustomerRacialCategory.cdm.json/CustomerRacialCategory\",\"name\":\"CustomerRacialCategoryNote\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"CustomerRacialCategory\",\"path\":\"CustomerRacialCategory.cdm.json/CustomerRacialCategory\"},\"description\":\"The racial category of the Customer.\\n\\nThese criteria can change over a period of time and are represented with 'period start date/period end date' qualifications, which represented the best case for knowing this information. If the  data is only randomly sampled or recorded then you could use a single 'date' to identify its recording or effective as-of date.\",\"primaryKey\":[\"CustomerId\",\"RacialCategoryId\",\"PeriodStartDate\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CustomerRacialCategory.cdm.json/CustomerRacialCategory\",\"name\":\"CustomerId\"},\"dataType\":\"long\",\"description\":\"The unique identifier of a Customer.\",\"isNullable\":false,\"name\":\"CustomerId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CustomerRacialCategory.cdm.json/CustomerRacialCategory\",\"name\":\"RacialCategoryId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Racial Category.\",\"isNullable\":false,\"name\":\"RacialCategoryId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CustomerRacialCategory.cdm.json/CustomerRacialCategory\",\"name\":\"PeriodStartDate\"},\"dataType\":\"date\",\"dateFormat\":\"YYYY-MM-DD\",\"description\":\"The period start date for which the associated data is effective or 'as-of'.\",\"isNullable\":false,\"name\":\"PeriodStartDate\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CustomerRacialCategory.cdm.json/CustomerRacialCategory\",\"name\":\"PeriodEndDate\"},\"dataType\":\"date\",\"dateFormat\":\"YYYY-MM-DD\",\"description\":\"The period end date for which the associated data is effective or 'as-of'.\",\"isNullable\":true,\"name\":\"PeriodEndDate\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CustomerRacialCategory.cdm.json/CustomerRacialCategory\",\"name\":\"CustomerRacialCategoryNote\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"A note, comment or additional information regarding the Customer's racial category.\",\"isNullable\":true,\"name\":\"CustomerRacialCategoryNote\"}]}}}",
+			"Description": "The racial category of the Customer.\n\nThese criteria can change over a period of time and are represented with 'period start date/period end date' qualifications, which represented the best case for knowing this information. If the  data is only randomly sampled or recorded then you could use a single 'date' to identify its recording or effective as-of date.",
+			"DisplayFolderInfo": "{\"name\":\"Customer\",\"colorCode\":\"#4B003F\"}",
+			"PrimaryKeys": "CustomerId,RacialCategoryId,PeriodStartDate",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

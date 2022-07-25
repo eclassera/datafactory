@@ -1,0 +1,161 @@
+{
+	"name": "EquifaxConsumerAccountPaymentHistory",
+	"properties": {
+		"Name": "EquifaxConsumerAccountPaymentHistory",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "The payment history associated with the trade account.",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "EquifaxReportNumber",
+					"Description": "The Equifax report number.",
+					"BaseAttributeReference": {
+						"Entity": "EquifaxConsumerAccountPaymentHistory.cdm.json/EquifaxConsumerAccountPaymentHistory",
+						"Name": "EquifaxReportNumber"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "AccountNumber",
+					"Description": "The account number.",
+					"BaseAttributeReference": {
+						"Entity": "EquifaxConsumerAccountPaymentHistory.cdm.json/EquifaxConsumerAccountPaymentHistory",
+						"Name": "AccountNumber"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Length": 20,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "Month",
+					"Description": "The payment history month.",
+					"BaseAttributeReference": {
+						"Entity": "EquifaxConsumerAccountPaymentHistory.cdm.json/EquifaxConsumerAccountPaymentHistory",
+						"Name": "Month"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "Year",
+					"Description": "The payment history year.",
+					"BaseAttributeReference": {
+						"Entity": "EquifaxConsumerAccountPaymentHistory.cdm.json/EquifaxConsumerAccountPaymentHistory",
+						"Name": "Year"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "PaymentReceivedInDays",
+					"Description": "The number of days within which the payments are received.\n\nEx:\n- 30 \n- 60 \n- 90",
+					"BaseAttributeReference": {
+						"Entity": "EquifaxConsumerAccountPaymentHistory.cdm.json/EquifaxConsumerAccountPaymentHistory",
+						"Name": "PaymentReceivedInDays"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "EquifaxPaymentHistoryRateStatusCode",
+					"Description": "The unique identifier of a payment history rate status.",
+					"BaseAttributeReference": {
+						"Entity": "EquifaxConsumerAccountPaymentHistory.cdm.json/EquifaxConsumerAccountPaymentHistory",
+						"Name": "EquifaxPaymentHistoryRateStatusCode"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 3,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/EquifaxConsumerAccountPaymentHistory",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/EquifaxConsumerAccountPaymentHistory",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"EquifaxReportNumber\":{\"entity\":\"EquifaxConsumerAccountPaymentHistory.cdm.json/EquifaxConsumerAccountPaymentHistory\",\"name\":\"EquifaxReportNumber\"},\"AccountNumber\":{\"entity\":\"EquifaxConsumerAccountPaymentHistory.cdm.json/EquifaxConsumerAccountPaymentHistory\",\"name\":\"AccountNumber\"},\"Month\":{\"entity\":\"EquifaxConsumerAccountPaymentHistory.cdm.json/EquifaxConsumerAccountPaymentHistory\",\"name\":\"Month\"},\"Year\":{\"entity\":\"EquifaxConsumerAccountPaymentHistory.cdm.json/EquifaxConsumerAccountPaymentHistory\",\"name\":\"Year\"},\"PaymentReceivedInDays\":{\"entity\":\"EquifaxConsumerAccountPaymentHistory.cdm.json/EquifaxConsumerAccountPaymentHistory\",\"name\":\"PaymentReceivedInDays\"},\"EquifaxPaymentHistoryRateStatusCode\":{\"entity\":\"EquifaxConsumerAccountPaymentHistory.cdm.json/EquifaxConsumerAccountPaymentHistory\",\"name\":\"EquifaxPaymentHistoryRateStatusCode\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"EquifaxConsumerAccountPaymentHistory\",\"path\":\"EquifaxConsumerAccountPaymentHistory.cdm.json/EquifaxConsumerAccountPaymentHistory\"},\"description\":\"The payment history associated with the trade account.\",\"primaryKey\":[\"EquifaxReportNumber\",\"AccountNumber\",\"Month\",\"Year\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"EquifaxConsumerAccountPaymentHistory.cdm.json/EquifaxConsumerAccountPaymentHistory\",\"name\":\"EquifaxReportNumber\"},\"dataType\":\"integer\",\"description\":\"The Equifax report number.\",\"isNullable\":false,\"name\":\"EquifaxReportNumber\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"EquifaxConsumerAccountPaymentHistory.cdm.json/EquifaxConsumerAccountPaymentHistory\",\"name\":\"AccountNumber\"},\"dataType\":\"string\",\"dataTypeLength\":20,\"description\":\"The account number.\",\"isNullable\":false,\"name\":\"AccountNumber\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"EquifaxConsumerAccountPaymentHistory.cdm.json/EquifaxConsumerAccountPaymentHistory\",\"name\":\"Month\"},\"dataType\":\"integer\",\"description\":\"The payment history month.\",\"isNullable\":false,\"name\":\"Month\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"EquifaxConsumerAccountPaymentHistory.cdm.json/EquifaxConsumerAccountPaymentHistory\",\"name\":\"Year\"},\"dataType\":\"integer\",\"description\":\"The payment history year.\",\"isNullable\":false,\"name\":\"Year\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"EquifaxConsumerAccountPaymentHistory.cdm.json/EquifaxConsumerAccountPaymentHistory\",\"name\":\"PaymentReceivedInDays\"},\"dataType\":\"integer\",\"description\":\"The number of days within which the payments are received.\\n\\nEx:\\n- 30 \\n- 60 \\n- 90\",\"isNullable\":true,\"name\":\"PaymentReceivedInDays\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"EquifaxConsumerAccountPaymentHistory.cdm.json/EquifaxConsumerAccountPaymentHistory\",\"name\":\"EquifaxPaymentHistoryRateStatusCode\"},\"dataType\":\"string\",\"dataTypeLength\":3,\"description\":\"The unique identifier of a payment history rate status.\",\"isNullable\":true,\"name\":\"EquifaxPaymentHistoryRateStatusCode\"}]}}}",
+			"Description": "The payment history associated with the trade account.",
+			"DisplayFolderInfo": "{\"name\":\"Customer Credit & Collections\",\"colorCode\":\"#022F22\"}",
+			"PrimaryKeys": "EquifaxReportNumber,AccountNumber,Month,Year",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

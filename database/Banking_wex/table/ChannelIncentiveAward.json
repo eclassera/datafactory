@@ -1,0 +1,147 @@
+{
+	"name": "ChannelIncentiveAward",
+	"properties": {
+		"Name": "ChannelIncentiveAward",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "An incentive that is awarded to a Channel.",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "ChannelId",
+					"Description": "The unique identifier of a Channel.",
+					"BaseAttributeReference": {
+						"Entity": "ChannelIncentiveAward.cdm.json/ChannelIncentiveAward",
+						"Name": "ChannelId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "IncentiveId",
+					"Description": "The unique identifier of an Incentive.",
+					"BaseAttributeReference": {
+						"Entity": "ChannelIncentiveAward.cdm.json/ChannelIncentiveAward",
+						"Name": "IncentiveId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "AwardDate",
+					"Description": "The date that the incentive was awarded.",
+					"BaseAttributeReference": {
+						"Entity": "ChannelIncentiveAward.cdm.json/ChannelIncentiveAward",
+						"Name": "AwardDate"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "date",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"DateFormat": "YYYY-MM-DD",
+							"HIVE_TYPE_STRING": "date"
+						}
+					}
+				},
+				{
+					"Name": "AwardAmount",
+					"Description": "The amount or value of the incentive.",
+					"BaseAttributeReference": {
+						"Entity": "ChannelIncentiveAward.cdm.json/ChannelIncentiveAward",
+						"Name": "AwardAmount"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "decimal",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Precision": 18,
+						"Scale": 2,
+						"Properties": {
+							"HIVE_TYPE_STRING": "decimal"
+						}
+					}
+				},
+				{
+					"Name": "ChannelIncentiveAwardNote",
+					"Description": "Notes, comments or additional information regarding the Channel Incentive Award.",
+					"BaseAttributeReference": {
+						"Entity": "ChannelIncentiveAward.cdm.json/ChannelIncentiveAward",
+						"Name": "ChannelIncentiveAwardNote"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/ChannelIncentiveAward",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/ChannelIncentiveAward",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"ChannelId\":{\"entity\":\"ChannelIncentiveAward.cdm.json/ChannelIncentiveAward\",\"name\":\"ChannelId\"},\"IncentiveId\":{\"entity\":\"ChannelIncentiveAward.cdm.json/ChannelIncentiveAward\",\"name\":\"IncentiveId\"},\"AwardDate\":{\"entity\":\"ChannelIncentiveAward.cdm.json/ChannelIncentiveAward\",\"name\":\"AwardDate\"},\"AwardAmount\":{\"entity\":\"ChannelIncentiveAward.cdm.json/ChannelIncentiveAward\",\"name\":\"AwardAmount\"},\"ChannelIncentiveAwardNote\":{\"entity\":\"ChannelIncentiveAward.cdm.json/ChannelIncentiveAward\",\"name\":\"ChannelIncentiveAwardNote\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"ChannelIncentiveAward\",\"path\":\"ChannelIncentiveAward.cdm.json/ChannelIncentiveAward\"},\"description\":\"An incentive that is awarded to a Channel.\",\"primaryKey\":[\"ChannelId\",\"IncentiveId\",\"AwardDate\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ChannelIncentiveAward.cdm.json/ChannelIncentiveAward\",\"name\":\"ChannelId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Channel.\",\"isNullable\":false,\"name\":\"ChannelId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ChannelIncentiveAward.cdm.json/ChannelIncentiveAward\",\"name\":\"IncentiveId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of an Incentive.\",\"isNullable\":false,\"name\":\"IncentiveId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ChannelIncentiveAward.cdm.json/ChannelIncentiveAward\",\"name\":\"AwardDate\"},\"dataType\":\"date\",\"dateFormat\":\"YYYY-MM-DD\",\"description\":\"The date that the incentive was awarded.\",\"isNullable\":false,\"name\":\"AwardDate\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ChannelIncentiveAward.cdm.json/ChannelIncentiveAward\",\"name\":\"AwardAmount\"},\"dataType\":\"decimal\",\"dataTypeLength\":18,\"description\":\"The amount or value of the incentive.\",\"isNullable\":true,\"scale\":2,\"name\":\"AwardAmount\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ChannelIncentiveAward.cdm.json/ChannelIncentiveAward\",\"name\":\"ChannelIncentiveAwardNote\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"Notes, comments or additional information regarding the Channel Incentive Award.\",\"isNullable\":true,\"name\":\"ChannelIncentiveAwardNote\"}]}}}",
+			"Description": "An incentive that is awarded to a Channel.",
+			"DisplayFolderInfo": "{\"name\":\"Channel\",\"colorCode\":\"#001D3F\"}",
+			"PrimaryKeys": "ChannelId,IncentiveId,AwardDate",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

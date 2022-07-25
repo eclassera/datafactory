@@ -1,0 +1,113 @@
+{
+	"name": "PaymentMethod",
+	"properties": {
+		"Name": "PaymentMethod",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "The means of payment.\n\nEx:\n- Charge to account\n- VISA\n- MasterCard\n- American Express\n- Discover Card\n- Store Credit Card\n- Cash\n- Debit card\n- Personal check\n- Company check\n- Gift Card\n- Wire Transfer\n- Letter of Credit\n- Credit Line\n- COD\n- PayPal\n- Gift Certificates",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "PaymentMethodId",
+					"Description": "The unique identifier of a Payment Method.",
+					"BaseAttributeReference": {
+						"Entity": "PaymentMethod.cdm.json/PaymentMethod",
+						"Name": "PaymentMethodId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "PaymentMethodName",
+					"Description": "The name of the Payment Method.",
+					"BaseAttributeReference": {
+						"Entity": "PaymentMethod.cdm.json/PaymentMethod",
+						"Name": "PaymentMethodName"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 256,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "PaymentMethodDescription",
+					"Description": "The description of the Payment Method.",
+					"BaseAttributeReference": {
+						"Entity": "PaymentMethod.cdm.json/PaymentMethod",
+						"Name": "PaymentMethodDescription"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/PaymentMethod",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/PaymentMethod",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"PaymentMethodId\":{\"entity\":\"PaymentMethod.cdm.json/PaymentMethod\",\"name\":\"PaymentMethodId\"},\"PaymentMethodName\":{\"entity\":\"PaymentMethod.cdm.json/PaymentMethod\",\"name\":\"PaymentMethodName\"},\"PaymentMethodDescription\":{\"entity\":\"PaymentMethod.cdm.json/PaymentMethod\",\"name\":\"PaymentMethodDescription\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"PaymentMethod\",\"path\":\"PaymentMethod.cdm.json/PaymentMethod\"},\"description\":\"The means of payment.\\n\\nEx:\\n- Charge to account\\n- VISA\\n- MasterCard\\n- American Express\\n- Discover Card\\n- Store Credit Card\\n- Cash\\n- Debit card\\n- Personal check\\n- Company check\\n- Gift Card\\n- Wire Transfer\\n- Letter of Credit\\n- Credit Line\\n- COD\\n- PayPal\\n- Gift Certificates\",\"primaryKey\":[\"PaymentMethodId\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"PaymentMethod.cdm.json/PaymentMethod\",\"name\":\"PaymentMethodId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Payment Method.\",\"isNullable\":false,\"name\":\"PaymentMethodId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"PaymentMethod.cdm.json/PaymentMethod\",\"name\":\"PaymentMethodName\"},\"dataType\":\"string\",\"dataTypeLength\":256,\"description\":\"The name of the Payment Method.\",\"isNullable\":true,\"name\":\"PaymentMethodName\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"PaymentMethod.cdm.json/PaymentMethod\",\"name\":\"PaymentMethodDescription\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"The description of the Payment Method.\",\"isNullable\":true,\"name\":\"PaymentMethodDescription\"}]}}}",
+			"Description": "The means of payment.\n\nEx:\n- Charge to account\n- VISA\n- MasterCard\n- American Express\n- Discover Card\n- Store Credit Card\n- Cash\n- Debit card\n- Personal check\n- Company check\n- Gift Card\n- Wire Transfer\n- Letter of Credit\n- Credit Line\n- COD\n- PayPal\n- Gift Certificates",
+			"DisplayFolderInfo": "{\"name\":\"Customer\",\"colorCode\":\"#4B003F\"}",
+			"PrimaryKeys": "PaymentMethodId",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

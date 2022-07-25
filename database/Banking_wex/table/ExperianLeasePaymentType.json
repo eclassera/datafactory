@@ -1,0 +1,113 @@
+{
+	"name": "ExperianLeasePaymentType",
+	"properties": {
+		"Name": "ExperianLeasePaymentType",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "The type of Experian lease payment.\n\nEx:\n- Fixed",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "ExperianLeasePaymentTypeId",
+					"Description": "The unique identifier of an Experian lease payment type.",
+					"BaseAttributeReference": {
+						"Entity": "ExperianLeasePaymentType.cdm.json/ExperianLeasePaymentType",
+						"Name": "ExperianLeasePaymentTypeId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "ExperianLeasePaymentTypeName",
+					"Description": "The name of an Experian lease payment type.",
+					"BaseAttributeReference": {
+						"Entity": "ExperianLeasePaymentType.cdm.json/ExperianLeasePaymentType",
+						"Name": "ExperianLeasePaymentTypeName"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 256,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "ExperianLeasePaymentTypeDescription",
+					"Description": "The description of an Experian lease payment type.",
+					"BaseAttributeReference": {
+						"Entity": "ExperianLeasePaymentType.cdm.json/ExperianLeasePaymentType",
+						"Name": "ExperianLeasePaymentTypeDescription"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/ExperianLeasePaymentType",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/ExperianLeasePaymentType",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"ExperianLeasePaymentTypeId\":{\"entity\":\"ExperianLeasePaymentType.cdm.json/ExperianLeasePaymentType\",\"name\":\"ExperianLeasePaymentTypeId\"},\"ExperianLeasePaymentTypeName\":{\"entity\":\"ExperianLeasePaymentType.cdm.json/ExperianLeasePaymentType\",\"name\":\"ExperianLeasePaymentTypeName\"},\"ExperianLeasePaymentTypeDescription\":{\"entity\":\"ExperianLeasePaymentType.cdm.json/ExperianLeasePaymentType\",\"name\":\"ExperianLeasePaymentTypeDescription\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"ExperianLeasePaymentType\",\"path\":\"ExperianLeasePaymentType.cdm.json/ExperianLeasePaymentType\"},\"description\":\"The type of Experian lease payment.\\n\\nEx:\\n- Fixed\",\"primaryKey\":[\"ExperianLeasePaymentTypeId\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ExperianLeasePaymentType.cdm.json/ExperianLeasePaymentType\",\"name\":\"ExperianLeasePaymentTypeId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of an Experian lease payment type.\",\"isNullable\":false,\"name\":\"ExperianLeasePaymentTypeId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ExperianLeasePaymentType.cdm.json/ExperianLeasePaymentType\",\"name\":\"ExperianLeasePaymentTypeName\"},\"dataType\":\"string\",\"dataTypeLength\":256,\"description\":\"The name of an Experian lease payment type.\",\"isNullable\":true,\"name\":\"ExperianLeasePaymentTypeName\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ExperianLeasePaymentType.cdm.json/ExperianLeasePaymentType\",\"name\":\"ExperianLeasePaymentTypeDescription\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"The description of an Experian lease payment type.\",\"isNullable\":true,\"name\":\"ExperianLeasePaymentTypeDescription\"}]}}}",
+			"Description": "The type of Experian lease payment.\n\nEx:\n- Fixed",
+			"DisplayFolderInfo": "{\"name\":\"Customer Credit & Collections\",\"colorCode\":\"#022F22\"}",
+			"PrimaryKeys": "ExperianLeasePaymentTypeId",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

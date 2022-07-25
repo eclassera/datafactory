@@ -1,0 +1,146 @@
+{
+	"name": "LienStatus",
+	"properties": {
+		"Name": "LienStatus",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "The status of the Lien as of the associated date or period.",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "LienId",
+					"Description": "The unique identifier of a Lien.",
+					"BaseAttributeReference": {
+						"Entity": "LienStatus.cdm.json/LienStatus",
+						"Name": "LienId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "PeriodStartDate",
+					"Description": "The period start date associated with the Lien status.",
+					"BaseAttributeReference": {
+						"Entity": "LienStatus.cdm.json/LienStatus",
+						"Name": "PeriodStartDate"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "date",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"DateFormat": "YYYY-MM-DD",
+							"HIVE_TYPE_STRING": "date"
+						}
+					}
+				},
+				{
+					"Name": "PeriodEndDate",
+					"Description": "The period end date associated with the Lien status.",
+					"BaseAttributeReference": {
+						"Entity": "LienStatus.cdm.json/LienStatus",
+						"Name": "PeriodEndDate"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "date",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"DateFormat": "YYYY-MM-DD",
+							"HIVE_TYPE_STRING": "date"
+						}
+					}
+				},
+				{
+					"Name": "LienStatusTypeId",
+					"Description": "The unique identifier of a Lien Status Type.",
+					"BaseAttributeReference": {
+						"Entity": "LienStatus.cdm.json/LienStatus",
+						"Name": "LienStatusTypeId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "LienStatusNote",
+					"Description": "A note, comment or additional information regarding the Lien status.",
+					"BaseAttributeReference": {
+						"Entity": "LienStatus.cdm.json/LienStatus",
+						"Name": "LienStatusNote"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/LienStatus",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/LienStatus",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"LienId\":{\"entity\":\"LienStatus.cdm.json/LienStatus\",\"name\":\"LienId\"},\"PeriodStartDate\":{\"entity\":\"LienStatus.cdm.json/LienStatus\",\"name\":\"PeriodStartDate\"},\"PeriodEndDate\":{\"entity\":\"LienStatus.cdm.json/LienStatus\",\"name\":\"PeriodEndDate\"},\"LienStatusTypeId\":{\"entity\":\"LienStatus.cdm.json/LienStatus\",\"name\":\"LienStatusTypeId\"},\"LienStatusNote\":{\"entity\":\"LienStatus.cdm.json/LienStatus\",\"name\":\"LienStatusNote\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"LienStatus\",\"path\":\"LienStatus.cdm.json/LienStatus\"},\"description\":\"The status of the Lien as of the associated date or period.\",\"primaryKey\":[\"LienId\",\"PeriodStartDate\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"LienStatus.cdm.json/LienStatus\",\"name\":\"LienId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Lien.\",\"isNullable\":false,\"name\":\"LienId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"LienStatus.cdm.json/LienStatus\",\"name\":\"PeriodStartDate\"},\"dataType\":\"date\",\"dateFormat\":\"YYYY-MM-DD\",\"description\":\"The period start date associated with the Lien status.\",\"isNullable\":false,\"name\":\"PeriodStartDate\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"LienStatus.cdm.json/LienStatus\",\"name\":\"PeriodEndDate\"},\"dataType\":\"date\",\"dateFormat\":\"YYYY-MM-DD\",\"description\":\"The period end date associated with the Lien status.\",\"isNullable\":true,\"name\":\"PeriodEndDate\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"LienStatus.cdm.json/LienStatus\",\"name\":\"LienStatusTypeId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Lien Status Type.\",\"isNullable\":false,\"name\":\"LienStatusTypeId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"LienStatus.cdm.json/LienStatus\",\"name\":\"LienStatusNote\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"A note, comment or additional information regarding the Lien status.\",\"isNullable\":true,\"name\":\"LienStatusNote\"}]}}}",
+			"Description": "The status of the Lien as of the associated date or period.",
+			"DisplayFolderInfo": "{\"name\":\"Customer Credit & Collections\",\"colorCode\":\"#022F22\"}",
+			"PrimaryKeys": "LienId,PeriodStartDate",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

@@ -1,0 +1,146 @@
+{
+	"name": "LegalEntityIdentification",
+	"properties": {
+		"Name": "LegalEntityIdentification",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "The Identification assigned to a Legal Entity.",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "LegalEntityId",
+					"Description": "The unique identifier of a Legal Entity.",
+					"BaseAttributeReference": {
+						"Entity": "LegalEntityIdentification.cdm.json/LegalEntityIdentification",
+						"Name": "LegalEntityId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "IdentificationId",
+					"Description": "The unique identifier of the identification.",
+					"BaseAttributeReference": {
+						"Entity": "LegalEntityIdentification.cdm.json/LegalEntityIdentification",
+						"Name": "IdentificationId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "PeriodStartTimestamp",
+					"Description": "The period start timestamp that the party is assigned the identification.",
+					"BaseAttributeReference": {
+						"Entity": "LegalEntityIdentification.cdm.json/LegalEntityIdentification",
+						"Name": "PeriodStartTimestamp"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "timestamp",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"TimestampFormat": "YYYY-MM-DD HH:MM:SS.fffffffff",
+							"HIVE_TYPE_STRING": "timestamp"
+						}
+					}
+				},
+				{
+					"Name": "PeriodEndTimestamp",
+					"Description": "The period end timestamp that the party is assigned the identification.",
+					"BaseAttributeReference": {
+						"Entity": "LegalEntityIdentification.cdm.json/LegalEntityIdentification",
+						"Name": "PeriodEndTimestamp"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "timestamp",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"TimestampFormat": "YYYY-MM-DD HH:MM:SS.fffffffff",
+							"HIVE_TYPE_STRING": "timestamp"
+						}
+					}
+				},
+				{
+					"Name": "LegalEntityIdentificationNote",
+					"Description": "A note, comment or additional information regarding the Legal Entity Identification.",
+					"BaseAttributeReference": {
+						"Entity": "LegalEntityIdentification.cdm.json/LegalEntityIdentification",
+						"Name": "LegalEntityIdentificationNote"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/LegalEntityIdentification",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/LegalEntityIdentification",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"LegalEntityId\":{\"entity\":\"LegalEntityIdentification.cdm.json/LegalEntityIdentification\",\"name\":\"LegalEntityId\"},\"IdentificationId\":{\"entity\":\"LegalEntityIdentification.cdm.json/LegalEntityIdentification\",\"name\":\"IdentificationId\"},\"PeriodStartTimestamp\":{\"entity\":\"LegalEntityIdentification.cdm.json/LegalEntityIdentification\",\"name\":\"PeriodStartTimestamp\"},\"PeriodEndTimestamp\":{\"entity\":\"LegalEntityIdentification.cdm.json/LegalEntityIdentification\",\"name\":\"PeriodEndTimestamp\"},\"LegalEntityIdentificationNote\":{\"entity\":\"LegalEntityIdentification.cdm.json/LegalEntityIdentification\",\"name\":\"LegalEntityIdentificationNote\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"LegalEntityIdentification\",\"path\":\"LegalEntityIdentification.cdm.json/LegalEntityIdentification\"},\"description\":\"The Identification assigned to a Legal Entity.\",\"primaryKey\":[\"LegalEntityId\",\"IdentificationId\",\"PeriodStartTimestamp\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"LegalEntityIdentification.cdm.json/LegalEntityIdentification\",\"name\":\"LegalEntityId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Legal Entity.\",\"isNullable\":false,\"name\":\"LegalEntityId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"LegalEntityIdentification.cdm.json/LegalEntityIdentification\",\"name\":\"IdentificationId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of the identification.\",\"isNullable\":false,\"name\":\"IdentificationId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"LegalEntityIdentification.cdm.json/LegalEntityIdentification\",\"name\":\"PeriodStartTimestamp\"},\"dataType\":\"timestamp\",\"description\":\"The period start timestamp that the party is assigned the identification.\",\"isNullable\":false,\"name\":\"PeriodStartTimestamp\",\"timestampFormat\":\"YYYY-MM-DD HH:MM:SS.fffffffff\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"LegalEntityIdentification.cdm.json/LegalEntityIdentification\",\"name\":\"PeriodEndTimestamp\"},\"dataType\":\"timestamp\",\"description\":\"The period end timestamp that the party is assigned the identification.\",\"isNullable\":true,\"name\":\"PeriodEndTimestamp\",\"timestampFormat\":\"YYYY-MM-DD HH:MM:SS.fffffffff\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"LegalEntityIdentification.cdm.json/LegalEntityIdentification\",\"name\":\"LegalEntityIdentificationNote\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"A note, comment or additional information regarding the Legal Entity Identification.\",\"isNullable\":true,\"name\":\"LegalEntityIdentificationNote\"}]}}}",
+			"Description": "The Identification assigned to a Legal Entity.",
+			"DisplayFolderInfo": "{\"name\":\"Legal Entity\",\"colorCode\":\"#630454\"}",
+			"PrimaryKeys": "LegalEntityId,IdentificationId,PeriodStartTimestamp",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

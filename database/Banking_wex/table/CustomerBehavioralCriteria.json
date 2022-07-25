@@ -1,0 +1,146 @@
+{
+	"name": "CustomerBehavioralCriteria",
+	"properties": {
+		"Name": "CustomerBehavioralCriteria",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "The one or more behavioral criteria that are assigned or linked to a Customer and by which they are identified or qualified from a behavioral focus.\n\nNote:\nThis entity can be linked to PRODUCT if behavior is needed to be tracked for specific products.   This is normally done in models that have a specific industry-context such as the enterprise models.\n\nBehavioral market segmentation is based upon how consumers behave or use a products and the corresponding buying, consumption or usage patterns that result.    \n\nAn example of a behavioral criteria is when they buy a product (special occasions, Christmas, anniversaries) or how often they buy that product (occasional purchases, frequent purchases).\n\nThe business organization identifies a finite number of Behavioral Criteria that are used to identify customers and prospective customers.   \n\nThe Behavioral Criteria is the specific criteria or value that may be linked to a Market Segment.\n\nThe Behavioral Criteria Type is the larger category to which the Behavioral Criteria belongs.\n\nThe following are examples:\n\nBehavioral Criteria: Impulse shopper\nBehavioral Criteria Type:  Purchasing Pattern\n\nBehavioral Criteria: End Of Week\nBehavioral Criteria Type: Purchasing Pattern\n\nBehavioral Criteria: Aggressive \nBehavioral Criteria Type: Investment Style\n\nBehavioral Criteria: Business Communications\nBehavioral Criteria Type: Cellular Phone Usage\n\nBehavioral Criteria: Evening and Weekends\nBehavioral Criteria Type: Electricity Usage",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "CustomerId",
+					"Description": "The unique identifier of a Customer.",
+					"BaseAttributeReference": {
+						"Entity": "CustomerBehavioralCriteria.cdm.json/CustomerBehavioralCriteria",
+						"Name": "CustomerId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "long",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "long"
+						}
+					}
+				},
+				{
+					"Name": "BehavioralCriteriaId",
+					"Description": "The unique identifier of a Behavioral Criteria.",
+					"BaseAttributeReference": {
+						"Entity": "CustomerBehavioralCriteria.cdm.json/CustomerBehavioralCriteria",
+						"Name": "BehavioralCriteriaId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "PeriodStartDate",
+					"Description": "The period start date for which the associated data is effective or 'as-of'.",
+					"BaseAttributeReference": {
+						"Entity": "CustomerBehavioralCriteria.cdm.json/CustomerBehavioralCriteria",
+						"Name": "PeriodStartDate"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "date",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"DateFormat": "YYYY-MM-DD",
+							"HIVE_TYPE_STRING": "date"
+						}
+					}
+				},
+				{
+					"Name": "PeriodEndDate",
+					"Description": "The period end date for which the associated data is effective or 'as-of'.",
+					"BaseAttributeReference": {
+						"Entity": "CustomerBehavioralCriteria.cdm.json/CustomerBehavioralCriteria",
+						"Name": "PeriodEndDate"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "date",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"DateFormat": "YYYY-MM-DD",
+							"HIVE_TYPE_STRING": "date"
+						}
+					}
+				},
+				{
+					"Name": "CustomerBehavioralCriteriaNote",
+					"Description": "A note, comment or additional information related to Customer Behavioral Criteria.",
+					"BaseAttributeReference": {
+						"Entity": "CustomerBehavioralCriteria.cdm.json/CustomerBehavioralCriteria",
+						"Name": "CustomerBehavioralCriteriaNote"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/CustomerBehavioralCriteria",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/CustomerBehavioralCriteria",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"CustomerId\":{\"entity\":\"CustomerBehavioralCriteria.cdm.json/CustomerBehavioralCriteria\",\"name\":\"CustomerId\"},\"BehavioralCriteriaId\":{\"entity\":\"CustomerBehavioralCriteria.cdm.json/CustomerBehavioralCriteria\",\"name\":\"BehavioralCriteriaId\"},\"PeriodStartDate\":{\"entity\":\"CustomerBehavioralCriteria.cdm.json/CustomerBehavioralCriteria\",\"name\":\"PeriodStartDate\"},\"PeriodEndDate\":{\"entity\":\"CustomerBehavioralCriteria.cdm.json/CustomerBehavioralCriteria\",\"name\":\"PeriodEndDate\"},\"CustomerBehavioralCriteriaNote\":{\"entity\":\"CustomerBehavioralCriteria.cdm.json/CustomerBehavioralCriteria\",\"name\":\"CustomerBehavioralCriteriaNote\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"CustomerBehavioralCriteria\",\"path\":\"CustomerBehavioralCriteria.cdm.json/CustomerBehavioralCriteria\"},\"description\":\"The one or more behavioral criteria that are assigned or linked to a Customer and by which they are identified or qualified from a behavioral focus.\\n\\nNote:\\nThis entity can be linked to PRODUCT if behavior is needed to be tracked for specific products.   This is normally done in models that have a specific industry-context such as the enterprise models.\\n\\nBehavioral market segmentation is based upon how consumers behave or use a products and the corresponding buying, consumption or usage patterns that result.    \\n\\nAn example of a behavioral criteria is when they buy a product (special occasions, Christmas, anniversaries) or how often they buy that product (occasional purchases, frequent purchases).\\n\\nThe business organization identifies a finite number of Behavioral Criteria that are used to identify customers and prospective customers.   \\n\\nThe Behavioral Criteria is the specific criteria or value that may be linked to a Market Segment.\\n\\nThe Behavioral Criteria Type is the larger category to which the Behavioral Criteria belongs.\\n\\nThe following are examples:\\n\\nBehavioral Criteria: Impulse shopper\\nBehavioral Criteria Type:  Purchasing Pattern\\n\\nBehavioral Criteria: End Of Week\\nBehavioral Criteria Type: Purchasing Pattern\\n\\nBehavioral Criteria: Aggressive \\nBehavioral Criteria Type: Investment Style\\n\\nBehavioral Criteria: Business Communications\\nBehavioral Criteria Type: Cellular Phone Usage\\n\\nBehavioral Criteria: Evening and Weekends\\nBehavioral Criteria Type: Electricity Usage\",\"primaryKey\":[\"CustomerId\",\"BehavioralCriteriaId\",\"PeriodStartDate\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CustomerBehavioralCriteria.cdm.json/CustomerBehavioralCriteria\",\"name\":\"CustomerId\"},\"dataType\":\"long\",\"description\":\"The unique identifier of a Customer.\",\"isNullable\":false,\"name\":\"CustomerId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CustomerBehavioralCriteria.cdm.json/CustomerBehavioralCriteria\",\"name\":\"BehavioralCriteriaId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Behavioral Criteria.\",\"isNullable\":false,\"name\":\"BehavioralCriteriaId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CustomerBehavioralCriteria.cdm.json/CustomerBehavioralCriteria\",\"name\":\"PeriodStartDate\"},\"dataType\":\"date\",\"dateFormat\":\"YYYY-MM-DD\",\"description\":\"The period start date for which the associated data is effective or 'as-of'.\",\"isNullable\":false,\"name\":\"PeriodStartDate\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CustomerBehavioralCriteria.cdm.json/CustomerBehavioralCriteria\",\"name\":\"PeriodEndDate\"},\"dataType\":\"date\",\"dateFormat\":\"YYYY-MM-DD\",\"description\":\"The period end date for which the associated data is effective or 'as-of'.\",\"isNullable\":true,\"name\":\"PeriodEndDate\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CustomerBehavioralCriteria.cdm.json/CustomerBehavioralCriteria\",\"name\":\"CustomerBehavioralCriteriaNote\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"A note, comment or additional information related to Customer Behavioral Criteria.\",\"isNullable\":true,\"name\":\"CustomerBehavioralCriteriaNote\"}]}}}",
+			"Description": "The one or more behavioral criteria that are assigned or linked to a Customer and by which they are identified or qualified from a behavioral focus.\n\nNote:\nThis entity can be linked to PRODUCT if behavior is needed to be tracked for specific products.   This is normally done in models that have a specific industry-context such as the enterprise models.\n\nBehavioral market segmentation is based upon how consumers behave or use a products and the corresponding buying, consumption or usage patterns that result.    \n\nAn example of a behavioral criteria is when they buy a product (special occasions, Christmas, anniversaries) or how often they buy that product (occasional purchases, frequent purchases).\n\nThe business organization identifies a finite number of Behavioral Criteria that are used to identify customers and prospective customers.   \n\nThe Behavioral Criteria is the specific criteria or value that may be linked to a Market Segment.\n\nThe Behavioral Criteria Type is the larger category to which the Behavioral Criteria belongs.\n\nThe following are examples:\n\nBehavioral Criteria: Impulse shopper\nBehavioral Criteria Type:  Purchasing Pattern\n\nBehavioral Criteria: End Of Week\nBehavioral Criteria Type: Purchasing Pattern\n\nBehavioral Criteria: Aggressive \nBehavioral Criteria Type: Investment Style\n\nBehavioral Criteria: Business Communications\nBehavioral Criteria Type: Cellular Phone Usage\n\nBehavioral Criteria: Evening and Weekends\nBehavioral Criteria Type: Electricity Usage",
+			"DisplayFolderInfo": "{\"name\":\"Customer\",\"colorCode\":\"#4B003F\"}",
+			"PrimaryKeys": "CustomerId,BehavioralCriteriaId,PeriodStartDate",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

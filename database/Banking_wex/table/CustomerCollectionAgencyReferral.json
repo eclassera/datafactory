@@ -1,0 +1,217 @@
+{
+	"name": "CustomerCollectionAgencyReferral",
+	"properties": {
+		"Name": "CustomerCollectionAgencyReferral",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "A referral of unpaid customer debts (Invoices) to a third-party, Collection Agency, for settlement or resolution.",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "CustomerId",
+					"Description": "The unique identifier of a Customer.",
+					"BaseAttributeReference": {
+						"Entity": "CustomerCollectionAgencyReferral.cdm.json/CustomerCollectionAgencyReferral",
+						"Name": "CustomerId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "long",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "long"
+						}
+					}
+				},
+				{
+					"Name": "CreditCollectionAgencyPartyId",
+					"Description": "The unique identifier of a Party.",
+					"BaseAttributeReference": {
+						"Entity": "CustomerCollectionAgencyReferral.cdm.json/CustomerCollectionAgencyReferral",
+						"Name": "CreditCollectionAgencyPartyId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "long",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "long"
+						}
+					}
+				},
+				{
+					"Name": "DateReferred",
+					"Description": "The date that the Customer account was referred to the Collection Agency.",
+					"BaseAttributeReference": {
+						"Entity": "CustomerCollectionAgencyReferral.cdm.json/CustomerCollectionAgencyReferral",
+						"Name": "DateReferred"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "date",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"DateFormat": "YYYY-MM-DD",
+							"HIVE_TYPE_STRING": "date"
+						}
+					}
+				},
+				{
+					"Name": "ReferredAmount",
+					"Description": "The amount referred to the Collection Agency for collection.",
+					"BaseAttributeReference": {
+						"Entity": "CustomerCollectionAgencyReferral.cdm.json/CustomerCollectionAgencyReferral",
+						"Name": "ReferredAmount"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "decimal",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Precision": 18,
+						"Scale": 2,
+						"Properties": {
+							"HIVE_TYPE_STRING": "decimal"
+						}
+					}
+				},
+				{
+					"Name": "CollectedAmount",
+					"Description": "The amount collected by the Collection Agency.",
+					"BaseAttributeReference": {
+						"Entity": "CustomerCollectionAgencyReferral.cdm.json/CustomerCollectionAgencyReferral",
+						"Name": "CollectedAmount"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "decimal",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Precision": 18,
+						"Scale": 2,
+						"Properties": {
+							"HIVE_TYPE_STRING": "decimal"
+						}
+					}
+				},
+				{
+					"Name": "CreditCollectionAgencyFee",
+					"Description": "The fee paid to the Collection Agency for their efforts.",
+					"BaseAttributeReference": {
+						"Entity": "CustomerCollectionAgencyReferral.cdm.json/CustomerCollectionAgencyReferral",
+						"Name": "CreditCollectionAgencyFee"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "decimal",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Precision": 18,
+						"Scale": 2,
+						"Properties": {
+							"HIVE_TYPE_STRING": "decimal"
+						}
+					}
+				},
+				{
+					"Name": "CreditCollectionAgencyPercentage",
+					"Description": "The percentage paid to the Collection Agency for their efforts.",
+					"BaseAttributeReference": {
+						"Entity": "CustomerCollectionAgencyReferral.cdm.json/CustomerCollectionAgencyReferral",
+						"Name": "CreditCollectionAgencyPercentage"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "decimal",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Precision": 18,
+						"Scale": 8,
+						"Properties": {
+							"HIVE_TYPE_STRING": "decimal"
+						}
+					}
+				},
+				{
+					"Name": "CreditReferralStatusId",
+					"Description": "The unique identifier of the Credit Referral Status.",
+					"BaseAttributeReference": {
+						"Entity": "CustomerCollectionAgencyReferral.cdm.json/CustomerCollectionAgencyReferral",
+						"Name": "CreditReferralStatusId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "ReferralNote",
+					"Description": "Notes, comments or additional information regarding the referral.",
+					"BaseAttributeReference": {
+						"Entity": "CustomerCollectionAgencyReferral.cdm.json/CustomerCollectionAgencyReferral",
+						"Name": "ReferralNote"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/CustomerCollectionAgencyReferral",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/CustomerCollectionAgencyReferral",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"CustomerId\":{\"entity\":\"CustomerCollectionAgencyReferral.cdm.json/CustomerCollectionAgencyReferral\",\"name\":\"CustomerId\"},\"CreditCollectionAgencyPartyId\":{\"entity\":\"CustomerCollectionAgencyReferral.cdm.json/CustomerCollectionAgencyReferral\",\"name\":\"CreditCollectionAgencyPartyId\"},\"DateReferred\":{\"entity\":\"CustomerCollectionAgencyReferral.cdm.json/CustomerCollectionAgencyReferral\",\"name\":\"DateReferred\"},\"ReferredAmount\":{\"entity\":\"CustomerCollectionAgencyReferral.cdm.json/CustomerCollectionAgencyReferral\",\"name\":\"ReferredAmount\"},\"CollectedAmount\":{\"entity\":\"CustomerCollectionAgencyReferral.cdm.json/CustomerCollectionAgencyReferral\",\"name\":\"CollectedAmount\"},\"CreditCollectionAgencyFee\":{\"entity\":\"CustomerCollectionAgencyReferral.cdm.json/CustomerCollectionAgencyReferral\",\"name\":\"CreditCollectionAgencyFee\"},\"CreditCollectionAgencyPercentage\":{\"entity\":\"CustomerCollectionAgencyReferral.cdm.json/CustomerCollectionAgencyReferral\",\"name\":\"CreditCollectionAgencyPercentage\"},\"CreditReferralStatusId\":{\"entity\":\"CustomerCollectionAgencyReferral.cdm.json/CustomerCollectionAgencyReferral\",\"name\":\"CreditReferralStatusId\"},\"ReferralNote\":{\"entity\":\"CustomerCollectionAgencyReferral.cdm.json/CustomerCollectionAgencyReferral\",\"name\":\"ReferralNote\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"CustomerCollectionAgencyReferral\",\"path\":\"CustomerCollectionAgencyReferral.cdm.json/CustomerCollectionAgencyReferral\"},\"description\":\"A referral of unpaid customer debts (Invoices) to a third-party, Collection Agency, for settlement or resolution.\",\"primaryKey\":[\"CustomerId\",\"CreditCollectionAgencyPartyId\",\"DateReferred\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CustomerCollectionAgencyReferral.cdm.json/CustomerCollectionAgencyReferral\",\"name\":\"CustomerId\"},\"dataType\":\"long\",\"description\":\"The unique identifier of a Customer.\",\"isNullable\":false,\"name\":\"CustomerId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CustomerCollectionAgencyReferral.cdm.json/CustomerCollectionAgencyReferral\",\"name\":\"CreditCollectionAgencyPartyId\"},\"dataType\":\"long\",\"description\":\"The unique identifier of a Party.\",\"isNullable\":false,\"name\":\"CreditCollectionAgencyPartyId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CustomerCollectionAgencyReferral.cdm.json/CustomerCollectionAgencyReferral\",\"name\":\"DateReferred\"},\"dataType\":\"date\",\"dateFormat\":\"YYYY-MM-DD\",\"description\":\"The date that the Customer account was referred to the Collection Agency.\",\"isNullable\":false,\"name\":\"DateReferred\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CustomerCollectionAgencyReferral.cdm.json/CustomerCollectionAgencyReferral\",\"name\":\"ReferredAmount\"},\"dataType\":\"decimal\",\"dataTypeLength\":18,\"description\":\"The amount referred to the Collection Agency for collection.\",\"isNullable\":true,\"scale\":2,\"name\":\"ReferredAmount\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CustomerCollectionAgencyReferral.cdm.json/CustomerCollectionAgencyReferral\",\"name\":\"CollectedAmount\"},\"dataType\":\"decimal\",\"dataTypeLength\":18,\"description\":\"The amount collected by the Collection Agency.\",\"isNullable\":true,\"scale\":2,\"name\":\"CollectedAmount\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CustomerCollectionAgencyReferral.cdm.json/CustomerCollectionAgencyReferral\",\"name\":\"CreditCollectionAgencyFee\"},\"dataType\":\"decimal\",\"dataTypeLength\":18,\"description\":\"The fee paid to the Collection Agency for their efforts.\",\"isNullable\":true,\"scale\":2,\"name\":\"CreditCollectionAgencyFee\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CustomerCollectionAgencyReferral.cdm.json/CustomerCollectionAgencyReferral\",\"name\":\"CreditCollectionAgencyPercentage\"},\"dataType\":\"decimal\",\"dataTypeLength\":18,\"description\":\"The percentage paid to the Collection Agency for their efforts.\",\"isNullable\":true,\"scale\":8,\"name\":\"CreditCollectionAgencyPercentage\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CustomerCollectionAgencyReferral.cdm.json/CustomerCollectionAgencyReferral\",\"name\":\"CreditReferralStatusId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of the Credit Referral Status.\",\"isNullable\":false,\"name\":\"CreditReferralStatusId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CustomerCollectionAgencyReferral.cdm.json/CustomerCollectionAgencyReferral\",\"name\":\"ReferralNote\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"Notes, comments or additional information regarding the referral.\",\"isNullable\":true,\"name\":\"ReferralNote\"}]}}}",
+			"Description": "A referral of unpaid customer debts (Invoices) to a third-party, Collection Agency, for settlement or resolution.",
+			"DisplayFolderInfo": "{\"name\":\"Customer Credit & Collections\",\"colorCode\":\"#022F22\"}",
+			"PrimaryKeys": "CustomerId,CreditCollectionAgencyPartyId,DateReferred",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

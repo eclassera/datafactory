@@ -1,0 +1,166 @@
+{
+	"name": "OtherPaymentCategory",
+	"properties": {
+		"Name": "OtherPaymentCategory",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "Cash and other payments recorded in the payment summary.",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "DunsNumber",
+					"Description": "Dun & Bradstreet (D&B) provides a D-U-N-S Number, a unique nine digit identification number, for each physical location of your business.",
+					"BaseAttributeReference": {
+						"Entity": "OtherPaymentCategory.cdm.json/OtherPaymentCategory",
+						"Name": "DunsNumber"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "decimal",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Precision": 9,
+						"Scale": 0,
+						"Properties": {
+							"HIVE_TYPE_STRING": "decimal"
+						}
+					}
+				},
+				{
+					"Name": "ReportPurchaseDate",
+					"Description": "The purchase date of the report.",
+					"BaseAttributeReference": {
+						"Entity": "OtherPaymentCategory.cdm.json/OtherPaymentCategory",
+						"Name": "ReportPurchaseDate"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "date",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"DateFormat": "YYYY-MM-DD",
+							"HIVE_TYPE_STRING": "date"
+						}
+					}
+				},
+				{
+					"Name": "NumberOfCashExperiences",
+					"Description": "The number of cash experiences.",
+					"BaseAttributeReference": {
+						"Entity": "OtherPaymentCategory.cdm.json/OtherPaymentCategory",
+						"Name": "NumberOfCashExperiences"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "TotalAmountOfCashExperience",
+					"Description": "The total amount of cash experiences.",
+					"BaseAttributeReference": {
+						"Entity": "OtherPaymentCategory.cdm.json/OtherPaymentCategory",
+						"Name": "TotalAmountOfCashExperience"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "decimal",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Precision": 18,
+						"Scale": 2,
+						"Properties": {
+							"HIVE_TYPE_STRING": "decimal"
+						}
+					}
+				},
+				{
+					"Name": "NumberOfPaymentRecordUnknownTransactions",
+					"Description": "The number of payment record unknown transactions.",
+					"BaseAttributeReference": {
+						"Entity": "OtherPaymentCategory.cdm.json/OtherPaymentCategory",
+						"Name": "NumberOfPaymentRecordUnknownTransactions"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "TotalAmountOfPaymentRecordUnknownTransactions",
+					"Description": "The total amount of payment record unknown transactions.",
+					"BaseAttributeReference": {
+						"Entity": "OtherPaymentCategory.cdm.json/OtherPaymentCategory",
+						"Name": "TotalAmountOfPaymentRecordUnknownTransactions"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "decimal",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Precision": 18,
+						"Scale": 2,
+						"Properties": {
+							"HIVE_TYPE_STRING": "decimal"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/OtherPaymentCategory",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/OtherPaymentCategory",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"DunsNumber\":{\"entity\":\"OtherPaymentCategory.cdm.json/OtherPaymentCategory\",\"name\":\"DunsNumber\"},\"ReportPurchaseDate\":{\"entity\":\"OtherPaymentCategory.cdm.json/OtherPaymentCategory\",\"name\":\"ReportPurchaseDate\"},\"NumberOfCashExperiences\":{\"entity\":\"OtherPaymentCategory.cdm.json/OtherPaymentCategory\",\"name\":\"NumberOfCashExperiences\"},\"TotalAmountOfCashExperience\":{\"entity\":\"OtherPaymentCategory.cdm.json/OtherPaymentCategory\",\"name\":\"TotalAmountOfCashExperience\"},\"NumberOfPaymentRecordUnknownTransactions\":{\"entity\":\"OtherPaymentCategory.cdm.json/OtherPaymentCategory\",\"name\":\"NumberOfPaymentRecordUnknownTransactions\"},\"TotalAmountOfPaymentRecordUnknownTransactions\":{\"entity\":\"OtherPaymentCategory.cdm.json/OtherPaymentCategory\",\"name\":\"TotalAmountOfPaymentRecordUnknownTransactions\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"OtherPaymentCategory\",\"path\":\"OtherPaymentCategory.cdm.json/OtherPaymentCategory\"},\"description\":\"Cash and other payments recorded in the payment summary.\",\"primaryKey\":[\"DunsNumber\",\"ReportPurchaseDate\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"OtherPaymentCategory.cdm.json/OtherPaymentCategory\",\"name\":\"DunsNumber\"},\"dataType\":\"decimal\",\"dataTypeLength\":9,\"description\":\"Dun & Bradstreet (D&B) provides a D-U-N-S Number, a unique nine digit identification number, for each physical location of your business.\",\"isNullable\":false,\"scale\":0,\"name\":\"DunsNumber\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"OtherPaymentCategory.cdm.json/OtherPaymentCategory\",\"name\":\"ReportPurchaseDate\"},\"dataType\":\"date\",\"dateFormat\":\"YYYY-MM-DD\",\"description\":\"The purchase date of the report.\",\"isNullable\":false,\"name\":\"ReportPurchaseDate\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"OtherPaymentCategory.cdm.json/OtherPaymentCategory\",\"name\":\"NumberOfCashExperiences\"},\"dataType\":\"integer\",\"description\":\"The number of cash experiences.\",\"isNullable\":true,\"name\":\"NumberOfCashExperiences\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"OtherPaymentCategory.cdm.json/OtherPaymentCategory\",\"name\":\"TotalAmountOfCashExperience\"},\"dataType\":\"decimal\",\"dataTypeLength\":18,\"description\":\"The total amount of cash experiences.\",\"isNullable\":true,\"scale\":2,\"name\":\"TotalAmountOfCashExperience\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"OtherPaymentCategory.cdm.json/OtherPaymentCategory\",\"name\":\"NumberOfPaymentRecordUnknownTransactions\"},\"dataType\":\"integer\",\"description\":\"The number of payment record unknown transactions.\",\"isNullable\":true,\"name\":\"NumberOfPaymentRecordUnknownTransactions\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"OtherPaymentCategory.cdm.json/OtherPaymentCategory\",\"name\":\"TotalAmountOfPaymentRecordUnknownTransactions\"},\"dataType\":\"decimal\",\"dataTypeLength\":18,\"description\":\"The total amount of payment record unknown transactions.\",\"isNullable\":true,\"scale\":2,\"name\":\"TotalAmountOfPaymentRecordUnknownTransactions\"}]}}}",
+			"Description": "Cash and other payments recorded in the payment summary.",
+			"DisplayFolderInfo": "{\"name\":\"Customer Credit & Collections\",\"colorCode\":\"#022F22\"}",
+			"PrimaryKeys": "DunsNumber,ReportPurchaseDate",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

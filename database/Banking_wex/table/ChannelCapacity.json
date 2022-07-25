@@ -1,0 +1,180 @@
+{
+	"name": "ChannelCapacity",
+	"properties": {
+		"Name": "ChannelCapacity",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "The maximum capacity that is available for a particular channel capacity type.",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "ChannelId",
+					"Description": "The unique identifier of a Channel.",
+					"BaseAttributeReference": {
+						"Entity": "ChannelCapacity.cdm.json/ChannelCapacity",
+						"Name": "ChannelId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "ChannelCapacityTypeId",
+					"Description": "The unique identifier of a Channel Capacity Type.",
+					"BaseAttributeReference": {
+						"Entity": "ChannelCapacity.cdm.json/ChannelCapacity",
+						"Name": "ChannelCapacityTypeId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "PeriodStartDate",
+					"Description": "The period start date for which the channel capacity is effective.",
+					"BaseAttributeReference": {
+						"Entity": "ChannelCapacity.cdm.json/ChannelCapacity",
+						"Name": "PeriodStartDate"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "date",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"DateFormat": "YYYY-MM-DD",
+							"HIVE_TYPE_STRING": "date"
+						}
+					}
+				},
+				{
+					"Name": "PeriodEndDate",
+					"Description": "The period end date for which the channel capacity is effective.",
+					"BaseAttributeReference": {
+						"Entity": "ChannelCapacity.cdm.json/ChannelCapacity",
+						"Name": "PeriodEndDate"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "date",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"DateFormat": "YYYY-MM-DD",
+							"HIVE_TYPE_STRING": "date"
+						}
+					}
+				},
+				{
+					"Name": "ChannelCapacityUnits",
+					"Description": "The number of units of channel capacity type that is available during the given timeframe.",
+					"BaseAttributeReference": {
+						"Entity": "ChannelCapacity.cdm.json/ChannelCapacity",
+						"Name": "ChannelCapacityUnits"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "decimal",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Precision": 18,
+						"Scale": 2,
+						"Properties": {
+							"HIVE_TYPE_STRING": "decimal"
+						}
+					}
+				},
+				{
+					"Name": "UnitOfMeasureId",
+					"Description": "The unique identifier of a Unit Of Measure.",
+					"BaseAttributeReference": {
+						"Entity": "ChannelCapacity.cdm.json/ChannelCapacity",
+						"Name": "UnitOfMeasureId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "ChannelCapacityNote",
+					"Description": "A note, comment or additional information regarding the channel capacity.",
+					"BaseAttributeReference": {
+						"Entity": "ChannelCapacity.cdm.json/ChannelCapacity",
+						"Name": "ChannelCapacityNote"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/ChannelCapacity",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/ChannelCapacity",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"ChannelId\":{\"entity\":\"ChannelCapacity.cdm.json/ChannelCapacity\",\"name\":\"ChannelId\"},\"ChannelCapacityTypeId\":{\"entity\":\"ChannelCapacity.cdm.json/ChannelCapacity\",\"name\":\"ChannelCapacityTypeId\"},\"PeriodStartDate\":{\"entity\":\"ChannelCapacity.cdm.json/ChannelCapacity\",\"name\":\"PeriodStartDate\"},\"PeriodEndDate\":{\"entity\":\"ChannelCapacity.cdm.json/ChannelCapacity\",\"name\":\"PeriodEndDate\"},\"ChannelCapacityUnits\":{\"entity\":\"ChannelCapacity.cdm.json/ChannelCapacity\",\"name\":\"ChannelCapacityUnits\"},\"UnitOfMeasureId\":{\"entity\":\"ChannelCapacity.cdm.json/ChannelCapacity\",\"name\":\"UnitOfMeasureId\"},\"ChannelCapacityNote\":{\"entity\":\"ChannelCapacity.cdm.json/ChannelCapacity\",\"name\":\"ChannelCapacityNote\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"ChannelCapacity\",\"path\":\"ChannelCapacity.cdm.json/ChannelCapacity\"},\"description\":\"The maximum capacity that is available for a particular channel capacity type.\",\"primaryKey\":[\"ChannelId\",\"ChannelCapacityTypeId\",\"PeriodStartDate\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ChannelCapacity.cdm.json/ChannelCapacity\",\"name\":\"ChannelId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Channel.\",\"isNullable\":false,\"name\":\"ChannelId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ChannelCapacity.cdm.json/ChannelCapacity\",\"name\":\"ChannelCapacityTypeId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Channel Capacity Type.\",\"isNullable\":false,\"name\":\"ChannelCapacityTypeId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ChannelCapacity.cdm.json/ChannelCapacity\",\"name\":\"PeriodStartDate\"},\"dataType\":\"date\",\"dateFormat\":\"YYYY-MM-DD\",\"description\":\"The period start date for which the channel capacity is effective.\",\"isNullable\":false,\"name\":\"PeriodStartDate\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ChannelCapacity.cdm.json/ChannelCapacity\",\"name\":\"PeriodEndDate\"},\"dataType\":\"date\",\"dateFormat\":\"YYYY-MM-DD\",\"description\":\"The period end date for which the channel capacity is effective.\",\"isNullable\":true,\"name\":\"PeriodEndDate\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ChannelCapacity.cdm.json/ChannelCapacity\",\"name\":\"ChannelCapacityUnits\"},\"dataType\":\"decimal\",\"dataTypeLength\":18,\"description\":\"The number of units of channel capacity type that is available during the given timeframe.\",\"isNullable\":true,\"scale\":2,\"name\":\"ChannelCapacityUnits\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ChannelCapacity.cdm.json/ChannelCapacity\",\"name\":\"UnitOfMeasureId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Unit Of Measure.\",\"isNullable\":true,\"name\":\"UnitOfMeasureId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ChannelCapacity.cdm.json/ChannelCapacity\",\"name\":\"ChannelCapacityNote\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"A note, comment or additional information regarding the channel capacity.\",\"isNullable\":true,\"name\":\"ChannelCapacityNote\"}]}}}",
+			"Description": "The maximum capacity that is available for a particular channel capacity type.",
+			"DisplayFolderInfo": "{\"name\":\"Channel\",\"colorCode\":\"#001D3F\"}",
+			"PrimaryKeys": "ChannelId,ChannelCapacityTypeId,PeriodStartDate",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

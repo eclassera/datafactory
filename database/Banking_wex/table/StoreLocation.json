@@ -1,0 +1,213 @@
+{
+	"name": "StoreLocation",
+	"properties": {
+		"Name": "StoreLocation",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "The store location(s) of the associated Location Type for the indicated period.",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "StoreId",
+					"Description": "The unique identifier of a Store.",
+					"BaseAttributeReference": {
+						"Entity": "StoreLocation.cdm.json/StoreLocation",
+						"Name": "StoreId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "LocationTypeId",
+					"Description": "The unique identifier of a Location Type.",
+					"BaseAttributeReference": {
+						"Entity": "StoreLocation.cdm.json/StoreLocation",
+						"Name": "LocationTypeId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "LocationId",
+					"Description": "The unique identifier of a Location.",
+					"BaseAttributeReference": {
+						"Entity": "StoreLocation.cdm.json/StoreLocation",
+						"Name": "LocationId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "PeriodStartTimestamp",
+					"Description": "The period start timestamp associated with the information.",
+					"BaseAttributeReference": {
+						"Entity": "StoreLocation.cdm.json/StoreLocation",
+						"Name": "PeriodStartTimestamp"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "timestamp",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"TimestampFormat": "YYYY-MM-DD HH:MM:SS.fffffffff",
+							"HIVE_TYPE_STRING": "timestamp"
+						}
+					}
+				},
+				{
+					"Name": "PeriodEndTimestamp",
+					"Description": "The period end timestamp associated with the information.",
+					"BaseAttributeReference": {
+						"Entity": "StoreLocation.cdm.json/StoreLocation",
+						"Name": "PeriodEndTimestamp"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "timestamp",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"TimestampFormat": "YYYY-MM-DD HH:MM:SS.fffffffff",
+							"HIVE_TYPE_STRING": "timestamp"
+						}
+					}
+				},
+				{
+					"Name": "GlobalLocationNumber",
+					"Description": "The Global Location Number (GLN) is a simple tool used to uniquely identify locations. It can be used to identify physical locations such as a warehouse, legal entities, or a function / department within a legal entity. The GLN is part of the GS1 system of standards.",
+					"BaseAttributeReference": {
+						"Entity": "StoreLocation.cdm.json/StoreLocation",
+						"Name": "GlobalLocationNumber"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "decimal",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Precision": 13,
+						"Scale": 0,
+						"Properties": {
+							"HIVE_TYPE_STRING": "decimal"
+						}
+					}
+				},
+				{
+					"Name": "StoreLocationName",
+					"Description": "The name of the Store Location.",
+					"BaseAttributeReference": {
+						"Entity": "StoreLocation.cdm.json/StoreLocation",
+						"Name": "StoreLocationName"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 256,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "PreferenceId",
+					"Description": "The unique identifier of a Preference.",
+					"BaseAttributeReference": {
+						"Entity": "StoreLocation.cdm.json/StoreLocation",
+						"Name": "PreferenceId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "StoreLocationNote",
+					"Description": "A note, comment or additional information regarding a Store Location.",
+					"BaseAttributeReference": {
+						"Entity": "StoreLocation.cdm.json/StoreLocation",
+						"Name": "StoreLocationNote"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/StoreLocation",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/StoreLocation",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"StoreId\":{\"entity\":\"StoreLocation.cdm.json/StoreLocation\",\"name\":\"StoreId\"},\"LocationTypeId\":{\"entity\":\"StoreLocation.cdm.json/StoreLocation\",\"name\":\"LocationTypeId\"},\"LocationId\":{\"entity\":\"StoreLocation.cdm.json/StoreLocation\",\"name\":\"LocationId\"},\"PeriodStartTimestamp\":{\"entity\":\"StoreLocation.cdm.json/StoreLocation\",\"name\":\"PeriodStartTimestamp\"},\"PeriodEndTimestamp\":{\"entity\":\"StoreLocation.cdm.json/StoreLocation\",\"name\":\"PeriodEndTimestamp\"},\"GlobalLocationNumber\":{\"entity\":\"StoreLocation.cdm.json/StoreLocation\",\"name\":\"GlobalLocationNumber\"},\"StoreLocationName\":{\"entity\":\"StoreLocation.cdm.json/StoreLocation\",\"name\":\"StoreLocationName\"},\"PreferenceId\":{\"entity\":\"StoreLocation.cdm.json/StoreLocation\",\"name\":\"PreferenceId\"},\"StoreLocationNote\":{\"entity\":\"StoreLocation.cdm.json/StoreLocation\",\"name\":\"StoreLocationNote\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"StoreLocation\",\"path\":\"StoreLocation.cdm.json/StoreLocation\"},\"description\":\"The store location(s) of the associated Location Type for the indicated period.\",\"primaryKey\":[\"StoreId\",\"LocationTypeId\",\"LocationId\",\"PeriodStartTimestamp\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"StoreLocation.cdm.json/StoreLocation\",\"name\":\"StoreId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Store.\",\"isNullable\":false,\"name\":\"StoreId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"StoreLocation.cdm.json/StoreLocation\",\"name\":\"LocationTypeId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Location Type.\",\"isNullable\":false,\"name\":\"LocationTypeId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"StoreLocation.cdm.json/StoreLocation\",\"name\":\"LocationId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Location.\",\"isNullable\":false,\"name\":\"LocationId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"StoreLocation.cdm.json/StoreLocation\",\"name\":\"PeriodStartTimestamp\"},\"dataType\":\"timestamp\",\"description\":\"The period start timestamp associated with the information.\",\"isNullable\":false,\"name\":\"PeriodStartTimestamp\",\"timestampFormat\":\"YYYY-MM-DD HH:MM:SS.fffffffff\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"StoreLocation.cdm.json/StoreLocation\",\"name\":\"PeriodEndTimestamp\"},\"dataType\":\"timestamp\",\"description\":\"The period end timestamp associated with the information.\",\"isNullable\":true,\"name\":\"PeriodEndTimestamp\",\"timestampFormat\":\"YYYY-MM-DD HH:MM:SS.fffffffff\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"StoreLocation.cdm.json/StoreLocation\",\"name\":\"GlobalLocationNumber\"},\"dataType\":\"decimal\",\"dataTypeLength\":13,\"description\":\"The Global Location Number (GLN) is a simple tool used to uniquely identify locations. It can be used to identify physical locations such as a warehouse, legal entities, or a function / department within a legal entity. The GLN is part of the GS1 system of standards.\",\"isNullable\":true,\"scale\":0,\"name\":\"GlobalLocationNumber\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"StoreLocation.cdm.json/StoreLocation\",\"name\":\"StoreLocationName\"},\"dataType\":\"string\",\"dataTypeLength\":256,\"description\":\"The name of the Store Location.\",\"isNullable\":true,\"name\":\"StoreLocationName\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"StoreLocation.cdm.json/StoreLocation\",\"name\":\"PreferenceId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Preference.\",\"isNullable\":true,\"name\":\"PreferenceId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"StoreLocation.cdm.json/StoreLocation\",\"name\":\"StoreLocationNote\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"A note, comment or additional information regarding a Store Location.\",\"isNullable\":true,\"name\":\"StoreLocationNote\"}]}}}",
+			"Description": "The store location(s) of the associated Location Type for the indicated period.",
+			"DisplayFolderInfo": "{\"name\":\"Channel\",\"colorCode\":\"#001D3F\"}",
+			"PrimaryKeys": "StoreId,LocationTypeId,LocationId,PeriodStartTimestamp",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

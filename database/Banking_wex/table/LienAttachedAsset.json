@@ -1,0 +1,232 @@
+{
+	"name": "LienAttachedAsset",
+	"properties": {
+		"Name": "LienAttachedAsset",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "The asset(s) attached in conjunction with the associated Lien.",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "LienId",
+					"Description": "The unique identifier of a Lien.",
+					"BaseAttributeReference": {
+						"Entity": "LienAttachedAsset.cdm.json/LienAttachedAsset",
+						"Name": "LienId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "AssetId",
+					"Description": "The unique identifier of an Asset.",
+					"BaseAttributeReference": {
+						"Entity": "LienAttachedAsset.cdm.json/LienAttachedAsset",
+						"Name": "AssetId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "long",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "long"
+						}
+					}
+				},
+				{
+					"Name": "PeriodStartDate",
+					"Description": "The period start date that the asset is attached to the lien.",
+					"BaseAttributeReference": {
+						"Entity": "LienAttachedAsset.cdm.json/LienAttachedAsset",
+						"Name": "PeriodStartDate"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "date",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"DateFormat": "YYYY-MM-DD",
+							"HIVE_TYPE_STRING": "date"
+						}
+					}
+				},
+				{
+					"Name": "PeriodEndDate",
+					"Description": "The period end date that the asset is attached to the lien.",
+					"BaseAttributeReference": {
+						"Entity": "LienAttachedAsset.cdm.json/LienAttachedAsset",
+						"Name": "PeriodEndDate"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "date",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"DateFormat": "YYYY-MM-DD",
+							"HIVE_TYPE_STRING": "date"
+						}
+					}
+				},
+				{
+					"Name": "AttachedAppraisedAssetValueAmount",
+					"Description": "The appraised value of the Lien attached collateral assets.",
+					"BaseAttributeReference": {
+						"Entity": "LienAttachedAsset.cdm.json/LienAttachedAsset",
+						"Name": "AttachedAppraisedAssetValueAmount"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "decimal",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Precision": 18,
+						"Scale": 2,
+						"Properties": {
+							"HIVE_TYPE_STRING": "decimal"
+						}
+					}
+				},
+				{
+					"Name": "AttachedAssetOrderedSoldDate",
+					"Description": "The date that the attached asset was ordered sold.",
+					"BaseAttributeReference": {
+						"Entity": "LienAttachedAsset.cdm.json/LienAttachedAsset",
+						"Name": "AttachedAssetOrderedSoldDate"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "date",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"DateFormat": "YYYY-MM-DD",
+							"HIVE_TYPE_STRING": "date"
+						}
+					}
+				},
+				{
+					"Name": "AttachedAssetSoldDate",
+					"Description": "The date that the attached asset was sold.",
+					"BaseAttributeReference": {
+						"Entity": "LienAttachedAsset.cdm.json/LienAttachedAsset",
+						"Name": "AttachedAssetSoldDate"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "date",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"DateFormat": "YYYY-MM-DD",
+							"HIVE_TYPE_STRING": "date"
+						}
+					}
+				},
+				{
+					"Name": "AttachedAssetSoldAmount",
+					"Description": "The amount for which the attached asset was sold.",
+					"BaseAttributeReference": {
+						"Entity": "LienAttachedAsset.cdm.json/LienAttachedAsset",
+						"Name": "AttachedAssetSoldAmount"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "decimal",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Precision": 18,
+						"Scale": 2,
+						"Properties": {
+							"HIVE_TYPE_STRING": "decimal"
+						}
+					}
+				},
+				{
+					"Name": "LienAttachedAssetNote",
+					"Description": "A note, comment or additional information related to a attached lien asset.",
+					"BaseAttributeReference": {
+						"Entity": "LienAttachedAsset.cdm.json/LienAttachedAsset",
+						"Name": "LienAttachedAssetNote"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "AttachedAssetStatusId",
+					"Description": "The unique identifier of an Attached Asset Status.",
+					"BaseAttributeReference": {
+						"Entity": "LienAttachedAsset.cdm.json/LienAttachedAsset",
+						"Name": "AttachedAssetStatusId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/LienAttachedAsset",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/LienAttachedAsset",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"LienId\":{\"entity\":\"LienAttachedAsset.cdm.json/LienAttachedAsset\",\"name\":\"LienId\"},\"AssetId\":{\"entity\":\"LienAttachedAsset.cdm.json/LienAttachedAsset\",\"name\":\"AssetId\"},\"PeriodStartDate\":{\"entity\":\"LienAttachedAsset.cdm.json/LienAttachedAsset\",\"name\":\"PeriodStartDate\"},\"PeriodEndDate\":{\"entity\":\"LienAttachedAsset.cdm.json/LienAttachedAsset\",\"name\":\"PeriodEndDate\"},\"AttachedAppraisedAssetValueAmount\":{\"entity\":\"LienAttachedAsset.cdm.json/LienAttachedAsset\",\"name\":\"AttachedAppraisedAssetValueAmount\"},\"AttachedAssetOrderedSoldDate\":{\"entity\":\"LienAttachedAsset.cdm.json/LienAttachedAsset\",\"name\":\"AttachedAssetOrderedSoldDate\"},\"AttachedAssetSoldDate\":{\"entity\":\"LienAttachedAsset.cdm.json/LienAttachedAsset\",\"name\":\"AttachedAssetSoldDate\"},\"AttachedAssetSoldAmount\":{\"entity\":\"LienAttachedAsset.cdm.json/LienAttachedAsset\",\"name\":\"AttachedAssetSoldAmount\"},\"LienAttachedAssetNote\":{\"entity\":\"LienAttachedAsset.cdm.json/LienAttachedAsset\",\"name\":\"LienAttachedAssetNote\"},\"AttachedAssetStatusId\":{\"entity\":\"LienAttachedAsset.cdm.json/LienAttachedAsset\",\"name\":\"AttachedAssetStatusId\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"LienAttachedAsset\",\"path\":\"LienAttachedAsset.cdm.json/LienAttachedAsset\"},\"description\":\"The asset(s) attached in conjunction with the associated Lien.\",\"primaryKey\":[\"LienId\",\"AssetId\",\"PeriodStartDate\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"LienAttachedAsset.cdm.json/LienAttachedAsset\",\"name\":\"LienId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Lien.\",\"isNullable\":false,\"name\":\"LienId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"LienAttachedAsset.cdm.json/LienAttachedAsset\",\"name\":\"AssetId\"},\"dataType\":\"long\",\"description\":\"The unique identifier of an Asset.\",\"isNullable\":false,\"name\":\"AssetId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"LienAttachedAsset.cdm.json/LienAttachedAsset\",\"name\":\"PeriodStartDate\"},\"dataType\":\"date\",\"dateFormat\":\"YYYY-MM-DD\",\"description\":\"The period start date that the asset is attached to the lien.\",\"isNullable\":false,\"name\":\"PeriodStartDate\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"LienAttachedAsset.cdm.json/LienAttachedAsset\",\"name\":\"PeriodEndDate\"},\"dataType\":\"date\",\"dateFormat\":\"YYYY-MM-DD\",\"description\":\"The period end date that the asset is attached to the lien.\",\"isNullable\":true,\"name\":\"PeriodEndDate\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"LienAttachedAsset.cdm.json/LienAttachedAsset\",\"name\":\"AttachedAppraisedAssetValueAmount\"},\"dataType\":\"decimal\",\"dataTypeLength\":18,\"description\":\"The appraised value of the Lien attached collateral assets.\",\"isNullable\":true,\"scale\":2,\"name\":\"AttachedAppraisedAssetValueAmount\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"LienAttachedAsset.cdm.json/LienAttachedAsset\",\"name\":\"AttachedAssetOrderedSoldDate\"},\"dataType\":\"date\",\"dateFormat\":\"YYYY-MM-DD\",\"description\":\"The date that the attached asset was ordered sold.\",\"isNullable\":true,\"name\":\"AttachedAssetOrderedSoldDate\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"LienAttachedAsset.cdm.json/LienAttachedAsset\",\"name\":\"AttachedAssetSoldDate\"},\"dataType\":\"date\",\"dateFormat\":\"YYYY-MM-DD\",\"description\":\"The date that the attached asset was sold.\",\"isNullable\":true,\"name\":\"AttachedAssetSoldDate\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"LienAttachedAsset.cdm.json/LienAttachedAsset\",\"name\":\"AttachedAssetSoldAmount\"},\"dataType\":\"decimal\",\"dataTypeLength\":18,\"description\":\"The amount for which the attached asset was sold.\",\"isNullable\":true,\"scale\":2,\"name\":\"AttachedAssetSoldAmount\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"LienAttachedAsset.cdm.json/LienAttachedAsset\",\"name\":\"LienAttachedAssetNote\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"A note, comment or additional information related to a attached lien asset.\",\"isNullable\":true,\"name\":\"LienAttachedAssetNote\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"LienAttachedAsset.cdm.json/LienAttachedAsset\",\"name\":\"AttachedAssetStatusId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of an Attached Asset Status.\",\"isNullable\":true,\"name\":\"AttachedAssetStatusId\"}]}}}",
+			"Description": "The asset(s) attached in conjunction with the associated Lien.",
+			"DisplayFolderInfo": "{\"name\":\"Customer Credit & Collections\",\"colorCode\":\"#022F22\"}",
+			"PrimaryKeys": "LienId,AssetId,PeriodStartDate",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

@@ -1,0 +1,197 @@
+{
+	"name": "ExperianConsumerAddress",
+	"properties": {
+		"Name": "ExperianConsumerAddress",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "Addresses are listed on the credit report when they are reported to Experian by creditors. \n\nAny address that is reported as associated with an account may appear on the report.",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "ExperianReportNumber",
+					"Description": "The unique identifier of an Experian consumer.",
+					"BaseAttributeReference": {
+						"Entity": "ExperianConsumerAddress.cdm.json/ExperianConsumerAddress",
+						"Name": "ExperianReportNumber"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "AddressId",
+					"Description": "The address identification number is used to identify which accounts are associated with each individual address variation.",
+					"BaseAttributeReference": {
+						"Entity": "ExperianConsumerAddress.cdm.json/ExperianConsumerAddress",
+						"Name": "AddressId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "ConsumerStreetPoBoxAddress",
+					"Description": "The 'street/po box' component of the consumer address.",
+					"BaseAttributeReference": {
+						"Entity": "ExperianConsumerAddress.cdm.json/ExperianConsumerAddress",
+						"Name": "ConsumerStreetPoBoxAddress"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 512,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "ConsumerAddressCity",
+					"Description": "The 'city' component of the consumer address.",
+					"BaseAttributeReference": {
+						"Entity": "ExperianConsumerAddress.cdm.json/ExperianConsumerAddress",
+						"Name": "ConsumerAddressCity"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 256,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "ConsumerAddressState",
+					"Description": "The 'state' component of the consumer address.",
+					"BaseAttributeReference": {
+						"Entity": "ExperianConsumerAddress.cdm.json/ExperianConsumerAddress",
+						"Name": "ConsumerAddressState"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 64,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "ConsumerAddressZipCode",
+					"Description": "The 'zip code' component of the consumer address.",
+					"BaseAttributeReference": {
+						"Entity": "ExperianConsumerAddress.cdm.json/ExperianConsumerAddress",
+						"Name": "ConsumerAddressZipCode"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "decimal",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Precision": 11,
+						"Scale": 0,
+						"Properties": {
+							"HIVE_TYPE_STRING": "decimal"
+						}
+					}
+				},
+				{
+					"Name": "ExperianResidenceTypeId",
+					"Description": "The unique identifier of an Experian residence type.",
+					"BaseAttributeReference": {
+						"Entity": "ExperianConsumerAddress.cdm.json/ExperianConsumerAddress",
+						"Name": "ExperianResidenceTypeId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "ExperianGeographicalCode",
+					"Description": "The unique identifier of an Experian Geographic location.",
+					"BaseAttributeReference": {
+						"Entity": "ExperianConsumerAddress.cdm.json/ExperianConsumerAddress",
+						"Name": "ExperianGeographicalCode"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 20,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/ExperianConsumerAddress",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/ExperianConsumerAddress",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"ExperianReportNumber\":{\"entity\":\"ExperianConsumerAddress.cdm.json/ExperianConsumerAddress\",\"name\":\"ExperianReportNumber\"},\"AddressId\":{\"entity\":\"ExperianConsumerAddress.cdm.json/ExperianConsumerAddress\",\"name\":\"AddressId\"},\"ConsumerStreetPoBoxAddress\":{\"entity\":\"ExperianConsumerAddress.cdm.json/ExperianConsumerAddress\",\"name\":\"ConsumerStreetPoBoxAddress\"},\"ConsumerAddressCity\":{\"entity\":\"ExperianConsumerAddress.cdm.json/ExperianConsumerAddress\",\"name\":\"ConsumerAddressCity\"},\"ConsumerAddressState\":{\"entity\":\"ExperianConsumerAddress.cdm.json/ExperianConsumerAddress\",\"name\":\"ConsumerAddressState\"},\"ConsumerAddressZipCode\":{\"entity\":\"ExperianConsumerAddress.cdm.json/ExperianConsumerAddress\",\"name\":\"ConsumerAddressZipCode\"},\"ExperianResidenceTypeId\":{\"entity\":\"ExperianConsumerAddress.cdm.json/ExperianConsumerAddress\",\"name\":\"ExperianResidenceTypeId\"},\"ExperianGeographicalCode\":{\"entity\":\"ExperianConsumerAddress.cdm.json/ExperianConsumerAddress\",\"name\":\"ExperianGeographicalCode\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"ExperianConsumerAddress\",\"path\":\"ExperianConsumerAddress.cdm.json/ExperianConsumerAddress\"},\"description\":\"Addresses are listed on the credit report when they are reported to Experian by creditors. \\n\\nAny address that is reported as associated with an account may appear on the report.\",\"primaryKey\":[\"ExperianReportNumber\",\"AddressId\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ExperianConsumerAddress.cdm.json/ExperianConsumerAddress\",\"name\":\"ExperianReportNumber\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of an Experian consumer.\",\"isNullable\":false,\"name\":\"ExperianReportNumber\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ExperianConsumerAddress.cdm.json/ExperianConsumerAddress\",\"name\":\"AddressId\"},\"dataType\":\"integer\",\"description\":\"The address identification number is used to identify which accounts are associated with each individual address variation.\",\"isNullable\":false,\"name\":\"AddressId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ExperianConsumerAddress.cdm.json/ExperianConsumerAddress\",\"name\":\"ConsumerStreetPoBoxAddress\"},\"dataType\":\"string\",\"dataTypeLength\":512,\"description\":\"The 'street/po box' component of the consumer address.\",\"isNullable\":true,\"name\":\"ConsumerStreetPoBoxAddress\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ExperianConsumerAddress.cdm.json/ExperianConsumerAddress\",\"name\":\"ConsumerAddressCity\"},\"dataType\":\"string\",\"dataTypeLength\":256,\"description\":\"The 'city' component of the consumer address.\",\"isNullable\":true,\"name\":\"ConsumerAddressCity\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ExperianConsumerAddress.cdm.json/ExperianConsumerAddress\",\"name\":\"ConsumerAddressState\"},\"dataType\":\"string\",\"dataTypeLength\":64,\"description\":\"The 'state' component of the consumer address.\",\"isNullable\":true,\"name\":\"ConsumerAddressState\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ExperianConsumerAddress.cdm.json/ExperianConsumerAddress\",\"name\":\"ConsumerAddressZipCode\"},\"dataType\":\"decimal\",\"dataTypeLength\":11,\"description\":\"The 'zip code' component of the consumer address.\",\"isNullable\":true,\"scale\":0,\"name\":\"ConsumerAddressZipCode\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ExperianConsumerAddress.cdm.json/ExperianConsumerAddress\",\"name\":\"ExperianResidenceTypeId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of an Experian residence type.\",\"isNullable\":true,\"name\":\"ExperianResidenceTypeId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ExperianConsumerAddress.cdm.json/ExperianConsumerAddress\",\"name\":\"ExperianGeographicalCode\"},\"dataType\":\"string\",\"dataTypeLength\":20,\"description\":\"The unique identifier of an Experian Geographic location.\",\"isNullable\":true,\"name\":\"ExperianGeographicalCode\"}]}}}",
+			"Description": "Addresses are listed on the credit report when they are reported to Experian by creditors. \n\nAny address that is reported as associated with an account may appear on the report.",
+			"DisplayFolderInfo": "{\"name\":\"Customer Credit & Collections\",\"colorCode\":\"#022F22\"}",
+			"PrimaryKeys": "ExperianReportNumber,AddressId",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

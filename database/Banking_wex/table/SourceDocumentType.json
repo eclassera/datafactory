@@ -1,0 +1,113 @@
+{
+	"name": "SourceDocumentType",
+	"properties": {
+		"Name": "SourceDocumentType",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "A categorization of source documents based on business function, characteristics etc.\n\nEx:\n- Customer invoice\n- Supplier invoice\n- Purchase order\n- Cash Receipt\n- Money Transfer = multiple transactions",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "SourceDocumentTypeId",
+					"Description": "The unique identifier of a Source Document Type.",
+					"BaseAttributeReference": {
+						"Entity": "SourceDocumentType.cdm.json/SourceDocumentType",
+						"Name": "SourceDocumentTypeId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "SourceDocumentTypeName",
+					"Description": "The name of a Source Document Type.",
+					"BaseAttributeReference": {
+						"Entity": "SourceDocumentType.cdm.json/SourceDocumentType",
+						"Name": "SourceDocumentTypeName"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 256,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "SourceDocumentTypeDescription",
+					"Description": "The description of a Source Document Type.",
+					"BaseAttributeReference": {
+						"Entity": "SourceDocumentType.cdm.json/SourceDocumentType",
+						"Name": "SourceDocumentTypeDescription"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/SourceDocumentType",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/SourceDocumentType",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"SourceDocumentTypeId\":{\"entity\":\"SourceDocumentType.cdm.json/SourceDocumentType\",\"name\":\"SourceDocumentTypeId\"},\"SourceDocumentTypeName\":{\"entity\":\"SourceDocumentType.cdm.json/SourceDocumentType\",\"name\":\"SourceDocumentTypeName\"},\"SourceDocumentTypeDescription\":{\"entity\":\"SourceDocumentType.cdm.json/SourceDocumentType\",\"name\":\"SourceDocumentTypeDescription\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"SourceDocumentType\",\"path\":\"SourceDocumentType.cdm.json/SourceDocumentType\"},\"description\":\"A categorization of source documents based on business function, characteristics etc.\\n\\nEx:\\n- Customer invoice\\n- Supplier invoice\\n- Purchase order\\n- Cash Receipt\\n- Money Transfer = multiple transactions\",\"primaryKey\":[\"SourceDocumentTypeId\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"SourceDocumentType.cdm.json/SourceDocumentType\",\"name\":\"SourceDocumentTypeId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Source Document Type.\",\"isNullable\":false,\"name\":\"SourceDocumentTypeId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"SourceDocumentType.cdm.json/SourceDocumentType\",\"name\":\"SourceDocumentTypeName\"},\"dataType\":\"string\",\"dataTypeLength\":256,\"description\":\"The name of a Source Document Type.\",\"isNullable\":true,\"name\":\"SourceDocumentTypeName\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"SourceDocumentType.cdm.json/SourceDocumentType\",\"name\":\"SourceDocumentTypeDescription\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"The description of a Source Document Type.\",\"isNullable\":true,\"name\":\"SourceDocumentTypeDescription\"}]}}}",
+			"Description": "A categorization of source documents based on business function, characteristics etc.\n\nEx:\n- Customer invoice\n- Supplier invoice\n- Purchase order\n- Cash Receipt\n- Money Transfer = multiple transactions",
+			"DisplayFolderInfo": "{\"name\":\"Accounting & Financial Reporting\",\"colorCode\":\"#0078D4\"}",
+			"PrimaryKeys": "SourceDocumentTypeId",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

@@ -1,0 +1,113 @@
+{
+	"name": "ExchangeRateType",
+	"properties": {
+		"Name": "ExchangeRateType",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "A type of exchange rate.\n\nEx:\n- Retail Buy\n- Retail Sell\n- Interbranch Buy\n- Interbranch Sell\n- Interbank Buy\n- Interbank Sell",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "ExchangeRateTypeId",
+					"Description": "The unique identifier of a Exchange Rate Type.",
+					"BaseAttributeReference": {
+						"Entity": "ExchangeRateType.cdm.json/ExchangeRateType",
+						"Name": "ExchangeRateTypeId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "ExchangeRateTypeName",
+					"Description": "The name of a Exchange Rate Type.",
+					"BaseAttributeReference": {
+						"Entity": "ExchangeRateType.cdm.json/ExchangeRateType",
+						"Name": "ExchangeRateTypeName"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 256,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "ExchangeRateTypeDescription",
+					"Description": "The description of a Exchange Rate Type.",
+					"BaseAttributeReference": {
+						"Entity": "ExchangeRateType.cdm.json/ExchangeRateType",
+						"Name": "ExchangeRateTypeDescription"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/ExchangeRateType",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/ExchangeRateType",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"ExchangeRateTypeId\":{\"entity\":\"ExchangeRateType.cdm.json/ExchangeRateType\",\"name\":\"ExchangeRateTypeId\"},\"ExchangeRateTypeName\":{\"entity\":\"ExchangeRateType.cdm.json/ExchangeRateType\",\"name\":\"ExchangeRateTypeName\"},\"ExchangeRateTypeDescription\":{\"entity\":\"ExchangeRateType.cdm.json/ExchangeRateType\",\"name\":\"ExchangeRateTypeDescription\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"ExchangeRateType\",\"path\":\"ExchangeRateType.cdm.json/ExchangeRateType\"},\"description\":\"A type of exchange rate.\\n\\nEx:\\n- Retail Buy\\n- Retail Sell\\n- Interbranch Buy\\n- Interbranch Sell\\n- Interbank Buy\\n- Interbank Sell\",\"primaryKey\":[\"ExchangeRateTypeId\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ExchangeRateType.cdm.json/ExchangeRateType\",\"name\":\"ExchangeRateTypeId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Exchange Rate Type.\",\"isNullable\":false,\"name\":\"ExchangeRateTypeId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ExchangeRateType.cdm.json/ExchangeRateType\",\"name\":\"ExchangeRateTypeName\"},\"dataType\":\"string\",\"dataTypeLength\":256,\"description\":\"The name of a Exchange Rate Type.\",\"isNullable\":true,\"name\":\"ExchangeRateTypeName\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ExchangeRateType.cdm.json/ExchangeRateType\",\"name\":\"ExchangeRateTypeDescription\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"The description of a Exchange Rate Type.\",\"isNullable\":true,\"name\":\"ExchangeRateTypeDescription\"}]}}}",
+			"Description": "A type of exchange rate.\n\nEx:\n- Retail Buy\n- Retail Sell\n- Interbranch Buy\n- Interbranch Sell\n- Interbank Buy\n- Interbank Sell",
+			"DisplayFolderInfo": "{\"name\":\"Accounting & Financial Reporting\",\"colorCode\":\"#0078D4\"}",
+			"PrimaryKeys": "ExchangeRateTypeId",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

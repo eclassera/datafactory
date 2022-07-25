@@ -1,0 +1,144 @@
+{
+	"name": "CreditScoringModel",
+	"properties": {
+		"Name": "CreditScoringModel",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "A credit scoring model used for determining credit scores.",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "CreditScoringModelId",
+					"Description": "The unique identifier of a Credit Scoring Model.",
+					"BaseAttributeReference": {
+						"Entity": "CreditScoringModel.cdm.json/CreditScoringModel",
+						"Name": "CreditScoringModelId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "CreditScoringModelTypeId",
+					"Description": "The unique identifier of a Credit Scoring Model Type.",
+					"BaseAttributeReference": {
+						"Entity": "CreditScoringModel.cdm.json/CreditScoringModel",
+						"Name": "CreditScoringModelTypeId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "CreditScoringModelVersion",
+					"Description": "The version of the credit scoring model.",
+					"BaseAttributeReference": {
+						"Entity": "CreditScoringModel.cdm.json/CreditScoringModel",
+						"Name": "CreditScoringModelVersion"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "CreditScoringModelDescription",
+					"Description": "The description of a Credit Scoring Model.",
+					"BaseAttributeReference": {
+						"Entity": "CreditScoringModel.cdm.json/CreditScoringModel",
+						"Name": "CreditScoringModelDescription"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "DevelopedByPartyId",
+					"Description": "The unique identifier of a Party.",
+					"BaseAttributeReference": {
+						"Entity": "CreditScoringModel.cdm.json/CreditScoringModel",
+						"Name": "DevelopedByPartyId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "long",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"HIVE_TYPE_STRING": "long"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/CreditScoringModel",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/CreditScoringModel",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"CreditScoringModelId\":{\"entity\":\"CreditScoringModel.cdm.json/CreditScoringModel\",\"name\":\"CreditScoringModelId\"},\"CreditScoringModelTypeId\":{\"entity\":\"CreditScoringModel.cdm.json/CreditScoringModel\",\"name\":\"CreditScoringModelTypeId\"},\"CreditScoringModelVersion\":{\"entity\":\"CreditScoringModel.cdm.json/CreditScoringModel\",\"name\":\"CreditScoringModelVersion\"},\"CreditScoringModelDescription\":{\"entity\":\"CreditScoringModel.cdm.json/CreditScoringModel\",\"name\":\"CreditScoringModelDescription\"},\"DevelopedByPartyId\":{\"entity\":\"CreditScoringModel.cdm.json/CreditScoringModel\",\"name\":\"DevelopedByPartyId\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"CreditScoringModel\",\"path\":\"CreditScoringModel.cdm.json/CreditScoringModel\"},\"description\":\"A credit scoring model used for determining credit scores.\",\"primaryKey\":[\"CreditScoringModelId\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CreditScoringModel.cdm.json/CreditScoringModel\",\"name\":\"CreditScoringModelId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Credit Scoring Model.\",\"isNullable\":false,\"name\":\"CreditScoringModelId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CreditScoringModel.cdm.json/CreditScoringModel\",\"name\":\"CreditScoringModelTypeId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Credit Scoring Model Type.\",\"isNullable\":true,\"name\":\"CreditScoringModelTypeId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CreditScoringModel.cdm.json/CreditScoringModel\",\"name\":\"CreditScoringModelVersion\"},\"dataType\":\"integer\",\"description\":\"The version of the credit scoring model.\",\"isNullable\":true,\"name\":\"CreditScoringModelVersion\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CreditScoringModel.cdm.json/CreditScoringModel\",\"name\":\"CreditScoringModelDescription\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"The description of a Credit Scoring Model.\",\"isNullable\":true,\"name\":\"CreditScoringModelDescription\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CreditScoringModel.cdm.json/CreditScoringModel\",\"name\":\"DevelopedByPartyId\"},\"dataType\":\"long\",\"description\":\"The unique identifier of a Party.\",\"isNullable\":true,\"name\":\"DevelopedByPartyId\"}]}}}",
+			"Description": "A credit scoring model used for determining credit scores.",
+			"DisplayFolderInfo": "{\"name\":\"Customer Credit & Collections\",\"colorCode\":\"#022F22\"}",
+			"PrimaryKeys": "CreditScoringModelId",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

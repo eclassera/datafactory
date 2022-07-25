@@ -1,0 +1,113 @@
+{
+	"name": "LocationType",
+	"properties": {
+		"Name": "LocationType",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "A means of categorizing locations based on common characteristics or functions.\n\nEx:\n- Mail-To\n- Ship-To\n- Account Statements-To\n- Documentation Mail-To\n- Legal Documentation-To\n- Home Office\n- Current Position\n\nINDIVIDUAL\n- Personal Residence\n- Vacation Residence\n- Employment Location\n\nLEGAL ENTITY\n- Business Office\n- Branch Office\n- Primary Office\n- Headquarters\n- Headquarters Mail-To\n- Headquarters Ship-To\n- Purchasing Department\n- Sales Office\n- Marketing\n- Support\n- Manufacturer Facility\n- Operations\n- Warehouse\n- Maintenance Facility\n- Supplier\n- Agent\n\nSTRUCTURE\n- Airport\n- Port\n- Warehouse\n- Facility\n- School\n- Police Station\n- Hospital\n- Dock\n- Train Station\n- Storage Tank\n- Aquifer\n- Property\n- Well\n- Oil Depot",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "LocationTypeId",
+					"Description": "The unique identifier of a Location Type.",
+					"BaseAttributeReference": {
+						"Entity": "LocationType.cdm.json/LocationType",
+						"Name": "LocationTypeId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "LocationTypeName",
+					"Description": "The name of a Location Type.",
+					"BaseAttributeReference": {
+						"Entity": "LocationType.cdm.json/LocationType",
+						"Name": "LocationTypeName"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 256,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "LocationTypeDescription",
+					"Description": "The description of a Location Type.",
+					"BaseAttributeReference": {
+						"Entity": "LocationType.cdm.json/LocationType",
+						"Name": "LocationTypeDescription"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/LocationType",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/LocationType",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"LocationTypeId\":{\"entity\":\"LocationType.cdm.json/LocationType\",\"name\":\"LocationTypeId\"},\"LocationTypeName\":{\"entity\":\"LocationType.cdm.json/LocationType\",\"name\":\"LocationTypeName\"},\"LocationTypeDescription\":{\"entity\":\"LocationType.cdm.json/LocationType\",\"name\":\"LocationTypeDescription\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"LocationType\",\"path\":\"LocationType.cdm.json/LocationType\"},\"description\":\"A means of categorizing locations based on common characteristics or functions.\\n\\nEx:\\n- Mail-To\\n- Ship-To\\n- Account Statements-To\\n- Documentation Mail-To\\n- Legal Documentation-To\\n- Home Office\\n- Current Position\\n\\nINDIVIDUAL\\n- Personal Residence\\n- Vacation Residence\\n- Employment Location\\n\\nLEGAL ENTITY\\n- Business Office\\n- Branch Office\\n- Primary Office\\n- Headquarters\\n- Headquarters Mail-To\\n- Headquarters Ship-To\\n- Purchasing Department\\n- Sales Office\\n- Marketing\\n- Support\\n- Manufacturer Facility\\n- Operations\\n- Warehouse\\n- Maintenance Facility\\n- Supplier\\n- Agent\\n\\nSTRUCTURE\\n- Airport\\n- Port\\n- Warehouse\\n- Facility\\n- School\\n- Police Station\\n- Hospital\\n- Dock\\n- Train Station\\n- Storage Tank\\n- Aquifer\\n- Property\\n- Well\\n- Oil Depot\",\"primaryKey\":[\"LocationTypeId\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"LocationType.cdm.json/LocationType\",\"name\":\"LocationTypeId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Location Type.\",\"isNullable\":false,\"name\":\"LocationTypeId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"LocationType.cdm.json/LocationType\",\"name\":\"LocationTypeName\"},\"dataType\":\"string\",\"dataTypeLength\":256,\"description\":\"The name of a Location Type.\",\"isNullable\":true,\"name\":\"LocationTypeName\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"LocationType.cdm.json/LocationType\",\"name\":\"LocationTypeDescription\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"The description of a Location Type.\",\"isNullable\":true,\"name\":\"LocationTypeDescription\"}]}}}",
+			"Description": "A means of categorizing locations based on common characteristics or functions.\n\nEx:\n- Mail-To\n- Ship-To\n- Account Statements-To\n- Documentation Mail-To\n- Legal Documentation-To\n- Home Office\n- Current Position\n\nINDIVIDUAL\n- Personal Residence\n- Vacation Residence\n- Employment Location\n\nLEGAL ENTITY\n- Business Office\n- Branch Office\n- Primary Office\n- Headquarters\n- Headquarters Mail-To\n- Headquarters Ship-To\n- Purchasing Department\n- Sales Office\n- Marketing\n- Support\n- Manufacturer Facility\n- Operations\n- Warehouse\n- Maintenance Facility\n- Supplier\n- Agent\n\nSTRUCTURE\n- Airport\n- Port\n- Warehouse\n- Facility\n- School\n- Police Station\n- Hospital\n- Dock\n- Train Station\n- Storage Tank\n- Aquifer\n- Property\n- Well\n- Oil Depot",
+			"DisplayFolderInfo": "{\"name\":\"Geography\",\"colorCode\":\"#008A94\"}",
+			"PrimaryKeys": "LocationTypeId",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

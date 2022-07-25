@@ -1,0 +1,163 @@
+{
+	"name": "ExperianCompanyKeyPersonnel",
+	"properties": {
+		"Name": "ExperianCompanyKeyPersonnel",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "Key personal of the Experian business.",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "ExperianFileNumber",
+					"Description": "The unique and persistent number that identifies and tracks the Experian company.",
+					"BaseAttributeReference": {
+						"Entity": "ExperianCompanyKeyPersonnel.cdm.json/ExperianCompanyKeyPersonnel",
+						"Name": "ExperianFileNumber"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "ProfileTimestamp",
+					"Description": "The timestamp of the Experian profile.",
+					"BaseAttributeReference": {
+						"Entity": "ExperianCompanyKeyPersonnel.cdm.json/ExperianCompanyKeyPersonnel",
+						"Name": "ProfileTimestamp"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "timestamp",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"TimestampFormat": "YYYY-MM-DD HH:MM:SS.fffffffff",
+							"HIVE_TYPE_STRING": "timestamp"
+						}
+					}
+				},
+				{
+					"Name": "MiddleName",
+					"Description": "The personnel middle name.",
+					"BaseAttributeReference": {
+						"Entity": "ExperianCompanyKeyPersonnel.cdm.json/ExperianCompanyKeyPersonnel",
+						"Name": "MiddleName"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Length": 256,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "LastName",
+					"Description": "The personnel last name.",
+					"BaseAttributeReference": {
+						"Entity": "ExperianCompanyKeyPersonnel.cdm.json/ExperianCompanyKeyPersonnel",
+						"Name": "LastName"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Length": 256,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "FirstName",
+					"Description": "The personnel first name.",
+					"BaseAttributeReference": {
+						"Entity": "ExperianCompanyKeyPersonnel.cdm.json/ExperianCompanyKeyPersonnel",
+						"Name": "FirstName"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Length": 256,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "ExperianPersonnelPositionTypeId",
+					"Description": "The unique identifier of an Experian personnel position type.",
+					"BaseAttributeReference": {
+						"Entity": "ExperianCompanyKeyPersonnel.cdm.json/ExperianCompanyKeyPersonnel",
+						"Name": "ExperianPersonnelPositionTypeId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/ExperianCompanyKeyPersonnel",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/ExperianCompanyKeyPersonnel",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"ExperianFileNumber\":{\"entity\":\"ExperianCompanyKeyPersonnel.cdm.json/ExperianCompanyKeyPersonnel\",\"name\":\"ExperianFileNumber\"},\"ProfileTimestamp\":{\"entity\":\"ExperianCompanyKeyPersonnel.cdm.json/ExperianCompanyKeyPersonnel\",\"name\":\"ProfileTimestamp\"},\"MiddleName\":{\"entity\":\"ExperianCompanyKeyPersonnel.cdm.json/ExperianCompanyKeyPersonnel\",\"name\":\"MiddleName\"},\"LastName\":{\"entity\":\"ExperianCompanyKeyPersonnel.cdm.json/ExperianCompanyKeyPersonnel\",\"name\":\"LastName\"},\"FirstName\":{\"entity\":\"ExperianCompanyKeyPersonnel.cdm.json/ExperianCompanyKeyPersonnel\",\"name\":\"FirstName\"},\"ExperianPersonnelPositionTypeId\":{\"entity\":\"ExperianCompanyKeyPersonnel.cdm.json/ExperianCompanyKeyPersonnel\",\"name\":\"ExperianPersonnelPositionTypeId\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"ExperianCompanyKeyPersonnel\",\"path\":\"ExperianCompanyKeyPersonnel.cdm.json/ExperianCompanyKeyPersonnel\"},\"description\":\"Key personal of the Experian business.\",\"primaryKey\":[\"ExperianFileNumber\",\"ProfileTimestamp\",\"MiddleName\",\"LastName\",\"FirstName\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ExperianCompanyKeyPersonnel.cdm.json/ExperianCompanyKeyPersonnel\",\"name\":\"ExperianFileNumber\"},\"dataType\":\"integer\",\"description\":\"The unique and persistent number that identifies and tracks the Experian company.\",\"isNullable\":false,\"name\":\"ExperianFileNumber\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ExperianCompanyKeyPersonnel.cdm.json/ExperianCompanyKeyPersonnel\",\"name\":\"ProfileTimestamp\"},\"dataType\":\"timestamp\",\"description\":\"The timestamp of the Experian profile.\",\"isNullable\":false,\"name\":\"ProfileTimestamp\",\"timestampFormat\":\"YYYY-MM-DD HH:MM:SS.fffffffff\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ExperianCompanyKeyPersonnel.cdm.json/ExperianCompanyKeyPersonnel\",\"name\":\"MiddleName\"},\"dataType\":\"string\",\"dataTypeLength\":256,\"description\":\"The personnel middle name.\",\"isNullable\":false,\"name\":\"MiddleName\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ExperianCompanyKeyPersonnel.cdm.json/ExperianCompanyKeyPersonnel\",\"name\":\"LastName\"},\"dataType\":\"string\",\"dataTypeLength\":256,\"description\":\"The personnel last name.\",\"isNullable\":false,\"name\":\"LastName\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ExperianCompanyKeyPersonnel.cdm.json/ExperianCompanyKeyPersonnel\",\"name\":\"FirstName\"},\"dataType\":\"string\",\"dataTypeLength\":256,\"description\":\"The personnel first name.\",\"isNullable\":false,\"name\":\"FirstName\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ExperianCompanyKeyPersonnel.cdm.json/ExperianCompanyKeyPersonnel\",\"name\":\"ExperianPersonnelPositionTypeId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of an Experian personnel position type.\",\"isNullable\":true,\"name\":\"ExperianPersonnelPositionTypeId\"}]}}}",
+			"Description": "Key personal of the Experian business.",
+			"DisplayFolderInfo": "{\"name\":\"Customer Credit & Collections\",\"colorCode\":\"#022F22\"}",
+			"PrimaryKeys": "ExperianFileNumber,ProfileTimestamp,MiddleName,LastName,FirstName",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

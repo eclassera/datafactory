@@ -1,0 +1,113 @@
+{
+	"name": "DurationCalculationMethod",
+	"properties": {
+		"Name": "DurationCalculationMethod",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "There are four main types of duration calculations, each of which differ in the way they account for factors such as interest rate changes and the bond's embedded options or redemption features:\n\n- Macaulay duration\nMacaulay duration is calculated by adding the results of multiplying the present value of each cash flow by the time it is received, and dividing by the total price of the security.\n\n- Modified duration\nModified duration is a modified version of the Macaulay model that accounts for changing interest rates. Because they affect yield, fluctuating interest rates will affect duration, so this modified formula shows how much the duration changes for each percentage change in yield. For bonds without any embedded features, bond price and interest rate move in opposite directions, so there is an inverse relationship between modified duration and an approximate one-percentage change in yield. Because the modified duration formula shows how a bond's duration changes in relation to interest rate movements, the formula is appropriate for investors wishing to measure the volatility of a particular bond.\n\n- Effective duration\nEffective duration requires the use of binomial trees to calculate the option-adjusted spread (OAS). There are entire courses built around just those two topics, so the calculations involved for effective duration is beyond the scope of this tutorial. There are, however, many programs available to investors wishing to calculate effective duration. \n\n- Key-rate duration.\nKey-rate duration calculates the spot durations of each of the 11 \"key\" maturities along a spot rate curve, while holding the yield for all other maturities constant, allows the duration of a portfolio to be calculated for a one-basis-point change in interest rates. The key-rate method is most often used for portfolios such as the bond-ladder, which consists of fixed-income securities with differing maturities",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "DurationCalculationMethodId",
+					"Description": "The unique identifier of a Duration Calculation Method.",
+					"BaseAttributeReference": {
+						"Entity": "DurationCalculationMethod.cdm.json/DurationCalculationMethod",
+						"Name": "DurationCalculationMethodId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "DurationCalculationMethodName",
+					"Description": "The name of a Duration Calculation Method.",
+					"BaseAttributeReference": {
+						"Entity": "DurationCalculationMethod.cdm.json/DurationCalculationMethod",
+						"Name": "DurationCalculationMethodName"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 256,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "DurationCalculationMethodDescription",
+					"Description": "The description of a Duration Calculation Method.",
+					"BaseAttributeReference": {
+						"Entity": "DurationCalculationMethod.cdm.json/DurationCalculationMethod",
+						"Name": "DurationCalculationMethodDescription"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/DurationCalculationMethod",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/DurationCalculationMethod",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"DurationCalculationMethodId\":{\"entity\":\"DurationCalculationMethod.cdm.json/DurationCalculationMethod\",\"name\":\"DurationCalculationMethodId\"},\"DurationCalculationMethodName\":{\"entity\":\"DurationCalculationMethod.cdm.json/DurationCalculationMethod\",\"name\":\"DurationCalculationMethodName\"},\"DurationCalculationMethodDescription\":{\"entity\":\"DurationCalculationMethod.cdm.json/DurationCalculationMethod\",\"name\":\"DurationCalculationMethodDescription\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"DurationCalculationMethod\",\"path\":\"DurationCalculationMethod.cdm.json/DurationCalculationMethod\"},\"description\":\"There are four main types of duration calculations, each of which differ in the way they account for factors such as interest rate changes and the bond's embedded options or redemption features:\\n\\n- Macaulay duration\\nMacaulay duration is calculated by adding the results of multiplying the present value of each cash flow by the time it is received, and dividing by the total price of the security.\\n\\n- Modified duration\\nModified duration is a modified version of the Macaulay model that accounts for changing interest rates. Because they affect yield, fluctuating interest rates will affect duration, so this modified formula shows how much the duration changes for each percentage change in yield. For bonds without any embedded features, bond price and interest rate move in opposite directions, so there is an inverse relationship between modified duration and an approximate one-percentage change in yield. Because the modified duration formula shows how a bond's duration changes in relation to interest rate movements, the formula is appropriate for investors wishing to measure the volatility of a particular bond.\\n\\n- Effective duration\\nEffective duration requires the use of binomial trees to calculate the option-adjusted spread (OAS). There are entire courses built around just those two topics, so the calculations involved for effective duration is beyond the scope of this tutorial. There are, however, many programs available to investors wishing to calculate effective duration. \\n\\n- Key-rate duration.\\nKey-rate duration calculates the spot durations of each of the 11 \\\"key\\\" maturities along a spot rate curve, while holding the yield for all other maturities constant, allows the duration of a portfolio to be calculated for a one-basis-point change in interest rates. The key-rate method is most often used for portfolios such as the bond-ladder, which consists of fixed-income securities with differing maturities\",\"primaryKey\":[\"DurationCalculationMethodId\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"DurationCalculationMethod.cdm.json/DurationCalculationMethod\",\"name\":\"DurationCalculationMethodId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Duration Calculation Method.\",\"isNullable\":false,\"name\":\"DurationCalculationMethodId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"DurationCalculationMethod.cdm.json/DurationCalculationMethod\",\"name\":\"DurationCalculationMethodName\"},\"dataType\":\"string\",\"dataTypeLength\":256,\"description\":\"The name of a Duration Calculation Method.\",\"isNullable\":true,\"name\":\"DurationCalculationMethodName\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"DurationCalculationMethod.cdm.json/DurationCalculationMethod\",\"name\":\"DurationCalculationMethodDescription\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"The description of a Duration Calculation Method.\",\"isNullable\":true,\"name\":\"DurationCalculationMethodDescription\"}]}}}",
+			"Description": "There are four main types of duration calculations, each of which differ in the way they account for factors such as interest rate changes and the bond's embedded options or redemption features:\n\n- Macaulay duration\nMacaulay duration is calculated by adding the results of multiplying the present value of each cash flow by the time it is received, and dividing by the total price of the security.\n\n- Modified duration\nModified duration is a modified version of the Macaulay model that accounts for changing interest rates. Because they affect yield, fluctuating interest rates will affect duration, so this modified formula shows how much the duration changes for each percentage change in yield. For bonds without any embedded features, bond price and interest rate move in opposite directions, so there is an inverse relationship between modified duration and an approximate one-percentage change in yield. Because the modified duration formula shows how a bond's duration changes in relation to interest rate movements, the formula is appropriate for investors wishing to measure the volatility of a particular bond.\n\n- Effective duration\nEffective duration requires the use of binomial trees to calculate the option-adjusted spread (OAS). There are entire courses built around just those two topics, so the calculations involved for effective duration is beyond the scope of this tutorial. There are, however, many programs available to investors wishing to calculate effective duration. \n\n- Key-rate duration.\nKey-rate duration calculates the spot durations of each of the 11 \"key\" maturities along a spot rate curve, while holding the yield for all other maturities constant, allows the duration of a portfolio to be calculated for a one-basis-point change in interest rates. The key-rate method is most often used for portfolios such as the bond-ladder, which consists of fixed-income securities with differing maturities",
+			"DisplayFolderInfo": "{\"name\":\"Financial Product\",\"colorCode\":\"#001475\"}",
+			"PrimaryKeys": "DurationCalculationMethodId",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

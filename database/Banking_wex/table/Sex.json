@@ -1,0 +1,113 @@
+{
+	"name": "Sex",
+	"properties": {
+		"Name": "Sex",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "The biological makeup of an individual's reproductive anatomy or secondary sex characteristics.\n\nEx.:\n- Male\n- Female\n- Intersex\n- Hermaphrodite \n- Indeterminate",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "SexId",
+					"Description": "The unique identifier of a Sex.",
+					"BaseAttributeReference": {
+						"Entity": "Sex.cdm.json/Sex",
+						"Name": "SexId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "SexName",
+					"Description": "The name of the Sex.",
+					"BaseAttributeReference": {
+						"Entity": "Sex.cdm.json/Sex",
+						"Name": "SexName"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 256,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "SexDescription",
+					"Description": "The description of the Sex.",
+					"BaseAttributeReference": {
+						"Entity": "Sex.cdm.json/Sex",
+						"Name": "SexDescription"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/Sex",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/Sex",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"SexId\":{\"entity\":\"Sex.cdm.json/Sex\",\"name\":\"SexId\"},\"SexName\":{\"entity\":\"Sex.cdm.json/Sex\",\"name\":\"SexName\"},\"SexDescription\":{\"entity\":\"Sex.cdm.json/Sex\",\"name\":\"SexDescription\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"Sex\",\"path\":\"Sex.cdm.json/Sex\"},\"description\":\"The biological makeup of an individual's reproductive anatomy or secondary sex characteristics.\\n\\nEx.:\\n- Male\\n- Female\\n- Intersex\\n- Hermaphrodite \\n- Indeterminate\",\"primaryKey\":[\"SexId\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"Sex.cdm.json/Sex\",\"name\":\"SexId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Sex.\",\"isNullable\":false,\"name\":\"SexId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"Sex.cdm.json/Sex\",\"name\":\"SexName\"},\"dataType\":\"string\",\"dataTypeLength\":256,\"description\":\"The name of the Sex.\",\"isNullable\":true,\"name\":\"SexName\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"Sex.cdm.json/Sex\",\"name\":\"SexDescription\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"The description of the Sex.\",\"isNullable\":true,\"name\":\"SexDescription\"}]}}}",
+			"Description": "The biological makeup of an individual's reproductive anatomy or secondary sex characteristics.\n\nEx.:\n- Male\n- Female\n- Intersex\n- Hermaphrodite \n- Indeterminate",
+			"DisplayFolderInfo": "{\"name\":\"Party\",\"colorCode\":\"#00727A\"}",
+			"PrimaryKeys": "SexId",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

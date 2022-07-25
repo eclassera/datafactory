@@ -1,0 +1,113 @@
+{
+	"name": "LegalEntityRelationshipType",
+	"properties": {
+		"Name": "LegalEntityRelationshipType",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "The nature of the relationships between Legal Entities.\n\nEx:\n- Parent - Subsidiary Company",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "LegalEntityRelationshipTypeId",
+					"Description": "The unique identifier of the Legal Entity Relationship Type.",
+					"BaseAttributeReference": {
+						"Entity": "LegalEntityRelationshipType.cdm.json/LegalEntityRelationshipType",
+						"Name": "LegalEntityRelationshipTypeId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "LegalEntityRelationshipTypeName",
+					"Description": "The name of the Legal Entity Relationship Type.",
+					"BaseAttributeReference": {
+						"Entity": "LegalEntityRelationshipType.cdm.json/LegalEntityRelationshipType",
+						"Name": "LegalEntityRelationshipTypeName"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 256,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "LegalEntityRelationshipTypeDescription",
+					"Description": "The description of the Legal Entity Relationship Type.",
+					"BaseAttributeReference": {
+						"Entity": "LegalEntityRelationshipType.cdm.json/LegalEntityRelationshipType",
+						"Name": "LegalEntityRelationshipTypeDescription"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/LegalEntityRelationshipType",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/LegalEntityRelationshipType",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"LegalEntityRelationshipTypeId\":{\"entity\":\"LegalEntityRelationshipType.cdm.json/LegalEntityRelationshipType\",\"name\":\"LegalEntityRelationshipTypeId\"},\"LegalEntityRelationshipTypeName\":{\"entity\":\"LegalEntityRelationshipType.cdm.json/LegalEntityRelationshipType\",\"name\":\"LegalEntityRelationshipTypeName\"},\"LegalEntityRelationshipTypeDescription\":{\"entity\":\"LegalEntityRelationshipType.cdm.json/LegalEntityRelationshipType\",\"name\":\"LegalEntityRelationshipTypeDescription\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"LegalEntityRelationshipType\",\"path\":\"LegalEntityRelationshipType.cdm.json/LegalEntityRelationshipType\"},\"description\":\"The nature of the relationships between Legal Entities.\\n\\nEx:\\n- Parent - Subsidiary Company\",\"primaryKey\":[\"LegalEntityRelationshipTypeId\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"LegalEntityRelationshipType.cdm.json/LegalEntityRelationshipType\",\"name\":\"LegalEntityRelationshipTypeId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of the Legal Entity Relationship Type.\",\"isNullable\":false,\"name\":\"LegalEntityRelationshipTypeId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"LegalEntityRelationshipType.cdm.json/LegalEntityRelationshipType\",\"name\":\"LegalEntityRelationshipTypeName\"},\"dataType\":\"string\",\"dataTypeLength\":256,\"description\":\"The name of the Legal Entity Relationship Type.\",\"isNullable\":true,\"name\":\"LegalEntityRelationshipTypeName\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"LegalEntityRelationshipType.cdm.json/LegalEntityRelationshipType\",\"name\":\"LegalEntityRelationshipTypeDescription\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"The description of the Legal Entity Relationship Type.\",\"isNullable\":true,\"name\":\"LegalEntityRelationshipTypeDescription\"}]}}}",
+			"Description": "The nature of the relationships between Legal Entities.\n\nEx:\n- Parent - Subsidiary Company",
+			"DisplayFolderInfo": "{\"name\":\"Accounting & Financial Reporting\",\"colorCode\":\"#0078D4\"}",
+			"PrimaryKeys": "LegalEntityRelationshipTypeId",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

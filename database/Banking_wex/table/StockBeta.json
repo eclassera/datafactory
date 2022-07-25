@@ -1,0 +1,145 @@
+{
+	"name": "StockBeta",
+	"properties": {
+		"Name": "StockBeta",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "A measure of a security's volatility, or systematic risk, in comparison to the market as a whole.\n\nBeta is the sensitivity of a stock's returns to the returns on some market index (e.g., S&P 500).\n\nBeta is calculated using regression analysis is the tendency of a security's returns to respond to swings in the market. \n\nA beta of 1 indicates that the security's price will move with the market. A beta less than 1 means that the security will be less volatile than the market. \nA beta greater than 1 indicates that the security's price will be more volatile than the market. \n\nFor example, if a stock's beta is 1.2 it's theoretically 20% more volatile than the market. \n\nMany utilities stocks have a beta of less than 1. Conversely most high-tech Nasdaq-based stocks have a beta greater than 1, offering the possibility of a higher rate of return but also posing more risk.",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "IndexId",
+					"Description": "The unique identifier of an Index.",
+					"BaseAttributeReference": {
+						"Entity": "StockBeta.cdm.json/StockBeta",
+						"Name": "IndexId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "long",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "long"
+						}
+					}
+				},
+				{
+					"Name": "StockId",
+					"Description": "The unique identifier of a Financial Product.",
+					"BaseAttributeReference": {
+						"Entity": "StockBeta.cdm.json/StockBeta",
+						"Name": "StockId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "long",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "long"
+						}
+					}
+				},
+				{
+					"Name": "PeriodStartDate",
+					"Description": "The period start date for which the stock beta is calculated.",
+					"BaseAttributeReference": {
+						"Entity": "StockBeta.cdm.json/StockBeta",
+						"Name": "PeriodStartDate"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "date",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"DateFormat": "YYYY-MM-DD",
+							"HIVE_TYPE_STRING": "date"
+						}
+					}
+				},
+				{
+					"Name": "PeriodEndDate",
+					"Description": "The period end date for which the stock beta is calculated.",
+					"BaseAttributeReference": {
+						"Entity": "StockBeta.cdm.json/StockBeta",
+						"Name": "PeriodEndDate"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "date",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"DateFormat": "YYYY-MM-DD",
+							"HIVE_TYPE_STRING": "date"
+						}
+					}
+				},
+				{
+					"Name": "StockBeta",
+					"Description": "A coefficient for measuring a stock's relative volatility in relation to the rest of the stock market  during the associated period. .\n\nThe S&P 500 has a beta coefficient of 1.    Any stock with a greater beta is considered more volatile than the market and any stock with a lesser beta is considered less volatile.\n\nThe measure of a fund's or stocks risk in relation to the market. A beta of 0.7 means the fund's\ntotal return is likely to move up or down 70% of the market change; 1.3 means total return is\nlikely to move up or down 30% more than the market. Beta is referred to as an index of the systematic risk due to general market conditions that cannot be diversified away. \n\nThe beta of a stock is determined as follows:\n                          [(n) (sum of (xy)) ]-[(sum of x) (sum of y)] \n                          [(n) (sum of (xx)) ]-[(sum of x) (sum of x)] \n                          where: n = # of observations (24-60 months) \n                          x = rate of return for the S&P 500 Index \n                          y = rate of return for the stock",
+					"BaseAttributeReference": {
+						"Entity": "StockBeta.cdm.json/StockBeta",
+						"Name": "StockBeta"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/StockBeta",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/StockBeta",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"IndexId\":{\"entity\":\"StockBeta.cdm.json/StockBeta\",\"name\":\"IndexId\"},\"StockId\":{\"entity\":\"StockBeta.cdm.json/StockBeta\",\"name\":\"StockId\"},\"PeriodStartDate\":{\"entity\":\"StockBeta.cdm.json/StockBeta\",\"name\":\"PeriodStartDate\"},\"PeriodEndDate\":{\"entity\":\"StockBeta.cdm.json/StockBeta\",\"name\":\"PeriodEndDate\"},\"StockBeta\":{\"entity\":\"StockBeta.cdm.json/StockBeta\",\"name\":\"StockBeta\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"StockBeta\",\"path\":\"StockBeta.cdm.json/StockBeta\"},\"description\":\"A measure of a security's volatility, or systematic risk, in comparison to the market as a whole.\\n\\nBeta is the sensitivity of a stock's returns to the returns on some market index (e.g., S&P 500).\\n\\nBeta is calculated using regression analysis is the tendency of a security's returns to respond to swings in the market. \\n\\nA beta of 1 indicates that the security's price will move with the market. A beta less than 1 means that the security will be less volatile than the market. \\nA beta greater than 1 indicates that the security's price will be more volatile than the market. \\n\\nFor example, if a stock's beta is 1.2 it's theoretically 20% more volatile than the market. \\n\\nMany utilities stocks have a beta of less than 1. Conversely most high-tech Nasdaq-based stocks have a beta greater than 1, offering the possibility of a higher rate of return but also posing more risk.\",\"primaryKey\":[\"IndexId\",\"StockId\",\"PeriodStartDate\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"StockBeta.cdm.json/StockBeta\",\"name\":\"IndexId\"},\"dataType\":\"long\",\"description\":\"The unique identifier of an Index.\",\"isNullable\":false,\"name\":\"IndexId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"StockBeta.cdm.json/StockBeta\",\"name\":\"StockId\"},\"dataType\":\"long\",\"description\":\"The unique identifier of a Financial Product.\",\"isNullable\":false,\"name\":\"StockId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"StockBeta.cdm.json/StockBeta\",\"name\":\"PeriodStartDate\"},\"dataType\":\"date\",\"dateFormat\":\"YYYY-MM-DD\",\"description\":\"The period start date for which the stock beta is calculated.\",\"isNullable\":false,\"name\":\"PeriodStartDate\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"StockBeta.cdm.json/StockBeta\",\"name\":\"PeriodEndDate\"},\"dataType\":\"date\",\"dateFormat\":\"YYYY-MM-DD\",\"description\":\"The period end date for which the stock beta is calculated.\",\"isNullable\":true,\"name\":\"PeriodEndDate\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"StockBeta.cdm.json/StockBeta\",\"name\":\"StockBeta\"},\"dataType\":\"integer\",\"description\":\"A coefficient for measuring a stock's relative volatility in relation to the rest of the stock market  during the associated period. .\\n\\nThe S&P 500 has a beta coefficient of 1.    Any stock with a greater beta is considered more volatile than the market and any stock with a lesser beta is considered less volatile.\\n\\nThe measure of a fund's or stocks risk in relation to the market. A beta of 0.7 means the fund's\\ntotal return is likely to move up or down 70% of the market change; 1.3 means total return is\\nlikely to move up or down 30% more than the market. Beta is referred to as an index of the systematic risk due to general market conditions that cannot be diversified away. \\n\\nThe beta of a stock is determined as follows:\\n                          [(n) (sum of (xy)) ]-[(sum of x) (sum of y)] \\n                          [(n) (sum of (xx)) ]-[(sum of x) (sum of x)] \\n                          where: n = # of observations (24-60 months) \\n                          x = rate of return for the S&P 500 Index \\n                          y = rate of return for the stock\",\"isNullable\":true,\"name\":\"StockBeta\"}]}}}",
+			"Description": "A measure of a security's volatility, or systematic risk, in comparison to the market as a whole.\n\nBeta is the sensitivity of a stock's returns to the returns on some market index (e.g., S&P 500).\n\nBeta is calculated using regression analysis is the tendency of a security's returns to respond to swings in the market. \n\nA beta of 1 indicates that the security's price will move with the market. A beta less than 1 means that the security will be less volatile than the market. \nA beta greater than 1 indicates that the security's price will be more volatile than the market. \n\nFor example, if a stock's beta is 1.2 it's theoretically 20% more volatile than the market. \n\nMany utilities stocks have a beta of less than 1. Conversely most high-tech Nasdaq-based stocks have a beta greater than 1, offering the possibility of a higher rate of return but also posing more risk.",
+			"DisplayFolderInfo": "{\"name\":\"Financial Product\",\"colorCode\":\"#001475\"}",
+			"PrimaryKeys": "IndexId,StockId,PeriodStartDate",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

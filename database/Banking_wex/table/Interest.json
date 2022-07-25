@@ -1,0 +1,129 @@
+{
+	"name": "Interest",
+	"properties": {
+		"Name": "Interest",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "Activities, Interests and Opinions are the foundation of Psychographics and Psychographic Segmentation.     \n\nActivities, Interests and Opinions equate to 'lifestyle'.    \n\nActivities, Interests and Opinions (AIO) are the basis for understanding consumer buying behavior as a function of their lifestyle.\n\nInterests describe what a consumer 'is interested in', such as 'professional basketball', 'gardening' or 'investing'.\n\nEx:\nInterest =  \"Professional Basketball\"\nInterest Type = \"Sports\"\n\nInterest =  \"Gardening\"\nInterest Type = \" Home Interests\"\n\nInterest =  \"Investing\"\nInterest Type = \"Finance\"\n\nSales, marketing and advertising activities are often planned for or targeted at groups having or reporting specific interests.\n\nEach organization will identify, define and track a specific set of AIOs to gather information about, define consumers and make decisions.",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "InterestId",
+					"Description": "The unique identifier of an Interest.",
+					"BaseAttributeReference": {
+						"Entity": "Interest.cdm.json/Interest",
+						"Name": "InterestId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "InterestName",
+					"Description": "The name of the Interest.",
+					"BaseAttributeReference": {
+						"Entity": "Interest.cdm.json/Interest",
+						"Name": "InterestName"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 256,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "InterestDescription",
+					"Description": "The description of the Interest.",
+					"BaseAttributeReference": {
+						"Entity": "Interest.cdm.json/Interest",
+						"Name": "InterestDescription"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "InterestTypeId",
+					"Description": "The unique identifier of an Interest Type.",
+					"BaseAttributeReference": {
+						"Entity": "Interest.cdm.json/Interest",
+						"Name": "InterestTypeId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/Interest",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/Interest",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"InterestId\":{\"entity\":\"Interest.cdm.json/Interest\",\"name\":\"InterestId\"},\"InterestName\":{\"entity\":\"Interest.cdm.json/Interest\",\"name\":\"InterestName\"},\"InterestDescription\":{\"entity\":\"Interest.cdm.json/Interest\",\"name\":\"InterestDescription\"},\"InterestTypeId\":{\"entity\":\"Interest.cdm.json/Interest\",\"name\":\"InterestTypeId\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"Interest\",\"path\":\"Interest.cdm.json/Interest\"},\"description\":\"Activities, Interests and Opinions are the foundation of Psychographics and Psychographic Segmentation.     \\n\\nActivities, Interests and Opinions equate to 'lifestyle'.    \\n\\nActivities, Interests and Opinions (AIO) are the basis for understanding consumer buying behavior as a function of their lifestyle.\\n\\nInterests describe what a consumer 'is interested in', such as 'professional basketball', 'gardening' or 'investing'.\\n\\nEx:\\nInterest =  \\\"Professional Basketball\\\"\\nInterest Type = \\\"Sports\\\"\\n\\nInterest =  \\\"Gardening\\\"\\nInterest Type = \\\" Home Interests\\\"\\n\\nInterest =  \\\"Investing\\\"\\nInterest Type = \\\"Finance\\\"\\n\\nSales, marketing and advertising activities are often planned for or targeted at groups having or reporting specific interests.\\n\\nEach organization will identify, define and track a specific set of AIOs to gather information about, define consumers and make decisions.\",\"primaryKey\":[\"InterestId\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"Interest.cdm.json/Interest\",\"name\":\"InterestId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of an Interest.\",\"isNullable\":false,\"name\":\"InterestId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"Interest.cdm.json/Interest\",\"name\":\"InterestName\"},\"dataType\":\"string\",\"dataTypeLength\":256,\"description\":\"The name of the Interest.\",\"isNullable\":true,\"name\":\"InterestName\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"Interest.cdm.json/Interest\",\"name\":\"InterestDescription\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"The description of the Interest.\",\"isNullable\":true,\"name\":\"InterestDescription\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"Interest.cdm.json/Interest\",\"name\":\"InterestTypeId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of an Interest Type.\",\"isNullable\":true,\"name\":\"InterestTypeId\"}]}}}",
+			"Description": "Activities, Interests and Opinions are the foundation of Psychographics and Psychographic Segmentation.     \n\nActivities, Interests and Opinions equate to 'lifestyle'.    \n\nActivities, Interests and Opinions (AIO) are the basis for understanding consumer buying behavior as a function of their lifestyle.\n\nInterests describe what a consumer 'is interested in', such as 'professional basketball', 'gardening' or 'investing'.\n\nEx:\nInterest =  \"Professional Basketball\"\nInterest Type = \"Sports\"\n\nInterest =  \"Gardening\"\nInterest Type = \" Home Interests\"\n\nInterest =  \"Investing\"\nInterest Type = \"Finance\"\n\nSales, marketing and advertising activities are often planned for or targeted at groups having or reporting specific interests.\n\nEach organization will identify, define and track a specific set of AIOs to gather information about, define consumers and make decisions.",
+			"DisplayFolderInfo": "{\"name\":\"Party\",\"colorCode\":\"#00727A\"}",
+			"PrimaryKeys": "InterestId",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

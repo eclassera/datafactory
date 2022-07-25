@@ -1,0 +1,129 @@
+{
+	"name": "MarketSegment",
+	"properties": {
+		"Name": "MarketSegment",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "Companies resort to Market Segmentation when they find that they cannot serve all the consumers in one single large market. Typical reasons for this strategy is because there are too many consumers, they are dispersed over diverse geographies or distances or have different purchase patterns.\n\nThere are six major ways to segment a Market:\n(1) DEMOGRAPHIC SEGMENTATION:   Buyers are grouped in terms of demographics - sex, religion, age, nationality etc.  This is popular because the data is more easily obtained and the measurements based upon these criteria easy to interpret.\n(2) GEOGRAPHIC SEGMENTATION:  Buyers are grouped by geography - country, state, region, county, city, neighborhood etc. Before segmenting geographically, a company must decide where it intends to market products.\n(3) BEHAVIORAL SEGMENTATION:  Buyers are defined by the ways in which members of the group use a product or perceive its benefits. Behavioral segmentation may include several categories such as \"benefits\", \"loyalty\", \"attitudes\" and so on.\n(4) PSYCHOGRAPHIC SEGMENTATION:  Buyers are grouped upon lifestyle characteristics such as interests, opinions and activities.\n(5) BENEFIT SEGMENTATION:  Categorizes consumers by the benefits they seek from a Product or Service.\n(6) ORGANIZATION SEGMENTATION\n\nSegments must meet four criteria in order to be of practical value:\n(1) Segments must be measurable in terms of size and financial power.\n(2) Segments must be accessible in terms of being able to communicate to them.\n(3) Segments must justify their definition by being visible enough to warrant the effort of defining marketing activities to address them.\n(4) There must be company resources and commitment available to reach the segments defined.\n\nHaving segmented its market, the company decides upon one of three marketing strategies:\n(1) Differentiated Marketing\n(2) Undifferentiated Marketing\n(3) Concentrated Marketing\n\n\"Undifferentiated marketing\", which is the strategy of selling one product to all people within a market, without modifying the product to meet the needs of a specific market segment. Demand is to be satisfied with a single product.\n\nA Market Segment is a segment or subdivision of a Market defined upon specific criteria within one or more of the following specific segmentation themes:\n- Benefit Segmentation\n- Behavioral Segmentation\n- Psychographic Segmentation\n- Demographic Segmentation\n- Geographic Segmentation\n- Organizational Segmentation\n\nThis allows you to narrowly define segments or \"slices\" of a Market based upon these segmentation variables that you select.\n\nMarket Segments are very important to identify as accurately as possible in order to mine each \"niche' effectively.\n\nSimply stated, a Market Segment is a more detailed and focused view into the composition of a Market.   It enables the seller to more accurately identify and know it's customers and therefore design Programs, pricing and promotions to address them.\n\nThe way to apply segmentation criteria is to:\n1. Identify and define potential market segments\n2. Identify the needs of prospective customers in the potential markets\n3. Create Market Segments based upon these criteria\n\nExisting sales channels cannot be expanded indefinitely. They must be supplemented by new Market Segments.\n\nFor example, in the \"Individual Customer Corporate\" Market we are interested in marketing to a very specific Market Segment that are \"Corporate Executives\", \"35-45\", \"with incomes of greater than $75,000\".",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "MarketSegmentId",
+					"Description": "The unique identifier of a Market Segment.",
+					"BaseAttributeReference": {
+						"Entity": "MarketSegment.cdm.json/MarketSegment",
+						"Name": "MarketSegmentId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "MarketSegmentName",
+					"Description": "The name of the Market Segment.",
+					"BaseAttributeReference": {
+						"Entity": "MarketSegment.cdm.json/MarketSegment",
+						"Name": "MarketSegmentName"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 256,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "MarketSegmentDescription",
+					"Description": "The description of the Market Segment.",
+					"BaseAttributeReference": {
+						"Entity": "MarketSegment.cdm.json/MarketSegment",
+						"Name": "MarketSegmentDescription"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "MarketId",
+					"Description": "The unique identifier of a Market.",
+					"BaseAttributeReference": {
+						"Entity": "MarketSegment.cdm.json/MarketSegment",
+						"Name": "MarketId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/MarketSegment",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/MarketSegment",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"MarketSegmentId\":{\"entity\":\"MarketSegment.cdm.json/MarketSegment\",\"name\":\"MarketSegmentId\"},\"MarketSegmentName\":{\"entity\":\"MarketSegment.cdm.json/MarketSegment\",\"name\":\"MarketSegmentName\"},\"MarketSegmentDescription\":{\"entity\":\"MarketSegment.cdm.json/MarketSegment\",\"name\":\"MarketSegmentDescription\"},\"MarketId\":{\"entity\":\"MarketSegment.cdm.json/MarketSegment\",\"name\":\"MarketId\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"MarketSegment\",\"path\":\"MarketSegment.cdm.json/MarketSegment\"},\"description\":\"Companies resort to Market Segmentation when they find that they cannot serve all the consumers in one single large market. Typical reasons for this strategy is because there are too many consumers, they are dispersed over diverse geographies or distances or have different purchase patterns.\\n\\nThere are six major ways to segment a Market:\\n(1) DEMOGRAPHIC SEGMENTATION:   Buyers are grouped in terms of demographics - sex, religion, age, nationality etc.  This is popular because the data is more easily obtained and the measurements based upon these criteria easy to interpret.\\n(2) GEOGRAPHIC SEGMENTATION:  Buyers are grouped by geography - country, state, region, county, city, neighborhood etc. Before segmenting geographically, a company must decide where it intends to market products.\\n(3) BEHAVIORAL SEGMENTATION:  Buyers are defined by the ways in which members of the group use a product or perceive its benefits. Behavioral segmentation may include several categories such as \\\"benefits\\\", \\\"loyalty\\\", \\\"attitudes\\\" and so on.\\n(4) PSYCHOGRAPHIC SEGMENTATION:  Buyers are grouped upon lifestyle characteristics such as interests, opinions and activities.\\n(5) BENEFIT SEGMENTATION:  Categorizes consumers by the benefits they seek from a Product or Service.\\n(6) ORGANIZATION SEGMENTATION\\n\\nSegments must meet four criteria in order to be of practical value:\\n(1) Segments must be measurable in terms of size and financial power.\\n(2) Segments must be accessible in terms of being able to communicate to them.\\n(3) Segments must justify their definition by being visible enough to warrant the effort of defining marketing activities to address them.\\n(4) There must be company resources and commitment available to reach the segments defined.\\n\\nHaving segmented its market, the company decides upon one of three marketing strategies:\\n(1) Differentiated Marketing\\n(2) Undifferentiated Marketing\\n(3) Concentrated Marketing\\n\\n\\\"Undifferentiated marketing\\\", which is the strategy of selling one product to all people within a market, without modifying the product to meet the needs of a specific market segment. Demand is to be satisfied with a single product.\\n\\nA Market Segment is a segment or subdivision of a Market defined upon specific criteria within one or more of the following specific segmentation themes:\\n- Benefit Segmentation\\n- Behavioral Segmentation\\n- Psychographic Segmentation\\n- Demographic Segmentation\\n- Geographic Segmentation\\n- Organizational Segmentation\\n\\nThis allows you to narrowly define segments or \\\"slices\\\" of a Market based upon these segmentation variables that you select.\\n\\nMarket Segments are very important to identify as accurately as possible in order to mine each \\\"niche' effectively.\\n\\nSimply stated, a Market Segment is a more detailed and focused view into the composition of a Market.   It enables the seller to more accurately identify and know it's customers and therefore design Programs, pricing and promotions to address them.\\n\\nThe way to apply segmentation criteria is to:\\n1. Identify and define potential market segments\\n2. Identify the needs of prospective customers in the potential markets\\n3. Create Market Segments based upon these criteria\\n\\nExisting sales channels cannot be expanded indefinitely. They must be supplemented by new Market Segments.\\n\\nFor example, in the \\\"Individual Customer Corporate\\\" Market we are interested in marketing to a very specific Market Segment that are \\\"Corporate Executives\\\", \\\"35-45\\\", \\\"with incomes of greater than $75,000\\\".\",\"primaryKey\":[\"MarketSegmentId\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"MarketSegment.cdm.json/MarketSegment\",\"name\":\"MarketSegmentId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Market Segment.\",\"isNullable\":false,\"name\":\"MarketSegmentId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"MarketSegment.cdm.json/MarketSegment\",\"name\":\"MarketSegmentName\"},\"dataType\":\"string\",\"dataTypeLength\":256,\"description\":\"The name of the Market Segment.\",\"isNullable\":true,\"name\":\"MarketSegmentName\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"MarketSegment.cdm.json/MarketSegment\",\"name\":\"MarketSegmentDescription\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"The description of the Market Segment.\",\"isNullable\":true,\"name\":\"MarketSegmentDescription\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"MarketSegment.cdm.json/MarketSegment\",\"name\":\"MarketId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Market.\",\"isNullable\":true,\"name\":\"MarketId\"}]}}}",
+			"Description": "Companies resort to Market Segmentation when they find that they cannot serve all the consumers in one single large market. Typical reasons for this strategy is because there are too many consumers, they are dispersed over diverse geographies or distances or have different purchase patterns.\n\nThere are six major ways to segment a Market:\n(1) DEMOGRAPHIC SEGMENTATION:   Buyers are grouped in terms of demographics - sex, religion, age, nationality etc.  This is popular because the data is more easily obtained and the measurements based upon these criteria easy to interpret.\n(2) GEOGRAPHIC SEGMENTATION:  Buyers are grouped by geography - country, state, region, county, city, neighborhood etc. Before segmenting geographically, a company must decide where it intends to market products.\n(3) BEHAVIORAL SEGMENTATION:  Buyers are defined by the ways in which members of the group use a product or perceive its benefits. Behavioral segmentation may include several categories such as \"benefits\", \"loyalty\", \"attitudes\" and so on.\n(4) PSYCHOGRAPHIC SEGMENTATION:  Buyers are grouped upon lifestyle characteristics such as interests, opinions and activities.\n(5) BENEFIT SEGMENTATION:  Categorizes consumers by the benefits they seek from a Product or Service.\n(6) ORGANIZATION SEGMENTATION\n\nSegments must meet four criteria in order to be of practical value:\n(1) Segments must be measurable in terms of size and financial power.\n(2) Segments must be accessible in terms of being able to communicate to them.\n(3) Segments must justify their definition by being visible enough to warrant the effort of defining marketing activities to address them.\n(4) There must be company resources and commitment available to reach the segments defined.\n\nHaving segmented its market, the company decides upon one of three marketing strategies:\n(1) Differentiated Marketing\n(2) Undifferentiated Marketing\n(3) Concentrated Marketing\n\n\"Undifferentiated marketing\", which is the strategy of selling one product to all people within a market, without modifying the product to meet the needs of a specific market segment. Demand is to be satisfied with a single product.\n\nA Market Segment is a segment or subdivision of a Market defined upon specific criteria within one or more of the following specific segmentation themes:\n- Benefit Segmentation\n- Behavioral Segmentation\n- Psychographic Segmentation\n- Demographic Segmentation\n- Geographic Segmentation\n- Organizational Segmentation\n\nThis allows you to narrowly define segments or \"slices\" of a Market based upon these segmentation variables that you select.\n\nMarket Segments are very important to identify as accurately as possible in order to mine each \"niche' effectively.\n\nSimply stated, a Market Segment is a more detailed and focused view into the composition of a Market.   It enables the seller to more accurately identify and know it's customers and therefore design Programs, pricing and promotions to address them.\n\nThe way to apply segmentation criteria is to:\n1. Identify and define potential market segments\n2. Identify the needs of prospective customers in the potential markets\n3. Create Market Segments based upon these criteria\n\nExisting sales channels cannot be expanded indefinitely. They must be supplemented by new Market Segments.\n\nFor example, in the \"Individual Customer Corporate\" Market we are interested in marketing to a very specific Market Segment that are \"Corporate Executives\", \"35-45\", \"with incomes of greater than $75,000\".",
+			"DisplayFolderInfo": "{\"name\":\"Marketing & Advertising\",\"colorCode\":\"#692B0C\"}",
+			"PrimaryKeys": "MarketSegmentId",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

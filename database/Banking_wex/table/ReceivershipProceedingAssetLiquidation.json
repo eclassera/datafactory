@@ -1,0 +1,181 @@
+{
+	"name": "ReceivershipProceedingAssetLiquidation",
+	"properties": {
+		"Name": "ReceivershipProceedingAssetLiquidation",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "The sale or liquidation of an Asset(s) under the associated Receivership Proceeding.",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "ReceivershipProceedingId",
+					"Description": "The unique identifier of a Receivership Action.",
+					"BaseAttributeReference": {
+						"Entity": "ReceivershipProceedingAssetLiquidation.cdm.json/ReceivershipProceedingAssetLiquidation",
+						"Name": "ReceivershipProceedingId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "AssetId",
+					"Description": "The unique identifier of an Asset.",
+					"BaseAttributeReference": {
+						"Entity": "ReceivershipProceedingAssetLiquidation.cdm.json/ReceivershipProceedingAssetLiquidation",
+						"Name": "AssetId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "long",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "long"
+						}
+					}
+				},
+				{
+					"Name": "LiquidationDate",
+					"Description": "The date that the asset sale or liquidation was completed.",
+					"BaseAttributeReference": {
+						"Entity": "ReceivershipProceedingAssetLiquidation.cdm.json/ReceivershipProceedingAssetLiquidation",
+						"Name": "LiquidationDate"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "date",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"DateFormat": "YYYY-MM-DD",
+							"HIVE_TYPE_STRING": "date"
+						}
+					}
+				},
+				{
+					"Name": "EstimatedAssetValueAmount",
+					"Description": "The estimated value of the asset.",
+					"BaseAttributeReference": {
+						"Entity": "ReceivershipProceedingAssetLiquidation.cdm.json/ReceivershipProceedingAssetLiquidation",
+						"Name": "EstimatedAssetValueAmount"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "decimal",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Precision": 18,
+						"Scale": 2,
+						"Properties": {
+							"HIVE_TYPE_STRING": "decimal"
+						}
+					}
+				},
+				{
+					"Name": "LiquidationAmount",
+					"Description": "The amount received from the sale or liquidation.",
+					"BaseAttributeReference": {
+						"Entity": "ReceivershipProceedingAssetLiquidation.cdm.json/ReceivershipProceedingAssetLiquidation",
+						"Name": "LiquidationAmount"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "decimal",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Precision": 18,
+						"Scale": 2,
+						"Properties": {
+							"HIVE_TYPE_STRING": "decimal"
+						}
+					}
+				},
+				{
+					"Name": "BenefitPaidToPartyId",
+					"Description": "The unique identifier of a Party to whom benefits are paid for the asset liquidation.",
+					"BaseAttributeReference": {
+						"Entity": "ReceivershipProceedingAssetLiquidation.cdm.json/ReceivershipProceedingAssetLiquidation",
+						"Name": "BenefitPaidToPartyId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "long",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"HIVE_TYPE_STRING": "long"
+						}
+					}
+				},
+				{
+					"Name": "AssetLiquidationNote",
+					"Description": "Notes, comments or additional information regarding the sale or liquidation of the Asset.",
+					"BaseAttributeReference": {
+						"Entity": "ReceivershipProceedingAssetLiquidation.cdm.json/ReceivershipProceedingAssetLiquidation",
+						"Name": "AssetLiquidationNote"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/ReceivershipProceedingAssetLiquidation",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/ReceivershipProceedingAssetLiquidation",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"ReceivershipProceedingId\":{\"entity\":\"ReceivershipProceedingAssetLiquidation.cdm.json/ReceivershipProceedingAssetLiquidation\",\"name\":\"ReceivershipProceedingId\"},\"AssetId\":{\"entity\":\"ReceivershipProceedingAssetLiquidation.cdm.json/ReceivershipProceedingAssetLiquidation\",\"name\":\"AssetId\"},\"LiquidationDate\":{\"entity\":\"ReceivershipProceedingAssetLiquidation.cdm.json/ReceivershipProceedingAssetLiquidation\",\"name\":\"LiquidationDate\"},\"EstimatedAssetValueAmount\":{\"entity\":\"ReceivershipProceedingAssetLiquidation.cdm.json/ReceivershipProceedingAssetLiquidation\",\"name\":\"EstimatedAssetValueAmount\"},\"LiquidationAmount\":{\"entity\":\"ReceivershipProceedingAssetLiquidation.cdm.json/ReceivershipProceedingAssetLiquidation\",\"name\":\"LiquidationAmount\"},\"BenefitPaidToPartyId\":{\"entity\":\"ReceivershipProceedingAssetLiquidation.cdm.json/ReceivershipProceedingAssetLiquidation\",\"name\":\"BenefitPaidToPartyId\"},\"AssetLiquidationNote\":{\"entity\":\"ReceivershipProceedingAssetLiquidation.cdm.json/ReceivershipProceedingAssetLiquidation\",\"name\":\"AssetLiquidationNote\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"ReceivershipProceedingAssetLiquidation\",\"path\":\"ReceivershipProceedingAssetLiquidation.cdm.json/ReceivershipProceedingAssetLiquidation\"},\"description\":\"The sale or liquidation of an Asset(s) under the associated Receivership Proceeding.\",\"primaryKey\":[\"ReceivershipProceedingId\",\"AssetId\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ReceivershipProceedingAssetLiquidation.cdm.json/ReceivershipProceedingAssetLiquidation\",\"name\":\"ReceivershipProceedingId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Receivership Action.\",\"isNullable\":false,\"name\":\"ReceivershipProceedingId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ReceivershipProceedingAssetLiquidation.cdm.json/ReceivershipProceedingAssetLiquidation\",\"name\":\"AssetId\"},\"dataType\":\"long\",\"description\":\"The unique identifier of an Asset.\",\"isNullable\":false,\"name\":\"AssetId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ReceivershipProceedingAssetLiquidation.cdm.json/ReceivershipProceedingAssetLiquidation\",\"name\":\"LiquidationDate\"},\"dataType\":\"date\",\"dateFormat\":\"YYYY-MM-DD\",\"description\":\"The date that the asset sale or liquidation was completed.\",\"isNullable\":true,\"name\":\"LiquidationDate\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ReceivershipProceedingAssetLiquidation.cdm.json/ReceivershipProceedingAssetLiquidation\",\"name\":\"EstimatedAssetValueAmount\"},\"dataType\":\"decimal\",\"dataTypeLength\":18,\"description\":\"The estimated value of the asset.\",\"isNullable\":true,\"scale\":2,\"name\":\"EstimatedAssetValueAmount\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ReceivershipProceedingAssetLiquidation.cdm.json/ReceivershipProceedingAssetLiquidation\",\"name\":\"LiquidationAmount\"},\"dataType\":\"decimal\",\"dataTypeLength\":18,\"description\":\"The amount received from the sale or liquidation.\",\"isNullable\":true,\"scale\":2,\"name\":\"LiquidationAmount\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ReceivershipProceedingAssetLiquidation.cdm.json/ReceivershipProceedingAssetLiquidation\",\"name\":\"BenefitPaidToPartyId\"},\"dataType\":\"long\",\"description\":\"The unique identifier of a Party to whom benefits are paid for the asset liquidation.\",\"isNullable\":true,\"name\":\"BenefitPaidToPartyId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ReceivershipProceedingAssetLiquidation.cdm.json/ReceivershipProceedingAssetLiquidation\",\"name\":\"AssetLiquidationNote\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"Notes, comments or additional information regarding the sale or liquidation of the Asset.\",\"isNullable\":true,\"name\":\"AssetLiquidationNote\"}]}}}",
+			"Description": "The sale or liquidation of an Asset(s) under the associated Receivership Proceeding.",
+			"DisplayFolderInfo": "{\"name\":\"Customer Credit & Collections\",\"colorCode\":\"#022F22\"}",
+			"PrimaryKeys": "ReceivershipProceedingId,AssetId",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

@@ -1,0 +1,131 @@
+{
+	"name": "StoreFixedCost",
+	"properties": {
+		"Name": "StoreFixedCost",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "Period costs that do not vary with sales, instead they are necessary expenditures (rent, utilities, etc.)",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "StoreId",
+					"Description": "The unique identifier of a Store.",
+					"BaseAttributeReference": {
+						"Entity": "StoreFixedCost.cdm.json/StoreFixedCost",
+						"Name": "StoreId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "PeriodStartDate",
+					"Description": "The period start date for which the associated cost is determined.",
+					"BaseAttributeReference": {
+						"Entity": "StoreFixedCost.cdm.json/StoreFixedCost",
+						"Name": "PeriodStartDate"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "date",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"DateFormat": "YYYY-MM-DD",
+							"HIVE_TYPE_STRING": "date"
+						}
+					}
+				},
+				{
+					"Name": "PeriodEndDate",
+					"Description": "The period end date for which the associated cost is determined.",
+					"BaseAttributeReference": {
+						"Entity": "StoreFixedCost.cdm.json/StoreFixedCost",
+						"Name": "PeriodEndDate"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "date",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"DateFormat": "YYYY-MM-DD",
+							"HIVE_TYPE_STRING": "date"
+						}
+					}
+				},
+				{
+					"Name": "FixedCostAmount",
+					"Description": "Period costs that do not vary with sales, instead they are necessary expenditures (rent, utilities, etc.)",
+					"BaseAttributeReference": {
+						"Entity": "StoreFixedCost.cdm.json/StoreFixedCost",
+						"Name": "FixedCostAmount"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "decimal",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Precision": 18,
+						"Scale": 2,
+						"Properties": {
+							"HIVE_TYPE_STRING": "decimal"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/StoreFixedCost",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/StoreFixedCost",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"StoreId\":{\"entity\":\"StoreFixedCost.cdm.json/StoreFixedCost\",\"name\":\"StoreId\"},\"PeriodStartDate\":{\"entity\":\"StoreFixedCost.cdm.json/StoreFixedCost\",\"name\":\"PeriodStartDate\"},\"PeriodEndDate\":{\"entity\":\"StoreFixedCost.cdm.json/StoreFixedCost\",\"name\":\"PeriodEndDate\"},\"FixedCostAmount\":{\"entity\":\"StoreFixedCost.cdm.json/StoreFixedCost\",\"name\":\"FixedCostAmount\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"StoreFixedCost\",\"path\":\"StoreFixedCost.cdm.json/StoreFixedCost\"},\"description\":\"Period costs that do not vary with sales, instead they are necessary expenditures (rent, utilities, etc.)\",\"primaryKey\":[\"StoreId\",\"PeriodStartDate\",\"PeriodEndDate\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"StoreFixedCost.cdm.json/StoreFixedCost\",\"name\":\"StoreId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Store.\",\"isNullable\":false,\"name\":\"StoreId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"StoreFixedCost.cdm.json/StoreFixedCost\",\"name\":\"PeriodStartDate\"},\"dataType\":\"date\",\"dateFormat\":\"YYYY-MM-DD\",\"description\":\"The period start date for which the associated cost is determined.\",\"isNullable\":false,\"name\":\"PeriodStartDate\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"StoreFixedCost.cdm.json/StoreFixedCost\",\"name\":\"PeriodEndDate\"},\"dataType\":\"date\",\"dateFormat\":\"YYYY-MM-DD\",\"description\":\"The period end date for which the associated cost is determined.\",\"isNullable\":false,\"name\":\"PeriodEndDate\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"StoreFixedCost.cdm.json/StoreFixedCost\",\"name\":\"FixedCostAmount\"},\"dataType\":\"decimal\",\"dataTypeLength\":18,\"description\":\"Period costs that do not vary with sales, instead they are necessary expenditures (rent, utilities, etc.)\",\"isNullable\":true,\"scale\":2,\"name\":\"FixedCostAmount\"}]}}}",
+			"Description": "Period costs that do not vary with sales, instead they are necessary expenditures (rent, utilities, etc.)",
+			"DisplayFolderInfo": "{\"name\":\"Channel\",\"colorCode\":\"#001D3F\"}",
+			"PrimaryKeys": "StoreId,PeriodStartDate,PeriodEndDate",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

@@ -1,0 +1,96 @@
+{
+	"name": "VehicleManufacturer",
+	"properties": {
+		"Name": "VehicleManufacturer",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "The manufacturer of the vehicle.\n\nEx:\nVEHICLE MAKE = BMW\nVEHICLE MODEL = 320",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "VehicleManufacturerId",
+					"Description": "The unique identifier of a Vehicle Manufacturer.",
+					"BaseAttributeReference": {
+						"Entity": "VehicleManufacturer.cdm.json/VehicleManufacturer",
+						"Name": "VehicleManufacturerId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "VehicleManufacturerName",
+					"Description": "The name of a Vehicle Manufacturer.",
+					"BaseAttributeReference": {
+						"Entity": "VehicleManufacturer.cdm.json/VehicleManufacturer",
+						"Name": "VehicleManufacturerName"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 256,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/VehicleManufacturer",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/VehicleManufacturer",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"VehicleManufacturerId\":{\"entity\":\"VehicleManufacturer.cdm.json/VehicleManufacturer\",\"name\":\"VehicleManufacturerId\"},\"VehicleManufacturerName\":{\"entity\":\"VehicleManufacturer.cdm.json/VehicleManufacturer\",\"name\":\"VehicleManufacturerName\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"VehicleManufacturer\",\"path\":\"VehicleManufacturer.cdm.json/VehicleManufacturer\"},\"description\":\"The manufacturer of the vehicle.\\n\\nEx:\\nVEHICLE MAKE = BMW\\nVEHICLE MODEL = 320\",\"primaryKey\":[\"VehicleManufacturerId\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"VehicleManufacturer.cdm.json/VehicleManufacturer\",\"name\":\"VehicleManufacturerId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Vehicle Manufacturer.\",\"isNullable\":false,\"name\":\"VehicleManufacturerId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"VehicleManufacturer.cdm.json/VehicleManufacturer\",\"name\":\"VehicleManufacturerName\"},\"dataType\":\"string\",\"dataTypeLength\":256,\"description\":\"The name of a Vehicle Manufacturer.\",\"isNullable\":true,\"name\":\"VehicleManufacturerName\"}]}}}",
+			"Description": "The manufacturer of the vehicle.\n\nEx:\nVEHICLE MAKE = BMW\nVEHICLE MODEL = 320",
+			"DisplayFolderInfo": "{\"name\":\"Customer Credit & Collections\",\"colorCode\":\"#022F22\"}",
+			"PrimaryKeys": "VehicleManufacturerId",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

@@ -1,0 +1,129 @@
+{
+	"name": "OrganizationCriteria",
+	"properties": {
+		"Name": "OrganizationCriteria",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "Organization Criteria are a means to identify what 'positions' or 'organizational responsibilities' an individual has.   \n\nAn organization can be defined for both professional organizations ('Employment') or the family organization (\"Housewife\")\n\nThe Organization Criteria Type is the larger classification to which the Organization Criteria belongs.\n\nThe following are examples:\n\nOrganization Criteria:   \"Housewife\"\nOrganization Criteria Type:  \"Family\"\n\nOrganization Criteria:   \"Manager\"\nOrganization Criteria Type:  \"Employment\"\n\nOrganization Criteria:  \"Manufacturing Supervisor\"\nOrganization Criteria Type:  \"Job Function\"\n\nOrganization Criteria:  \"Manager\"\nOrganization Criteria Type:  \"Job Title\"\n\nOrganization Criteria:  \"Accounting Clerical\"\nOrganization Criteria Type:  \"Clerical\"\n\nEach organization will identify, define and track a specific set of Organization Criteria to gather information about, define consumers and make decisions.",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "OrganizationCriteriaId",
+					"Description": "The unique identifier of an Organization Criteria.",
+					"BaseAttributeReference": {
+						"Entity": "OrganizationCriteria.cdm.json/OrganizationCriteria",
+						"Name": "OrganizationCriteriaId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "OrganizationCriteriaName",
+					"Description": "The name of the Organization Criteria.",
+					"BaseAttributeReference": {
+						"Entity": "OrganizationCriteria.cdm.json/OrganizationCriteria",
+						"Name": "OrganizationCriteriaName"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 256,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "OrganizationCriteriaDescription",
+					"Description": "The description of the Organization Criteria.",
+					"BaseAttributeReference": {
+						"Entity": "OrganizationCriteria.cdm.json/OrganizationCriteria",
+						"Name": "OrganizationCriteriaDescription"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "OrganizationCriteriaTypeId",
+					"Description": "The unique identifier of an Organization Criteria Type.",
+					"BaseAttributeReference": {
+						"Entity": "OrganizationCriteria.cdm.json/OrganizationCriteria",
+						"Name": "OrganizationCriteriaTypeId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/OrganizationCriteria",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/OrganizationCriteria",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"OrganizationCriteriaId\":{\"entity\":\"OrganizationCriteria.cdm.json/OrganizationCriteria\",\"name\":\"OrganizationCriteriaId\"},\"OrganizationCriteriaName\":{\"entity\":\"OrganizationCriteria.cdm.json/OrganizationCriteria\",\"name\":\"OrganizationCriteriaName\"},\"OrganizationCriteriaDescription\":{\"entity\":\"OrganizationCriteria.cdm.json/OrganizationCriteria\",\"name\":\"OrganizationCriteriaDescription\"},\"OrganizationCriteriaTypeId\":{\"entity\":\"OrganizationCriteria.cdm.json/OrganizationCriteria\",\"name\":\"OrganizationCriteriaTypeId\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"OrganizationCriteria\",\"path\":\"OrganizationCriteria.cdm.json/OrganizationCriteria\"},\"description\":\"Organization Criteria are a means to identify what 'positions' or 'organizational responsibilities' an individual has.   \\n\\nAn organization can be defined for both professional organizations ('Employment') or the family organization (\\\"Housewife\\\")\\n\\nThe Organization Criteria Type is the larger classification to which the Organization Criteria belongs.\\n\\nThe following are examples:\\n\\nOrganization Criteria:   \\\"Housewife\\\"\\nOrganization Criteria Type:  \\\"Family\\\"\\n\\nOrganization Criteria:   \\\"Manager\\\"\\nOrganization Criteria Type:  \\\"Employment\\\"\\n\\nOrganization Criteria:  \\\"Manufacturing Supervisor\\\"\\nOrganization Criteria Type:  \\\"Job Function\\\"\\n\\nOrganization Criteria:  \\\"Manager\\\"\\nOrganization Criteria Type:  \\\"Job Title\\\"\\n\\nOrganization Criteria:  \\\"Accounting Clerical\\\"\\nOrganization Criteria Type:  \\\"Clerical\\\"\\n\\nEach organization will identify, define and track a specific set of Organization Criteria to gather information about, define consumers and make decisions.\",\"primaryKey\":[\"OrganizationCriteriaId\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"OrganizationCriteria.cdm.json/OrganizationCriteria\",\"name\":\"OrganizationCriteriaId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of an Organization Criteria.\",\"isNullable\":false,\"name\":\"OrganizationCriteriaId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"OrganizationCriteria.cdm.json/OrganizationCriteria\",\"name\":\"OrganizationCriteriaName\"},\"dataType\":\"string\",\"dataTypeLength\":256,\"description\":\"The name of the Organization Criteria.\",\"isNullable\":true,\"name\":\"OrganizationCriteriaName\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"OrganizationCriteria.cdm.json/OrganizationCriteria\",\"name\":\"OrganizationCriteriaDescription\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"The description of the Organization Criteria.\",\"isNullable\":true,\"name\":\"OrganizationCriteriaDescription\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"OrganizationCriteria.cdm.json/OrganizationCriteria\",\"name\":\"OrganizationCriteriaTypeId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of an Organization Criteria Type.\",\"isNullable\":true,\"name\":\"OrganizationCriteriaTypeId\"}]}}}",
+			"Description": "Organization Criteria are a means to identify what 'positions' or 'organizational responsibilities' an individual has.   \n\nAn organization can be defined for both professional organizations ('Employment') or the family organization (\"Housewife\")\n\nThe Organization Criteria Type is the larger classification to which the Organization Criteria belongs.\n\nThe following are examples:\n\nOrganization Criteria:   \"Housewife\"\nOrganization Criteria Type:  \"Family\"\n\nOrganization Criteria:   \"Manager\"\nOrganization Criteria Type:  \"Employment\"\n\nOrganization Criteria:  \"Manufacturing Supervisor\"\nOrganization Criteria Type:  \"Job Function\"\n\nOrganization Criteria:  \"Manager\"\nOrganization Criteria Type:  \"Job Title\"\n\nOrganization Criteria:  \"Accounting Clerical\"\nOrganization Criteria Type:  \"Clerical\"\n\nEach organization will identify, define and track a specific set of Organization Criteria to gather information about, define consumers and make decisions.",
+			"DisplayFolderInfo": "{\"name\":\"Party\",\"colorCode\":\"#00727A\"}",
+			"PrimaryKeys": "OrganizationCriteriaId",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

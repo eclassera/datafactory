@@ -1,0 +1,113 @@
+{
+	"name": "MortgageLoanPartyRelationshipType",
+	"properties": {
+		"Name": "MortgageLoanPartyRelationshipType",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "The nature of the relationship between the Mortgage Loan and the related party.\n\nEx:\n- Mortgagee Party\n- Mortgage-holding Party\n- Mortgage Sold-To Party\n- Authorized-By Party\n- Real-Estate Agent Party\n- Appraised-By Party",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "MortgageLoanPartyRelationshipTypeId",
+					"Description": "The unique identifier of a Mortgage Loan Party Relationship Type.",
+					"BaseAttributeReference": {
+						"Entity": "MortgageLoanPartyRelationshipType.cdm.json/MortgageLoanPartyRelationshipType",
+						"Name": "MortgageLoanPartyRelationshipTypeId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "MortgageLoanPartyRelationshipTypeName",
+					"Description": "The name of a Mortgage Loan Party Relationship Type.",
+					"BaseAttributeReference": {
+						"Entity": "MortgageLoanPartyRelationshipType.cdm.json/MortgageLoanPartyRelationshipType",
+						"Name": "MortgageLoanPartyRelationshipTypeName"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 256,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "MortgageLoanPartyRelationshipTypeDescription",
+					"Description": "The description of a Mortgage Loan Party Relationship Type.",
+					"BaseAttributeReference": {
+						"Entity": "MortgageLoanPartyRelationshipType.cdm.json/MortgageLoanPartyRelationshipType",
+						"Name": "MortgageLoanPartyRelationshipTypeDescription"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/MortgageLoanPartyRelationshipType",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/MortgageLoanPartyRelationshipType",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"MortgageLoanPartyRelationshipTypeId\":{\"entity\":\"MortgageLoanPartyRelationshipType.cdm.json/MortgageLoanPartyRelationshipType\",\"name\":\"MortgageLoanPartyRelationshipTypeId\"},\"MortgageLoanPartyRelationshipTypeName\":{\"entity\":\"MortgageLoanPartyRelationshipType.cdm.json/MortgageLoanPartyRelationshipType\",\"name\":\"MortgageLoanPartyRelationshipTypeName\"},\"MortgageLoanPartyRelationshipTypeDescription\":{\"entity\":\"MortgageLoanPartyRelationshipType.cdm.json/MortgageLoanPartyRelationshipType\",\"name\":\"MortgageLoanPartyRelationshipTypeDescription\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"MortgageLoanPartyRelationshipType\",\"path\":\"MortgageLoanPartyRelationshipType.cdm.json/MortgageLoanPartyRelationshipType\"},\"description\":\"The nature of the relationship between the Mortgage Loan and the related party.\\n\\nEx:\\n- Mortgagee Party\\n- Mortgage-holding Party\\n- Mortgage Sold-To Party\\n- Authorized-By Party\\n- Real-Estate Agent Party\\n- Appraised-By Party\",\"primaryKey\":[\"MortgageLoanPartyRelationshipTypeId\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"MortgageLoanPartyRelationshipType.cdm.json/MortgageLoanPartyRelationshipType\",\"name\":\"MortgageLoanPartyRelationshipTypeId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Mortgage Loan Party Relationship Type.\",\"isNullable\":false,\"name\":\"MortgageLoanPartyRelationshipTypeId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"MortgageLoanPartyRelationshipType.cdm.json/MortgageLoanPartyRelationshipType\",\"name\":\"MortgageLoanPartyRelationshipTypeName\"},\"dataType\":\"string\",\"dataTypeLength\":256,\"description\":\"The name of a Mortgage Loan Party Relationship Type.\",\"isNullable\":true,\"name\":\"MortgageLoanPartyRelationshipTypeName\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"MortgageLoanPartyRelationshipType.cdm.json/MortgageLoanPartyRelationshipType\",\"name\":\"MortgageLoanPartyRelationshipTypeDescription\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"The description of a Mortgage Loan Party Relationship Type.\",\"isNullable\":true,\"name\":\"MortgageLoanPartyRelationshipTypeDescription\"}]}}}",
+			"Description": "The nature of the relationship between the Mortgage Loan and the related party.\n\nEx:\n- Mortgagee Party\n- Mortgage-holding Party\n- Mortgage Sold-To Party\n- Authorized-By Party\n- Real-Estate Agent Party\n- Appraised-By Party",
+			"DisplayFolderInfo": "{\"name\":\"Customer Credit & Collections\",\"colorCode\":\"#022F22\"}",
+			"PrimaryKeys": "MortgageLoanPartyRelationshipTypeId",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

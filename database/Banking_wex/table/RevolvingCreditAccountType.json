@@ -1,0 +1,113 @@
+{
+	"name": "RevolvingCreditAccountType",
+	"properties": {
+		"Name": "RevolvingCreditAccountType",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "A categorization of revolving credit account types based on the type of business that is supported.\n\nEx:\n- Retail\n- Utility\n- Telephone Service",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "RevolvingCreditAccountTypeId",
+					"Description": "The unique identifier of a Revolving Credit Account Type.",
+					"BaseAttributeReference": {
+						"Entity": "RevolvingCreditAccountType.cdm.json/RevolvingCreditAccountType",
+						"Name": "RevolvingCreditAccountTypeId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "RevolvingCreditAccountTypeName",
+					"Description": "The name of a Revolving Credit Account Type.",
+					"BaseAttributeReference": {
+						"Entity": "RevolvingCreditAccountType.cdm.json/RevolvingCreditAccountType",
+						"Name": "RevolvingCreditAccountTypeName"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 256,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "RevolvingCreditAccountTypeDescription",
+					"Description": "The description of a Revolving Credit Account Type.",
+					"BaseAttributeReference": {
+						"Entity": "RevolvingCreditAccountType.cdm.json/RevolvingCreditAccountType",
+						"Name": "RevolvingCreditAccountTypeDescription"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/RevolvingCreditAccountType",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/RevolvingCreditAccountType",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"RevolvingCreditAccountTypeId\":{\"entity\":\"RevolvingCreditAccountType.cdm.json/RevolvingCreditAccountType\",\"name\":\"RevolvingCreditAccountTypeId\"},\"RevolvingCreditAccountTypeName\":{\"entity\":\"RevolvingCreditAccountType.cdm.json/RevolvingCreditAccountType\",\"name\":\"RevolvingCreditAccountTypeName\"},\"RevolvingCreditAccountTypeDescription\":{\"entity\":\"RevolvingCreditAccountType.cdm.json/RevolvingCreditAccountType\",\"name\":\"RevolvingCreditAccountTypeDescription\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"RevolvingCreditAccountType\",\"path\":\"RevolvingCreditAccountType.cdm.json/RevolvingCreditAccountType\"},\"description\":\"A categorization of revolving credit account types based on the type of business that is supported.\\n\\nEx:\\n- Retail\\n- Utility\\n- Telephone Service\",\"primaryKey\":[\"RevolvingCreditAccountTypeId\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"RevolvingCreditAccountType.cdm.json/RevolvingCreditAccountType\",\"name\":\"RevolvingCreditAccountTypeId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Revolving Credit Account Type.\",\"isNullable\":false,\"name\":\"RevolvingCreditAccountTypeId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"RevolvingCreditAccountType.cdm.json/RevolvingCreditAccountType\",\"name\":\"RevolvingCreditAccountTypeName\"},\"dataType\":\"string\",\"dataTypeLength\":256,\"description\":\"The name of a Revolving Credit Account Type.\",\"isNullable\":true,\"name\":\"RevolvingCreditAccountTypeName\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"RevolvingCreditAccountType.cdm.json/RevolvingCreditAccountType\",\"name\":\"RevolvingCreditAccountTypeDescription\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"The description of a Revolving Credit Account Type.\",\"isNullable\":true,\"name\":\"RevolvingCreditAccountTypeDescription\"}]}}}",
+			"Description": "A categorization of revolving credit account types based on the type of business that is supported.\n\nEx:\n- Retail\n- Utility\n- Telephone Service",
+			"DisplayFolderInfo": "{\"name\":\"Customer Credit & Collections\",\"colorCode\":\"#022F22\"}",
+			"PrimaryKeys": "RevolvingCreditAccountTypeId",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

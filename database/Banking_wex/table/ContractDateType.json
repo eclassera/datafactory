@@ -1,0 +1,113 @@
+{
+	"name": "ContractDateType",
+	"properties": {
+		"Name": "ContractDateType",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "A type of date associated with a contract.\n\nEx:\n- Contract Received Date/Timestamp\n- Contract Executed Date/Timestamp\n- Contract Settled Date/Timestamp\n- Contract Delivered Date/Timestamp\n- Contract Cancelled Date/Timestamp",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "ContractDateTypeId",
+					"Description": "The unique identifier of a Contract Date Type.",
+					"BaseAttributeReference": {
+						"Entity": "ContractDateType.cdm.json/ContractDateType",
+						"Name": "ContractDateTypeId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "ContractDateTypeName",
+					"Description": "The name of a Contract Date Type.",
+					"BaseAttributeReference": {
+						"Entity": "ContractDateType.cdm.json/ContractDateType",
+						"Name": "ContractDateTypeName"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 256,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "ContractDateTypeDescription",
+					"Description": "The description of a Contract Date Type.",
+					"BaseAttributeReference": {
+						"Entity": "ContractDateType.cdm.json/ContractDateType",
+						"Name": "ContractDateTypeDescription"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/ContractDateType",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/ContractDateType",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"ContractDateTypeId\":{\"entity\":\"ContractDateType.cdm.json/ContractDateType\",\"name\":\"ContractDateTypeId\"},\"ContractDateTypeName\":{\"entity\":\"ContractDateType.cdm.json/ContractDateType\",\"name\":\"ContractDateTypeName\"},\"ContractDateTypeDescription\":{\"entity\":\"ContractDateType.cdm.json/ContractDateType\",\"name\":\"ContractDateTypeDescription\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"ContractDateType\",\"path\":\"ContractDateType.cdm.json/ContractDateType\"},\"description\":\"A type of date associated with a contract.\\n\\nEx:\\n- Contract Received Date/Timestamp\\n- Contract Executed Date/Timestamp\\n- Contract Settled Date/Timestamp\\n- Contract Delivered Date/Timestamp\\n- Contract Cancelled Date/Timestamp\",\"primaryKey\":[\"ContractDateTypeId\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ContractDateType.cdm.json/ContractDateType\",\"name\":\"ContractDateTypeId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Contract Date Type.\",\"isNullable\":false,\"name\":\"ContractDateTypeId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ContractDateType.cdm.json/ContractDateType\",\"name\":\"ContractDateTypeName\"},\"dataType\":\"string\",\"dataTypeLength\":256,\"description\":\"The name of a Contract Date Type.\",\"isNullable\":true,\"name\":\"ContractDateTypeName\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ContractDateType.cdm.json/ContractDateType\",\"name\":\"ContractDateTypeDescription\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"The description of a Contract Date Type.\",\"isNullable\":true,\"name\":\"ContractDateTypeDescription\"}]}}}",
+			"Description": "A type of date associated with a contract.\n\nEx:\n- Contract Received Date/Timestamp\n- Contract Executed Date/Timestamp\n- Contract Settled Date/Timestamp\n- Contract Delivered Date/Timestamp\n- Contract Cancelled Date/Timestamp",
+			"DisplayFolderInfo": "{\"name\":\"Contract\",\"colorCode\":\"#917EDB\"}",
+			"PrimaryKeys": "ContractDateTypeId",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

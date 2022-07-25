@@ -1,0 +1,162 @@
+{
+	"name": "RelatedLegalEntity",
+	"properties": {
+		"Name": "RelatedLegalEntity",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "A legal entity related to the associated legal entity.\n\nNote:\nThis may also be defined by the DUN's relationship/hierarchy.",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "LegalEntityId",
+					"Description": "The unique identifier of a Legal Entity.\n\nIn this case it is the business, organization or legal entity whose books are being recorded and financial statements presented.",
+					"BaseAttributeReference": {
+						"Entity": "RelatedLegalEntity.cdm.json/RelatedLegalEntity",
+						"Name": "LegalEntityId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "RelatedLegalEntityId",
+					"Description": "The unique identifier of a related Legal Entity.\n\nIn this case it is the business, organization or legal entity who books are being recorded and financial statements presented.",
+					"BaseAttributeReference": {
+						"Entity": "RelatedLegalEntity.cdm.json/RelatedLegalEntity",
+						"Name": "RelatedLegalEntityId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "PeriodStartDate",
+					"Description": "The period start date of the legal entity relationship.",
+					"BaseAttributeReference": {
+						"Entity": "RelatedLegalEntity.cdm.json/RelatedLegalEntity",
+						"Name": "PeriodStartDate"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "date",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"DateFormat": "YYYY-MM-DD",
+							"HIVE_TYPE_STRING": "date"
+						}
+					}
+				},
+				{
+					"Name": "PeriodEndDate",
+					"Description": "The period end date of the legal entity relationship.",
+					"BaseAttributeReference": {
+						"Entity": "RelatedLegalEntity.cdm.json/RelatedLegalEntity",
+						"Name": "PeriodEndDate"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "date",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"DateFormat": "YYYY-MM-DD",
+							"HIVE_TYPE_STRING": "date"
+						}
+					}
+				},
+				{
+					"Name": "LegalEntityRelationshipTypeId",
+					"Description": "The unique identifier of the Legal Entity Relationship Type.",
+					"BaseAttributeReference": {
+						"Entity": "RelatedLegalEntity.cdm.json/RelatedLegalEntity",
+						"Name": "LegalEntityRelationshipTypeId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "LegalEntityRelationshipNote",
+					"Description": "A note, comment or additional information regarding the related legal entities.",
+					"BaseAttributeReference": {
+						"Entity": "RelatedLegalEntity.cdm.json/RelatedLegalEntity",
+						"Name": "LegalEntityRelationshipNote"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/RelatedLegalEntity",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/RelatedLegalEntity",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"LegalEntityId\":{\"entity\":\"RelatedLegalEntity.cdm.json/RelatedLegalEntity\",\"name\":\"LegalEntityId\"},\"RelatedLegalEntityId\":{\"entity\":\"RelatedLegalEntity.cdm.json/RelatedLegalEntity\",\"name\":\"RelatedLegalEntityId\"},\"PeriodStartDate\":{\"entity\":\"RelatedLegalEntity.cdm.json/RelatedLegalEntity\",\"name\":\"PeriodStartDate\"},\"PeriodEndDate\":{\"entity\":\"RelatedLegalEntity.cdm.json/RelatedLegalEntity\",\"name\":\"PeriodEndDate\"},\"LegalEntityRelationshipTypeId\":{\"entity\":\"RelatedLegalEntity.cdm.json/RelatedLegalEntity\",\"name\":\"LegalEntityRelationshipTypeId\"},\"LegalEntityRelationshipNote\":{\"entity\":\"RelatedLegalEntity.cdm.json/RelatedLegalEntity\",\"name\":\"LegalEntityRelationshipNote\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"RelatedLegalEntity\",\"path\":\"RelatedLegalEntity.cdm.json/RelatedLegalEntity\"},\"description\":\"A legal entity related to the associated legal entity.\\n\\nNote:\\nThis may also be defined by the DUN's relationship/hierarchy.\",\"primaryKey\":[\"LegalEntityId\",\"RelatedLegalEntityId\",\"PeriodStartDate\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"RelatedLegalEntity.cdm.json/RelatedLegalEntity\",\"name\":\"LegalEntityId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Legal Entity.\\n\\nIn this case it is the business, organization or legal entity whose books are being recorded and financial statements presented.\",\"isNullable\":false,\"name\":\"LegalEntityId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"RelatedLegalEntity.cdm.json/RelatedLegalEntity\",\"name\":\"RelatedLegalEntityId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a related Legal Entity.\\n\\nIn this case it is the business, organization or legal entity who books are being recorded and financial statements presented.\",\"isNullable\":false,\"name\":\"RelatedLegalEntityId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"RelatedLegalEntity.cdm.json/RelatedLegalEntity\",\"name\":\"PeriodStartDate\"},\"dataType\":\"date\",\"dateFormat\":\"YYYY-MM-DD\",\"description\":\"The period start date of the legal entity relationship.\",\"isNullable\":false,\"name\":\"PeriodStartDate\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"RelatedLegalEntity.cdm.json/RelatedLegalEntity\",\"name\":\"PeriodEndDate\"},\"dataType\":\"date\",\"dateFormat\":\"YYYY-MM-DD\",\"description\":\"The period end date of the legal entity relationship.\",\"isNullable\":true,\"name\":\"PeriodEndDate\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"RelatedLegalEntity.cdm.json/RelatedLegalEntity\",\"name\":\"LegalEntityRelationshipTypeId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of the Legal Entity Relationship Type.\",\"isNullable\":true,\"name\":\"LegalEntityRelationshipTypeId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"RelatedLegalEntity.cdm.json/RelatedLegalEntity\",\"name\":\"LegalEntityRelationshipNote\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"A note, comment or additional information regarding the related legal entities.\",\"isNullable\":true,\"name\":\"LegalEntityRelationshipNote\"}]}}}",
+			"Description": "A legal entity related to the associated legal entity.\n\nNote:\nThis may also be defined by the DUN's relationship/hierarchy.",
+			"DisplayFolderInfo": "{\"name\":\"Legal Entity\",\"colorCode\":\"#630454\"}",
+			"PrimaryKeys": "LegalEntityId,RelatedLegalEntityId,PeriodStartDate",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

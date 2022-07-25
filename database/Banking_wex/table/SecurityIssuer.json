@@ -1,0 +1,146 @@
+{
+	"name": "SecurityIssuer",
+	"properties": {
+		"Name": "SecurityIssuer",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "An entity that may issue and distribute securities. \n\nStock issuers are required to report corporate developments to its shareholders and, if declared, pay dividends. \n\nBond issuers must make timely payments of interest and principal to its bondholders.",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "IssuerId",
+					"Description": "The unique identifier of a Role.",
+					"BaseAttributeReference": {
+						"Entity": "SecurityIssuer.cdm.json/SecurityIssuer",
+						"Name": "IssuerId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "IssuerName",
+					"Description": "The name of the Issuer.",
+					"BaseAttributeReference": {
+						"Entity": "SecurityIssuer.cdm.json/SecurityIssuer",
+						"Name": "IssuerName"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 256,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "SecurityIssuerTypeId",
+					"Description": "The unique identifier of the Issuer Type.",
+					"BaseAttributeReference": {
+						"Entity": "SecurityIssuer.cdm.json/SecurityIssuer",
+						"Name": "SecurityIssuerTypeId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "PartyId",
+					"Description": "The unique identifier of a Party.",
+					"BaseAttributeReference": {
+						"Entity": "SecurityIssuer.cdm.json/SecurityIssuer",
+						"Name": "PartyId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "long",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"HIVE_TYPE_STRING": "long"
+						}
+					}
+				},
+				{
+					"Name": "DunsNumber",
+					"Description": "An exclusive nine-digit Dun & Bradstreet D-U-N-S Number is assigned to each business location in a global database, it is widely used as a tool for identifying, organizing and consolidating information about businesses. Companies worldwide use it to link information about suppliers, customers and trading partners, providing them a more complete picture of risks and opportunities in their business relationships.\n\nD&B D-U-N-S Numbers are the key to building corporate family relationships in the D&B file. Since each location of a business may have its own unique D&B D-U-N-S Number, a large organization is likely to have many different D&B D-U-N-S Numbers within its corporate \"family tree\". D&B links the D&B D-U-N-S Numbers of parents, subsidiaries, headquarters and branches on more than 6.0 million corporate family members around the world.",
+					"BaseAttributeReference": {
+						"Entity": "SecurityIssuer.cdm.json/SecurityIssuer",
+						"Name": "DunsNumber"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "decimal",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Precision": 9,
+						"Scale": 0,
+						"Properties": {
+							"HIVE_TYPE_STRING": "decimal"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/SecurityIssuer",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/SecurityIssuer",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"IssuerId\":{\"entity\":\"SecurityIssuer.cdm.json/SecurityIssuer\",\"name\":\"IssuerId\"},\"IssuerName\":{\"entity\":\"SecurityIssuer.cdm.json/SecurityIssuer\",\"name\":\"IssuerName\"},\"SecurityIssuerTypeId\":{\"entity\":\"SecurityIssuer.cdm.json/SecurityIssuer\",\"name\":\"SecurityIssuerTypeId\"},\"PartyId\":{\"entity\":\"SecurityIssuer.cdm.json/SecurityIssuer\",\"name\":\"PartyId\"},\"DunsNumber\":{\"entity\":\"SecurityIssuer.cdm.json/SecurityIssuer\",\"name\":\"DunsNumber\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"SecurityIssuer\",\"path\":\"SecurityIssuer.cdm.json/SecurityIssuer\"},\"description\":\"An entity that may issue and distribute securities. \\n\\nStock issuers are required to report corporate developments to its shareholders and, if declared, pay dividends. \\n\\nBond issuers must make timely payments of interest and principal to its bondholders.\",\"primaryKey\":[\"IssuerId\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"SecurityIssuer.cdm.json/SecurityIssuer\",\"name\":\"IssuerId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Role.\",\"isNullable\":false,\"name\":\"IssuerId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"SecurityIssuer.cdm.json/SecurityIssuer\",\"name\":\"IssuerName\"},\"dataType\":\"string\",\"dataTypeLength\":256,\"description\":\"The name of the Issuer.\",\"isNullable\":true,\"name\":\"IssuerName\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"SecurityIssuer.cdm.json/SecurityIssuer\",\"name\":\"SecurityIssuerTypeId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of the Issuer Type.\",\"isNullable\":true,\"name\":\"SecurityIssuerTypeId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"SecurityIssuer.cdm.json/SecurityIssuer\",\"name\":\"PartyId\"},\"dataType\":\"long\",\"description\":\"The unique identifier of a Party.\",\"isNullable\":true,\"name\":\"PartyId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"SecurityIssuer.cdm.json/SecurityIssuer\",\"name\":\"DunsNumber\"},\"dataType\":\"decimal\",\"dataTypeLength\":9,\"description\":\"An exclusive nine-digit Dun & Bradstreet D-U-N-S Number is assigned to each business location in a global database, it is widely used as a tool for identifying, organizing and consolidating information about businesses. Companies worldwide use it to link information about suppliers, customers and trading partners, providing them a more complete picture of risks and opportunities in their business relationships.\\n\\nD&B D-U-N-S Numbers are the key to building corporate family relationships in the D&B file. Since each location of a business may have its own unique D&B D-U-N-S Number, a large organization is likely to have many different D&B D-U-N-S Numbers within its corporate \\\"family tree\\\". D&B links the D&B D-U-N-S Numbers of parents, subsidiaries, headquarters and branches on more than 6.0 million corporate family members around the world.\",\"isNullable\":true,\"scale\":0,\"name\":\"DunsNumber\"}]}}}",
+			"Description": "An entity that may issue and distribute securities. \n\nStock issuers are required to report corporate developments to its shareholders and, if declared, pay dividends. \n\nBond issuers must make timely payments of interest and principal to its bondholders.",
+			"DisplayFolderInfo": "{\"name\":\"Financial Product\",\"colorCode\":\"#001475\"}",
+			"PrimaryKeys": "IssuerId",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

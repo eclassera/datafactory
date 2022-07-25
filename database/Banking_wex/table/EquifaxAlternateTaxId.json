@@ -1,0 +1,129 @@
+{
+	"name": "EquifaxAlternateTaxId",
+	"properties": {
+		"Name": "EquifaxAlternateTaxId",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "Alternate tax ID's for the company.",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "EfxId",
+					"Description": "The EFX ID™ is a unique and persistent nine-digit number that identifies and tracks the business unit with which you have the credit relationship;",
+					"BaseAttributeReference": {
+						"Entity": "EquifaxAlternateTaxId.cdm.json/EquifaxAlternateTaxId",
+						"Name": "EfxId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "ProfileTimestamp",
+					"Description": "Provides the timestamp when the inquiry was made as recorded\nby Equifax (Eastern Time).",
+					"BaseAttributeReference": {
+						"Entity": "EquifaxAlternateTaxId.cdm.json/EquifaxAlternateTaxId",
+						"Name": "ProfileTimestamp"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "timestamp",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"TimestampFormat": "YYYY-MM-DD HH:MM:SS.fffffffff",
+							"HIVE_TYPE_STRING": "timestamp"
+						}
+					}
+				},
+				{
+					"Name": "AlternateTaxIdNumber",
+					"Description": "The alternate tax ID.",
+					"BaseAttributeReference": {
+						"Entity": "EquifaxAlternateTaxId.cdm.json/EquifaxAlternateTaxId",
+						"Name": "AlternateTaxIdNumber"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "DateReported",
+					"Description": "The date reported.",
+					"BaseAttributeReference": {
+						"Entity": "EquifaxAlternateTaxId.cdm.json/EquifaxAlternateTaxId",
+						"Name": "DateReported"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "date",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"DateFormat": "YYYY-MM-DD",
+							"HIVE_TYPE_STRING": "date"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/EquifaxAlternateTaxId",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/EquifaxAlternateTaxId",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"EfxId\":{\"entity\":\"EquifaxAlternateTaxId.cdm.json/EquifaxAlternateTaxId\",\"name\":\"EfxId\"},\"ProfileTimestamp\":{\"entity\":\"EquifaxAlternateTaxId.cdm.json/EquifaxAlternateTaxId\",\"name\":\"ProfileTimestamp\"},\"AlternateTaxIdNumber\":{\"entity\":\"EquifaxAlternateTaxId.cdm.json/EquifaxAlternateTaxId\",\"name\":\"AlternateTaxIdNumber\"},\"DateReported\":{\"entity\":\"EquifaxAlternateTaxId.cdm.json/EquifaxAlternateTaxId\",\"name\":\"DateReported\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"EquifaxAlternateTaxId\",\"path\":\"EquifaxAlternateTaxId.cdm.json/EquifaxAlternateTaxId\"},\"description\":\"Alternate tax ID's for the company.\",\"primaryKey\":[\"EfxId\",\"ProfileTimestamp\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"EquifaxAlternateTaxId.cdm.json/EquifaxAlternateTaxId\",\"name\":\"EfxId\"},\"dataType\":\"integer\",\"description\":\"The EFX ID™ is a unique and persistent nine-digit number that identifies and tracks the business unit with which you have the credit relationship;\",\"isNullable\":false,\"name\":\"EfxId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"EquifaxAlternateTaxId.cdm.json/EquifaxAlternateTaxId\",\"name\":\"ProfileTimestamp\"},\"dataType\":\"timestamp\",\"description\":\"Provides the timestamp when the inquiry was made as recorded\\nby Equifax (Eastern Time).\",\"isNullable\":false,\"name\":\"ProfileTimestamp\",\"timestampFormat\":\"YYYY-MM-DD HH:MM:SS.fffffffff\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"EquifaxAlternateTaxId.cdm.json/EquifaxAlternateTaxId\",\"name\":\"AlternateTaxIdNumber\"},\"dataType\":\"integer\",\"description\":\"The alternate tax ID.\",\"isNullable\":true,\"name\":\"AlternateTaxIdNumber\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"EquifaxAlternateTaxId.cdm.json/EquifaxAlternateTaxId\",\"name\":\"DateReported\"},\"dataType\":\"date\",\"dateFormat\":\"YYYY-MM-DD\",\"description\":\"The date reported.\",\"isNullable\":true,\"name\":\"DateReported\"}]}}}",
+			"Description": "Alternate tax ID's for the company.",
+			"DisplayFolderInfo": "{\"name\":\"Customer Credit & Collections\",\"colorCode\":\"#022F22\"}",
+			"PrimaryKeys": "EfxId,ProfileTimestamp",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

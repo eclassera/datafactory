@@ -1,0 +1,146 @@
+{
+	"name": "CustomerMarketingProgram",
+	"properties": {
+		"Name": "CustomerMarketingProgram",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "The Marketing Program(s) in which a Customer participates.",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "CustomerId",
+					"Description": "The unique identifier of a Customer.",
+					"BaseAttributeReference": {
+						"Entity": "CustomerMarketingProgram.cdm.json/CustomerMarketingProgram",
+						"Name": "CustomerId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "long",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "long"
+						}
+					}
+				},
+				{
+					"Name": "MarketingProgramId",
+					"Description": "The unique identifier of a Marketing Program.",
+					"BaseAttributeReference": {
+						"Entity": "CustomerMarketingProgram.cdm.json/CustomerMarketingProgram",
+						"Name": "MarketingProgramId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "CustomerProgramStartDate",
+					"Description": "The starting date of the Customer's participation in a Program.",
+					"BaseAttributeReference": {
+						"Entity": "CustomerMarketingProgram.cdm.json/CustomerMarketingProgram",
+						"Name": "CustomerProgramStartDate"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "date",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"DateFormat": "YYYY-MM-DD",
+							"HIVE_TYPE_STRING": "date"
+						}
+					}
+				},
+				{
+					"Name": "CustomerProgramEndDate",
+					"Description": "The ending date of the Customer's participation in a Program.",
+					"BaseAttributeReference": {
+						"Entity": "CustomerMarketingProgram.cdm.json/CustomerMarketingProgram",
+						"Name": "CustomerProgramEndDate"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "date",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"DateFormat": "YYYY-MM-DD",
+							"HIVE_TYPE_STRING": "date"
+						}
+					}
+				},
+				{
+					"Name": "CustomerProgramParticipationNote",
+					"Description": "A note, comment or additional information regarding the Customer's Program participation.",
+					"BaseAttributeReference": {
+						"Entity": "CustomerMarketingProgram.cdm.json/CustomerMarketingProgram",
+						"Name": "CustomerProgramParticipationNote"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/CustomerMarketingProgram",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/CustomerMarketingProgram",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"CustomerId\":{\"entity\":\"CustomerMarketingProgram.cdm.json/CustomerMarketingProgram\",\"name\":\"CustomerId\"},\"MarketingProgramId\":{\"entity\":\"CustomerMarketingProgram.cdm.json/CustomerMarketingProgram\",\"name\":\"MarketingProgramId\"},\"CustomerProgramStartDate\":{\"entity\":\"CustomerMarketingProgram.cdm.json/CustomerMarketingProgram\",\"name\":\"CustomerProgramStartDate\"},\"CustomerProgramEndDate\":{\"entity\":\"CustomerMarketingProgram.cdm.json/CustomerMarketingProgram\",\"name\":\"CustomerProgramEndDate\"},\"CustomerProgramParticipationNote\":{\"entity\":\"CustomerMarketingProgram.cdm.json/CustomerMarketingProgram\",\"name\":\"CustomerProgramParticipationNote\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"CustomerMarketingProgram\",\"path\":\"CustomerMarketingProgram.cdm.json/CustomerMarketingProgram\"},\"description\":\"The Marketing Program(s) in which a Customer participates.\",\"primaryKey\":[\"CustomerId\",\"MarketingProgramId\",\"CustomerProgramStartDate\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CustomerMarketingProgram.cdm.json/CustomerMarketingProgram\",\"name\":\"CustomerId\"},\"dataType\":\"long\",\"description\":\"The unique identifier of a Customer.\",\"isNullable\":false,\"name\":\"CustomerId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CustomerMarketingProgram.cdm.json/CustomerMarketingProgram\",\"name\":\"MarketingProgramId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Marketing Program.\",\"isNullable\":false,\"name\":\"MarketingProgramId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CustomerMarketingProgram.cdm.json/CustomerMarketingProgram\",\"name\":\"CustomerProgramStartDate\"},\"dataType\":\"date\",\"dateFormat\":\"YYYY-MM-DD\",\"description\":\"The starting date of the Customer's participation in a Program.\",\"isNullable\":false,\"name\":\"CustomerProgramStartDate\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CustomerMarketingProgram.cdm.json/CustomerMarketingProgram\",\"name\":\"CustomerProgramEndDate\"},\"dataType\":\"date\",\"dateFormat\":\"YYYY-MM-DD\",\"description\":\"The ending date of the Customer's participation in a Program.\",\"isNullable\":true,\"name\":\"CustomerProgramEndDate\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CustomerMarketingProgram.cdm.json/CustomerMarketingProgram\",\"name\":\"CustomerProgramParticipationNote\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"A note, comment or additional information regarding the Customer's Program participation.\",\"isNullable\":true,\"name\":\"CustomerProgramParticipationNote\"}]}}}",
+			"Description": "The Marketing Program(s) in which a Customer participates.",
+			"DisplayFolderInfo": "{\"name\":\"Customer\",\"colorCode\":\"#4B003F\"}",
+			"PrimaryKeys": "CustomerId,MarketingProgramId,CustomerProgramStartDate",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

@@ -1,0 +1,113 @@
+{
+	"name": "FinancialProfileAssetType",
+	"properties": {
+		"Name": "FinancialProfileAssetType",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "The type of asset associated with the Personal Profile.\n\nEx:\n- Domestic Real Estate\n- Foreign Real Estate\n- Stocks\n- Bonds\n- Cash-equivalent\n- Commodities\n- Mutual Funds\n- Investment Property\n- Insurance\n- Annuities\n- Retirement Income",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "FinancialProfileAssetTypeId",
+					"Description": "The unique identifier of a Financial Profile Asset Type.",
+					"BaseAttributeReference": {
+						"Entity": "FinancialProfileAssetType.cdm.json/FinancialProfileAssetType",
+						"Name": "FinancialProfileAssetTypeId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "FinancialProfileAssetTypeName",
+					"Description": "The name of a Financial Profile Asset Type.",
+					"BaseAttributeReference": {
+						"Entity": "FinancialProfileAssetType.cdm.json/FinancialProfileAssetType",
+						"Name": "FinancialProfileAssetTypeName"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 256,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "FinancialProfileAssetTypeDescription",
+					"Description": "The description of a Financial Profile Asset Type.",
+					"BaseAttributeReference": {
+						"Entity": "FinancialProfileAssetType.cdm.json/FinancialProfileAssetType",
+						"Name": "FinancialProfileAssetTypeDescription"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/FinancialProfileAssetType",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/FinancialProfileAssetType",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"FinancialProfileAssetTypeId\":{\"entity\":\"FinancialProfileAssetType.cdm.json/FinancialProfileAssetType\",\"name\":\"FinancialProfileAssetTypeId\"},\"FinancialProfileAssetTypeName\":{\"entity\":\"FinancialProfileAssetType.cdm.json/FinancialProfileAssetType\",\"name\":\"FinancialProfileAssetTypeName\"},\"FinancialProfileAssetTypeDescription\":{\"entity\":\"FinancialProfileAssetType.cdm.json/FinancialProfileAssetType\",\"name\":\"FinancialProfileAssetTypeDescription\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"FinancialProfileAssetType\",\"path\":\"FinancialProfileAssetType.cdm.json/FinancialProfileAssetType\"},\"description\":\"The type of asset associated with the Personal Profile.\\n\\nEx:\\n- Domestic Real Estate\\n- Foreign Real Estate\\n- Stocks\\n- Bonds\\n- Cash-equivalent\\n- Commodities\\n- Mutual Funds\\n- Investment Property\\n- Insurance\\n- Annuities\\n- Retirement Income\",\"primaryKey\":[\"FinancialProfileAssetTypeId\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"FinancialProfileAssetType.cdm.json/FinancialProfileAssetType\",\"name\":\"FinancialProfileAssetTypeId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Financial Profile Asset Type.\",\"isNullable\":false,\"name\":\"FinancialProfileAssetTypeId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"FinancialProfileAssetType.cdm.json/FinancialProfileAssetType\",\"name\":\"FinancialProfileAssetTypeName\"},\"dataType\":\"string\",\"dataTypeLength\":256,\"description\":\"The name of a Financial Profile Asset Type.\",\"isNullable\":true,\"name\":\"FinancialProfileAssetTypeName\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"FinancialProfileAssetType.cdm.json/FinancialProfileAssetType\",\"name\":\"FinancialProfileAssetTypeDescription\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"The description of a Financial Profile Asset Type.\",\"isNullable\":true,\"name\":\"FinancialProfileAssetTypeDescription\"}]}}}",
+			"Description": "The type of asset associated with the Personal Profile.\n\nEx:\n- Domestic Real Estate\n- Foreign Real Estate\n- Stocks\n- Bonds\n- Cash-equivalent\n- Commodities\n- Mutual Funds\n- Investment Property\n- Insurance\n- Annuities\n- Retirement Income",
+			"DisplayFolderInfo": "{\"name\":\"Customer Credit & Collections\",\"colorCode\":\"#022F22\"}",
+			"PrimaryKeys": "FinancialProfileAssetTypeId",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

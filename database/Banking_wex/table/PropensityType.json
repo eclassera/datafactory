@@ -1,0 +1,113 @@
+{
+	"name": "PropensityType",
+	"properties": {
+		"Name": "PropensityType",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "The type of the propensity or the likelihood to do something. \n\nEx:\n- Purchase A Specific Product Type\n- Pay\n- Default\n- Commit Fraud\n- Comment\n- Purchase\n- Participate in Program\n- Acquire New Technology",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "PropensityTypeId",
+					"Description": "The unique identifier of a Propensity Type.",
+					"BaseAttributeReference": {
+						"Entity": "PropensityType.cdm.json/PropensityType",
+						"Name": "PropensityTypeId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "PropensityTypeName",
+					"Description": "The name of a Propensity Type.",
+					"BaseAttributeReference": {
+						"Entity": "PropensityType.cdm.json/PropensityType",
+						"Name": "PropensityTypeName"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 256,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "PropensityTypeDescription",
+					"Description": "The description of a Propensity Type.",
+					"BaseAttributeReference": {
+						"Entity": "PropensityType.cdm.json/PropensityType",
+						"Name": "PropensityTypeDescription"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/PropensityType",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/PropensityType",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"PropensityTypeId\":{\"entity\":\"PropensityType.cdm.json/PropensityType\",\"name\":\"PropensityTypeId\"},\"PropensityTypeName\":{\"entity\":\"PropensityType.cdm.json/PropensityType\",\"name\":\"PropensityTypeName\"},\"PropensityTypeDescription\":{\"entity\":\"PropensityType.cdm.json/PropensityType\",\"name\":\"PropensityTypeDescription\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"PropensityType\",\"path\":\"PropensityType.cdm.json/PropensityType\"},\"description\":\"The type of the propensity or the likelihood to do something. \\n\\nEx:\\n- Purchase A Specific Product Type\\n- Pay\\n- Default\\n- Commit Fraud\\n- Comment\\n- Purchase\\n- Participate in Program\\n- Acquire New Technology\",\"primaryKey\":[\"PropensityTypeId\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"PropensityType.cdm.json/PropensityType\",\"name\":\"PropensityTypeId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Propensity Type.\",\"isNullable\":false,\"name\":\"PropensityTypeId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"PropensityType.cdm.json/PropensityType\",\"name\":\"PropensityTypeName\"},\"dataType\":\"string\",\"dataTypeLength\":256,\"description\":\"The name of a Propensity Type.\",\"isNullable\":true,\"name\":\"PropensityTypeName\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"PropensityType.cdm.json/PropensityType\",\"name\":\"PropensityTypeDescription\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"The description of a Propensity Type.\",\"isNullable\":true,\"name\":\"PropensityTypeDescription\"}]}}}",
+			"Description": "The type of the propensity or the likelihood to do something. \n\nEx:\n- Purchase A Specific Product Type\n- Pay\n- Default\n- Commit Fraud\n- Comment\n- Purchase\n- Participate in Program\n- Acquire New Technology",
+			"DisplayFolderInfo": "{\"name\":\"Party\",\"colorCode\":\"#00727A\"}",
+			"PrimaryKeys": "PropensityTypeId",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

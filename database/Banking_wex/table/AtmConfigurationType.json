@@ -1,0 +1,113 @@
+{
+	"name": "AtmConfigurationType",
+	"properties": {
+		"Name": "AtmConfigurationType",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "The type of configuration of the associated ATM.\n\nEx:\n- Wall mounted\n- Stand alone",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "AtmConfigurationTypeId",
+					"Description": "The unique identifier of an ATM Configuration Type.",
+					"BaseAttributeReference": {
+						"Entity": "AtmConfigurationType.cdm.json/AtmConfigurationType",
+						"Name": "AtmConfigurationTypeId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "AtmConfigurationTypeName",
+					"Description": "The name of an ATM Configuration Type.",
+					"BaseAttributeReference": {
+						"Entity": "AtmConfigurationType.cdm.json/AtmConfigurationType",
+						"Name": "AtmConfigurationTypeName"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 256,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "AtmConfigurationTypeDescription",
+					"Description": "The description of an ATM Configuration Type.",
+					"BaseAttributeReference": {
+						"Entity": "AtmConfigurationType.cdm.json/AtmConfigurationType",
+						"Name": "AtmConfigurationTypeDescription"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/AtmConfigurationType",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/AtmConfigurationType",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"AtmConfigurationTypeId\":{\"entity\":\"AtmConfigurationType.cdm.json/AtmConfigurationType\",\"name\":\"AtmConfigurationTypeId\"},\"AtmConfigurationTypeName\":{\"entity\":\"AtmConfigurationType.cdm.json/AtmConfigurationType\",\"name\":\"AtmConfigurationTypeName\"},\"AtmConfigurationTypeDescription\":{\"entity\":\"AtmConfigurationType.cdm.json/AtmConfigurationType\",\"name\":\"AtmConfigurationTypeDescription\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"AtmConfigurationType\",\"path\":\"AtmConfigurationType.cdm.json/AtmConfigurationType\"},\"description\":\"The type of configuration of the associated ATM.\\n\\nEx:\\n- Wall mounted\\n- Stand alone\",\"primaryKey\":[\"AtmConfigurationTypeId\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"AtmConfigurationType.cdm.json/AtmConfigurationType\",\"name\":\"AtmConfigurationTypeId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of an ATM Configuration Type.\",\"isNullable\":false,\"name\":\"AtmConfigurationTypeId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"AtmConfigurationType.cdm.json/AtmConfigurationType\",\"name\":\"AtmConfigurationTypeName\"},\"dataType\":\"string\",\"dataTypeLength\":256,\"description\":\"The name of an ATM Configuration Type.\",\"isNullable\":true,\"name\":\"AtmConfigurationTypeName\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"AtmConfigurationType.cdm.json/AtmConfigurationType\",\"name\":\"AtmConfigurationTypeDescription\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"The description of an ATM Configuration Type.\",\"isNullable\":true,\"name\":\"AtmConfigurationTypeDescription\"}]}}}",
+			"Description": "The type of configuration of the associated ATM.\n\nEx:\n- Wall mounted\n- Stand alone",
+			"DisplayFolderInfo": "{\"name\":\"Channel\",\"colorCode\":\"#001D3F\"}",
+			"PrimaryKeys": "AtmConfigurationTypeId",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

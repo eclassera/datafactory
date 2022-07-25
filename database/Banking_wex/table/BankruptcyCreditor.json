@@ -1,0 +1,163 @@
+{
+	"name": "BankruptcyCreditor",
+	"properties": {
+		"Name": "BankruptcyCreditor",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "Creditor(s) specified for the associated Bankruptcy action.\n\nOne to whom the debtor owes money or who claims to be owed money by the debtor.",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "BankruptcyProceedingId",
+					"Description": "The unique identifier of a Bankruptcy Proceeding.",
+					"BaseAttributeReference": {
+						"Entity": "BankruptcyCreditor.cdm.json/BankruptcyCreditor",
+						"Name": "BankruptcyProceedingId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "CreditorPartyId",
+					"Description": "The unique identifier of a Party.",
+					"BaseAttributeReference": {
+						"Entity": "BankruptcyCreditor.cdm.json/BankruptcyCreditor",
+						"Name": "CreditorPartyId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "long",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "long"
+						}
+					}
+				},
+				{
+					"Name": "CreditorClaimAmount",
+					"Description": "The amount that the credit claims is owed to them.",
+					"BaseAttributeReference": {
+						"Entity": "BankruptcyCreditor.cdm.json/BankruptcyCreditor",
+						"Name": "CreditorClaimAmount"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "decimal",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Precision": 18,
+						"Scale": 2,
+						"Properties": {
+							"HIVE_TYPE_STRING": "decimal"
+						}
+					}
+				},
+				{
+					"Name": "SecuredCreditorIndicator",
+					"Description": "A secured creditor can claim a specific collateral for repayment of a debt.\n\nThe secured creditor can reclaim the collateral to sell.",
+					"BaseAttributeReference": {
+						"Entity": "BankruptcyCreditor.cdm.json/BankruptcyCreditor",
+						"Name": "SecuredCreditorIndicator"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "boolean",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"HIVE_TYPE_STRING": "boolean"
+						}
+					}
+				},
+				{
+					"Name": "ProofOfClaimDescription",
+					"Description": "A Proof of Claim is filed in bankruptcy court by creditors.\n\nThe bankruptcy trustee has the power to determine if the proof of claim is valid.",
+					"BaseAttributeReference": {
+						"Entity": "BankruptcyCreditor.cdm.json/BankruptcyCreditor",
+						"Name": "ProofOfClaimDescription"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "ProofOfClaimFiledDate",
+					"Description": "The date that the proof of claim was filed.",
+					"BaseAttributeReference": {
+						"Entity": "BankruptcyCreditor.cdm.json/BankruptcyCreditor",
+						"Name": "ProofOfClaimFiledDate"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "date",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"DateFormat": "YYYY-MM-DD",
+							"HIVE_TYPE_STRING": "date"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/BankruptcyCreditor",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/BankruptcyCreditor",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"BankruptcyProceedingId\":{\"entity\":\"BankruptcyCreditor.cdm.json/BankruptcyCreditor\",\"name\":\"BankruptcyProceedingId\"},\"CreditorPartyId\":{\"entity\":\"BankruptcyCreditor.cdm.json/BankruptcyCreditor\",\"name\":\"CreditorPartyId\"},\"CreditorClaimAmount\":{\"entity\":\"BankruptcyCreditor.cdm.json/BankruptcyCreditor\",\"name\":\"CreditorClaimAmount\"},\"SecuredCreditorIndicator\":{\"entity\":\"BankruptcyCreditor.cdm.json/BankruptcyCreditor\",\"name\":\"SecuredCreditorIndicator\"},\"ProofOfClaimDescription\":{\"entity\":\"BankruptcyCreditor.cdm.json/BankruptcyCreditor\",\"name\":\"ProofOfClaimDescription\"},\"ProofOfClaimFiledDate\":{\"entity\":\"BankruptcyCreditor.cdm.json/BankruptcyCreditor\",\"name\":\"ProofOfClaimFiledDate\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"BankruptcyCreditor\",\"path\":\"BankruptcyCreditor.cdm.json/BankruptcyCreditor\"},\"description\":\"Creditor(s) specified for the associated Bankruptcy action.\\n\\nOne to whom the debtor owes money or who claims to be owed money by the debtor.\",\"primaryKey\":[\"BankruptcyProceedingId\",\"CreditorPartyId\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"BankruptcyCreditor.cdm.json/BankruptcyCreditor\",\"name\":\"BankruptcyProceedingId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Bankruptcy Proceeding.\",\"isNullable\":false,\"name\":\"BankruptcyProceedingId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"BankruptcyCreditor.cdm.json/BankruptcyCreditor\",\"name\":\"CreditorPartyId\"},\"dataType\":\"long\",\"description\":\"The unique identifier of a Party.\",\"isNullable\":false,\"name\":\"CreditorPartyId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"BankruptcyCreditor.cdm.json/BankruptcyCreditor\",\"name\":\"CreditorClaimAmount\"},\"dataType\":\"decimal\",\"dataTypeLength\":18,\"description\":\"The amount that the credit claims is owed to them.\",\"isNullable\":true,\"scale\":2,\"name\":\"CreditorClaimAmount\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"BankruptcyCreditor.cdm.json/BankruptcyCreditor\",\"name\":\"SecuredCreditorIndicator\"},\"dataType\":\"boolean\",\"description\":\"A secured creditor can claim a specific collateral for repayment of a debt.\\n\\nThe secured creditor can reclaim the collateral to sell.\",\"isNullable\":true,\"name\":\"SecuredCreditorIndicator\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"BankruptcyCreditor.cdm.json/BankruptcyCreditor\",\"name\":\"ProofOfClaimDescription\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"A Proof of Claim is filed in bankruptcy court by creditors.\\n\\nThe bankruptcy trustee has the power to determine if the proof of claim is valid.\",\"isNullable\":true,\"name\":\"ProofOfClaimDescription\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"BankruptcyCreditor.cdm.json/BankruptcyCreditor\",\"name\":\"ProofOfClaimFiledDate\"},\"dataType\":\"date\",\"dateFormat\":\"YYYY-MM-DD\",\"description\":\"The date that the proof of claim was filed.\",\"isNullable\":true,\"name\":\"ProofOfClaimFiledDate\"}]}}}",
+			"Description": "Creditor(s) specified for the associated Bankruptcy action.\n\nOne to whom the debtor owes money or who claims to be owed money by the debtor.",
+			"DisplayFolderInfo": "{\"name\":\"Customer Credit & Collections\",\"colorCode\":\"#022F22\"}",
+			"PrimaryKeys": "BankruptcyProceedingId,CreditorPartyId",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

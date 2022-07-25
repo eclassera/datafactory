@@ -1,0 +1,144 @@
+{
+	"name": "BankruptcyAssetLiquidationRelatedParty",
+	"properties": {
+		"Name": "BankruptcyAssetLiquidationRelatedParty",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "A party that has a relationship with the bankruptcy proceeding asset liquidation.\n\n Ex:\n- Administering Receiver\n- Pay-to Party",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "BankruptcyProceedingId",
+					"Description": "The unique identifier of a Bankruptcy Proceeding.",
+					"BaseAttributeReference": {
+						"Entity": "BankruptcyAssetLiquidationRelatedParty.cdm.json/BankruptcyAssetLiquidationRelatedParty",
+						"Name": "BankruptcyProceedingId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "AssetId",
+					"Description": "The unique identifier of an Asset.",
+					"BaseAttributeReference": {
+						"Entity": "BankruptcyAssetLiquidationRelatedParty.cdm.json/BankruptcyAssetLiquidationRelatedParty",
+						"Name": "AssetId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "long",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "long"
+						}
+					}
+				},
+				{
+					"Name": "PartyId",
+					"Description": "The unique identifier of a Party.",
+					"BaseAttributeReference": {
+						"Entity": "BankruptcyAssetLiquidationRelatedParty.cdm.json/BankruptcyAssetLiquidationRelatedParty",
+						"Name": "PartyId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "long",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "long"
+						}
+					}
+				},
+				{
+					"Name": "BankruptcyAssetLiquidationPartyRelationshipTypeId",
+					"Description": "The unique identifier of a Bankruptcy Proceeding - Party relationship type.",
+					"BaseAttributeReference": {
+						"Entity": "BankruptcyAssetLiquidationRelatedParty.cdm.json/BankruptcyAssetLiquidationRelatedParty",
+						"Name": "BankruptcyAssetLiquidationPartyRelationshipTypeId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "BankruptcyAssetLiquidationPartyRelationshipNote",
+					"Description": "A note, comment or additional information regarding the party - asset liquidation relationship.",
+					"BaseAttributeReference": {
+						"Entity": "BankruptcyAssetLiquidationRelatedParty.cdm.json/BankruptcyAssetLiquidationRelatedParty",
+						"Name": "BankruptcyAssetLiquidationPartyRelationshipNote"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/BankruptcyAssetLiquidationRelatedParty",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/BankruptcyAssetLiquidationRelatedParty",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"BankruptcyProceedingId\":{\"entity\":\"BankruptcyAssetLiquidationRelatedParty.cdm.json/BankruptcyAssetLiquidationRelatedParty\",\"name\":\"BankruptcyProceedingId\"},\"AssetId\":{\"entity\":\"BankruptcyAssetLiquidationRelatedParty.cdm.json/BankruptcyAssetLiquidationRelatedParty\",\"name\":\"AssetId\"},\"PartyId\":{\"entity\":\"BankruptcyAssetLiquidationRelatedParty.cdm.json/BankruptcyAssetLiquidationRelatedParty\",\"name\":\"PartyId\"},\"BankruptcyAssetLiquidationPartyRelationshipTypeId\":{\"entity\":\"BankruptcyAssetLiquidationRelatedParty.cdm.json/BankruptcyAssetLiquidationRelatedParty\",\"name\":\"BankruptcyAssetLiquidationPartyRelationshipTypeId\"},\"BankruptcyAssetLiquidationPartyRelationshipNote\":{\"entity\":\"BankruptcyAssetLiquidationRelatedParty.cdm.json/BankruptcyAssetLiquidationRelatedParty\",\"name\":\"BankruptcyAssetLiquidationPartyRelationshipNote\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"BankruptcyAssetLiquidationRelatedParty\",\"path\":\"BankruptcyAssetLiquidationRelatedParty.cdm.json/BankruptcyAssetLiquidationRelatedParty\"},\"description\":\"A party that has a relationship with the bankruptcy proceeding asset liquidation.\\n\\n Ex:\\n- Administering Receiver\\n- Pay-to Party\",\"primaryKey\":[\"BankruptcyProceedingId\",\"AssetId\",\"PartyId\",\"BankruptcyAssetLiquidationPartyRelationshipTypeId\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"BankruptcyAssetLiquidationRelatedParty.cdm.json/BankruptcyAssetLiquidationRelatedParty\",\"name\":\"BankruptcyProceedingId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Bankruptcy Proceeding.\",\"isNullable\":false,\"name\":\"BankruptcyProceedingId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"BankruptcyAssetLiquidationRelatedParty.cdm.json/BankruptcyAssetLiquidationRelatedParty\",\"name\":\"AssetId\"},\"dataType\":\"long\",\"description\":\"The unique identifier of an Asset.\",\"isNullable\":false,\"name\":\"AssetId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"BankruptcyAssetLiquidationRelatedParty.cdm.json/BankruptcyAssetLiquidationRelatedParty\",\"name\":\"PartyId\"},\"dataType\":\"long\",\"description\":\"The unique identifier of a Party.\",\"isNullable\":false,\"name\":\"PartyId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"BankruptcyAssetLiquidationRelatedParty.cdm.json/BankruptcyAssetLiquidationRelatedParty\",\"name\":\"BankruptcyAssetLiquidationPartyRelationshipTypeId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Bankruptcy Proceeding - Party relationship type.\",\"isNullable\":false,\"name\":\"BankruptcyAssetLiquidationPartyRelationshipTypeId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"BankruptcyAssetLiquidationRelatedParty.cdm.json/BankruptcyAssetLiquidationRelatedParty\",\"name\":\"BankruptcyAssetLiquidationPartyRelationshipNote\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"A note, comment or additional information regarding the party - asset liquidation relationship.\",\"isNullable\":true,\"name\":\"BankruptcyAssetLiquidationPartyRelationshipNote\"}]}}}",
+			"Description": "A party that has a relationship with the bankruptcy proceeding asset liquidation.\n\n Ex:\n- Administering Receiver\n- Pay-to Party",
+			"DisplayFolderInfo": "{\"name\":\"Customer Credit & Collections\",\"colorCode\":\"#022F22\"}",
+			"PrimaryKeys": "BankruptcyProceedingId,AssetId,PartyId,BankruptcyAssetLiquidationPartyRelationshipTypeId",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

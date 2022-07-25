@@ -1,0 +1,113 @@
+{
+	"name": "EmploymentPositionType",
+	"properties": {
+		"Name": "EmploymentPositionType",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "A specific job responsibility or position held within the context of employment.\n\nEx:\n- Executive\n- Manager\n- Manufacturing Worker\n- Clerical\n- Medical Doctor",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "EmploymentPositionTypeId",
+					"Description": "The unique identifier of an Employment Position Type.",
+					"BaseAttributeReference": {
+						"Entity": "EmploymentPositionType.cdm.json/EmploymentPositionType",
+						"Name": "EmploymentPositionTypeId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "EmploymentPositionTypeName",
+					"Description": "The name of an Employment Position Type.",
+					"BaseAttributeReference": {
+						"Entity": "EmploymentPositionType.cdm.json/EmploymentPositionType",
+						"Name": "EmploymentPositionTypeName"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 256,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "EmploymentPositionTypeDescription",
+					"Description": "The description of an Employment Position Type.",
+					"BaseAttributeReference": {
+						"Entity": "EmploymentPositionType.cdm.json/EmploymentPositionType",
+						"Name": "EmploymentPositionTypeDescription"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/EmploymentPositionType",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/EmploymentPositionType",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"EmploymentPositionTypeId\":{\"entity\":\"EmploymentPositionType.cdm.json/EmploymentPositionType\",\"name\":\"EmploymentPositionTypeId\"},\"EmploymentPositionTypeName\":{\"entity\":\"EmploymentPositionType.cdm.json/EmploymentPositionType\",\"name\":\"EmploymentPositionTypeName\"},\"EmploymentPositionTypeDescription\":{\"entity\":\"EmploymentPositionType.cdm.json/EmploymentPositionType\",\"name\":\"EmploymentPositionTypeDescription\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"EmploymentPositionType\",\"path\":\"EmploymentPositionType.cdm.json/EmploymentPositionType\"},\"description\":\"A specific job responsibility or position held within the context of employment.\\n\\nEx:\\n- Executive\\n- Manager\\n- Manufacturing Worker\\n- Clerical\\n- Medical Doctor\",\"primaryKey\":[\"EmploymentPositionTypeId\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"EmploymentPositionType.cdm.json/EmploymentPositionType\",\"name\":\"EmploymentPositionTypeId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of an Employment Position Type.\",\"isNullable\":false,\"name\":\"EmploymentPositionTypeId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"EmploymentPositionType.cdm.json/EmploymentPositionType\",\"name\":\"EmploymentPositionTypeName\"},\"dataType\":\"string\",\"dataTypeLength\":256,\"description\":\"The name of an Employment Position Type.\",\"isNullable\":true,\"name\":\"EmploymentPositionTypeName\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"EmploymentPositionType.cdm.json/EmploymentPositionType\",\"name\":\"EmploymentPositionTypeDescription\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"The description of an Employment Position Type.\",\"isNullable\":true,\"name\":\"EmploymentPositionTypeDescription\"}]}}}",
+			"Description": "A specific job responsibility or position held within the context of employment.\n\nEx:\n- Executive\n- Manager\n- Manufacturing Worker\n- Clerical\n- Medical Doctor",
+			"DisplayFolderInfo": "{\"name\":\"Human Resources & Payroll\",\"colorCode\":\"#042C59\"}",
+			"PrimaryKeys": "EmploymentPositionTypeId",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

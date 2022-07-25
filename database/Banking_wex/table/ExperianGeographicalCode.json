@@ -1,0 +1,114 @@
+{
+	"name": "ExperianGeographicalCode",
+	"properties": {
+		"Name": "ExperianGeographicalCode",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "Geographical codes associated with the listed addresses.",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "ExperianGeographicalCode",
+					"Description": "The unique identifier of an Experian Geographic location.",
+					"BaseAttributeReference": {
+						"Entity": "ExperianGeographicalCode.cdm.json/ExperianGeographicalCode",
+						"Name": "ExperianGeographicalCode"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Length": 20,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "ExperianGeographicalName",
+					"Description": "The name of an Experian Geographic location.",
+					"BaseAttributeReference": {
+						"Entity": "ExperianGeographicalCode.cdm.json/ExperianGeographicalCode",
+						"Name": "ExperianGeographicalName"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 256,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "ExperianGeographicalDescription",
+					"Description": "The description of an Experian Geographic location.",
+					"BaseAttributeReference": {
+						"Entity": "ExperianGeographicalCode.cdm.json/ExperianGeographicalCode",
+						"Name": "ExperianGeographicalDescription"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/ExperianGeographicalCode",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/ExperianGeographicalCode",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"ExperianGeographicalCode\":{\"entity\":\"ExperianGeographicalCode.cdm.json/ExperianGeographicalCode\",\"name\":\"ExperianGeographicalCode\"},\"ExperianGeographicalName\":{\"entity\":\"ExperianGeographicalCode.cdm.json/ExperianGeographicalCode\",\"name\":\"ExperianGeographicalName\"},\"ExperianGeographicalDescription\":{\"entity\":\"ExperianGeographicalCode.cdm.json/ExperianGeographicalCode\",\"name\":\"ExperianGeographicalDescription\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"ExperianGeographicalCode\",\"path\":\"ExperianGeographicalCode.cdm.json/ExperianGeographicalCode\"},\"description\":\"Geographical codes associated with the listed addresses.\",\"primaryKey\":[\"ExperianGeographicalCode\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ExperianGeographicalCode.cdm.json/ExperianGeographicalCode\",\"name\":\"ExperianGeographicalCode\"},\"dataType\":\"string\",\"dataTypeLength\":20,\"description\":\"The unique identifier of an Experian Geographic location.\",\"isNullable\":false,\"name\":\"ExperianGeographicalCode\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ExperianGeographicalCode.cdm.json/ExperianGeographicalCode\",\"name\":\"ExperianGeographicalName\"},\"dataType\":\"string\",\"dataTypeLength\":256,\"description\":\"The name of an Experian Geographic location.\",\"isNullable\":true,\"name\":\"ExperianGeographicalName\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ExperianGeographicalCode.cdm.json/ExperianGeographicalCode\",\"name\":\"ExperianGeographicalDescription\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"The description of an Experian Geographic location.\",\"isNullable\":true,\"name\":\"ExperianGeographicalDescription\"}]}}}",
+			"Description": "Geographical codes associated with the listed addresses.",
+			"DisplayFolderInfo": "{\"name\":\"Customer Credit & Collections\",\"colorCode\":\"#022F22\"}",
+			"PrimaryKeys": "ExperianGeographicalCode",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

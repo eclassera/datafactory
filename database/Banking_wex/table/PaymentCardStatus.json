@@ -1,0 +1,146 @@
+{
+	"name": "PaymentCardStatus",
+	"properties": {
+		"Name": "PaymentCardStatus",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "The status of the payment for the associated period.",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "PaymentCardId",
+					"Description": "The unique identifier of a Payment Card.",
+					"BaseAttributeReference": {
+						"Entity": "PaymentCardStatus.cdm.json/PaymentCardStatus",
+						"Name": "PaymentCardId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "PeriodStartTimestamp",
+					"Description": "The period start timestamp for which the associated Payment Card Status Type is valid or effective.",
+					"BaseAttributeReference": {
+						"Entity": "PaymentCardStatus.cdm.json/PaymentCardStatus",
+						"Name": "PeriodStartTimestamp"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "timestamp",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"TimestampFormat": "YYYY-MM-DD HH:MM:SS.fffffffff",
+							"HIVE_TYPE_STRING": "timestamp"
+						}
+					}
+				},
+				{
+					"Name": "PeriodEndTimestamp",
+					"Description": "The period end timestamp for which the associated Payment Card Status Type is valid or effective.",
+					"BaseAttributeReference": {
+						"Entity": "PaymentCardStatus.cdm.json/PaymentCardStatus",
+						"Name": "PeriodEndTimestamp"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "timestamp",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"TimestampFormat": "YYYY-MM-DD HH:MM:SS.fffffffff",
+							"HIVE_TYPE_STRING": "timestamp"
+						}
+					}
+				},
+				{
+					"Name": "PaymentCardStatusTypeId",
+					"Description": "The unique identifier of a Payment Card Status Type.",
+					"BaseAttributeReference": {
+						"Entity": "PaymentCardStatus.cdm.json/PaymentCardStatus",
+						"Name": "PaymentCardStatusTypeId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "PaymentCardStatusNote",
+					"Description": "A note, comment or additional information regarding the Payment Card Status.",
+					"BaseAttributeReference": {
+						"Entity": "PaymentCardStatus.cdm.json/PaymentCardStatus",
+						"Name": "PaymentCardStatusNote"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/PaymentCardStatus",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/PaymentCardStatus",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"PaymentCardId\":{\"entity\":\"PaymentCardStatus.cdm.json/PaymentCardStatus\",\"name\":\"PaymentCardId\"},\"PeriodStartTimestamp\":{\"entity\":\"PaymentCardStatus.cdm.json/PaymentCardStatus\",\"name\":\"PeriodStartTimestamp\"},\"PeriodEndTimestamp\":{\"entity\":\"PaymentCardStatus.cdm.json/PaymentCardStatus\",\"name\":\"PeriodEndTimestamp\"},\"PaymentCardStatusTypeId\":{\"entity\":\"PaymentCardStatus.cdm.json/PaymentCardStatus\",\"name\":\"PaymentCardStatusTypeId\"},\"PaymentCardStatusNote\":{\"entity\":\"PaymentCardStatus.cdm.json/PaymentCardStatus\",\"name\":\"PaymentCardStatusNote\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"PaymentCardStatus\",\"path\":\"PaymentCardStatus.cdm.json/PaymentCardStatus\"},\"description\":\"The status of the payment for the associated period.\",\"primaryKey\":[\"PaymentCardId\",\"PeriodStartTimestamp\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"PaymentCardStatus.cdm.json/PaymentCardStatus\",\"name\":\"PaymentCardId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Payment Card.\",\"isNullable\":false,\"name\":\"PaymentCardId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"PaymentCardStatus.cdm.json/PaymentCardStatus\",\"name\":\"PeriodStartTimestamp\"},\"dataType\":\"timestamp\",\"description\":\"The period start timestamp for which the associated Payment Card Status Type is valid or effective.\",\"isNullable\":false,\"name\":\"PeriodStartTimestamp\",\"timestampFormat\":\"YYYY-MM-DD HH:MM:SS.fffffffff\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"PaymentCardStatus.cdm.json/PaymentCardStatus\",\"name\":\"PeriodEndTimestamp\"},\"dataType\":\"timestamp\",\"description\":\"The period end timestamp for which the associated Payment Card Status Type is valid or effective.\",\"isNullable\":true,\"name\":\"PeriodEndTimestamp\",\"timestampFormat\":\"YYYY-MM-DD HH:MM:SS.fffffffff\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"PaymentCardStatus.cdm.json/PaymentCardStatus\",\"name\":\"PaymentCardStatusTypeId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Payment Card Status Type.\",\"isNullable\":false,\"name\":\"PaymentCardStatusTypeId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"PaymentCardStatus.cdm.json/PaymentCardStatus\",\"name\":\"PaymentCardStatusNote\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"A note, comment or additional information regarding the Payment Card Status.\",\"isNullable\":true,\"name\":\"PaymentCardStatusNote\"}]}}}",
+			"Description": "The status of the payment for the associated period.",
+			"DisplayFolderInfo": "{\"name\":\"Customer Account\",\"colorCode\":\"#E3008C\"}",
+			"PrimaryKeys": "PaymentCardId,PeriodStartTimestamp",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

@@ -1,0 +1,145 @@
+{
+	"name": "Calendar",
+	"properties": {
+		"Name": "Calendar",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "A schedule of dates that is used for a particular purpose.",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "CalendarId",
+					"Description": "The unique identifier of a Calendar.",
+					"BaseAttributeReference": {
+						"Entity": "Calendar.cdm.json/Calendar",
+						"Name": "CalendarId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "CalendarName",
+					"Description": "The name of the associated calendar.",
+					"BaseAttributeReference": {
+						"Entity": "Calendar.cdm.json/Calendar",
+						"Name": "CalendarName"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 256,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "CalendarDescription",
+					"Description": "The description of the calendar.",
+					"BaseAttributeReference": {
+						"Entity": "Calendar.cdm.json/Calendar",
+						"Name": "CalendarDescription"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "CalendarTypeId",
+					"Description": "The unique identifier of a Calendar Type.",
+					"BaseAttributeReference": {
+						"Entity": "Calendar.cdm.json/Calendar",
+						"Name": "CalendarTypeId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "CountryId",
+					"Description": "The unique identifier of the Country.",
+					"BaseAttributeReference": {
+						"Entity": "Calendar.cdm.json/Calendar",
+						"Name": "CountryId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/Calendar",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/Calendar",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"CalendarId\":{\"entity\":\"Calendar.cdm.json/Calendar\",\"name\":\"CalendarId\"},\"CalendarName\":{\"entity\":\"Calendar.cdm.json/Calendar\",\"name\":\"CalendarName\"},\"CalendarDescription\":{\"entity\":\"Calendar.cdm.json/Calendar\",\"name\":\"CalendarDescription\"},\"CalendarTypeId\":{\"entity\":\"Calendar.cdm.json/Calendar\",\"name\":\"CalendarTypeId\"},\"CountryId\":{\"entity\":\"Calendar.cdm.json/Calendar\",\"name\":\"CountryId\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"Calendar\",\"path\":\"Calendar.cdm.json/Calendar\"},\"description\":\"A schedule of dates that is used for a particular purpose.\",\"primaryKey\":[\"CalendarId\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"Calendar.cdm.json/Calendar\",\"name\":\"CalendarId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Calendar.\",\"isNullable\":false,\"name\":\"CalendarId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"Calendar.cdm.json/Calendar\",\"name\":\"CalendarName\"},\"dataType\":\"string\",\"dataTypeLength\":256,\"description\":\"The name of the associated calendar.\",\"isNullable\":true,\"name\":\"CalendarName\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"Calendar.cdm.json/Calendar\",\"name\":\"CalendarDescription\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"The description of the calendar.\",\"isNullable\":true,\"name\":\"CalendarDescription\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"Calendar.cdm.json/Calendar\",\"name\":\"CalendarTypeId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Calendar Type.\",\"isNullable\":true,\"name\":\"CalendarTypeId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"Calendar.cdm.json/Calendar\",\"name\":\"CountryId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of the Country.\",\"isNullable\":true,\"name\":\"CountryId\"}]}}}",
+			"Description": "A schedule of dates that is used for a particular purpose.",
+			"DisplayFolderInfo": "{\"name\":\"Human Resources & Payroll\",\"colorCode\":\"#042C59\"}",
+			"PrimaryKeys": "CalendarId",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

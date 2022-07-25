@@ -1,0 +1,215 @@
+{
+	"name": "EquifaxBusinessRegistrationContact",
+	"properties": {
+		"Name": "EquifaxBusinessRegistrationContact",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "Officer names, titles and addresses. \n\nMore than one officer may be returned. Additionally, not all the officers may be listed.",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "EfxId",
+					"Description": "The EFX ID™ is a unique and persistent nine-digit number that identifies and tracks the business unit with which you have the credit relationship;",
+					"BaseAttributeReference": {
+						"Entity": "EquifaxBusinessRegistrationContact.cdm.json/EquifaxBusinessRegistrationContact",
+						"Name": "EfxId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "ProfileTimestamp",
+					"Description": "Provides the timestamp when the inquiry was made as recorded\nby Equifax (Eastern Time).",
+					"BaseAttributeReference": {
+						"Entity": "EquifaxBusinessRegistrationContact.cdm.json/EquifaxBusinessRegistrationContact",
+						"Name": "ProfileTimestamp"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "timestamp",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"TimestampFormat": "YYYY-MM-DD HH:MM:SS.fffffffff",
+							"HIVE_TYPE_STRING": "timestamp"
+						}
+					}
+				},
+				{
+					"Name": "RegistryNumber",
+					"Description": "This is the number assigned by the state office.",
+					"BaseAttributeReference": {
+						"Entity": "EquifaxBusinessRegistrationContact.cdm.json/EquifaxBusinessRegistrationContact",
+						"Name": "RegistryNumber"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "ContactName",
+					"Description": "The contact name.",
+					"BaseAttributeReference": {
+						"Entity": "EquifaxBusinessRegistrationContact.cdm.json/EquifaxBusinessRegistrationContact",
+						"Name": "ContactName"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Length": 256,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "ContactTitle",
+					"Description": "The contact's title.",
+					"BaseAttributeReference": {
+						"Entity": "EquifaxBusinessRegistrationContact.cdm.json/EquifaxBusinessRegistrationContact",
+						"Name": "ContactTitle"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Length": 16,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "ContactAddress",
+					"Description": "The contact 'street/po box' component of the address.",
+					"BaseAttributeReference": {
+						"Entity": "EquifaxBusinessRegistrationContact.cdm.json/EquifaxBusinessRegistrationContact",
+						"Name": "ContactAddress"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 512,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "ContactCity",
+					"Description": "The contact 'city' component of the address.",
+					"BaseAttributeReference": {
+						"Entity": "EquifaxBusinessRegistrationContact.cdm.json/EquifaxBusinessRegistrationContact",
+						"Name": "ContactCity"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 256,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "ContactState",
+					"Description": "The contact 'state' component of the address.",
+					"BaseAttributeReference": {
+						"Entity": "EquifaxBusinessRegistrationContact.cdm.json/EquifaxBusinessRegistrationContact",
+						"Name": "ContactState"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 64,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "ContactZipCode",
+					"Description": "The contact 'zip code' component of the address.",
+					"BaseAttributeReference": {
+						"Entity": "EquifaxBusinessRegistrationContact.cdm.json/EquifaxBusinessRegistrationContact",
+						"Name": "ContactZipCode"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "decimal",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Precision": 11,
+						"Scale": 0,
+						"Properties": {
+							"HIVE_TYPE_STRING": "decimal"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/EquifaxBusinessRegistrationContact",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/EquifaxBusinessRegistrationContact",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"EfxId\":{\"entity\":\"EquifaxBusinessRegistrationContact.cdm.json/EquifaxBusinessRegistrationContact\",\"name\":\"EfxId\"},\"ProfileTimestamp\":{\"entity\":\"EquifaxBusinessRegistrationContact.cdm.json/EquifaxBusinessRegistrationContact\",\"name\":\"ProfileTimestamp\"},\"RegistryNumber\":{\"entity\":\"EquifaxBusinessRegistrationContact.cdm.json/EquifaxBusinessRegistrationContact\",\"name\":\"RegistryNumber\"},\"ContactName\":{\"entity\":\"EquifaxBusinessRegistrationContact.cdm.json/EquifaxBusinessRegistrationContact\",\"name\":\"ContactName\"},\"ContactTitle\":{\"entity\":\"EquifaxBusinessRegistrationContact.cdm.json/EquifaxBusinessRegistrationContact\",\"name\":\"ContactTitle\"},\"ContactAddress\":{\"entity\":\"EquifaxBusinessRegistrationContact.cdm.json/EquifaxBusinessRegistrationContact\",\"name\":\"ContactAddress\"},\"ContactCity\":{\"entity\":\"EquifaxBusinessRegistrationContact.cdm.json/EquifaxBusinessRegistrationContact\",\"name\":\"ContactCity\"},\"ContactState\":{\"entity\":\"EquifaxBusinessRegistrationContact.cdm.json/EquifaxBusinessRegistrationContact\",\"name\":\"ContactState\"},\"ContactZipCode\":{\"entity\":\"EquifaxBusinessRegistrationContact.cdm.json/EquifaxBusinessRegistrationContact\",\"name\":\"ContactZipCode\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"EquifaxBusinessRegistrationContact\",\"path\":\"EquifaxBusinessRegistrationContact.cdm.json/EquifaxBusinessRegistrationContact\"},\"description\":\"Officer names, titles and addresses. \\n\\nMore than one officer may be returned. Additionally, not all the officers may be listed.\",\"primaryKey\":[\"EfxId\",\"ProfileTimestamp\",\"RegistryNumber\",\"ContactName\",\"ContactTitle\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"EquifaxBusinessRegistrationContact.cdm.json/EquifaxBusinessRegistrationContact\",\"name\":\"EfxId\"},\"dataType\":\"integer\",\"description\":\"The EFX ID™ is a unique and persistent nine-digit number that identifies and tracks the business unit with which you have the credit relationship;\",\"isNullable\":false,\"name\":\"EfxId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"EquifaxBusinessRegistrationContact.cdm.json/EquifaxBusinessRegistrationContact\",\"name\":\"ProfileTimestamp\"},\"dataType\":\"timestamp\",\"description\":\"Provides the timestamp when the inquiry was made as recorded\\nby Equifax (Eastern Time).\",\"isNullable\":false,\"name\":\"ProfileTimestamp\",\"timestampFormat\":\"YYYY-MM-DD HH:MM:SS.fffffffff\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"EquifaxBusinessRegistrationContact.cdm.json/EquifaxBusinessRegistrationContact\",\"name\":\"RegistryNumber\"},\"dataType\":\"integer\",\"description\":\"This is the number assigned by the state office.\",\"isNullable\":false,\"name\":\"RegistryNumber\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"EquifaxBusinessRegistrationContact.cdm.json/EquifaxBusinessRegistrationContact\",\"name\":\"ContactName\"},\"dataType\":\"string\",\"dataTypeLength\":256,\"description\":\"The contact name.\",\"isNullable\":false,\"name\":\"ContactName\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"EquifaxBusinessRegistrationContact.cdm.json/EquifaxBusinessRegistrationContact\",\"name\":\"ContactTitle\"},\"dataType\":\"string\",\"dataTypeLength\":16,\"description\":\"The contact's title.\",\"isNullable\":false,\"name\":\"ContactTitle\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"EquifaxBusinessRegistrationContact.cdm.json/EquifaxBusinessRegistrationContact\",\"name\":\"ContactAddress\"},\"dataType\":\"string\",\"dataTypeLength\":512,\"description\":\"The contact 'street/po box' component of the address.\",\"isNullable\":true,\"name\":\"ContactAddress\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"EquifaxBusinessRegistrationContact.cdm.json/EquifaxBusinessRegistrationContact\",\"name\":\"ContactCity\"},\"dataType\":\"string\",\"dataTypeLength\":256,\"description\":\"The contact 'city' component of the address.\",\"isNullable\":true,\"name\":\"ContactCity\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"EquifaxBusinessRegistrationContact.cdm.json/EquifaxBusinessRegistrationContact\",\"name\":\"ContactState\"},\"dataType\":\"string\",\"dataTypeLength\":64,\"description\":\"The contact 'state' component of the address.\",\"isNullable\":true,\"name\":\"ContactState\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"EquifaxBusinessRegistrationContact.cdm.json/EquifaxBusinessRegistrationContact\",\"name\":\"ContactZipCode\"},\"dataType\":\"decimal\",\"dataTypeLength\":11,\"description\":\"The contact 'zip code' component of the address.\",\"isNullable\":true,\"scale\":0,\"name\":\"ContactZipCode\"}]}}}",
+			"Description": "Officer names, titles and addresses. \n\nMore than one officer may be returned. Additionally, not all the officers may be listed.",
+			"DisplayFolderInfo": "{\"name\":\"Customer Credit & Collections\",\"colorCode\":\"#022F22\"}",
+			"PrimaryKeys": "EfxId,ProfileTimestamp,RegistryNumber,ContactName,ContactTitle",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

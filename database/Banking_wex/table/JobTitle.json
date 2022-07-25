@@ -1,0 +1,113 @@
+{
+	"name": "JobTitle",
+	"properties": {
+		"Name": "JobTitle",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "A title (job or professional) that describes the responsibilities of the individual.\n\nEx:\n- President\n- Vice President\n- Director\n- Manager\n- Secretary\n- Board of Director\n- Inside Director\n- Accountant with POA\n- Inventory Manager\n- Clerk\n- Inventory planner\n- Receiving coordinator\n- Material Handler\n- Procurement Officer\n- Supervisor\n- Administrative Assistant\n- Union Worker\n- Intern\n- Resident",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "JobTitleId",
+					"Description": "The unique identifier of a Job Title.",
+					"BaseAttributeReference": {
+						"Entity": "JobTitle.cdm.json/JobTitle",
+						"Name": "JobTitleId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "JobTitleName",
+					"Description": "The name of a Job Title.",
+					"BaseAttributeReference": {
+						"Entity": "JobTitle.cdm.json/JobTitle",
+						"Name": "JobTitleName"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 256,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "JobTitleDescription",
+					"Description": "The description of a Job Title.",
+					"BaseAttributeReference": {
+						"Entity": "JobTitle.cdm.json/JobTitle",
+						"Name": "JobTitleDescription"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/JobTitle",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/JobTitle",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"JobTitleId\":{\"entity\":\"JobTitle.cdm.json/JobTitle\",\"name\":\"JobTitleId\"},\"JobTitleName\":{\"entity\":\"JobTitle.cdm.json/JobTitle\",\"name\":\"JobTitleName\"},\"JobTitleDescription\":{\"entity\":\"JobTitle.cdm.json/JobTitle\",\"name\":\"JobTitleDescription\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"JobTitle\",\"path\":\"JobTitle.cdm.json/JobTitle\"},\"description\":\"A title (job or professional) that describes the responsibilities of the individual.\\n\\nEx:\\n- President\\n- Vice President\\n- Director\\n- Manager\\n- Secretary\\n- Board of Director\\n- Inside Director\\n- Accountant with POA\\n- Inventory Manager\\n- Clerk\\n- Inventory planner\\n- Receiving coordinator\\n- Material Handler\\n- Procurement Officer\\n- Supervisor\\n- Administrative Assistant\\n- Union Worker\\n- Intern\\n- Resident\",\"primaryKey\":[\"JobTitleId\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"JobTitle.cdm.json/JobTitle\",\"name\":\"JobTitleId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Job Title.\",\"isNullable\":false,\"name\":\"JobTitleId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"JobTitle.cdm.json/JobTitle\",\"name\":\"JobTitleName\"},\"dataType\":\"string\",\"dataTypeLength\":256,\"description\":\"The name of a Job Title.\",\"isNullable\":true,\"name\":\"JobTitleName\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"JobTitle.cdm.json/JobTitle\",\"name\":\"JobTitleDescription\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"The description of a Job Title.\",\"isNullable\":true,\"name\":\"JobTitleDescription\"}]}}}",
+			"Description": "A title (job or professional) that describes the responsibilities of the individual.\n\nEx:\n- President\n- Vice President\n- Director\n- Manager\n- Secretary\n- Board of Director\n- Inside Director\n- Accountant with POA\n- Inventory Manager\n- Clerk\n- Inventory planner\n- Receiving coordinator\n- Material Handler\n- Procurement Officer\n- Supervisor\n- Administrative Assistant\n- Union Worker\n- Intern\n- Resident",
+			"DisplayFolderInfo": "{\"name\":\"Human Resources & Payroll\",\"colorCode\":\"#042C59\"}",
+			"PrimaryKeys": "JobTitleId",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

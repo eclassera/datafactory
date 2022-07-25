@@ -1,0 +1,164 @@
+{
+	"name": "FinancialProfileAsset",
+	"properties": {
+		"Name": "FinancialProfileAsset",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "The assets of Asset Type that identify the individual components and amount associated with a customer financial profile.",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "FinancialProfileAssetTypeId",
+					"Description": "The unique identifier of a Financial Profile Asset Type.",
+					"BaseAttributeReference": {
+						"Entity": "FinancialProfileAsset.cdm.json/FinancialProfileAsset",
+						"Name": "FinancialProfileAssetTypeId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "Date",
+					"Description": "The date for the which the Financial Profile information is compiled, recorded or effective as-of.",
+					"BaseAttributeReference": {
+						"Entity": "FinancialProfileAsset.cdm.json/FinancialProfileAsset",
+						"Name": "Date"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "date",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"DateFormat": "YYYY-MM-DD",
+							"HIVE_TYPE_STRING": "date"
+						}
+					}
+				},
+				{
+					"Name": "CustomerId",
+					"Description": "The unique identifier of a Customer.",
+					"BaseAttributeReference": {
+						"Entity": "FinancialProfileAsset.cdm.json/FinancialProfileAsset",
+						"Name": "CustomerId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "long",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "long"
+						}
+					}
+				},
+				{
+					"Name": "AssetTypeAmount",
+					"Description": "The valuation amount of the associated asset type.",
+					"BaseAttributeReference": {
+						"Entity": "FinancialProfileAsset.cdm.json/FinancialProfileAsset",
+						"Name": "AssetTypeAmount"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "decimal",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Precision": 18,
+						"Scale": 2,
+						"Properties": {
+							"HIVE_TYPE_STRING": "decimal"
+						}
+					}
+				},
+				{
+					"Name": "FinancialProfileAssetNote",
+					"Description": "A note, comment or additional information related to a financial profile asset of type 'Asset Type'.",
+					"BaseAttributeReference": {
+						"Entity": "FinancialProfileAsset.cdm.json/FinancialProfileAsset",
+						"Name": "FinancialProfileAssetNote"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "IsoCurrencyCode",
+					"Description": "The ISO 4217 currency code.",
+					"BaseAttributeReference": {
+						"Entity": "FinancialProfileAsset.cdm.json/FinancialProfileAsset",
+						"Name": "IsoCurrencyCode"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 3,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/FinancialProfileAsset",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/FinancialProfileAsset",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"FinancialProfileAssetTypeId\":{\"entity\":\"FinancialProfileAsset.cdm.json/FinancialProfileAsset\",\"name\":\"FinancialProfileAssetTypeId\"},\"Date\":{\"entity\":\"FinancialProfileAsset.cdm.json/FinancialProfileAsset\",\"name\":\"Date\"},\"CustomerId\":{\"entity\":\"FinancialProfileAsset.cdm.json/FinancialProfileAsset\",\"name\":\"CustomerId\"},\"AssetTypeAmount\":{\"entity\":\"FinancialProfileAsset.cdm.json/FinancialProfileAsset\",\"name\":\"AssetTypeAmount\"},\"FinancialProfileAssetNote\":{\"entity\":\"FinancialProfileAsset.cdm.json/FinancialProfileAsset\",\"name\":\"FinancialProfileAssetNote\"},\"IsoCurrencyCode\":{\"entity\":\"FinancialProfileAsset.cdm.json/FinancialProfileAsset\",\"name\":\"IsoCurrencyCode\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"FinancialProfileAsset\",\"path\":\"FinancialProfileAsset.cdm.json/FinancialProfileAsset\"},\"description\":\"The assets of Asset Type that identify the individual components and amount associated with a customer financial profile.\",\"primaryKey\":[\"FinancialProfileAssetTypeId\",\"Date\",\"CustomerId\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"FinancialProfileAsset.cdm.json/FinancialProfileAsset\",\"name\":\"FinancialProfileAssetTypeId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Financial Profile Asset Type.\",\"isNullable\":false,\"name\":\"FinancialProfileAssetTypeId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"FinancialProfileAsset.cdm.json/FinancialProfileAsset\",\"name\":\"Date\"},\"dataType\":\"date\",\"dateFormat\":\"YYYY-MM-DD\",\"description\":\"The date for the which the Financial Profile information is compiled, recorded or effective as-of.\",\"isNullable\":false,\"name\":\"Date\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"FinancialProfileAsset.cdm.json/FinancialProfileAsset\",\"name\":\"CustomerId\"},\"dataType\":\"long\",\"description\":\"The unique identifier of a Customer.\",\"isNullable\":false,\"name\":\"CustomerId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"FinancialProfileAsset.cdm.json/FinancialProfileAsset\",\"name\":\"AssetTypeAmount\"},\"dataType\":\"decimal\",\"dataTypeLength\":18,\"description\":\"The valuation amount of the associated asset type.\",\"isNullable\":true,\"scale\":2,\"name\":\"AssetTypeAmount\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"FinancialProfileAsset.cdm.json/FinancialProfileAsset\",\"name\":\"FinancialProfileAssetNote\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"A note, comment or additional information related to a financial profile asset of type 'Asset Type'.\",\"isNullable\":true,\"name\":\"FinancialProfileAssetNote\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"FinancialProfileAsset.cdm.json/FinancialProfileAsset\",\"name\":\"IsoCurrencyCode\"},\"dataType\":\"string\",\"dataTypeLength\":3,\"description\":\"The ISO 4217 currency code.\",\"isNullable\":true,\"name\":\"IsoCurrencyCode\"}]}}}",
+			"Description": "The assets of Asset Type that identify the individual components and amount associated with a customer financial profile.",
+			"DisplayFolderInfo": "{\"name\":\"Customer Credit & Collections\",\"colorCode\":\"#022F22\"}",
+			"PrimaryKeys": "FinancialProfileAssetTypeId,Date,CustomerId",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

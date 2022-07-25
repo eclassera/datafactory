@@ -1,0 +1,113 @@
+{
+	"name": "LienType",
+	"properties": {
+		"Name": "LienType",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "A classification of types of Liens.\n\nEx:\nARTISANS LIEN\nArtisan liens are imposed on personal property other than real estate or things attached to real estate.  Artisans liens are imposed because of nonpayment for materials or services that benefit personal property.\n \nINCOME TAX LIEN\nIncome tax liens are imposed by state and federal government when personal or business income taxes are unpaid.\n \nJUDGMENT LIEN\nA judgment lien comes into effect after a party has won a lawsuit.  If the party that loses the lawsuit is unable to pay, the winning party may get a judgment lien, which can be attached to the loser's property.\n \nMECHANICS LIEN\nA mechanics lien can be imposed on property that has benefited by the materials or services improvements that have not been paid.\n\nThe lien attaches when the materials and supplies are delivered, not when the lien is actually filed.\n \nPROPERTY TAX LIEN\nProperty tax liens are imposed by government taxing authorities.\n\nMORTGAGE LIEN\n\nCAR LOAN LIEN\n\nSECURITY INTEREST LIEN\n\nATTORNEY LIEN\n\nJUDGMENT LIEN",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "LienTypeId",
+					"Description": "The unique identifier of a Lien Type.",
+					"BaseAttributeReference": {
+						"Entity": "LienType.cdm.json/LienType",
+						"Name": "LienTypeId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "LienTypeName",
+					"Description": "The name of a Lien Type.",
+					"BaseAttributeReference": {
+						"Entity": "LienType.cdm.json/LienType",
+						"Name": "LienTypeName"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 256,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "LienTypeDescription",
+					"Description": "The description of a Lien Type.",
+					"BaseAttributeReference": {
+						"Entity": "LienType.cdm.json/LienType",
+						"Name": "LienTypeDescription"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/LienType",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/LienType",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"LienTypeId\":{\"entity\":\"LienType.cdm.json/LienType\",\"name\":\"LienTypeId\"},\"LienTypeName\":{\"entity\":\"LienType.cdm.json/LienType\",\"name\":\"LienTypeName\"},\"LienTypeDescription\":{\"entity\":\"LienType.cdm.json/LienType\",\"name\":\"LienTypeDescription\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"LienType\",\"path\":\"LienType.cdm.json/LienType\"},\"description\":\"A classification of types of Liens.\\n\\nEx:\\nARTISANS LIEN\\nArtisan liens are imposed on personal property other than real estate or things attached to real estate.  Artisans liens are imposed because of nonpayment for materials or services that benefit personal property.\\n \\nINCOME TAX LIEN\\nIncome tax liens are imposed by state and federal government when personal or business income taxes are unpaid.\\n \\nJUDGMENT LIEN\\nA judgment lien comes into effect after a party has won a lawsuit.  If the party that loses the lawsuit is unable to pay, the winning party may get a judgment lien, which can be attached to the loser's property.\\n \\nMECHANICS LIEN\\nA mechanics lien can be imposed on property that has benefited by the materials or services improvements that have not been paid.\\n\\nThe lien attaches when the materials and supplies are delivered, not when the lien is actually filed.\\n \\nPROPERTY TAX LIEN\\nProperty tax liens are imposed by government taxing authorities.\\n\\nMORTGAGE LIEN\\n\\nCAR LOAN LIEN\\n\\nSECURITY INTEREST LIEN\\n\\nATTORNEY LIEN\\n\\nJUDGMENT LIEN\",\"primaryKey\":[\"LienTypeId\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"LienType.cdm.json/LienType\",\"name\":\"LienTypeId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Lien Type.\",\"isNullable\":false,\"name\":\"LienTypeId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"LienType.cdm.json/LienType\",\"name\":\"LienTypeName\"},\"dataType\":\"string\",\"dataTypeLength\":256,\"description\":\"The name of a Lien Type.\",\"isNullable\":true,\"name\":\"LienTypeName\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"LienType.cdm.json/LienType\",\"name\":\"LienTypeDescription\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"The description of a Lien Type.\",\"isNullable\":true,\"name\":\"LienTypeDescription\"}]}}}",
+			"Description": "A classification of types of Liens.\n\nEx:\nARTISANS LIEN\nArtisan liens are imposed on personal property other than real estate or things attached to real estate.  Artisans liens are imposed because of nonpayment for materials or services that benefit personal property.\n \nINCOME TAX LIEN\nIncome tax liens are imposed by state and federal government when personal or business income taxes are unpaid.\n \nJUDGMENT LIEN\nA judgment lien comes into effect after a party has won a lawsuit.  If the party that loses the lawsuit is unable to pay, the winning party may get a judgment lien, which can be attached to the loser's property.\n \nMECHANICS LIEN\nA mechanics lien can be imposed on property that has benefited by the materials or services improvements that have not been paid.\n\nThe lien attaches when the materials and supplies are delivered, not when the lien is actually filed.\n \nPROPERTY TAX LIEN\nProperty tax liens are imposed by government taxing authorities.\n\nMORTGAGE LIEN\n\nCAR LOAN LIEN\n\nSECURITY INTEREST LIEN\n\nATTORNEY LIEN\n\nJUDGMENT LIEN",
+			"DisplayFolderInfo": "{\"name\":\"Customer Credit & Collections\",\"colorCode\":\"#022F22\"}",
+			"PrimaryKeys": "LienTypeId",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

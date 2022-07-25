@@ -1,0 +1,178 @@
+{
+	"name": "PartyOrganizationRelatedParty",
+	"properties": {
+		"Name": "PartyOrganizationRelatedParty",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "The relationship between an Organization and a Party, which may be a legal entity, organization, another employee, person etc.",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "PartyId",
+					"Description": "The unique identifier of a Party.",
+					"BaseAttributeReference": {
+						"Entity": "PartyOrganizationRelatedParty.cdm.json/PartyOrganizationRelatedParty",
+						"Name": "PartyId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "long",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "long"
+						}
+					}
+				},
+				{
+					"Name": "OrganizationId",
+					"Description": "The unique identifier of an organization.",
+					"BaseAttributeReference": {
+						"Entity": "PartyOrganizationRelatedParty.cdm.json/PartyOrganizationRelatedParty",
+						"Name": "OrganizationId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "RelatedPartyId",
+					"Description": "The unique identifier of a Party.",
+					"BaseAttributeReference": {
+						"Entity": "PartyOrganizationRelatedParty.cdm.json/PartyOrganizationRelatedParty",
+						"Name": "RelatedPartyId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "long",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "long"
+						}
+					}
+				},
+				{
+					"Name": "PartyOrganizationPartyRelationshipTypeId",
+					"Description": "The identifier of the Organization Party Relationship Type.",
+					"BaseAttributeReference": {
+						"Entity": "PartyOrganizationRelatedParty.cdm.json/PartyOrganizationRelatedParty",
+						"Name": "PartyOrganizationPartyRelationshipTypeId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "RelationshipPeriodStartTimestamp",
+					"Description": "The starting timestamp of the Organization-Party Relationship.",
+					"BaseAttributeReference": {
+						"Entity": "PartyOrganizationRelatedParty.cdm.json/PartyOrganizationRelatedParty",
+						"Name": "RelationshipPeriodStartTimestamp"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "timestamp",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"TimestampFormat": "YYYY-MM-DD HH:MM:SS.fffffffff",
+							"HIVE_TYPE_STRING": "timestamp"
+						}
+					}
+				},
+				{
+					"Name": "RelationshipPeriodEndTimestamp",
+					"Description": "The ending timestamp of the Organization-Party Relationship.",
+					"BaseAttributeReference": {
+						"Entity": "PartyOrganizationRelatedParty.cdm.json/PartyOrganizationRelatedParty",
+						"Name": "RelationshipPeriodEndTimestamp"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "timestamp",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"TimestampFormat": "YYYY-MM-DD HH:MM:SS.fffffffff",
+							"HIVE_TYPE_STRING": "timestamp"
+						}
+					}
+				},
+				{
+					"Name": "PartyOrganizationPartyRelationshipNote",
+					"Description": "A note, comment or additional information regarding the Party Organization - party relationship.",
+					"BaseAttributeReference": {
+						"Entity": "PartyOrganizationRelatedParty.cdm.json/PartyOrganizationRelatedParty",
+						"Name": "PartyOrganizationPartyRelationshipNote"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/PartyOrganizationRelatedParty",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/PartyOrganizationRelatedParty",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"PartyId\":{\"entity\":\"PartyOrganizationRelatedParty.cdm.json/PartyOrganizationRelatedParty\",\"name\":\"PartyId\"},\"OrganizationId\":{\"entity\":\"PartyOrganizationRelatedParty.cdm.json/PartyOrganizationRelatedParty\",\"name\":\"OrganizationId\"},\"RelatedPartyId\":{\"entity\":\"PartyOrganizationRelatedParty.cdm.json/PartyOrganizationRelatedParty\",\"name\":\"RelatedPartyId\"},\"PartyOrganizationPartyRelationshipTypeId\":{\"entity\":\"PartyOrganizationRelatedParty.cdm.json/PartyOrganizationRelatedParty\",\"name\":\"PartyOrganizationPartyRelationshipTypeId\"},\"RelationshipPeriodStartTimestamp\":{\"entity\":\"PartyOrganizationRelatedParty.cdm.json/PartyOrganizationRelatedParty\",\"name\":\"RelationshipPeriodStartTimestamp\"},\"RelationshipPeriodEndTimestamp\":{\"entity\":\"PartyOrganizationRelatedParty.cdm.json/PartyOrganizationRelatedParty\",\"name\":\"RelationshipPeriodEndTimestamp\"},\"PartyOrganizationPartyRelationshipNote\":{\"entity\":\"PartyOrganizationRelatedParty.cdm.json/PartyOrganizationRelatedParty\",\"name\":\"PartyOrganizationPartyRelationshipNote\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"PartyOrganizationRelatedParty\",\"path\":\"PartyOrganizationRelatedParty.cdm.json/PartyOrganizationRelatedParty\"},\"description\":\"The relationship between an Organization and a Party, which may be a legal entity, organization, another employee, person etc.\",\"primaryKey\":[\"PartyId\",\"OrganizationId\",\"RelatedPartyId\",\"PartyOrganizationPartyRelationshipTypeId\",\"RelationshipPeriodStartTimestamp\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"PartyOrganizationRelatedParty.cdm.json/PartyOrganizationRelatedParty\",\"name\":\"PartyId\"},\"dataType\":\"long\",\"description\":\"The unique identifier of a Party.\",\"isNullable\":false,\"name\":\"PartyId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"PartyOrganizationRelatedParty.cdm.json/PartyOrganizationRelatedParty\",\"name\":\"OrganizationId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of an organization.\",\"isNullable\":false,\"name\":\"OrganizationId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"PartyOrganizationRelatedParty.cdm.json/PartyOrganizationRelatedParty\",\"name\":\"RelatedPartyId\"},\"dataType\":\"long\",\"description\":\"The unique identifier of a Party.\",\"isNullable\":false,\"name\":\"RelatedPartyId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"PartyOrganizationRelatedParty.cdm.json/PartyOrganizationRelatedParty\",\"name\":\"PartyOrganizationPartyRelationshipTypeId\"},\"dataType\":\"integer\",\"description\":\"The identifier of the Organization Party Relationship Type.\",\"isNullable\":false,\"name\":\"PartyOrganizationPartyRelationshipTypeId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"PartyOrganizationRelatedParty.cdm.json/PartyOrganizationRelatedParty\",\"name\":\"RelationshipPeriodStartTimestamp\"},\"dataType\":\"timestamp\",\"description\":\"The starting timestamp of the Organization-Party Relationship.\",\"isNullable\":false,\"name\":\"RelationshipPeriodStartTimestamp\",\"timestampFormat\":\"YYYY-MM-DD HH:MM:SS.fffffffff\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"PartyOrganizationRelatedParty.cdm.json/PartyOrganizationRelatedParty\",\"name\":\"RelationshipPeriodEndTimestamp\"},\"dataType\":\"timestamp\",\"description\":\"The ending timestamp of the Organization-Party Relationship.\",\"isNullable\":true,\"name\":\"RelationshipPeriodEndTimestamp\",\"timestampFormat\":\"YYYY-MM-DD HH:MM:SS.fffffffff\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"PartyOrganizationRelatedParty.cdm.json/PartyOrganizationRelatedParty\",\"name\":\"PartyOrganizationPartyRelationshipNote\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"A note, comment or additional information regarding the Party Organization - party relationship.\",\"isNullable\":true,\"name\":\"PartyOrganizationPartyRelationshipNote\"}]}}}",
+			"Description": "The relationship between an Organization and a Party, which may be a legal entity, organization, another employee, person etc.",
+			"DisplayFolderInfo": "{\"name\":\"Legal Entity\",\"colorCode\":\"#630454\"}",
+			"PrimaryKeys": "PartyId,OrganizationId,RelatedPartyId,PartyOrganizationPartyRelationshipTypeId,RelationshipPeriodStartTimestamp",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

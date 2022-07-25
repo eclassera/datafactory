@@ -1,0 +1,114 @@
+{
+	"name": "BondYieldToCall",
+	"properties": {
+		"Name": "BondYieldToCall",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "The yield of a bond or note if you were to buy and hold the security until the call date. \n\nThis yield is valid only if the security is called prior to maturity and is based upon the associated call date.\n\nThe calculation of yield to call is based on the coupon rate, the length of time to the call date, and the market price.\n\nNote:\nYield to maturity and yield to call take into account the value of the discount or premium paid for the bond, and as such they offer a much better indication of the value of the bond.",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "BondId",
+					"Description": "The unique identifier of a Financial Product.",
+					"BaseAttributeReference": {
+						"Entity": "BondYieldToCall.cdm.json/BondYieldToCall",
+						"Name": "BondId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "long",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "long"
+						}
+					}
+				},
+				{
+					"Name": "CallDate",
+					"Description": "The call date for which the yield to call is calculated.",
+					"BaseAttributeReference": {
+						"Entity": "BondYieldToCall.cdm.json/BondYieldToCall",
+						"Name": "CallDate"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "date",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"DateFormat": "YYYY-MM-DD",
+							"HIVE_TYPE_STRING": "date"
+						}
+					}
+				},
+				{
+					"Name": "YieldToCallPercentage",
+					"Description": "The yield of a bond or note if you were to buy and hold the security until the call date. \n\nThis yield is valid only if the security is called prior to maturity and is based upon the associated call date.\n\nThe calculation of yield to call is based on the coupon rate, the length of time to the call date, and the market price.",
+					"BaseAttributeReference": {
+						"Entity": "BondYieldToCall.cdm.json/BondYieldToCall",
+						"Name": "YieldToCallPercentage"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "decimal",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Precision": 18,
+						"Scale": 8,
+						"Properties": {
+							"HIVE_TYPE_STRING": "decimal"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/BondYieldToCall",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/BondYieldToCall",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"BondId\":{\"entity\":\"BondYieldToCall.cdm.json/BondYieldToCall\",\"name\":\"BondId\"},\"CallDate\":{\"entity\":\"BondYieldToCall.cdm.json/BondYieldToCall\",\"name\":\"CallDate\"},\"YieldToCallPercentage\":{\"entity\":\"BondYieldToCall.cdm.json/BondYieldToCall\",\"name\":\"YieldToCallPercentage\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"BondYieldToCall\",\"path\":\"BondYieldToCall.cdm.json/BondYieldToCall\"},\"description\":\"The yield of a bond or note if you were to buy and hold the security until the call date. \\n\\nThis yield is valid only if the security is called prior to maturity and is based upon the associated call date.\\n\\nThe calculation of yield to call is based on the coupon rate, the length of time to the call date, and the market price.\\n\\nNote:\\nYield to maturity and yield to call take into account the value of the discount or premium paid for the bond, and as such they offer a much better indication of the value of the bond.\",\"primaryKey\":[\"BondId\",\"CallDate\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"BondYieldToCall.cdm.json/BondYieldToCall\",\"name\":\"BondId\"},\"dataType\":\"long\",\"description\":\"The unique identifier of a Financial Product.\",\"isNullable\":false,\"name\":\"BondId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"BondYieldToCall.cdm.json/BondYieldToCall\",\"name\":\"CallDate\"},\"dataType\":\"date\",\"dateFormat\":\"YYYY-MM-DD\",\"description\":\"The call date for which the yield to call is calculated.\",\"isNullable\":false,\"name\":\"CallDate\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"BondYieldToCall.cdm.json/BondYieldToCall\",\"name\":\"YieldToCallPercentage\"},\"dataType\":\"decimal\",\"dataTypeLength\":18,\"description\":\"The yield of a bond or note if you were to buy and hold the security until the call date. \\n\\nThis yield is valid only if the security is called prior to maturity and is based upon the associated call date.\\n\\nThe calculation of yield to call is based on the coupon rate, the length of time to the call date, and the market price.\",\"isNullable\":true,\"scale\":8,\"name\":\"YieldToCallPercentage\"}]}}}",
+			"Description": "The yield of a bond or note if you were to buy and hold the security until the call date. \n\nThis yield is valid only if the security is called prior to maturity and is based upon the associated call date.\n\nThe calculation of yield to call is based on the coupon rate, the length of time to the call date, and the market price.\n\nNote:\nYield to maturity and yield to call take into account the value of the discount or premium paid for the bond, and as such they offer a much better indication of the value of the bond.",
+			"DisplayFolderInfo": "{\"name\":\"Financial Product\",\"colorCode\":\"#001475\"}",
+			"PrimaryKeys": "BondId,CallDate",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

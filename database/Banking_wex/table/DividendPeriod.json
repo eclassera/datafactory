@@ -1,0 +1,113 @@
+{
+	"name": "DividendPeriod",
+	"properties": {
+		"Name": "DividendPeriod",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "The period upon which dividends are paid.\n\nEx:\n- Annual\n- Quarterly\n- Semi-Annual",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "DividendPeriodId",
+					"Description": "The unique identifier of a Dividend Period.",
+					"BaseAttributeReference": {
+						"Entity": "DividendPeriod.cdm.json/DividendPeriod",
+						"Name": "DividendPeriodId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "DividendPeriodName",
+					"Description": "The name of a Dividend Period.",
+					"BaseAttributeReference": {
+						"Entity": "DividendPeriod.cdm.json/DividendPeriod",
+						"Name": "DividendPeriodName"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 256,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "DividendPeriodDescription",
+					"Description": "The description of a Dividend Period.",
+					"BaseAttributeReference": {
+						"Entity": "DividendPeriod.cdm.json/DividendPeriod",
+						"Name": "DividendPeriodDescription"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/DividendPeriod",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/DividendPeriod",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"DividendPeriodId\":{\"entity\":\"DividendPeriod.cdm.json/DividendPeriod\",\"name\":\"DividendPeriodId\"},\"DividendPeriodName\":{\"entity\":\"DividendPeriod.cdm.json/DividendPeriod\",\"name\":\"DividendPeriodName\"},\"DividendPeriodDescription\":{\"entity\":\"DividendPeriod.cdm.json/DividendPeriod\",\"name\":\"DividendPeriodDescription\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"DividendPeriod\",\"path\":\"DividendPeriod.cdm.json/DividendPeriod\"},\"description\":\"The period upon which dividends are paid.\\n\\nEx:\\n- Annual\\n- Quarterly\\n- Semi-Annual\",\"primaryKey\":[\"DividendPeriodId\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"DividendPeriod.cdm.json/DividendPeriod\",\"name\":\"DividendPeriodId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Dividend Period.\",\"isNullable\":false,\"name\":\"DividendPeriodId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"DividendPeriod.cdm.json/DividendPeriod\",\"name\":\"DividendPeriodName\"},\"dataType\":\"string\",\"dataTypeLength\":256,\"description\":\"The name of a Dividend Period.\",\"isNullable\":true,\"name\":\"DividendPeriodName\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"DividendPeriod.cdm.json/DividendPeriod\",\"name\":\"DividendPeriodDescription\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"The description of a Dividend Period.\",\"isNullable\":true,\"name\":\"DividendPeriodDescription\"}]}}}",
+			"Description": "The period upon which dividends are paid.\n\nEx:\n- Annual\n- Quarterly\n- Semi-Annual",
+			"DisplayFolderInfo": "{\"name\":\"Financial Product\",\"colorCode\":\"#001475\"}",
+			"PrimaryKeys": "DividendPeriodId",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

@@ -1,0 +1,200 @@
+{
+	"name": "DunBradstreetFamilyTree",
+	"properties": {
+		"Name": "DunBradstreetFamilyTree",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "As companies today rapidly grow and change, it's more important than ever to understand how an organization is structured. D&B's Family Tree allows you to more easily view and assess risk across different parts of an organization by showing the linkage relationship between different companies within a corporate family.\n\nLinkage is reflected in D&B's database when one business entity has financial or legal responsibility for and control over another, creating a Headquarters/Branch or Parent/Subsidiary relationship. Linkage is updated monthly and reflects mergers, acquisitions, openings, and closings.\n\nThe following family members are shown in D&B's database:\n\nParent: a corporation that owns more than 50% of another corporation. A parent can also be a headquarters if it owns branches.\n\nHeadquarters: a family member that has branches or divisions reporting to it and is financially responsible for those branches or divisions. If headquarters is more than 50% owned by another corporation, it will also be a subsidiary. If it owns more than 50% of another corporation, then it is also a parent.\n\nDomestic Ultimate: a subsidiary within the global family tree that is the highest-ranking member within a specific country.\n\nGlobal Ultimate: the top most responsible entity within the corporate family tree.\n\nBranch: a secondary location of a company's headquarters. It has no legal responsibility for its debts, even though bills may be paid from the branch location.\n\nSubsidiary: a corporation that is more than 50% owned by another corporation and will have a different legal business name from its parent company. There are also single location subsidiaries where the subsidiary does not have anything reporting to it.\n\nDivision: like a branch, it is a secondary location of a business. A division carries out specific business operations related to the headquarters under a divisional name. Divisions look similar to branches in D&B WorldBase and carry a branch code.\n\nAffiliates: companies that are related to a business through common ownership by the direct parent company. All of them share the same parent company. A direct parent company is a corporation that owns more than 50% of another corporation's capital stock.",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "DunsNumber",
+					"Description": "Dun & Bradstreet (D&B) provides a D-U-N-S Number, a unique nine digit identification number, for each physical location of your business.",
+					"BaseAttributeReference": {
+						"Entity": "DunBradstreetFamilyTree.cdm.json/DunBradstreetFamilyTree",
+						"Name": "DunsNumber"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "decimal",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Precision": 9,
+						"Scale": 0,
+						"Properties": {
+							"HIVE_TYPE_STRING": "decimal"
+						}
+					}
+				},
+				{
+					"Name": "ReportPurchaseDate",
+					"Description": "The purchase date of the report.",
+					"BaseAttributeReference": {
+						"Entity": "DunBradstreetFamilyTree.cdm.json/DunBradstreetFamilyTree",
+						"Name": "ReportPurchaseDate"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "date",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"DateFormat": "YYYY-MM-DD",
+							"HIVE_TYPE_STRING": "date"
+						}
+					}
+				},
+				{
+					"Name": "CompanyAddress",
+					"Description": "The 'street/po box' component of the company address.",
+					"BaseAttributeReference": {
+						"Entity": "DunBradstreetFamilyTree.cdm.json/DunBradstreetFamilyTree",
+						"Name": "CompanyAddress"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 512,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "CompanyCity",
+					"Description": "The 'city' component of the company address.",
+					"BaseAttributeReference": {
+						"Entity": "DunBradstreetFamilyTree.cdm.json/DunBradstreetFamilyTree",
+						"Name": "CompanyCity"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 256,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "CompanyState",
+					"Description": "The 'state' component of the company address.",
+					"BaseAttributeReference": {
+						"Entity": "DunBradstreetFamilyTree.cdm.json/DunBradstreetFamilyTree",
+						"Name": "CompanyState"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 64,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "CompanyZipCode",
+					"Description": "The 'zip code' component of the company address.",
+					"BaseAttributeReference": {
+						"Entity": "DunBradstreetFamilyTree.cdm.json/DunBradstreetFamilyTree",
+						"Name": "CompanyZipCode"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "decimal",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Precision": 11,
+						"Scale": 0,
+						"Properties": {
+							"HIVE_TYPE_STRING": "decimal"
+						}
+					}
+				},
+				{
+					"Name": "DunBradstreetFamilyTreeRelationshipTypeId",
+					"Description": "The unique identifier of a Dun Bradstreet Family Tree Relationship Type.",
+					"BaseAttributeReference": {
+						"Entity": "DunBradstreetFamilyTree.cdm.json/DunBradstreetFamilyTree",
+						"Name": "DunBradstreetFamilyTreeRelationshipTypeId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "CompanyName",
+					"Description": "The name of the company.",
+					"BaseAttributeReference": {
+						"Entity": "DunBradstreetFamilyTree.cdm.json/DunBradstreetFamilyTree",
+						"Name": "CompanyName"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 256,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/DunBradstreetFamilyTree",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/DunBradstreetFamilyTree",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"DunsNumber\":{\"entity\":\"DunBradstreetFamilyTree.cdm.json/DunBradstreetFamilyTree\",\"name\":\"DunsNumber\"},\"ReportPurchaseDate\":{\"entity\":\"DunBradstreetFamilyTree.cdm.json/DunBradstreetFamilyTree\",\"name\":\"ReportPurchaseDate\"},\"CompanyAddress\":{\"entity\":\"DunBradstreetFamilyTree.cdm.json/DunBradstreetFamilyTree\",\"name\":\"CompanyAddress\"},\"CompanyCity\":{\"entity\":\"DunBradstreetFamilyTree.cdm.json/DunBradstreetFamilyTree\",\"name\":\"CompanyCity\"},\"CompanyState\":{\"entity\":\"DunBradstreetFamilyTree.cdm.json/DunBradstreetFamilyTree\",\"name\":\"CompanyState\"},\"CompanyZipCode\":{\"entity\":\"DunBradstreetFamilyTree.cdm.json/DunBradstreetFamilyTree\",\"name\":\"CompanyZipCode\"},\"DunBradstreetFamilyTreeRelationshipTypeId\":{\"entity\":\"DunBradstreetFamilyTree.cdm.json/DunBradstreetFamilyTree\",\"name\":\"DunBradstreetFamilyTreeRelationshipTypeId\"},\"CompanyName\":{\"entity\":\"DunBradstreetFamilyTree.cdm.json/DunBradstreetFamilyTree\",\"name\":\"CompanyName\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"DunBradstreetFamilyTree\",\"path\":\"DunBradstreetFamilyTree.cdm.json/DunBradstreetFamilyTree\"},\"description\":\"As companies today rapidly grow and change, it's more important than ever to understand how an organization is structured. D&B's Family Tree allows you to more easily view and assess risk across different parts of an organization by showing the linkage relationship between different companies within a corporate family.\\n\\nLinkage is reflected in D&B's database when one business entity has financial or legal responsibility for and control over another, creating a Headquarters/Branch or Parent/Subsidiary relationship. Linkage is updated monthly and reflects mergers, acquisitions, openings, and closings.\\n\\nThe following family members are shown in D&B's database:\\n\\nParent: a corporation that owns more than 50% of another corporation. A parent can also be a headquarters if it owns branches.\\n\\nHeadquarters: a family member that has branches or divisions reporting to it and is financially responsible for those branches or divisions. If headquarters is more than 50% owned by another corporation, it will also be a subsidiary. If it owns more than 50% of another corporation, then it is also a parent.\\n\\nDomestic Ultimate: a subsidiary within the global family tree that is the highest-ranking member within a specific country.\\n\\nGlobal Ultimate: the top most responsible entity within the corporate family tree.\\n\\nBranch: a secondary location of a company's headquarters. It has no legal responsibility for its debts, even though bills may be paid from the branch location.\\n\\nSubsidiary: a corporation that is more than 50% owned by another corporation and will have a different legal business name from its parent company. There are also single location subsidiaries where the subsidiary does not have anything reporting to it.\\n\\nDivision: like a branch, it is a secondary location of a business. A division carries out specific business operations related to the headquarters under a divisional name. Divisions look similar to branches in D&B WorldBase and carry a branch code.\\n\\nAffiliates: companies that are related to a business through common ownership by the direct parent company. All of them share the same parent company. A direct parent company is a corporation that owns more than 50% of another corporation's capital stock.\",\"primaryKey\":[\"DunsNumber\",\"ReportPurchaseDate\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"DunBradstreetFamilyTree.cdm.json/DunBradstreetFamilyTree\",\"name\":\"DunsNumber\"},\"dataType\":\"decimal\",\"dataTypeLength\":9,\"description\":\"Dun & Bradstreet (D&B) provides a D-U-N-S Number, a unique nine digit identification number, for each physical location of your business.\",\"isNullable\":false,\"scale\":0,\"name\":\"DunsNumber\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"DunBradstreetFamilyTree.cdm.json/DunBradstreetFamilyTree\",\"name\":\"ReportPurchaseDate\"},\"dataType\":\"date\",\"dateFormat\":\"YYYY-MM-DD\",\"description\":\"The purchase date of the report.\",\"isNullable\":false,\"name\":\"ReportPurchaseDate\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"DunBradstreetFamilyTree.cdm.json/DunBradstreetFamilyTree\",\"name\":\"CompanyAddress\"},\"dataType\":\"string\",\"dataTypeLength\":512,\"description\":\"The 'street/po box' component of the company address.\",\"isNullable\":true,\"name\":\"CompanyAddress\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"DunBradstreetFamilyTree.cdm.json/DunBradstreetFamilyTree\",\"name\":\"CompanyCity\"},\"dataType\":\"string\",\"dataTypeLength\":256,\"description\":\"The 'city' component of the company address.\",\"isNullable\":true,\"name\":\"CompanyCity\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"DunBradstreetFamilyTree.cdm.json/DunBradstreetFamilyTree\",\"name\":\"CompanyState\"},\"dataType\":\"string\",\"dataTypeLength\":64,\"description\":\"The 'state' component of the company address.\",\"isNullable\":true,\"name\":\"CompanyState\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"DunBradstreetFamilyTree.cdm.json/DunBradstreetFamilyTree\",\"name\":\"CompanyZipCode\"},\"dataType\":\"decimal\",\"dataTypeLength\":11,\"description\":\"The 'zip code' component of the company address.\",\"isNullable\":true,\"scale\":0,\"name\":\"CompanyZipCode\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"DunBradstreetFamilyTree.cdm.json/DunBradstreetFamilyTree\",\"name\":\"DunBradstreetFamilyTreeRelationshipTypeId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Dun Bradstreet Family Tree Relationship Type.\",\"isNullable\":true,\"name\":\"DunBradstreetFamilyTreeRelationshipTypeId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"DunBradstreetFamilyTree.cdm.json/DunBradstreetFamilyTree\",\"name\":\"CompanyName\"},\"dataType\":\"string\",\"dataTypeLength\":256,\"description\":\"The name of the company.\",\"isNullable\":true,\"name\":\"CompanyName\"}]}}}",
+			"Description": "As companies today rapidly grow and change, it's more important than ever to understand how an organization is structured. D&B's Family Tree allows you to more easily view and assess risk across different parts of an organization by showing the linkage relationship between different companies within a corporate family.\n\nLinkage is reflected in D&B's database when one business entity has financial or legal responsibility for and control over another, creating a Headquarters/Branch or Parent/Subsidiary relationship. Linkage is updated monthly and reflects mergers, acquisitions, openings, and closings.\n\nThe following family members are shown in D&B's database:\n\nParent: a corporation that owns more than 50% of another corporation. A parent can also be a headquarters if it owns branches.\n\nHeadquarters: a family member that has branches or divisions reporting to it and is financially responsible for those branches or divisions. If headquarters is more than 50% owned by another corporation, it will also be a subsidiary. If it owns more than 50% of another corporation, then it is also a parent.\n\nDomestic Ultimate: a subsidiary within the global family tree that is the highest-ranking member within a specific country.\n\nGlobal Ultimate: the top most responsible entity within the corporate family tree.\n\nBranch: a secondary location of a company's headquarters. It has no legal responsibility for its debts, even though bills may be paid from the branch location.\n\nSubsidiary: a corporation that is more than 50% owned by another corporation and will have a different legal business name from its parent company. There are also single location subsidiaries where the subsidiary does not have anything reporting to it.\n\nDivision: like a branch, it is a secondary location of a business. A division carries out specific business operations related to the headquarters under a divisional name. Divisions look similar to branches in D&B WorldBase and carry a branch code.\n\nAffiliates: companies that are related to a business through common ownership by the direct parent company. All of them share the same parent company. A direct parent company is a corporation that owns more than 50% of another corporation's capital stock.",
+			"DisplayFolderInfo": "{\"name\":\"Customer Credit & Collections\",\"colorCode\":\"#022F22\"}",
+			"PrimaryKeys": "DunsNumber,ReportPurchaseDate",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

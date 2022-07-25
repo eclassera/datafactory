@@ -1,0 +1,162 @@
+{
+	"name": "CashBudgetFinancing",
+	"properties": {
+		"Name": "CashBudgetFinancing",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "The specific financing associated with the aggregate number shown in the FINANCING SECTION.",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "CashBudgetId",
+					"Description": "The unique identifier of a Cash Budget.",
+					"BaseAttributeReference": {
+						"Entity": "CashBudgetFinancing.cdm.json/CashBudgetFinancing",
+						"Name": "CashBudgetId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "CashBudgetVersionId",
+					"Description": "The unique identifier of a Cash Budget Version.",
+					"BaseAttributeReference": {
+						"Entity": "CashBudgetFinancing.cdm.json/CashBudgetFinancing",
+						"Name": "CashBudgetVersionId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "CashBudgetFinancingItemId",
+					"Description": "The unique identifier of a Cash Budget Financing Item.",
+					"BaseAttributeReference": {
+						"Entity": "CashBudgetFinancing.cdm.json/CashBudgetFinancing",
+						"Name": "CashBudgetFinancingItemId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "FinancingAmount",
+					"Description": "The amount of the associated financings.",
+					"BaseAttributeReference": {
+						"Entity": "CashBudgetFinancing.cdm.json/CashBudgetFinancing",
+						"Name": "FinancingAmount"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "decimal",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Precision": 18,
+						"Scale": 2,
+						"Properties": {
+							"HIVE_TYPE_STRING": "decimal"
+						}
+					}
+				},
+				{
+					"Name": "PartyId",
+					"Description": "The unique identifier of a Party.",
+					"BaseAttributeReference": {
+						"Entity": "CashBudgetFinancing.cdm.json/CashBudgetFinancing",
+						"Name": "PartyId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "long",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"HIVE_TYPE_STRING": "long"
+						}
+					}
+				},
+				{
+					"Name": "FinancingNote",
+					"Description": "A note, comment or additional information regarding the financing.",
+					"BaseAttributeReference": {
+						"Entity": "CashBudgetFinancing.cdm.json/CashBudgetFinancing",
+						"Name": "FinancingNote"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/CashBudgetFinancing",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/CashBudgetFinancing",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"CashBudgetId\":{\"entity\":\"CashBudgetFinancing.cdm.json/CashBudgetFinancing\",\"name\":\"CashBudgetId\"},\"CashBudgetVersionId\":{\"entity\":\"CashBudgetFinancing.cdm.json/CashBudgetFinancing\",\"name\":\"CashBudgetVersionId\"},\"CashBudgetFinancingItemId\":{\"entity\":\"CashBudgetFinancing.cdm.json/CashBudgetFinancing\",\"name\":\"CashBudgetFinancingItemId\"},\"FinancingAmount\":{\"entity\":\"CashBudgetFinancing.cdm.json/CashBudgetFinancing\",\"name\":\"FinancingAmount\"},\"PartyId\":{\"entity\":\"CashBudgetFinancing.cdm.json/CashBudgetFinancing\",\"name\":\"PartyId\"},\"FinancingNote\":{\"entity\":\"CashBudgetFinancing.cdm.json/CashBudgetFinancing\",\"name\":\"FinancingNote\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"CashBudgetFinancing\",\"path\":\"CashBudgetFinancing.cdm.json/CashBudgetFinancing\"},\"description\":\"The specific financing associated with the aggregate number shown in the FINANCING SECTION.\",\"primaryKey\":[\"CashBudgetId\",\"CashBudgetVersionId\",\"CashBudgetFinancingItemId\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CashBudgetFinancing.cdm.json/CashBudgetFinancing\",\"name\":\"CashBudgetId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Cash Budget.\",\"isNullable\":false,\"name\":\"CashBudgetId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CashBudgetFinancing.cdm.json/CashBudgetFinancing\",\"name\":\"CashBudgetVersionId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Cash Budget Version.\",\"isNullable\":false,\"name\":\"CashBudgetVersionId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CashBudgetFinancing.cdm.json/CashBudgetFinancing\",\"name\":\"CashBudgetFinancingItemId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Cash Budget Financing Item.\",\"isNullable\":false,\"name\":\"CashBudgetFinancingItemId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CashBudgetFinancing.cdm.json/CashBudgetFinancing\",\"name\":\"FinancingAmount\"},\"dataType\":\"decimal\",\"dataTypeLength\":18,\"description\":\"The amount of the associated financings.\",\"isNullable\":true,\"scale\":2,\"name\":\"FinancingAmount\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CashBudgetFinancing.cdm.json/CashBudgetFinancing\",\"name\":\"PartyId\"},\"dataType\":\"long\",\"description\":\"The unique identifier of a Party.\",\"isNullable\":true,\"name\":\"PartyId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CashBudgetFinancing.cdm.json/CashBudgetFinancing\",\"name\":\"FinancingNote\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"A note, comment or additional information regarding the financing.\",\"isNullable\":true,\"name\":\"FinancingNote\"}]}}}",
+			"Description": "The specific financing associated with the aggregate number shown in the FINANCING SECTION.",
+			"DisplayFolderInfo": "{\"name\":\"Budget & Forecasting\",\"colorCode\":\"#00188F\"}",
+			"PrimaryKeys": "CashBudgetId,CashBudgetVersionId,CashBudgetFinancingItemId",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

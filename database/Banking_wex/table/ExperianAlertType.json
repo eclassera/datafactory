@@ -1,0 +1,113 @@
+{
+	"name": "ExperianAlertType",
+	"properties": {
+		"Name": "ExperianAlertType",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "Changes that will generate an email alert include any of the following or combination of the below:\n\n- Score changes\n- Business address changes\n- Inquiries posted\n- New credit tradelines opened\n- Potentially negative information\n- Business public records and UCC changes\n- Collected posted or satisfied",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "ExperianAlertTypeId",
+					"Description": "The unique identifier of an Experian Alert Type.",
+					"BaseAttributeReference": {
+						"Entity": "ExperianAlertType.cdm.json/ExperianAlertType",
+						"Name": "ExperianAlertTypeId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "ExperianAlertTypeName",
+					"Description": "The name of an Experian Alert Type.",
+					"BaseAttributeReference": {
+						"Entity": "ExperianAlertType.cdm.json/ExperianAlertType",
+						"Name": "ExperianAlertTypeName"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 256,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "ExperianAlertTypeDescription",
+					"Description": "The description of an Experian Alert Type.",
+					"BaseAttributeReference": {
+						"Entity": "ExperianAlertType.cdm.json/ExperianAlertType",
+						"Name": "ExperianAlertTypeDescription"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/ExperianAlertType",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/ExperianAlertType",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"ExperianAlertTypeId\":{\"entity\":\"ExperianAlertType.cdm.json/ExperianAlertType\",\"name\":\"ExperianAlertTypeId\"},\"ExperianAlertTypeName\":{\"entity\":\"ExperianAlertType.cdm.json/ExperianAlertType\",\"name\":\"ExperianAlertTypeName\"},\"ExperianAlertTypeDescription\":{\"entity\":\"ExperianAlertType.cdm.json/ExperianAlertType\",\"name\":\"ExperianAlertTypeDescription\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"ExperianAlertType\",\"path\":\"ExperianAlertType.cdm.json/ExperianAlertType\"},\"description\":\"Changes that will generate an email alert include any of the following or combination of the below:\\n\\n- Score changes\\n- Business address changes\\n- Inquiries posted\\n- New credit tradelines opened\\n- Potentially negative information\\n- Business public records and UCC changes\\n- Collected posted or satisfied\",\"primaryKey\":[\"ExperianAlertTypeId\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ExperianAlertType.cdm.json/ExperianAlertType\",\"name\":\"ExperianAlertTypeId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of an Experian Alert Type.\",\"isNullable\":false,\"name\":\"ExperianAlertTypeId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ExperianAlertType.cdm.json/ExperianAlertType\",\"name\":\"ExperianAlertTypeName\"},\"dataType\":\"string\",\"dataTypeLength\":256,\"description\":\"The name of an Experian Alert Type.\",\"isNullable\":true,\"name\":\"ExperianAlertTypeName\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ExperianAlertType.cdm.json/ExperianAlertType\",\"name\":\"ExperianAlertTypeDescription\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"The description of an Experian Alert Type.\",\"isNullable\":true,\"name\":\"ExperianAlertTypeDescription\"}]}}}",
+			"Description": "Changes that will generate an email alert include any of the following or combination of the below:\n\n- Score changes\n- Business address changes\n- Inquiries posted\n- New credit tradelines opened\n- Potentially negative information\n- Business public records and UCC changes\n- Collected posted or satisfied",
+			"DisplayFolderInfo": "{\"name\":\"Customer Credit & Collections\",\"colorCode\":\"#022F22\"}",
+			"PrimaryKeys": "ExperianAlertTypeId",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

@@ -1,0 +1,113 @@
+{
+	"name": "NamePrefix",
+	"properties": {
+		"Name": "NamePrefix",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "A name title that may applied to a name.\n\nEx:\n- Dr.\n- Mr.\n- Second Lieutenant\n- Miss\n- Rabbi\n- Commissioner",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "NamePrefixId",
+					"Description": "The unique identifier of a Prefix.",
+					"BaseAttributeReference": {
+						"Entity": "NamePrefix.cdm.json/NamePrefix",
+						"Name": "NamePrefixId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "NamePrefixName",
+					"Description": "The name of a Prefix.",
+					"BaseAttributeReference": {
+						"Entity": "NamePrefix.cdm.json/NamePrefix",
+						"Name": "NamePrefixName"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 256,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "NamePrefixDescription",
+					"Description": "The description of a Prefix.",
+					"BaseAttributeReference": {
+						"Entity": "NamePrefix.cdm.json/NamePrefix",
+						"Name": "NamePrefixDescription"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/NamePrefix",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/NamePrefix",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"NamePrefixId\":{\"entity\":\"NamePrefix.cdm.json/NamePrefix\",\"name\":\"NamePrefixId\"},\"NamePrefixName\":{\"entity\":\"NamePrefix.cdm.json/NamePrefix\",\"name\":\"NamePrefixName\"},\"NamePrefixDescription\":{\"entity\":\"NamePrefix.cdm.json/NamePrefix\",\"name\":\"NamePrefixDescription\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"NamePrefix\",\"path\":\"NamePrefix.cdm.json/NamePrefix\"},\"description\":\"A name title that may applied to a name.\\n\\nEx:\\n- Dr.\\n- Mr.\\n- Second Lieutenant\\n- Miss\\n- Rabbi\\n- Commissioner\",\"primaryKey\":[\"NamePrefixId\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"NamePrefix.cdm.json/NamePrefix\",\"name\":\"NamePrefixId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Prefix.\",\"isNullable\":false,\"name\":\"NamePrefixId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"NamePrefix.cdm.json/NamePrefix\",\"name\":\"NamePrefixName\"},\"dataType\":\"string\",\"dataTypeLength\":256,\"description\":\"The name of a Prefix.\",\"isNullable\":true,\"name\":\"NamePrefixName\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"NamePrefix.cdm.json/NamePrefix\",\"name\":\"NamePrefixDescription\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"The description of a Prefix.\",\"isNullable\":true,\"name\":\"NamePrefixDescription\"}]}}}",
+			"Description": "A name title that may applied to a name.\n\nEx:\n- Dr.\n- Mr.\n- Second Lieutenant\n- Miss\n- Rabbi\n- Commissioner",
+			"DisplayFolderInfo": "{\"name\":\"Party\",\"colorCode\":\"#00727A\"}",
+			"PrimaryKeys": "NamePrefixId",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

@@ -1,0 +1,113 @@
+{
+	"name": "StoreEventType",
+	"properties": {
+		"Name": "StoreEventType",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "A categorization of events that can occur in conjunction with a store to create a 'history' of pre-defined events.\n\nEx:   \nIndividual\n- Store Opening\n- Store Closing\n- Renovations\n- Store Re-Opening",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "StoreEventTypeId",
+					"Description": "The unique identifier of a Store Event Type.",
+					"BaseAttributeReference": {
+						"Entity": "StoreEventType.cdm.json/StoreEventType",
+						"Name": "StoreEventTypeId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "StoreEventTypeName",
+					"Description": "The name of a Store Event Type.",
+					"BaseAttributeReference": {
+						"Entity": "StoreEventType.cdm.json/StoreEventType",
+						"Name": "StoreEventTypeName"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 256,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "StoreEventTypeDescription",
+					"Description": "The description of a Store Event Type.",
+					"BaseAttributeReference": {
+						"Entity": "StoreEventType.cdm.json/StoreEventType",
+						"Name": "StoreEventTypeDescription"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/StoreEventType",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/StoreEventType",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"StoreEventTypeId\":{\"entity\":\"StoreEventType.cdm.json/StoreEventType\",\"name\":\"StoreEventTypeId\"},\"StoreEventTypeName\":{\"entity\":\"StoreEventType.cdm.json/StoreEventType\",\"name\":\"StoreEventTypeName\"},\"StoreEventTypeDescription\":{\"entity\":\"StoreEventType.cdm.json/StoreEventType\",\"name\":\"StoreEventTypeDescription\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"StoreEventType\",\"path\":\"StoreEventType.cdm.json/StoreEventType\"},\"description\":\"A categorization of events that can occur in conjunction with a store to create a 'history' of pre-defined events.\\n\\nEx:   \\nIndividual\\n- Store Opening\\n- Store Closing\\n- Renovations\\n- Store Re-Opening\",\"primaryKey\":[\"StoreEventTypeId\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"StoreEventType.cdm.json/StoreEventType\",\"name\":\"StoreEventTypeId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Store Event Type.\",\"isNullable\":false,\"name\":\"StoreEventTypeId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"StoreEventType.cdm.json/StoreEventType\",\"name\":\"StoreEventTypeName\"},\"dataType\":\"string\",\"dataTypeLength\":256,\"description\":\"The name of a Store Event Type.\",\"isNullable\":true,\"name\":\"StoreEventTypeName\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"StoreEventType.cdm.json/StoreEventType\",\"name\":\"StoreEventTypeDescription\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"The description of a Store Event Type.\",\"isNullable\":true,\"name\":\"StoreEventTypeDescription\"}]}}}",
+			"Description": "A categorization of events that can occur in conjunction with a store to create a 'history' of pre-defined events.\n\nEx:   \nIndividual\n- Store Opening\n- Store Closing\n- Renovations\n- Store Re-Opening",
+			"DisplayFolderInfo": "{\"name\":\"Channel\",\"colorCode\":\"#001D3F\"}",
+			"PrimaryKeys": "StoreEventTypeId",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

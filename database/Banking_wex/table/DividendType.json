@@ -1,0 +1,113 @@
+{
+	"name": "DividendType",
+	"properties": {
+		"Name": "DividendType",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "A categorization of dividends based on their payment characteristics or objectives.\n\nEx:\n- Accumulated Dividend\n- Accumulative Dividend\n- Cash Dividend\n- Equalizing Dividend\n- Extra (\"Special\") Dividend\n- Extra Dividend\n- Interim Dividend\n- Liquidating Dividend\n- Optional Dividend\n- Participating Dividend\n- Stock And Cash Dividend\n- Stock Dividend\n- Stock Dividend\n- Year-End Dividend\n\nwhere:\n\nACCUMULATED DIVIDEND\nA dividend due to holders of cumulative preferred stock that is not paid but is actually carried on the books as a liability until it is paid.\n\nUntil the dividend is paid, it is carried on the corporation's books as a liability.\n\nACCUMULATIVE DIVIDEND\nA dividend due to stockholders of cumulative preferred stock that has not been paid to them.\n\n Until the dividend is paid, it is carried on the corporation's books as a liability.\n\nCASH DIVIDEND\nA cash payment to a corporation's shareholders that is distributed from current earnings or accumulated profits.\n\nA cash dividend is taxable as income.\n\nA dividend paid in cash to a company's shareholders. The amount is normally based on profitability and is taxable as income. A cash distribution may include capital gains and return of capital in addition to the dividend.\n\nEQUALIZING DIVIDEND\nA special dividend that is paid to compensate investors for income lost because a change was made in the quarterly dividend payment schedule.\n\nEXTRA (\"SPECIAL\") DIVIDEND\nA dividend that is paid in addition to a firm's regular dividend.\n\nEXTRA DIVIDEND\nA dividend paid to shareholders in addition to the regular dividend.   This payment is made after a particularly profitable period to reward shareholders.\n\nINTERIM DIVIDEND\nA dividend declared and paid before annual earnings have been determined.\n\nLIQUIDATING DIVIDEND\nA distribution of assets from a corporation that is going out of business or being liquidated. Management may decide to sell off a company's assets and pass the proceeds along to shareholders.\n\nOPTIONAL DIVIDEND\nA dividend that can be paid either in cash or in stock based upon the shareholders decision.\n\nPARTICIPATING DIVIDEND\nA dividend paid on participating preferred stock.\n\nSTOCK AND CASH DIVIDEND\nA dividend that consists of both cash and some percentage of stock.\n\nSTOCK DIVIDEND\nA dividend that is paid in securities, rather than cash. The additional shares may be of the issuing company, or of a subsidiary.\n\nSTOCK DIVIDEND\nA dividend paid as additional shares of stock rather than as cash.\n\nYEAR-END DIVIDEND\nA dividend declared at the end-of-year.",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "DividendTypeId",
+					"Description": "The unique identifier of a Dividend Type.",
+					"BaseAttributeReference": {
+						"Entity": "DividendType.cdm.json/DividendType",
+						"Name": "DividendTypeId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "DividendTypeName",
+					"Description": "The name of a Dividend Type.",
+					"BaseAttributeReference": {
+						"Entity": "DividendType.cdm.json/DividendType",
+						"Name": "DividendTypeName"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 256,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "DividendTypeDescription",
+					"Description": "The description of a Dividend Type.",
+					"BaseAttributeReference": {
+						"Entity": "DividendType.cdm.json/DividendType",
+						"Name": "DividendTypeDescription"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/DividendType",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/DividendType",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"DividendTypeId\":{\"entity\":\"DividendType.cdm.json/DividendType\",\"name\":\"DividendTypeId\"},\"DividendTypeName\":{\"entity\":\"DividendType.cdm.json/DividendType\",\"name\":\"DividendTypeName\"},\"DividendTypeDescription\":{\"entity\":\"DividendType.cdm.json/DividendType\",\"name\":\"DividendTypeDescription\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"DividendType\",\"path\":\"DividendType.cdm.json/DividendType\"},\"description\":\"A categorization of dividends based on their payment characteristics or objectives.\\n\\nEx:\\n- Accumulated Dividend\\n- Accumulative Dividend\\n- Cash Dividend\\n- Equalizing Dividend\\n- Extra (\\\"Special\\\") Dividend\\n- Extra Dividend\\n- Interim Dividend\\n- Liquidating Dividend\\n- Optional Dividend\\n- Participating Dividend\\n- Stock And Cash Dividend\\n- Stock Dividend\\n- Stock Dividend\\n- Year-End Dividend\\n\\nwhere:\\n\\nACCUMULATED DIVIDEND\\nA dividend due to holders of cumulative preferred stock that is not paid but is actually carried on the books as a liability until it is paid.\\n\\nUntil the dividend is paid, it is carried on the corporation's books as a liability.\\n\\nACCUMULATIVE DIVIDEND\\nA dividend due to stockholders of cumulative preferred stock that has not been paid to them.\\n\\n Until the dividend is paid, it is carried on the corporation's books as a liability.\\n\\nCASH DIVIDEND\\nA cash payment to a corporation's shareholders that is distributed from current earnings or accumulated profits.\\n\\nA cash dividend is taxable as income.\\n\\nA dividend paid in cash to a company's shareholders. The amount is normally based on profitability and is taxable as income. A cash distribution may include capital gains and return of capital in addition to the dividend.\\n\\nEQUALIZING DIVIDEND\\nA special dividend that is paid to compensate investors for income lost because a change was made in the quarterly dividend payment schedule.\\n\\nEXTRA (\\\"SPECIAL\\\") DIVIDEND\\nA dividend that is paid in addition to a firm's regular dividend.\\n\\nEXTRA DIVIDEND\\nA dividend paid to shareholders in addition to the regular dividend.   This payment is made after a particularly profitable period to reward shareholders.\\n\\nINTERIM DIVIDEND\\nA dividend declared and paid before annual earnings have been determined.\\n\\nLIQUIDATING DIVIDEND\\nA distribution of assets from a corporation that is going out of business or being liquidated. Management may decide to sell off a company's assets and pass the proceeds along to shareholders.\\n\\nOPTIONAL DIVIDEND\\nA dividend that can be paid either in cash or in stock based upon the shareholders decision.\\n\\nPARTICIPATING DIVIDEND\\nA dividend paid on participating preferred stock.\\n\\nSTOCK AND CASH DIVIDEND\\nA dividend that consists of both cash and some percentage of stock.\\n\\nSTOCK DIVIDEND\\nA dividend that is paid in securities, rather than cash. The additional shares may be of the issuing company, or of a subsidiary.\\n\\nSTOCK DIVIDEND\\nA dividend paid as additional shares of stock rather than as cash.\\n\\nYEAR-END DIVIDEND\\nA dividend declared at the end-of-year.\",\"primaryKey\":[\"DividendTypeId\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"DividendType.cdm.json/DividendType\",\"name\":\"DividendTypeId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Dividend Type.\",\"isNullable\":false,\"name\":\"DividendTypeId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"DividendType.cdm.json/DividendType\",\"name\":\"DividendTypeName\"},\"dataType\":\"string\",\"dataTypeLength\":256,\"description\":\"The name of a Dividend Type.\",\"isNullable\":true,\"name\":\"DividendTypeName\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"DividendType.cdm.json/DividendType\",\"name\":\"DividendTypeDescription\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"The description of a Dividend Type.\",\"isNullable\":true,\"name\":\"DividendTypeDescription\"}]}}}",
+			"Description": "A categorization of dividends based on their payment characteristics or objectives.\n\nEx:\n- Accumulated Dividend\n- Accumulative Dividend\n- Cash Dividend\n- Equalizing Dividend\n- Extra (\"Special\") Dividend\n- Extra Dividend\n- Interim Dividend\n- Liquidating Dividend\n- Optional Dividend\n- Participating Dividend\n- Stock And Cash Dividend\n- Stock Dividend\n- Stock Dividend\n- Year-End Dividend\n\nwhere:\n\nACCUMULATED DIVIDEND\nA dividend due to holders of cumulative preferred stock that is not paid but is actually carried on the books as a liability until it is paid.\n\nUntil the dividend is paid, it is carried on the corporation's books as a liability.\n\nACCUMULATIVE DIVIDEND\nA dividend due to stockholders of cumulative preferred stock that has not been paid to them.\n\n Until the dividend is paid, it is carried on the corporation's books as a liability.\n\nCASH DIVIDEND\nA cash payment to a corporation's shareholders that is distributed from current earnings or accumulated profits.\n\nA cash dividend is taxable as income.\n\nA dividend paid in cash to a company's shareholders. The amount is normally based on profitability and is taxable as income. A cash distribution may include capital gains and return of capital in addition to the dividend.\n\nEQUALIZING DIVIDEND\nA special dividend that is paid to compensate investors for income lost because a change was made in the quarterly dividend payment schedule.\n\nEXTRA (\"SPECIAL\") DIVIDEND\nA dividend that is paid in addition to a firm's regular dividend.\n\nEXTRA DIVIDEND\nA dividend paid to shareholders in addition to the regular dividend.   This payment is made after a particularly profitable period to reward shareholders.\n\nINTERIM DIVIDEND\nA dividend declared and paid before annual earnings have been determined.\n\nLIQUIDATING DIVIDEND\nA distribution of assets from a corporation that is going out of business or being liquidated. Management may decide to sell off a company's assets and pass the proceeds along to shareholders.\n\nOPTIONAL DIVIDEND\nA dividend that can be paid either in cash or in stock based upon the shareholders decision.\n\nPARTICIPATING DIVIDEND\nA dividend paid on participating preferred stock.\n\nSTOCK AND CASH DIVIDEND\nA dividend that consists of both cash and some percentage of stock.\n\nSTOCK DIVIDEND\nA dividend that is paid in securities, rather than cash. The additional shares may be of the issuing company, or of a subsidiary.\n\nSTOCK DIVIDEND\nA dividend paid as additional shares of stock rather than as cash.\n\nYEAR-END DIVIDEND\nA dividend declared at the end-of-year.",
+			"DisplayFolderInfo": "{\"name\":\"Financial Product\",\"colorCode\":\"#001475\"}",
+			"PrimaryKeys": "DividendTypeId",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

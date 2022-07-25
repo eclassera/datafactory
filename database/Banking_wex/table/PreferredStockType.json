@@ -1,0 +1,113 @@
+{
+	"name": "PreferredStockType",
+	"properties": {
+		"Name": "PreferredStockType",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "Preferred stock further divides into four types: cumulative, non-cumulative, participating and convertible. \n\nCumulative preferred stock accords its owner a continuous claim to his or her dividends. Any unpaid dividends accumulate until the corporation resumes paying them. Since the cumulative preferred owner is entitled to all past and present dividends, he or she is paid before common shareholders once payment is resumed. If the board of directors suspends dividends, the shareholder still has a claim on them. \n\nNon-cumulative (straight) preferred is the opposite of cumulative preferred: it doesn't confer a steady claim on dividends in the event of a dividend suspension. Shareholders of this type may not be paid any missed dividends prior to payments being made to the common shareholders. \n\nParticipating preferred shareholders receive extra dividends over their nominal ones when the company makes an extra profit and the board of directors declares dividends. \n\nConvertible preferred stock may be converted to a certain number of shares of common stock. Preferred investors who want the opportunity to share in the appreciation of the company's common stock may find this option attractive.",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "PreferredStockTypeId",
+					"Description": "The unique identifier of a Preferred Stock Type.",
+					"BaseAttributeReference": {
+						"Entity": "PreferredStockType.cdm.json/PreferredStockType",
+						"Name": "PreferredStockTypeId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "PreferredStockTypeName",
+					"Description": "The name of a Preferred Stock Type.",
+					"BaseAttributeReference": {
+						"Entity": "PreferredStockType.cdm.json/PreferredStockType",
+						"Name": "PreferredStockTypeName"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 256,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "PreferredStockTypeDescription",
+					"Description": "The description of a Preferred Stock Type.",
+					"BaseAttributeReference": {
+						"Entity": "PreferredStockType.cdm.json/PreferredStockType",
+						"Name": "PreferredStockTypeDescription"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/PreferredStockType",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/PreferredStockType",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"PreferredStockTypeId\":{\"entity\":\"PreferredStockType.cdm.json/PreferredStockType\",\"name\":\"PreferredStockTypeId\"},\"PreferredStockTypeName\":{\"entity\":\"PreferredStockType.cdm.json/PreferredStockType\",\"name\":\"PreferredStockTypeName\"},\"PreferredStockTypeDescription\":{\"entity\":\"PreferredStockType.cdm.json/PreferredStockType\",\"name\":\"PreferredStockTypeDescription\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"PreferredStockType\",\"path\":\"PreferredStockType.cdm.json/PreferredStockType\"},\"description\":\"Preferred stock further divides into four types: cumulative, non-cumulative, participating and convertible. \\n\\nCumulative preferred stock accords its owner a continuous claim to his or her dividends. Any unpaid dividends accumulate until the corporation resumes paying them. Since the cumulative preferred owner is entitled to all past and present dividends, he or she is paid before common shareholders once payment is resumed. If the board of directors suspends dividends, the shareholder still has a claim on them. \\n\\nNon-cumulative (straight) preferred is the opposite of cumulative preferred: it doesn't confer a steady claim on dividends in the event of a dividend suspension. Shareholders of this type may not be paid any missed dividends prior to payments being made to the common shareholders. \\n\\nParticipating preferred shareholders receive extra dividends over their nominal ones when the company makes an extra profit and the board of directors declares dividends. \\n\\nConvertible preferred stock may be converted to a certain number of shares of common stock. Preferred investors who want the opportunity to share in the appreciation of the company's common stock may find this option attractive.\",\"primaryKey\":[\"PreferredStockTypeId\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"PreferredStockType.cdm.json/PreferredStockType\",\"name\":\"PreferredStockTypeId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Preferred Stock Type.\",\"isNullable\":false,\"name\":\"PreferredStockTypeId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"PreferredStockType.cdm.json/PreferredStockType\",\"name\":\"PreferredStockTypeName\"},\"dataType\":\"string\",\"dataTypeLength\":256,\"description\":\"The name of a Preferred Stock Type.\",\"isNullable\":true,\"name\":\"PreferredStockTypeName\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"PreferredStockType.cdm.json/PreferredStockType\",\"name\":\"PreferredStockTypeDescription\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"The description of a Preferred Stock Type.\",\"isNullable\":true,\"name\":\"PreferredStockTypeDescription\"}]}}}",
+			"Description": "Preferred stock further divides into four types: cumulative, non-cumulative, participating and convertible. \n\nCumulative preferred stock accords its owner a continuous claim to his or her dividends. Any unpaid dividends accumulate until the corporation resumes paying them. Since the cumulative preferred owner is entitled to all past and present dividends, he or she is paid before common shareholders once payment is resumed. If the board of directors suspends dividends, the shareholder still has a claim on them. \n\nNon-cumulative (straight) preferred is the opposite of cumulative preferred: it doesn't confer a steady claim on dividends in the event of a dividend suspension. Shareholders of this type may not be paid any missed dividends prior to payments being made to the common shareholders. \n\nParticipating preferred shareholders receive extra dividends over their nominal ones when the company makes an extra profit and the board of directors declares dividends. \n\nConvertible preferred stock may be converted to a certain number of shares of common stock. Preferred investors who want the opportunity to share in the appreciation of the company's common stock may find this option attractive.",
+			"DisplayFolderInfo": "{\"name\":\"Financial Product\",\"colorCode\":\"#001475\"}",
+			"PrimaryKeys": "PreferredStockTypeId",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

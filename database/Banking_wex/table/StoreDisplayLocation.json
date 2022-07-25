@@ -1,0 +1,240 @@
+{
+	"name": "StoreDisplayLocation",
+	"properties": {
+		"Name": "StoreDisplayLocation",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "A location within a store at which products are located or displayed for sale.",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "StoreId",
+					"Description": "The unique identifier of a Store.",
+					"BaseAttributeReference": {
+						"Entity": "StoreDisplayLocation.cdm.json/StoreDisplayLocation",
+						"Name": "StoreId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "DisplayLocationId",
+					"Description": "The unique identifier of a display location within a Store.",
+					"BaseAttributeReference": {
+						"Entity": "StoreDisplayLocation.cdm.json/StoreDisplayLocation",
+						"Name": "DisplayLocationId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "LocationDescription",
+					"Description": "The description of the location.",
+					"BaseAttributeReference": {
+						"Entity": "StoreDisplayLocation.cdm.json/StoreDisplayLocation",
+						"Name": "LocationDescription"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "FloorId",
+					"Description": "The unique identifier of a Floor.",
+					"BaseAttributeReference": {
+						"Entity": "StoreDisplayLocation.cdm.json/StoreDisplayLocation",
+						"Name": "FloorId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "AreaId",
+					"Description": "The unique identifier of an Area.",
+					"BaseAttributeReference": {
+						"Entity": "StoreDisplayLocation.cdm.json/StoreDisplayLocation",
+						"Name": "AreaId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "AisleId",
+					"Description": "The unique identifier of an Aisle.\n\nAn Aisle is the space between storage devices that is used by material handlers for access.",
+					"BaseAttributeReference": {
+						"Entity": "StoreDisplayLocation.cdm.json/StoreDisplayLocation",
+						"Name": "AisleId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "SectionId",
+					"Description": "The unique identifier of a Row.",
+					"BaseAttributeReference": {
+						"Entity": "StoreDisplayLocation.cdm.json/StoreDisplayLocation",
+						"Name": "SectionId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "ShelfId",
+					"Description": "The unique identifier of a Shelf.",
+					"BaseAttributeReference": {
+						"Entity": "StoreDisplayLocation.cdm.json/StoreDisplayLocation",
+						"Name": "ShelfId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "BinId",
+					"Description": "The unique identifier of a Bin.",
+					"BaseAttributeReference": {
+						"Entity": "StoreDisplayLocation.cdm.json/StoreDisplayLocation",
+						"Name": "BinId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "DepartmentId",
+					"Description": "The unique identifier of a Department.",
+					"BaseAttributeReference": {
+						"Entity": "StoreDisplayLocation.cdm.json/StoreDisplayLocation",
+						"Name": "DepartmentId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "DisplayTypeId",
+					"Description": "The unique identifier of a display type.",
+					"BaseAttributeReference": {
+						"Entity": "StoreDisplayLocation.cdm.json/StoreDisplayLocation",
+						"Name": "DisplayTypeId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/StoreDisplayLocation",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/StoreDisplayLocation",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"StoreId\":{\"entity\":\"StoreDisplayLocation.cdm.json/StoreDisplayLocation\",\"name\":\"StoreId\"},\"DisplayLocationId\":{\"entity\":\"StoreDisplayLocation.cdm.json/StoreDisplayLocation\",\"name\":\"DisplayLocationId\"},\"LocationDescription\":{\"entity\":\"StoreDisplayLocation.cdm.json/StoreDisplayLocation\",\"name\":\"LocationDescription\"},\"FloorId\":{\"entity\":\"StoreDisplayLocation.cdm.json/StoreDisplayLocation\",\"name\":\"FloorId\"},\"AreaId\":{\"entity\":\"StoreDisplayLocation.cdm.json/StoreDisplayLocation\",\"name\":\"AreaId\"},\"AisleId\":{\"entity\":\"StoreDisplayLocation.cdm.json/StoreDisplayLocation\",\"name\":\"AisleId\"},\"SectionId\":{\"entity\":\"StoreDisplayLocation.cdm.json/StoreDisplayLocation\",\"name\":\"SectionId\"},\"ShelfId\":{\"entity\":\"StoreDisplayLocation.cdm.json/StoreDisplayLocation\",\"name\":\"ShelfId\"},\"BinId\":{\"entity\":\"StoreDisplayLocation.cdm.json/StoreDisplayLocation\",\"name\":\"BinId\"},\"DepartmentId\":{\"entity\":\"StoreDisplayLocation.cdm.json/StoreDisplayLocation\",\"name\":\"DepartmentId\"},\"DisplayTypeId\":{\"entity\":\"StoreDisplayLocation.cdm.json/StoreDisplayLocation\",\"name\":\"DisplayTypeId\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"StoreDisplayLocation\",\"path\":\"StoreDisplayLocation.cdm.json/StoreDisplayLocation\"},\"description\":\"A location within a store at which products are located or displayed for sale.\",\"primaryKey\":[\"StoreId\",\"DisplayLocationId\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"StoreDisplayLocation.cdm.json/StoreDisplayLocation\",\"name\":\"StoreId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Store.\",\"isNullable\":false,\"name\":\"StoreId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"StoreDisplayLocation.cdm.json/StoreDisplayLocation\",\"name\":\"DisplayLocationId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a display location within a Store.\",\"isNullable\":false,\"name\":\"DisplayLocationId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"StoreDisplayLocation.cdm.json/StoreDisplayLocation\",\"name\":\"LocationDescription\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"The description of the location.\",\"isNullable\":true,\"name\":\"LocationDescription\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"StoreDisplayLocation.cdm.json/StoreDisplayLocation\",\"name\":\"FloorId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Floor.\",\"isNullable\":true,\"name\":\"FloorId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"StoreDisplayLocation.cdm.json/StoreDisplayLocation\",\"name\":\"AreaId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of an Area.\",\"isNullable\":false,\"name\":\"AreaId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"StoreDisplayLocation.cdm.json/StoreDisplayLocation\",\"name\":\"AisleId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of an Aisle.\\n\\nAn Aisle is the space between storage devices that is used by material handlers for access.\",\"isNullable\":false,\"name\":\"AisleId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"StoreDisplayLocation.cdm.json/StoreDisplayLocation\",\"name\":\"SectionId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Row.\",\"isNullable\":false,\"name\":\"SectionId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"StoreDisplayLocation.cdm.json/StoreDisplayLocation\",\"name\":\"ShelfId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Shelf.\",\"isNullable\":true,\"name\":\"ShelfId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"StoreDisplayLocation.cdm.json/StoreDisplayLocation\",\"name\":\"BinId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Bin.\",\"isNullable\":false,\"name\":\"BinId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"StoreDisplayLocation.cdm.json/StoreDisplayLocation\",\"name\":\"DepartmentId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Department.\",\"isNullable\":true,\"name\":\"DepartmentId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"StoreDisplayLocation.cdm.json/StoreDisplayLocation\",\"name\":\"DisplayTypeId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a display type.\",\"isNullable\":true,\"name\":\"DisplayTypeId\"}]}}}",
+			"Description": "A location within a store at which products are located or displayed for sale.",
+			"DisplayFolderInfo": "{\"name\":\"Channel\",\"colorCode\":\"#001D3F\"}",
+			"PrimaryKeys": "StoreId,DisplayLocationId",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

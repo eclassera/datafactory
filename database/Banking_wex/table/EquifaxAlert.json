@@ -1,0 +1,129 @@
+{
+	"name": "EquifaxAlert",
+	"properties": {
+		"Name": "EquifaxAlert",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "Alerts: Provides alert notices to indicate key differences between the inquiry information and the file content; may also return alerts from a requested consumer product (e.g., FACT Act alerts or other event that may warrant additional attention).",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "EfxId",
+					"Description": "The EFX ID™ is a unique and persistent nine-digit number that identifies and tracks the business unit with which you have the credit relationship;",
+					"BaseAttributeReference": {
+						"Entity": "EquifaxAlert.cdm.json/EquifaxAlert",
+						"Name": "EfxId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "ProfileTimestamp",
+					"Description": "Provides the timestamp when the inquiry was made as recorded\nby Equifax (Eastern Time).",
+					"BaseAttributeReference": {
+						"Entity": "EquifaxAlert.cdm.json/EquifaxAlert",
+						"Name": "ProfileTimestamp"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "timestamp",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"TimestampFormat": "YYYY-MM-DD HH:MM:SS.fffffffff",
+							"HIVE_TYPE_STRING": "timestamp"
+						}
+					}
+				},
+				{
+					"Name": "AlertId",
+					"Description": "The unique identifier of an alert.",
+					"BaseAttributeReference": {
+						"Entity": "EquifaxAlert.cdm.json/EquifaxAlert",
+						"Name": "AlertId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "AlertStatement",
+					"Description": "The alert statement.",
+					"BaseAttributeReference": {
+						"Entity": "EquifaxAlert.cdm.json/EquifaxAlert",
+						"Name": "AlertStatement"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/EquifaxAlert",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/EquifaxAlert",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"EfxId\":{\"entity\":\"EquifaxAlert.cdm.json/EquifaxAlert\",\"name\":\"EfxId\"},\"ProfileTimestamp\":{\"entity\":\"EquifaxAlert.cdm.json/EquifaxAlert\",\"name\":\"ProfileTimestamp\"},\"AlertId\":{\"entity\":\"EquifaxAlert.cdm.json/EquifaxAlert\",\"name\":\"AlertId\"},\"AlertStatement\":{\"entity\":\"EquifaxAlert.cdm.json/EquifaxAlert\",\"name\":\"AlertStatement\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"EquifaxAlert\",\"path\":\"EquifaxAlert.cdm.json/EquifaxAlert\"},\"description\":\"Alerts: Provides alert notices to indicate key differences between the inquiry information and the file content; may also return alerts from a requested consumer product (e.g., FACT Act alerts or other event that may warrant additional attention).\",\"primaryKey\":[\"EfxId\",\"ProfileTimestamp\",\"AlertId\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"EquifaxAlert.cdm.json/EquifaxAlert\",\"name\":\"EfxId\"},\"dataType\":\"integer\",\"description\":\"The EFX ID™ is a unique and persistent nine-digit number that identifies and tracks the business unit with which you have the credit relationship;\",\"isNullable\":false,\"name\":\"EfxId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"EquifaxAlert.cdm.json/EquifaxAlert\",\"name\":\"ProfileTimestamp\"},\"dataType\":\"timestamp\",\"description\":\"Provides the timestamp when the inquiry was made as recorded\\nby Equifax (Eastern Time).\",\"isNullable\":false,\"name\":\"ProfileTimestamp\",\"timestampFormat\":\"YYYY-MM-DD HH:MM:SS.fffffffff\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"EquifaxAlert.cdm.json/EquifaxAlert\",\"name\":\"AlertId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of an alert.\",\"isNullable\":false,\"name\":\"AlertId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"EquifaxAlert.cdm.json/EquifaxAlert\",\"name\":\"AlertStatement\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"The alert statement.\",\"isNullable\":true,\"name\":\"AlertStatement\"}]}}}",
+			"Description": "Alerts: Provides alert notices to indicate key differences between the inquiry information and the file content; may also return alerts from a requested consumer product (e.g., FACT Act alerts or other event that may warrant additional attention).",
+			"DisplayFolderInfo": "{\"name\":\"Customer Credit & Collections\",\"colorCode\":\"#022F22\"}",
+			"PrimaryKeys": "EfxId,ProfileTimestamp,AlertId",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

@@ -1,0 +1,146 @@
+{
+	"name": "CustomerCreditStatus",
+	"properties": {
+		"Name": "CustomerCreditStatus",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "The Credit Status of the Customer for the associated period.",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "CustomerId",
+					"Description": "The unique identifier of a Customer.",
+					"BaseAttributeReference": {
+						"Entity": "CustomerCreditStatus.cdm.json/CustomerCreditStatus",
+						"Name": "CustomerId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "long",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "long"
+						}
+					}
+				},
+				{
+					"Name": "PeriodStartDate",
+					"Description": "The period start date for which the associated Credit Status is defined for the Customer Account.",
+					"BaseAttributeReference": {
+						"Entity": "CustomerCreditStatus.cdm.json/CustomerCreditStatus",
+						"Name": "PeriodStartDate"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "date",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"DateFormat": "YYYY-MM-DD",
+							"HIVE_TYPE_STRING": "date"
+						}
+					}
+				},
+				{
+					"Name": "PeriodEndDate",
+					"Description": "The period end date for which the associated Credit Status is defined for the Customer Account.",
+					"BaseAttributeReference": {
+						"Entity": "CustomerCreditStatus.cdm.json/CustomerCreditStatus",
+						"Name": "PeriodEndDate"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "date",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"DateFormat": "YYYY-MM-DD",
+							"HIVE_TYPE_STRING": "date"
+						}
+					}
+				},
+				{
+					"Name": "CreditStatusTypeId",
+					"Description": "The unique identifier of a Credit Status Type.",
+					"BaseAttributeReference": {
+						"Entity": "CustomerCreditStatus.cdm.json/CustomerCreditStatus",
+						"Name": "CreditStatusTypeId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "CreditStatusNote",
+					"Description": "A note, comment or additional information regarding the Credit Status.",
+					"BaseAttributeReference": {
+						"Entity": "CustomerCreditStatus.cdm.json/CustomerCreditStatus",
+						"Name": "CreditStatusNote"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/CustomerCreditStatus",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/CustomerCreditStatus",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"CustomerId\":{\"entity\":\"CustomerCreditStatus.cdm.json/CustomerCreditStatus\",\"name\":\"CustomerId\"},\"PeriodStartDate\":{\"entity\":\"CustomerCreditStatus.cdm.json/CustomerCreditStatus\",\"name\":\"PeriodStartDate\"},\"PeriodEndDate\":{\"entity\":\"CustomerCreditStatus.cdm.json/CustomerCreditStatus\",\"name\":\"PeriodEndDate\"},\"CreditStatusTypeId\":{\"entity\":\"CustomerCreditStatus.cdm.json/CustomerCreditStatus\",\"name\":\"CreditStatusTypeId\"},\"CreditStatusNote\":{\"entity\":\"CustomerCreditStatus.cdm.json/CustomerCreditStatus\",\"name\":\"CreditStatusNote\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"CustomerCreditStatus\",\"path\":\"CustomerCreditStatus.cdm.json/CustomerCreditStatus\"},\"description\":\"The Credit Status of the Customer for the associated period.\",\"primaryKey\":[\"CustomerId\",\"PeriodStartDate\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CustomerCreditStatus.cdm.json/CustomerCreditStatus\",\"name\":\"CustomerId\"},\"dataType\":\"long\",\"description\":\"The unique identifier of a Customer.\",\"isNullable\":false,\"name\":\"CustomerId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CustomerCreditStatus.cdm.json/CustomerCreditStatus\",\"name\":\"PeriodStartDate\"},\"dataType\":\"date\",\"dateFormat\":\"YYYY-MM-DD\",\"description\":\"The period start date for which the associated Credit Status is defined for the Customer Account.\",\"isNullable\":false,\"name\":\"PeriodStartDate\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CustomerCreditStatus.cdm.json/CustomerCreditStatus\",\"name\":\"PeriodEndDate\"},\"dataType\":\"date\",\"dateFormat\":\"YYYY-MM-DD\",\"description\":\"The period end date for which the associated Credit Status is defined for the Customer Account.\",\"isNullable\":true,\"name\":\"PeriodEndDate\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CustomerCreditStatus.cdm.json/CustomerCreditStatus\",\"name\":\"CreditStatusTypeId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Credit Status Type.\",\"isNullable\":false,\"name\":\"CreditStatusTypeId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CustomerCreditStatus.cdm.json/CustomerCreditStatus\",\"name\":\"CreditStatusNote\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"A note, comment or additional information regarding the Credit Status.\",\"isNullable\":true,\"name\":\"CreditStatusNote\"}]}}}",
+			"Description": "The Credit Status of the Customer for the associated period.",
+			"DisplayFolderInfo": "{\"name\":\"Customer\",\"colorCode\":\"#4B003F\"}",
+			"PrimaryKeys": "CustomerId,PeriodStartDate",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

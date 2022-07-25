@@ -1,0 +1,209 @@
+{
+	"name": "Brand",
+	"properties": {
+		"Name": "Brand",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "A brand is a distinctive name that is used for identifying a product, service or organization. Brands are often associated with products for marketing purposes.",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "BrandId",
+					"Description": "The unique identifier of a Brand.",
+					"BaseAttributeReference": {
+						"Entity": "Brand.cdm.json/Brand",
+						"Name": "BrandId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "BrandName",
+					"Description": "The name of a Brand.",
+					"BaseAttributeReference": {
+						"Entity": "Brand.cdm.json/Brand",
+						"Name": "BrandName"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 256,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "BrandDescription",
+					"Description": "The description of a Brand.",
+					"BaseAttributeReference": {
+						"Entity": "Brand.cdm.json/Brand",
+						"Name": "BrandDescription"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "BrandMark",
+					"Description": "The 'brand mark' is that part of the brand that can be recognized - such as a symbol that identifies a company or product.",
+					"BaseAttributeReference": {
+						"Entity": "Brand.cdm.json/Brand",
+						"Name": "BrandMark"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "binary",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"HIVE_TYPE_STRING": "binary"
+						}
+					}
+				},
+				{
+					"Name": "BrandTrademark",
+					"Description": "A 'trademark' is a brand name or brand mark that is given legal protection.",
+					"BaseAttributeReference": {
+						"Entity": "Brand.cdm.json/Brand",
+						"Name": "BrandTrademark"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "binary",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"HIVE_TYPE_STRING": "binary"
+						}
+					}
+				},
+				{
+					"Name": "BrandLogo",
+					"Description": "A design, symbol or series of words that identifies the brand.",
+					"BaseAttributeReference": {
+						"Entity": "Brand.cdm.json/Brand",
+						"Name": "BrandLogo"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "binary",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"HIVE_TYPE_STRING": "binary"
+						}
+					}
+				},
+				{
+					"Name": "BrandTypeId",
+					"Description": "The unique identifier of the Brand Type.",
+					"BaseAttributeReference": {
+						"Entity": "Brand.cdm.json/Brand",
+						"Name": "BrandTypeId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "BrandCategoryId",
+					"Description": "The unique identifier of a Brand Category.",
+					"BaseAttributeReference": {
+						"Entity": "Brand.cdm.json/Brand",
+						"Name": "BrandCategoryId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "BrandOwningPartyId",
+					"Description": "The unique identifier of a Party.",
+					"BaseAttributeReference": {
+						"Entity": "Brand.cdm.json/Brand",
+						"Name": "BrandOwningPartyId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "long",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"HIVE_TYPE_STRING": "long"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/Brand",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/Brand",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"BrandId\":{\"entity\":\"Brand.cdm.json/Brand\",\"name\":\"BrandId\"},\"BrandName\":{\"entity\":\"Brand.cdm.json/Brand\",\"name\":\"BrandName\"},\"BrandDescription\":{\"entity\":\"Brand.cdm.json/Brand\",\"name\":\"BrandDescription\"},\"BrandMark\":{\"entity\":\"Brand.cdm.json/Brand\",\"name\":\"BrandMark\"},\"BrandTrademark\":{\"entity\":\"Brand.cdm.json/Brand\",\"name\":\"BrandTrademark\"},\"BrandLogo\":{\"entity\":\"Brand.cdm.json/Brand\",\"name\":\"BrandLogo\"},\"BrandTypeId\":{\"entity\":\"Brand.cdm.json/Brand\",\"name\":\"BrandTypeId\"},\"BrandCategoryId\":{\"entity\":\"Brand.cdm.json/Brand\",\"name\":\"BrandCategoryId\"},\"BrandOwningPartyId\":{\"entity\":\"Brand.cdm.json/Brand\",\"name\":\"BrandOwningPartyId\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"Brand\",\"path\":\"Brand.cdm.json/Brand\"},\"description\":\"A brand is a distinctive name that is used for identifying a product, service or organization. Brands are often associated with products for marketing purposes.\",\"primaryKey\":[\"BrandId\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"Brand.cdm.json/Brand\",\"name\":\"BrandId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Brand.\",\"isNullable\":false,\"name\":\"BrandId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"Brand.cdm.json/Brand\",\"name\":\"BrandName\"},\"dataType\":\"string\",\"dataTypeLength\":256,\"description\":\"The name of a Brand.\",\"isNullable\":true,\"name\":\"BrandName\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"Brand.cdm.json/Brand\",\"name\":\"BrandDescription\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"The description of a Brand.\",\"isNullable\":true,\"name\":\"BrandDescription\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"Brand.cdm.json/Brand\",\"name\":\"BrandMark\"},\"dataType\":\"binary\",\"description\":\"The 'brand mark' is that part of the brand that can be recognized - such as a symbol that identifies a company or product.\",\"isNullable\":true,\"name\":\"BrandMark\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"Brand.cdm.json/Brand\",\"name\":\"BrandTrademark\"},\"dataType\":\"binary\",\"description\":\"A 'trademark' is a brand name or brand mark that is given legal protection.\",\"isNullable\":true,\"name\":\"BrandTrademark\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"Brand.cdm.json/Brand\",\"name\":\"BrandLogo\"},\"dataType\":\"binary\",\"description\":\"A design, symbol or series of words that identifies the brand.\",\"isNullable\":true,\"name\":\"BrandLogo\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"Brand.cdm.json/Brand\",\"name\":\"BrandTypeId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of the Brand Type.\",\"isNullable\":true,\"name\":\"BrandTypeId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"Brand.cdm.json/Brand\",\"name\":\"BrandCategoryId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Brand Category.\",\"isNullable\":true,\"name\":\"BrandCategoryId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"Brand.cdm.json/Brand\",\"name\":\"BrandOwningPartyId\"},\"dataType\":\"long\",\"description\":\"The unique identifier of a Party.\",\"isNullable\":true,\"name\":\"BrandOwningPartyId\"}]}}}",
+			"Description": "A brand is a distinctive name that is used for identifying a product, service or organization. Brands are often associated with products for marketing purposes.",
+			"DisplayFolderInfo": "{\"name\":\"Product\",\"colorCode\":\"#0E3D73\"}",
+			"PrimaryKeys": "BrandId",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

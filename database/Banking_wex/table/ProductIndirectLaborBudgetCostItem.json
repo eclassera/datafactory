@@ -1,0 +1,147 @@
+{
+	"name": "ProductIndirectLaborBudgetCostItem",
+	"properties": {
+		"Name": "ProductIndirectLaborBudgetCostItem",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "The individual cost items that are aggregated to make up the PRODUCT INDIRECT LABOR BUDGET.  \n\nEx:\n- Salaries\n- Healthcare Benefits\n- Retirement Benefits\n- Travel\n\nComparing Direct vs. Indirect Costs tell you how much of your labor costs go into actual making and providing services vs. labor costs to support these activities.",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "ProductIndirectLaborBudgetId",
+					"Description": "The unique identifier of a Product Indirect Labor Budget.",
+					"BaseAttributeReference": {
+						"Entity": "ProductIndirectLaborBudgetCostItem.cdm.json/ProductIndirectLaborBudgetCostItem",
+						"Name": "ProductIndirectLaborBudgetId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "ProductIndirectLaborBudgetVersionId",
+					"Description": "The unique identifier of a Product Indirect Labor Budget Version.",
+					"BaseAttributeReference": {
+						"Entity": "ProductIndirectLaborBudgetCostItem.cdm.json/ProductIndirectLaborBudgetCostItem",
+						"Name": "ProductIndirectLaborBudgetVersionId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "CostItemId",
+					"Description": "The unique identifier of a Cost Item.",
+					"BaseAttributeReference": {
+						"Entity": "ProductIndirectLaborBudgetCostItem.cdm.json/ProductIndirectLaborBudgetCostItem",
+						"Name": "CostItemId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "BudgetedCostItemAmount",
+					"Description": "The amount budgeted/planned in the associated Budget for the Cost Item.",
+					"BaseAttributeReference": {
+						"Entity": "ProductIndirectLaborBudgetCostItem.cdm.json/ProductIndirectLaborBudgetCostItem",
+						"Name": "BudgetedCostItemAmount"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "decimal",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Precision": 18,
+						"Scale": 2,
+						"Properties": {
+							"HIVE_TYPE_STRING": "decimal"
+						}
+					}
+				},
+				{
+					"Name": "ActualCostItemAmount",
+					"Description": "The amount actually spent in the associated Budget for the Cost Item.",
+					"BaseAttributeReference": {
+						"Entity": "ProductIndirectLaborBudgetCostItem.cdm.json/ProductIndirectLaborBudgetCostItem",
+						"Name": "ActualCostItemAmount"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "decimal",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Precision": 18,
+						"Scale": 2,
+						"Properties": {
+							"HIVE_TYPE_STRING": "decimal"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/ProductIndirectLaborBudgetCostItem",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/ProductIndirectLaborBudgetCostItem",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"ProductIndirectLaborBudgetId\":{\"entity\":\"ProductIndirectLaborBudgetCostItem.cdm.json/ProductIndirectLaborBudgetCostItem\",\"name\":\"ProductIndirectLaborBudgetId\"},\"ProductIndirectLaborBudgetVersionId\":{\"entity\":\"ProductIndirectLaborBudgetCostItem.cdm.json/ProductIndirectLaborBudgetCostItem\",\"name\":\"ProductIndirectLaborBudgetVersionId\"},\"CostItemId\":{\"entity\":\"ProductIndirectLaborBudgetCostItem.cdm.json/ProductIndirectLaborBudgetCostItem\",\"name\":\"CostItemId\"},\"BudgetedCostItemAmount\":{\"entity\":\"ProductIndirectLaborBudgetCostItem.cdm.json/ProductIndirectLaborBudgetCostItem\",\"name\":\"BudgetedCostItemAmount\"},\"ActualCostItemAmount\":{\"entity\":\"ProductIndirectLaborBudgetCostItem.cdm.json/ProductIndirectLaborBudgetCostItem\",\"name\":\"ActualCostItemAmount\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"ProductIndirectLaborBudgetCostItem\",\"path\":\"ProductIndirectLaborBudgetCostItem.cdm.json/ProductIndirectLaborBudgetCostItem\"},\"description\":\"The individual cost items that are aggregated to make up the PRODUCT INDIRECT LABOR BUDGET.  \\n\\nEx:\\n- Salaries\\n- Healthcare Benefits\\n- Retirement Benefits\\n- Travel\\n\\nComparing Direct vs. Indirect Costs tell you how much of your labor costs go into actual making and providing services vs. labor costs to support these activities.\",\"primaryKey\":[\"ProductIndirectLaborBudgetId\",\"ProductIndirectLaborBudgetVersionId\",\"CostItemId\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ProductIndirectLaborBudgetCostItem.cdm.json/ProductIndirectLaborBudgetCostItem\",\"name\":\"ProductIndirectLaborBudgetId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Product Indirect Labor Budget.\",\"isNullable\":false,\"name\":\"ProductIndirectLaborBudgetId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ProductIndirectLaborBudgetCostItem.cdm.json/ProductIndirectLaborBudgetCostItem\",\"name\":\"ProductIndirectLaborBudgetVersionId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Product Indirect Labor Budget Version.\",\"isNullable\":false,\"name\":\"ProductIndirectLaborBudgetVersionId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ProductIndirectLaborBudgetCostItem.cdm.json/ProductIndirectLaborBudgetCostItem\",\"name\":\"CostItemId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Cost Item.\",\"isNullable\":false,\"name\":\"CostItemId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ProductIndirectLaborBudgetCostItem.cdm.json/ProductIndirectLaborBudgetCostItem\",\"name\":\"BudgetedCostItemAmount\"},\"dataType\":\"decimal\",\"dataTypeLength\":18,\"description\":\"The amount budgeted/planned in the associated Budget for the Cost Item.\",\"isNullable\":true,\"scale\":2,\"name\":\"BudgetedCostItemAmount\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ProductIndirectLaborBudgetCostItem.cdm.json/ProductIndirectLaborBudgetCostItem\",\"name\":\"ActualCostItemAmount\"},\"dataType\":\"decimal\",\"dataTypeLength\":18,\"description\":\"The amount actually spent in the associated Budget for the Cost Item.\",\"isNullable\":true,\"scale\":2,\"name\":\"ActualCostItemAmount\"}]}}}",
+			"Description": "The individual cost items that are aggregated to make up the PRODUCT INDIRECT LABOR BUDGET.  \n\nEx:\n- Salaries\n- Healthcare Benefits\n- Retirement Benefits\n- Travel\n\nComparing Direct vs. Indirect Costs tell you how much of your labor costs go into actual making and providing services vs. labor costs to support these activities.",
+			"DisplayFolderInfo": "{\"name\":\"Budget & Forecasting\",\"colorCode\":\"#00188F\"}",
+			"PrimaryKeys": "ProductIndirectLaborBudgetId,ProductIndirectLaborBudgetVersionId,CostItemId",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

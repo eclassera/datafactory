@@ -1,0 +1,114 @@
+{
+	"name": "DoNotCallRegistryTelephone",
+	"properties": {
+		"Name": "DoNotCallRegistryTelephone",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "A telephone number that is restricted by the Do Not Call Registry.",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "DoNotContactRegistryId",
+					"Description": "The unique identifier of an Do Not Contact Registry.",
+					"BaseAttributeReference": {
+						"Entity": "DoNotCallRegistryTelephone.cdm.json/DoNotCallRegistryTelephone",
+						"Name": "DoNotContactRegistryId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "TelephoneNumber",
+					"Description": "A telephone number associated with a Party.",
+					"BaseAttributeReference": {
+						"Entity": "DoNotCallRegistryTelephone.cdm.json/DoNotCallRegistryTelephone",
+						"Name": "TelephoneNumber"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "decimal",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Precision": 15,
+						"Scale": 0,
+						"Properties": {
+							"HIVE_TYPE_STRING": "decimal"
+						}
+					}
+				},
+				{
+					"Name": "DoNotCallRegistryTelephoneNote",
+					"Description": "A note, comment or additional information regarding the Do Not Contact Registry Location.",
+					"BaseAttributeReference": {
+						"Entity": "DoNotCallRegistryTelephone.cdm.json/DoNotCallRegistryTelephone",
+						"Name": "DoNotCallRegistryTelephoneNote"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/DoNotCallRegistryTelephone",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/DoNotCallRegistryTelephone",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"DoNotContactRegistryId\":{\"entity\":\"DoNotCallRegistryTelephone.cdm.json/DoNotCallRegistryTelephone\",\"name\":\"DoNotContactRegistryId\"},\"TelephoneNumber\":{\"entity\":\"DoNotCallRegistryTelephone.cdm.json/DoNotCallRegistryTelephone\",\"name\":\"TelephoneNumber\"},\"DoNotCallRegistryTelephoneNote\":{\"entity\":\"DoNotCallRegistryTelephone.cdm.json/DoNotCallRegistryTelephone\",\"name\":\"DoNotCallRegistryTelephoneNote\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"DoNotCallRegistryTelephone\",\"path\":\"DoNotCallRegistryTelephone.cdm.json/DoNotCallRegistryTelephone\"},\"description\":\"A telephone number that is restricted by the Do Not Call Registry.\",\"primaryKey\":[\"DoNotContactRegistryId\",\"TelephoneNumber\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"DoNotCallRegistryTelephone.cdm.json/DoNotCallRegistryTelephone\",\"name\":\"DoNotContactRegistryId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of an Do Not Contact Registry.\",\"isNullable\":false,\"name\":\"DoNotContactRegistryId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"DoNotCallRegistryTelephone.cdm.json/DoNotCallRegistryTelephone\",\"name\":\"TelephoneNumber\"},\"dataType\":\"decimal\",\"dataTypeLength\":15,\"description\":\"A telephone number associated with a Party.\",\"isNullable\":false,\"scale\":0,\"name\":\"TelephoneNumber\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"DoNotCallRegistryTelephone.cdm.json/DoNotCallRegistryTelephone\",\"name\":\"DoNotCallRegistryTelephoneNote\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"A note, comment or additional information regarding the Do Not Contact Registry Location.\",\"isNullable\":true,\"name\":\"DoNotCallRegistryTelephoneNote\"}]}}}",
+			"Description": "A telephone number that is restricted by the Do Not Call Registry.",
+			"DisplayFolderInfo": "{\"name\":\"Party\",\"colorCode\":\"#00727A\"}",
+			"PrimaryKeys": "DoNotContactRegistryId,TelephoneNumber",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

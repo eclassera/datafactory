@@ -1,0 +1,113 @@
+{
+	"name": "ExperianPersonnelPositionType",
+	"properties": {
+		"Name": "ExperianPersonnelPositionType",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "The type of Experian personnel position.\n\nEx:\n- President\n- Vice President\n- Controller\n- CEO",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "ExperianPersonnelPositionTypeId",
+					"Description": "The unique identifier of an Experian personnel position type.",
+					"BaseAttributeReference": {
+						"Entity": "ExperianPersonnelPositionType.cdm.json/ExperianPersonnelPositionType",
+						"Name": "ExperianPersonnelPositionTypeId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "ExperianPersonnelPositionTypeName",
+					"Description": "The name of an Experian personnel position type.",
+					"BaseAttributeReference": {
+						"Entity": "ExperianPersonnelPositionType.cdm.json/ExperianPersonnelPositionType",
+						"Name": "ExperianPersonnelPositionTypeName"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 256,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "ExperianPersonnelPositionTypeDescription",
+					"Description": "The description of an Experian personnel position type.",
+					"BaseAttributeReference": {
+						"Entity": "ExperianPersonnelPositionType.cdm.json/ExperianPersonnelPositionType",
+						"Name": "ExperianPersonnelPositionTypeDescription"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/ExperianPersonnelPositionType",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/ExperianPersonnelPositionType",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"ExperianPersonnelPositionTypeId\":{\"entity\":\"ExperianPersonnelPositionType.cdm.json/ExperianPersonnelPositionType\",\"name\":\"ExperianPersonnelPositionTypeId\"},\"ExperianPersonnelPositionTypeName\":{\"entity\":\"ExperianPersonnelPositionType.cdm.json/ExperianPersonnelPositionType\",\"name\":\"ExperianPersonnelPositionTypeName\"},\"ExperianPersonnelPositionTypeDescription\":{\"entity\":\"ExperianPersonnelPositionType.cdm.json/ExperianPersonnelPositionType\",\"name\":\"ExperianPersonnelPositionTypeDescription\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"ExperianPersonnelPositionType\",\"path\":\"ExperianPersonnelPositionType.cdm.json/ExperianPersonnelPositionType\"},\"description\":\"The type of Experian personnel position.\\n\\nEx:\\n- President\\n- Vice President\\n- Controller\\n- CEO\",\"primaryKey\":[\"ExperianPersonnelPositionTypeId\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ExperianPersonnelPositionType.cdm.json/ExperianPersonnelPositionType\",\"name\":\"ExperianPersonnelPositionTypeId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of an Experian personnel position type.\",\"isNullable\":false,\"name\":\"ExperianPersonnelPositionTypeId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ExperianPersonnelPositionType.cdm.json/ExperianPersonnelPositionType\",\"name\":\"ExperianPersonnelPositionTypeName\"},\"dataType\":\"string\",\"dataTypeLength\":256,\"description\":\"The name of an Experian personnel position type.\",\"isNullable\":true,\"name\":\"ExperianPersonnelPositionTypeName\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ExperianPersonnelPositionType.cdm.json/ExperianPersonnelPositionType\",\"name\":\"ExperianPersonnelPositionTypeDescription\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"The description of an Experian personnel position type.\",\"isNullable\":true,\"name\":\"ExperianPersonnelPositionTypeDescription\"}]}}}",
+			"Description": "The type of Experian personnel position.\n\nEx:\n- President\n- Vice President\n- Controller\n- CEO",
+			"DisplayFolderInfo": "{\"name\":\"Customer Credit & Collections\",\"colorCode\":\"#022F22\"}",
+			"PrimaryKeys": "ExperianPersonnelPositionTypeId",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

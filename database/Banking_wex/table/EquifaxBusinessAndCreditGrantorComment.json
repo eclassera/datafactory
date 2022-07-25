@@ -1,0 +1,181 @@
+{
+	"name": "EquifaxBusinessAndCreditGrantorComment",
+	"properties": {
+		"Name": "EquifaxBusinessAndCreditGrantorComment",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "The comment reported.\n\nEx:\n\"Dispute with landlord over water damage in warehouse.\"",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "EfxId",
+					"Description": "The EFX ID™ is a unique and persistent nine-digit number that identifies and tracks the business unit with which you have the credit relationship;",
+					"BaseAttributeReference": {
+						"Entity": "EquifaxBusinessAndCreditGrantorComment.cdm.json/EquifaxBusinessAndCreditGrantorComment",
+						"Name": "EfxId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "ProfileTimestamp",
+					"Description": "Provides the timestamp when the inquiry was made as recorded\nby Equifax (Eastern Time).",
+					"BaseAttributeReference": {
+						"Entity": "EquifaxBusinessAndCreditGrantorComment.cdm.json/EquifaxBusinessAndCreditGrantorComment",
+						"Name": "ProfileTimestamp"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "timestamp",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"TimestampFormat": "YYYY-MM-DD HH:MM:SS.fffffffff",
+							"HIVE_TYPE_STRING": "timestamp"
+						}
+					}
+				},
+				{
+					"Name": "OwnerGuarantorFirstName",
+					"Description": "The first name of the  owner/guarantor.",
+					"BaseAttributeReference": {
+						"Entity": "EquifaxBusinessAndCreditGrantorComment.cdm.json/EquifaxBusinessAndCreditGrantorComment",
+						"Name": "OwnerGuarantorFirstName"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Length": 256,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "OwnerGuarantorMiddleName",
+					"Description": "The middle name of the  owner/guarantor.",
+					"BaseAttributeReference": {
+						"Entity": "EquifaxBusinessAndCreditGrantorComment.cdm.json/EquifaxBusinessAndCreditGrantorComment",
+						"Name": "OwnerGuarantorMiddleName"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Length": 256,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "OwnerGuarantorLastName",
+					"Description": "The last name of the  owner/guarantor.",
+					"BaseAttributeReference": {
+						"Entity": "EquifaxBusinessAndCreditGrantorComment.cdm.json/EquifaxBusinessAndCreditGrantorComment",
+						"Name": "OwnerGuarantorLastName"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Length": 256,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "Date",
+					"Description": "The date reported.",
+					"BaseAttributeReference": {
+						"Entity": "EquifaxBusinessAndCreditGrantorComment.cdm.json/EquifaxBusinessAndCreditGrantorComment",
+						"Name": "Date"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "date",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"DateFormat": "YYYY-MM-DD",
+							"HIVE_TYPE_STRING": "date"
+						}
+					}
+				},
+				{
+					"Name": "Comment",
+					"Description": "The comment reported.\n\nEx:\n\"Dispute with landlord over water damage in warehouse.\"",
+					"BaseAttributeReference": {
+						"Entity": "EquifaxBusinessAndCreditGrantorComment.cdm.json/EquifaxBusinessAndCreditGrantorComment",
+						"Name": "Comment"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/EquifaxBusinessAndCreditGrantorComment",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/EquifaxBusinessAndCreditGrantorComment",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"EfxId\":{\"entity\":\"EquifaxBusinessAndCreditGrantorComment.cdm.json/EquifaxBusinessAndCreditGrantorComment\",\"name\":\"EfxId\"},\"ProfileTimestamp\":{\"entity\":\"EquifaxBusinessAndCreditGrantorComment.cdm.json/EquifaxBusinessAndCreditGrantorComment\",\"name\":\"ProfileTimestamp\"},\"OwnerGuarantorFirstName\":{\"entity\":\"EquifaxBusinessAndCreditGrantorComment.cdm.json/EquifaxBusinessAndCreditGrantorComment\",\"name\":\"OwnerGuarantorFirstName\"},\"OwnerGuarantorMiddleName\":{\"entity\":\"EquifaxBusinessAndCreditGrantorComment.cdm.json/EquifaxBusinessAndCreditGrantorComment\",\"name\":\"OwnerGuarantorMiddleName\"},\"OwnerGuarantorLastName\":{\"entity\":\"EquifaxBusinessAndCreditGrantorComment.cdm.json/EquifaxBusinessAndCreditGrantorComment\",\"name\":\"OwnerGuarantorLastName\"},\"Date\":{\"entity\":\"EquifaxBusinessAndCreditGrantorComment.cdm.json/EquifaxBusinessAndCreditGrantorComment\",\"name\":\"Date\"},\"Comment\":{\"entity\":\"EquifaxBusinessAndCreditGrantorComment.cdm.json/EquifaxBusinessAndCreditGrantorComment\",\"name\":\"Comment\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"EquifaxBusinessAndCreditGrantorComment\",\"path\":\"EquifaxBusinessAndCreditGrantorComment.cdm.json/EquifaxBusinessAndCreditGrantorComment\"},\"description\":\"The comment reported.\\n\\nEx:\\n\\\"Dispute with landlord over water damage in warehouse.\\\"\",\"primaryKey\":[\"EfxId\",\"ProfileTimestamp\",\"OwnerGuarantorFirstName\",\"OwnerGuarantorMiddleName\",\"OwnerGuarantorLastName\",\"Date\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"EquifaxBusinessAndCreditGrantorComment.cdm.json/EquifaxBusinessAndCreditGrantorComment\",\"name\":\"EfxId\"},\"dataType\":\"integer\",\"description\":\"The EFX ID™ is a unique and persistent nine-digit number that identifies and tracks the business unit with which you have the credit relationship;\",\"isNullable\":false,\"name\":\"EfxId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"EquifaxBusinessAndCreditGrantorComment.cdm.json/EquifaxBusinessAndCreditGrantorComment\",\"name\":\"ProfileTimestamp\"},\"dataType\":\"timestamp\",\"description\":\"Provides the timestamp when the inquiry was made as recorded\\nby Equifax (Eastern Time).\",\"isNullable\":false,\"name\":\"ProfileTimestamp\",\"timestampFormat\":\"YYYY-MM-DD HH:MM:SS.fffffffff\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"EquifaxBusinessAndCreditGrantorComment.cdm.json/EquifaxBusinessAndCreditGrantorComment\",\"name\":\"OwnerGuarantorFirstName\"},\"dataType\":\"string\",\"dataTypeLength\":256,\"description\":\"The first name of the  owner/guarantor.\",\"isNullable\":false,\"name\":\"OwnerGuarantorFirstName\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"EquifaxBusinessAndCreditGrantorComment.cdm.json/EquifaxBusinessAndCreditGrantorComment\",\"name\":\"OwnerGuarantorMiddleName\"},\"dataType\":\"string\",\"dataTypeLength\":256,\"description\":\"The middle name of the  owner/guarantor.\",\"isNullable\":false,\"name\":\"OwnerGuarantorMiddleName\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"EquifaxBusinessAndCreditGrantorComment.cdm.json/EquifaxBusinessAndCreditGrantorComment\",\"name\":\"OwnerGuarantorLastName\"},\"dataType\":\"string\",\"dataTypeLength\":256,\"description\":\"The last name of the  owner/guarantor.\",\"isNullable\":false,\"name\":\"OwnerGuarantorLastName\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"EquifaxBusinessAndCreditGrantorComment.cdm.json/EquifaxBusinessAndCreditGrantorComment\",\"name\":\"Date\"},\"dataType\":\"date\",\"dateFormat\":\"YYYY-MM-DD\",\"description\":\"The date reported.\",\"isNullable\":false,\"name\":\"Date\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"EquifaxBusinessAndCreditGrantorComment.cdm.json/EquifaxBusinessAndCreditGrantorComment\",\"name\":\"Comment\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"The comment reported.\\n\\nEx:\\n\\\"Dispute with landlord over water damage in warehouse.\\\"\",\"isNullable\":true,\"name\":\"Comment\"}]}}}",
+			"Description": "The comment reported.\n\nEx:\n\"Dispute with landlord over water damage in warehouse.\"",
+			"DisplayFolderInfo": "{\"name\":\"Customer Credit & Collections\",\"colorCode\":\"#022F22\"}",
+			"PrimaryKeys": "EfxId,ProfileTimestamp,OwnerGuarantorFirstName,OwnerGuarantorMiddleName,OwnerGuarantorLastName,Date",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

@@ -1,0 +1,113 @@
+{
+	"name": "IncentiveType",
+	"properties": {
+		"Name": "IncentiveType",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "A classification of Incentives based upon common characteristics or objectives.\n\nEx:\n- FINANCIAL\n- Profit Sharing\n- Project Bonus\n- Stock Bonus\n- Sales Commission\n- NON-FINANCIAL\n- Service Recognition\n- Merchandise\n- Gift Card",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "IncentiveTypeId",
+					"Description": "The unique identifier of an Incentive Type.",
+					"BaseAttributeReference": {
+						"Entity": "IncentiveType.cdm.json/IncentiveType",
+						"Name": "IncentiveTypeId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "IncentiveTypeName",
+					"Description": "The name of an Incentive Type.",
+					"BaseAttributeReference": {
+						"Entity": "IncentiveType.cdm.json/IncentiveType",
+						"Name": "IncentiveTypeName"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 256,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "IncentiveTypeDescription",
+					"Description": "The description of an Incentive Type.",
+					"BaseAttributeReference": {
+						"Entity": "IncentiveType.cdm.json/IncentiveType",
+						"Name": "IncentiveTypeDescription"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/IncentiveType",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/IncentiveType",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"IncentiveTypeId\":{\"entity\":\"IncentiveType.cdm.json/IncentiveType\",\"name\":\"IncentiveTypeId\"},\"IncentiveTypeName\":{\"entity\":\"IncentiveType.cdm.json/IncentiveType\",\"name\":\"IncentiveTypeName\"},\"IncentiveTypeDescription\":{\"entity\":\"IncentiveType.cdm.json/IncentiveType\",\"name\":\"IncentiveTypeDescription\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"IncentiveType\",\"path\":\"IncentiveType.cdm.json/IncentiveType\"},\"description\":\"A classification of Incentives based upon common characteristics or objectives.\\n\\nEx:\\n- FINANCIAL\\n- Profit Sharing\\n- Project Bonus\\n- Stock Bonus\\n- Sales Commission\\n- NON-FINANCIAL\\n- Service Recognition\\n- Merchandise\\n- Gift Card\",\"primaryKey\":[\"IncentiveTypeId\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"IncentiveType.cdm.json/IncentiveType\",\"name\":\"IncentiveTypeId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of an Incentive Type.\",\"isNullable\":false,\"name\":\"IncentiveTypeId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"IncentiveType.cdm.json/IncentiveType\",\"name\":\"IncentiveTypeName\"},\"dataType\":\"string\",\"dataTypeLength\":256,\"description\":\"The name of an Incentive Type.\",\"isNullable\":true,\"name\":\"IncentiveTypeName\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"IncentiveType.cdm.json/IncentiveType\",\"name\":\"IncentiveTypeDescription\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"The description of an Incentive Type.\",\"isNullable\":true,\"name\":\"IncentiveTypeDescription\"}]}}}",
+			"Description": "A classification of Incentives based upon common characteristics or objectives.\n\nEx:\n- FINANCIAL\n- Profit Sharing\n- Project Bonus\n- Stock Bonus\n- Sales Commission\n- NON-FINANCIAL\n- Service Recognition\n- Merchandise\n- Gift Card",
+			"DisplayFolderInfo": "{\"name\":\"Human Resources & Payroll\",\"colorCode\":\"#042C59\"}",
+			"PrimaryKeys": "IncentiveTypeId",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

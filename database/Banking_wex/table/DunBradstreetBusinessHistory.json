@@ -1,0 +1,115 @@
+{
+	"name": "DunBradstreetBusinessHistory",
+	"properties": {
+		"Name": "DunBradstreetBusinessHistory",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "Typically includes details on the company's history, including:\n\nIncorporation details\n\nPar value of shares\n\nOwnership information\n\nBackground information on management, such as the educational and career history of \nRelated companies, including identification of parent, affiliates, subsidiaries and/or branches worldwide.",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "DunsNumber",
+					"Description": "Dun & Bradstreet (D&B) provides a D-U-N-S Number, a unique nine digit identification number, for each physical location of your business.",
+					"BaseAttributeReference": {
+						"Entity": "DunBradstreetBusinessHistory.cdm.json/DunBradstreetBusinessHistory",
+						"Name": "DunsNumber"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "decimal",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Precision": 9,
+						"Scale": 0,
+						"Properties": {
+							"HIVE_TYPE_STRING": "decimal"
+						}
+					}
+				},
+				{
+					"Name": "ReportPurchaseDate",
+					"Description": "The purchase date of the report.",
+					"BaseAttributeReference": {
+						"Entity": "DunBradstreetBusinessHistory.cdm.json/DunBradstreetBusinessHistory",
+						"Name": "ReportPurchaseDate"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "date",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"DateFormat": "YYYY-MM-DD",
+							"HIVE_TYPE_STRING": "date"
+						}
+					}
+				},
+				{
+					"Name": "BusinessHistoryCommentary",
+					"Description": "A commentary of the business history\n\nEx:\n\"As of 01/11/2013\nThis is a Corporation formed in the State of California on May 21, 1985.\nBusiness started 1985 by Leslie Smith and Kevin J Hunt. 60% of capital stock is owned by Leslie Smith. 40% of capital stock is owned by Kevin J Hunt.\nLESLIE SMITH born 1946. Graduated from the University of California, Los Angeles, CA, in June 1967 with a BS degree in Business Management.\n1967-85 General Manager for Raymor Printing Co, San Francisco, CA. 1985 formed subject with Kevin J Hunt. 1985 to present active as Principal in\nGorman Affiliate Ltd, San Francisco, CA.\nKEVIN J HUNT born 1945. Graduated from Northwestern University, Evanston, IL in June 1966. 1966-1985 was General Manager for Raymor Printing\nCo, San Francisco, CA. 1985 formed subject with Leslie Smith. 1985 to present active as Principal in Gorman Affiliate Ltd, San Francisco, CA.\nAFFILIATE:\nThe following is related through common principals, management and/or ownership. Gorman Affiliate Ltd, San Francisco, CA, started 1985. Operates as\ncommercial printer. Intercompany relations: None reported by management.\"",
+					"BaseAttributeReference": {
+						"Entity": "DunBradstreetBusinessHistory.cdm.json/DunBradstreetBusinessHistory",
+						"Name": "BusinessHistoryCommentary"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/DunBradstreetBusinessHistory",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/DunBradstreetBusinessHistory",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"DunsNumber\":{\"entity\":\"DunBradstreetBusinessHistory.cdm.json/DunBradstreetBusinessHistory\",\"name\":\"DunsNumber\"},\"ReportPurchaseDate\":{\"entity\":\"DunBradstreetBusinessHistory.cdm.json/DunBradstreetBusinessHistory\",\"name\":\"ReportPurchaseDate\"},\"BusinessHistoryCommentary\":{\"entity\":\"DunBradstreetBusinessHistory.cdm.json/DunBradstreetBusinessHistory\",\"name\":\"BusinessHistoryCommentary\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"DunBradstreetBusinessHistory\",\"path\":\"DunBradstreetBusinessHistory.cdm.json/DunBradstreetBusinessHistory\"},\"description\":\"Typically includes details on the company's history, including:\\n\\nIncorporation details\\n\\nPar value of shares\\n\\nOwnership information\\n\\nBackground information on management, such as the educational and career history of \\nRelated companies, including identification of parent, affiliates, subsidiaries and/or branches worldwide.\",\"primaryKey\":[\"DunsNumber\",\"ReportPurchaseDate\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"DunBradstreetBusinessHistory.cdm.json/DunBradstreetBusinessHistory\",\"name\":\"DunsNumber\"},\"dataType\":\"decimal\",\"dataTypeLength\":9,\"description\":\"Dun & Bradstreet (D&B) provides a D-U-N-S Number, a unique nine digit identification number, for each physical location of your business.\",\"isNullable\":false,\"scale\":0,\"name\":\"DunsNumber\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"DunBradstreetBusinessHistory.cdm.json/DunBradstreetBusinessHistory\",\"name\":\"ReportPurchaseDate\"},\"dataType\":\"date\",\"dateFormat\":\"YYYY-MM-DD\",\"description\":\"The purchase date of the report.\",\"isNullable\":false,\"name\":\"ReportPurchaseDate\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"DunBradstreetBusinessHistory.cdm.json/DunBradstreetBusinessHistory\",\"name\":\"BusinessHistoryCommentary\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"A commentary of the business history\\n\\nEx:\\n\\\"As of 01/11/2013\\nThis is a Corporation formed in the State of California on May 21, 1985.\\nBusiness started 1985 by Leslie Smith and Kevin J Hunt. 60% of capital stock is owned by Leslie Smith. 40% of capital stock is owned by Kevin J Hunt.\\nLESLIE SMITH born 1946. Graduated from the University of California, Los Angeles, CA, in June 1967 with a BS degree in Business Management.\\n1967-85 General Manager for Raymor Printing Co, San Francisco, CA. 1985 formed subject with Kevin J Hunt. 1985 to present active as Principal in\\nGorman Affiliate Ltd, San Francisco, CA.\\nKEVIN J HUNT born 1945. Graduated from Northwestern University, Evanston, IL in June 1966. 1966-1985 was General Manager for Raymor Printing\\nCo, San Francisco, CA. 1985 formed subject with Leslie Smith. 1985 to present active as Principal in Gorman Affiliate Ltd, San Francisco, CA.\\nAFFILIATE:\\nThe following is related through common principals, management and/or ownership. Gorman Affiliate Ltd, San Francisco, CA, started 1985. Operates as\\ncommercial printer. Intercompany relations: None reported by management.\\\"\",\"isNullable\":true,\"name\":\"BusinessHistoryCommentary\"}]}}}",
+			"Description": "Typically includes details on the company's history, including:\n\nIncorporation details\n\nPar value of shares\n\nOwnership information\n\nBackground information on management, such as the educational and career history of \nRelated companies, including identification of parent, affiliates, subsidiaries and/or branches worldwide.",
+			"DisplayFolderInfo": "{\"name\":\"Customer Credit & Collections\",\"colorCode\":\"#022F22\"}",
+			"PrimaryKeys": "DunsNumber,ReportPurchaseDate",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

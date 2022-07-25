@@ -1,0 +1,113 @@
+{
+	"name": "BillingCycle",
+	"properties": {
+		"Name": "BillingCycle",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "The period upon which the Customer or Customer Account is regularly billed or statements issued.\n\nExamples:\n- Bi-Weekly\n- Weekly\n- Monthly\n- Quarterly\n- Annually\n- Per Transaction\n- One-time\n- At time of event",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "BillingCycleId",
+					"Description": "The unique identifier of a Billing Cycle.",
+					"BaseAttributeReference": {
+						"Entity": "BillingCycle.cdm.json/BillingCycle",
+						"Name": "BillingCycleId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "BillingCycleName",
+					"Description": "The name of the Billing Cycle.",
+					"BaseAttributeReference": {
+						"Entity": "BillingCycle.cdm.json/BillingCycle",
+						"Name": "BillingCycleName"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 256,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "BillingCycleDescription",
+					"Description": "The description of the Billing Cycle.",
+					"BaseAttributeReference": {
+						"Entity": "BillingCycle.cdm.json/BillingCycle",
+						"Name": "BillingCycleDescription"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/BillingCycle",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/BillingCycle",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"BillingCycleId\":{\"entity\":\"BillingCycle.cdm.json/BillingCycle\",\"name\":\"BillingCycleId\"},\"BillingCycleName\":{\"entity\":\"BillingCycle.cdm.json/BillingCycle\",\"name\":\"BillingCycleName\"},\"BillingCycleDescription\":{\"entity\":\"BillingCycle.cdm.json/BillingCycle\",\"name\":\"BillingCycleDescription\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"BillingCycle\",\"path\":\"BillingCycle.cdm.json/BillingCycle\"},\"description\":\"The period upon which the Customer or Customer Account is regularly billed or statements issued.\\n\\nExamples:\\n- Bi-Weekly\\n- Weekly\\n- Monthly\\n- Quarterly\\n- Annually\\n- Per Transaction\\n- One-time\\n- At time of event\",\"primaryKey\":[\"BillingCycleId\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"BillingCycle.cdm.json/BillingCycle\",\"name\":\"BillingCycleId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Billing Cycle.\",\"isNullable\":false,\"name\":\"BillingCycleId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"BillingCycle.cdm.json/BillingCycle\",\"name\":\"BillingCycleName\"},\"dataType\":\"string\",\"dataTypeLength\":256,\"description\":\"The name of the Billing Cycle.\",\"isNullable\":true,\"name\":\"BillingCycleName\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"BillingCycle.cdm.json/BillingCycle\",\"name\":\"BillingCycleDescription\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"The description of the Billing Cycle.\",\"isNullable\":true,\"name\":\"BillingCycleDescription\"}]}}}",
+			"Description": "The period upon which the Customer or Customer Account is regularly billed or statements issued.\n\nExamples:\n- Bi-Weekly\n- Weekly\n- Monthly\n- Quarterly\n- Annually\n- Per Transaction\n- One-time\n- At time of event",
+			"DisplayFolderInfo": "{\"name\":\"Transaction\",\"colorCode\":\"#823A16\"}",
+			"PrimaryKeys": "BillingCycleId",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

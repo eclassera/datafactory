@@ -1,0 +1,147 @@
+{
+	"name": "GeneralMaterialsBudgetCostItem",
+	"properties": {
+		"Name": "GeneralMaterialsBudgetCostItem",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "The material cost items that are aggregated to make up the GENERAL MATERIALS BUDGET.",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "GeneralMaterialsBudgetId",
+					"Description": "The unique identifier of a General Materials Budget.",
+					"BaseAttributeReference": {
+						"Entity": "GeneralMaterialsBudgetCostItem.cdm.json/GeneralMaterialsBudgetCostItem",
+						"Name": "GeneralMaterialsBudgetId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "GeneralMaterialsBudgetVersionId",
+					"Description": "The unique identifier of a General Materials Budget Version.",
+					"BaseAttributeReference": {
+						"Entity": "GeneralMaterialsBudgetCostItem.cdm.json/GeneralMaterialsBudgetCostItem",
+						"Name": "GeneralMaterialsBudgetVersionId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "CostItemId",
+					"Description": "The unique identifier of a Cost Item.",
+					"BaseAttributeReference": {
+						"Entity": "GeneralMaterialsBudgetCostItem.cdm.json/GeneralMaterialsBudgetCostItem",
+						"Name": "CostItemId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "CostItemBudgetedAmount",
+					"Description": "The amount budgeted on the associated Budget for the Cost Item.",
+					"BaseAttributeReference": {
+						"Entity": "GeneralMaterialsBudgetCostItem.cdm.json/GeneralMaterialsBudgetCostItem",
+						"Name": "CostItemBudgetedAmount"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "decimal",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Precision": 18,
+						"Scale": 2,
+						"Properties": {
+							"HIVE_TYPE_STRING": "decimal"
+						}
+					}
+				},
+				{
+					"Name": "CostItemActualAmount",
+					"Description": "The amount actually spent in the associated Budget for the Cost Item.",
+					"BaseAttributeReference": {
+						"Entity": "GeneralMaterialsBudgetCostItem.cdm.json/GeneralMaterialsBudgetCostItem",
+						"Name": "CostItemActualAmount"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "decimal",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Precision": 18,
+						"Scale": 2,
+						"Properties": {
+							"HIVE_TYPE_STRING": "decimal"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/GeneralMaterialsBudgetCostItem",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/GeneralMaterialsBudgetCostItem",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"GeneralMaterialsBudgetId\":{\"entity\":\"GeneralMaterialsBudgetCostItem.cdm.json/GeneralMaterialsBudgetCostItem\",\"name\":\"GeneralMaterialsBudgetId\"},\"GeneralMaterialsBudgetVersionId\":{\"entity\":\"GeneralMaterialsBudgetCostItem.cdm.json/GeneralMaterialsBudgetCostItem\",\"name\":\"GeneralMaterialsBudgetVersionId\"},\"CostItemId\":{\"entity\":\"GeneralMaterialsBudgetCostItem.cdm.json/GeneralMaterialsBudgetCostItem\",\"name\":\"CostItemId\"},\"CostItemBudgetedAmount\":{\"entity\":\"GeneralMaterialsBudgetCostItem.cdm.json/GeneralMaterialsBudgetCostItem\",\"name\":\"CostItemBudgetedAmount\"},\"CostItemActualAmount\":{\"entity\":\"GeneralMaterialsBudgetCostItem.cdm.json/GeneralMaterialsBudgetCostItem\",\"name\":\"CostItemActualAmount\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"GeneralMaterialsBudgetCostItem\",\"path\":\"GeneralMaterialsBudgetCostItem.cdm.json/GeneralMaterialsBudgetCostItem\"},\"description\":\"The material cost items that are aggregated to make up the GENERAL MATERIALS BUDGET.\",\"primaryKey\":[\"GeneralMaterialsBudgetId\",\"GeneralMaterialsBudgetVersionId\",\"CostItemId\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"GeneralMaterialsBudgetCostItem.cdm.json/GeneralMaterialsBudgetCostItem\",\"name\":\"GeneralMaterialsBudgetId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a General Materials Budget.\",\"isNullable\":false,\"name\":\"GeneralMaterialsBudgetId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"GeneralMaterialsBudgetCostItem.cdm.json/GeneralMaterialsBudgetCostItem\",\"name\":\"GeneralMaterialsBudgetVersionId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a General Materials Budget Version.\",\"isNullable\":false,\"name\":\"GeneralMaterialsBudgetVersionId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"GeneralMaterialsBudgetCostItem.cdm.json/GeneralMaterialsBudgetCostItem\",\"name\":\"CostItemId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Cost Item.\",\"isNullable\":false,\"name\":\"CostItemId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"GeneralMaterialsBudgetCostItem.cdm.json/GeneralMaterialsBudgetCostItem\",\"name\":\"CostItemBudgetedAmount\"},\"dataType\":\"decimal\",\"dataTypeLength\":18,\"description\":\"The amount budgeted on the associated Budget for the Cost Item.\",\"isNullable\":true,\"scale\":2,\"name\":\"CostItemBudgetedAmount\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"GeneralMaterialsBudgetCostItem.cdm.json/GeneralMaterialsBudgetCostItem\",\"name\":\"CostItemActualAmount\"},\"dataType\":\"decimal\",\"dataTypeLength\":18,\"description\":\"The amount actually spent in the associated Budget for the Cost Item.\",\"isNullable\":true,\"scale\":2,\"name\":\"CostItemActualAmount\"}]}}}",
+			"Description": "The material cost items that are aggregated to make up the GENERAL MATERIALS BUDGET.",
+			"DisplayFolderInfo": "{\"name\":\"Budget & Forecasting\",\"colorCode\":\"#00188F\"}",
+			"PrimaryKeys": "GeneralMaterialsBudgetId,GeneralMaterialsBudgetVersionId,CostItemId",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

@@ -1,0 +1,162 @@
+{
+	"name": "FinancialProductIdentification",
+	"properties": {
+		"Name": "FinancialProductIdentification",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "The unique identifier of the Financial Product under the associated methodology.\n\nEx:\nBonds, Stocks and Financial Instruments, usually have one or more identifier codes, issued by various clearing houses or other agencies.",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "FinancialProductId",
+					"Description": "The unique identifier of a Financial Product.",
+					"BaseAttributeReference": {
+						"Entity": "FinancialProductIdentification.cdm.json/FinancialProductIdentification",
+						"Name": "FinancialProductId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "long",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "long"
+						}
+					}
+				},
+				{
+					"Name": "SecurityIdentificationSourceId",
+					"Description": "The unique identifier of a Security Identification Source.",
+					"BaseAttributeReference": {
+						"Entity": "FinancialProductIdentification.cdm.json/FinancialProductIdentification",
+						"Name": "SecurityIdentificationSourceId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "PeriodStartDate",
+					"Description": "The period start date for which the relationship is defined.",
+					"BaseAttributeReference": {
+						"Entity": "FinancialProductIdentification.cdm.json/FinancialProductIdentification",
+						"Name": "PeriodStartDate"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "date",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"DateFormat": "YYYY-MM-DD",
+							"HIVE_TYPE_STRING": "date"
+						}
+					}
+				},
+				{
+					"Name": "PeriodEndDate",
+					"Description": "The period end date for which the relationship is defined.",
+					"BaseAttributeReference": {
+						"Entity": "FinancialProductIdentification.cdm.json/FinancialProductIdentification",
+						"Name": "PeriodEndDate"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "date",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"DateFormat": "YYYY-MM-DD",
+							"HIVE_TYPE_STRING": "date"
+						}
+					}
+				},
+				{
+					"Name": "FinancialProductIdentifier",
+					"Description": "The Financial Product ID under the associated methodology.",
+					"BaseAttributeReference": {
+						"Entity": "FinancialProductIdentification.cdm.json/FinancialProductIdentification",
+						"Name": "FinancialProductIdentifier"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "FinancialProductIdentificationNote",
+					"Description": "A note, comment or additional information regarding the financial product identification.",
+					"BaseAttributeReference": {
+						"Entity": "FinancialProductIdentification.cdm.json/FinancialProductIdentification",
+						"Name": "FinancialProductIdentificationNote"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/FinancialProductIdentification",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/FinancialProductIdentification",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"FinancialProductId\":{\"entity\":\"FinancialProductIdentification.cdm.json/FinancialProductIdentification\",\"name\":\"FinancialProductId\"},\"SecurityIdentificationSourceId\":{\"entity\":\"FinancialProductIdentification.cdm.json/FinancialProductIdentification\",\"name\":\"SecurityIdentificationSourceId\"},\"PeriodStartDate\":{\"entity\":\"FinancialProductIdentification.cdm.json/FinancialProductIdentification\",\"name\":\"PeriodStartDate\"},\"PeriodEndDate\":{\"entity\":\"FinancialProductIdentification.cdm.json/FinancialProductIdentification\",\"name\":\"PeriodEndDate\"},\"FinancialProductIdentifier\":{\"entity\":\"FinancialProductIdentification.cdm.json/FinancialProductIdentification\",\"name\":\"FinancialProductIdentifier\"},\"FinancialProductIdentificationNote\":{\"entity\":\"FinancialProductIdentification.cdm.json/FinancialProductIdentification\",\"name\":\"FinancialProductIdentificationNote\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"FinancialProductIdentification\",\"path\":\"FinancialProductIdentification.cdm.json/FinancialProductIdentification\"},\"description\":\"The unique identifier of the Financial Product under the associated methodology.\\n\\nEx:\\nBonds, Stocks and Financial Instruments, usually have one or more identifier codes, issued by various clearing houses or other agencies.\",\"primaryKey\":[\"FinancialProductId\",\"SecurityIdentificationSourceId\",\"PeriodStartDate\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"FinancialProductIdentification.cdm.json/FinancialProductIdentification\",\"name\":\"FinancialProductId\"},\"dataType\":\"long\",\"description\":\"The unique identifier of a Financial Product.\",\"isNullable\":false,\"name\":\"FinancialProductId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"FinancialProductIdentification.cdm.json/FinancialProductIdentification\",\"name\":\"SecurityIdentificationSourceId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Security Identification Source.\",\"isNullable\":false,\"name\":\"SecurityIdentificationSourceId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"FinancialProductIdentification.cdm.json/FinancialProductIdentification\",\"name\":\"PeriodStartDate\"},\"dataType\":\"date\",\"dateFormat\":\"YYYY-MM-DD\",\"description\":\"The period start date for which the relationship is defined.\",\"isNullable\":false,\"name\":\"PeriodStartDate\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"FinancialProductIdentification.cdm.json/FinancialProductIdentification\",\"name\":\"PeriodEndDate\"},\"dataType\":\"date\",\"dateFormat\":\"YYYY-MM-DD\",\"description\":\"The period end date for which the relationship is defined.\",\"isNullable\":true,\"name\":\"PeriodEndDate\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"FinancialProductIdentification.cdm.json/FinancialProductIdentification\",\"name\":\"FinancialProductIdentifier\"},\"dataType\":\"integer\",\"description\":\"The Financial Product ID under the associated methodology.\",\"isNullable\":true,\"name\":\"FinancialProductIdentifier\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"FinancialProductIdentification.cdm.json/FinancialProductIdentification\",\"name\":\"FinancialProductIdentificationNote\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"A note, comment or additional information regarding the financial product identification.\",\"isNullable\":true,\"name\":\"FinancialProductIdentificationNote\"}]}}}",
+			"Description": "The unique identifier of the Financial Product under the associated methodology.\n\nEx:\nBonds, Stocks and Financial Instruments, usually have one or more identifier codes, issued by various clearing houses or other agencies.",
+			"DisplayFolderInfo": "{\"name\":\"Financial Product\",\"colorCode\":\"#001475\"}",
+			"PrimaryKeys": "FinancialProductId,SecurityIdentificationSourceId,PeriodStartDate",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

@@ -1,0 +1,147 @@
+{
+	"name": "CustomerAssignmentProceeding",
+	"properties": {
+		"Name": "CustomerAssignmentProceeding",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "An assignment for the creditors benefit, which is similar to a Composition plan, but is more formal.\n\nTitle to the debtor's property is assigned to a trustee that will sell the property for the benefit of the creditor.\n\nIn an Assignment, property in the hands of the Trustee cannot be attached by other creditors.",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "AssignmentProceedingId",
+					"Description": "The unique identifier of an Assignment Proceeding.",
+					"BaseAttributeReference": {
+						"Entity": "CustomerAssignmentProceeding.cdm.json/CustomerAssignmentProceeding",
+						"Name": "AssignmentProceedingId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "AssignmentEffectiveDate",
+					"Description": "The effective date of the Assignment Proceeding.",
+					"BaseAttributeReference": {
+						"Entity": "CustomerAssignmentProceeding.cdm.json/CustomerAssignmentProceeding",
+						"Name": "AssignmentEffectiveDate"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "date",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"DateFormat": "YYYY-MM-DD",
+							"HIVE_TYPE_STRING": "date"
+						}
+					}
+				},
+				{
+					"Name": "OutstandingAmount",
+					"Description": "The outstanding or existing debt amount.",
+					"BaseAttributeReference": {
+						"Entity": "CustomerAssignmentProceeding.cdm.json/CustomerAssignmentProceeding",
+						"Name": "OutstandingAmount"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "decimal",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Precision": 18,
+						"Scale": 2,
+						"Properties": {
+							"HIVE_TYPE_STRING": "decimal"
+						}
+					}
+				},
+				{
+					"Name": "AssignmentProceedingAgreementStatement",
+					"Description": "The statement detailing the assignment proceeding.",
+					"BaseAttributeReference": {
+						"Entity": "CustomerAssignmentProceeding.cdm.json/CustomerAssignmentProceeding",
+						"Name": "AssignmentProceedingAgreementStatement"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "CustomerId",
+					"Description": "The unique identifier of a Customer.",
+					"BaseAttributeReference": {
+						"Entity": "CustomerAssignmentProceeding.cdm.json/CustomerAssignmentProceeding",
+						"Name": "CustomerId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "long",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"HIVE_TYPE_STRING": "long"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/CustomerAssignmentProceeding",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/CustomerAssignmentProceeding",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"AssignmentProceedingId\":{\"entity\":\"CustomerAssignmentProceeding.cdm.json/CustomerAssignmentProceeding\",\"name\":\"AssignmentProceedingId\"},\"AssignmentEffectiveDate\":{\"entity\":\"CustomerAssignmentProceeding.cdm.json/CustomerAssignmentProceeding\",\"name\":\"AssignmentEffectiveDate\"},\"OutstandingAmount\":{\"entity\":\"CustomerAssignmentProceeding.cdm.json/CustomerAssignmentProceeding\",\"name\":\"OutstandingAmount\"},\"AssignmentProceedingAgreementStatement\":{\"entity\":\"CustomerAssignmentProceeding.cdm.json/CustomerAssignmentProceeding\",\"name\":\"AssignmentProceedingAgreementStatement\"},\"CustomerId\":{\"entity\":\"CustomerAssignmentProceeding.cdm.json/CustomerAssignmentProceeding\",\"name\":\"CustomerId\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"CustomerAssignmentProceeding\",\"path\":\"CustomerAssignmentProceeding.cdm.json/CustomerAssignmentProceeding\"},\"description\":\"An assignment for the creditors benefit, which is similar to a Composition plan, but is more formal.\\n\\nTitle to the debtor's property is assigned to a trustee that will sell the property for the benefit of the creditor.\\n\\nIn an Assignment, property in the hands of the Trustee cannot be attached by other creditors.\",\"primaryKey\":[\"AssignmentProceedingId\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CustomerAssignmentProceeding.cdm.json/CustomerAssignmentProceeding\",\"name\":\"AssignmentProceedingId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of an Assignment Proceeding.\",\"isNullable\":false,\"name\":\"AssignmentProceedingId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CustomerAssignmentProceeding.cdm.json/CustomerAssignmentProceeding\",\"name\":\"AssignmentEffectiveDate\"},\"dataType\":\"date\",\"dateFormat\":\"YYYY-MM-DD\",\"description\":\"The effective date of the Assignment Proceeding.\",\"isNullable\":true,\"name\":\"AssignmentEffectiveDate\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CustomerAssignmentProceeding.cdm.json/CustomerAssignmentProceeding\",\"name\":\"OutstandingAmount\"},\"dataType\":\"decimal\",\"dataTypeLength\":18,\"description\":\"The outstanding or existing debt amount.\",\"isNullable\":true,\"scale\":2,\"name\":\"OutstandingAmount\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CustomerAssignmentProceeding.cdm.json/CustomerAssignmentProceeding\",\"name\":\"AssignmentProceedingAgreementStatement\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"The statement detailing the assignment proceeding.\",\"isNullable\":true,\"name\":\"AssignmentProceedingAgreementStatement\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CustomerAssignmentProceeding.cdm.json/CustomerAssignmentProceeding\",\"name\":\"CustomerId\"},\"dataType\":\"long\",\"description\":\"The unique identifier of a Customer.\",\"isNullable\":true,\"name\":\"CustomerId\"}]}}}",
+			"Description": "An assignment for the creditors benefit, which is similar to a Composition plan, but is more formal.\n\nTitle to the debtor's property is assigned to a trustee that will sell the property for the benefit of the creditor.\n\nIn an Assignment, property in the hands of the Trustee cannot be attached by other creditors.",
+			"DisplayFolderInfo": "{\"name\":\"Customer Credit & Collections\",\"colorCode\":\"#022F22\"}",
+			"PrimaryKeys": "AssignmentProceedingId",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

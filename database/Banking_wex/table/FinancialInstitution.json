@@ -1,0 +1,280 @@
+{
+	"name": "FinancialInstitution",
+	"properties": {
+		"Name": "FinancialInstitution",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "A commercial or investment bank, trust company, brokerage house, insurance company, or other institution that participates in financial transactions involving cash or financial products. \n\nThe primary role of such an institution is to facilitate the financing of investments, from home mortgages to the raising of funds via the issue of debt or equity for mega-projects. It may also provide insurance, take on fiduciary responsibilities, store cash and securities for safekeeping, etc.",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "FinancialInstitutionId",
+					"Description": "The unique identifier of a Financial Institution.",
+					"BaseAttributeReference": {
+						"Entity": "FinancialInstitution.cdm.json/FinancialInstitution",
+						"Name": "FinancialInstitutionId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "FinancialInstitutionName",
+					"Description": "The name of the Financial Institution.",
+					"BaseAttributeReference": {
+						"Entity": "FinancialInstitution.cdm.json/FinancialInstitution",
+						"Name": "FinancialInstitutionName"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 256,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "DunsNumber",
+					"Description": "An exclusive nine-digit Dun & Bradstreet D-U-N-S Number is assigned to each business location in a global database, it is widely used as a tool for identifying, organizing and consolidating information about businesses. Companies worldwide use it to link information about suppliers, customers and trading partners, providing them a more complete picture of risks and opportunities in their business relationships.\n\nD&B D-U-N-S Numbers are the key to building corporate family relationships in the D&B file. Since each location of a business may have its own unique D&B D-U-N-S Number, a large organization is likely to have many different D&B D-U-N-S Numbers within its corporate \"family tree\". D&B links the D&B D-U-N-S Numbers of parents, subsidiaries, headquarters and branches on more than 6.0 million corporate family members around the world.",
+					"BaseAttributeReference": {
+						"Entity": "FinancialInstitution.cdm.json/FinancialInstitution",
+						"Name": "DunsNumber"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "decimal",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Precision": 9,
+						"Scale": 0,
+						"Properties": {
+							"HIVE_TYPE_STRING": "decimal"
+						}
+					}
+				},
+				{
+					"Name": "GlobalUltimateDunsNumber",
+					"Description": "One of eight (8) types of business relationships defined in the D&B file:\n\nThe Global Ultimate is the top most responsible entity within the global family tree. The Global Ultimate may have branches and/or subsidiaries reporting directly or indirectly to it.",
+					"BaseAttributeReference": {
+						"Entity": "FinancialInstitution.cdm.json/FinancialInstitution",
+						"Name": "GlobalUltimateDunsNumber"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "decimal",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Precision": 9,
+						"Scale": 0,
+						"Properties": {
+							"HIVE_TYPE_STRING": "decimal"
+						}
+					}
+				},
+				{
+					"Name": "DomesticUltimateDunsNumber",
+					"Description": "One of eight (8) types of business relationships defined in the D&B file:\n\nThe Domestic Ultimate is a subsidiary within the global family tree which is the highest ranking member within a specific country.",
+					"BaseAttributeReference": {
+						"Entity": "FinancialInstitution.cdm.json/FinancialInstitution",
+						"Name": "DomesticUltimateDunsNumber"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "decimal",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Precision": 9,
+						"Scale": 0,
+						"Properties": {
+							"HIVE_TYPE_STRING": "decimal"
+						}
+					}
+				},
+				{
+					"Name": "ParentDunsNumber",
+					"Description": "One of eight (8) types of business relationships defined in the D&B file:\n\nA parent is a corporation that owns more than 50 percent of another corporation. The parent company also may be a subsidiary of another corporation. If the parent also has branches, then it is also a headquarters.",
+					"BaseAttributeReference": {
+						"Entity": "FinancialInstitution.cdm.json/FinancialInstitution",
+						"Name": "ParentDunsNumber"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "decimal",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Precision": 9,
+						"Scale": 0,
+						"Properties": {
+							"HIVE_TYPE_STRING": "decimal"
+						}
+					}
+				},
+				{
+					"Name": "SubsidiaryIndicator",
+					"Description": "Indicates that the entity is a subsidiary.\n\nA subsidiary is a corporation that is more than 50% owned by another corporation and will have a different legal business name from its parent company. A subsidiary may have branches and/or subsidiaries of its own. If it does, then its D-U-N-S Number appears in the headquarter/parent D-U-N-S Number field of its children.",
+					"BaseAttributeReference": {
+						"Entity": "FinancialInstitution.cdm.json/FinancialInstitution",
+						"Name": "SubsidiaryIndicator"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "boolean",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"HIVE_TYPE_STRING": "boolean"
+						}
+					}
+				},
+				{
+					"Name": "DivisionIndicator",
+					"Description": "Indicates that the entity is a division.\n\nA division, like a branch, is a secondary location of a business. However, a division carries out specific business operations related to the headquarters under a divisional name. Divisions look similar to branches in D&B WorldBase and carry a branch code.",
+					"BaseAttributeReference": {
+						"Entity": "FinancialInstitution.cdm.json/FinancialInstitution",
+						"Name": "DivisionIndicator"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "boolean",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"HIVE_TYPE_STRING": "boolean"
+						}
+					}
+				},
+				{
+					"Name": "BranchIndicator",
+					"Description": "Indicates that the entity is a branch.\n\nA branch is a secondary location of its headquarters. It has no legal responsibility for its debts, even though bills may be paid from the branch location. It will have the same legal business name as its headquarters, although branches frequently operate under a different trade style than the headquarters establishment. A branch may be located at the same address as the headquarters if it has a unique trade style. In such cases, the branch may appear to be a duplicate with a different D-U-N-S number than the headquarters record, which may confuse customers if they don't purchase the trade style field.",
+					"BaseAttributeReference": {
+						"Entity": "FinancialInstitution.cdm.json/FinancialInstitution",
+						"Name": "BranchIndicator"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "boolean",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"HIVE_TYPE_STRING": "boolean"
+						}
+					}
+				},
+				{
+					"Name": "HeadquartersIndicator",
+					"Description": "Indicates that the entity is a headquarters.\n\nA headquarters is a business establishment that has branches or divisions reporting to it, and is financially responsible for those branches or divisions. If the headquarters is more that 50% owned by another corporation, it also will be a subsidiary. If it owns more that 50% of another corporation, then it is also a parent.",
+					"BaseAttributeReference": {
+						"Entity": "FinancialInstitution.cdm.json/FinancialInstitution",
+						"Name": "HeadquartersIndicator"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "boolean",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"HIVE_TYPE_STRING": "boolean"
+						}
+					}
+				},
+				{
+					"Name": "SingleLocationSubsidiaryIndicator",
+					"Description": "Indicates that the entity is a single location subsidiary.\n\nA single location subsidiary has reporting responsibilities to its parent; however, it does not have branches or subsidiaries reporting to it. Do not confuse this with a stand-alone business which is titled \"single location\" and is not part of a corporate family.",
+					"BaseAttributeReference": {
+						"Entity": "FinancialInstitution.cdm.json/FinancialInstitution",
+						"Name": "SingleLocationSubsidiaryIndicator"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "boolean",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"HIVE_TYPE_STRING": "boolean"
+						}
+					}
+				},
+				{
+					"Name": "IcaNumber",
+					"Description": "ICA Number A four-(4) digit number assigned by MasterCard that identifies all authorizing members, issuers and processors.",
+					"BaseAttributeReference": {
+						"Entity": "FinancialInstitution.cdm.json/FinancialInstitution",
+						"Name": "IcaNumber"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "ChannelId",
+					"Description": "The unique identifier of a Channel.",
+					"BaseAttributeReference": {
+						"Entity": "FinancialInstitution.cdm.json/FinancialInstitution",
+						"Name": "ChannelId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/FinancialInstitution",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/FinancialInstitution",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"FinancialInstitutionId\":{\"entity\":\"FinancialInstitution.cdm.json/FinancialInstitution\",\"name\":\"FinancialInstitutionId\"},\"FinancialInstitutionName\":{\"entity\":\"FinancialInstitution.cdm.json/FinancialInstitution\",\"name\":\"FinancialInstitutionName\"},\"DunsNumber\":{\"entity\":\"FinancialInstitution.cdm.json/FinancialInstitution\",\"name\":\"DunsNumber\"},\"GlobalUltimateDunsNumber\":{\"entity\":\"FinancialInstitution.cdm.json/FinancialInstitution\",\"name\":\"GlobalUltimateDunsNumber\"},\"DomesticUltimateDunsNumber\":{\"entity\":\"FinancialInstitution.cdm.json/FinancialInstitution\",\"name\":\"DomesticUltimateDunsNumber\"},\"ParentDunsNumber\":{\"entity\":\"FinancialInstitution.cdm.json/FinancialInstitution\",\"name\":\"ParentDunsNumber\"},\"SubsidiaryIndicator\":{\"entity\":\"FinancialInstitution.cdm.json/FinancialInstitution\",\"name\":\"SubsidiaryIndicator\"},\"DivisionIndicator\":{\"entity\":\"FinancialInstitution.cdm.json/FinancialInstitution\",\"name\":\"DivisionIndicator\"},\"BranchIndicator\":{\"entity\":\"FinancialInstitution.cdm.json/FinancialInstitution\",\"name\":\"BranchIndicator\"},\"HeadquartersIndicator\":{\"entity\":\"FinancialInstitution.cdm.json/FinancialInstitution\",\"name\":\"HeadquartersIndicator\"},\"SingleLocationSubsidiaryIndicator\":{\"entity\":\"FinancialInstitution.cdm.json/FinancialInstitution\",\"name\":\"SingleLocationSubsidiaryIndicator\"},\"IcaNumber\":{\"entity\":\"FinancialInstitution.cdm.json/FinancialInstitution\",\"name\":\"IcaNumber\"},\"ChannelId\":{\"entity\":\"FinancialInstitution.cdm.json/FinancialInstitution\",\"name\":\"ChannelId\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"FinancialInstitution\",\"path\":\"FinancialInstitution.cdm.json/FinancialInstitution\"},\"description\":\"A commercial or investment bank, trust company, brokerage house, insurance company, or other institution that participates in financial transactions involving cash or financial products. \\n\\nThe primary role of such an institution is to facilitate the financing of investments, from home mortgages to the raising of funds via the issue of debt or equity for mega-projects. It may also provide insurance, take on fiduciary responsibilities, store cash and securities for safekeeping, etc.\",\"primaryKey\":[\"FinancialInstitutionId\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"FinancialInstitution.cdm.json/FinancialInstitution\",\"name\":\"FinancialInstitutionId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Financial Institution.\",\"isNullable\":false,\"name\":\"FinancialInstitutionId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"FinancialInstitution.cdm.json/FinancialInstitution\",\"name\":\"FinancialInstitutionName\"},\"dataType\":\"string\",\"dataTypeLength\":256,\"description\":\"The name of the Financial Institution.\",\"isNullable\":true,\"name\":\"FinancialInstitutionName\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"FinancialInstitution.cdm.json/FinancialInstitution\",\"name\":\"DunsNumber\"},\"dataType\":\"decimal\",\"dataTypeLength\":9,\"description\":\"An exclusive nine-digit Dun & Bradstreet D-U-N-S Number is assigned to each business location in a global database, it is widely used as a tool for identifying, organizing and consolidating information about businesses. Companies worldwide use it to link information about suppliers, customers and trading partners, providing them a more complete picture of risks and opportunities in their business relationships.\\n\\nD&B D-U-N-S Numbers are the key to building corporate family relationships in the D&B file. Since each location of a business may have its own unique D&B D-U-N-S Number, a large organization is likely to have many different D&B D-U-N-S Numbers within its corporate \\\"family tree\\\". D&B links the D&B D-U-N-S Numbers of parents, subsidiaries, headquarters and branches on more than 6.0 million corporate family members around the world.\",\"isNullable\":true,\"scale\":0,\"name\":\"DunsNumber\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"FinancialInstitution.cdm.json/FinancialInstitution\",\"name\":\"GlobalUltimateDunsNumber\"},\"dataType\":\"decimal\",\"dataTypeLength\":9,\"description\":\"One of eight (8) types of business relationships defined in the D&B file:\\n\\nThe Global Ultimate is the top most responsible entity within the global family tree. The Global Ultimate may have branches and/or subsidiaries reporting directly or indirectly to it.\",\"isNullable\":true,\"scale\":0,\"name\":\"GlobalUltimateDunsNumber\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"FinancialInstitution.cdm.json/FinancialInstitution\",\"name\":\"DomesticUltimateDunsNumber\"},\"dataType\":\"decimal\",\"dataTypeLength\":9,\"description\":\"One of eight (8) types of business relationships defined in the D&B file:\\n\\nThe Domestic Ultimate is a subsidiary within the global family tree which is the highest ranking member within a specific country.\",\"isNullable\":true,\"scale\":0,\"name\":\"DomesticUltimateDunsNumber\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"FinancialInstitution.cdm.json/FinancialInstitution\",\"name\":\"ParentDunsNumber\"},\"dataType\":\"decimal\",\"dataTypeLength\":9,\"description\":\"One of eight (8) types of business relationships defined in the D&B file:\\n\\nA parent is a corporation that owns more than 50 percent of another corporation. The parent company also may be a subsidiary of another corporation. If the parent also has branches, then it is also a headquarters.\",\"isNullable\":true,\"scale\":0,\"name\":\"ParentDunsNumber\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"FinancialInstitution.cdm.json/FinancialInstitution\",\"name\":\"SubsidiaryIndicator\"},\"dataType\":\"boolean\",\"description\":\"Indicates that the entity is a subsidiary.\\n\\nA subsidiary is a corporation that is more than 50% owned by another corporation and will have a different legal business name from its parent company. A subsidiary may have branches and/or subsidiaries of its own. If it does, then its D-U-N-S Number appears in the headquarter/parent D-U-N-S Number field of its children.\",\"isNullable\":true,\"name\":\"SubsidiaryIndicator\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"FinancialInstitution.cdm.json/FinancialInstitution\",\"name\":\"DivisionIndicator\"},\"dataType\":\"boolean\",\"description\":\"Indicates that the entity is a division.\\n\\nA division, like a branch, is a secondary location of a business. However, a division carries out specific business operations related to the headquarters under a divisional name. Divisions look similar to branches in D&B WorldBase and carry a branch code.\",\"isNullable\":true,\"name\":\"DivisionIndicator\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"FinancialInstitution.cdm.json/FinancialInstitution\",\"name\":\"BranchIndicator\"},\"dataType\":\"boolean\",\"description\":\"Indicates that the entity is a branch.\\n\\nA branch is a secondary location of its headquarters. It has no legal responsibility for its debts, even though bills may be paid from the branch location. It will have the same legal business name as its headquarters, although branches frequently operate under a different trade style than the headquarters establishment. A branch may be located at the same address as the headquarters if it has a unique trade style. In such cases, the branch may appear to be a duplicate with a different D-U-N-S number than the headquarters record, which may confuse customers if they don't purchase the trade style field.\",\"isNullable\":true,\"name\":\"BranchIndicator\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"FinancialInstitution.cdm.json/FinancialInstitution\",\"name\":\"HeadquartersIndicator\"},\"dataType\":\"boolean\",\"description\":\"Indicates that the entity is a headquarters.\\n\\nA headquarters is a business establishment that has branches or divisions reporting to it, and is financially responsible for those branches or divisions. If the headquarters is more that 50% owned by another corporation, it also will be a subsidiary. If it owns more that 50% of another corporation, then it is also a parent.\",\"isNullable\":true,\"name\":\"HeadquartersIndicator\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"FinancialInstitution.cdm.json/FinancialInstitution\",\"name\":\"SingleLocationSubsidiaryIndicator\"},\"dataType\":\"boolean\",\"description\":\"Indicates that the entity is a single location subsidiary.\\n\\nA single location subsidiary has reporting responsibilities to its parent; however, it does not have branches or subsidiaries reporting to it. Do not confuse this with a stand-alone business which is titled \\\"single location\\\" and is not part of a corporate family.\",\"isNullable\":true,\"name\":\"SingleLocationSubsidiaryIndicator\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"FinancialInstitution.cdm.json/FinancialInstitution\",\"name\":\"IcaNumber\"},\"dataType\":\"integer\",\"description\":\"ICA Number A four-(4) digit number assigned by MasterCard that identifies all authorizing members, issuers and processors.\",\"isNullable\":false,\"name\":\"IcaNumber\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"FinancialInstitution.cdm.json/FinancialInstitution\",\"name\":\"ChannelId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Channel.\",\"isNullable\":true,\"name\":\"ChannelId\"}]}}}",
+			"Description": "A commercial or investment bank, trust company, brokerage house, insurance company, or other institution that participates in financial transactions involving cash or financial products. \n\nThe primary role of such an institution is to facilitate the financing of investments, from home mortgages to the raising of funds via the issue of debt or equity for mega-projects. It may also provide insurance, take on fiduciary responsibilities, store cash and securities for safekeeping, etc.",
+			"DisplayFolderInfo": "{\"name\":\"Channel\",\"colorCode\":\"#001D3F\"}",
+			"PrimaryKeys": "FinancialInstitutionId",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

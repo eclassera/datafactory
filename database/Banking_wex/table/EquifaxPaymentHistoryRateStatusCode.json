@@ -1,0 +1,114 @@
+{
+	"name": "EquifaxPaymentHistoryRateStatusCode",
+	"properties": {
+		"Name": "EquifaxPaymentHistoryRateStatusCode",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "The Equifax history rate status code.\n\nEx:\n0 - Too New to Rate; Approved but not used\n1 - Current account; paid as agreed\n2 - Pays 30-59 days past due; not more than 2 payments past due\n3 - Pays 60-89 days past due; not more than 3 payments past due\n4 - Pays 90-119 days past due; not more than 4 payments past due\n5 - Pays 120 or more days past due; more than 4 payments past due\n6 - Collection account\n7 - Included in Chapter 13 bankruptcy\n8 - Repossession or foreclosure\n9 - Charged Off account\nE - Zero balance and current account",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "EquifaxPaymentHistoryRateStatusCode",
+					"Description": "The unique identifier of a payment history rate status.",
+					"BaseAttributeReference": {
+						"Entity": "EquifaxPaymentHistoryRateStatusCode.cdm.json/EquifaxPaymentHistoryRateStatusCode",
+						"Name": "EquifaxPaymentHistoryRateStatusCode"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Length": 3,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "EquifaxPaymentHistoryRateStatusName",
+					"Description": "The name of a payment history rate status.",
+					"BaseAttributeReference": {
+						"Entity": "EquifaxPaymentHistoryRateStatusCode.cdm.json/EquifaxPaymentHistoryRateStatusCode",
+						"Name": "EquifaxPaymentHistoryRateStatusName"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 256,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "EquifaxPaymentHistoryRateStatusDescription",
+					"Description": "The description of a payment history rate status.",
+					"BaseAttributeReference": {
+						"Entity": "EquifaxPaymentHistoryRateStatusCode.cdm.json/EquifaxPaymentHistoryRateStatusCode",
+						"Name": "EquifaxPaymentHistoryRateStatusDescription"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/EquifaxPaymentHistoryRateStatusCode",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/EquifaxPaymentHistoryRateStatusCode",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"EquifaxPaymentHistoryRateStatusCode\":{\"entity\":\"EquifaxPaymentHistoryRateStatusCode.cdm.json/EquifaxPaymentHistoryRateStatusCode\",\"name\":\"EquifaxPaymentHistoryRateStatusCode\"},\"EquifaxPaymentHistoryRateStatusName\":{\"entity\":\"EquifaxPaymentHistoryRateStatusCode.cdm.json/EquifaxPaymentHistoryRateStatusCode\",\"name\":\"EquifaxPaymentHistoryRateStatusName\"},\"EquifaxPaymentHistoryRateStatusDescription\":{\"entity\":\"EquifaxPaymentHistoryRateStatusCode.cdm.json/EquifaxPaymentHistoryRateStatusCode\",\"name\":\"EquifaxPaymentHistoryRateStatusDescription\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"EquifaxPaymentHistoryRateStatusCode\",\"path\":\"EquifaxPaymentHistoryRateStatusCode.cdm.json/EquifaxPaymentHistoryRateStatusCode\"},\"description\":\"The Equifax history rate status code.\\n\\nEx:\\n0 - Too New to Rate; Approved but not used\\n1 - Current account; paid as agreed\\n2 - Pays 30-59 days past due; not more than 2 payments past due\\n3 - Pays 60-89 days past due; not more than 3 payments past due\\n4 - Pays 90-119 days past due; not more than 4 payments past due\\n5 - Pays 120 or more days past due; more than 4 payments past due\\n6 - Collection account\\n7 - Included in Chapter 13 bankruptcy\\n8 - Repossession or foreclosure\\n9 - Charged Off account\\nE - Zero balance and current account\",\"primaryKey\":[\"EquifaxPaymentHistoryRateStatusCode\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"EquifaxPaymentHistoryRateStatusCode.cdm.json/EquifaxPaymentHistoryRateStatusCode\",\"name\":\"EquifaxPaymentHistoryRateStatusCode\"},\"dataType\":\"string\",\"dataTypeLength\":3,\"description\":\"The unique identifier of a payment history rate status.\",\"isNullable\":false,\"name\":\"EquifaxPaymentHistoryRateStatusCode\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"EquifaxPaymentHistoryRateStatusCode.cdm.json/EquifaxPaymentHistoryRateStatusCode\",\"name\":\"EquifaxPaymentHistoryRateStatusName\"},\"dataType\":\"string\",\"dataTypeLength\":256,\"description\":\"The name of a payment history rate status.\",\"isNullable\":true,\"name\":\"EquifaxPaymentHistoryRateStatusName\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"EquifaxPaymentHistoryRateStatusCode.cdm.json/EquifaxPaymentHistoryRateStatusCode\",\"name\":\"EquifaxPaymentHistoryRateStatusDescription\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"The description of a payment history rate status.\",\"isNullable\":true,\"name\":\"EquifaxPaymentHistoryRateStatusDescription\"}]}}}",
+			"Description": "The Equifax history rate status code.\n\nEx:\n0 - Too New to Rate; Approved but not used\n1 - Current account; paid as agreed\n2 - Pays 30-59 days past due; not more than 2 payments past due\n3 - Pays 60-89 days past due; not more than 3 payments past due\n4 - Pays 90-119 days past due; not more than 4 payments past due\n5 - Pays 120 or more days past due; more than 4 payments past due\n6 - Collection account\n7 - Included in Chapter 13 bankruptcy\n8 - Repossession or foreclosure\n9 - Charged Off account\nE - Zero balance and current account",
+			"DisplayFolderInfo": "{\"name\":\"Customer Credit & Collections\",\"colorCode\":\"#022F22\"}",
+			"PrimaryKeys": "EquifaxPaymentHistoryRateStatusCode",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

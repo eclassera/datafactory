@@ -1,0 +1,112 @@
+{
+	"name": "CustomerAncestry",
+	"properties": {
+		"Name": "CustomerAncestry",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "The ancestry(s) identified by or for the Customer.\n\nOne or more ethnic identifies that may be identified by the Customer.\n\nSource:  US Bureau of Census\nThis identification is based on self-identification; the data on ancestry represents self-classification by people according to the ancestry group(s) with which they most closely identify. Ancestry refers to a person's ethnic origin or descent, \"roots,\" or heritage or the place of birth of the person or the person's parents or ancestors before their arrival in the United States. Some ethnic identities, such as \"Egyptian\" or \"Polish\" can be traced to geographic areas outside the United States, while other ethnicities such as \"Pennsylvania Dutch\" or \"Cajun\" evolved in the United States. \n\nThe ancestry question allowed respondents to report one or more ancestry groups. While a large number of respondents listed a single ancestry, the majority of answers included more than one ethnic entry.\n\nThe Census Bureau accepts \"American\" as a unique ethnicity if it was given alone, with an ambiguous response, or with State names. If the respondent listed any other ethnic identity such as \"Italian American,\" generally the \"American\" portion of the response\nwas not coded. However, distinct groups such as \"American Indian,\" \"Mexican American,\" and \"African American\" were coded and identified separately because they represented groups who considered themselves different from those who reported as\n\"Indian,\" \"Mexican,\" or \"African,\" respectively.",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "CustomerId",
+					"Description": "The unique identifier of a Customer.",
+					"BaseAttributeReference": {
+						"Entity": "CustomerAncestry.cdm.json/CustomerAncestry",
+						"Name": "CustomerId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "long",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "long"
+						}
+					}
+				},
+				{
+					"Name": "AncestryId",
+					"Description": "The unique identifier of an Ancestry.",
+					"BaseAttributeReference": {
+						"Entity": "CustomerAncestry.cdm.json/CustomerAncestry",
+						"Name": "AncestryId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "CustomerAncestryNote",
+					"Description": "Notes, comments or additional information regarding the Customer's ancestry.",
+					"BaseAttributeReference": {
+						"Entity": "CustomerAncestry.cdm.json/CustomerAncestry",
+						"Name": "CustomerAncestryNote"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/CustomerAncestry",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/CustomerAncestry",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"CustomerId\":{\"entity\":\"CustomerAncestry.cdm.json/CustomerAncestry\",\"name\":\"CustomerId\"},\"AncestryId\":{\"entity\":\"CustomerAncestry.cdm.json/CustomerAncestry\",\"name\":\"AncestryId\"},\"CustomerAncestryNote\":{\"entity\":\"CustomerAncestry.cdm.json/CustomerAncestry\",\"name\":\"CustomerAncestryNote\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"CustomerAncestry\",\"path\":\"CustomerAncestry.cdm.json/CustomerAncestry\"},\"description\":\"The ancestry(s) identified by or for the Customer.\\n\\nOne or more ethnic identifies that may be identified by the Customer.\\n\\nSource:  US Bureau of Census\\nThis identification is based on self-identification; the data on ancestry represents self-classification by people according to the ancestry group(s) with which they most closely identify. Ancestry refers to a person's ethnic origin or descent, \\\"roots,\\\" or heritage or the place of birth of the person or the person's parents or ancestors before their arrival in the United States. Some ethnic identities, such as \\\"Egyptian\\\" or \\\"Polish\\\" can be traced to geographic areas outside the United States, while other ethnicities such as \\\"Pennsylvania Dutch\\\" or \\\"Cajun\\\" evolved in the United States. \\n\\nThe ancestry question allowed respondents to report one or more ancestry groups. While a large number of respondents listed a single ancestry, the majority of answers included more than one ethnic entry.\\n\\nThe Census Bureau accepts \\\"American\\\" as a unique ethnicity if it was given alone, with an ambiguous response, or with State names. If the respondent listed any other ethnic identity such as \\\"Italian American,\\\" generally the \\\"American\\\" portion of the response\\nwas not coded. However, distinct groups such as \\\"American Indian,\\\" \\\"Mexican American,\\\" and \\\"African American\\\" were coded and identified separately because they represented groups who considered themselves different from those who reported as\\n\\\"Indian,\\\" \\\"Mexican,\\\" or \\\"African,\\\" respectively.\",\"primaryKey\":[\"CustomerId\",\"AncestryId\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CustomerAncestry.cdm.json/CustomerAncestry\",\"name\":\"CustomerId\"},\"dataType\":\"long\",\"description\":\"The unique identifier of a Customer.\",\"isNullable\":false,\"name\":\"CustomerId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CustomerAncestry.cdm.json/CustomerAncestry\",\"name\":\"AncestryId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of an Ancestry.\",\"isNullable\":false,\"name\":\"AncestryId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CustomerAncestry.cdm.json/CustomerAncestry\",\"name\":\"CustomerAncestryNote\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"Notes, comments or additional information regarding the Customer's ancestry.\",\"isNullable\":true,\"name\":\"CustomerAncestryNote\"}]}}}",
+			"Description": "The ancestry(s) identified by or for the Customer.\n\nOne or more ethnic identifies that may be identified by the Customer.\n\nSource:  US Bureau of Census\nThis identification is based on self-identification; the data on ancestry represents self-classification by people according to the ancestry group(s) with which they most closely identify. Ancestry refers to a person's ethnic origin or descent, \"roots,\" or heritage or the place of birth of the person or the person's parents or ancestors before their arrival in the United States. Some ethnic identities, such as \"Egyptian\" or \"Polish\" can be traced to geographic areas outside the United States, while other ethnicities such as \"Pennsylvania Dutch\" or \"Cajun\" evolved in the United States. \n\nThe ancestry question allowed respondents to report one or more ancestry groups. While a large number of respondents listed a single ancestry, the majority of answers included more than one ethnic entry.\n\nThe Census Bureau accepts \"American\" as a unique ethnicity if it was given alone, with an ambiguous response, or with State names. If the respondent listed any other ethnic identity such as \"Italian American,\" generally the \"American\" portion of the response\nwas not coded. However, distinct groups such as \"American Indian,\" \"Mexican American,\" and \"African American\" were coded and identified separately because they represented groups who considered themselves different from those who reported as\n\"Indian,\" \"Mexican,\" or \"African,\" respectively.",
+			"DisplayFolderInfo": "{\"name\":\"Customer\",\"colorCode\":\"#4B003F\"}",
+			"PrimaryKeys": "CustomerId,AncestryId",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

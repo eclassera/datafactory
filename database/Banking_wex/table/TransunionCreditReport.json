@@ -1,0 +1,908 @@
+{
+	"name": "TransunionCreditReport",
+	"properties": {
+		"Name": "TransunionCreditReport",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "The TransUnion Credit Report, which is a summary of a consumer's recent credit history plus additional facts about the consumer that will help creditors judge the consumer's creditworthiness.\n\nThere are four primary categories of information contained in each type of credit report: \n\n1. Personal Information \n2. Credit History \n3. Public Records \n4. Inquiries \n\nA credit report's personal information section includes your:\n-------------------------------------------------------------------------------------------\nName \nCurrent and previous addresses \nSocial Security number \nTelephone number \nDate of birth \nCurrent and previous employers \n\nA credit report does not include information regarding:\n-----------------------------------------------------------------------------------\nRace \nGender \nReligion \nSexual orientation \nNational origin \nMedical history \nChecking or savings accounts \nCredit score \n\nCREDIT HISTORY\n------------------------------\nCredit History\nA credit report's credit history section includes a listing of all the credit accounts you have had in the last ten years. Types of credit accounts include:\n\nRetail credit cards \nBank loans \nFinance company loans \nMortgages \nBank credit cards \nThe credit history section shows creditors how well you have kept your financial promises. Each entry in this section includes:\n\nAccount number \nCreditor's name \nAmount borrowed \nAmount owed \nCredit limit \nDates when the account was opened, updated, or closed \nTimeliness of payments \nLate payments (these are noted as a negative activity) \n\nPUBLIC RECORDS:\n--------------------------------\nPublic Records\nA credit report's public records section includes: \n\nTax liens \nBankruptcies \nCourt judgments (including child support judgments) \n\nAny negative activity in this section reflects poorly on your creditworthiness. Even if an item has been paid in full, the presence of even a one-time occurrence indicates a potential future concern for creditors. \n\nINQUIRIES:\n-------------------\nA credit report's inquiries section includes a listing of all parties who have requested a copy of your credit report. Your rights to privacy are protected by the Fair Credit Reporting Act (FCRA), and therefore only inquiries from those entities with a permissible purpose are granted access to your report.\n\nInquiries that do not appear on the business version of your credit report are promotional inquiries or account management inquiries. Both promotional and account management inquiries are not counted as official inquiries.\n\nPROMOTIONAL INQUIRIES:\n-----------------------------------------------\nVendors query our database based on a set of parameters and receive mailing address information for individuals matching their criteria. These vendors are not viewing your report. They just want to give people who meet their parameters a firm offer of credit or insurance.",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "TransunionReferenceNumber",
+					"Description": "The TransUnion file number.",
+					"BaseAttributeReference": {
+						"Entity": "TransunionCreditReport.cdm.json/TransunionCreditReport",
+						"Name": "TransunionReferenceNumber"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "CreditReportTimestamp",
+					"Description": "The timestamp of the credit report.",
+					"BaseAttributeReference": {
+						"Entity": "TransunionCreditReport.cdm.json/TransunionCreditReport",
+						"Name": "CreditReportTimestamp"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "timestamp",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"TimestampFormat": "YYYY-MM-DD HH:MM:SS.fffffffff",
+							"HIVE_TYPE_STRING": "timestamp"
+						}
+					}
+				},
+				{
+					"Name": "TransunionConsumerNumber",
+					"Description": "The Consumer's TransUnion number.",
+					"BaseAttributeReference": {
+						"Entity": "TransunionCreditReport.cdm.json/TransunionCreditReport",
+						"Name": "TransunionConsumerNumber"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "ConsumerSocialSecurityNumber",
+					"Description": "The consumer's social security number.",
+					"BaseAttributeReference": {
+						"Entity": "TransunionCreditReport.cdm.json/TransunionCreditReport",
+						"Name": "ConsumerSocialSecurityNumber"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "decimal",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Precision": 9,
+						"Scale": 0,
+						"Properties": {
+							"HIVE_TYPE_STRING": "decimal"
+						}
+					}
+				},
+				{
+					"Name": "ConsumerFirstName",
+					"Description": "The consumer's first name.",
+					"BaseAttributeReference": {
+						"Entity": "TransunionCreditReport.cdm.json/TransunionCreditReport",
+						"Name": "ConsumerFirstName"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 256,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "ConsumerMiddleName",
+					"Description": "The consumer's middle name.",
+					"BaseAttributeReference": {
+						"Entity": "TransunionCreditReport.cdm.json/TransunionCreditReport",
+						"Name": "ConsumerMiddleName"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 256,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "ConsumerLastName",
+					"Description": "The consumer's last name.",
+					"BaseAttributeReference": {
+						"Entity": "TransunionCreditReport.cdm.json/TransunionCreditReport",
+						"Name": "ConsumerLastName"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 256,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "ConsumerDateOfBirth",
+					"Description": "The consumer's date of birth.",
+					"BaseAttributeReference": {
+						"Entity": "TransunionCreditReport.cdm.json/TransunionCreditReport",
+						"Name": "ConsumerDateOfBirth"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "date",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"DateFormat": "YYYY-MM-DD",
+							"HIVE_TYPE_STRING": "date"
+						}
+					}
+				},
+				{
+					"Name": "ConsumerTelephoneNumber",
+					"Description": "The consumer's  telephone number.",
+					"BaseAttributeReference": {
+						"Entity": "TransunionCreditReport.cdm.json/TransunionCreditReport",
+						"Name": "ConsumerTelephoneNumber"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "decimal",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Precision": 15,
+						"Scale": 0,
+						"Properties": {
+							"HIVE_TYPE_STRING": "decimal"
+						}
+					}
+				},
+				{
+					"Name": "ConsumerCurrentAddress",
+					"Description": "The 'street/po box' component of the consumer's address.",
+					"BaseAttributeReference": {
+						"Entity": "TransunionCreditReport.cdm.json/TransunionCreditReport",
+						"Name": "ConsumerCurrentAddress"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 512,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "ConsumerCurrentCity",
+					"Description": "The 'city' component of the consumer's  address.",
+					"BaseAttributeReference": {
+						"Entity": "TransunionCreditReport.cdm.json/TransunionCreditReport",
+						"Name": "ConsumerCurrentCity"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 256,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "ConsumerCurrentState",
+					"Description": "The 'state' component of the consumer's address.",
+					"BaseAttributeReference": {
+						"Entity": "TransunionCreditReport.cdm.json/TransunionCreditReport",
+						"Name": "ConsumerCurrentState"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 64,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "ConsumerCurrentZipCode",
+					"Description": "The 'zip code' component of the consumer's address.",
+					"BaseAttributeReference": {
+						"Entity": "TransunionCreditReport.cdm.json/TransunionCreditReport",
+						"Name": "ConsumerCurrentZipCode"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "decimal",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Precision": 11,
+						"Scale": 0,
+						"Properties": {
+							"HIVE_TYPE_STRING": "decimal"
+						}
+					}
+				},
+				{
+					"Name": "ConsumerInFilesSinceDate",
+					"Description": "The date that the consumer was originally in the TransUnion files.",
+					"BaseAttributeReference": {
+						"Entity": "TransunionCreditReport.cdm.json/TransunionCreditReport",
+						"Name": "ConsumerInFilesSinceDate"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "date",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"DateFormat": "YYYY-MM-DD",
+							"HIVE_TYPE_STRING": "date"
+						}
+					}
+				},
+				{
+					"Name": "CustomerId",
+					"Description": "The unique identifier of a Customer.",
+					"BaseAttributeReference": {
+						"Entity": "TransunionCreditReport.cdm.json/TransunionCreditReport",
+						"Name": "CustomerId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "long",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"HIVE_TYPE_STRING": "long"
+						}
+					}
+				},
+				{
+					"Name": "NumberOfPublicRecords",
+					"Description": "Total number of public records",
+					"BaseAttributeReference": {
+						"Entity": "TransunionCreditReport.cdm.json/TransunionCreditReport",
+						"Name": "NumberOfPublicRecords"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "NumberOfCollections",
+					"Description": "Total number of collection accounts transferred to a third-party collection agency.",
+					"BaseAttributeReference": {
+						"Entity": "TransunionCreditReport.cdm.json/TransunionCreditReport",
+						"Name": "NumberOfCollections"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "NumberOfTrades",
+					"Description": "Total number of trades",
+					"BaseAttributeReference": {
+						"Entity": "TransunionCreditReport.cdm.json/TransunionCreditReport",
+						"Name": "NumberOfTrades"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "NumberOfInquiries",
+					"Description": "Total number of inquiries",
+					"BaseAttributeReference": {
+						"Entity": "TransunionCreditReport.cdm.json/TransunionCreditReport",
+						"Name": "NumberOfInquiries"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "NumberOfNegativeTradeAccounts",
+					"Description": "Total number of negative accounts (derogatory) with a current Manner of Payment (MOP) of 2 or greater",
+					"BaseAttributeReference": {
+						"Entity": "TransunionCreditReport.cdm.json/TransunionCreditReport",
+						"Name": "NumberOfNegativeTradeAccounts"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "NumberOfTradeAccountsWithHistoricalNegatives",
+					"Description": "The number of tradelines which have historical negative information.",
+					"BaseAttributeReference": {
+						"Entity": "TransunionCreditReport.cdm.json/TransunionCreditReport",
+						"Name": "NumberOfTradeAccountsWithHistoricalNegatives"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "NumberOfHistoricalNegatives",
+					"Description": "The number of tradelines which have historical negative information.",
+					"BaseAttributeReference": {
+						"Entity": "TransunionCreditReport.cdm.json/TransunionCreditReport",
+						"Name": "NumberOfHistoricalNegatives"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "NumberOfRevolvingAccounts",
+					"Description": "The total number of revolving accounts.",
+					"BaseAttributeReference": {
+						"Entity": "TransunionCreditReport.cdm.json/TransunionCreditReport",
+						"Name": "NumberOfRevolvingAccounts"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "HighestAmountEverOwedOnRevolvingAccount",
+					"Description": "The highest amount ever owed on a revolving account.",
+					"BaseAttributeReference": {
+						"Entity": "TransunionCreditReport.cdm.json/TransunionCreditReport",
+						"Name": "HighestAmountEverOwedOnRevolvingAccount"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "decimal",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Precision": 18,
+						"Scale": 2,
+						"Properties": {
+							"HIVE_TYPE_STRING": "decimal"
+						}
+					}
+				},
+				{
+					"Name": "MaximumCreditLimitRevolvingAccounts",
+					"Description": "The maximum credit amount approved by a revolving account credit grantors.",
+					"BaseAttributeReference": {
+						"Entity": "TransunionCreditReport.cdm.json/TransunionCreditReport",
+						"Name": "MaximumCreditLimitRevolvingAccounts"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "decimal",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Precision": 18,
+						"Scale": 2,
+						"Properties": {
+							"HIVE_TYPE_STRING": "decimal"
+						}
+					}
+				},
+				{
+					"Name": "BalanceOwedAsOfDateOnRevolvingAccounts",
+					"Description": "The highest amount ever owed on a revolving account.",
+					"BaseAttributeReference": {
+						"Entity": "TransunionCreditReport.cdm.json/TransunionCreditReport",
+						"Name": "BalanceOwedAsOfDateOnRevolvingAccounts"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "decimal",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Precision": 18,
+						"Scale": 2,
+						"Properties": {
+							"HIVE_TYPE_STRING": "decimal"
+						}
+					}
+				},
+				{
+					"Name": "AmountPastDueAsOfDateOnRevolvingAccounts",
+					"Description": "The amount of revolving accounts  past due as of the date verified.",
+					"BaseAttributeReference": {
+						"Entity": "TransunionCreditReport.cdm.json/TransunionCreditReport",
+						"Name": "AmountPastDueAsOfDateOnRevolvingAccounts"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "decimal",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Precision": 18,
+						"Scale": 2,
+						"Properties": {
+							"HIVE_TYPE_STRING": "decimal"
+						}
+					}
+				},
+				{
+					"Name": "AmountSubscriberReportedRevolvingAccountsMonthlyPayments",
+					"Description": "The amount of Subscriber-reported revolving accounts monthly payments from the \"TERMS\" field on the account",
+					"BaseAttributeReference": {
+						"Entity": "TransunionCreditReport.cdm.json/TransunionCreditReport",
+						"Name": "AmountSubscriberReportedRevolvingAccountsMonthlyPayments"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "decimal",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Precision": 18,
+						"Scale": 2,
+						"Properties": {
+							"HIVE_TYPE_STRING": "decimal"
+						}
+					}
+				},
+				{
+					"Name": "PercentOfCreditAvailableForRevolvingAccounts",
+					"Description": "The percent of credit available for revolving accounts. \nField is calculated by subtracting balance from credit limit divided by credit limit.",
+					"BaseAttributeReference": {
+						"Entity": "TransunionCreditReport.cdm.json/TransunionCreditReport",
+						"Name": "PercentOfCreditAvailableForRevolvingAccounts"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "decimal",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Precision": 18,
+						"Scale": 8,
+						"Properties": {
+							"HIVE_TYPE_STRING": "decimal"
+						}
+					}
+				},
+				{
+					"Name": "NumberOfInstallmentAccounts",
+					"Description": "The total number of installment accounts.",
+					"BaseAttributeReference": {
+						"Entity": "TransunionCreditReport.cdm.json/TransunionCreditReport",
+						"Name": "NumberOfInstallmentAccounts"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "HighestAmountEverOwedOnInstallmentAccount",
+					"Description": "The highest amount ever owed on a installment account.",
+					"BaseAttributeReference": {
+						"Entity": "TransunionCreditReport.cdm.json/TransunionCreditReport",
+						"Name": "HighestAmountEverOwedOnInstallmentAccount"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "decimal",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Precision": 18,
+						"Scale": 2,
+						"Properties": {
+							"HIVE_TYPE_STRING": "decimal"
+						}
+					}
+				},
+				{
+					"Name": "MaximumCreditLimitInstallmentAccounts",
+					"Description": "The maximum credit amount approved by a installment account credit grantors.",
+					"BaseAttributeReference": {
+						"Entity": "TransunionCreditReport.cdm.json/TransunionCreditReport",
+						"Name": "MaximumCreditLimitInstallmentAccounts"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "decimal",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Precision": 18,
+						"Scale": 2,
+						"Properties": {
+							"HIVE_TYPE_STRING": "decimal"
+						}
+					}
+				},
+				{
+					"Name": "BalanceOwedAsOfDateOnInstallmentAccounts",
+					"Description": "The highest amount ever owed on a installment account.",
+					"BaseAttributeReference": {
+						"Entity": "TransunionCreditReport.cdm.json/TransunionCreditReport",
+						"Name": "BalanceOwedAsOfDateOnInstallmentAccounts"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "decimal",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Precision": 18,
+						"Scale": 2,
+						"Properties": {
+							"HIVE_TYPE_STRING": "decimal"
+						}
+					}
+				},
+				{
+					"Name": "AmountPastDueAsOfDateOnInstallmentAccounts",
+					"Description": "The amount of installment accounts  past due as of the date verified.",
+					"BaseAttributeReference": {
+						"Entity": "TransunionCreditReport.cdm.json/TransunionCreditReport",
+						"Name": "AmountPastDueAsOfDateOnInstallmentAccounts"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "decimal",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Precision": 18,
+						"Scale": 2,
+						"Properties": {
+							"HIVE_TYPE_STRING": "decimal"
+						}
+					}
+				},
+				{
+					"Name": "AmountSubscriberReportedInstallmentAccountsMonthlyPayments",
+					"Description": "The amount of Subscriber-reported installment accounts monthly payments from the \"TERMS\" field on the account",
+					"BaseAttributeReference": {
+						"Entity": "TransunionCreditReport.cdm.json/TransunionCreditReport",
+						"Name": "AmountSubscriberReportedInstallmentAccountsMonthlyPayments"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "decimal",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Precision": 18,
+						"Scale": 2,
+						"Properties": {
+							"HIVE_TYPE_STRING": "decimal"
+						}
+					}
+				},
+				{
+					"Name": "PercentOfCreditAvailableForInstallmentAccounts",
+					"Description": "The percent of credit available for installment accounts. \nField is calculated by subtracting balance from credit limit divided by credit limit.",
+					"BaseAttributeReference": {
+						"Entity": "TransunionCreditReport.cdm.json/TransunionCreditReport",
+						"Name": "PercentOfCreditAvailableForInstallmentAccounts"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "decimal",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Precision": 18,
+						"Scale": 8,
+						"Properties": {
+							"HIVE_TYPE_STRING": "decimal"
+						}
+					}
+				},
+				{
+					"Name": "NumberOfMortgageAccounts",
+					"Description": "The total number of mortgage accounts.",
+					"BaseAttributeReference": {
+						"Entity": "TransunionCreditReport.cdm.json/TransunionCreditReport",
+						"Name": "NumberOfMortgageAccounts"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "HighestAmountEverOwedOnMortgageAccount",
+					"Description": "The highest amount ever owed on a mortgage account.",
+					"BaseAttributeReference": {
+						"Entity": "TransunionCreditReport.cdm.json/TransunionCreditReport",
+						"Name": "HighestAmountEverOwedOnMortgageAccount"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "decimal",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Precision": 18,
+						"Scale": 2,
+						"Properties": {
+							"HIVE_TYPE_STRING": "decimal"
+						}
+					}
+				},
+				{
+					"Name": "MaximumCreditLimitMortgageAccounts",
+					"Description": "The maximum credit amount approved by a mortgage account credit grantors.",
+					"BaseAttributeReference": {
+						"Entity": "TransunionCreditReport.cdm.json/TransunionCreditReport",
+						"Name": "MaximumCreditLimitMortgageAccounts"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "decimal",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Precision": 18,
+						"Scale": 2,
+						"Properties": {
+							"HIVE_TYPE_STRING": "decimal"
+						}
+					}
+				},
+				{
+					"Name": "BalanceOwedAsOfDateOnMortgageAccounts",
+					"Description": "The highest amount ever owed on a mortgage account.",
+					"BaseAttributeReference": {
+						"Entity": "TransunionCreditReport.cdm.json/TransunionCreditReport",
+						"Name": "BalanceOwedAsOfDateOnMortgageAccounts"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "decimal",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Precision": 18,
+						"Scale": 2,
+						"Properties": {
+							"HIVE_TYPE_STRING": "decimal"
+						}
+					}
+				},
+				{
+					"Name": "AmountPastDueAsOfDateOnMortgageAccounts",
+					"Description": "The amount of mortgage accounts  past due as of the date verified.",
+					"BaseAttributeReference": {
+						"Entity": "TransunionCreditReport.cdm.json/TransunionCreditReport",
+						"Name": "AmountPastDueAsOfDateOnMortgageAccounts"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "decimal",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Precision": 18,
+						"Scale": 2,
+						"Properties": {
+							"HIVE_TYPE_STRING": "decimal"
+						}
+					}
+				},
+				{
+					"Name": "AmountSubscriberReportedMortgageAccountsMonthlyPayments",
+					"Description": "The amount of Subscriber-reported mortgage accounts monthly payments from the \"TERMS\" field on the account",
+					"BaseAttributeReference": {
+						"Entity": "TransunionCreditReport.cdm.json/TransunionCreditReport",
+						"Name": "AmountSubscriberReportedMortgageAccountsMonthlyPayments"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "decimal",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Precision": 18,
+						"Scale": 2,
+						"Properties": {
+							"HIVE_TYPE_STRING": "decimal"
+						}
+					}
+				},
+				{
+					"Name": "PercentOfCreditAvailableForMortgageAccounts",
+					"Description": "The percent of credit available for mortgage accounts. \nField is calculated by subtracting balance from credit limit divided by credit limit.",
+					"BaseAttributeReference": {
+						"Entity": "TransunionCreditReport.cdm.json/TransunionCreditReport",
+						"Name": "PercentOfCreditAvailableForMortgageAccounts"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "decimal",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Precision": 18,
+						"Scale": 8,
+						"Properties": {
+							"HIVE_TYPE_STRING": "decimal"
+						}
+					}
+				},
+				{
+					"Name": "TotalNumberOfAllAccounts",
+					"Description": "The total number of all accounts.",
+					"BaseAttributeReference": {
+						"Entity": "TransunionCreditReport.cdm.json/TransunionCreditReport",
+						"Name": "TotalNumberOfAllAccounts"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "HighestAmountEverOwedOnAllAccounts",
+					"Description": "The highest amount ever owed on an account.",
+					"BaseAttributeReference": {
+						"Entity": "TransunionCreditReport.cdm.json/TransunionCreditReport",
+						"Name": "HighestAmountEverOwedOnAllAccounts"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "decimal",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Precision": 18,
+						"Scale": 2,
+						"Properties": {
+							"HIVE_TYPE_STRING": "decimal"
+						}
+					}
+				},
+				{
+					"Name": "HighestMaximumCreditLimitAllAccounts",
+					"Description": "The highest maximum credit amount approved by all account credit grantors.",
+					"BaseAttributeReference": {
+						"Entity": "TransunionCreditReport.cdm.json/TransunionCreditReport",
+						"Name": "HighestMaximumCreditLimitAllAccounts"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "decimal",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Precision": 18,
+						"Scale": 2,
+						"Properties": {
+							"HIVE_TYPE_STRING": "decimal"
+						}
+					}
+				},
+				{
+					"Name": "TotalBalanceOwedAsOfDateOnAllAccounts",
+					"Description": "The total highest amount ever owed on a all accounts.",
+					"BaseAttributeReference": {
+						"Entity": "TransunionCreditReport.cdm.json/TransunionCreditReport",
+						"Name": "TotalBalanceOwedAsOfDateOnAllAccounts"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "decimal",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Precision": 18,
+						"Scale": 2,
+						"Properties": {
+							"HIVE_TYPE_STRING": "decimal"
+						}
+					}
+				},
+				{
+					"Name": "TotalAmountPastDueAsOfDateOnAllAccounts",
+					"Description": "The total amount of all accounts  past due as of the date verified.",
+					"BaseAttributeReference": {
+						"Entity": "TransunionCreditReport.cdm.json/TransunionCreditReport",
+						"Name": "TotalAmountPastDueAsOfDateOnAllAccounts"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "decimal",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Precision": 18,
+						"Scale": 2,
+						"Properties": {
+							"HIVE_TYPE_STRING": "decimal"
+						}
+					}
+				},
+				{
+					"Name": "TotalAmountSubscriberReportedAllAccountsPayments",
+					"Description": "The total amount of Subscriber-reported all accounts monthly payments from the \"TERMS\" field on the account",
+					"BaseAttributeReference": {
+						"Entity": "TransunionCreditReport.cdm.json/TransunionCreditReport",
+						"Name": "TotalAmountSubscriberReportedAllAccountsPayments"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "decimal",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Precision": 18,
+						"Scale": 2,
+						"Properties": {
+							"HIVE_TYPE_STRING": "decimal"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/TransunionCreditReport",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/TransunionCreditReport",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"TransunionReferenceNumber\":{\"entity\":\"TransunionCreditReport.cdm.json/TransunionCreditReport\",\"name\":\"TransunionReferenceNumber\"},\"CreditReportTimestamp\":{\"entity\":\"TransunionCreditReport.cdm.json/TransunionCreditReport\",\"name\":\"CreditReportTimestamp\"},\"TransunionConsumerNumber\":{\"entity\":\"TransunionCreditReport.cdm.json/TransunionCreditReport\",\"name\":\"TransunionConsumerNumber\"},\"ConsumerSocialSecurityNumber\":{\"entity\":\"TransunionCreditReport.cdm.json/TransunionCreditReport\",\"name\":\"ConsumerSocialSecurityNumber\"},\"ConsumerFirstName\":{\"entity\":\"TransunionCreditReport.cdm.json/TransunionCreditReport\",\"name\":\"ConsumerFirstName\"},\"ConsumerMiddleName\":{\"entity\":\"TransunionCreditReport.cdm.json/TransunionCreditReport\",\"name\":\"ConsumerMiddleName\"},\"ConsumerLastName\":{\"entity\":\"TransunionCreditReport.cdm.json/TransunionCreditReport\",\"name\":\"ConsumerLastName\"},\"ConsumerDateOfBirth\":{\"entity\":\"TransunionCreditReport.cdm.json/TransunionCreditReport\",\"name\":\"ConsumerDateOfBirth\"},\"ConsumerTelephoneNumber\":{\"entity\":\"TransunionCreditReport.cdm.json/TransunionCreditReport\",\"name\":\"ConsumerTelephoneNumber\"},\"ConsumerCurrentAddress\":{\"entity\":\"TransunionCreditReport.cdm.json/TransunionCreditReport\",\"name\":\"ConsumerCurrentAddress\"},\"ConsumerCurrentCity\":{\"entity\":\"TransunionCreditReport.cdm.json/TransunionCreditReport\",\"name\":\"ConsumerCurrentCity\"},\"ConsumerCurrentState\":{\"entity\":\"TransunionCreditReport.cdm.json/TransunionCreditReport\",\"name\":\"ConsumerCurrentState\"},\"ConsumerCurrentZipCode\":{\"entity\":\"TransunionCreditReport.cdm.json/TransunionCreditReport\",\"name\":\"ConsumerCurrentZipCode\"},\"ConsumerInFilesSinceDate\":{\"entity\":\"TransunionCreditReport.cdm.json/TransunionCreditReport\",\"name\":\"ConsumerInFilesSinceDate\"},\"CustomerId\":{\"entity\":\"TransunionCreditReport.cdm.json/TransunionCreditReport\",\"name\":\"CustomerId\"},\"NumberOfPublicRecords\":{\"entity\":\"TransunionCreditReport.cdm.json/TransunionCreditReport\",\"name\":\"NumberOfPublicRecords\"},\"NumberOfCollections\":{\"entity\":\"TransunionCreditReport.cdm.json/TransunionCreditReport\",\"name\":\"NumberOfCollections\"},\"NumberOfTrades\":{\"entity\":\"TransunionCreditReport.cdm.json/TransunionCreditReport\",\"name\":\"NumberOfTrades\"},\"NumberOfInquiries\":{\"entity\":\"TransunionCreditReport.cdm.json/TransunionCreditReport\",\"name\":\"NumberOfInquiries\"},\"NumberOfNegativeTradeAccounts\":{\"entity\":\"TransunionCreditReport.cdm.json/TransunionCreditReport\",\"name\":\"NumberOfNegativeTradeAccounts\"},\"NumberOfTradeAccountsWithHistoricalNegatives\":{\"entity\":\"TransunionCreditReport.cdm.json/TransunionCreditReport\",\"name\":\"NumberOfTradeAccountsWithHistoricalNegatives\"},\"NumberOfHistoricalNegatives\":{\"entity\":\"TransunionCreditReport.cdm.json/TransunionCreditReport\",\"name\":\"NumberOfHistoricalNegatives\"},\"NumberOfRevolvingAccounts\":{\"entity\":\"TransunionCreditReport.cdm.json/TransunionCreditReport\",\"name\":\"NumberOfRevolvingAccounts\"},\"HighestAmountEverOwedOnRevolvingAccount\":{\"entity\":\"TransunionCreditReport.cdm.json/TransunionCreditReport\",\"name\":\"HighestAmountEverOwedOnRevolvingAccount\"},\"MaximumCreditLimitRevolvingAccounts\":{\"entity\":\"TransunionCreditReport.cdm.json/TransunionCreditReport\",\"name\":\"MaximumCreditLimitRevolvingAccounts\"},\"BalanceOwedAsOfDateOnRevolvingAccounts\":{\"entity\":\"TransunionCreditReport.cdm.json/TransunionCreditReport\",\"name\":\"BalanceOwedAsOfDateOnRevolvingAccounts\"},\"AmountPastDueAsOfDateOnRevolvingAccounts\":{\"entity\":\"TransunionCreditReport.cdm.json/TransunionCreditReport\",\"name\":\"AmountPastDueAsOfDateOnRevolvingAccounts\"},\"AmountSubscriberReportedRevolvingAccountsMonthlyPayments\":{\"entity\":\"TransunionCreditReport.cdm.json/TransunionCreditReport\",\"name\":\"AmountSubscriberReportedRevolvingAccountsMonthlyPayments\"},\"PercentOfCreditAvailableForRevolvingAccounts\":{\"entity\":\"TransunionCreditReport.cdm.json/TransunionCreditReport\",\"name\":\"PercentOfCreditAvailableForRevolvingAccounts\"},\"NumberOfInstallmentAccounts\":{\"entity\":\"TransunionCreditReport.cdm.json/TransunionCreditReport\",\"name\":\"NumberOfInstallmentAccounts\"},\"HighestAmountEverOwedOnInstallmentAccount\":{\"entity\":\"TransunionCreditReport.cdm.json/TransunionCreditReport\",\"name\":\"HighestAmountEverOwedOnInstallmentAccount\"},\"MaximumCreditLimitInstallmentAccounts\":{\"entity\":\"TransunionCreditReport.cdm.json/TransunionCreditReport\",\"name\":\"MaximumCreditLimitInstallmentAccounts\"},\"BalanceOwedAsOfDateOnInstallmentAccounts\":{\"entity\":\"TransunionCreditReport.cdm.json/TransunionCreditReport\",\"name\":\"BalanceOwedAsOfDateOnInstallmentAccounts\"},\"AmountPastDueAsOfDateOnInstallmentAccounts\":{\"entity\":\"TransunionCreditReport.cdm.json/TransunionCreditReport\",\"name\":\"AmountPastDueAsOfDateOnInstallmentAccounts\"},\"AmountSubscriberReportedInstallmentAccountsMonthlyPayments\":{\"entity\":\"TransunionCreditReport.cdm.json/TransunionCreditReport\",\"name\":\"AmountSubscriberReportedInstallmentAccountsMonthlyPayments\"},\"PercentOfCreditAvailableForInstallmentAccounts\":{\"entity\":\"TransunionCreditReport.cdm.json/TransunionCreditReport\",\"name\":\"PercentOfCreditAvailableForInstallmentAccounts\"},\"NumberOfMortgageAccounts\":{\"entity\":\"TransunionCreditReport.cdm.json/TransunionCreditReport\",\"name\":\"NumberOfMortgageAccounts\"},\"HighestAmountEverOwedOnMortgageAccount\":{\"entity\":\"TransunionCreditReport.cdm.json/TransunionCreditReport\",\"name\":\"HighestAmountEverOwedOnMortgageAccount\"},\"MaximumCreditLimitMortgageAccounts\":{\"entity\":\"TransunionCreditReport.cdm.json/TransunionCreditReport\",\"name\":\"MaximumCreditLimitMortgageAccounts\"},\"BalanceOwedAsOfDateOnMortgageAccounts\":{\"entity\":\"TransunionCreditReport.cdm.json/TransunionCreditReport\",\"name\":\"BalanceOwedAsOfDateOnMortgageAccounts\"},\"AmountPastDueAsOfDateOnMortgageAccounts\":{\"entity\":\"TransunionCreditReport.cdm.json/TransunionCreditReport\",\"name\":\"AmountPastDueAsOfDateOnMortgageAccounts\"},\"AmountSubscriberReportedMortgageAccountsMonthlyPayments\":{\"entity\":\"TransunionCreditReport.cdm.json/TransunionCreditReport\",\"name\":\"AmountSubscriberReportedMortgageAccountsMonthlyPayments\"},\"PercentOfCreditAvailableForMortgageAccounts\":{\"entity\":\"TransunionCreditReport.cdm.json/TransunionCreditReport\",\"name\":\"PercentOfCreditAvailableForMortgageAccounts\"},\"TotalNumberOfAllAccounts\":{\"entity\":\"TransunionCreditReport.cdm.json/TransunionCreditReport\",\"name\":\"TotalNumberOfAllAccounts\"},\"HighestAmountEverOwedOnAllAccounts\":{\"entity\":\"TransunionCreditReport.cdm.json/TransunionCreditReport\",\"name\":\"HighestAmountEverOwedOnAllAccounts\"},\"HighestMaximumCreditLimitAllAccounts\":{\"entity\":\"TransunionCreditReport.cdm.json/TransunionCreditReport\",\"name\":\"HighestMaximumCreditLimitAllAccounts\"},\"TotalBalanceOwedAsOfDateOnAllAccounts\":{\"entity\":\"TransunionCreditReport.cdm.json/TransunionCreditReport\",\"name\":\"TotalBalanceOwedAsOfDateOnAllAccounts\"},\"TotalAmountPastDueAsOfDateOnAllAccounts\":{\"entity\":\"TransunionCreditReport.cdm.json/TransunionCreditReport\",\"name\":\"TotalAmountPastDueAsOfDateOnAllAccounts\"},\"TotalAmountSubscriberReportedAllAccountsPayments\":{\"entity\":\"TransunionCreditReport.cdm.json/TransunionCreditReport\",\"name\":\"TotalAmountSubscriberReportedAllAccountsPayments\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"TransunionCreditReport\",\"path\":\"TransunionCreditReport.cdm.json/TransunionCreditReport\"},\"description\":\"The TransUnion Credit Report, which is a summary of a consumer's recent credit history plus additional facts about the consumer that will help creditors judge the consumer's creditworthiness.\\n\\nThere are four primary categories of information contained in each type of credit report: \\n\\n1. Personal Information \\n2. Credit History \\n3. Public Records \\n4. Inquiries \\n\\nA credit report's personal information section includes your:\\n-------------------------------------------------------------------------------------------\\nName \\nCurrent and previous addresses \\nSocial Security number \\nTelephone number \\nDate of birth \\nCurrent and previous employers \\n\\nA credit report does not include information regarding:\\n-----------------------------------------------------------------------------------\\nRace \\nGender \\nReligion \\nSexual orientation \\nNational origin \\nMedical history \\nChecking or savings accounts \\nCredit score \\n\\nCREDIT HISTORY\\n------------------------------\\nCredit History\\nA credit report's credit history section includes a listing of all the credit accounts you have had in the last ten years. Types of credit accounts include:\\n\\nRetail credit cards \\nBank loans \\nFinance company loans \\nMortgages \\nBank credit cards \\nThe credit history section shows creditors how well you have kept your financial promises. Each entry in this section includes:\\n\\nAccount number \\nCreditor's name \\nAmount borrowed \\nAmount owed \\nCredit limit \\nDates when the account was opened, updated, or closed \\nTimeliness of payments \\nLate payments (these are noted as a negative activity) \\n\\nPUBLIC RECORDS:\\n--------------------------------\\nPublic Records\\nA credit report's public records section includes: \\n\\nTax liens \\nBankruptcies \\nCourt judgments (including child support judgments) \\n\\nAny negative activity in this section reflects poorly on your creditworthiness. Even if an item has been paid in full, the presence of even a one-time occurrence indicates a potential future concern for creditors. \\n\\nINQUIRIES:\\n-------------------\\nA credit report's inquiries section includes a listing of all parties who have requested a copy of your credit report. Your rights to privacy are protected by the Fair Credit Reporting Act (FCRA), and therefore only inquiries from those entities with a permissible purpose are granted access to your report.\\n\\nInquiries that do not appear on the business version of your credit report are promotional inquiries or account management inquiries. Both promotional and account management inquiries are not counted as official inquiries.\\n\\nPROMOTIONAL INQUIRIES:\\n-----------------------------------------------\\nVendors query our database based on a set of parameters and receive mailing address information for individuals matching their criteria. These vendors are not viewing your report. They just want to give people who meet their parameters a firm offer of credit or insurance.\",\"primaryKey\":[\"TransunionReferenceNumber\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"TransunionCreditReport.cdm.json/TransunionCreditReport\",\"name\":\"TransunionReferenceNumber\"},\"dataType\":\"integer\",\"description\":\"The TransUnion file number.\",\"isNullable\":false,\"name\":\"TransunionReferenceNumber\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"TransunionCreditReport.cdm.json/TransunionCreditReport\",\"name\":\"CreditReportTimestamp\"},\"dataType\":\"timestamp\",\"description\":\"The timestamp of the credit report.\",\"isNullable\":true,\"name\":\"CreditReportTimestamp\",\"timestampFormat\":\"YYYY-MM-DD HH:MM:SS.fffffffff\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"TransunionCreditReport.cdm.json/TransunionCreditReport\",\"name\":\"TransunionConsumerNumber\"},\"dataType\":\"integer\",\"description\":\"The Consumer's TransUnion number.\",\"isNullable\":false,\"name\":\"TransunionConsumerNumber\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"TransunionCreditReport.cdm.json/TransunionCreditReport\",\"name\":\"ConsumerSocialSecurityNumber\"},\"dataType\":\"decimal\",\"dataTypeLength\":9,\"description\":\"The consumer's social security number.\",\"isNullable\":true,\"scale\":0,\"name\":\"ConsumerSocialSecurityNumber\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"TransunionCreditReport.cdm.json/TransunionCreditReport\",\"name\":\"ConsumerFirstName\"},\"dataType\":\"string\",\"dataTypeLength\":256,\"description\":\"The consumer's first name.\",\"isNullable\":true,\"name\":\"ConsumerFirstName\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"TransunionCreditReport.cdm.json/TransunionCreditReport\",\"name\":\"ConsumerMiddleName\"},\"dataType\":\"string\",\"dataTypeLength\":256,\"description\":\"The consumer's middle name.\",\"isNullable\":true,\"name\":\"ConsumerMiddleName\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"TransunionCreditReport.cdm.json/TransunionCreditReport\",\"name\":\"ConsumerLastName\"},\"dataType\":\"string\",\"dataTypeLength\":256,\"description\":\"The consumer's last name.\",\"isNullable\":true,\"name\":\"ConsumerLastName\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"TransunionCreditReport.cdm.json/TransunionCreditReport\",\"name\":\"ConsumerDateOfBirth\"},\"dataType\":\"date\",\"dateFormat\":\"YYYY-MM-DD\",\"description\":\"The consumer's date of birth.\",\"isNullable\":true,\"name\":\"ConsumerDateOfBirth\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"TransunionCreditReport.cdm.json/TransunionCreditReport\",\"name\":\"ConsumerTelephoneNumber\"},\"dataType\":\"decimal\",\"dataTypeLength\":15,\"description\":\"The consumer's  telephone number.\",\"isNullable\":true,\"scale\":0,\"name\":\"ConsumerTelephoneNumber\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"TransunionCreditReport.cdm.json/TransunionCreditReport\",\"name\":\"ConsumerCurrentAddress\"},\"dataType\":\"string\",\"dataTypeLength\":512,\"description\":\"The 'street/po box' component of the consumer's address.\",\"isNullable\":true,\"name\":\"ConsumerCurrentAddress\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"TransunionCreditReport.cdm.json/TransunionCreditReport\",\"name\":\"ConsumerCurrentCity\"},\"dataType\":\"string\",\"dataTypeLength\":256,\"description\":\"The 'city' component of the consumer's  address.\",\"isNullable\":true,\"name\":\"ConsumerCurrentCity\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"TransunionCreditReport.cdm.json/TransunionCreditReport\",\"name\":\"ConsumerCurrentState\"},\"dataType\":\"string\",\"dataTypeLength\":64,\"description\":\"The 'state' component of the consumer's address.\",\"isNullable\":true,\"name\":\"ConsumerCurrentState\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"TransunionCreditReport.cdm.json/TransunionCreditReport\",\"name\":\"ConsumerCurrentZipCode\"},\"dataType\":\"decimal\",\"dataTypeLength\":11,\"description\":\"The 'zip code' component of the consumer's address.\",\"isNullable\":true,\"scale\":0,\"name\":\"ConsumerCurrentZipCode\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"TransunionCreditReport.cdm.json/TransunionCreditReport\",\"name\":\"ConsumerInFilesSinceDate\"},\"dataType\":\"date\",\"dateFormat\":\"YYYY-MM-DD\",\"description\":\"The date that the consumer was originally in the TransUnion files.\",\"isNullable\":true,\"name\":\"ConsumerInFilesSinceDate\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"TransunionCreditReport.cdm.json/TransunionCreditReport\",\"name\":\"CustomerId\"},\"dataType\":\"long\",\"description\":\"The unique identifier of a Customer.\",\"isNullable\":true,\"name\":\"CustomerId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"TransunionCreditReport.cdm.json/TransunionCreditReport\",\"name\":\"NumberOfPublicRecords\"},\"dataType\":\"integer\",\"description\":\"Total number of public records\",\"isNullable\":true,\"name\":\"NumberOfPublicRecords\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"TransunionCreditReport.cdm.json/TransunionCreditReport\",\"name\":\"NumberOfCollections\"},\"dataType\":\"integer\",\"description\":\"Total number of collection accounts transferred to a third-party collection agency.\",\"isNullable\":true,\"name\":\"NumberOfCollections\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"TransunionCreditReport.cdm.json/TransunionCreditReport\",\"name\":\"NumberOfTrades\"},\"dataType\":\"integer\",\"description\":\"Total number of trades\",\"isNullable\":true,\"name\":\"NumberOfTrades\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"TransunionCreditReport.cdm.json/TransunionCreditReport\",\"name\":\"NumberOfInquiries\"},\"dataType\":\"integer\",\"description\":\"Total number of inquiries\",\"isNullable\":true,\"name\":\"NumberOfInquiries\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"TransunionCreditReport.cdm.json/TransunionCreditReport\",\"name\":\"NumberOfNegativeTradeAccounts\"},\"dataType\":\"integer\",\"description\":\"Total number of negative accounts (derogatory) with a current Manner of Payment (MOP) of 2 or greater\",\"isNullable\":true,\"name\":\"NumberOfNegativeTradeAccounts\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"TransunionCreditReport.cdm.json/TransunionCreditReport\",\"name\":\"NumberOfTradeAccountsWithHistoricalNegatives\"},\"dataType\":\"integer\",\"description\":\"The number of tradelines which have historical negative information.\",\"isNullable\":true,\"name\":\"NumberOfTradeAccountsWithHistoricalNegatives\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"TransunionCreditReport.cdm.json/TransunionCreditReport\",\"name\":\"NumberOfHistoricalNegatives\"},\"dataType\":\"integer\",\"description\":\"The number of tradelines which have historical negative information.\",\"isNullable\":true,\"name\":\"NumberOfHistoricalNegatives\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"TransunionCreditReport.cdm.json/TransunionCreditReport\",\"name\":\"NumberOfRevolvingAccounts\"},\"dataType\":\"integer\",\"description\":\"The total number of revolving accounts.\",\"isNullable\":true,\"name\":\"NumberOfRevolvingAccounts\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"TransunionCreditReport.cdm.json/TransunionCreditReport\",\"name\":\"HighestAmountEverOwedOnRevolvingAccount\"},\"dataType\":\"decimal\",\"dataTypeLength\":18,\"description\":\"The highest amount ever owed on a revolving account.\",\"isNullable\":true,\"scale\":2,\"name\":\"HighestAmountEverOwedOnRevolvingAccount\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"TransunionCreditReport.cdm.json/TransunionCreditReport\",\"name\":\"MaximumCreditLimitRevolvingAccounts\"},\"dataType\":\"decimal\",\"dataTypeLength\":18,\"description\":\"The maximum credit amount approved by a revolving account credit grantors.\",\"isNullable\":true,\"scale\":2,\"name\":\"MaximumCreditLimitRevolvingAccounts\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"TransunionCreditReport.cdm.json/TransunionCreditReport\",\"name\":\"BalanceOwedAsOfDateOnRevolvingAccounts\"},\"dataType\":\"decimal\",\"dataTypeLength\":18,\"description\":\"The highest amount ever owed on a revolving account.\",\"isNullable\":true,\"scale\":2,\"name\":\"BalanceOwedAsOfDateOnRevolvingAccounts\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"TransunionCreditReport.cdm.json/TransunionCreditReport\",\"name\":\"AmountPastDueAsOfDateOnRevolvingAccounts\"},\"dataType\":\"decimal\",\"dataTypeLength\":18,\"description\":\"The amount of revolving accounts  past due as of the date verified.\",\"isNullable\":true,\"scale\":2,\"name\":\"AmountPastDueAsOfDateOnRevolvingAccounts\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"TransunionCreditReport.cdm.json/TransunionCreditReport\",\"name\":\"AmountSubscriberReportedRevolvingAccountsMonthlyPayments\"},\"dataType\":\"decimal\",\"dataTypeLength\":18,\"description\":\"The amount of Subscriber-reported revolving accounts monthly payments from the \\\"TERMS\\\" field on the account\",\"isNullable\":true,\"scale\":2,\"name\":\"AmountSubscriberReportedRevolvingAccountsMonthlyPayments\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"TransunionCreditReport.cdm.json/TransunionCreditReport\",\"name\":\"PercentOfCreditAvailableForRevolvingAccounts\"},\"dataType\":\"decimal\",\"dataTypeLength\":18,\"description\":\"The percent of credit available for revolving accounts. \\nField is calculated by subtracting balance from credit limit divided by credit limit.\",\"isNullable\":true,\"scale\":8,\"name\":\"PercentOfCreditAvailableForRevolvingAccounts\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"TransunionCreditReport.cdm.json/TransunionCreditReport\",\"name\":\"NumberOfInstallmentAccounts\"},\"dataType\":\"integer\",\"description\":\"The total number of installment accounts.\",\"isNullable\":true,\"name\":\"NumberOfInstallmentAccounts\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"TransunionCreditReport.cdm.json/TransunionCreditReport\",\"name\":\"HighestAmountEverOwedOnInstallmentAccount\"},\"dataType\":\"decimal\",\"dataTypeLength\":18,\"description\":\"The highest amount ever owed on a installment account.\",\"isNullable\":true,\"scale\":2,\"name\":\"HighestAmountEverOwedOnInstallmentAccount\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"TransunionCreditReport.cdm.json/TransunionCreditReport\",\"name\":\"MaximumCreditLimitInstallmentAccounts\"},\"dataType\":\"decimal\",\"dataTypeLength\":18,\"description\":\"The maximum credit amount approved by a installment account credit grantors.\",\"isNullable\":true,\"scale\":2,\"name\":\"MaximumCreditLimitInstallmentAccounts\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"TransunionCreditReport.cdm.json/TransunionCreditReport\",\"name\":\"BalanceOwedAsOfDateOnInstallmentAccounts\"},\"dataType\":\"decimal\",\"dataTypeLength\":18,\"description\":\"The highest amount ever owed on a installment account.\",\"isNullable\":true,\"scale\":2,\"name\":\"BalanceOwedAsOfDateOnInstallmentAccounts\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"TransunionCreditReport.cdm.json/TransunionCreditReport\",\"name\":\"AmountPastDueAsOfDateOnInstallmentAccounts\"},\"dataType\":\"decimal\",\"dataTypeLength\":18,\"description\":\"The amount of installment accounts  past due as of the date verified.\",\"isNullable\":true,\"scale\":2,\"name\":\"AmountPastDueAsOfDateOnInstallmentAccounts\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"TransunionCreditReport.cdm.json/TransunionCreditReport\",\"name\":\"AmountSubscriberReportedInstallmentAccountsMonthlyPayments\"},\"dataType\":\"decimal\",\"dataTypeLength\":18,\"description\":\"The amount of Subscriber-reported installment accounts monthly payments from the \\\"TERMS\\\" field on the account\",\"isNullable\":true,\"scale\":2,\"name\":\"AmountSubscriberReportedInstallmentAccountsMonthlyPayments\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"TransunionCreditReport.cdm.json/TransunionCreditReport\",\"name\":\"PercentOfCreditAvailableForInstallmentAccounts\"},\"dataType\":\"decimal\",\"dataTypeLength\":18,\"description\":\"The percent of credit available for installment accounts. \\nField is calculated by subtracting balance from credit limit divided by credit limit.\",\"isNullable\":true,\"scale\":8,\"name\":\"PercentOfCreditAvailableForInstallmentAccounts\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"TransunionCreditReport.cdm.json/TransunionCreditReport\",\"name\":\"NumberOfMortgageAccounts\"},\"dataType\":\"integer\",\"description\":\"The total number of mortgage accounts.\",\"isNullable\":true,\"name\":\"NumberOfMortgageAccounts\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"TransunionCreditReport.cdm.json/TransunionCreditReport\",\"name\":\"HighestAmountEverOwedOnMortgageAccount\"},\"dataType\":\"decimal\",\"dataTypeLength\":18,\"description\":\"The highest amount ever owed on a mortgage account.\",\"isNullable\":true,\"scale\":2,\"name\":\"HighestAmountEverOwedOnMortgageAccount\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"TransunionCreditReport.cdm.json/TransunionCreditReport\",\"name\":\"MaximumCreditLimitMortgageAccounts\"},\"dataType\":\"decimal\",\"dataTypeLength\":18,\"description\":\"The maximum credit amount approved by a mortgage account credit grantors.\",\"isNullable\":true,\"scale\":2,\"name\":\"MaximumCreditLimitMortgageAccounts\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"TransunionCreditReport.cdm.json/TransunionCreditReport\",\"name\":\"BalanceOwedAsOfDateOnMortgageAccounts\"},\"dataType\":\"decimal\",\"dataTypeLength\":18,\"description\":\"The highest amount ever owed on a mortgage account.\",\"isNullable\":true,\"scale\":2,\"name\":\"BalanceOwedAsOfDateOnMortgageAccounts\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"TransunionCreditReport.cdm.json/TransunionCreditReport\",\"name\":\"AmountPastDueAsOfDateOnMortgageAccounts\"},\"dataType\":\"decimal\",\"dataTypeLength\":18,\"description\":\"The amount of mortgage accounts  past due as of the date verified.\",\"isNullable\":true,\"scale\":2,\"name\":\"AmountPastDueAsOfDateOnMortgageAccounts\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"TransunionCreditReport.cdm.json/TransunionCreditReport\",\"name\":\"AmountSubscriberReportedMortgageAccountsMonthlyPayments\"},\"dataType\":\"decimal\",\"dataTypeLength\":18,\"description\":\"The amount of Subscriber-reported mortgage accounts monthly payments from the \\\"TERMS\\\" field on the account\",\"isNullable\":true,\"scale\":2,\"name\":\"AmountSubscriberReportedMortgageAccountsMonthlyPayments\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"TransunionCreditReport.cdm.json/TransunionCreditReport\",\"name\":\"PercentOfCreditAvailableForMortgageAccounts\"},\"dataType\":\"decimal\",\"dataTypeLength\":18,\"description\":\"The percent of credit available for mortgage accounts. \\nField is calculated by subtracting balance from credit limit divided by credit limit.\",\"isNullable\":true,\"scale\":8,\"name\":\"PercentOfCreditAvailableForMortgageAccounts\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"TransunionCreditReport.cdm.json/TransunionCreditReport\",\"name\":\"TotalNumberOfAllAccounts\"},\"dataType\":\"integer\",\"description\":\"The total number of all accounts.\",\"isNullable\":true,\"name\":\"TotalNumberOfAllAccounts\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"TransunionCreditReport.cdm.json/TransunionCreditReport\",\"name\":\"HighestAmountEverOwedOnAllAccounts\"},\"dataType\":\"decimal\",\"dataTypeLength\":18,\"description\":\"The highest amount ever owed on an account.\",\"isNullable\":true,\"scale\":2,\"name\":\"HighestAmountEverOwedOnAllAccounts\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"TransunionCreditReport.cdm.json/TransunionCreditReport\",\"name\":\"HighestMaximumCreditLimitAllAccounts\"},\"dataType\":\"decimal\",\"dataTypeLength\":18,\"description\":\"The highest maximum credit amount approved by all account credit grantors.\",\"isNullable\":true,\"scale\":2,\"name\":\"HighestMaximumCreditLimitAllAccounts\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"TransunionCreditReport.cdm.json/TransunionCreditReport\",\"name\":\"TotalBalanceOwedAsOfDateOnAllAccounts\"},\"dataType\":\"decimal\",\"dataTypeLength\":18,\"description\":\"The total highest amount ever owed on a all accounts.\",\"isNullable\":true,\"scale\":2,\"name\":\"TotalBalanceOwedAsOfDateOnAllAccounts\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"TransunionCreditReport.cdm.json/TransunionCreditReport\",\"name\":\"TotalAmountPastDueAsOfDateOnAllAccounts\"},\"dataType\":\"decimal\",\"dataTypeLength\":18,\"description\":\"The total amount of all accounts  past due as of the date verified.\",\"isNullable\":true,\"scale\":2,\"name\":\"TotalAmountPastDueAsOfDateOnAllAccounts\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"TransunionCreditReport.cdm.json/TransunionCreditReport\",\"name\":\"TotalAmountSubscriberReportedAllAccountsPayments\"},\"dataType\":\"decimal\",\"dataTypeLength\":18,\"description\":\"The total amount of Subscriber-reported all accounts monthly payments from the \\\"TERMS\\\" field on the account\",\"isNullable\":true,\"scale\":2,\"name\":\"TotalAmountSubscriberReportedAllAccountsPayments\"}]}}}",
+			"Description": "The TransUnion Credit Report, which is a summary of a consumer's recent credit history plus additional facts about the consumer that will help creditors judge the consumer's creditworthiness.\n\nThere are four primary categories of information contained in each type of credit report: \n\n1. Personal Information \n2. Credit History \n3. Public Records \n4. Inquiries \n\nA credit report's personal information section includes your:\n-------------------------------------------------------------------------------------------\nName \nCurrent and previous addresses \nSocial Security number \nTelephone number \nDate of birth \nCurrent and previous employers \n\nA credit report does not include information regarding:\n-----------------------------------------------------------------------------------\nRace \nGender \nReligion \nSexual orientation \nNational origin \nMedical history \nChecking or savings accounts \nCredit score \n\nCREDIT HISTORY\n------------------------------\nCredit History\nA credit report's credit history section includes a listing of all the credit accounts you have had in the last ten years. Types of credit accounts include:\n\nRetail credit cards \nBank loans \nFinance company loans \nMortgages \nBank credit cards \nThe credit history section shows creditors how well you have kept your financial promises. Each entry in this section includes:\n\nAccount number \nCreditor's name \nAmount borrowed \nAmount owed \nCredit limit \nDates when the account was opened, updated, or closed \nTimeliness of payments \nLate payments (these are noted as a negative activity) \n\nPUBLIC RECORDS:\n--------------------------------\nPublic Records\nA credit report's public records section includes: \n\nTax liens \nBankruptcies \nCourt judgments (including child support judgments) \n\nAny negative activity in this section reflects poorly on your creditworthiness. Even if an item has been paid in full, the presence of even a one-time occurrence indicates a potential future concern for creditors. \n\nINQUIRIES:\n-------------------\nA credit report's inquiries section includes a listing of all parties who have requested a copy of your credit report. Your rights to privacy are protected by the Fair Credit Reporting Act (FCRA), and therefore only inquiries from those entities with a permissible purpose are granted access to your report.\n\nInquiries that do not appear on the business version of your credit report are promotional inquiries or account management inquiries. Both promotional and account management inquiries are not counted as official inquiries.\n\nPROMOTIONAL INQUIRIES:\n-----------------------------------------------\nVendors query our database based on a set of parameters and receive mailing address information for individuals matching their criteria. These vendors are not viewing your report. They just want to give people who meet their parameters a firm offer of credit or insurance.",
+			"DisplayFolderInfo": "{\"name\":\"Customer Credit & Collections\",\"colorCode\":\"#022F22\"}",
+			"PrimaryKeys": "TransunionReferenceNumber",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

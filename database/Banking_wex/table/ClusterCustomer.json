@@ -1,0 +1,163 @@
+{
+	"name": "ClusterCustomer",
+	"properties": {
+		"Name": "ClusterCustomer",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "The one of more Clusters that the customer is a member of, which is an arbitrary grouping of customers based upon convenience, purpose or some similar objective.",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "CustomerId",
+					"Description": "The unique identifier of a Customer.",
+					"BaseAttributeReference": {
+						"Entity": "ClusterCustomer.cdm.json/ClusterCustomer",
+						"Name": "CustomerId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "long",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "long"
+						}
+					}
+				},
+				{
+					"Name": "ClusterId",
+					"Description": "The unique identifier of a Cluster.",
+					"BaseAttributeReference": {
+						"Entity": "ClusterCustomer.cdm.json/ClusterCustomer",
+						"Name": "ClusterId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "PeriodStartDate",
+					"Description": "The period starting date of the Cluster Customer association.",
+					"BaseAttributeReference": {
+						"Entity": "ClusterCustomer.cdm.json/ClusterCustomer",
+						"Name": "PeriodStartDate"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "date",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"DateFormat": "YYYY-MM-DD",
+							"HIVE_TYPE_STRING": "date"
+						}
+					}
+				},
+				{
+					"Name": "PeriodEndDate",
+					"Description": "The period ending date of the Cluster Customer association.",
+					"BaseAttributeReference": {
+						"Entity": "ClusterCustomer.cdm.json/ClusterCustomer",
+						"Name": "PeriodEndDate"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "date",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"DateFormat": "YYYY-MM-DD",
+							"HIVE_TYPE_STRING": "date"
+						}
+					}
+				},
+				{
+					"Name": "DateAssigned",
+					"Description": "The date that the Customer was assigned to the Cluster.",
+					"BaseAttributeReference": {
+						"Entity": "ClusterCustomer.cdm.json/ClusterCustomer",
+						"Name": "DateAssigned"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "date",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"DateFormat": "YYYY-MM-DD",
+							"HIVE_TYPE_STRING": "date"
+						}
+					}
+				},
+				{
+					"Name": "ClusterCustomerNote",
+					"Description": "A note, comment or additional information regarding the Cluster Customer.",
+					"BaseAttributeReference": {
+						"Entity": "ClusterCustomer.cdm.json/ClusterCustomer",
+						"Name": "ClusterCustomerNote"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/ClusterCustomer",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/ClusterCustomer",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"CustomerId\":{\"entity\":\"ClusterCustomer.cdm.json/ClusterCustomer\",\"name\":\"CustomerId\"},\"ClusterId\":{\"entity\":\"ClusterCustomer.cdm.json/ClusterCustomer\",\"name\":\"ClusterId\"},\"PeriodStartDate\":{\"entity\":\"ClusterCustomer.cdm.json/ClusterCustomer\",\"name\":\"PeriodStartDate\"},\"PeriodEndDate\":{\"entity\":\"ClusterCustomer.cdm.json/ClusterCustomer\",\"name\":\"PeriodEndDate\"},\"DateAssigned\":{\"entity\":\"ClusterCustomer.cdm.json/ClusterCustomer\",\"name\":\"DateAssigned\"},\"ClusterCustomerNote\":{\"entity\":\"ClusterCustomer.cdm.json/ClusterCustomer\",\"name\":\"ClusterCustomerNote\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"ClusterCustomer\",\"path\":\"ClusterCustomer.cdm.json/ClusterCustomer\"},\"description\":\"The one of more Clusters that the customer is a member of, which is an arbitrary grouping of customers based upon convenience, purpose or some similar objective.\",\"primaryKey\":[\"CustomerId\",\"ClusterId\",\"PeriodStartDate\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ClusterCustomer.cdm.json/ClusterCustomer\",\"name\":\"CustomerId\"},\"dataType\":\"long\",\"description\":\"The unique identifier of a Customer.\",\"isNullable\":false,\"name\":\"CustomerId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ClusterCustomer.cdm.json/ClusterCustomer\",\"name\":\"ClusterId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Cluster.\",\"isNullable\":false,\"name\":\"ClusterId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ClusterCustomer.cdm.json/ClusterCustomer\",\"name\":\"PeriodStartDate\"},\"dataType\":\"date\",\"dateFormat\":\"YYYY-MM-DD\",\"description\":\"The period starting date of the Cluster Customer association.\",\"isNullable\":false,\"name\":\"PeriodStartDate\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ClusterCustomer.cdm.json/ClusterCustomer\",\"name\":\"PeriodEndDate\"},\"dataType\":\"date\",\"dateFormat\":\"YYYY-MM-DD\",\"description\":\"The period ending date of the Cluster Customer association.\",\"isNullable\":true,\"name\":\"PeriodEndDate\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ClusterCustomer.cdm.json/ClusterCustomer\",\"name\":\"DateAssigned\"},\"dataType\":\"date\",\"dateFormat\":\"YYYY-MM-DD\",\"description\":\"The date that the Customer was assigned to the Cluster.\",\"isNullable\":true,\"name\":\"DateAssigned\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ClusterCustomer.cdm.json/ClusterCustomer\",\"name\":\"ClusterCustomerNote\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"A note, comment or additional information regarding the Cluster Customer.\",\"isNullable\":true,\"name\":\"ClusterCustomerNote\"}]}}}",
+			"Description": "The one of more Clusters that the customer is a member of, which is an arbitrary grouping of customers based upon convenience, purpose or some similar objective.",
+			"DisplayFolderInfo": "{\"name\":\"Customer\",\"colorCode\":\"#4B003F\"}",
+			"PrimaryKeys": "CustomerId,ClusterId,PeriodStartDate",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

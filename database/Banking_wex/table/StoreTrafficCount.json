@@ -1,0 +1,162 @@
+{
+	"name": "StoreTrafficCount",
+	"properties": {
+		"Name": "StoreTrafficCount",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "The average daily number of pedestrians passing a particular store display location within a period.",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "StoreId",
+					"Description": "The unique identifier of a Store.",
+					"BaseAttributeReference": {
+						"Entity": "StoreTrafficCount.cdm.json/StoreTrafficCount",
+						"Name": "StoreId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "DisplayLocationId",
+					"Description": "The unique identifier of a display location within a Store.",
+					"BaseAttributeReference": {
+						"Entity": "StoreTrafficCount.cdm.json/StoreTrafficCount",
+						"Name": "DisplayLocationId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "PeriodStartTimestamp",
+					"Description": "The period start timestamp for which the associated traffic count is provided.",
+					"BaseAttributeReference": {
+						"Entity": "StoreTrafficCount.cdm.json/StoreTrafficCount",
+						"Name": "PeriodStartTimestamp"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "timestamp",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"TimestampFormat": "YYYY-MM-DD HH:MM:SS.fffffffff",
+							"HIVE_TYPE_STRING": "timestamp"
+						}
+					}
+				},
+				{
+					"Name": "PeriodEndTimestamp",
+					"Description": "The period end timestamp for which the associated traffic count is provided.",
+					"BaseAttributeReference": {
+						"Entity": "StoreTrafficCount.cdm.json/StoreTrafficCount",
+						"Name": "PeriodEndTimestamp"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "timestamp",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"TimestampFormat": "YYYY-MM-DD HH:MM:SS.fffffffff",
+							"HIVE_TYPE_STRING": "timestamp"
+						}
+					}
+				},
+				{
+					"Name": "TrafficCount",
+					"Description": "The average daily number of pedestrians passing a particular store display location within a period.",
+					"BaseAttributeReference": {
+						"Entity": "StoreTrafficCount.cdm.json/StoreTrafficCount",
+						"Name": "TrafficCount"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "StoreTrafficCountNote",
+					"Description": "A note, comment or additional information regarding the store traffic count.",
+					"BaseAttributeReference": {
+						"Entity": "StoreTrafficCount.cdm.json/StoreTrafficCount",
+						"Name": "StoreTrafficCountNote"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/StoreTrafficCount",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/StoreTrafficCount",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"StoreId\":{\"entity\":\"StoreTrafficCount.cdm.json/StoreTrafficCount\",\"name\":\"StoreId\"},\"DisplayLocationId\":{\"entity\":\"StoreTrafficCount.cdm.json/StoreTrafficCount\",\"name\":\"DisplayLocationId\"},\"PeriodStartTimestamp\":{\"entity\":\"StoreTrafficCount.cdm.json/StoreTrafficCount\",\"name\":\"PeriodStartTimestamp\"},\"PeriodEndTimestamp\":{\"entity\":\"StoreTrafficCount.cdm.json/StoreTrafficCount\",\"name\":\"PeriodEndTimestamp\"},\"TrafficCount\":{\"entity\":\"StoreTrafficCount.cdm.json/StoreTrafficCount\",\"name\":\"TrafficCount\"},\"StoreTrafficCountNote\":{\"entity\":\"StoreTrafficCount.cdm.json/StoreTrafficCount\",\"name\":\"StoreTrafficCountNote\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"StoreTrafficCount\",\"path\":\"StoreTrafficCount.cdm.json/StoreTrafficCount\"},\"description\":\"The average daily number of pedestrians passing a particular store display location within a period.\",\"primaryKey\":[\"StoreId\",\"DisplayLocationId\",\"PeriodStartTimestamp\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"StoreTrafficCount.cdm.json/StoreTrafficCount\",\"name\":\"StoreId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Store.\",\"isNullable\":false,\"name\":\"StoreId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"StoreTrafficCount.cdm.json/StoreTrafficCount\",\"name\":\"DisplayLocationId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a display location within a Store.\",\"isNullable\":false,\"name\":\"DisplayLocationId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"StoreTrafficCount.cdm.json/StoreTrafficCount\",\"name\":\"PeriodStartTimestamp\"},\"dataType\":\"timestamp\",\"description\":\"The period start timestamp for which the associated traffic count is provided.\",\"isNullable\":false,\"name\":\"PeriodStartTimestamp\",\"timestampFormat\":\"YYYY-MM-DD HH:MM:SS.fffffffff\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"StoreTrafficCount.cdm.json/StoreTrafficCount\",\"name\":\"PeriodEndTimestamp\"},\"dataType\":\"timestamp\",\"description\":\"The period end timestamp for which the associated traffic count is provided.\",\"isNullable\":false,\"name\":\"PeriodEndTimestamp\",\"timestampFormat\":\"YYYY-MM-DD HH:MM:SS.fffffffff\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"StoreTrafficCount.cdm.json/StoreTrafficCount\",\"name\":\"TrafficCount\"},\"dataType\":\"integer\",\"description\":\"The average daily number of pedestrians passing a particular store display location within a period.\",\"isNullable\":true,\"name\":\"TrafficCount\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"StoreTrafficCount.cdm.json/StoreTrafficCount\",\"name\":\"StoreTrafficCountNote\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"A note, comment or additional information regarding the store traffic count.\",\"isNullable\":true,\"name\":\"StoreTrafficCountNote\"}]}}}",
+			"Description": "The average daily number of pedestrians passing a particular store display location within a period.",
+			"DisplayFolderInfo": "{\"name\":\"Channel\",\"colorCode\":\"#001D3F\"}",
+			"PrimaryKeys": "StoreId,DisplayLocationId,PeriodStartTimestamp",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

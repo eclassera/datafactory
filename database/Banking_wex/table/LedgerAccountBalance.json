@@ -1,0 +1,179 @@
+{
+	"name": "LedgerAccountBalance",
+	"properties": {
+		"Name": "LedgerAccountBalance",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "The ledger account balance as of the associated timestamp.",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "LedgerId",
+					"Description": "The unique identifier of a Ledger.",
+					"BaseAttributeReference": {
+						"Entity": "LedgerAccountBalance.cdm.json/LedgerAccountBalance",
+						"Name": "LedgerId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "LedgerAccountNumber",
+					"Description": "The unique identifier of an Account.",
+					"BaseAttributeReference": {
+						"Entity": "LedgerAccountBalance.cdm.json/LedgerAccountBalance",
+						"Name": "LedgerAccountNumber"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Length": 20,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "Timestamp",
+					"Description": "The timestamp that the associated balance is current or effective as-of.",
+					"BaseAttributeReference": {
+						"Entity": "LedgerAccountBalance.cdm.json/LedgerAccountBalance",
+						"Name": "Timestamp"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "timestamp",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"TimestampFormat": "YYYY-MM-DD HH:MM:SS.fffffffff",
+							"HIVE_TYPE_STRING": "timestamp"
+						}
+					}
+				},
+				{
+					"Name": "LedgerAccountBalanceAmount",
+					"Description": "The balance of the ledger account as of the associated timestamp.",
+					"BaseAttributeReference": {
+						"Entity": "LedgerAccountBalance.cdm.json/LedgerAccountBalance",
+						"Name": "LedgerAccountBalanceAmount"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "decimal",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Precision": 18,
+						"Scale": 2,
+						"Properties": {
+							"HIVE_TYPE_STRING": "decimal"
+						}
+					}
+				},
+				{
+					"Name": "CreditBalanceIndicator",
+					"Description": "Indicates whether the account balance is a credit balance or debit balance.\n\nA credit balance is an excess of credits over debits.",
+					"BaseAttributeReference": {
+						"Entity": "LedgerAccountBalance.cdm.json/LedgerAccountBalance",
+						"Name": "CreditBalanceIndicator"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "boolean",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"HIVE_TYPE_STRING": "boolean"
+						}
+					}
+				},
+				{
+					"Name": "DebitBalanceIndicator",
+					"Description": "Indicates whether the account balance is a credit balance or debit balance.\n\nA debit balance is an excess of debits over credits.",
+					"BaseAttributeReference": {
+						"Entity": "LedgerAccountBalance.cdm.json/LedgerAccountBalance",
+						"Name": "DebitBalanceIndicator"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "boolean",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"HIVE_TYPE_STRING": "boolean"
+						}
+					}
+				},
+				{
+					"Name": "LedgerAccountBalanceTypeId",
+					"Description": "The unique identifier of an Account Balance Type.",
+					"BaseAttributeReference": {
+						"Entity": "LedgerAccountBalance.cdm.json/LedgerAccountBalance",
+						"Name": "LedgerAccountBalanceTypeId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/LedgerAccountBalance",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/LedgerAccountBalance",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"LedgerId\":{\"entity\":\"LedgerAccountBalance.cdm.json/LedgerAccountBalance\",\"name\":\"LedgerId\"},\"LedgerAccountNumber\":{\"entity\":\"LedgerAccountBalance.cdm.json/LedgerAccountBalance\",\"name\":\"LedgerAccountNumber\"},\"Timestamp\":{\"entity\":\"LedgerAccountBalance.cdm.json/LedgerAccountBalance\",\"name\":\"Timestamp\"},\"LedgerAccountBalanceAmount\":{\"entity\":\"LedgerAccountBalance.cdm.json/LedgerAccountBalance\",\"name\":\"LedgerAccountBalanceAmount\"},\"CreditBalanceIndicator\":{\"entity\":\"LedgerAccountBalance.cdm.json/LedgerAccountBalance\",\"name\":\"CreditBalanceIndicator\"},\"DebitBalanceIndicator\":{\"entity\":\"LedgerAccountBalance.cdm.json/LedgerAccountBalance\",\"name\":\"DebitBalanceIndicator\"},\"LedgerAccountBalanceTypeId\":{\"entity\":\"LedgerAccountBalance.cdm.json/LedgerAccountBalance\",\"name\":\"LedgerAccountBalanceTypeId\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"LedgerAccountBalance\",\"path\":\"LedgerAccountBalance.cdm.json/LedgerAccountBalance\"},\"description\":\"The ledger account balance as of the associated timestamp.\",\"primaryKey\":[\"LedgerId\",\"LedgerAccountNumber\",\"Timestamp\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"LedgerAccountBalance.cdm.json/LedgerAccountBalance\",\"name\":\"LedgerId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Ledger.\",\"isNullable\":false,\"name\":\"LedgerId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"LedgerAccountBalance.cdm.json/LedgerAccountBalance\",\"name\":\"LedgerAccountNumber\"},\"dataType\":\"string\",\"dataTypeLength\":20,\"description\":\"The unique identifier of an Account.\",\"isNullable\":false,\"name\":\"LedgerAccountNumber\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"LedgerAccountBalance.cdm.json/LedgerAccountBalance\",\"name\":\"Timestamp\"},\"dataType\":\"timestamp\",\"description\":\"The timestamp that the associated balance is current or effective as-of.\",\"isNullable\":false,\"name\":\"Timestamp\",\"timestampFormat\":\"YYYY-MM-DD HH:MM:SS.fffffffff\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"LedgerAccountBalance.cdm.json/LedgerAccountBalance\",\"name\":\"LedgerAccountBalanceAmount\"},\"dataType\":\"decimal\",\"dataTypeLength\":18,\"description\":\"The balance of the ledger account as of the associated timestamp.\",\"isNullable\":true,\"scale\":2,\"name\":\"LedgerAccountBalanceAmount\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"LedgerAccountBalance.cdm.json/LedgerAccountBalance\",\"name\":\"CreditBalanceIndicator\"},\"dataType\":\"boolean\",\"description\":\"Indicates whether the account balance is a credit balance or debit balance.\\n\\nA credit balance is an excess of credits over debits.\",\"isNullable\":true,\"name\":\"CreditBalanceIndicator\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"LedgerAccountBalance.cdm.json/LedgerAccountBalance\",\"name\":\"DebitBalanceIndicator\"},\"dataType\":\"boolean\",\"description\":\"Indicates whether the account balance is a credit balance or debit balance.\\n\\nA debit balance is an excess of debits over credits.\",\"isNullable\":true,\"name\":\"DebitBalanceIndicator\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"LedgerAccountBalance.cdm.json/LedgerAccountBalance\",\"name\":\"LedgerAccountBalanceTypeId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of an Account Balance Type.\",\"isNullable\":true,\"name\":\"LedgerAccountBalanceTypeId\"}]}}}",
+			"Description": "The ledger account balance as of the associated timestamp.",
+			"DisplayFolderInfo": "{\"name\":\"Accounting & Financial Reporting\",\"colorCode\":\"#0078D4\"}",
+			"PrimaryKeys": "LedgerId,LedgerAccountNumber,Timestamp",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

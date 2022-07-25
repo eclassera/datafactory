@@ -1,0 +1,112 @@
+{
+	"name": "ExperianCompanyIndustryPurchasingTerm",
+	"properties": {
+		"Name": "ExperianCompanyIndustryPurchasingTerm",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "The industry purchasing term(s) applicable to the Experian business.",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "ExperianFileNumber",
+					"Description": "The unique and persistent number that identifies and tracks the Experian company.",
+					"BaseAttributeReference": {
+						"Entity": "ExperianCompanyIndustryPurchasingTerm.cdm.json/ExperianCompanyIndustryPurchasingTerm",
+						"Name": "ExperianFileNumber"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "ProfileTimestamp",
+					"Description": "The timestamp of the Experian profile.",
+					"BaseAttributeReference": {
+						"Entity": "ExperianCompanyIndustryPurchasingTerm.cdm.json/ExperianCompanyIndustryPurchasingTerm",
+						"Name": "ProfileTimestamp"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "timestamp",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"TimestampFormat": "YYYY-MM-DD HH:MM:SS.fffffffff",
+							"HIVE_TYPE_STRING": "timestamp"
+						}
+					}
+				},
+				{
+					"Name": "ExperianIndustryPurchasingTermId",
+					"Description": "The unique identifier of an Experian industry purchasing term.",
+					"BaseAttributeReference": {
+						"Entity": "ExperianCompanyIndustryPurchasingTerm.cdm.json/ExperianCompanyIndustryPurchasingTerm",
+						"Name": "ExperianIndustryPurchasingTermId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/ExperianCompanyIndustryPurchasingTerm",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/ExperianCompanyIndustryPurchasingTerm",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"ExperianFileNumber\":{\"entity\":\"ExperianCompanyIndustryPurchasingTerm.cdm.json/ExperianCompanyIndustryPurchasingTerm\",\"name\":\"ExperianFileNumber\"},\"ProfileTimestamp\":{\"entity\":\"ExperianCompanyIndustryPurchasingTerm.cdm.json/ExperianCompanyIndustryPurchasingTerm\",\"name\":\"ProfileTimestamp\"},\"ExperianIndustryPurchasingTermId\":{\"entity\":\"ExperianCompanyIndustryPurchasingTerm.cdm.json/ExperianCompanyIndustryPurchasingTerm\",\"name\":\"ExperianIndustryPurchasingTermId\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"ExperianCompanyIndustryPurchasingTerm\",\"path\":\"ExperianCompanyIndustryPurchasingTerm.cdm.json/ExperianCompanyIndustryPurchasingTerm\"},\"description\":\"The industry purchasing term(s) applicable to the Experian business.\",\"primaryKey\":[\"ExperianFileNumber\",\"ProfileTimestamp\",\"ExperianIndustryPurchasingTermId\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ExperianCompanyIndustryPurchasingTerm.cdm.json/ExperianCompanyIndustryPurchasingTerm\",\"name\":\"ExperianFileNumber\"},\"dataType\":\"integer\",\"description\":\"The unique and persistent number that identifies and tracks the Experian company.\",\"isNullable\":false,\"name\":\"ExperianFileNumber\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ExperianCompanyIndustryPurchasingTerm.cdm.json/ExperianCompanyIndustryPurchasingTerm\",\"name\":\"ProfileTimestamp\"},\"dataType\":\"timestamp\",\"description\":\"The timestamp of the Experian profile.\",\"isNullable\":false,\"name\":\"ProfileTimestamp\",\"timestampFormat\":\"YYYY-MM-DD HH:MM:SS.fffffffff\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ExperianCompanyIndustryPurchasingTerm.cdm.json/ExperianCompanyIndustryPurchasingTerm\",\"name\":\"ExperianIndustryPurchasingTermId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of an Experian industry purchasing term.\",\"isNullable\":false,\"name\":\"ExperianIndustryPurchasingTermId\"}]}}}",
+			"Description": "The industry purchasing term(s) applicable to the Experian business.",
+			"DisplayFolderInfo": "{\"name\":\"Customer Credit & Collections\",\"colorCode\":\"#022F22\"}",
+			"PrimaryKeys": "ExperianFileNumber,ProfileTimestamp,ExperianIndustryPurchasingTermId",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

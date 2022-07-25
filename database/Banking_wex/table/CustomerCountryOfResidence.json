@@ -1,0 +1,161 @@
+{
+	"name": "CustomerCountryOfResidence",
+	"properties": {
+		"Name": "CustomerCountryOfResidence",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "The country of residence of the customer as of the associated time.\n\nThis answers the question \"What country(s) does the individual have residence for?\"",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "CustomerId",
+					"Description": "The unique identifier of a Customer.",
+					"BaseAttributeReference": {
+						"Entity": "CustomerCountryOfResidence.cdm.json/CustomerCountryOfResidence",
+						"Name": "CustomerId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "long",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "long"
+						}
+					}
+				},
+				{
+					"Name": "CountryId",
+					"Description": "The unique identifier of the Country.",
+					"BaseAttributeReference": {
+						"Entity": "CustomerCountryOfResidence.cdm.json/CustomerCountryOfResidence",
+						"Name": "CountryId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "PeriodStartDate",
+					"Description": "The period start date that the customer has residency in the associated country.",
+					"BaseAttributeReference": {
+						"Entity": "CustomerCountryOfResidence.cdm.json/CustomerCountryOfResidence",
+						"Name": "PeriodStartDate"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "date",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"DateFormat": "YYYY-MM-DD",
+							"HIVE_TYPE_STRING": "date"
+						}
+					}
+				},
+				{
+					"Name": "PeriodEndDate",
+					"Description": "The period end date that the customer has residency in the associated country.",
+					"BaseAttributeReference": {
+						"Entity": "CustomerCountryOfResidence.cdm.json/CustomerCountryOfResidence",
+						"Name": "PeriodEndDate"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "date",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"DateFormat": "YYYY-MM-DD",
+							"HIVE_TYPE_STRING": "date"
+						}
+					}
+				},
+				{
+					"Name": "CountryResidencyStatusId",
+					"Description": "The unique identifier of a Country Residency Status.",
+					"BaseAttributeReference": {
+						"Entity": "CustomerCountryOfResidence.cdm.json/CustomerCountryOfResidence",
+						"Name": "CountryResidencyStatusId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "ResidencePermitVisaId",
+					"Description": "The identifier of 'number' of the residence permit or visa associated with residence in the associated country.",
+					"BaseAttributeReference": {
+						"Entity": "CustomerCountryOfResidence.cdm.json/CustomerCountryOfResidence",
+						"Name": "ResidencePermitVisaId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/CustomerCountryOfResidence",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/CustomerCountryOfResidence",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"CustomerId\":{\"entity\":\"CustomerCountryOfResidence.cdm.json/CustomerCountryOfResidence\",\"name\":\"CustomerId\"},\"CountryId\":{\"entity\":\"CustomerCountryOfResidence.cdm.json/CustomerCountryOfResidence\",\"name\":\"CountryId\"},\"PeriodStartDate\":{\"entity\":\"CustomerCountryOfResidence.cdm.json/CustomerCountryOfResidence\",\"name\":\"PeriodStartDate\"},\"PeriodEndDate\":{\"entity\":\"CustomerCountryOfResidence.cdm.json/CustomerCountryOfResidence\",\"name\":\"PeriodEndDate\"},\"CountryResidencyStatusId\":{\"entity\":\"CustomerCountryOfResidence.cdm.json/CustomerCountryOfResidence\",\"name\":\"CountryResidencyStatusId\"},\"ResidencePermitVisaId\":{\"entity\":\"CustomerCountryOfResidence.cdm.json/CustomerCountryOfResidence\",\"name\":\"ResidencePermitVisaId\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"CustomerCountryOfResidence\",\"path\":\"CustomerCountryOfResidence.cdm.json/CustomerCountryOfResidence\"},\"description\":\"The country of residence of the customer as of the associated time.\\n\\nThis answers the question \\\"What country(s) does the individual have residence for?\\\"\",\"primaryKey\":[\"CustomerId\",\"CountryId\",\"PeriodStartDate\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CustomerCountryOfResidence.cdm.json/CustomerCountryOfResidence\",\"name\":\"CustomerId\"},\"dataType\":\"long\",\"description\":\"The unique identifier of a Customer.\",\"isNullable\":false,\"name\":\"CustomerId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CustomerCountryOfResidence.cdm.json/CustomerCountryOfResidence\",\"name\":\"CountryId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of the Country.\",\"isNullable\":false,\"name\":\"CountryId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CustomerCountryOfResidence.cdm.json/CustomerCountryOfResidence\",\"name\":\"PeriodStartDate\"},\"dataType\":\"date\",\"dateFormat\":\"YYYY-MM-DD\",\"description\":\"The period start date that the customer has residency in the associated country.\",\"isNullable\":false,\"name\":\"PeriodStartDate\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CustomerCountryOfResidence.cdm.json/CustomerCountryOfResidence\",\"name\":\"PeriodEndDate\"},\"dataType\":\"date\",\"dateFormat\":\"YYYY-MM-DD\",\"description\":\"The period end date that the customer has residency in the associated country.\",\"isNullable\":true,\"name\":\"PeriodEndDate\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CustomerCountryOfResidence.cdm.json/CustomerCountryOfResidence\",\"name\":\"CountryResidencyStatusId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Country Residency Status.\",\"isNullable\":true,\"name\":\"CountryResidencyStatusId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CustomerCountryOfResidence.cdm.json/CustomerCountryOfResidence\",\"name\":\"ResidencePermitVisaId\"},\"dataType\":\"integer\",\"description\":\"The identifier of 'number' of the residence permit or visa associated with residence in the associated country.\",\"isNullable\":true,\"name\":\"ResidencePermitVisaId\"}]}}}",
+			"Description": "The country of residence of the customer as of the associated time.\n\nThis answers the question \"What country(s) does the individual have residence for?\"",
+			"DisplayFolderInfo": "{\"name\":\"Customer\",\"colorCode\":\"#4B003F\"}",
+			"PrimaryKeys": "CustomerId,CountryId,PeriodStartDate",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

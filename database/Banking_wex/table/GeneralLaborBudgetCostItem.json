@@ -1,0 +1,147 @@
+{
+	"name": "GeneralLaborBudgetCostItem",
+	"properties": {
+		"Name": "GeneralLaborBudgetCostItem",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "The individual cost items that are aggregated to make up the GENERAL LABOR BUDGET.  \n\nEx:\n- Salaries\n- Healthcare Benefits\n- Retirement Benefits\n- Travel",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "GeneralLaborBudgetId",
+					"Description": "The unique identifier of a General Labor Budget.",
+					"BaseAttributeReference": {
+						"Entity": "GeneralLaborBudgetCostItem.cdm.json/GeneralLaborBudgetCostItem",
+						"Name": "GeneralLaborBudgetId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "GeneralLaborBudgetVersionId",
+					"Description": "The unique identifier of a General Labor Budget Version.",
+					"BaseAttributeReference": {
+						"Entity": "GeneralLaborBudgetCostItem.cdm.json/GeneralLaborBudgetCostItem",
+						"Name": "GeneralLaborBudgetVersionId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "CostItemId",
+					"Description": "The unique identifier of a Cost Item.",
+					"BaseAttributeReference": {
+						"Entity": "GeneralLaborBudgetCostItem.cdm.json/GeneralLaborBudgetCostItem",
+						"Name": "CostItemId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "BudgetedCostItemAmount",
+					"Description": "The amount budgeted/planned in the associated Budget for the Cost Item.",
+					"BaseAttributeReference": {
+						"Entity": "GeneralLaborBudgetCostItem.cdm.json/GeneralLaborBudgetCostItem",
+						"Name": "BudgetedCostItemAmount"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "decimal",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Precision": 18,
+						"Scale": 2,
+						"Properties": {
+							"HIVE_TYPE_STRING": "decimal"
+						}
+					}
+				},
+				{
+					"Name": "ActualCostItemAmount",
+					"Description": "The amount actually spent in the associated Budget for the Cost Item.",
+					"BaseAttributeReference": {
+						"Entity": "GeneralLaborBudgetCostItem.cdm.json/GeneralLaborBudgetCostItem",
+						"Name": "ActualCostItemAmount"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "decimal",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Precision": 18,
+						"Scale": 2,
+						"Properties": {
+							"HIVE_TYPE_STRING": "decimal"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/GeneralLaborBudgetCostItem",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/GeneralLaborBudgetCostItem",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"GeneralLaborBudgetId\":{\"entity\":\"GeneralLaborBudgetCostItem.cdm.json/GeneralLaborBudgetCostItem\",\"name\":\"GeneralLaborBudgetId\"},\"GeneralLaborBudgetVersionId\":{\"entity\":\"GeneralLaborBudgetCostItem.cdm.json/GeneralLaborBudgetCostItem\",\"name\":\"GeneralLaborBudgetVersionId\"},\"CostItemId\":{\"entity\":\"GeneralLaborBudgetCostItem.cdm.json/GeneralLaborBudgetCostItem\",\"name\":\"CostItemId\"},\"BudgetedCostItemAmount\":{\"entity\":\"GeneralLaborBudgetCostItem.cdm.json/GeneralLaborBudgetCostItem\",\"name\":\"BudgetedCostItemAmount\"},\"ActualCostItemAmount\":{\"entity\":\"GeneralLaborBudgetCostItem.cdm.json/GeneralLaborBudgetCostItem\",\"name\":\"ActualCostItemAmount\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"GeneralLaborBudgetCostItem\",\"path\":\"GeneralLaborBudgetCostItem.cdm.json/GeneralLaborBudgetCostItem\"},\"description\":\"The individual cost items that are aggregated to make up the GENERAL LABOR BUDGET.  \\n\\nEx:\\n- Salaries\\n- Healthcare Benefits\\n- Retirement Benefits\\n- Travel\",\"primaryKey\":[\"GeneralLaborBudgetId\",\"GeneralLaborBudgetVersionId\",\"CostItemId\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"GeneralLaborBudgetCostItem.cdm.json/GeneralLaborBudgetCostItem\",\"name\":\"GeneralLaborBudgetId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a General Labor Budget.\",\"isNullable\":false,\"name\":\"GeneralLaborBudgetId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"GeneralLaborBudgetCostItem.cdm.json/GeneralLaborBudgetCostItem\",\"name\":\"GeneralLaborBudgetVersionId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a General Labor Budget Version.\",\"isNullable\":false,\"name\":\"GeneralLaborBudgetVersionId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"GeneralLaborBudgetCostItem.cdm.json/GeneralLaborBudgetCostItem\",\"name\":\"CostItemId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Cost Item.\",\"isNullable\":false,\"name\":\"CostItemId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"GeneralLaborBudgetCostItem.cdm.json/GeneralLaborBudgetCostItem\",\"name\":\"BudgetedCostItemAmount\"},\"dataType\":\"decimal\",\"dataTypeLength\":18,\"description\":\"The amount budgeted/planned in the associated Budget for the Cost Item.\",\"isNullable\":true,\"scale\":2,\"name\":\"BudgetedCostItemAmount\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"GeneralLaborBudgetCostItem.cdm.json/GeneralLaborBudgetCostItem\",\"name\":\"ActualCostItemAmount\"},\"dataType\":\"decimal\",\"dataTypeLength\":18,\"description\":\"The amount actually spent in the associated Budget for the Cost Item.\",\"isNullable\":true,\"scale\":2,\"name\":\"ActualCostItemAmount\"}]}}}",
+			"Description": "The individual cost items that are aggregated to make up the GENERAL LABOR BUDGET.  \n\nEx:\n- Salaries\n- Healthcare Benefits\n- Retirement Benefits\n- Travel",
+			"DisplayFolderInfo": "{\"name\":\"Budget & Forecasting\",\"colorCode\":\"#00188F\"}",
+			"PrimaryKeys": "GeneralLaborBudgetId,GeneralLaborBudgetVersionId,CostItemId",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

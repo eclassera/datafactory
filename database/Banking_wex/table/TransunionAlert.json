@@ -1,0 +1,145 @@
+{
+	"name": "TransunionAlert",
+	"properties": {
+		"Name": "TransunionAlert",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "Alerts associated with the Customer's TransUnion Credit Report.",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "TransunionReferenceNumber",
+					"Description": "The TransUnion file number.",
+					"BaseAttributeReference": {
+						"Entity": "TransunionAlert.cdm.json/TransunionAlert",
+						"Name": "TransunionReferenceNumber"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "AlertId",
+					"Description": "The unique identifier of an Alert.",
+					"BaseAttributeReference": {
+						"Entity": "TransunionAlert.cdm.json/TransunionAlert",
+						"Name": "AlertId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "AlertTimestamp",
+					"Description": "The timestamp of the alert.",
+					"BaseAttributeReference": {
+						"Entity": "TransunionAlert.cdm.json/TransunionAlert",
+						"Name": "AlertTimestamp"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "timestamp",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"TimestampFormat": "YYYY-MM-DD HH:MM:SS.fffffffff",
+							"HIVE_TYPE_STRING": "timestamp"
+						}
+					}
+				},
+				{
+					"Name": "TransunionAlertTypeId",
+					"Description": "The unique identifier of a TransUnion Alert Type.",
+					"BaseAttributeReference": {
+						"Entity": "TransunionAlert.cdm.json/TransunionAlert",
+						"Name": "TransunionAlertTypeId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "TransunionAlertMessage",
+					"Description": "The alert message.\n\nEx:\n- PREVIOUS INPUT ADDRESS DOES NOT MATCH FILE ADDRESS(ES)\n- INPUT SSN NOT ISSUED BY SOCIAL SECURITY ADMINISTRATION",
+					"BaseAttributeReference": {
+						"Entity": "TransunionAlert.cdm.json/TransunionAlert",
+						"Name": "TransunionAlertMessage"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/TransunionAlert",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/TransunionAlert",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"TransunionReferenceNumber\":{\"entity\":\"TransunionAlert.cdm.json/TransunionAlert\",\"name\":\"TransunionReferenceNumber\"},\"AlertId\":{\"entity\":\"TransunionAlert.cdm.json/TransunionAlert\",\"name\":\"AlertId\"},\"AlertTimestamp\":{\"entity\":\"TransunionAlert.cdm.json/TransunionAlert\",\"name\":\"AlertTimestamp\"},\"TransunionAlertTypeId\":{\"entity\":\"TransunionAlert.cdm.json/TransunionAlert\",\"name\":\"TransunionAlertTypeId\"},\"TransunionAlertMessage\":{\"entity\":\"TransunionAlert.cdm.json/TransunionAlert\",\"name\":\"TransunionAlertMessage\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"TransunionAlert\",\"path\":\"TransunionAlert.cdm.json/TransunionAlert\"},\"description\":\"Alerts associated with the Customer's TransUnion Credit Report.\",\"primaryKey\":[\"TransunionReferenceNumber\",\"AlertId\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"TransunionAlert.cdm.json/TransunionAlert\",\"name\":\"TransunionReferenceNumber\"},\"dataType\":\"integer\",\"description\":\"The TransUnion file number.\",\"isNullable\":false,\"name\":\"TransunionReferenceNumber\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"TransunionAlert.cdm.json/TransunionAlert\",\"name\":\"AlertId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of an Alert.\",\"isNullable\":false,\"name\":\"AlertId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"TransunionAlert.cdm.json/TransunionAlert\",\"name\":\"AlertTimestamp\"},\"dataType\":\"timestamp\",\"description\":\"The timestamp of the alert.\",\"isNullable\":true,\"name\":\"AlertTimestamp\",\"timestampFormat\":\"YYYY-MM-DD HH:MM:SS.fffffffff\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"TransunionAlert.cdm.json/TransunionAlert\",\"name\":\"TransunionAlertTypeId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a TransUnion Alert Type.\",\"isNullable\":true,\"name\":\"TransunionAlertTypeId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"TransunionAlert.cdm.json/TransunionAlert\",\"name\":\"TransunionAlertMessage\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"The alert message.\\n\\nEx:\\n- PREVIOUS INPUT ADDRESS DOES NOT MATCH FILE ADDRESS(ES)\\n- INPUT SSN NOT ISSUED BY SOCIAL SECURITY ADMINISTRATION\",\"isNullable\":true,\"name\":\"TransunionAlertMessage\"}]}}}",
+			"Description": "Alerts associated with the Customer's TransUnion Credit Report.",
+			"DisplayFolderInfo": "{\"name\":\"Customer Credit & Collections\",\"colorCode\":\"#022F22\"}",
+			"PrimaryKeys": "TransunionReferenceNumber,AlertId",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

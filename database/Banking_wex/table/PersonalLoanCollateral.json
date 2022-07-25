@@ -1,0 +1,214 @@
+{
+	"name": "PersonalLoanCollateral",
+	"properties": {
+		"Name": "PersonalLoanCollateral",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "Personal property pledged as a guarantee that you will repay your loan. Property such as houses, cars, savings accounts, bonds, or certificates of deposit are commonly used as collateral.",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "CreditGrantorId",
+					"Description": "The unique identifier of a Credit Grantor.",
+					"BaseAttributeReference": {
+						"Entity": "PersonalLoanCollateral.cdm.json/PersonalLoanCollateral",
+						"Name": "CreditGrantorId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "LoanAccountNumber",
+					"Description": "The unique identifier of a loan.",
+					"BaseAttributeReference": {
+						"Entity": "PersonalLoanCollateral.cdm.json/PersonalLoanCollateral",
+						"Name": "LoanAccountNumber"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Length": 20,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "CollateralTypeId",
+					"Description": "The unique identifier of a Collateral Item Type.",
+					"BaseAttributeReference": {
+						"Entity": "PersonalLoanCollateral.cdm.json/PersonalLoanCollateral",
+						"Name": "CollateralTypeId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "CollateralValuationDate",
+					"Description": "The as-of or effective date that the collateral value is established.",
+					"BaseAttributeReference": {
+						"Entity": "PersonalLoanCollateral.cdm.json/PersonalLoanCollateral",
+						"Name": "CollateralValuationDate"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "date",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"DateFormat": "YYYY-MM-DD",
+							"HIVE_TYPE_STRING": "date"
+						}
+					}
+				},
+				{
+					"Name": "CollateralItemId",
+					"Description": "The unique identifier of a Collateral Item.",
+					"BaseAttributeReference": {
+						"Entity": "PersonalLoanCollateral.cdm.json/PersonalLoanCollateral",
+						"Name": "CollateralItemId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "CollateralItemDescription",
+					"Description": "The description of the collateral item.",
+					"BaseAttributeReference": {
+						"Entity": "PersonalLoanCollateral.cdm.json/PersonalLoanCollateral",
+						"Name": "CollateralItemDescription"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "CollateralValueAmount",
+					"Description": "The current value of the collateralized item.",
+					"BaseAttributeReference": {
+						"Entity": "PersonalLoanCollateral.cdm.json/PersonalLoanCollateral",
+						"Name": "CollateralValueAmount"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "decimal",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Precision": 18,
+						"Scale": 2,
+						"Properties": {
+							"HIVE_TYPE_STRING": "decimal"
+						}
+					}
+				},
+				{
+					"Name": "CollateralItemNote",
+					"Description": "A note, comment or additional information regarding the personal loan collateral item.",
+					"BaseAttributeReference": {
+						"Entity": "PersonalLoanCollateral.cdm.json/PersonalLoanCollateral",
+						"Name": "CollateralItemNote"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "IsoCurrencyCode",
+					"Description": "The ISO 4217 currency code.",
+					"BaseAttributeReference": {
+						"Entity": "PersonalLoanCollateral.cdm.json/PersonalLoanCollateral",
+						"Name": "IsoCurrencyCode"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 3,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/PersonalLoanCollateral",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/PersonalLoanCollateral",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"CreditGrantorId\":{\"entity\":\"PersonalLoanCollateral.cdm.json/PersonalLoanCollateral\",\"name\":\"CreditGrantorId\"},\"LoanAccountNumber\":{\"entity\":\"PersonalLoanCollateral.cdm.json/PersonalLoanCollateral\",\"name\":\"LoanAccountNumber\"},\"CollateralTypeId\":{\"entity\":\"PersonalLoanCollateral.cdm.json/PersonalLoanCollateral\",\"name\":\"CollateralTypeId\"},\"CollateralValuationDate\":{\"entity\":\"PersonalLoanCollateral.cdm.json/PersonalLoanCollateral\",\"name\":\"CollateralValuationDate\"},\"CollateralItemId\":{\"entity\":\"PersonalLoanCollateral.cdm.json/PersonalLoanCollateral\",\"name\":\"CollateralItemId\"},\"CollateralItemDescription\":{\"entity\":\"PersonalLoanCollateral.cdm.json/PersonalLoanCollateral\",\"name\":\"CollateralItemDescription\"},\"CollateralValueAmount\":{\"entity\":\"PersonalLoanCollateral.cdm.json/PersonalLoanCollateral\",\"name\":\"CollateralValueAmount\"},\"CollateralItemNote\":{\"entity\":\"PersonalLoanCollateral.cdm.json/PersonalLoanCollateral\",\"name\":\"CollateralItemNote\"},\"IsoCurrencyCode\":{\"entity\":\"PersonalLoanCollateral.cdm.json/PersonalLoanCollateral\",\"name\":\"IsoCurrencyCode\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"PersonalLoanCollateral\",\"path\":\"PersonalLoanCollateral.cdm.json/PersonalLoanCollateral\"},\"description\":\"Personal property pledged as a guarantee that you will repay your loan. Property such as houses, cars, savings accounts, bonds, or certificates of deposit are commonly used as collateral.\",\"primaryKey\":[\"CreditGrantorId\",\"LoanAccountNumber\",\"CollateralTypeId\",\"CollateralValuationDate\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"PersonalLoanCollateral.cdm.json/PersonalLoanCollateral\",\"name\":\"CreditGrantorId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Credit Grantor.\",\"isNullable\":false,\"name\":\"CreditGrantorId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"PersonalLoanCollateral.cdm.json/PersonalLoanCollateral\",\"name\":\"LoanAccountNumber\"},\"dataType\":\"string\",\"dataTypeLength\":20,\"description\":\"The unique identifier of a loan.\",\"isNullable\":false,\"name\":\"LoanAccountNumber\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"PersonalLoanCollateral.cdm.json/PersonalLoanCollateral\",\"name\":\"CollateralTypeId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Collateral Item Type.\",\"isNullable\":false,\"name\":\"CollateralTypeId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"PersonalLoanCollateral.cdm.json/PersonalLoanCollateral\",\"name\":\"CollateralValuationDate\"},\"dataType\":\"date\",\"dateFormat\":\"YYYY-MM-DD\",\"description\":\"The as-of or effective date that the collateral value is established.\",\"isNullable\":false,\"name\":\"CollateralValuationDate\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"PersonalLoanCollateral.cdm.json/PersonalLoanCollateral\",\"name\":\"CollateralItemId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Collateral Item.\",\"isNullable\":true,\"name\":\"CollateralItemId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"PersonalLoanCollateral.cdm.json/PersonalLoanCollateral\",\"name\":\"CollateralItemDescription\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"The description of the collateral item.\",\"isNullable\":true,\"name\":\"CollateralItemDescription\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"PersonalLoanCollateral.cdm.json/PersonalLoanCollateral\",\"name\":\"CollateralValueAmount\"},\"dataType\":\"decimal\",\"dataTypeLength\":18,\"description\":\"The current value of the collateralized item.\",\"isNullable\":true,\"scale\":2,\"name\":\"CollateralValueAmount\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"PersonalLoanCollateral.cdm.json/PersonalLoanCollateral\",\"name\":\"CollateralItemNote\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"A note, comment or additional information regarding the personal loan collateral item.\",\"isNullable\":true,\"name\":\"CollateralItemNote\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"PersonalLoanCollateral.cdm.json/PersonalLoanCollateral\",\"name\":\"IsoCurrencyCode\"},\"dataType\":\"string\",\"dataTypeLength\":3,\"description\":\"The ISO 4217 currency code.\",\"isNullable\":true,\"name\":\"IsoCurrencyCode\"}]}}}",
+			"Description": "Personal property pledged as a guarantee that you will repay your loan. Property such as houses, cars, savings accounts, bonds, or certificates of deposit are commonly used as collateral.",
+			"DisplayFolderInfo": "{\"name\":\"Customer Credit & Collections\",\"colorCode\":\"#022F22\"}",
+			"PrimaryKeys": "CreditGrantorId,LoanAccountNumber,CollateralTypeId,CollateralValuationDate",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

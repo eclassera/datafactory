@@ -1,0 +1,148 @@
+{
+	"name": "AssetReplacementCost",
+	"properties": {
+		"Name": "AssetReplacementCost",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "The cost to replace the service potential of an asset.",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "AssetId",
+					"Description": "The unique identifier of an Asset.",
+					"BaseAttributeReference": {
+						"Entity": "AssetReplacementCost.cdm.json/AssetReplacementCost",
+						"Name": "AssetId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "long",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "long"
+						}
+					}
+				},
+				{
+					"Name": "Date",
+					"Description": "The date at which the replacement cost is calculated.",
+					"BaseAttributeReference": {
+						"Entity": "AssetReplacementCost.cdm.json/AssetReplacementCost",
+						"Name": "Date"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "date",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"DateFormat": "YYYY-MM-DD",
+							"HIVE_TYPE_STRING": "date"
+						}
+					}
+				},
+				{
+					"Name": "ReplacementCostAmount",
+					"Description": "The replacement cost for the asset.",
+					"BaseAttributeReference": {
+						"Entity": "AssetReplacementCost.cdm.json/AssetReplacementCost",
+						"Name": "ReplacementCostAmount"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "decimal",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Precision": 18,
+						"Scale": 2,
+						"Properties": {
+							"HIVE_TYPE_STRING": "decimal"
+						}
+					}
+				},
+				{
+					"Name": "ReplacementValueDeterminedByName",
+					"Description": "The name of the person or organization that determined the replacement cost for the asset.",
+					"BaseAttributeReference": {
+						"Entity": "AssetReplacementCost.cdm.json/AssetReplacementCost",
+						"Name": "ReplacementValueDeterminedByName"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 256,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "AssetReplacementNote",
+					"Description": "Notes, comments or additional information regarding the replacement determination.",
+					"BaseAttributeReference": {
+						"Entity": "AssetReplacementCost.cdm.json/AssetReplacementCost",
+						"Name": "AssetReplacementNote"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/AssetReplacementCost",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/AssetReplacementCost",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"AssetId\":{\"entity\":\"AssetReplacementCost.cdm.json/AssetReplacementCost\",\"name\":\"AssetId\"},\"Date\":{\"entity\":\"AssetReplacementCost.cdm.json/AssetReplacementCost\",\"name\":\"Date\"},\"ReplacementCostAmount\":{\"entity\":\"AssetReplacementCost.cdm.json/AssetReplacementCost\",\"name\":\"ReplacementCostAmount\"},\"ReplacementValueDeterminedByName\":{\"entity\":\"AssetReplacementCost.cdm.json/AssetReplacementCost\",\"name\":\"ReplacementValueDeterminedByName\"},\"AssetReplacementNote\":{\"entity\":\"AssetReplacementCost.cdm.json/AssetReplacementCost\",\"name\":\"AssetReplacementNote\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"AssetReplacementCost\",\"path\":\"AssetReplacementCost.cdm.json/AssetReplacementCost\"},\"description\":\"The cost to replace the service potential of an asset.\",\"primaryKey\":[\"AssetId\",\"Date\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"AssetReplacementCost.cdm.json/AssetReplacementCost\",\"name\":\"AssetId\"},\"dataType\":\"long\",\"description\":\"The unique identifier of an Asset.\",\"isNullable\":false,\"name\":\"AssetId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"AssetReplacementCost.cdm.json/AssetReplacementCost\",\"name\":\"Date\"},\"dataType\":\"date\",\"dateFormat\":\"YYYY-MM-DD\",\"description\":\"The date at which the replacement cost is calculated.\",\"isNullable\":false,\"name\":\"Date\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"AssetReplacementCost.cdm.json/AssetReplacementCost\",\"name\":\"ReplacementCostAmount\"},\"dataType\":\"decimal\",\"dataTypeLength\":18,\"description\":\"The replacement cost for the asset.\",\"isNullable\":true,\"scale\":2,\"name\":\"ReplacementCostAmount\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"AssetReplacementCost.cdm.json/AssetReplacementCost\",\"name\":\"ReplacementValueDeterminedByName\"},\"dataType\":\"string\",\"dataTypeLength\":256,\"description\":\"The name of the person or organization that determined the replacement cost for the asset.\",\"isNullable\":true,\"name\":\"ReplacementValueDeterminedByName\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"AssetReplacementCost.cdm.json/AssetReplacementCost\",\"name\":\"AssetReplacementNote\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"Notes, comments or additional information regarding the replacement determination.\",\"isNullable\":true,\"name\":\"AssetReplacementNote\"}]}}}",
+			"Description": "The cost to replace the service potential of an asset.",
+			"DisplayFolderInfo": "{\"name\":\"Property & Equipment\",\"colorCode\":\"#7D0F6C\"}",
+			"PrimaryKeys": "AssetId,Date",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

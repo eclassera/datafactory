@@ -1,0 +1,280 @@
+{
+	"name": "CustomerBankruptcyProceeding",
+	"properties": {
+		"Name": "CustomerBankruptcyProceeding",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "Bankruptcy is a legally declared inability or impairment of ability of organization to pay debts owed to its creditors. \n\nCreditors may file a bankruptcy petition against a debtor (\"involuntary bankruptcy\") in an effort to recoup a portion of what they are owed or initiate a restructuring. \n\nIn most cases bankruptcy is initiated by the debtor (a \"voluntary bankruptcy\" that is filed by the bankrupt individual or organization).\n\nAll assets must be disclosed in bankruptcy schedules. When a bankruptcy petition is filed, it is for the creditors, not the debtor to decide whether a particular asset has value. \n\nThe future ramifications of omitting assets from schedules can be quite serious for the offending debtor. A closed bankruptcy may be reopened by motion of a creditor or the  U.S. trustee if a debtor attempts to later assert ownership of such an \"unscheduled asset\" after being discharged of all debt in the bankruptcy. The trustee may then seize the asset and liquidate it for the benefit of the (formerly discharged) creditors. \n\nWhether or not a concealment of such an asset should also be considered for prosecution as fraud and/or perjury would then be at the discretion of the judge and/or U.S. Trustee.",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "BankruptcyProceedingId",
+					"Description": "The unique identifier of a Bankruptcy Proceeding.",
+					"BaseAttributeReference": {
+						"Entity": "CustomerBankruptcyProceeding.cdm.json/CustomerBankruptcyProceeding",
+						"Name": "BankruptcyProceedingId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "CustomerId",
+					"Description": "The unique identifier of a Customer.",
+					"BaseAttributeReference": {
+						"Entity": "CustomerBankruptcyProceeding.cdm.json/CustomerBankruptcyProceeding",
+						"Name": "CustomerId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "long",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"HIVE_TYPE_STRING": "long"
+						}
+					}
+				},
+				{
+					"Name": "DocketNumber",
+					"Description": "The unique identifier of the bankruptcy action.",
+					"BaseAttributeReference": {
+						"Entity": "CustomerBankruptcyProceeding.cdm.json/CustomerBankruptcyProceeding",
+						"Name": "DocketNumber"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "TrusteeName",
+					"Description": "The name of the person or organization assigned to sell the assets for the benefit of creditors.\n\nThe trustee has several specific duties including collecting and converting property to money, setting aside long-term leases and making a final report and accounting of the administration of the bankruptcy estate.",
+					"BaseAttributeReference": {
+						"Entity": "CustomerBankruptcyProceeding.cdm.json/CustomerBankruptcyProceeding",
+						"Name": "TrusteeName"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 256,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "DischargeableDebtsDescription",
+					"Description": "A description of the debts that may be discharged.",
+					"BaseAttributeReference": {
+						"Entity": "CustomerBankruptcyProceeding.cdm.json/CustomerBankruptcyProceeding",
+						"Name": "DischargeableDebtsDescription"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "DischargeableDebtsAmount",
+					"Description": "The estimated value of dischargeable debts.",
+					"BaseAttributeReference": {
+						"Entity": "CustomerBankruptcyProceeding.cdm.json/CustomerBankruptcyProceeding",
+						"Name": "DischargeableDebtsAmount"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "decimal",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Precision": 18,
+						"Scale": 2,
+						"Properties": {
+							"HIVE_TYPE_STRING": "decimal"
+						}
+					}
+				},
+				{
+					"Name": "UndischargeableDebtsDescription",
+					"Description": "Some debts are not dischargeable under bankruptcy such as social security taxes, debts from frauds, alimony, child support and fines.",
+					"BaseAttributeReference": {
+						"Entity": "CustomerBankruptcyProceeding.cdm.json/CustomerBankruptcyProceeding",
+						"Name": "UndischargeableDebtsDescription"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "UndischargeableDebtsAmount",
+					"Description": "The estimated value of undischargeable debts.",
+					"BaseAttributeReference": {
+						"Entity": "CustomerBankruptcyProceeding.cdm.json/CustomerBankruptcyProceeding",
+						"Name": "UndischargeableDebtsAmount"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "decimal",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Precision": 18,
+						"Scale": 2,
+						"Properties": {
+							"HIVE_TYPE_STRING": "decimal"
+						}
+					}
+				},
+				{
+					"Name": "VoluntaryInvoluntaryBankruptcyIndicator",
+					"Description": "Bankruptcies may be voluntary or involuntary.\n\nA voluntary bankruptcy is initiated when an individual debtor or business files with the local bankruptcy court a voluntary bankruptcy petition.\n\nInvoluntary filings can force a debtor into involuntary bankruptcy.",
+					"BaseAttributeReference": {
+						"Entity": "CustomerBankruptcyProceeding.cdm.json/CustomerBankruptcyProceeding",
+						"Name": "VoluntaryInvoluntaryBankruptcyIndicator"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "boolean",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"HIVE_TYPE_STRING": "boolean"
+						}
+					}
+				},
+				{
+					"Name": "DebtsDischargedDate",
+					"Description": "The date that debts were discharged.",
+					"BaseAttributeReference": {
+						"Entity": "CustomerBankruptcyProceeding.cdm.json/CustomerBankruptcyProceeding",
+						"Name": "DebtsDischargedDate"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "date",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"DateFormat": "YYYY-MM-DD",
+							"HIVE_TYPE_STRING": "date"
+						}
+					}
+				},
+				{
+					"Name": "DebtsDischargedIndicator",
+					"Description": "A flag or indicator denoting that debts were discharged without full payment to creditors.",
+					"BaseAttributeReference": {
+						"Entity": "CustomerBankruptcyProceeding.cdm.json/CustomerBankruptcyProceeding",
+						"Name": "DebtsDischargedIndicator"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "boolean",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"HIVE_TYPE_STRING": "boolean"
+						}
+					}
+				},
+				{
+					"Name": "BankruptcyChapterId",
+					"Description": "The unique identifier of a Bankruptcy Chapter.",
+					"BaseAttributeReference": {
+						"Entity": "CustomerBankruptcyProceeding.cdm.json/CustomerBankruptcyProceeding",
+						"Name": "BankruptcyChapterId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "BankruptcyFilingTypeId",
+					"Description": "The unique identifier of a Bankruptcy Filing Type.",
+					"BaseAttributeReference": {
+						"Entity": "CustomerBankruptcyProceeding.cdm.json/CustomerBankruptcyProceeding",
+						"Name": "BankruptcyFilingTypeId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/CustomerBankruptcyProceeding",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/CustomerBankruptcyProceeding",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"BankruptcyProceedingId\":{\"entity\":\"CustomerBankruptcyProceeding.cdm.json/CustomerBankruptcyProceeding\",\"name\":\"BankruptcyProceedingId\"},\"CustomerId\":{\"entity\":\"CustomerBankruptcyProceeding.cdm.json/CustomerBankruptcyProceeding\",\"name\":\"CustomerId\"},\"DocketNumber\":{\"entity\":\"CustomerBankruptcyProceeding.cdm.json/CustomerBankruptcyProceeding\",\"name\":\"DocketNumber\"},\"TrusteeName\":{\"entity\":\"CustomerBankruptcyProceeding.cdm.json/CustomerBankruptcyProceeding\",\"name\":\"TrusteeName\"},\"DischargeableDebtsDescription\":{\"entity\":\"CustomerBankruptcyProceeding.cdm.json/CustomerBankruptcyProceeding\",\"name\":\"DischargeableDebtsDescription\"},\"DischargeableDebtsAmount\":{\"entity\":\"CustomerBankruptcyProceeding.cdm.json/CustomerBankruptcyProceeding\",\"name\":\"DischargeableDebtsAmount\"},\"UndischargeableDebtsDescription\":{\"entity\":\"CustomerBankruptcyProceeding.cdm.json/CustomerBankruptcyProceeding\",\"name\":\"UndischargeableDebtsDescription\"},\"UndischargeableDebtsAmount\":{\"entity\":\"CustomerBankruptcyProceeding.cdm.json/CustomerBankruptcyProceeding\",\"name\":\"UndischargeableDebtsAmount\"},\"VoluntaryInvoluntaryBankruptcyIndicator\":{\"entity\":\"CustomerBankruptcyProceeding.cdm.json/CustomerBankruptcyProceeding\",\"name\":\"VoluntaryInvoluntaryBankruptcyIndicator\"},\"DebtsDischargedDate\":{\"entity\":\"CustomerBankruptcyProceeding.cdm.json/CustomerBankruptcyProceeding\",\"name\":\"DebtsDischargedDate\"},\"DebtsDischargedIndicator\":{\"entity\":\"CustomerBankruptcyProceeding.cdm.json/CustomerBankruptcyProceeding\",\"name\":\"DebtsDischargedIndicator\"},\"BankruptcyChapterId\":{\"entity\":\"CustomerBankruptcyProceeding.cdm.json/CustomerBankruptcyProceeding\",\"name\":\"BankruptcyChapterId\"},\"BankruptcyFilingTypeId\":{\"entity\":\"CustomerBankruptcyProceeding.cdm.json/CustomerBankruptcyProceeding\",\"name\":\"BankruptcyFilingTypeId\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"CustomerBankruptcyProceeding\",\"path\":\"CustomerBankruptcyProceeding.cdm.json/CustomerBankruptcyProceeding\"},\"description\":\"Bankruptcy is a legally declared inability or impairment of ability of organization to pay debts owed to its creditors. \\n\\nCreditors may file a bankruptcy petition against a debtor (\\\"involuntary bankruptcy\\\") in an effort to recoup a portion of what they are owed or initiate a restructuring. \\n\\nIn most cases bankruptcy is initiated by the debtor (a \\\"voluntary bankruptcy\\\" that is filed by the bankrupt individual or organization).\\n\\nAll assets must be disclosed in bankruptcy schedules. When a bankruptcy petition is filed, it is for the creditors, not the debtor to decide whether a particular asset has value. \\n\\nThe future ramifications of omitting assets from schedules can be quite serious for the offending debtor. A closed bankruptcy may be reopened by motion of a creditor or the  U.S. trustee if a debtor attempts to later assert ownership of such an \\\"unscheduled asset\\\" after being discharged of all debt in the bankruptcy. The trustee may then seize the asset and liquidate it for the benefit of the (formerly discharged) creditors. \\n\\nWhether or not a concealment of such an asset should also be considered for prosecution as fraud and/or perjury would then be at the discretion of the judge and/or U.S. Trustee.\",\"primaryKey\":[\"BankruptcyProceedingId\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CustomerBankruptcyProceeding.cdm.json/CustomerBankruptcyProceeding\",\"name\":\"BankruptcyProceedingId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Bankruptcy Proceeding.\",\"isNullable\":false,\"name\":\"BankruptcyProceedingId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CustomerBankruptcyProceeding.cdm.json/CustomerBankruptcyProceeding\",\"name\":\"CustomerId\"},\"dataType\":\"long\",\"description\":\"The unique identifier of a Customer.\",\"isNullable\":true,\"name\":\"CustomerId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CustomerBankruptcyProceeding.cdm.json/CustomerBankruptcyProceeding\",\"name\":\"DocketNumber\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"The unique identifier of the bankruptcy action.\",\"isNullable\":false,\"name\":\"DocketNumber\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CustomerBankruptcyProceeding.cdm.json/CustomerBankruptcyProceeding\",\"name\":\"TrusteeName\"},\"dataType\":\"string\",\"dataTypeLength\":256,\"description\":\"The name of the person or organization assigned to sell the assets for the benefit of creditors.\\n\\nThe trustee has several specific duties including collecting and converting property to money, setting aside long-term leases and making a final report and accounting of the administration of the bankruptcy estate.\",\"isNullable\":true,\"name\":\"TrusteeName\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CustomerBankruptcyProceeding.cdm.json/CustomerBankruptcyProceeding\",\"name\":\"DischargeableDebtsDescription\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"A description of the debts that may be discharged.\",\"isNullable\":true,\"name\":\"DischargeableDebtsDescription\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CustomerBankruptcyProceeding.cdm.json/CustomerBankruptcyProceeding\",\"name\":\"DischargeableDebtsAmount\"},\"dataType\":\"decimal\",\"dataTypeLength\":18,\"description\":\"The estimated value of dischargeable debts.\",\"isNullable\":true,\"scale\":2,\"name\":\"DischargeableDebtsAmount\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CustomerBankruptcyProceeding.cdm.json/CustomerBankruptcyProceeding\",\"name\":\"UndischargeableDebtsDescription\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"Some debts are not dischargeable under bankruptcy such as social security taxes, debts from frauds, alimony, child support and fines.\",\"isNullable\":true,\"name\":\"UndischargeableDebtsDescription\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CustomerBankruptcyProceeding.cdm.json/CustomerBankruptcyProceeding\",\"name\":\"UndischargeableDebtsAmount\"},\"dataType\":\"decimal\",\"dataTypeLength\":18,\"description\":\"The estimated value of undischargeable debts.\",\"isNullable\":true,\"scale\":2,\"name\":\"UndischargeableDebtsAmount\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CustomerBankruptcyProceeding.cdm.json/CustomerBankruptcyProceeding\",\"name\":\"VoluntaryInvoluntaryBankruptcyIndicator\"},\"dataType\":\"boolean\",\"description\":\"Bankruptcies may be voluntary or involuntary.\\n\\nA voluntary bankruptcy is initiated when an individual debtor or business files with the local bankruptcy court a voluntary bankruptcy petition.\\n\\nInvoluntary filings can force a debtor into involuntary bankruptcy.\",\"isNullable\":true,\"name\":\"VoluntaryInvoluntaryBankruptcyIndicator\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CustomerBankruptcyProceeding.cdm.json/CustomerBankruptcyProceeding\",\"name\":\"DebtsDischargedDate\"},\"dataType\":\"date\",\"dateFormat\":\"YYYY-MM-DD\",\"description\":\"The date that debts were discharged.\",\"isNullable\":true,\"name\":\"DebtsDischargedDate\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CustomerBankruptcyProceeding.cdm.json/CustomerBankruptcyProceeding\",\"name\":\"DebtsDischargedIndicator\"},\"dataType\":\"boolean\",\"description\":\"A flag or indicator denoting that debts were discharged without full payment to creditors.\",\"isNullable\":true,\"name\":\"DebtsDischargedIndicator\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CustomerBankruptcyProceeding.cdm.json/CustomerBankruptcyProceeding\",\"name\":\"BankruptcyChapterId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Bankruptcy Chapter.\",\"isNullable\":false,\"name\":\"BankruptcyChapterId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CustomerBankruptcyProceeding.cdm.json/CustomerBankruptcyProceeding\",\"name\":\"BankruptcyFilingTypeId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Bankruptcy Filing Type.\",\"isNullable\":true,\"name\":\"BankruptcyFilingTypeId\"}]}}}",
+			"Description": "Bankruptcy is a legally declared inability or impairment of ability of organization to pay debts owed to its creditors. \n\nCreditors may file a bankruptcy petition against a debtor (\"involuntary bankruptcy\") in an effort to recoup a portion of what they are owed or initiate a restructuring. \n\nIn most cases bankruptcy is initiated by the debtor (a \"voluntary bankruptcy\" that is filed by the bankrupt individual or organization).\n\nAll assets must be disclosed in bankruptcy schedules. When a bankruptcy petition is filed, it is for the creditors, not the debtor to decide whether a particular asset has value. \n\nThe future ramifications of omitting assets from schedules can be quite serious for the offending debtor. A closed bankruptcy may be reopened by motion of a creditor or the  U.S. trustee if a debtor attempts to later assert ownership of such an \"unscheduled asset\" after being discharged of all debt in the bankruptcy. The trustee may then seize the asset and liquidate it for the benefit of the (formerly discharged) creditors. \n\nWhether or not a concealment of such an asset should also be considered for prosecution as fraud and/or perjury would then be at the discretion of the judge and/or U.S. Trustee.",
+			"DisplayFolderInfo": "{\"name\":\"Customer Credit & Collections\",\"colorCode\":\"#022F22\"}",
+			"PrimaryKeys": "BankruptcyProceedingId",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

@@ -1,0 +1,113 @@
+{
+	"name": "ExperianConsumerTelephoneNumber",
+	"properties": {
+		"Name": "ExperianConsumerTelephoneNumber",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "Personal identification information, such as your telephone number, is typically reported by your creditors when you apply for credit. It does not affect your creditworthiness or your credit scores.",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "ExperianReportNumber",
+					"Description": "The unique identifier of an Experian consumer.",
+					"BaseAttributeReference": {
+						"Entity": "ExperianConsumerTelephoneNumber.cdm.json/ExperianConsumerTelephoneNumber",
+						"Name": "ExperianReportNumber"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "TelephoneNumberId",
+					"Description": "The unique identifier of a consumer's telephone number.",
+					"BaseAttributeReference": {
+						"Entity": "ExperianConsumerTelephoneNumber.cdm.json/ExperianConsumerTelephoneNumber",
+						"Name": "TelephoneNumberId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "TelephoneNumber",
+					"Description": "The consumer's telephone number.",
+					"BaseAttributeReference": {
+						"Entity": "ExperianConsumerTelephoneNumber.cdm.json/ExperianConsumerTelephoneNumber",
+						"Name": "TelephoneNumber"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "decimal",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Precision": 15,
+						"Scale": 0,
+						"Properties": {
+							"HIVE_TYPE_STRING": "decimal"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/ExperianConsumerTelephoneNumber",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/ExperianConsumerTelephoneNumber",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"ExperianReportNumber\":{\"entity\":\"ExperianConsumerTelephoneNumber.cdm.json/ExperianConsumerTelephoneNumber\",\"name\":\"ExperianReportNumber\"},\"TelephoneNumberId\":{\"entity\":\"ExperianConsumerTelephoneNumber.cdm.json/ExperianConsumerTelephoneNumber\",\"name\":\"TelephoneNumberId\"},\"TelephoneNumber\":{\"entity\":\"ExperianConsumerTelephoneNumber.cdm.json/ExperianConsumerTelephoneNumber\",\"name\":\"TelephoneNumber\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"ExperianConsumerTelephoneNumber\",\"path\":\"ExperianConsumerTelephoneNumber.cdm.json/ExperianConsumerTelephoneNumber\"},\"description\":\"Personal identification information, such as your telephone number, is typically reported by your creditors when you apply for credit. It does not affect your creditworthiness or your credit scores.\",\"primaryKey\":[\"ExperianReportNumber\",\"TelephoneNumberId\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ExperianConsumerTelephoneNumber.cdm.json/ExperianConsumerTelephoneNumber\",\"name\":\"ExperianReportNumber\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of an Experian consumer.\",\"isNullable\":false,\"name\":\"ExperianReportNumber\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ExperianConsumerTelephoneNumber.cdm.json/ExperianConsumerTelephoneNumber\",\"name\":\"TelephoneNumberId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a consumer's telephone number.\",\"isNullable\":false,\"name\":\"TelephoneNumberId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ExperianConsumerTelephoneNumber.cdm.json/ExperianConsumerTelephoneNumber\",\"name\":\"TelephoneNumber\"},\"dataType\":\"decimal\",\"dataTypeLength\":15,\"description\":\"The consumer's telephone number.\",\"isNullable\":true,\"scale\":0,\"name\":\"TelephoneNumber\"}]}}}",
+			"Description": "Personal identification information, such as your telephone number, is typically reported by your creditors when you apply for credit. It does not affect your creditworthiness or your credit scores.",
+			"DisplayFolderInfo": "{\"name\":\"Customer Credit & Collections\",\"colorCode\":\"#022F22\"}",
+			"PrimaryKeys": "ExperianReportNumber,TelephoneNumberId",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

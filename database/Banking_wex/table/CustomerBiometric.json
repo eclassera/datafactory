@@ -1,0 +1,145 @@
+{
+	"name": "CustomerBiometric",
+	"properties": {
+		"Name": "CustomerBiometric",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "The automatic recognition of customers based on unique combinations of measurable physical or behavioral characteristics. Examples include fingerprints, iris scanning, face and voice recognition, or hand geometry.",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "CustomerId",
+					"Description": "The unique identifier of a Customer.",
+					"BaseAttributeReference": {
+						"Entity": "CustomerBiometric.cdm.json/CustomerBiometric",
+						"Name": "CustomerId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "long",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "long"
+						}
+					}
+				},
+				{
+					"Name": "BiometricTypeId",
+					"Description": "The unique identifier of a biometric type.",
+					"BaseAttributeReference": {
+						"Entity": "CustomerBiometric.cdm.json/CustomerBiometric",
+						"Name": "BiometricTypeId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "Timestamp",
+					"Description": "The timestamp that the associated information is reported, recorded or effective as-of.",
+					"BaseAttributeReference": {
+						"Entity": "CustomerBiometric.cdm.json/CustomerBiometric",
+						"Name": "Timestamp"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "timestamp",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"TimestampFormat": "YYYY-MM-DD HH:MM:SS.fffffffff",
+							"HIVE_TYPE_STRING": "timestamp"
+						}
+					}
+				},
+				{
+					"Name": "CustomerBiometricTemplate",
+					"Description": "The biometric reference pattern of an individual of the associated biometric stored for matching. \n\nBioCert devices convert fingerprint information into mathematical templates, so actual fingerprint images are not stored and cannot be reconstructed based on template data.",
+					"BaseAttributeReference": {
+						"Entity": "CustomerBiometric.cdm.json/CustomerBiometric",
+						"Name": "CustomerBiometricTemplate"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "binary",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"HIVE_TYPE_STRING": "binary"
+						}
+					}
+				},
+				{
+					"Name": "CustomerBiometricNote",
+					"Description": "A note, comment or additional information regarding the customer biometric.",
+					"BaseAttributeReference": {
+						"Entity": "CustomerBiometric.cdm.json/CustomerBiometric",
+						"Name": "CustomerBiometricNote"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/CustomerBiometric",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/CustomerBiometric",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"CustomerId\":{\"entity\":\"CustomerBiometric.cdm.json/CustomerBiometric\",\"name\":\"CustomerId\"},\"BiometricTypeId\":{\"entity\":\"CustomerBiometric.cdm.json/CustomerBiometric\",\"name\":\"BiometricTypeId\"},\"Timestamp\":{\"entity\":\"CustomerBiometric.cdm.json/CustomerBiometric\",\"name\":\"Timestamp\"},\"CustomerBiometricTemplate\":{\"entity\":\"CustomerBiometric.cdm.json/CustomerBiometric\",\"name\":\"CustomerBiometricTemplate\"},\"CustomerBiometricNote\":{\"entity\":\"CustomerBiometric.cdm.json/CustomerBiometric\",\"name\":\"CustomerBiometricNote\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"CustomerBiometric\",\"path\":\"CustomerBiometric.cdm.json/CustomerBiometric\"},\"description\":\"The automatic recognition of customers based on unique combinations of measurable physical or behavioral characteristics. Examples include fingerprints, iris scanning, face and voice recognition, or hand geometry.\",\"primaryKey\":[\"CustomerId\",\"BiometricTypeId\",\"Timestamp\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CustomerBiometric.cdm.json/CustomerBiometric\",\"name\":\"CustomerId\"},\"dataType\":\"long\",\"description\":\"The unique identifier of a Customer.\",\"isNullable\":false,\"name\":\"CustomerId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CustomerBiometric.cdm.json/CustomerBiometric\",\"name\":\"BiometricTypeId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a biometric type.\",\"isNullable\":false,\"name\":\"BiometricTypeId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CustomerBiometric.cdm.json/CustomerBiometric\",\"name\":\"Timestamp\"},\"dataType\":\"timestamp\",\"description\":\"The timestamp that the associated information is reported, recorded or effective as-of.\",\"isNullable\":false,\"name\":\"Timestamp\",\"timestampFormat\":\"YYYY-MM-DD HH:MM:SS.fffffffff\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CustomerBiometric.cdm.json/CustomerBiometric\",\"name\":\"CustomerBiometricTemplate\"},\"dataType\":\"binary\",\"description\":\"The biometric reference pattern of an individual of the associated biometric stored for matching. \\n\\nBioCert devices convert fingerprint information into mathematical templates, so actual fingerprint images are not stored and cannot be reconstructed based on template data.\",\"isNullable\":true,\"name\":\"CustomerBiometricTemplate\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CustomerBiometric.cdm.json/CustomerBiometric\",\"name\":\"CustomerBiometricNote\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"A note, comment or additional information regarding the customer biometric.\",\"isNullable\":true,\"name\":\"CustomerBiometricNote\"}]}}}",
+			"Description": "The automatic recognition of customers based on unique combinations of measurable physical or behavioral characteristics. Examples include fingerprints, iris scanning, face and voice recognition, or hand geometry.",
+			"DisplayFolderInfo": "{\"name\":\"Customer\",\"colorCode\":\"#4B003F\"}",
+			"PrimaryKeys": "CustomerId,BiometricTypeId,Timestamp",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

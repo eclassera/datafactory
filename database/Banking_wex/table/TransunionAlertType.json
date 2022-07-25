@@ -1,0 +1,113 @@
+{
+	"name": "TransunionAlertType",
+	"properties": {
+		"Name": "TransunionAlertType",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "A type of alert that may be issued regarding a consumer.\n\nEx:\n- ID Mismatch Alert\n- High Risk Fraud Alert\n- SSN Year Of Issuance\n- OFAC Name Screen Alert",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "TransunionAlertTypeId",
+					"Description": "The unique identifier of a TransUnion Alert Type.",
+					"BaseAttributeReference": {
+						"Entity": "TransunionAlertType.cdm.json/TransunionAlertType",
+						"Name": "TransunionAlertTypeId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "TransunionAlertTypeName",
+					"Description": "The name of a TransUnion Alert Type.",
+					"BaseAttributeReference": {
+						"Entity": "TransunionAlertType.cdm.json/TransunionAlertType",
+						"Name": "TransunionAlertTypeName"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 256,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "TransunionAlertTypeDescription",
+					"Description": "The description of a TransUnion Alert Type.",
+					"BaseAttributeReference": {
+						"Entity": "TransunionAlertType.cdm.json/TransunionAlertType",
+						"Name": "TransunionAlertTypeDescription"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/TransunionAlertType",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/TransunionAlertType",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"TransunionAlertTypeId\":{\"entity\":\"TransunionAlertType.cdm.json/TransunionAlertType\",\"name\":\"TransunionAlertTypeId\"},\"TransunionAlertTypeName\":{\"entity\":\"TransunionAlertType.cdm.json/TransunionAlertType\",\"name\":\"TransunionAlertTypeName\"},\"TransunionAlertTypeDescription\":{\"entity\":\"TransunionAlertType.cdm.json/TransunionAlertType\",\"name\":\"TransunionAlertTypeDescription\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"TransunionAlertType\",\"path\":\"TransunionAlertType.cdm.json/TransunionAlertType\"},\"description\":\"A type of alert that may be issued regarding a consumer.\\n\\nEx:\\n- ID Mismatch Alert\\n- High Risk Fraud Alert\\n- SSN Year Of Issuance\\n- OFAC Name Screen Alert\",\"primaryKey\":[\"TransunionAlertTypeId\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"TransunionAlertType.cdm.json/TransunionAlertType\",\"name\":\"TransunionAlertTypeId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a TransUnion Alert Type.\",\"isNullable\":false,\"name\":\"TransunionAlertTypeId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"TransunionAlertType.cdm.json/TransunionAlertType\",\"name\":\"TransunionAlertTypeName\"},\"dataType\":\"string\",\"dataTypeLength\":256,\"description\":\"The name of a TransUnion Alert Type.\",\"isNullable\":true,\"name\":\"TransunionAlertTypeName\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"TransunionAlertType.cdm.json/TransunionAlertType\",\"name\":\"TransunionAlertTypeDescription\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"The description of a TransUnion Alert Type.\",\"isNullable\":true,\"name\":\"TransunionAlertTypeDescription\"}]}}}",
+			"Description": "A type of alert that may be issued regarding a consumer.\n\nEx:\n- ID Mismatch Alert\n- High Risk Fraud Alert\n- SSN Year Of Issuance\n- OFAC Name Screen Alert",
+			"DisplayFolderInfo": "{\"name\":\"Customer Credit & Collections\",\"colorCode\":\"#022F22\"}",
+			"PrimaryKeys": "TransunionAlertTypeId",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

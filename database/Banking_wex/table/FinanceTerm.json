@@ -1,0 +1,113 @@
+{
+	"name": "FinanceTerm",
+	"properties": {
+		"Name": "FinanceTerm",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "A finance term or condition that may be applied to a transaction.\n\nEx:\n-  COD\n-  60 Days Net\n-  30 Days Net\n-  Cash and Carry\n- 4% Annual Percentage Rate Financing\n - No Down Payment to qualified customers\n - No interest on financed balance \n-  No interest on financed balance for 3 months\n-  Monthly payments required\n-  10% down payment at date of sale\n-  Balance payable without penalty or additional interest payment",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "FinanceTermId",
+					"Description": "The unique identifier of a Finance Term.",
+					"BaseAttributeReference": {
+						"Entity": "FinanceTerm.cdm.json/FinanceTerm",
+						"Name": "FinanceTermId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "FinanceTermName",
+					"Description": "The name of the Finance Term.",
+					"BaseAttributeReference": {
+						"Entity": "FinanceTerm.cdm.json/FinanceTerm",
+						"Name": "FinanceTermName"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 256,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "FinanceTermDescription",
+					"Description": "The description of the Finance Term.",
+					"BaseAttributeReference": {
+						"Entity": "FinanceTerm.cdm.json/FinanceTerm",
+						"Name": "FinanceTermDescription"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/FinanceTerm",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/FinanceTerm",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"FinanceTermId\":{\"entity\":\"FinanceTerm.cdm.json/FinanceTerm\",\"name\":\"FinanceTermId\"},\"FinanceTermName\":{\"entity\":\"FinanceTerm.cdm.json/FinanceTerm\",\"name\":\"FinanceTermName\"},\"FinanceTermDescription\":{\"entity\":\"FinanceTerm.cdm.json/FinanceTerm\",\"name\":\"FinanceTermDescription\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"FinanceTerm\",\"path\":\"FinanceTerm.cdm.json/FinanceTerm\"},\"description\":\"A finance term or condition that may be applied to a transaction.\\n\\nEx:\\n-  COD\\n-  60 Days Net\\n-  30 Days Net\\n-  Cash and Carry\\n- 4% Annual Percentage Rate Financing\\n - No Down Payment to qualified customers\\n - No interest on financed balance \\n-  No interest on financed balance for 3 months\\n-  Monthly payments required\\n-  10% down payment at date of sale\\n-  Balance payable without penalty or additional interest payment\",\"primaryKey\":[\"FinanceTermId\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"FinanceTerm.cdm.json/FinanceTerm\",\"name\":\"FinanceTermId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Finance Term.\",\"isNullable\":false,\"name\":\"FinanceTermId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"FinanceTerm.cdm.json/FinanceTerm\",\"name\":\"FinanceTermName\"},\"dataType\":\"string\",\"dataTypeLength\":256,\"description\":\"The name of the Finance Term.\",\"isNullable\":true,\"name\":\"FinanceTermName\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"FinanceTerm.cdm.json/FinanceTerm\",\"name\":\"FinanceTermDescription\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"The description of the Finance Term.\",\"isNullable\":true,\"name\":\"FinanceTermDescription\"}]}}}",
+			"Description": "A finance term or condition that may be applied to a transaction.\n\nEx:\n-  COD\n-  60 Days Net\n-  30 Days Net\n-  Cash and Carry\n- 4% Annual Percentage Rate Financing\n - No Down Payment to qualified customers\n - No interest on financed balance \n-  No interest on financed balance for 3 months\n-  Monthly payments required\n-  10% down payment at date of sale\n-  Balance payable without penalty or additional interest payment",
+			"DisplayFolderInfo": "{\"name\":\"Customer\",\"colorCode\":\"#4B003F\"}",
+			"PrimaryKeys": "FinanceTermId",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

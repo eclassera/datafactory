@@ -1,0 +1,182 @@
+{
+	"name": "CustomerAssetOwnership",
+	"properties": {
+		"Name": "CustomerAssetOwnership",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "An asset that is owned by a customer over the indicated period.",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "CustomerId",
+					"Description": "The unique identifier of a Customer.",
+					"BaseAttributeReference": {
+						"Entity": "CustomerAssetOwnership.cdm.json/CustomerAssetOwnership",
+						"Name": "CustomerId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "long",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "long"
+						}
+					}
+				},
+				{
+					"Name": "CustomerAssetId",
+					"Description": "The unique identifier of a Customer Asset.",
+					"BaseAttributeReference": {
+						"Entity": "CustomerAssetOwnership.cdm.json/CustomerAssetOwnership",
+						"Name": "CustomerAssetId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "long",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "long"
+						}
+					}
+				},
+				{
+					"Name": "PeriodStartDate",
+					"Description": "The period start date that the customer had an ownership position in the customer asset.",
+					"BaseAttributeReference": {
+						"Entity": "CustomerAssetOwnership.cdm.json/CustomerAssetOwnership",
+						"Name": "PeriodStartDate"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "date",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"DateFormat": "YYYY-MM-DD",
+							"HIVE_TYPE_STRING": "date"
+						}
+					}
+				},
+				{
+					"Name": "PeriodEndDate",
+					"Description": "The period end date that the customer had an ownership position in the customer asset.",
+					"BaseAttributeReference": {
+						"Entity": "CustomerAssetOwnership.cdm.json/CustomerAssetOwnership",
+						"Name": "PeriodEndDate"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "date",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"DateFormat": "YYYY-MM-DD",
+							"HIVE_TYPE_STRING": "date"
+						}
+					}
+				},
+				{
+					"Name": "CustomerAssetOwnershipNote",
+					"Description": "A note, comment or additional information regarding a customer asset ownership.",
+					"BaseAttributeReference": {
+						"Entity": "CustomerAssetOwnership.cdm.json/CustomerAssetOwnership",
+						"Name": "CustomerAssetOwnershipNote"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "CustomerAssetOwnershipPercent",
+					"Description": "The percentage of the customer asset that the customer has ownership of.",
+					"BaseAttributeReference": {
+						"Entity": "CustomerAssetOwnership.cdm.json/CustomerAssetOwnership",
+						"Name": "CustomerAssetOwnershipPercent"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "decimal",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Precision": 18,
+						"Scale": 8,
+						"Properties": {
+							"HIVE_TYPE_STRING": "decimal"
+						}
+					}
+				},
+				{
+					"Name": "CustomerAssetOwnershipValue",
+					"Description": "The value (amount) of the customer asset hat the customer has ownership of.",
+					"BaseAttributeReference": {
+						"Entity": "CustomerAssetOwnership.cdm.json/CustomerAssetOwnership",
+						"Name": "CustomerAssetOwnershipValue"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "decimal",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Precision": 18,
+						"Scale": 2,
+						"Properties": {
+							"HIVE_TYPE_STRING": "decimal"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/CustomerAssetOwnership",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/CustomerAssetOwnership",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"CustomerId\":{\"entity\":\"CustomerAssetOwnership.cdm.json/CustomerAssetOwnership\",\"name\":\"CustomerId\"},\"CustomerAssetId\":{\"entity\":\"CustomerAssetOwnership.cdm.json/CustomerAssetOwnership\",\"name\":\"CustomerAssetId\"},\"PeriodStartDate\":{\"entity\":\"CustomerAssetOwnership.cdm.json/CustomerAssetOwnership\",\"name\":\"PeriodStartDate\"},\"PeriodEndDate\":{\"entity\":\"CustomerAssetOwnership.cdm.json/CustomerAssetOwnership\",\"name\":\"PeriodEndDate\"},\"CustomerAssetOwnershipNote\":{\"entity\":\"CustomerAssetOwnership.cdm.json/CustomerAssetOwnership\",\"name\":\"CustomerAssetOwnershipNote\"},\"CustomerAssetOwnershipPercent\":{\"entity\":\"CustomerAssetOwnership.cdm.json/CustomerAssetOwnership\",\"name\":\"CustomerAssetOwnershipPercent\"},\"CustomerAssetOwnershipValue\":{\"entity\":\"CustomerAssetOwnership.cdm.json/CustomerAssetOwnership\",\"name\":\"CustomerAssetOwnershipValue\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"CustomerAssetOwnership\",\"path\":\"CustomerAssetOwnership.cdm.json/CustomerAssetOwnership\"},\"description\":\"An asset that is owned by a customer over the indicated period.\",\"primaryKey\":[\"CustomerId\",\"CustomerAssetId\",\"PeriodStartDate\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CustomerAssetOwnership.cdm.json/CustomerAssetOwnership\",\"name\":\"CustomerId\"},\"dataType\":\"long\",\"description\":\"The unique identifier of a Customer.\",\"isNullable\":false,\"name\":\"CustomerId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CustomerAssetOwnership.cdm.json/CustomerAssetOwnership\",\"name\":\"CustomerAssetId\"},\"dataType\":\"long\",\"description\":\"The unique identifier of a Customer Asset.\",\"isNullable\":false,\"name\":\"CustomerAssetId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CustomerAssetOwnership.cdm.json/CustomerAssetOwnership\",\"name\":\"PeriodStartDate\"},\"dataType\":\"date\",\"dateFormat\":\"YYYY-MM-DD\",\"description\":\"The period start date that the customer had an ownership position in the customer asset.\",\"isNullable\":false,\"name\":\"PeriodStartDate\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CustomerAssetOwnership.cdm.json/CustomerAssetOwnership\",\"name\":\"PeriodEndDate\"},\"dataType\":\"date\",\"dateFormat\":\"YYYY-MM-DD\",\"description\":\"The period end date that the customer had an ownership position in the customer asset.\",\"isNullable\":true,\"name\":\"PeriodEndDate\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CustomerAssetOwnership.cdm.json/CustomerAssetOwnership\",\"name\":\"CustomerAssetOwnershipNote\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"A note, comment or additional information regarding a customer asset ownership.\",\"isNullable\":true,\"name\":\"CustomerAssetOwnershipNote\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CustomerAssetOwnership.cdm.json/CustomerAssetOwnership\",\"name\":\"CustomerAssetOwnershipPercent\"},\"dataType\":\"decimal\",\"dataTypeLength\":18,\"description\":\"The percentage of the customer asset that the customer has ownership of.\",\"isNullable\":true,\"scale\":8,\"name\":\"CustomerAssetOwnershipPercent\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CustomerAssetOwnership.cdm.json/CustomerAssetOwnership\",\"name\":\"CustomerAssetOwnershipValue\"},\"dataType\":\"decimal\",\"dataTypeLength\":18,\"description\":\"The value (amount) of the customer asset hat the customer has ownership of.\",\"isNullable\":true,\"scale\":2,\"name\":\"CustomerAssetOwnershipValue\"}]}}}",
+			"Description": "An asset that is owned by a customer over the indicated period.",
+			"DisplayFolderInfo": "{\"name\":\"Customer Credit & Collections\",\"colorCode\":\"#022F22\"}",
+			"PrimaryKeys": "CustomerId,CustomerAssetId,PeriodStartDate",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

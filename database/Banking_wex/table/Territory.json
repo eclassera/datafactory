@@ -1,0 +1,145 @@
+{
+	"name": "Territory",
+	"properties": {
+		"Name": "Territory",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "A geographic area for which a person or department is responsible for a particular activity such as marketing, sales, or support.",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "TerritoryId",
+					"Description": "The unique identifier of a Territory.",
+					"BaseAttributeReference": {
+						"Entity": "Territory.cdm.json/Territory",
+						"Name": "TerritoryId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "TerritoryName",
+					"Description": "The name of the Territory.",
+					"BaseAttributeReference": {
+						"Entity": "Territory.cdm.json/Territory",
+						"Name": "TerritoryName"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 256,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "TerritoryDescription",
+					"Description": "The description of the Territory.",
+					"BaseAttributeReference": {
+						"Entity": "Territory.cdm.json/Territory",
+						"Name": "TerritoryDescription"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "TerritoryTypeId",
+					"Description": "The unique identifier of a Territory type.",
+					"BaseAttributeReference": {
+						"Entity": "Territory.cdm.json/Territory",
+						"Name": "TerritoryTypeId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "GeographicAreaId",
+					"Description": "The unique identifier of a Geographic Area.",
+					"BaseAttributeReference": {
+						"Entity": "Territory.cdm.json/Territory",
+						"Name": "GeographicAreaId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/Territory",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/Territory",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"TerritoryId\":{\"entity\":\"Territory.cdm.json/Territory\",\"name\":\"TerritoryId\"},\"TerritoryName\":{\"entity\":\"Territory.cdm.json/Territory\",\"name\":\"TerritoryName\"},\"TerritoryDescription\":{\"entity\":\"Territory.cdm.json/Territory\",\"name\":\"TerritoryDescription\"},\"TerritoryTypeId\":{\"entity\":\"Territory.cdm.json/Territory\",\"name\":\"TerritoryTypeId\"},\"GeographicAreaId\":{\"entity\":\"Territory.cdm.json/Territory\",\"name\":\"GeographicAreaId\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"Territory\",\"path\":\"Territory.cdm.json/Territory\"},\"description\":\"A geographic area for which a person or department is responsible for a particular activity such as marketing, sales, or support.\",\"primaryKey\":[\"TerritoryId\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"Territory.cdm.json/Territory\",\"name\":\"TerritoryId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Territory.\",\"isNullable\":false,\"name\":\"TerritoryId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"Territory.cdm.json/Territory\",\"name\":\"TerritoryName\"},\"dataType\":\"string\",\"dataTypeLength\":256,\"description\":\"The name of the Territory.\",\"isNullable\":true,\"name\":\"TerritoryName\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"Territory.cdm.json/Territory\",\"name\":\"TerritoryDescription\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"The description of the Territory.\",\"isNullable\":true,\"name\":\"TerritoryDescription\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"Territory.cdm.json/Territory\",\"name\":\"TerritoryTypeId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Territory type.\",\"isNullable\":true,\"name\":\"TerritoryTypeId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"Territory.cdm.json/Territory\",\"name\":\"GeographicAreaId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Geographic Area.\",\"isNullable\":true,\"name\":\"GeographicAreaId\"}]}}}",
+			"Description": "A geographic area for which a person or department is responsible for a particular activity such as marketing, sales, or support.",
+			"DisplayFolderInfo": "{\"name\":\"Geography\",\"colorCode\":\"#008A94\"}",
+			"PrimaryKeys": "TerritoryId",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

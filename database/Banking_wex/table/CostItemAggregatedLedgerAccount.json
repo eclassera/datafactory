@@ -1,0 +1,129 @@
+{
+	"name": "CostItemAggregatedLedgerAccount",
+	"properties": {
+		"Name": "CostItemAggregatedLedgerAccount",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "Each cost item associated with a budget may contain values that are aggregates of the values for one or more ledger accounts. \n\nThe ledger accounts that are aggregated for cost item are documented here.",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "CostItemId",
+					"Description": "The unique identifier of a Cost Item.",
+					"BaseAttributeReference": {
+						"Entity": "CostItemAggregatedLedgerAccount.cdm.json/CostItemAggregatedLedgerAccount",
+						"Name": "CostItemId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "LedgerId",
+					"Description": "The unique identifier of a Ledger.",
+					"BaseAttributeReference": {
+						"Entity": "CostItemAggregatedLedgerAccount.cdm.json/CostItemAggregatedLedgerAccount",
+						"Name": "LedgerId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "LedgerAccountNumber",
+					"Description": "The unique identifier of a Ledger Account.",
+					"BaseAttributeReference": {
+						"Entity": "CostItemAggregatedLedgerAccount.cdm.json/CostItemAggregatedLedgerAccount",
+						"Name": "LedgerAccountNumber"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Length": 20,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "CostItemAggregatedLedgerAccountNote",
+					"Description": "A note, comment or additional information regarding the aggregation of the ledger account for the cost item.",
+					"BaseAttributeReference": {
+						"Entity": "CostItemAggregatedLedgerAccount.cdm.json/CostItemAggregatedLedgerAccount",
+						"Name": "CostItemAggregatedLedgerAccountNote"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/CostItemAggregatedLedgerAccount",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/CostItemAggregatedLedgerAccount",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"CostItemId\":{\"entity\":\"CostItemAggregatedLedgerAccount.cdm.json/CostItemAggregatedLedgerAccount\",\"name\":\"CostItemId\"},\"LedgerId\":{\"entity\":\"CostItemAggregatedLedgerAccount.cdm.json/CostItemAggregatedLedgerAccount\",\"name\":\"LedgerId\"},\"LedgerAccountNumber\":{\"entity\":\"CostItemAggregatedLedgerAccount.cdm.json/CostItemAggregatedLedgerAccount\",\"name\":\"LedgerAccountNumber\"},\"CostItemAggregatedLedgerAccountNote\":{\"entity\":\"CostItemAggregatedLedgerAccount.cdm.json/CostItemAggregatedLedgerAccount\",\"name\":\"CostItemAggregatedLedgerAccountNote\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"CostItemAggregatedLedgerAccount\",\"path\":\"CostItemAggregatedLedgerAccount.cdm.json/CostItemAggregatedLedgerAccount\"},\"description\":\"Each cost item associated with a budget may contain values that are aggregates of the values for one or more ledger accounts. \\n\\nThe ledger accounts that are aggregated for cost item are documented here.\",\"primaryKey\":[\"CostItemId\",\"LedgerId\",\"LedgerAccountNumber\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CostItemAggregatedLedgerAccount.cdm.json/CostItemAggregatedLedgerAccount\",\"name\":\"CostItemId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Cost Item.\",\"isNullable\":false,\"name\":\"CostItemId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CostItemAggregatedLedgerAccount.cdm.json/CostItemAggregatedLedgerAccount\",\"name\":\"LedgerId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Ledger.\",\"isNullable\":false,\"name\":\"LedgerId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CostItemAggregatedLedgerAccount.cdm.json/CostItemAggregatedLedgerAccount\",\"name\":\"LedgerAccountNumber\"},\"dataType\":\"string\",\"dataTypeLength\":20,\"description\":\"The unique identifier of a Ledger Account.\",\"isNullable\":false,\"name\":\"LedgerAccountNumber\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CostItemAggregatedLedgerAccount.cdm.json/CostItemAggregatedLedgerAccount\",\"name\":\"CostItemAggregatedLedgerAccountNote\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"A note, comment or additional information regarding the aggregation of the ledger account for the cost item.\",\"isNullable\":true,\"name\":\"CostItemAggregatedLedgerAccountNote\"}]}}}",
+			"Description": "Each cost item associated with a budget may contain values that are aggregates of the values for one or more ledger accounts. \n\nThe ledger accounts that are aggregated for cost item are documented here.",
+			"DisplayFolderInfo": "{\"name\":\"Budget & Forecasting\",\"colorCode\":\"#00188F\"}",
+			"PrimaryKeys": "CostItemId,LedgerId,LedgerAccountNumber",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

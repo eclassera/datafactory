@@ -1,0 +1,113 @@
+{
+	"name": "CommissionRelationshipType",
+	"properties": {
+		"Name": "CommissionRelationshipType",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "Describes the relationship between two or more commissions.\n\nEx:\n- is split between\n- is replaced by\n- supplements",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "CommissionRelationshipTypeId",
+					"Description": "The unique identifier of a Commission Relationship Type.",
+					"BaseAttributeReference": {
+						"Entity": "CommissionRelationshipType.cdm.json/CommissionRelationshipType",
+						"Name": "CommissionRelationshipTypeId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "CommissionRelationshipTypeName",
+					"Description": "The name of a Commission Relationship Type.",
+					"BaseAttributeReference": {
+						"Entity": "CommissionRelationshipType.cdm.json/CommissionRelationshipType",
+						"Name": "CommissionRelationshipTypeName"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 256,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "CommissionRelationshipTypeDescription",
+					"Description": "The description of a Commission Relationship Type.",
+					"BaseAttributeReference": {
+						"Entity": "CommissionRelationshipType.cdm.json/CommissionRelationshipType",
+						"Name": "CommissionRelationshipTypeDescription"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/CommissionRelationshipType",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/CommissionRelationshipType",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"CommissionRelationshipTypeId\":{\"entity\":\"CommissionRelationshipType.cdm.json/CommissionRelationshipType\",\"name\":\"CommissionRelationshipTypeId\"},\"CommissionRelationshipTypeName\":{\"entity\":\"CommissionRelationshipType.cdm.json/CommissionRelationshipType\",\"name\":\"CommissionRelationshipTypeName\"},\"CommissionRelationshipTypeDescription\":{\"entity\":\"CommissionRelationshipType.cdm.json/CommissionRelationshipType\",\"name\":\"CommissionRelationshipTypeDescription\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"CommissionRelationshipType\",\"path\":\"CommissionRelationshipType.cdm.json/CommissionRelationshipType\"},\"description\":\"Describes the relationship between two or more commissions.\\n\\nEx:\\n- is split between\\n- is replaced by\\n- supplements\",\"primaryKey\":[\"CommissionRelationshipTypeId\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CommissionRelationshipType.cdm.json/CommissionRelationshipType\",\"name\":\"CommissionRelationshipTypeId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Commission Relationship Type.\",\"isNullable\":false,\"name\":\"CommissionRelationshipTypeId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CommissionRelationshipType.cdm.json/CommissionRelationshipType\",\"name\":\"CommissionRelationshipTypeName\"},\"dataType\":\"string\",\"dataTypeLength\":256,\"description\":\"The name of a Commission Relationship Type.\",\"isNullable\":true,\"name\":\"CommissionRelationshipTypeName\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CommissionRelationshipType.cdm.json/CommissionRelationshipType\",\"name\":\"CommissionRelationshipTypeDescription\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"The description of a Commission Relationship Type.\",\"isNullable\":true,\"name\":\"CommissionRelationshipTypeDescription\"}]}}}",
+			"Description": "Describes the relationship between two or more commissions.\n\nEx:\n- is split between\n- is replaced by\n- supplements",
+			"DisplayFolderInfo": "{\"name\":\"Transaction\",\"colorCode\":\"#823A16\"}",
+			"PrimaryKeys": "CommissionRelationshipTypeId",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

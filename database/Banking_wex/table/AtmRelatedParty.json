@@ -1,0 +1,162 @@
+{
+	"name": "AtmRelatedParty",
+	"properties": {
+		"Name": "AtmRelatedParty",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "A party that has a relationship with an ATM for the associated period.",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "AtmId",
+					"Description": "The unique identifier of an ATM.",
+					"BaseAttributeReference": {
+						"Entity": "AtmRelatedParty.cdm.json/AtmRelatedParty",
+						"Name": "AtmId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "AtmPartyRelationshipTypeId",
+					"Description": "The unique identifier of a Channel Relationship Type.",
+					"BaseAttributeReference": {
+						"Entity": "AtmRelatedParty.cdm.json/AtmRelatedParty",
+						"Name": "AtmPartyRelationshipTypeId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "PartyId",
+					"Description": "The unique identifier of a Party.",
+					"BaseAttributeReference": {
+						"Entity": "AtmRelatedParty.cdm.json/AtmRelatedParty",
+						"Name": "PartyId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "long",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "long"
+						}
+					}
+				},
+				{
+					"Name": "PeriodStartDate",
+					"Description": "The period start date for which the channel party relationship is valid of defined.",
+					"BaseAttributeReference": {
+						"Entity": "AtmRelatedParty.cdm.json/AtmRelatedParty",
+						"Name": "PeriodStartDate"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "date",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"DateFormat": "YYYY-MM-DD",
+							"HIVE_TYPE_STRING": "date"
+						}
+					}
+				},
+				{
+					"Name": "PeriodEndDate",
+					"Description": "The period end date for which the channel party relationship is valid of defined.",
+					"BaseAttributeReference": {
+						"Entity": "AtmRelatedParty.cdm.json/AtmRelatedParty",
+						"Name": "PeriodEndDate"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "date",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"DateFormat": "YYYY-MM-DD",
+							"HIVE_TYPE_STRING": "date"
+						}
+					}
+				},
+				{
+					"Name": "AtmPartyRelationshipNote",
+					"Description": "A note, comment or additional information regarding an ATM related party.",
+					"BaseAttributeReference": {
+						"Entity": "AtmRelatedParty.cdm.json/AtmRelatedParty",
+						"Name": "AtmPartyRelationshipNote"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/AtmRelatedParty",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/AtmRelatedParty",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"AtmId\":{\"entity\":\"AtmRelatedParty.cdm.json/AtmRelatedParty\",\"name\":\"AtmId\"},\"AtmPartyRelationshipTypeId\":{\"entity\":\"AtmRelatedParty.cdm.json/AtmRelatedParty\",\"name\":\"AtmPartyRelationshipTypeId\"},\"PartyId\":{\"entity\":\"AtmRelatedParty.cdm.json/AtmRelatedParty\",\"name\":\"PartyId\"},\"PeriodStartDate\":{\"entity\":\"AtmRelatedParty.cdm.json/AtmRelatedParty\",\"name\":\"PeriodStartDate\"},\"PeriodEndDate\":{\"entity\":\"AtmRelatedParty.cdm.json/AtmRelatedParty\",\"name\":\"PeriodEndDate\"},\"AtmPartyRelationshipNote\":{\"entity\":\"AtmRelatedParty.cdm.json/AtmRelatedParty\",\"name\":\"AtmPartyRelationshipNote\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"AtmRelatedParty\",\"path\":\"AtmRelatedParty.cdm.json/AtmRelatedParty\"},\"description\":\"A party that has a relationship with an ATM for the associated period.\",\"primaryKey\":[\"AtmId\",\"AtmPartyRelationshipTypeId\",\"PartyId\",\"PeriodStartDate\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"AtmRelatedParty.cdm.json/AtmRelatedParty\",\"name\":\"AtmId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of an ATM.\",\"isNullable\":false,\"name\":\"AtmId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"AtmRelatedParty.cdm.json/AtmRelatedParty\",\"name\":\"AtmPartyRelationshipTypeId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Channel Relationship Type.\",\"isNullable\":false,\"name\":\"AtmPartyRelationshipTypeId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"AtmRelatedParty.cdm.json/AtmRelatedParty\",\"name\":\"PartyId\"},\"dataType\":\"long\",\"description\":\"The unique identifier of a Party.\",\"isNullable\":false,\"name\":\"PartyId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"AtmRelatedParty.cdm.json/AtmRelatedParty\",\"name\":\"PeriodStartDate\"},\"dataType\":\"date\",\"dateFormat\":\"YYYY-MM-DD\",\"description\":\"The period start date for which the channel party relationship is valid of defined.\",\"isNullable\":false,\"name\":\"PeriodStartDate\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"AtmRelatedParty.cdm.json/AtmRelatedParty\",\"name\":\"PeriodEndDate\"},\"dataType\":\"date\",\"dateFormat\":\"YYYY-MM-DD\",\"description\":\"The period end date for which the channel party relationship is valid of defined.\",\"isNullable\":true,\"name\":\"PeriodEndDate\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"AtmRelatedParty.cdm.json/AtmRelatedParty\",\"name\":\"AtmPartyRelationshipNote\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"A note, comment or additional information regarding an ATM related party.\",\"isNullable\":true,\"name\":\"AtmPartyRelationshipNote\"}]}}}",
+			"Description": "A party that has a relationship with an ATM for the associated period.",
+			"DisplayFolderInfo": "{\"name\":\"Channel\",\"colorCode\":\"#001D3F\"}",
+			"PrimaryKeys": "AtmId,AtmPartyRelationshipTypeId,PartyId,PeriodStartDate",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

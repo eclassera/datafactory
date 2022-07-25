@@ -1,0 +1,113 @@
+{
+	"name": "Religion",
+	"properties": {
+		"Name": "Religion",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "A religion that is practiced.\n\nEx.:\n- Aladura\n- Asatru\n- Baha'i Faith\n- Bon\n- Buddhism\n- Cao Dai\n- Chinese Religion\n- Christianity\n- Confucianism\n- Druze\n- Eckankar\n- Epicureanism\n- Falun Gong\n- Gnosticism\n- Greco-Roman religion\n- Hare Krishna\n- Hinduism\n- Islam\n- Jainism\n- Jehovah's Witnesses\n- Judaism\n- Mayan religion\n- Mormonism\n- Nation of Islam\n- New Age\n- New Thought\n- Olmec Religion\n- Rastafarianism\n- Scientology\n- Seventh-Day Adventist Church\n- Shinto\n- Sikhism\n- spiritualism\n- Taoism\n- Unification Church\n- Wicca\n- Zoroastrianism",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "ReligionId",
+					"Description": "The unique identifier of a Religion.",
+					"BaseAttributeReference": {
+						"Entity": "Religion.cdm.json/Religion",
+						"Name": "ReligionId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "ReligionName",
+					"Description": "The name of the Religion.",
+					"BaseAttributeReference": {
+						"Entity": "Religion.cdm.json/Religion",
+						"Name": "ReligionName"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 256,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "ReligionDescription",
+					"Description": "The description of the Religion.",
+					"BaseAttributeReference": {
+						"Entity": "Religion.cdm.json/Religion",
+						"Name": "ReligionDescription"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/Religion",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/Religion",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"ReligionId\":{\"entity\":\"Religion.cdm.json/Religion\",\"name\":\"ReligionId\"},\"ReligionName\":{\"entity\":\"Religion.cdm.json/Religion\",\"name\":\"ReligionName\"},\"ReligionDescription\":{\"entity\":\"Religion.cdm.json/Religion\",\"name\":\"ReligionDescription\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"Religion\",\"path\":\"Religion.cdm.json/Religion\"},\"description\":\"A religion that is practiced.\\n\\nEx.:\\n- Aladura\\n- Asatru\\n- Baha'i Faith\\n- Bon\\n- Buddhism\\n- Cao Dai\\n- Chinese Religion\\n- Christianity\\n- Confucianism\\n- Druze\\n- Eckankar\\n- Epicureanism\\n- Falun Gong\\n- Gnosticism\\n- Greco-Roman religion\\n- Hare Krishna\\n- Hinduism\\n- Islam\\n- Jainism\\n- Jehovah's Witnesses\\n- Judaism\\n- Mayan religion\\n- Mormonism\\n- Nation of Islam\\n- New Age\\n- New Thought\\n- Olmec Religion\\n- Rastafarianism\\n- Scientology\\n- Seventh-Day Adventist Church\\n- Shinto\\n- Sikhism\\n- spiritualism\\n- Taoism\\n- Unification Church\\n- Wicca\\n- Zoroastrianism\",\"primaryKey\":[\"ReligionId\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"Religion.cdm.json/Religion\",\"name\":\"ReligionId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Religion.\",\"isNullable\":false,\"name\":\"ReligionId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"Religion.cdm.json/Religion\",\"name\":\"ReligionName\"},\"dataType\":\"string\",\"dataTypeLength\":256,\"description\":\"The name of the Religion.\",\"isNullable\":true,\"name\":\"ReligionName\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"Religion.cdm.json/Religion\",\"name\":\"ReligionDescription\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"The description of the Religion.\",\"isNullable\":true,\"name\":\"ReligionDescription\"}]}}}",
+			"Description": "A religion that is practiced.\n\nEx.:\n- Aladura\n- Asatru\n- Baha'i Faith\n- Bon\n- Buddhism\n- Cao Dai\n- Chinese Religion\n- Christianity\n- Confucianism\n- Druze\n- Eckankar\n- Epicureanism\n- Falun Gong\n- Gnosticism\n- Greco-Roman religion\n- Hare Krishna\n- Hinduism\n- Islam\n- Jainism\n- Jehovah's Witnesses\n- Judaism\n- Mayan religion\n- Mormonism\n- Nation of Islam\n- New Age\n- New Thought\n- Olmec Religion\n- Rastafarianism\n- Scientology\n- Seventh-Day Adventist Church\n- Shinto\n- Sikhism\n- spiritualism\n- Taoism\n- Unification Church\n- Wicca\n- Zoroastrianism",
+			"DisplayFolderInfo": "{\"name\":\"Party\",\"colorCode\":\"#00727A\"}",
+			"PrimaryKeys": "ReligionId",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

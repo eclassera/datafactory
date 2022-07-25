@@ -1,0 +1,114 @@
+{
+	"name": "BondYield",
+	"properties": {
+		"Name": "BondYield",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "Current yield is the rate of return an investor will get, without taking into account the value of the premium or discount of the purchase price. \n\nIt is calculated by dividing the coupon by the price, which is the annual payout as a percentage of the current market price you'll actually pay\n\nThe simplest version of yield is calculated using the following formula: yield = coupon amount/price. When you buy a bond at par, yield is equal to the interest rate. When the price changes, so does the yield.\n\nCurrent Yield = (Annual Dollar Interest Paid/Market Price)*100\n\nNotice how this calculation does not include any capital gains or losses the investor would make if the bond were bought at a discount or premium.",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "BondId",
+					"Description": "The unique identifier of a Financial Product.",
+					"BaseAttributeReference": {
+						"Entity": "BondYield.cdm.json/BondYield",
+						"Name": "BondId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "long",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "long"
+						}
+					}
+				},
+				{
+					"Name": "Date",
+					"Description": "The date for which the bond 'current' yield is calculated.",
+					"BaseAttributeReference": {
+						"Entity": "BondYield.cdm.json/BondYield",
+						"Name": "Date"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "date",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"DateFormat": "YYYY-MM-DD",
+							"HIVE_TYPE_STRING": "date"
+						}
+					}
+				},
+				{
+					"Name": "CurrentYieldPercentage",
+					"Description": "Current yield is the rate of return an investor will get, without taking into account the value of the premium or discount of the purchase price. It is calculated by dividing the coupon by the price",
+					"BaseAttributeReference": {
+						"Entity": "BondYield.cdm.json/BondYield",
+						"Name": "CurrentYieldPercentage"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "decimal",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Precision": 18,
+						"Scale": 8,
+						"Properties": {
+							"HIVE_TYPE_STRING": "decimal"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/BondYield",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/BondYield",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"BondId\":{\"entity\":\"BondYield.cdm.json/BondYield\",\"name\":\"BondId\"},\"Date\":{\"entity\":\"BondYield.cdm.json/BondYield\",\"name\":\"Date\"},\"CurrentYieldPercentage\":{\"entity\":\"BondYield.cdm.json/BondYield\",\"name\":\"CurrentYieldPercentage\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"BondYield\",\"path\":\"BondYield.cdm.json/BondYield\"},\"description\":\"Current yield is the rate of return an investor will get, without taking into account the value of the premium or discount of the purchase price. \\n\\nIt is calculated by dividing the coupon by the price, which is the annual payout as a percentage of the current market price you'll actually pay\\n\\nThe simplest version of yield is calculated using the following formula: yield = coupon amount/price. When you buy a bond at par, yield is equal to the interest rate. When the price changes, so does the yield.\\n\\nCurrent Yield = (Annual Dollar Interest Paid/Market Price)*100\\n\\nNotice how this calculation does not include any capital gains or losses the investor would make if the bond were bought at a discount or premium.\",\"primaryKey\":[\"BondId\",\"Date\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"BondYield.cdm.json/BondYield\",\"name\":\"BondId\"},\"dataType\":\"long\",\"description\":\"The unique identifier of a Financial Product.\",\"isNullable\":false,\"name\":\"BondId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"BondYield.cdm.json/BondYield\",\"name\":\"Date\"},\"dataType\":\"date\",\"dateFormat\":\"YYYY-MM-DD\",\"description\":\"The date for which the bond 'current' yield is calculated.\",\"isNullable\":false,\"name\":\"Date\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"BondYield.cdm.json/BondYield\",\"name\":\"CurrentYieldPercentage\"},\"dataType\":\"decimal\",\"dataTypeLength\":18,\"description\":\"Current yield is the rate of return an investor will get, without taking into account the value of the premium or discount of the purchase price. It is calculated by dividing the coupon by the price\",\"isNullable\":true,\"scale\":8,\"name\":\"CurrentYieldPercentage\"}]}}}",
+			"Description": "Current yield is the rate of return an investor will get, without taking into account the value of the premium or discount of the purchase price. \n\nIt is calculated by dividing the coupon by the price, which is the annual payout as a percentage of the current market price you'll actually pay\n\nThe simplest version of yield is calculated using the following formula: yield = coupon amount/price. When you buy a bond at par, yield is equal to the interest rate. When the price changes, so does the yield.\n\nCurrent Yield = (Annual Dollar Interest Paid/Market Price)*100\n\nNotice how this calculation does not include any capital gains or losses the investor would make if the bond were bought at a discount or premium.",
+			"DisplayFolderInfo": "{\"name\":\"Financial Product\",\"colorCode\":\"#001475\"}",
+			"PrimaryKeys": "BondId,Date",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

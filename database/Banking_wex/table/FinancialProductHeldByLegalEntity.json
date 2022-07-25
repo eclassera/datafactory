@@ -1,0 +1,183 @@
+{
+	"name": "FinancialProductHeldByLegalEntity",
+	"properties": {
+		"Name": "FinancialProductHeldByLegalEntity",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "The quantity of associated financial product held as investments on the indicated date with the estimated book value amount.",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "LegalEntityId",
+					"Description": "The unique identifier of a Legal Entity.\n\nIn this case it is the business, organization or legal entity whose books are being recorded and financial statements presented.",
+					"BaseAttributeReference": {
+						"Entity": "FinancialProductHeldByLegalEntity.cdm.json/FinancialProductHeldByLegalEntity",
+						"Name": "LegalEntityId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "FinancialProductId",
+					"Description": "The unique identifier of a Financial Product.",
+					"BaseAttributeReference": {
+						"Entity": "FinancialProductHeldByLegalEntity.cdm.json/FinancialProductHeldByLegalEntity",
+						"Name": "FinancialProductId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "long",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "long"
+						}
+					}
+				},
+				{
+					"Name": "Timestamp",
+					"Description": "The timestamp that the associated information is valid or effective as-of.",
+					"BaseAttributeReference": {
+						"Entity": "FinancialProductHeldByLegalEntity.cdm.json/FinancialProductHeldByLegalEntity",
+						"Name": "Timestamp"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "timestamp",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"TimestampFormat": "YYYY-MM-DD HH:MM:SS.fffffffff",
+							"HIVE_TYPE_STRING": "timestamp"
+						}
+					}
+				},
+				{
+					"Name": "LongQuantity",
+					"Description": "The quantity of the financial product held long.",
+					"BaseAttributeReference": {
+						"Entity": "FinancialProductHeldByLegalEntity.cdm.json/FinancialProductHeldByLegalEntity",
+						"Name": "LongQuantity"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "decimal",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Precision": 18,
+						"Scale": 2,
+						"Properties": {
+							"HIVE_TYPE_STRING": "decimal"
+						}
+					}
+				},
+				{
+					"Name": "ShortQuantity",
+					"Description": "The quantity of the financial product held short.",
+					"BaseAttributeReference": {
+						"Entity": "FinancialProductHeldByLegalEntity.cdm.json/FinancialProductHeldByLegalEntity",
+						"Name": "ShortQuantity"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "decimal",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Precision": 18,
+						"Scale": 2,
+						"Properties": {
+							"HIVE_TYPE_STRING": "decimal"
+						}
+					}
+				},
+				{
+					"Name": "MarketValueAmount",
+					"Description": "The market value of the financial product held.",
+					"BaseAttributeReference": {
+						"Entity": "FinancialProductHeldByLegalEntity.cdm.json/FinancialProductHeldByLegalEntity",
+						"Name": "MarketValueAmount"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "decimal",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Precision": 18,
+						"Scale": 2,
+						"Properties": {
+							"HIVE_TYPE_STRING": "decimal"
+						}
+					}
+				},
+				{
+					"Name": "IsoCurrencyCode",
+					"Description": "The ISO 4217 currency code.",
+					"BaseAttributeReference": {
+						"Entity": "FinancialProductHeldByLegalEntity.cdm.json/FinancialProductHeldByLegalEntity",
+						"Name": "IsoCurrencyCode"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 3,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/FinancialProductHeldByLegalEntity",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/FinancialProductHeldByLegalEntity",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"LegalEntityId\":{\"entity\":\"FinancialProductHeldByLegalEntity.cdm.json/FinancialProductHeldByLegalEntity\",\"name\":\"LegalEntityId\"},\"FinancialProductId\":{\"entity\":\"FinancialProductHeldByLegalEntity.cdm.json/FinancialProductHeldByLegalEntity\",\"name\":\"FinancialProductId\"},\"Timestamp\":{\"entity\":\"FinancialProductHeldByLegalEntity.cdm.json/FinancialProductHeldByLegalEntity\",\"name\":\"Timestamp\"},\"LongQuantity\":{\"entity\":\"FinancialProductHeldByLegalEntity.cdm.json/FinancialProductHeldByLegalEntity\",\"name\":\"LongQuantity\"},\"ShortQuantity\":{\"entity\":\"FinancialProductHeldByLegalEntity.cdm.json/FinancialProductHeldByLegalEntity\",\"name\":\"ShortQuantity\"},\"MarketValueAmount\":{\"entity\":\"FinancialProductHeldByLegalEntity.cdm.json/FinancialProductHeldByLegalEntity\",\"name\":\"MarketValueAmount\"},\"IsoCurrencyCode\":{\"entity\":\"FinancialProductHeldByLegalEntity.cdm.json/FinancialProductHeldByLegalEntity\",\"name\":\"IsoCurrencyCode\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"FinancialProductHeldByLegalEntity\",\"path\":\"FinancialProductHeldByLegalEntity.cdm.json/FinancialProductHeldByLegalEntity\"},\"description\":\"The quantity of associated financial product held as investments on the indicated date with the estimated book value amount.\",\"primaryKey\":[\"LegalEntityId\",\"FinancialProductId\",\"Timestamp\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"FinancialProductHeldByLegalEntity.cdm.json/FinancialProductHeldByLegalEntity\",\"name\":\"LegalEntityId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Legal Entity.\\n\\nIn this case it is the business, organization or legal entity whose books are being recorded and financial statements presented.\",\"isNullable\":false,\"name\":\"LegalEntityId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"FinancialProductHeldByLegalEntity.cdm.json/FinancialProductHeldByLegalEntity\",\"name\":\"FinancialProductId\"},\"dataType\":\"long\",\"description\":\"The unique identifier of a Financial Product.\",\"isNullable\":false,\"name\":\"FinancialProductId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"FinancialProductHeldByLegalEntity.cdm.json/FinancialProductHeldByLegalEntity\",\"name\":\"Timestamp\"},\"dataType\":\"timestamp\",\"description\":\"The timestamp that the associated information is valid or effective as-of.\",\"isNullable\":false,\"name\":\"Timestamp\",\"timestampFormat\":\"YYYY-MM-DD HH:MM:SS.fffffffff\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"FinancialProductHeldByLegalEntity.cdm.json/FinancialProductHeldByLegalEntity\",\"name\":\"LongQuantity\"},\"dataType\":\"decimal\",\"dataTypeLength\":18,\"description\":\"The quantity of the financial product held long.\",\"isNullable\":true,\"scale\":2,\"name\":\"LongQuantity\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"FinancialProductHeldByLegalEntity.cdm.json/FinancialProductHeldByLegalEntity\",\"name\":\"ShortQuantity\"},\"dataType\":\"decimal\",\"dataTypeLength\":18,\"description\":\"The quantity of the financial product held short.\",\"isNullable\":true,\"scale\":2,\"name\":\"ShortQuantity\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"FinancialProductHeldByLegalEntity.cdm.json/FinancialProductHeldByLegalEntity\",\"name\":\"MarketValueAmount\"},\"dataType\":\"decimal\",\"dataTypeLength\":18,\"description\":\"The market value of the financial product held.\",\"isNullable\":true,\"scale\":2,\"name\":\"MarketValueAmount\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"FinancialProductHeldByLegalEntity.cdm.json/FinancialProductHeldByLegalEntity\",\"name\":\"IsoCurrencyCode\"},\"dataType\":\"string\",\"dataTypeLength\":3,\"description\":\"The ISO 4217 currency code.\",\"isNullable\":true,\"name\":\"IsoCurrencyCode\"}]}}}",
+			"Description": "The quantity of associated financial product held as investments on the indicated date with the estimated book value amount.",
+			"DisplayFolderInfo": "{\"name\":\"Financial Product\",\"colorCode\":\"#001475\"}",
+			"PrimaryKeys": "LegalEntityId,FinancialProductId,Timestamp",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

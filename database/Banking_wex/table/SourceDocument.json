@@ -1,0 +1,227 @@
+{
+	"name": "SourceDocument",
+	"properties": {
+		"Name": "SourceDocument",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "The source document is the original record of a transaction.     \n\nSource documents are important as evidence of the business transaction is case proof is required (ex: audit).",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "SourceDocumentId",
+					"Description": "The unique identifier of a source document involved in a transaction.",
+					"BaseAttributeReference": {
+						"Entity": "SourceDocument.cdm.json/SourceDocument",
+						"Name": "SourceDocumentId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "long",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "long"
+						}
+					}
+				},
+				{
+					"Name": "SourceDocumentDate",
+					"Description": "The official date on the source document.",
+					"BaseAttributeReference": {
+						"Entity": "SourceDocument.cdm.json/SourceDocument",
+						"Name": "SourceDocumentDate"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "date",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"DateFormat": "YYYY-MM-DD",
+							"HIVE_TYPE_STRING": "date"
+						}
+					}
+				},
+				{
+					"Name": "Description",
+					"Description": "A description of the source document.",
+					"BaseAttributeReference": {
+						"Entity": "SourceDocument.cdm.json/SourceDocument",
+						"Name": "Description"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "Amount",
+					"Description": "The amount of the source document.",
+					"BaseAttributeReference": {
+						"Entity": "SourceDocument.cdm.json/SourceDocument",
+						"Name": "Amount"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "decimal",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Precision": 18,
+						"Scale": 2,
+						"Properties": {
+							"HIVE_TYPE_STRING": "decimal"
+						}
+					}
+				},
+				{
+					"Name": "StorageLocationId",
+					"Description": "The location where the source document is stored.",
+					"BaseAttributeReference": {
+						"Entity": "SourceDocument.cdm.json/SourceDocument",
+						"Name": "StorageLocationId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "SourceDocumentTypeId",
+					"Description": "The unique identifier of a Source Document Type.",
+					"BaseAttributeReference": {
+						"Entity": "SourceDocument.cdm.json/SourceDocument",
+						"Name": "SourceDocumentTypeId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "SourceDocumentInputTypeId",
+					"Description": "The unique identifier of a Source Document Input Type.",
+					"BaseAttributeReference": {
+						"Entity": "SourceDocument.cdm.json/SourceDocument",
+						"Name": "SourceDocumentInputTypeId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "TransactionId",
+					"Description": "The unique identifier of a Transaction.",
+					"BaseAttributeReference": {
+						"Entity": "SourceDocument.cdm.json/SourceDocument",
+						"Name": "TransactionId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "long",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"HIVE_TYPE_STRING": "long"
+						}
+					}
+				},
+				{
+					"Name": "InvoiceId",
+					"Description": "The unique identifier of an Invoice.",
+					"BaseAttributeReference": {
+						"Entity": "SourceDocument.cdm.json/SourceDocument",
+						"Name": "InvoiceId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "OrderId",
+					"Description": "The unique number that identifies an Order.",
+					"BaseAttributeReference": {
+						"Entity": "SourceDocument.cdm.json/SourceDocument",
+						"Name": "OrderId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "long",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"HIVE_TYPE_STRING": "long"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/SourceDocument",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/SourceDocument",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"SourceDocumentId\":{\"entity\":\"SourceDocument.cdm.json/SourceDocument\",\"name\":\"SourceDocumentId\"},\"SourceDocumentDate\":{\"entity\":\"SourceDocument.cdm.json/SourceDocument\",\"name\":\"SourceDocumentDate\"},\"Description\":{\"entity\":\"SourceDocument.cdm.json/SourceDocument\",\"name\":\"Description\"},\"Amount\":{\"entity\":\"SourceDocument.cdm.json/SourceDocument\",\"name\":\"Amount\"},\"StorageLocationId\":{\"entity\":\"SourceDocument.cdm.json/SourceDocument\",\"name\":\"StorageLocationId\"},\"SourceDocumentTypeId\":{\"entity\":\"SourceDocument.cdm.json/SourceDocument\",\"name\":\"SourceDocumentTypeId\"},\"SourceDocumentInputTypeId\":{\"entity\":\"SourceDocument.cdm.json/SourceDocument\",\"name\":\"SourceDocumentInputTypeId\"},\"TransactionId\":{\"entity\":\"SourceDocument.cdm.json/SourceDocument\",\"name\":\"TransactionId\"},\"InvoiceId\":{\"entity\":\"SourceDocument.cdm.json/SourceDocument\",\"name\":\"InvoiceId\"},\"OrderId\":{\"entity\":\"SourceDocument.cdm.json/SourceDocument\",\"name\":\"OrderId\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"SourceDocument\",\"path\":\"SourceDocument.cdm.json/SourceDocument\"},\"description\":\"The source document is the original record of a transaction.     \\n\\nSource documents are important as evidence of the business transaction is case proof is required (ex: audit).\",\"primaryKey\":[\"SourceDocumentId\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"SourceDocument.cdm.json/SourceDocument\",\"name\":\"SourceDocumentId\"},\"dataType\":\"long\",\"description\":\"The unique identifier of a source document involved in a transaction.\",\"isNullable\":false,\"name\":\"SourceDocumentId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"SourceDocument.cdm.json/SourceDocument\",\"name\":\"SourceDocumentDate\"},\"dataType\":\"date\",\"dateFormat\":\"YYYY-MM-DD\",\"description\":\"The official date on the source document.\",\"isNullable\":true,\"name\":\"SourceDocumentDate\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"SourceDocument.cdm.json/SourceDocument\",\"name\":\"Description\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"A description of the source document.\",\"isNullable\":true,\"name\":\"Description\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"SourceDocument.cdm.json/SourceDocument\",\"name\":\"Amount\"},\"dataType\":\"decimal\",\"dataTypeLength\":18,\"description\":\"The amount of the source document.\",\"isNullable\":true,\"scale\":2,\"name\":\"Amount\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"SourceDocument.cdm.json/SourceDocument\",\"name\":\"StorageLocationId\"},\"dataType\":\"integer\",\"description\":\"The location where the source document is stored.\",\"isNullable\":true,\"name\":\"StorageLocationId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"SourceDocument.cdm.json/SourceDocument\",\"name\":\"SourceDocumentTypeId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Source Document Type.\",\"isNullable\":true,\"name\":\"SourceDocumentTypeId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"SourceDocument.cdm.json/SourceDocument\",\"name\":\"SourceDocumentInputTypeId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Source Document Input Type.\",\"isNullable\":true,\"name\":\"SourceDocumentInputTypeId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"SourceDocument.cdm.json/SourceDocument\",\"name\":\"TransactionId\"},\"dataType\":\"long\",\"description\":\"The unique identifier of a Transaction.\",\"isNullable\":true,\"name\":\"TransactionId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"SourceDocument.cdm.json/SourceDocument\",\"name\":\"InvoiceId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of an Invoice.\",\"isNullable\":true,\"name\":\"InvoiceId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"SourceDocument.cdm.json/SourceDocument\",\"name\":\"OrderId\"},\"dataType\":\"long\",\"description\":\"The unique number that identifies an Order.\",\"isNullable\":true,\"name\":\"OrderId\"}]}}}",
+			"Description": "The source document is the original record of a transaction.     \n\nSource documents are important as evidence of the business transaction is case proof is required (ex: audit).",
+			"DisplayFolderInfo": "{\"name\":\"Accounting & Financial Reporting\",\"colorCode\":\"#0078D4\"}",
+			"PrimaryKeys": "SourceDocumentId",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

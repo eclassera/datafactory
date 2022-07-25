@@ -1,0 +1,145 @@
+{
+	"name": "ContractPartyExecution",
+	"properties": {
+		"Name": "ContractPartyExecution",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "The signing of the contract/execution of the contract by the associated party.",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "ContractId",
+					"Description": "The unique identifier of a Contract.",
+					"BaseAttributeReference": {
+						"Entity": "ContractPartyExecution.cdm.json/ContractPartyExecution",
+						"Name": "ContractId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "PartyId",
+					"Description": "The unique identifier of a Party.",
+					"BaseAttributeReference": {
+						"Entity": "ContractPartyExecution.cdm.json/ContractPartyExecution",
+						"Name": "PartyId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "long",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "long"
+						}
+					}
+				},
+				{
+					"Name": "ExecutionTimestamp",
+					"Description": "The timestamp that the party executed the contract.",
+					"BaseAttributeReference": {
+						"Entity": "ContractPartyExecution.cdm.json/ContractPartyExecution",
+						"Name": "ExecutionTimestamp"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "timestamp",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"TimestampFormat": "YYYY-MM-DD HH:MM:SS.fffffffff",
+							"HIVE_TYPE_STRING": "timestamp"
+						}
+					}
+				},
+				{
+					"Name": "ExecutionNote",
+					"Description": "A note, comment or additional information regarding the execution of the contract by the party.",
+					"BaseAttributeReference": {
+						"Entity": "ContractPartyExecution.cdm.json/ContractPartyExecution",
+						"Name": "ExecutionNote"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "ContractDeliveryMethodId",
+					"Description": "The unique identifier of a contract delivery method.",
+					"BaseAttributeReference": {
+						"Entity": "ContractPartyExecution.cdm.json/ContractPartyExecution",
+						"Name": "ContractDeliveryMethodId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/ContractPartyExecution",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/ContractPartyExecution",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"ContractId\":{\"entity\":\"ContractPartyExecution.cdm.json/ContractPartyExecution\",\"name\":\"ContractId\"},\"PartyId\":{\"entity\":\"ContractPartyExecution.cdm.json/ContractPartyExecution\",\"name\":\"PartyId\"},\"ExecutionTimestamp\":{\"entity\":\"ContractPartyExecution.cdm.json/ContractPartyExecution\",\"name\":\"ExecutionTimestamp\"},\"ExecutionNote\":{\"entity\":\"ContractPartyExecution.cdm.json/ContractPartyExecution\",\"name\":\"ExecutionNote\"},\"ContractDeliveryMethodId\":{\"entity\":\"ContractPartyExecution.cdm.json/ContractPartyExecution\",\"name\":\"ContractDeliveryMethodId\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"ContractPartyExecution\",\"path\":\"ContractPartyExecution.cdm.json/ContractPartyExecution\"},\"description\":\"The signing of the contract/execution of the contract by the associated party.\",\"primaryKey\":[\"ContractId\",\"PartyId\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ContractPartyExecution.cdm.json/ContractPartyExecution\",\"name\":\"ContractId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Contract.\",\"isNullable\":false,\"name\":\"ContractId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ContractPartyExecution.cdm.json/ContractPartyExecution\",\"name\":\"PartyId\"},\"dataType\":\"long\",\"description\":\"The unique identifier of a Party.\",\"isNullable\":false,\"name\":\"PartyId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ContractPartyExecution.cdm.json/ContractPartyExecution\",\"name\":\"ExecutionTimestamp\"},\"dataType\":\"timestamp\",\"description\":\"The timestamp that the party executed the contract.\",\"isNullable\":false,\"name\":\"ExecutionTimestamp\",\"timestampFormat\":\"YYYY-MM-DD HH:MM:SS.fffffffff\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ContractPartyExecution.cdm.json/ContractPartyExecution\",\"name\":\"ExecutionNote\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"A note, comment or additional information regarding the execution of the contract by the party.\",\"isNullable\":true,\"name\":\"ExecutionNote\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ContractPartyExecution.cdm.json/ContractPartyExecution\",\"name\":\"ContractDeliveryMethodId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a contract delivery method.\",\"isNullable\":true,\"name\":\"ContractDeliveryMethodId\"}]}}}",
+			"Description": "The signing of the contract/execution of the contract by the associated party.",
+			"DisplayFolderInfo": "{\"name\":\"Contract\",\"colorCode\":\"#917EDB\"}",
+			"PrimaryKeys": "ContractId,PartyId",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

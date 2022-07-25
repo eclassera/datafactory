@@ -1,0 +1,129 @@
+{
+	"name": "CapitalBudgetItem",
+	"properties": {
+		"Name": "CapitalBudgetItem",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "An item that is included as part of a capital budget.",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "CapitalExpenditureBudgetId",
+					"Description": "The unique identifier of the Capital Expenditure Budget.",
+					"BaseAttributeReference": {
+						"Entity": "CapitalBudgetItem.cdm.json/CapitalBudgetItem",
+						"Name": "CapitalExpenditureBudgetId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "CapitalExpenditureBudgetVersionId",
+					"Description": "The unique identifier of a Capital Expenditure Budget Version.",
+					"BaseAttributeReference": {
+						"Entity": "CapitalBudgetItem.cdm.json/CapitalBudgetItem",
+						"Name": "CapitalExpenditureBudgetVersionId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "CapitalBudgetItemTypeId",
+					"Description": "The unique identifier of a capital budget item type.",
+					"BaseAttributeReference": {
+						"Entity": "CapitalBudgetItem.cdm.json/CapitalBudgetItem",
+						"Name": "CapitalBudgetItemTypeId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "BudgetedExpenditureAmount",
+					"Description": "The amount budgeted for the associated capital budget item.",
+					"BaseAttributeReference": {
+						"Entity": "CapitalBudgetItem.cdm.json/CapitalBudgetItem",
+						"Name": "BudgetedExpenditureAmount"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "decimal",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Precision": 18,
+						"Scale": 2,
+						"Properties": {
+							"HIVE_TYPE_STRING": "decimal"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/CapitalBudgetItem",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/CapitalBudgetItem",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"CapitalExpenditureBudgetId\":{\"entity\":\"CapitalBudgetItem.cdm.json/CapitalBudgetItem\",\"name\":\"CapitalExpenditureBudgetId\"},\"CapitalExpenditureBudgetVersionId\":{\"entity\":\"CapitalBudgetItem.cdm.json/CapitalBudgetItem\",\"name\":\"CapitalExpenditureBudgetVersionId\"},\"CapitalBudgetItemTypeId\":{\"entity\":\"CapitalBudgetItem.cdm.json/CapitalBudgetItem\",\"name\":\"CapitalBudgetItemTypeId\"},\"BudgetedExpenditureAmount\":{\"entity\":\"CapitalBudgetItem.cdm.json/CapitalBudgetItem\",\"name\":\"BudgetedExpenditureAmount\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"CapitalBudgetItem\",\"path\":\"CapitalBudgetItem.cdm.json/CapitalBudgetItem\"},\"description\":\"An item that is included as part of a capital budget.\",\"primaryKey\":[\"CapitalExpenditureBudgetId\",\"CapitalExpenditureBudgetVersionId\",\"CapitalBudgetItemTypeId\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CapitalBudgetItem.cdm.json/CapitalBudgetItem\",\"name\":\"CapitalExpenditureBudgetId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of the Capital Expenditure Budget.\",\"isNullable\":false,\"name\":\"CapitalExpenditureBudgetId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CapitalBudgetItem.cdm.json/CapitalBudgetItem\",\"name\":\"CapitalExpenditureBudgetVersionId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Capital Expenditure Budget Version.\",\"isNullable\":false,\"name\":\"CapitalExpenditureBudgetVersionId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CapitalBudgetItem.cdm.json/CapitalBudgetItem\",\"name\":\"CapitalBudgetItemTypeId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a capital budget item type.\",\"isNullable\":false,\"name\":\"CapitalBudgetItemTypeId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CapitalBudgetItem.cdm.json/CapitalBudgetItem\",\"name\":\"BudgetedExpenditureAmount\"},\"dataType\":\"decimal\",\"dataTypeLength\":18,\"description\":\"The amount budgeted for the associated capital budget item.\",\"isNullable\":true,\"scale\":2,\"name\":\"BudgetedExpenditureAmount\"}]}}}",
+			"Description": "An item that is included as part of a capital budget.",
+			"DisplayFolderInfo": "{\"name\":\"Budget & Forecasting\",\"colorCode\":\"#00188F\"}",
+			"PrimaryKeys": "CapitalExpenditureBudgetId,CapitalExpenditureBudgetVersionId,CapitalBudgetItemTypeId",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

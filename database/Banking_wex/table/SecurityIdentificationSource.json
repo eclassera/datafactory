@@ -1,0 +1,129 @@
+{
+	"name": "SecurityIdentificationSource",
+	"properties": {
+		"Name": "SecurityIdentificationSource",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "A method or source for identifying Financial Products.  \n\nThere are currently 65 national numbering agencies issuing more than 20 different local codes.  \n\nEx:\n\n- ISIN \n- CUSIP  \n- SEDOL  \n- CEDEL\n- VALOREN  \n- RIC  \n- BLOOMBERG ID\n- FTID FTEX\n- OUICK\n- COMMON CODE\n- EUROCLEAR\n- SIC\n- SICC\n- SICOVAM\n\nCedel   No longer used; replaced by the Common Code on January 1, 1991. \n\nCIN   CUSIP International Number. Used for non-U.S. and non-Canadian securities. Nine characters. The first character is always a letter, which represents the country of issue. The country codes are as follows: A=Austria, B=Belgium, C=China, D=Germany, E=Spain, F=France, G=Great Britain, H=Switzerland, J=Japan, K=Denmark, L=Luxembourg, M= Middle East, N=Netherlands P= South America, Q=Australia, R=Norway, S=South Africa, T= Italy, U= United States, V =Africa(Other), W= Sweden, X=Europe (Other), Y=Asia. The next five characters are numbers which represent the issuer, followed by two digits representing the security. The final digit is the check digit. \nCommon Code   Issued in Luxembourg, replaces CEDEL and Euroclear codes. Nine digits. Final digit is a check digit, computed on a multiplicative system. \n\nCUSIP   Committee on Uniform Securities Identification Procedures. Standard & Poor's assigns a nine character code to stocks and bonds. The first six characters identify the issuer. The next two characters represent the security that was issued, and the ninth character is a check digit, which is computed using a modulus 10 double add double calculation. For Canadian and U.S. securities, the first character is always a digit. Other countries use an alphabetic first character. See CIN number, above. \n\nEuroclear   Not used anymore; replaced by the Common Code on January 1, 1991. \n\nISIN   International Securities Identification Number. This is a twelve character code developed by the International Standards Organization (ISO) that represents a security. The first two letters always represent the country code, and the ISO standards are used. Basically, these are the same two letters as used in Internet addresses (however GB, not UK, is used for the United Kingdom of Great Britain and Northern Ireland). The next nine characters usually use some other code, such as CUSIP in North America, SEDOL in the United Kingdom, etc. Leading spaces are padded with 0. The final digit is the check digit, also computed with modulus 10 double add double, but it is different from the method used in CUSIP's. \n\nRIC   Reuter Identification Code. Used on the Reuters Terminal to pull up a particular security. When an equal sign is the last character, that symbol is a master RIC. An RIC that has an equal sign followed by some additional letters means that this string contains the price quoted by some entity. That entity is denoted by those letters following the equal sign. \n\nSEDOL   Stock Exchange Daily Official List. Securities identification code issued by the London Stock Exchange. Has a built in check digit system. \n\nSIC   Standard Industrial Code. Tells what line of business a firm is in, does not symbolize a security. \n\nSICC   Security Identification Code Conference. Used in Japan, usually four digits. Sort of like a ticker in Japan. \n\nSicovam SociÉtÉ Interprofessional Pour La Compensation des Valeurs Mobiliers. Used in France. \n\nSVM   Used in Belgium. \n\nValoren Identifier for Swiss securities. No check digit system.\n\nWertpapier Kenn-nummer  Issued in Germany by the Wertpapier Mitteilungen. Six digits, no check digit. Different ranges of numbers represent different classes of securities. Sometimes called WPK. Note that this number has widespread use in Germany: much more so than the CUSIP in the United States, for instance. \n\nWKN   See Wertpapier Kenn-Nummer. \n\nWPK   See Wertpapier Kenn-Nummer. \n\nNote:\nThe creation of the international standard ISIN (ISO 6166), essentially an embedded local identifier with a prefixed ISO country code, unified the format of a security identifier and paved the way for the communication of electronic securities messages generated for trading, settlement and registration.    \n\nThe underlying problem however is that the international standard (ISIN) alone is not sufficient for the automation requirements of STP.  ISIN is a unique issue identifier, but is not always a unique security identifier.  \n\nISIN alone is not sufficient for unique identification because one ISIN can be shared among offerings in multiple locations where each offering may have slightly different characteristics that nonetheless have a significant impact.  \n\nEPIC \nCommonly used on the UK stock market.\n \nQUICK\nA numbering system used in Japan\n\nNote:\nThe creation of the international standard ISIN (ISO 6166), essentially an embedded local identifier with a prefixed ISO country code, unified the format of a security identifier and paved the way for the communication of electronic securities messages generated for trading, settlement and registration.    \n\nThe underlying problem however is that the international standard (ISIN) alone is not sufficient for the automation requirements of STP.  ISIN is a unique issue identifier, but is not always a unique security identifier.  \n\nISIN alone is not sufficient for unique identification because one ISIN can be shared among offerings in multiple locations where each offering may have slightly different characteristics that nonetheless have a significant impact.",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "SecurityIdentificationSourceId",
+					"Description": "The unique identifier of a Security Identification Source.",
+					"BaseAttributeReference": {
+						"Entity": "SecurityIdentificationSource.cdm.json/SecurityIdentificationSource",
+						"Name": "SecurityIdentificationSourceId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "SecurityIdentificationSourceName",
+					"Description": "The name of a Security Identification Source.",
+					"BaseAttributeReference": {
+						"Entity": "SecurityIdentificationSource.cdm.json/SecurityIdentificationSource",
+						"Name": "SecurityIdentificationSourceName"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 256,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "SecurityIdentificationSourceDescription",
+					"Description": "The description of a Security Identification Source.",
+					"BaseAttributeReference": {
+						"Entity": "SecurityIdentificationSource.cdm.json/SecurityIdentificationSource",
+						"Name": "SecurityIdentificationSourceDescription"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "PartyId",
+					"Description": "The unique identifier of a Party.",
+					"BaseAttributeReference": {
+						"Entity": "SecurityIdentificationSource.cdm.json/SecurityIdentificationSource",
+						"Name": "PartyId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "long",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"HIVE_TYPE_STRING": "long"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/SecurityIdentificationSource",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/SecurityIdentificationSource",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"SecurityIdentificationSourceId\":{\"entity\":\"SecurityIdentificationSource.cdm.json/SecurityIdentificationSource\",\"name\":\"SecurityIdentificationSourceId\"},\"SecurityIdentificationSourceName\":{\"entity\":\"SecurityIdentificationSource.cdm.json/SecurityIdentificationSource\",\"name\":\"SecurityIdentificationSourceName\"},\"SecurityIdentificationSourceDescription\":{\"entity\":\"SecurityIdentificationSource.cdm.json/SecurityIdentificationSource\",\"name\":\"SecurityIdentificationSourceDescription\"},\"PartyId\":{\"entity\":\"SecurityIdentificationSource.cdm.json/SecurityIdentificationSource\",\"name\":\"PartyId\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"SecurityIdentificationSource\",\"path\":\"SecurityIdentificationSource.cdm.json/SecurityIdentificationSource\"},\"description\":\"A method or source for identifying Financial Products.  \\n\\nThere are currently 65 national numbering agencies issuing more than 20 different local codes.  \\n\\nEx:\\n\\n- ISIN \\n- CUSIP  \\n- SEDOL  \\n- CEDEL\\n- VALOREN  \\n- RIC  \\n- BLOOMBERG ID\\n- FTID FTEX\\n- OUICK\\n- COMMON CODE\\n- EUROCLEAR\\n- SIC\\n- SICC\\n- SICOVAM\\n\\nCedel   No longer used; replaced by the Common Code on January 1, 1991. \\n\\nCIN   CUSIP International Number. Used for non-U.S. and non-Canadian securities. Nine characters. The first character is always a letter, which represents the country of issue. The country codes are as follows: A=Austria, B=Belgium, C=China, D=Germany, E=Spain, F=France, G=Great Britain, H=Switzerland, J=Japan, K=Denmark, L=Luxembourg, M= Middle East, N=Netherlands P= South America, Q=Australia, R=Norway, S=South Africa, T= Italy, U= United States, V =Africa(Other), W= Sweden, X=Europe (Other), Y=Asia. The next five characters are numbers which represent the issuer, followed by two digits representing the security. The final digit is the check digit. \\nCommon Code   Issued in Luxembourg, replaces CEDEL and Euroclear codes. Nine digits. Final digit is a check digit, computed on a multiplicative system. \\n\\nCUSIP   Committee on Uniform Securities Identification Procedures. Standard & Poor's assigns a nine character code to stocks and bonds. The first six characters identify the issuer. The next two characters represent the security that was issued, and the ninth character is a check digit, which is computed using a modulus 10 double add double calculation. For Canadian and U.S. securities, the first character is always a digit. Other countries use an alphabetic first character. See CIN number, above. \\n\\nEuroclear   Not used anymore; replaced by the Common Code on January 1, 1991. \\n\\nISIN   International Securities Identification Number. This is a twelve character code developed by the International Standards Organization (ISO) that represents a security. The first two letters always represent the country code, and the ISO standards are used. Basically, these are the same two letters as used in Internet addresses (however GB, not UK, is used for the United Kingdom of Great Britain and Northern Ireland). The next nine characters usually use some other code, such as CUSIP in North America, SEDOL in the United Kingdom, etc. Leading spaces are padded with 0. The final digit is the check digit, also computed with modulus 10 double add double, but it is different from the method used in CUSIP's. \\n\\nRIC   Reuter Identification Code. Used on the Reuters Terminal to pull up a particular security. When an equal sign is the last character, that symbol is a master RIC. An RIC that has an equal sign followed by some additional letters means that this string contains the price quoted by some entity. That entity is denoted by those letters following the equal sign. \\n\\nSEDOL   Stock Exchange Daily Official List. Securities identification code issued by the London Stock Exchange. Has a built in check digit system. \\n\\nSIC   Standard Industrial Code. Tells what line of business a firm is in, does not symbolize a security. \\n\\nSICC   Security Identification Code Conference. Used in Japan, usually four digits. Sort of like a ticker in Japan. \\n\\nSicovam SociÉtÉ Interprofessional Pour La Compensation des Valeurs Mobiliers. Used in France. \\n\\nSVM   Used in Belgium. \\n\\nValoren Identifier for Swiss securities. No check digit system.\\n\\nWertpapier Kenn-nummer  Issued in Germany by the Wertpapier Mitteilungen. Six digits, no check digit. Different ranges of numbers represent different classes of securities. Sometimes called WPK. Note that this number has widespread use in Germany: much more so than the CUSIP in the United States, for instance. \\n\\nWKN   See Wertpapier Kenn-Nummer. \\n\\nWPK   See Wertpapier Kenn-Nummer. \\n\\nNote:\\nThe creation of the international standard ISIN (ISO 6166), essentially an embedded local identifier with a prefixed ISO country code, unified the format of a security identifier and paved the way for the communication of electronic securities messages generated for trading, settlement and registration.    \\n\\nThe underlying problem however is that the international standard (ISIN) alone is not sufficient for the automation requirements of STP.  ISIN is a unique issue identifier, but is not always a unique security identifier.  \\n\\nISIN alone is not sufficient for unique identification because one ISIN can be shared among offerings in multiple locations where each offering may have slightly different characteristics that nonetheless have a significant impact.  \\n\\nEPIC \\nCommonly used on the UK stock market.\\n \\nQUICK\\nA numbering system used in Japan\\n\\nNote:\\nThe creation of the international standard ISIN (ISO 6166), essentially an embedded local identifier with a prefixed ISO country code, unified the format of a security identifier and paved the way for the communication of electronic securities messages generated for trading, settlement and registration.    \\n\\nThe underlying problem however is that the international standard (ISIN) alone is not sufficient for the automation requirements of STP.  ISIN is a unique issue identifier, but is not always a unique security identifier.  \\n\\nISIN alone is not sufficient for unique identification because one ISIN can be shared among offerings in multiple locations where each offering may have slightly different characteristics that nonetheless have a significant impact.\",\"primaryKey\":[\"SecurityIdentificationSourceId\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"SecurityIdentificationSource.cdm.json/SecurityIdentificationSource\",\"name\":\"SecurityIdentificationSourceId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Security Identification Source.\",\"isNullable\":false,\"name\":\"SecurityIdentificationSourceId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"SecurityIdentificationSource.cdm.json/SecurityIdentificationSource\",\"name\":\"SecurityIdentificationSourceName\"},\"dataType\":\"string\",\"dataTypeLength\":256,\"description\":\"The name of a Security Identification Source.\",\"isNullable\":true,\"name\":\"SecurityIdentificationSourceName\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"SecurityIdentificationSource.cdm.json/SecurityIdentificationSource\",\"name\":\"SecurityIdentificationSourceDescription\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"The description of a Security Identification Source.\",\"isNullable\":true,\"name\":\"SecurityIdentificationSourceDescription\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"SecurityIdentificationSource.cdm.json/SecurityIdentificationSource\",\"name\":\"PartyId\"},\"dataType\":\"long\",\"description\":\"The unique identifier of a Party.\",\"isNullable\":true,\"name\":\"PartyId\"}]}}}",
+			"Description": "A method or source for identifying Financial Products.  \n\nThere are currently 65 national numbering agencies issuing more than 20 different local codes.  \n\nEx:\n\n- ISIN \n- CUSIP  \n- SEDOL  \n- CEDEL\n- VALOREN  \n- RIC  \n- BLOOMBERG ID\n- FTID FTEX\n- OUICK\n- COMMON CODE\n- EUROCLEAR\n- SIC\n- SICC\n- SICOVAM\n\nCedel   No longer used; replaced by the Common Code on January 1, 1991. \n\nCIN   CUSIP International Number. Used for non-U.S. and non-Canadian securities. Nine characters. The first character is always a letter, which represents the country of issue. The country codes are as follows: A=Austria, B=Belgium, C=China, D=Germany, E=Spain, F=France, G=Great Britain, H=Switzerland, J=Japan, K=Denmark, L=Luxembourg, M= Middle East, N=Netherlands P= South America, Q=Australia, R=Norway, S=South Africa, T= Italy, U= United States, V =Africa(Other), W= Sweden, X=Europe (Other), Y=Asia. The next five characters are numbers which represent the issuer, followed by two digits representing the security. The final digit is the check digit. \nCommon Code   Issued in Luxembourg, replaces CEDEL and Euroclear codes. Nine digits. Final digit is a check digit, computed on a multiplicative system. \n\nCUSIP   Committee on Uniform Securities Identification Procedures. Standard & Poor's assigns a nine character code to stocks and bonds. The first six characters identify the issuer. The next two characters represent the security that was issued, and the ninth character is a check digit, which is computed using a modulus 10 double add double calculation. For Canadian and U.S. securities, the first character is always a digit. Other countries use an alphabetic first character. See CIN number, above. \n\nEuroclear   Not used anymore; replaced by the Common Code on January 1, 1991. \n\nISIN   International Securities Identification Number. This is a twelve character code developed by the International Standards Organization (ISO) that represents a security. The first two letters always represent the country code, and the ISO standards are used. Basically, these are the same two letters as used in Internet addresses (however GB, not UK, is used for the United Kingdom of Great Britain and Northern Ireland). The next nine characters usually use some other code, such as CUSIP in North America, SEDOL in the United Kingdom, etc. Leading spaces are padded with 0. The final digit is the check digit, also computed with modulus 10 double add double, but it is different from the method used in CUSIP's. \n\nRIC   Reuter Identification Code. Used on the Reuters Terminal to pull up a particular security. When an equal sign is the last character, that symbol is a master RIC. An RIC that has an equal sign followed by some additional letters means that this string contains the price quoted by some entity. That entity is denoted by those letters following the equal sign. \n\nSEDOL   Stock Exchange Daily Official List. Securities identification code issued by the London Stock Exchange. Has a built in check digit system. \n\nSIC   Standard Industrial Code. Tells what line of business a firm is in, does not symbolize a security. \n\nSICC   Security Identification Code Conference. Used in Japan, usually four digits. Sort of like a ticker in Japan. \n\nSicovam SociÉtÉ Interprofessional Pour La Compensation des Valeurs Mobiliers. Used in France. \n\nSVM   Used in Belgium. \n\nValoren Identifier for Swiss securities. No check digit system.\n\nWertpapier Kenn-nummer  Issued in Germany by the Wertpapier Mitteilungen. Six digits, no check digit. Different ranges of numbers represent different classes of securities. Sometimes called WPK. Note that this number has widespread use in Germany: much more so than the CUSIP in the United States, for instance. \n\nWKN   See Wertpapier Kenn-Nummer. \n\nWPK   See Wertpapier Kenn-Nummer. \n\nNote:\nThe creation of the international standard ISIN (ISO 6166), essentially an embedded local identifier with a prefixed ISO country code, unified the format of a security identifier and paved the way for the communication of electronic securities messages generated for trading, settlement and registration.    \n\nThe underlying problem however is that the international standard (ISIN) alone is not sufficient for the automation requirements of STP.  ISIN is a unique issue identifier, but is not always a unique security identifier.  \n\nISIN alone is not sufficient for unique identification because one ISIN can be shared among offerings in multiple locations where each offering may have slightly different characteristics that nonetheless have a significant impact.  \n\nEPIC \nCommonly used on the UK stock market.\n \nQUICK\nA numbering system used in Japan\n\nNote:\nThe creation of the international standard ISIN (ISO 6166), essentially an embedded local identifier with a prefixed ISO country code, unified the format of a security identifier and paved the way for the communication of electronic securities messages generated for trading, settlement and registration.    \n\nThe underlying problem however is that the international standard (ISIN) alone is not sufficient for the automation requirements of STP.  ISIN is a unique issue identifier, but is not always a unique security identifier.  \n\nISIN alone is not sufficient for unique identification because one ISIN can be shared among offerings in multiple locations where each offering may have slightly different characteristics that nonetheless have a significant impact.",
+			"DisplayFolderInfo": "{\"name\":\"Accounting & Financial Reporting\",\"colorCode\":\"#0078D4\"}",
+			"PrimaryKeys": "SecurityIdentificationSourceId",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

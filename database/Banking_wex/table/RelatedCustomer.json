@@ -1,0 +1,162 @@
+{
+	"name": "RelatedCustomer",
+	"properties": {
+		"Name": "RelatedCustomer",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "The relationship of two or more Customers for the associated period of time.",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "CustomerId",
+					"Description": "The unique identifier of a Customer.",
+					"BaseAttributeReference": {
+						"Entity": "RelatedCustomer.cdm.json/RelatedCustomer",
+						"Name": "CustomerId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "long",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "long"
+						}
+					}
+				},
+				{
+					"Name": "RelatedCustomerId",
+					"Description": "The unique identifier of a Customer.",
+					"BaseAttributeReference": {
+						"Entity": "RelatedCustomer.cdm.json/RelatedCustomer",
+						"Name": "RelatedCustomerId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "long",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "long"
+						}
+					}
+				},
+				{
+					"Name": "PeriodStartDate",
+					"Description": "The period start date for which the customer relationship is effective.",
+					"BaseAttributeReference": {
+						"Entity": "RelatedCustomer.cdm.json/RelatedCustomer",
+						"Name": "PeriodStartDate"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "date",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"DateFormat": "YYYY-MM-DD",
+							"HIVE_TYPE_STRING": "date"
+						}
+					}
+				},
+				{
+					"Name": "PeriodEndDate",
+					"Description": "The period end date for which the customer relationship is effective.",
+					"BaseAttributeReference": {
+						"Entity": "RelatedCustomer.cdm.json/RelatedCustomer",
+						"Name": "PeriodEndDate"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "date",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"DateFormat": "YYYY-MM-DD",
+							"HIVE_TYPE_STRING": "date"
+						}
+					}
+				},
+				{
+					"Name": "CustomerRelationshipTypeId",
+					"Description": "The unique identifier of a Household Relationship Type.",
+					"BaseAttributeReference": {
+						"Entity": "RelatedCustomer.cdm.json/RelatedCustomer",
+						"Name": "CustomerRelationshipTypeId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "RelatedCustomerNote",
+					"Description": "A note, comment or additional information regarding the customer relationship.",
+					"BaseAttributeReference": {
+						"Entity": "RelatedCustomer.cdm.json/RelatedCustomer",
+						"Name": "RelatedCustomerNote"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/RelatedCustomer",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/RelatedCustomer",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"CustomerId\":{\"entity\":\"RelatedCustomer.cdm.json/RelatedCustomer\",\"name\":\"CustomerId\"},\"RelatedCustomerId\":{\"entity\":\"RelatedCustomer.cdm.json/RelatedCustomer\",\"name\":\"RelatedCustomerId\"},\"PeriodStartDate\":{\"entity\":\"RelatedCustomer.cdm.json/RelatedCustomer\",\"name\":\"PeriodStartDate\"},\"PeriodEndDate\":{\"entity\":\"RelatedCustomer.cdm.json/RelatedCustomer\",\"name\":\"PeriodEndDate\"},\"CustomerRelationshipTypeId\":{\"entity\":\"RelatedCustomer.cdm.json/RelatedCustomer\",\"name\":\"CustomerRelationshipTypeId\"},\"RelatedCustomerNote\":{\"entity\":\"RelatedCustomer.cdm.json/RelatedCustomer\",\"name\":\"RelatedCustomerNote\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"RelatedCustomer\",\"path\":\"RelatedCustomer.cdm.json/RelatedCustomer\"},\"description\":\"The relationship of two or more Customers for the associated period of time.\",\"primaryKey\":[\"CustomerId\",\"RelatedCustomerId\",\"PeriodStartDate\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"RelatedCustomer.cdm.json/RelatedCustomer\",\"name\":\"CustomerId\"},\"dataType\":\"long\",\"description\":\"The unique identifier of a Customer.\",\"isNullable\":false,\"name\":\"CustomerId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"RelatedCustomer.cdm.json/RelatedCustomer\",\"name\":\"RelatedCustomerId\"},\"dataType\":\"long\",\"description\":\"The unique identifier of a Customer.\",\"isNullable\":false,\"name\":\"RelatedCustomerId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"RelatedCustomer.cdm.json/RelatedCustomer\",\"name\":\"PeriodStartDate\"},\"dataType\":\"date\",\"dateFormat\":\"YYYY-MM-DD\",\"description\":\"The period start date for which the customer relationship is effective.\",\"isNullable\":false,\"name\":\"PeriodStartDate\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"RelatedCustomer.cdm.json/RelatedCustomer\",\"name\":\"PeriodEndDate\"},\"dataType\":\"date\",\"dateFormat\":\"YYYY-MM-DD\",\"description\":\"The period end date for which the customer relationship is effective.\",\"isNullable\":true,\"name\":\"PeriodEndDate\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"RelatedCustomer.cdm.json/RelatedCustomer\",\"name\":\"CustomerRelationshipTypeId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Household Relationship Type.\",\"isNullable\":true,\"name\":\"CustomerRelationshipTypeId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"RelatedCustomer.cdm.json/RelatedCustomer\",\"name\":\"RelatedCustomerNote\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"A note, comment or additional information regarding the customer relationship.\",\"isNullable\":true,\"name\":\"RelatedCustomerNote\"}]}}}",
+			"Description": "The relationship of two or more Customers for the associated period of time.",
+			"DisplayFolderInfo": "{\"name\":\"Customer\",\"colorCode\":\"#4B003F\"}",
+			"PrimaryKeys": "CustomerId,RelatedCustomerId,PeriodStartDate",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

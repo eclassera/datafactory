@@ -1,0 +1,111 @@
+{
+	"name": "EquifaxCreditReportSummaryRateHistoryType",
+	"properties": {
+		"Name": "EquifaxCreditReportSummaryRateHistoryType",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "The rate history type(s) and number of associated accounts related to the credit report.",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "EquifaxReportNumber",
+					"Description": "The Equifax report number.",
+					"BaseAttributeReference": {
+						"Entity": "EquifaxCreditReportSummaryRateHistoryType.cdm.json/EquifaxCreditReportSummaryRateHistoryType",
+						"Name": "EquifaxReportNumber"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "EquifaxRateHistoryTypeId",
+					"Description": "The unique identifier of a rate history type.",
+					"BaseAttributeReference": {
+						"Entity": "EquifaxCreditReportSummaryRateHistoryType.cdm.json/EquifaxCreditReportSummaryRateHistoryType",
+						"Name": "EquifaxRateHistoryTypeId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "NumberOfAccounts",
+					"Description": "The number of accounts with the associated rate history type reported on the credit report.",
+					"BaseAttributeReference": {
+						"Entity": "EquifaxCreditReportSummaryRateHistoryType.cdm.json/EquifaxCreditReportSummaryRateHistoryType",
+						"Name": "NumberOfAccounts"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/EquifaxCreditReportSummaryRateHistoryType",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/EquifaxCreditReportSummaryRateHistoryType",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"EquifaxReportNumber\":{\"entity\":\"EquifaxCreditReportSummaryRateHistoryType.cdm.json/EquifaxCreditReportSummaryRateHistoryType\",\"name\":\"EquifaxReportNumber\"},\"EquifaxRateHistoryTypeId\":{\"entity\":\"EquifaxCreditReportSummaryRateHistoryType.cdm.json/EquifaxCreditReportSummaryRateHistoryType\",\"name\":\"EquifaxRateHistoryTypeId\"},\"NumberOfAccounts\":{\"entity\":\"EquifaxCreditReportSummaryRateHistoryType.cdm.json/EquifaxCreditReportSummaryRateHistoryType\",\"name\":\"NumberOfAccounts\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"EquifaxCreditReportSummaryRateHistoryType\",\"path\":\"EquifaxCreditReportSummaryRateHistoryType.cdm.json/EquifaxCreditReportSummaryRateHistoryType\"},\"description\":\"The rate history type(s) and number of associated accounts related to the credit report.\",\"primaryKey\":[\"EquifaxReportNumber\",\"EquifaxRateHistoryTypeId\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"EquifaxCreditReportSummaryRateHistoryType.cdm.json/EquifaxCreditReportSummaryRateHistoryType\",\"name\":\"EquifaxReportNumber\"},\"dataType\":\"integer\",\"description\":\"The Equifax report number.\",\"isNullable\":false,\"name\":\"EquifaxReportNumber\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"EquifaxCreditReportSummaryRateHistoryType.cdm.json/EquifaxCreditReportSummaryRateHistoryType\",\"name\":\"EquifaxRateHistoryTypeId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a rate history type.\",\"isNullable\":false,\"name\":\"EquifaxRateHistoryTypeId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"EquifaxCreditReportSummaryRateHistoryType.cdm.json/EquifaxCreditReportSummaryRateHistoryType\",\"name\":\"NumberOfAccounts\"},\"dataType\":\"integer\",\"description\":\"The number of accounts with the associated rate history type reported on the credit report.\",\"isNullable\":true,\"name\":\"NumberOfAccounts\"}]}}}",
+			"Description": "The rate history type(s) and number of associated accounts related to the credit report.",
+			"DisplayFolderInfo": "{\"name\":\"Customer Credit & Collections\",\"colorCode\":\"#022F22\"}",
+			"PrimaryKeys": "EquifaxReportNumber,EquifaxRateHistoryTypeId",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

@@ -1,0 +1,161 @@
+{
+	"name": "CustomerNameComponent",
+	"properties": {
+		"Name": "CustomerNameComponent",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "The individual name components of the customer name and their ordering in the name.",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "CustomerId",
+					"Description": "The unique identifier of a Customer.",
+					"BaseAttributeReference": {
+						"Entity": "CustomerNameComponent.cdm.json/CustomerNameComponent",
+						"Name": "CustomerId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "long",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "long"
+						}
+					}
+				},
+				{
+					"Name": "CustomerNameId",
+					"Description": "The unique identifier of a Customer Name.",
+					"BaseAttributeReference": {
+						"Entity": "CustomerNameComponent.cdm.json/CustomerNameComponent",
+						"Name": "CustomerNameId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "NameComponentOrderNumber",
+					"Description": "The order number associated with the customer name component.",
+					"BaseAttributeReference": {
+						"Entity": "CustomerNameComponent.cdm.json/CustomerNameComponent",
+						"Name": "NameComponentOrderNumber"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "NameComponent",
+					"Description": "The component name.",
+					"BaseAttributeReference": {
+						"Entity": "CustomerNameComponent.cdm.json/CustomerNameComponent",
+						"Name": "NameComponent"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 256,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "NameComponentTypeId",
+					"Description": "The unique identifier of a Name Component Type.",
+					"BaseAttributeReference": {
+						"Entity": "CustomerNameComponent.cdm.json/CustomerNameComponent",
+						"Name": "NameComponentTypeId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "NameComponentNote",
+					"Description": "A note, comment or additional information regarding the component name.",
+					"BaseAttributeReference": {
+						"Entity": "CustomerNameComponent.cdm.json/CustomerNameComponent",
+						"Name": "NameComponentNote"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/CustomerNameComponent",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/CustomerNameComponent",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"CustomerId\":{\"entity\":\"CustomerNameComponent.cdm.json/CustomerNameComponent\",\"name\":\"CustomerId\"},\"CustomerNameId\":{\"entity\":\"CustomerNameComponent.cdm.json/CustomerNameComponent\",\"name\":\"CustomerNameId\"},\"NameComponentOrderNumber\":{\"entity\":\"CustomerNameComponent.cdm.json/CustomerNameComponent\",\"name\":\"NameComponentOrderNumber\"},\"NameComponent\":{\"entity\":\"CustomerNameComponent.cdm.json/CustomerNameComponent\",\"name\":\"NameComponent\"},\"NameComponentTypeId\":{\"entity\":\"CustomerNameComponent.cdm.json/CustomerNameComponent\",\"name\":\"NameComponentTypeId\"},\"NameComponentNote\":{\"entity\":\"CustomerNameComponent.cdm.json/CustomerNameComponent\",\"name\":\"NameComponentNote\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"CustomerNameComponent\",\"path\":\"CustomerNameComponent.cdm.json/CustomerNameComponent\"},\"description\":\"The individual name components of the customer name and their ordering in the name.\",\"primaryKey\":[\"CustomerId\",\"CustomerNameId\",\"NameComponentOrderNumber\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CustomerNameComponent.cdm.json/CustomerNameComponent\",\"name\":\"CustomerId\"},\"dataType\":\"long\",\"description\":\"The unique identifier of a Customer.\",\"isNullable\":false,\"name\":\"CustomerId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CustomerNameComponent.cdm.json/CustomerNameComponent\",\"name\":\"CustomerNameId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Customer Name.\",\"isNullable\":false,\"name\":\"CustomerNameId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CustomerNameComponent.cdm.json/CustomerNameComponent\",\"name\":\"NameComponentOrderNumber\"},\"dataType\":\"integer\",\"description\":\"The order number associated with the customer name component.\",\"isNullable\":false,\"name\":\"NameComponentOrderNumber\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CustomerNameComponent.cdm.json/CustomerNameComponent\",\"name\":\"NameComponent\"},\"dataType\":\"string\",\"dataTypeLength\":256,\"description\":\"The component name.\",\"isNullable\":true,\"name\":\"NameComponent\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CustomerNameComponent.cdm.json/CustomerNameComponent\",\"name\":\"NameComponentTypeId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Name Component Type.\",\"isNullable\":false,\"name\":\"NameComponentTypeId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CustomerNameComponent.cdm.json/CustomerNameComponent\",\"name\":\"NameComponentNote\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"A note, comment or additional information regarding the component name.\",\"isNullable\":true,\"name\":\"NameComponentNote\"}]}}}",
+			"Description": "The individual name components of the customer name and their ordering in the name.",
+			"DisplayFolderInfo": "{\"name\":\"Customer\",\"colorCode\":\"#4B003F\"}",
+			"PrimaryKeys": "CustomerId,CustomerNameId,NameComponentOrderNumber",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

@@ -1,0 +1,704 @@
+{
+	"name": "Carrier",
+	"properties": {
+		"Name": "Carrier",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "A company or corporation engaged in transporting passengers or goods (mail, freight or cargo)\n\nAny entity who, in a contract of carriage, undertakes to perform or to procure the performance of carriage by rail, road, sea, air, inland waterway or by a combination of such modes.\n\nEx:\n-  United Airlines\n-  Air Canada\n-  Aer Lingus\n-  UPS\n-  Federal Express\n-  US Postal Service\n-  DHL\n-  American President Lines\n-  Maersk- Sealand\n\nCarriers are often identified by their 2 or 3 character abbreviation. Ex.:\n\nCARRIER NAME                           2-Char Abbr.   3-Char. Abbr.  4-dig Census Code\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n\nAIR CANADA                             AC             ACA            5100\nAIR NEW ZEALAND, LIMITED               NZ             ANZ            5005\nBRITISH AIRWAYS P.L.C.                 BA             BAW            2250\nDELTA AIRLINES (DELTA CONNECTIO        DL             DAL            0128",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "CarrierId",
+					"Description": "The unique identifier of a Carrier.",
+					"BaseAttributeReference": {
+						"Entity": "Carrier.cdm.json/Carrier",
+						"Name": "CarrierId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "CarrierName",
+					"Description": "The name of a Carrier.",
+					"BaseAttributeReference": {
+						"Entity": "Carrier.cdm.json/Carrier",
+						"Name": "CarrierName"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 256,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "CarrierTypeId",
+					"Description": "The unique identifier of a Carrier Type.",
+					"BaseAttributeReference": {
+						"Entity": "Carrier.cdm.json/Carrier",
+						"Name": "CarrierTypeId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "CarrierOfficeTelephoneNumber",
+					"Description": "The Carrier's telephone number.",
+					"BaseAttributeReference": {
+						"Entity": "Carrier.cdm.json/Carrier",
+						"Name": "CarrierOfficeTelephoneNumber"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "decimal",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Precision": 15,
+						"Scale": 0,
+						"Properties": {
+							"HIVE_TYPE_STRING": "decimal"
+						}
+					}
+				},
+				{
+					"Name": "CarrierOfficeFaxNumber",
+					"Description": "The Carrier's fax number.",
+					"BaseAttributeReference": {
+						"Entity": "Carrier.cdm.json/Carrier",
+						"Name": "CarrierOfficeFaxNumber"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "decimal",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Precision": 15,
+						"Scale": 0,
+						"Properties": {
+							"HIVE_TYPE_STRING": "decimal"
+						}
+					}
+				},
+				{
+					"Name": "CarrierOfficeEmailAddress",
+					"Description": "The Carrier's email address.",
+					"BaseAttributeReference": {
+						"Entity": "Carrier.cdm.json/Carrier",
+						"Name": "CarrierOfficeEmailAddress"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 256,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "ScacCommonCarrierCode",
+					"Description": "Standard Carrier Abbreviation Code identifying an individual common carrier. A three letter carrier code followed by a suffix identifies the carrier's equipment. A suffix of \"U\" is a container and \"C\" is a chassis.",
+					"BaseAttributeReference": {
+						"Entity": "Carrier.cdm.json/Carrier",
+						"Name": "ScacCommonCarrierCode"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 4,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "CarrierTwoCharacterCode",
+					"Description": "The two character code that is used to identify the carrier.",
+					"BaseAttributeReference": {
+						"Entity": "Carrier.cdm.json/Carrier",
+						"Name": "CarrierTwoCharacterCode"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "CarrierThreeCharacterCode",
+					"Description": "The three character code that is used to identify the carrier.",
+					"BaseAttributeReference": {
+						"Entity": "Carrier.cdm.json/Carrier",
+						"Name": "CarrierThreeCharacterCode"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 3,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "IataAirlineDesignator",
+					"Description": "The IATA three-number airline accounting code and airline prefix code.\n\nAs per the provisions of IATA Resolution 767, a company may qualify for:\n- a three-numeric airline accounting code for use on passenger traffic documents if engaged in providing passenger transportation services only;\n- a three-numeric airline prefix code for use on cargo traffic documents if providing cargo transportation services only;\n- an identical three-numeric airline accounting code and a three-numeric airline prefix code if providing both passenger and cargo transportation services.",
+					"BaseAttributeReference": {
+						"Entity": "Carrier.cdm.json/Carrier",
+						"Name": "IataAirlineDesignator"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "decimal",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Precision": 3,
+						"Scale": 0,
+						"Properties": {
+							"HIVE_TYPE_STRING": "decimal"
+						}
+					}
+				},
+				{
+					"Name": "IcaoAirlineDesignator",
+					"Description": "The ICAO airline designator is a code assigned by the International Civil Aviation Organization (ICAO) to aircraft operating agencies, aeronautical authorities, and services related to international aviation, each of whom is allocated both a three-letter designator and a telephony designator. These codes are unique by airline, unlike the IATA airline designator codes (see section above). The designators are listed in ICAO Document 8585: Designators for Aircraft Operating Agencies, Aeronautical Authorities and Services.\n\nAn example is:\n\nOperator: American Airlines\nThree-letter designator: AAL (the original ICAO-two-letter-designator AA was used until 1987 and is also the IATA code of the airline)\nTelephony designator: AMERICAN",
+					"BaseAttributeReference": {
+						"Entity": "Carrier.cdm.json/Carrier",
+						"Name": "IcaoAirlineDesignator"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 3,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "CarrierWwwUrl",
+					"Description": "The URL (website address) of the Carrier.",
+					"BaseAttributeReference": {
+						"Entity": "Carrier.cdm.json/Carrier",
+						"Name": "CarrierWwwUrl"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2083,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "FirstOperationDate",
+					"Description": "The date that the Carrier was first in operation.",
+					"BaseAttributeReference": {
+						"Entity": "Carrier.cdm.json/Carrier",
+						"Name": "FirstOperationDate"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "date",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"DateFormat": "YYYY-MM-DD",
+							"HIVE_TYPE_STRING": "date"
+						}
+					}
+				},
+				{
+					"Name": "PartyId",
+					"Description": "The unique identifier of a Party.",
+					"BaseAttributeReference": {
+						"Entity": "Carrier.cdm.json/Carrier",
+						"Name": "PartyId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "long",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"HIVE_TYPE_STRING": "long"
+						}
+					}
+				},
+				{
+					"Name": "RegionalAirlineIndicator",
+					"Description": "Regional airlines are airlines that operate regional aircraft to provide passenger air service to communities without sufficient demand to attract mainline service.",
+					"BaseAttributeReference": {
+						"Entity": "Carrier.cdm.json/Carrier",
+						"Name": "RegionalAirlineIndicator"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "boolean",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"HIVE_TYPE_STRING": "boolean"
+						}
+					}
+				},
+				{
+					"Name": "LowCostCarrierIndicator",
+					"Description": "A low-cost carrier or low-cost airline (also known as a no-frills, discount or budget carrier or airline) is an airline that offers generally low fares in exchange for eliminating many traditional passenger services.",
+					"BaseAttributeReference": {
+						"Entity": "Carrier.cdm.json/Carrier",
+						"Name": "LowCostCarrierIndicator"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "boolean",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"HIVE_TYPE_STRING": "boolean"
+						}
+					}
+				},
+				{
+					"Name": "CharterAirlineIndicator",
+					"Description": "Air charter is the business of renting an entire aircraft.",
+					"BaseAttributeReference": {
+						"Entity": "Carrier.cdm.json/Carrier",
+						"Name": "CharterAirlineIndicator"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "boolean",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"HIVE_TYPE_STRING": "boolean"
+						}
+					}
+				},
+				{
+					"Name": "CargoAirlineIndicator",
+					"Description": "An airline that carries cargo.",
+					"BaseAttributeReference": {
+						"Entity": "Carrier.cdm.json/Carrier",
+						"Name": "CargoAirlineIndicator"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "boolean",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"HIVE_TYPE_STRING": "boolean"
+						}
+					}
+				},
+				{
+					"Name": "NationalAirlineIndicator",
+					"Description": "Many countries have national airlines that the government owns and operates.",
+					"BaseAttributeReference": {
+						"Entity": "Carrier.cdm.json/Carrier",
+						"Name": "NationalAirlineIndicator"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "boolean",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"HIVE_TYPE_STRING": "boolean"
+						}
+					}
+				},
+				{
+					"Name": "InternationalAirlineIndicator",
+					"Description": "An airline that operates international routes.",
+					"BaseAttributeReference": {
+						"Entity": "Carrier.cdm.json/Carrier",
+						"Name": "InternationalAirlineIndicator"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "boolean",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"HIVE_TYPE_STRING": "boolean"
+						}
+					}
+				},
+				{
+					"Name": "CarrierLogo",
+					"Description": "The carrier's logo.",
+					"BaseAttributeReference": {
+						"Entity": "Carrier.cdm.json/Carrier",
+						"Name": "CarrierLogo"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "binary",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"HIVE_TYPE_STRING": "binary"
+						}
+					}
+				},
+				{
+					"Name": "CombinationCarrierIndicator",
+					"Description": "Scheduled air carriers who transport both passengers and cargo in passenger configured aircraft, with cargo restricted to the lower deck compartments.",
+					"BaseAttributeReference": {
+						"Entity": "Carrier.cdm.json/Carrier",
+						"Name": "CombinationCarrierIndicator"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "boolean",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"HIVE_TYPE_STRING": "boolean"
+						}
+					}
+				},
+				{
+					"Name": "DirectAirCarrierIndicator",
+					"Description": "An air carrier that operates airplanes on a scheduled or contract (charter) basis, or both, and provides transportation for a charge.  An airline as opposed to a freight forwarder.",
+					"BaseAttributeReference": {
+						"Entity": "Carrier.cdm.json/Carrier",
+						"Name": "DirectAirCarrierIndicator"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "boolean",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"HIVE_TYPE_STRING": "boolean"
+						}
+					}
+				},
+				{
+					"Name": "BondedCarrierIndicator",
+					"Description": "A firm that has posted bond with the government and is licensed to carry and hold in their facilities' goods that have not been granted a clearance by countries' Customs Authorities.",
+					"BaseAttributeReference": {
+						"Entity": "Carrier.cdm.json/Carrier",
+						"Name": "BondedCarrierIndicator"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "boolean",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"HIVE_TYPE_STRING": "boolean"
+						}
+					}
+				},
+				{
+					"Name": "BondedDate",
+					"Description": "The date that the carrier was bonded.",
+					"BaseAttributeReference": {
+						"Entity": "Carrier.cdm.json/Carrier",
+						"Name": "BondedDate"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "date",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"DateFormat": "YYYY-MM-DD",
+							"HIVE_TYPE_STRING": "date"
+						}
+					}
+				},
+				{
+					"Name": "IataCarrierIndicator",
+					"Description": "An airline which is a member of IATA and may accept, carry, and bill for air shipments. Intra-US counterpart is ATA.",
+					"BaseAttributeReference": {
+						"Entity": "Carrier.cdm.json/Carrier",
+						"Name": "IataCarrierIndicator"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "boolean",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"HIVE_TYPE_STRING": "boolean"
+						}
+					}
+				},
+				{
+					"Name": "UnapprovedIndirectAirCarrierIndicator",
+					"Description": "An indirect air carrier who has not completed the FAA security training program and does not have an FAA identification number.",
+					"BaseAttributeReference": {
+						"Entity": "Carrier.cdm.json/Carrier",
+						"Name": "UnapprovedIndirectAirCarrierIndicator"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "boolean",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"HIVE_TYPE_STRING": "boolean"
+						}
+					}
+				},
+				{
+					"Name": "IntegratedCarrierIndicator",
+					"Description": "A carrier that provides door-to-door air cargo transportation using its own or contracted airplanes and motor trucks, and performs this service under the authority of a singe air waybill (e.g. United Parcel Service and Federal Express).",
+					"BaseAttributeReference": {
+						"Entity": "Carrier.cdm.json/Carrier",
+						"Name": "IntegratedCarrierIndicator"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "boolean",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"HIVE_TYPE_STRING": "boolean"
+						}
+					}
+				},
+				{
+					"Name": "FaaIdentificationNumber",
+					"Description": "A unique identifier given to an air carrier by the FAA once they have successfully completed a security training program.",
+					"BaseAttributeReference": {
+						"Entity": "Carrier.cdm.json/Carrier",
+						"Name": "FaaIdentificationNumber"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "CommonCarrierIndicator",
+					"Description": "A transportation company which provides service to the general public at published rates.",
+					"BaseAttributeReference": {
+						"Entity": "Carrier.cdm.json/Carrier",
+						"Name": "CommonCarrierIndicator"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "boolean",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"HIVE_TYPE_STRING": "boolean"
+						}
+					}
+				},
+				{
+					"Name": "DunsNumber",
+					"Description": "The DUNS number is a nine-digit number issued by Dun & Bradstreet and assigned to each business location in the D&B database having a unique, separate, and distinct operation to businesses for the purpose of identifying them. The number as issued is random and the digits apparently have no significance as to their issuance.",
+					"BaseAttributeReference": {
+						"Entity": "Carrier.cdm.json/Carrier",
+						"Name": "DunsNumber"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "decimal",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Precision": 9,
+						"Scale": 0,
+						"Properties": {
+							"HIVE_TYPE_STRING": "decimal"
+						}
+					}
+				},
+				{
+					"Name": "DunBradstreetSingleLocationSubsidiary",
+					"Description": "There are eight (8) types of business relationships defined in D&B WorldBase:\n\nSingle Location Subsidiary\n\nA single location subsidiary has reporting responsibilities to its parent; however, it does not have branches or subsidiaries reporting to it. Do not confuse this with a stand-alone business which is titled \"single location\" and is not part of a corporate family.\n\nHeadquarters\n\nA headquarters is a business establishment that has branches or divisions reporting to it, and is financially responsible for those branches or divisions. If the headquarters is more that 50% owned by another corporation, it also will be a subsidiary. If it owns more that 50% of another corporation, then it is also a parent.\n\nBranch\n\nA branch is a secondary location of its headquarters. It has no legal responsibility for its debts, even though bills may be paid from the branch location. It will have the same legal business name as its headquarters, although branches frequently operate under a different trade style than the headquarters establishment. A branch may be located at the same address as the headquarters if it has a unique trade style. In such cases, the branch may appear to be a duplicate with a different D-U-N-S number than the headquarters record, which may confuse customers if they don't purchase the trade style field.\n\nDivision\n\nA division, like a branch, is a secondary location of a business. However, a division carries out specific business operations related to the headquarters under a divisional name. Divisions look similar to branches in D&B WorldBase and carry a branch code.\n\nSubsidiary\n\nA subsidiary is a corporation that is more than 50% owned by another corporation and will have a different legal business name from its parent company. A subsidiary may have branches and/or subsidiaries of its own. If it does, then its D-U-N-S Number appears in the headquarter/parent D-U-N-S Number field of its children.\n\nParent\n\nA parent is a corporation that owns more than 50 percent of another corporation. The parent company also may be a subsidiary of another corporation. If the parent also has branches, then it is also a headquarters.\n\nDomestic Ultimate\n\nThe Domestic Ultimate is a subsidiary within the global family tree which is the highest ranking member within a specific country.\n\nGlobal Ultimate\n\nThe Global Ultimate is the top most responsible entity within the global family tree. The Global Ultimate may have branches and/or subsidiaries reporting directly or indirectly to it.",
+					"BaseAttributeReference": {
+						"Entity": "Carrier.cdm.json/Carrier",
+						"Name": "DunBradstreetSingleLocationSubsidiary"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "boolean",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"HIVE_TYPE_STRING": "boolean"
+						}
+					}
+				},
+				{
+					"Name": "DunBradstreetHeadquarters",
+					"Description": "There are eight (8) types of business relationships defined in D&B WorldBase:\n\nSingle Location Subsidiary\n\nA single location subsidiary has reporting responsibilities to its parent; however, it does not have branches or subsidiaries reporting to it. Do not confuse this with a stand-alone business which is titled \"single location\" and is not part of a corporate family.\n\nHeadquarters\n\nA headquarters is a business establishment that has branches or divisions reporting to it, and is financially responsible for those branches or divisions. If the headquarters is more that 50% owned by another corporation, it also will be a subsidiary. If it owns more that 50% of another corporation, then it is also a parent.\n\nBranch\n\nA branch is a secondary location of its headquarters. It has no legal responsibility for its debts, even though bills may be paid from the branch location. It will have the same legal business name as its headquarters, although branches frequently operate under a different trade style than the headquarters establishment. A branch may be located at the same address as the headquarters if it has a unique trade style. In such cases, the branch may appear to be a duplicate with a different D-U-N-S number than the headquarters record, which may confuse customers if they don't purchase the trade style field.\n\nDivision\n\nA division, like a branch, is a secondary location of a business. However, a division carries out specific business operations related to the headquarters under a divisional name. Divisions look similar to branches in D&B WorldBase and carry a branch code.\n\nSubsidiary\n\nA subsidiary is a corporation that is more than 50% owned by another corporation and will have a different legal business name from its parent company. A subsidiary may have branches and/or subsidiaries of its own. If it does, then its D-U-N-S Number appears in the headquarter/parent D-U-N-S Number field of its children.\n\nParent\n\nA parent is a corporation that owns more than 50 percent of another corporation. The parent company also may be a subsidiary of another corporation. If the parent also has branches, then it is also a headquarters.\n\nDomestic Ultimate\n\nThe Domestic Ultimate is a subsidiary within the global family tree which is the highest ranking member within a specific country.\n\nGlobal Ultimate\n\nThe Global Ultimate is the top most responsible entity within the global family tree. The Global Ultimate may have branches and/or subsidiaries reporting directly or indirectly to it.",
+					"BaseAttributeReference": {
+						"Entity": "Carrier.cdm.json/Carrier",
+						"Name": "DunBradstreetHeadquarters"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "boolean",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"HIVE_TYPE_STRING": "boolean"
+						}
+					}
+				},
+				{
+					"Name": "DunBradstreetBranch",
+					"Description": "There are eight (8) types of business relationships defined in D&B WorldBase:\n\nSingle Location Subsidiary\n\nA single location subsidiary has reporting responsibilities to its parent; however, it does not have branches or subsidiaries reporting to it. Do not confuse this with a stand-alone business which is titled \"single location\" and is not part of a corporate family.\n\nHeadquarters\n\nA headquarters is a business establishment that has branches or divisions reporting to it, and is financially responsible for those branches or divisions. If the headquarters is more that 50% owned by another corporation, it also will be a subsidiary. If it owns more that 50% of another corporation, then it is also a parent.\n\nBranch\n\nA branch is a secondary location of its headquarters. It has no legal responsibility for its debts, even though bills may be paid from the branch location. It will have the same legal business name as its headquarters, although branches frequently operate under a different trade style than the headquarters establishment. A branch may be located at the same address as the headquarters if it has a unique trade style. In such cases, the branch may appear to be a duplicate with a different D-U-N-S number than the headquarters record, which may confuse customers if they don't purchase the trade style field.\n\nDivision\n\nA division, like a branch, is a secondary location of a business. However, a division carries out specific business operations related to the headquarters under a divisional name. Divisions look similar to branches in D&B WorldBase and carry a branch code.\n\nSubsidiary\n\nA subsidiary is a corporation that is more than 50% owned by another corporation and will have a different legal business name from its parent company. A subsidiary may have branches and/or subsidiaries of its own. If it does, then its D-U-N-S Number appears in the headquarter/parent D-U-N-S Number field of its children.\n\nParent\n\nA parent is a corporation that owns more than 50 percent of another corporation. The parent company also may be a subsidiary of another corporation. If the parent also has branches, then it is also a headquarters.\n\nDomestic Ultimate\n\nThe Domestic Ultimate is a subsidiary within the global family tree which is the highest ranking member within a specific country.\n\nGlobal Ultimate\n\nThe Global Ultimate is the top most responsible entity within the global family tree. The Global Ultimate may have branches and/or subsidiaries reporting directly or indirectly to it.",
+					"BaseAttributeReference": {
+						"Entity": "Carrier.cdm.json/Carrier",
+						"Name": "DunBradstreetBranch"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "boolean",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"HIVE_TYPE_STRING": "boolean"
+						}
+					}
+				},
+				{
+					"Name": "DunBradstreetDivision",
+					"Description": "There are eight (8) types of business relationships defined in D&B WorldBase:\n\nSingle Location Subsidiary\n\nA single location subsidiary has reporting responsibilities to its parent; however, it does not have branches or subsidiaries reporting to it. Do not confuse this with a stand-alone business which is titled \"single location\" and is not part of a corporate family.\n\nHeadquarters\n\nA headquarters is a business establishment that has branches or divisions reporting to it, and is financially responsible for those branches or divisions. If the headquarters is more that 50% owned by another corporation, it also will be a subsidiary. If it owns more that 50% of another corporation, then it is also a parent.\n\nBranch\n\nA branch is a secondary location of its headquarters. It has no legal responsibility for its debts, even though bills may be paid from the branch location. It will have the same legal business name as its headquarters, although branches frequently operate under a different trade style than the headquarters establishment. A branch may be located at the same address as the headquarters if it has a unique trade style. In such cases, the branch may appear to be a duplicate with a different D-U-N-S number than the headquarters record, which may confuse customers if they don't purchase the trade style field.\n\nDivision\n\nA division, like a branch, is a secondary location of a business. However, a division carries out specific business operations related to the headquarters under a divisional name. Divisions look similar to branches in D&B WorldBase and carry a branch code.\n\nSubsidiary\n\nA subsidiary is a corporation that is more than 50% owned by another corporation and will have a different legal business name from its parent company. A subsidiary may have branches and/or subsidiaries of its own. If it does, then its D-U-N-S Number appears in the headquarter/parent D-U-N-S Number field of its children.\n\nParent\n\nA parent is a corporation that owns more than 50 percent of another corporation. The parent company also may be a subsidiary of another corporation. If the parent also has branches, then it is also a headquarters.\n\nDomestic Ultimate\n\nThe Domestic Ultimate is a subsidiary within the global family tree which is the highest ranking member within a specific country.\n\nGlobal Ultimate\n\nThe Global Ultimate is the top most responsible entity within the global family tree. The Global Ultimate may have branches and/or subsidiaries reporting directly or indirectly to it.",
+					"BaseAttributeReference": {
+						"Entity": "Carrier.cdm.json/Carrier",
+						"Name": "DunBradstreetDivision"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "boolean",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"HIVE_TYPE_STRING": "boolean"
+						}
+					}
+				},
+				{
+					"Name": "DunBradstreetSubsidiary",
+					"Description": "There are eight (8) types of business relationships defined in D&B WorldBase:\n\nSingle Location Subsidiary\n\nA single location subsidiary has reporting responsibilities to its parent; however, it does not have branches or subsidiaries reporting to it. Do not confuse this with a stand-alone business which is titled \"single location\" and is not part of a corporate family.\n\nHeadquarters\n\nA headquarters is a business establishment that has branches or divisions reporting to it, and is financially responsible for those branches or divisions. If the headquarters is more that 50% owned by another corporation, it also will be a subsidiary. If it owns more that 50% of another corporation, then it is also a parent.\n\nBranch\n\nA branch is a secondary location of its headquarters. It has no legal responsibility for its debts, even though bills may be paid from the branch location. It will have the same legal business name as its headquarters, although branches frequently operate under a different trade style than the headquarters establishment. A branch may be located at the same address as the headquarters if it has a unique trade style. In such cases, the branch may appear to be a duplicate with a different D-U-N-S number than the headquarters record, which may confuse customers if they don't purchase the trade style field.\n\nDivision\n\nA division, like a branch, is a secondary location of a business. However, a division carries out specific business operations related to the headquarters under a divisional name. Divisions look similar to branches in D&B WorldBase and carry a branch code.\n\nSubsidiary\n\nA subsidiary is a corporation that is more than 50% owned by another corporation and will have a different legal business name from its parent company. A subsidiary may have branches and/or subsidiaries of its own. If it does, then its D-U-N-S Number appears in the headquarter/parent D-U-N-S Number field of its children.\n\nParent\n\nA parent is a corporation that owns more than 50 percent of another corporation. The parent company also may be a subsidiary of another corporation. If the parent also has branches, then it is also a headquarters.\n\nDomestic Ultimate\n\nThe Domestic Ultimate is a subsidiary within the global family tree which is the highest ranking member within a specific country.\n\nGlobal Ultimate\n\nThe Global Ultimate is the top most responsible entity within the global family tree. The Global Ultimate may have branches and/or subsidiaries reporting directly or indirectly to it.",
+					"BaseAttributeReference": {
+						"Entity": "Carrier.cdm.json/Carrier",
+						"Name": "DunBradstreetSubsidiary"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "boolean",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"HIVE_TYPE_STRING": "boolean"
+						}
+					}
+				},
+				{
+					"Name": "DunBradstreetParent",
+					"Description": "There are eight (8) types of business relationships defined in D&B WorldBase:\n\nSingle Location Subsidiary\n\nA single location subsidiary has reporting responsibilities to its parent; however, it does not have branches or subsidiaries reporting to it. Do not confuse this with a stand-alone business which is titled \"single location\" and is not part of a corporate family.\n\nHeadquarters\n\nA headquarters is a business establishment that has branches or divisions reporting to it, and is financially responsible for those branches or divisions. If the headquarters is more that 50% owned by another corporation, it also will be a subsidiary. If it owns more that 50% of another corporation, then it is also a parent.\n\nBranch\n\nA branch is a secondary location of its headquarters. It has no legal responsibility for its debts, even though bills may be paid from the branch location. It will have the same legal business name as its headquarters, although branches frequently operate under a different trade style than the headquarters establishment. A branch may be located at the same address as the headquarters if it has a unique trade style. In such cases, the branch may appear to be a duplicate with a different D-U-N-S number than the headquarters record, which may confuse customers if they don't purchase the trade style field.\n\nDivision\n\nA division, like a branch, is a secondary location of a business. However, a division carries out specific business operations related to the headquarters under a divisional name. Divisions look similar to branches in D&B WorldBase and carry a branch code.\n\nSubsidiary\n\nA subsidiary is a corporation that is more than 50% owned by another corporation and will have a different legal business name from its parent company. A subsidiary may have branches and/or subsidiaries of its own. If it does, then its D-U-N-S Number appears in the headquarter/parent D-U-N-S Number field of its children.\n\nParent\n\nA parent is a corporation that owns more than 50 percent of another corporation. The parent company also may be a subsidiary of another corporation. If the parent also has branches, then it is also a headquarters.\n\nDomestic Ultimate\n\nThe Domestic Ultimate is a subsidiary within the global family tree which is the highest ranking member within a specific country.\n\nGlobal Ultimate\n\nThe Global Ultimate is the top most responsible entity within the global family tree. The Global Ultimate may have branches and/or subsidiaries reporting directly or indirectly to it.",
+					"BaseAttributeReference": {
+						"Entity": "Carrier.cdm.json/Carrier",
+						"Name": "DunBradstreetParent"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "boolean",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"HIVE_TYPE_STRING": "boolean"
+						}
+					}
+				},
+				{
+					"Name": "DunBradstreetUltimate",
+					"Description": "There are eight (8) types of business relationships defined in D&B WorldBase:\n\nSingle Location Subsidiary\n\nA single location subsidiary has reporting responsibilities to its parent; however, it does not have branches or subsidiaries reporting to it. Do not confuse this with a stand-alone business which is titled \"single location\" and is not part of a corporate family.\n\nHeadquarters\n\nA headquarters is a business establishment that has branches or divisions reporting to it, and is financially responsible for those branches or divisions. If the headquarters is more that 50% owned by another corporation, it also will be a subsidiary. If it owns more that 50% of another corporation, then it is also a parent.\n\nBranch\n\nA branch is a secondary location of its headquarters. It has no legal responsibility for its debts, even though bills may be paid from the branch location. It will have the same legal business name as its headquarters, although branches frequently operate under a different trade style than the headquarters establishment. A branch may be located at the same address as the headquarters if it has a unique trade style. In such cases, the branch may appear to be a duplicate with a different D-U-N-S number than the headquarters record, which may confuse customers if they don't purchase the trade style field.\n\nDivision\n\nA division, like a branch, is a secondary location of a business. However, a division carries out specific business operations related to the headquarters under a divisional name. Divisions look similar to branches in D&B WorldBase and carry a branch code.\n\nSubsidiary\n\nA subsidiary is a corporation that is more than 50% owned by another corporation and will have a different legal business name from its parent company. A subsidiary may have branches and/or subsidiaries of its own. If it does, then its D-U-N-S Number appears in the headquarter/parent D-U-N-S Number field of its children.\n\nParent\n\nA parent is a corporation that owns more than 50 percent of another corporation. The parent company also may be a subsidiary of another corporation. If the parent also has branches, then it is also a headquarters.\n\nDomestic Ultimate\n\nThe Domestic Ultimate is a subsidiary within the global family tree which is the highest ranking member within a specific country.\n\nGlobal Ultimate\n\nThe Global Ultimate is the top most responsible entity within the global family tree. The Global Ultimate may have branches and/or subsidiaries reporting directly or indirectly to it.",
+					"BaseAttributeReference": {
+						"Entity": "Carrier.cdm.json/Carrier",
+						"Name": "DunBradstreetUltimate"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "boolean",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"HIVE_TYPE_STRING": "boolean"
+						}
+					}
+				},
+				{
+					"Name": "DunBradstreetGlobalUltimate",
+					"Description": "There are eight (8) types of business relationships defined in D&B WorldBase:\n\nSingle Location Subsidiary\n\nA single location subsidiary has reporting responsibilities to its parent; however, it does not have branches or subsidiaries reporting to it. Do not confuse this with a stand-alone business which is titled \"single location\" and is not part of a corporate family.\n\nHeadquarters\n\nA headquarters is a business establishment that has branches or divisions reporting to it, and is financially responsible for those branches or divisions. If the headquarters is more that 50% owned by another corporation, it also will be a subsidiary. If it owns more that 50% of another corporation, then it is also a parent.\n\nBranch\n\nA branch is a secondary location of its headquarters. It has no legal responsibility for its debts, even though bills may be paid from the branch location. It will have the same legal business name as its headquarters, although branches frequently operate under a different trade style than the headquarters establishment. A branch may be located at the same address as the headquarters if it has a unique trade style. In such cases, the branch may appear to be a duplicate with a different D-U-N-S number than the headquarters record, which may confuse customers if they don't purchase the trade style field.\n\nDivision\n\nA division, like a branch, is a secondary location of a business. However, a division carries out specific business operations related to the headquarters under a divisional name. Divisions look similar to branches in D&B WorldBase and carry a branch code.\n\nSubsidiary\n\nA subsidiary is a corporation that is more than 50% owned by another corporation and will have a different legal business name from its parent company. A subsidiary may have branches and/or subsidiaries of its own. If it does, then its D-U-N-S Number appears in the headquarter/parent D-U-N-S Number field of its children.\n\nParent\n\nA parent is a corporation that owns more than 50 percent of another corporation. The parent company also may be a subsidiary of another corporation. If the parent also has branches, then it is also a headquarters.\n\nDomestic Ultimate\n\nThe Domestic Ultimate is a subsidiary within the global family tree which is the highest ranking member within a specific country.\n\nGlobal Ultimate\n\nThe Global Ultimate is the top most responsible entity within the global family tree. The Global Ultimate may have branches and/or subsidiaries reporting directly or indirectly to it.",
+					"BaseAttributeReference": {
+						"Entity": "Carrier.cdm.json/Carrier",
+						"Name": "DunBradstreetGlobalUltimate"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "boolean",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"HIVE_TYPE_STRING": "boolean"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/Carrier",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/Carrier",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"CarrierId\":{\"entity\":\"Carrier.cdm.json/Carrier\",\"name\":\"CarrierId\"},\"CarrierName\":{\"entity\":\"Carrier.cdm.json/Carrier\",\"name\":\"CarrierName\"},\"CarrierTypeId\":{\"entity\":\"Carrier.cdm.json/Carrier\",\"name\":\"CarrierTypeId\"},\"CarrierOfficeTelephoneNumber\":{\"entity\":\"Carrier.cdm.json/Carrier\",\"name\":\"CarrierOfficeTelephoneNumber\"},\"CarrierOfficeFaxNumber\":{\"entity\":\"Carrier.cdm.json/Carrier\",\"name\":\"CarrierOfficeFaxNumber\"},\"CarrierOfficeEmailAddress\":{\"entity\":\"Carrier.cdm.json/Carrier\",\"name\":\"CarrierOfficeEmailAddress\"},\"ScacCommonCarrierCode\":{\"entity\":\"Carrier.cdm.json/Carrier\",\"name\":\"ScacCommonCarrierCode\"},\"CarrierTwoCharacterCode\":{\"entity\":\"Carrier.cdm.json/Carrier\",\"name\":\"CarrierTwoCharacterCode\"},\"CarrierThreeCharacterCode\":{\"entity\":\"Carrier.cdm.json/Carrier\",\"name\":\"CarrierThreeCharacterCode\"},\"IataAirlineDesignator\":{\"entity\":\"Carrier.cdm.json/Carrier\",\"name\":\"IataAirlineDesignator\"},\"IcaoAirlineDesignator\":{\"entity\":\"Carrier.cdm.json/Carrier\",\"name\":\"IcaoAirlineDesignator\"},\"CarrierWwwUrl\":{\"entity\":\"Carrier.cdm.json/Carrier\",\"name\":\"CarrierWwwUrl\"},\"FirstOperationDate\":{\"entity\":\"Carrier.cdm.json/Carrier\",\"name\":\"FirstOperationDate\"},\"PartyId\":{\"entity\":\"Carrier.cdm.json/Carrier\",\"name\":\"PartyId\"},\"RegionalAirlineIndicator\":{\"entity\":\"Carrier.cdm.json/Carrier\",\"name\":\"RegionalAirlineIndicator\"},\"LowCostCarrierIndicator\":{\"entity\":\"Carrier.cdm.json/Carrier\",\"name\":\"LowCostCarrierIndicator\"},\"CharterAirlineIndicator\":{\"entity\":\"Carrier.cdm.json/Carrier\",\"name\":\"CharterAirlineIndicator\"},\"CargoAirlineIndicator\":{\"entity\":\"Carrier.cdm.json/Carrier\",\"name\":\"CargoAirlineIndicator\"},\"NationalAirlineIndicator\":{\"entity\":\"Carrier.cdm.json/Carrier\",\"name\":\"NationalAirlineIndicator\"},\"InternationalAirlineIndicator\":{\"entity\":\"Carrier.cdm.json/Carrier\",\"name\":\"InternationalAirlineIndicator\"},\"CarrierLogo\":{\"entity\":\"Carrier.cdm.json/Carrier\",\"name\":\"CarrierLogo\"},\"CombinationCarrierIndicator\":{\"entity\":\"Carrier.cdm.json/Carrier\",\"name\":\"CombinationCarrierIndicator\"},\"DirectAirCarrierIndicator\":{\"entity\":\"Carrier.cdm.json/Carrier\",\"name\":\"DirectAirCarrierIndicator\"},\"BondedCarrierIndicator\":{\"entity\":\"Carrier.cdm.json/Carrier\",\"name\":\"BondedCarrierIndicator\"},\"BondedDate\":{\"entity\":\"Carrier.cdm.json/Carrier\",\"name\":\"BondedDate\"},\"IataCarrierIndicator\":{\"entity\":\"Carrier.cdm.json/Carrier\",\"name\":\"IataCarrierIndicator\"},\"UnapprovedIndirectAirCarrierIndicator\":{\"entity\":\"Carrier.cdm.json/Carrier\",\"name\":\"UnapprovedIndirectAirCarrierIndicator\"},\"IntegratedCarrierIndicator\":{\"entity\":\"Carrier.cdm.json/Carrier\",\"name\":\"IntegratedCarrierIndicator\"},\"FaaIdentificationNumber\":{\"entity\":\"Carrier.cdm.json/Carrier\",\"name\":\"FaaIdentificationNumber\"},\"CommonCarrierIndicator\":{\"entity\":\"Carrier.cdm.json/Carrier\",\"name\":\"CommonCarrierIndicator\"},\"DunsNumber\":{\"entity\":\"Carrier.cdm.json/Carrier\",\"name\":\"DunsNumber\"},\"DunBradstreetSingleLocationSubsidiary\":{\"entity\":\"Carrier.cdm.json/Carrier\",\"name\":\"DunBradstreetSingleLocationSubsidiary\"},\"DunBradstreetHeadquarters\":{\"entity\":\"Carrier.cdm.json/Carrier\",\"name\":\"DunBradstreetHeadquarters\"},\"DunBradstreetBranch\":{\"entity\":\"Carrier.cdm.json/Carrier\",\"name\":\"DunBradstreetBranch\"},\"DunBradstreetDivision\":{\"entity\":\"Carrier.cdm.json/Carrier\",\"name\":\"DunBradstreetDivision\"},\"DunBradstreetSubsidiary\":{\"entity\":\"Carrier.cdm.json/Carrier\",\"name\":\"DunBradstreetSubsidiary\"},\"DunBradstreetParent\":{\"entity\":\"Carrier.cdm.json/Carrier\",\"name\":\"DunBradstreetParent\"},\"DunBradstreetUltimate\":{\"entity\":\"Carrier.cdm.json/Carrier\",\"name\":\"DunBradstreetUltimate\"},\"DunBradstreetGlobalUltimate\":{\"entity\":\"Carrier.cdm.json/Carrier\",\"name\":\"DunBradstreetGlobalUltimate\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"Carrier\",\"path\":\"Carrier.cdm.json/Carrier\"},\"description\":\"A company or corporation engaged in transporting passengers or goods (mail, freight or cargo)\\n\\nAny entity who, in a contract of carriage, undertakes to perform or to procure the performance of carriage by rail, road, sea, air, inland waterway or by a combination of such modes.\\n\\nEx:\\n-  United Airlines\\n-  Air Canada\\n-  Aer Lingus\\n-  UPS\\n-  Federal Express\\n-  US Postal Service\\n-  DHL\\n-  American President Lines\\n-  Maersk- Sealand\\n\\nCarriers are often identified by their 2 or 3 character abbreviation. Ex.:\\n\\nCARRIER NAME                           2-Char Abbr.   3-Char. Abbr.  4-dig Census Code\\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\\n\\nAIR CANADA                             AC             ACA            5100\\nAIR NEW ZEALAND, LIMITED               NZ             ANZ            5005\\nBRITISH AIRWAYS P.L.C.                 BA             BAW            2250\\nDELTA AIRLINES (DELTA CONNECTIO        DL             DAL            0128\",\"primaryKey\":[\"CarrierId\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"Carrier.cdm.json/Carrier\",\"name\":\"CarrierId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Carrier.\",\"isNullable\":false,\"name\":\"CarrierId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"Carrier.cdm.json/Carrier\",\"name\":\"CarrierName\"},\"dataType\":\"string\",\"dataTypeLength\":256,\"description\":\"The name of a Carrier.\",\"isNullable\":true,\"name\":\"CarrierName\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"Carrier.cdm.json/Carrier\",\"name\":\"CarrierTypeId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Carrier Type.\",\"isNullable\":true,\"name\":\"CarrierTypeId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"Carrier.cdm.json/Carrier\",\"name\":\"CarrierOfficeTelephoneNumber\"},\"dataType\":\"decimal\",\"dataTypeLength\":15,\"description\":\"The Carrier's telephone number.\",\"isNullable\":true,\"scale\":0,\"name\":\"CarrierOfficeTelephoneNumber\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"Carrier.cdm.json/Carrier\",\"name\":\"CarrierOfficeFaxNumber\"},\"dataType\":\"decimal\",\"dataTypeLength\":15,\"description\":\"The Carrier's fax number.\",\"isNullable\":true,\"scale\":0,\"name\":\"CarrierOfficeFaxNumber\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"Carrier.cdm.json/Carrier\",\"name\":\"CarrierOfficeEmailAddress\"},\"dataType\":\"string\",\"dataTypeLength\":256,\"description\":\"The Carrier's email address.\",\"isNullable\":true,\"name\":\"CarrierOfficeEmailAddress\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"Carrier.cdm.json/Carrier\",\"name\":\"ScacCommonCarrierCode\"},\"dataType\":\"string\",\"dataTypeLength\":4,\"description\":\"Standard Carrier Abbreviation Code identifying an individual common carrier. A three letter carrier code followed by a suffix identifies the carrier's equipment. A suffix of \\\"U\\\" is a container and \\\"C\\\" is a chassis.\",\"isNullable\":true,\"name\":\"ScacCommonCarrierCode\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"Carrier.cdm.json/Carrier\",\"name\":\"CarrierTwoCharacterCode\"},\"dataType\":\"string\",\"dataTypeLength\":2,\"description\":\"The two character code that is used to identify the carrier.\",\"isNullable\":true,\"name\":\"CarrierTwoCharacterCode\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"Carrier.cdm.json/Carrier\",\"name\":\"CarrierThreeCharacterCode\"},\"dataType\":\"string\",\"dataTypeLength\":3,\"description\":\"The three character code that is used to identify the carrier.\",\"isNullable\":true,\"name\":\"CarrierThreeCharacterCode\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"Carrier.cdm.json/Carrier\",\"name\":\"IataAirlineDesignator\"},\"dataType\":\"decimal\",\"dataTypeLength\":3,\"description\":\"The IATA three-number airline accounting code and airline prefix code.\\n\\nAs per the provisions of IATA Resolution 767, a company may qualify for:\\n- a three-numeric airline accounting code for use on passenger traffic documents if engaged in providing passenger transportation services only;\\n- a three-numeric airline prefix code for use on cargo traffic documents if providing cargo transportation services only;\\n- an identical three-numeric airline accounting code and a three-numeric airline prefix code if providing both passenger and cargo transportation services.\",\"isNullable\":true,\"scale\":0,\"name\":\"IataAirlineDesignator\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"Carrier.cdm.json/Carrier\",\"name\":\"IcaoAirlineDesignator\"},\"dataType\":\"string\",\"dataTypeLength\":3,\"description\":\"The ICAO airline designator is a code assigned by the International Civil Aviation Organization (ICAO) to aircraft operating agencies, aeronautical authorities, and services related to international aviation, each of whom is allocated both a three-letter designator and a telephony designator. These codes are unique by airline, unlike the IATA airline designator codes (see section above). The designators are listed in ICAO Document 8585: Designators for Aircraft Operating Agencies, Aeronautical Authorities and Services.\\n\\nAn example is:\\n\\nOperator: American Airlines\\nThree-letter designator: AAL (the original ICAO-two-letter-designator AA was used until 1987 and is also the IATA code of the airline)\\nTelephony designator: AMERICAN\",\"isNullable\":true,\"name\":\"IcaoAirlineDesignator\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"Carrier.cdm.json/Carrier\",\"name\":\"CarrierWwwUrl\"},\"dataType\":\"string\",\"dataTypeLength\":2083,\"description\":\"The URL (website address) of the Carrier.\",\"isNullable\":true,\"name\":\"CarrierWwwUrl\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"Carrier.cdm.json/Carrier\",\"name\":\"FirstOperationDate\"},\"dataType\":\"date\",\"dateFormat\":\"YYYY-MM-DD\",\"description\":\"The date that the Carrier was first in operation.\",\"isNullable\":true,\"name\":\"FirstOperationDate\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"Carrier.cdm.json/Carrier\",\"name\":\"PartyId\"},\"dataType\":\"long\",\"description\":\"The unique identifier of a Party.\",\"isNullable\":true,\"name\":\"PartyId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"Carrier.cdm.json/Carrier\",\"name\":\"RegionalAirlineIndicator\"},\"dataType\":\"boolean\",\"description\":\"Regional airlines are airlines that operate regional aircraft to provide passenger air service to communities without sufficient demand to attract mainline service.\",\"isNullable\":true,\"name\":\"RegionalAirlineIndicator\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"Carrier.cdm.json/Carrier\",\"name\":\"LowCostCarrierIndicator\"},\"dataType\":\"boolean\",\"description\":\"A low-cost carrier or low-cost airline (also known as a no-frills, discount or budget carrier or airline) is an airline that offers generally low fares in exchange for eliminating many traditional passenger services.\",\"isNullable\":true,\"name\":\"LowCostCarrierIndicator\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"Carrier.cdm.json/Carrier\",\"name\":\"CharterAirlineIndicator\"},\"dataType\":\"boolean\",\"description\":\"Air charter is the business of renting an entire aircraft.\",\"isNullable\":true,\"name\":\"CharterAirlineIndicator\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"Carrier.cdm.json/Carrier\",\"name\":\"CargoAirlineIndicator\"},\"dataType\":\"boolean\",\"description\":\"An airline that carries cargo.\",\"isNullable\":true,\"name\":\"CargoAirlineIndicator\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"Carrier.cdm.json/Carrier\",\"name\":\"NationalAirlineIndicator\"},\"dataType\":\"boolean\",\"description\":\"Many countries have national airlines that the government owns and operates.\",\"isNullable\":true,\"name\":\"NationalAirlineIndicator\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"Carrier.cdm.json/Carrier\",\"name\":\"InternationalAirlineIndicator\"},\"dataType\":\"boolean\",\"description\":\"An airline that operates international routes.\",\"isNullable\":true,\"name\":\"InternationalAirlineIndicator\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"Carrier.cdm.json/Carrier\",\"name\":\"CarrierLogo\"},\"dataType\":\"binary\",\"description\":\"The carrier's logo.\",\"isNullable\":true,\"name\":\"CarrierLogo\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"Carrier.cdm.json/Carrier\",\"name\":\"CombinationCarrierIndicator\"},\"dataType\":\"boolean\",\"description\":\"Scheduled air carriers who transport both passengers and cargo in passenger configured aircraft, with cargo restricted to the lower deck compartments.\",\"isNullable\":true,\"name\":\"CombinationCarrierIndicator\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"Carrier.cdm.json/Carrier\",\"name\":\"DirectAirCarrierIndicator\"},\"dataType\":\"boolean\",\"description\":\"An air carrier that operates airplanes on a scheduled or contract (charter) basis, or both, and provides transportation for a charge.  An airline as opposed to a freight forwarder.\",\"isNullable\":true,\"name\":\"DirectAirCarrierIndicator\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"Carrier.cdm.json/Carrier\",\"name\":\"BondedCarrierIndicator\"},\"dataType\":\"boolean\",\"description\":\"A firm that has posted bond with the government and is licensed to carry and hold in their facilities' goods that have not been granted a clearance by countries' Customs Authorities.\",\"isNullable\":true,\"name\":\"BondedCarrierIndicator\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"Carrier.cdm.json/Carrier\",\"name\":\"BondedDate\"},\"dataType\":\"date\",\"dateFormat\":\"YYYY-MM-DD\",\"description\":\"The date that the carrier was bonded.\",\"isNullable\":true,\"name\":\"BondedDate\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"Carrier.cdm.json/Carrier\",\"name\":\"IataCarrierIndicator\"},\"dataType\":\"boolean\",\"description\":\"An airline which is a member of IATA and may accept, carry, and bill for air shipments. Intra-US counterpart is ATA.\",\"isNullable\":true,\"name\":\"IataCarrierIndicator\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"Carrier.cdm.json/Carrier\",\"name\":\"UnapprovedIndirectAirCarrierIndicator\"},\"dataType\":\"boolean\",\"description\":\"An indirect air carrier who has not completed the FAA security training program and does not have an FAA identification number.\",\"isNullable\":true,\"name\":\"UnapprovedIndirectAirCarrierIndicator\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"Carrier.cdm.json/Carrier\",\"name\":\"IntegratedCarrierIndicator\"},\"dataType\":\"boolean\",\"description\":\"A carrier that provides door-to-door air cargo transportation using its own or contracted airplanes and motor trucks, and performs this service under the authority of a singe air waybill (e.g. United Parcel Service and Federal Express).\",\"isNullable\":true,\"name\":\"IntegratedCarrierIndicator\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"Carrier.cdm.json/Carrier\",\"name\":\"FaaIdentificationNumber\"},\"dataType\":\"integer\",\"description\":\"A unique identifier given to an air carrier by the FAA once they have successfully completed a security training program.\",\"isNullable\":true,\"name\":\"FaaIdentificationNumber\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"Carrier.cdm.json/Carrier\",\"name\":\"CommonCarrierIndicator\"},\"dataType\":\"boolean\",\"description\":\"A transportation company which provides service to the general public at published rates.\",\"isNullable\":true,\"name\":\"CommonCarrierIndicator\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"Carrier.cdm.json/Carrier\",\"name\":\"DunsNumber\"},\"dataType\":\"decimal\",\"dataTypeLength\":9,\"description\":\"The DUNS number is a nine-digit number issued by Dun & Bradstreet and assigned to each business location in the D&B database having a unique, separate, and distinct operation to businesses for the purpose of identifying them. The number as issued is random and the digits apparently have no significance as to their issuance.\",\"isNullable\":true,\"scale\":0,\"name\":\"DunsNumber\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"Carrier.cdm.json/Carrier\",\"name\":\"DunBradstreetSingleLocationSubsidiary\"},\"dataType\":\"boolean\",\"description\":\"There are eight (8) types of business relationships defined in D&B WorldBase:\\n\\nSingle Location Subsidiary\\n\\nA single location subsidiary has reporting responsibilities to its parent; however, it does not have branches or subsidiaries reporting to it. Do not confuse this with a stand-alone business which is titled \\\"single location\\\" and is not part of a corporate family.\\n\\nHeadquarters\\n\\nA headquarters is a business establishment that has branches or divisions reporting to it, and is financially responsible for those branches or divisions. If the headquarters is more that 50% owned by another corporation, it also will be a subsidiary. If it owns more that 50% of another corporation, then it is also a parent.\\n\\nBranch\\n\\nA branch is a secondary location of its headquarters. It has no legal responsibility for its debts, even though bills may be paid from the branch location. It will have the same legal business name as its headquarters, although branches frequently operate under a different trade style than the headquarters establishment. A branch may be located at the same address as the headquarters if it has a unique trade style. In such cases, the branch may appear to be a duplicate with a different D-U-N-S number than the headquarters record, which may confuse customers if they don't purchase the trade style field.\\n\\nDivision\\n\\nA division, like a branch, is a secondary location of a business. However, a division carries out specific business operations related to the headquarters under a divisional name. Divisions look similar to branches in D&B WorldBase and carry a branch code.\\n\\nSubsidiary\\n\\nA subsidiary is a corporation that is more than 50% owned by another corporation and will have a different legal business name from its parent company. A subsidiary may have branches and/or subsidiaries of its own. If it does, then its D-U-N-S Number appears in the headquarter/parent D-U-N-S Number field of its children.\\n\\nParent\\n\\nA parent is a corporation that owns more than 50 percent of another corporation. The parent company also may be a subsidiary of another corporation. If the parent also has branches, then it is also a headquarters.\\n\\nDomestic Ultimate\\n\\nThe Domestic Ultimate is a subsidiary within the global family tree which is the highest ranking member within a specific country.\\n\\nGlobal Ultimate\\n\\nThe Global Ultimate is the top most responsible entity within the global family tree. The Global Ultimate may have branches and/or subsidiaries reporting directly or indirectly to it.\",\"isNullable\":true,\"name\":\"DunBradstreetSingleLocationSubsidiary\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"Carrier.cdm.json/Carrier\",\"name\":\"DunBradstreetHeadquarters\"},\"dataType\":\"boolean\",\"description\":\"There are eight (8) types of business relationships defined in D&B WorldBase:\\n\\nSingle Location Subsidiary\\n\\nA single location subsidiary has reporting responsibilities to its parent; however, it does not have branches or subsidiaries reporting to it. Do not confuse this with a stand-alone business which is titled \\\"single location\\\" and is not part of a corporate family.\\n\\nHeadquarters\\n\\nA headquarters is a business establishment that has branches or divisions reporting to it, and is financially responsible for those branches or divisions. If the headquarters is more that 50% owned by another corporation, it also will be a subsidiary. If it owns more that 50% of another corporation, then it is also a parent.\\n\\nBranch\\n\\nA branch is a secondary location of its headquarters. It has no legal responsibility for its debts, even though bills may be paid from the branch location. It will have the same legal business name as its headquarters, although branches frequently operate under a different trade style than the headquarters establishment. A branch may be located at the same address as the headquarters if it has a unique trade style. In such cases, the branch may appear to be a duplicate with a different D-U-N-S number than the headquarters record, which may confuse customers if they don't purchase the trade style field.\\n\\nDivision\\n\\nA division, like a branch, is a secondary location of a business. However, a division carries out specific business operations related to the headquarters under a divisional name. Divisions look similar to branches in D&B WorldBase and carry a branch code.\\n\\nSubsidiary\\n\\nA subsidiary is a corporation that is more than 50% owned by another corporation and will have a different legal business name from its parent company. A subsidiary may have branches and/or subsidiaries of its own. If it does, then its D-U-N-S Number appears in the headquarter/parent D-U-N-S Number field of its children.\\n\\nParent\\n\\nA parent is a corporation that owns more than 50 percent of another corporation. The parent company also may be a subsidiary of another corporation. If the parent also has branches, then it is also a headquarters.\\n\\nDomestic Ultimate\\n\\nThe Domestic Ultimate is a subsidiary within the global family tree which is the highest ranking member within a specific country.\\n\\nGlobal Ultimate\\n\\nThe Global Ultimate is the top most responsible entity within the global family tree. The Global Ultimate may have branches and/or subsidiaries reporting directly or indirectly to it.\",\"isNullable\":true,\"name\":\"DunBradstreetHeadquarters\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"Carrier.cdm.json/Carrier\",\"name\":\"DunBradstreetBranch\"},\"dataType\":\"boolean\",\"description\":\"There are eight (8) types of business relationships defined in D&B WorldBase:\\n\\nSingle Location Subsidiary\\n\\nA single location subsidiary has reporting responsibilities to its parent; however, it does not have branches or subsidiaries reporting to it. Do not confuse this with a stand-alone business which is titled \\\"single location\\\" and is not part of a corporate family.\\n\\nHeadquarters\\n\\nA headquarters is a business establishment that has branches or divisions reporting to it, and is financially responsible for those branches or divisions. If the headquarters is more that 50% owned by another corporation, it also will be a subsidiary. If it owns more that 50% of another corporation, then it is also a parent.\\n\\nBranch\\n\\nA branch is a secondary location of its headquarters. It has no legal responsibility for its debts, even though bills may be paid from the branch location. It will have the same legal business name as its headquarters, although branches frequently operate under a different trade style than the headquarters establishment. A branch may be located at the same address as the headquarters if it has a unique trade style. In such cases, the branch may appear to be a duplicate with a different D-U-N-S number than the headquarters record, which may confuse customers if they don't purchase the trade style field.\\n\\nDivision\\n\\nA division, like a branch, is a secondary location of a business. However, a division carries out specific business operations related to the headquarters under a divisional name. Divisions look similar to branches in D&B WorldBase and carry a branch code.\\n\\nSubsidiary\\n\\nA subsidiary is a corporation that is more than 50% owned by another corporation and will have a different legal business name from its parent company. A subsidiary may have branches and/or subsidiaries of its own. If it does, then its D-U-N-S Number appears in the headquarter/parent D-U-N-S Number field of its children.\\n\\nParent\\n\\nA parent is a corporation that owns more than 50 percent of another corporation. The parent company also may be a subsidiary of another corporation. If the parent also has branches, then it is also a headquarters.\\n\\nDomestic Ultimate\\n\\nThe Domestic Ultimate is a subsidiary within the global family tree which is the highest ranking member within a specific country.\\n\\nGlobal Ultimate\\n\\nThe Global Ultimate is the top most responsible entity within the global family tree. The Global Ultimate may have branches and/or subsidiaries reporting directly or indirectly to it.\",\"isNullable\":true,\"name\":\"DunBradstreetBranch\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"Carrier.cdm.json/Carrier\",\"name\":\"DunBradstreetDivision\"},\"dataType\":\"boolean\",\"description\":\"There are eight (8) types of business relationships defined in D&B WorldBase:\\n\\nSingle Location Subsidiary\\n\\nA single location subsidiary has reporting responsibilities to its parent; however, it does not have branches or subsidiaries reporting to it. Do not confuse this with a stand-alone business which is titled \\\"single location\\\" and is not part of a corporate family.\\n\\nHeadquarters\\n\\nA headquarters is a business establishment that has branches or divisions reporting to it, and is financially responsible for those branches or divisions. If the headquarters is more that 50% owned by another corporation, it also will be a subsidiary. If it owns more that 50% of another corporation, then it is also a parent.\\n\\nBranch\\n\\nA branch is a secondary location of its headquarters. It has no legal responsibility for its debts, even though bills may be paid from the branch location. It will have the same legal business name as its headquarters, although branches frequently operate under a different trade style than the headquarters establishment. A branch may be located at the same address as the headquarters if it has a unique trade style. In such cases, the branch may appear to be a duplicate with a different D-U-N-S number than the headquarters record, which may confuse customers if they don't purchase the trade style field.\\n\\nDivision\\n\\nA division, like a branch, is a secondary location of a business. However, a division carries out specific business operations related to the headquarters under a divisional name. Divisions look similar to branches in D&B WorldBase and carry a branch code.\\n\\nSubsidiary\\n\\nA subsidiary is a corporation that is more than 50% owned by another corporation and will have a different legal business name from its parent company. A subsidiary may have branches and/or subsidiaries of its own. If it does, then its D-U-N-S Number appears in the headquarter/parent D-U-N-S Number field of its children.\\n\\nParent\\n\\nA parent is a corporation that owns more than 50 percent of another corporation. The parent company also may be a subsidiary of another corporation. If the parent also has branches, then it is also a headquarters.\\n\\nDomestic Ultimate\\n\\nThe Domestic Ultimate is a subsidiary within the global family tree which is the highest ranking member within a specific country.\\n\\nGlobal Ultimate\\n\\nThe Global Ultimate is the top most responsible entity within the global family tree. The Global Ultimate may have branches and/or subsidiaries reporting directly or indirectly to it.\",\"isNullable\":true,\"name\":\"DunBradstreetDivision\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"Carrier.cdm.json/Carrier\",\"name\":\"DunBradstreetSubsidiary\"},\"dataType\":\"boolean\",\"description\":\"There are eight (8) types of business relationships defined in D&B WorldBase:\\n\\nSingle Location Subsidiary\\n\\nA single location subsidiary has reporting responsibilities to its parent; however, it does not have branches or subsidiaries reporting to it. Do not confuse this with a stand-alone business which is titled \\\"single location\\\" and is not part of a corporate family.\\n\\nHeadquarters\\n\\nA headquarters is a business establishment that has branches or divisions reporting to it, and is financially responsible for those branches or divisions. If the headquarters is more that 50% owned by another corporation, it also will be a subsidiary. If it owns more that 50% of another corporation, then it is also a parent.\\n\\nBranch\\n\\nA branch is a secondary location of its headquarters. It has no legal responsibility for its debts, even though bills may be paid from the branch location. It will have the same legal business name as its headquarters, although branches frequently operate under a different trade style than the headquarters establishment. A branch may be located at the same address as the headquarters if it has a unique trade style. In such cases, the branch may appear to be a duplicate with a different D-U-N-S number than the headquarters record, which may confuse customers if they don't purchase the trade style field.\\n\\nDivision\\n\\nA division, like a branch, is a secondary location of a business. However, a division carries out specific business operations related to the headquarters under a divisional name. Divisions look similar to branches in D&B WorldBase and carry a branch code.\\n\\nSubsidiary\\n\\nA subsidiary is a corporation that is more than 50% owned by another corporation and will have a different legal business name from its parent company. A subsidiary may have branches and/or subsidiaries of its own. If it does, then its D-U-N-S Number appears in the headquarter/parent D-U-N-S Number field of its children.\\n\\nParent\\n\\nA parent is a corporation that owns more than 50 percent of another corporation. The parent company also may be a subsidiary of another corporation. If the parent also has branches, then it is also a headquarters.\\n\\nDomestic Ultimate\\n\\nThe Domestic Ultimate is a subsidiary within the global family tree which is the highest ranking member within a specific country.\\n\\nGlobal Ultimate\\n\\nThe Global Ultimate is the top most responsible entity within the global family tree. The Global Ultimate may have branches and/or subsidiaries reporting directly or indirectly to it.\",\"isNullable\":true,\"name\":\"DunBradstreetSubsidiary\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"Carrier.cdm.json/Carrier\",\"name\":\"DunBradstreetParent\"},\"dataType\":\"boolean\",\"description\":\"There are eight (8) types of business relationships defined in D&B WorldBase:\\n\\nSingle Location Subsidiary\\n\\nA single location subsidiary has reporting responsibilities to its parent; however, it does not have branches or subsidiaries reporting to it. Do not confuse this with a stand-alone business which is titled \\\"single location\\\" and is not part of a corporate family.\\n\\nHeadquarters\\n\\nA headquarters is a business establishment that has branches or divisions reporting to it, and is financially responsible for those branches or divisions. If the headquarters is more that 50% owned by another corporation, it also will be a subsidiary. If it owns more that 50% of another corporation, then it is also a parent.\\n\\nBranch\\n\\nA branch is a secondary location of its headquarters. It has no legal responsibility for its debts, even though bills may be paid from the branch location. It will have the same legal business name as its headquarters, although branches frequently operate under a different trade style than the headquarters establishment. A branch may be located at the same address as the headquarters if it has a unique trade style. In such cases, the branch may appear to be a duplicate with a different D-U-N-S number than the headquarters record, which may confuse customers if they don't purchase the trade style field.\\n\\nDivision\\n\\nA division, like a branch, is a secondary location of a business. However, a division carries out specific business operations related to the headquarters under a divisional name. Divisions look similar to branches in D&B WorldBase and carry a branch code.\\n\\nSubsidiary\\n\\nA subsidiary is a corporation that is more than 50% owned by another corporation and will have a different legal business name from its parent company. A subsidiary may have branches and/or subsidiaries of its own. If it does, then its D-U-N-S Number appears in the headquarter/parent D-U-N-S Number field of its children.\\n\\nParent\\n\\nA parent is a corporation that owns more than 50 percent of another corporation. The parent company also may be a subsidiary of another corporation. If the parent also has branches, then it is also a headquarters.\\n\\nDomestic Ultimate\\n\\nThe Domestic Ultimate is a subsidiary within the global family tree which is the highest ranking member within a specific country.\\n\\nGlobal Ultimate\\n\\nThe Global Ultimate is the top most responsible entity within the global family tree. The Global Ultimate may have branches and/or subsidiaries reporting directly or indirectly to it.\",\"isNullable\":true,\"name\":\"DunBradstreetParent\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"Carrier.cdm.json/Carrier\",\"name\":\"DunBradstreetUltimate\"},\"dataType\":\"boolean\",\"description\":\"There are eight (8) types of business relationships defined in D&B WorldBase:\\n\\nSingle Location Subsidiary\\n\\nA single location subsidiary has reporting responsibilities to its parent; however, it does not have branches or subsidiaries reporting to it. Do not confuse this with a stand-alone business which is titled \\\"single location\\\" and is not part of a corporate family.\\n\\nHeadquarters\\n\\nA headquarters is a business establishment that has branches or divisions reporting to it, and is financially responsible for those branches or divisions. If the headquarters is more that 50% owned by another corporation, it also will be a subsidiary. If it owns more that 50% of another corporation, then it is also a parent.\\n\\nBranch\\n\\nA branch is a secondary location of its headquarters. It has no legal responsibility for its debts, even though bills may be paid from the branch location. It will have the same legal business name as its headquarters, although branches frequently operate under a different trade style than the headquarters establishment. A branch may be located at the same address as the headquarters if it has a unique trade style. In such cases, the branch may appear to be a duplicate with a different D-U-N-S number than the headquarters record, which may confuse customers if they don't purchase the trade style field.\\n\\nDivision\\n\\nA division, like a branch, is a secondary location of a business. However, a division carries out specific business operations related to the headquarters under a divisional name. Divisions look similar to branches in D&B WorldBase and carry a branch code.\\n\\nSubsidiary\\n\\nA subsidiary is a corporation that is more than 50% owned by another corporation and will have a different legal business name from its parent company. A subsidiary may have branches and/or subsidiaries of its own. If it does, then its D-U-N-S Number appears in the headquarter/parent D-U-N-S Number field of its children.\\n\\nParent\\n\\nA parent is a corporation that owns more than 50 percent of another corporation. The parent company also may be a subsidiary of another corporation. If the parent also has branches, then it is also a headquarters.\\n\\nDomestic Ultimate\\n\\nThe Domestic Ultimate is a subsidiary within the global family tree which is the highest ranking member within a specific country.\\n\\nGlobal Ultimate\\n\\nThe Global Ultimate is the top most responsible entity within the global family tree. The Global Ultimate may have branches and/or subsidiaries reporting directly or indirectly to it.\",\"isNullable\":true,\"name\":\"DunBradstreetUltimate\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"Carrier.cdm.json/Carrier\",\"name\":\"DunBradstreetGlobalUltimate\"},\"dataType\":\"boolean\",\"description\":\"There are eight (8) types of business relationships defined in D&B WorldBase:\\n\\nSingle Location Subsidiary\\n\\nA single location subsidiary has reporting responsibilities to its parent; however, it does not have branches or subsidiaries reporting to it. Do not confuse this with a stand-alone business which is titled \\\"single location\\\" and is not part of a corporate family.\\n\\nHeadquarters\\n\\nA headquarters is a business establishment that has branches or divisions reporting to it, and is financially responsible for those branches or divisions. If the headquarters is more that 50% owned by another corporation, it also will be a subsidiary. If it owns more that 50% of another corporation, then it is also a parent.\\n\\nBranch\\n\\nA branch is a secondary location of its headquarters. It has no legal responsibility for its debts, even though bills may be paid from the branch location. It will have the same legal business name as its headquarters, although branches frequently operate under a different trade style than the headquarters establishment. A branch may be located at the same address as the headquarters if it has a unique trade style. In such cases, the branch may appear to be a duplicate with a different D-U-N-S number than the headquarters record, which may confuse customers if they don't purchase the trade style field.\\n\\nDivision\\n\\nA division, like a branch, is a secondary location of a business. However, a division carries out specific business operations related to the headquarters under a divisional name. Divisions look similar to branches in D&B WorldBase and carry a branch code.\\n\\nSubsidiary\\n\\nA subsidiary is a corporation that is more than 50% owned by another corporation and will have a different legal business name from its parent company. A subsidiary may have branches and/or subsidiaries of its own. If it does, then its D-U-N-S Number appears in the headquarter/parent D-U-N-S Number field of its children.\\n\\nParent\\n\\nA parent is a corporation that owns more than 50 percent of another corporation. The parent company also may be a subsidiary of another corporation. If the parent also has branches, then it is also a headquarters.\\n\\nDomestic Ultimate\\n\\nThe Domestic Ultimate is a subsidiary within the global family tree which is the highest ranking member within a specific country.\\n\\nGlobal Ultimate\\n\\nThe Global Ultimate is the top most responsible entity within the global family tree. The Global Ultimate may have branches and/or subsidiaries reporting directly or indirectly to it.\",\"isNullable\":true,\"name\":\"DunBradstreetGlobalUltimate\"}]}}}",
+			"Description": "A company or corporation engaged in transporting passengers or goods (mail, freight or cargo)\n\nAny entity who, in a contract of carriage, undertakes to perform or to procure the performance of carriage by rail, road, sea, air, inland waterway or by a combination of such modes.\n\nEx:\n-  United Airlines\n-  Air Canada\n-  Aer Lingus\n-  UPS\n-  Federal Express\n-  US Postal Service\n-  DHL\n-  American President Lines\n-  Maersk- Sealand\n\nCarriers are often identified by their 2 or 3 character abbreviation. Ex.:\n\nCARRIER NAME                           2-Char Abbr.   3-Char. Abbr.  4-dig Census Code\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n\nAIR CANADA                             AC             ACA            5100\nAIR NEW ZEALAND, LIMITED               NZ             ANZ            5005\nBRITISH AIRWAYS P.L.C.                 BA             BAW            2250\nDELTA AIRLINES (DELTA CONNECTIO        DL             DAL            0128",
+			"DisplayFolderInfo": "{\"name\":\"Shipping\",\"colorCode\":\"#0C614C\"}",
+			"PrimaryKeys": "CarrierId",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

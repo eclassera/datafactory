@@ -1,0 +1,129 @@
+{
+	"name": "ServiceLocation",
+	"properties": {
+		"Name": "ServiceLocation",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "A location where services are provided.",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "ServiceLocationId",
+					"Description": "The unique identifier of a service location.",
+					"BaseAttributeReference": {
+						"Entity": "ServiceLocation.cdm.json/ServiceLocation",
+						"Name": "ServiceLocationId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "ServiceLocationName",
+					"Description": "The name of the Service Location.",
+					"BaseAttributeReference": {
+						"Entity": "ServiceLocation.cdm.json/ServiceLocation",
+						"Name": "ServiceLocationName"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 256,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "ServiceLocationDescription",
+					"Description": "The description of the Service Location.",
+					"BaseAttributeReference": {
+						"Entity": "ServiceLocation.cdm.json/ServiceLocation",
+						"Name": "ServiceLocationDescription"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "StoreServiceLocationTypeId",
+					"Description": "The unique identifier of a Service Location Type.",
+					"BaseAttributeReference": {
+						"Entity": "ServiceLocation.cdm.json/ServiceLocation",
+						"Name": "StoreServiceLocationTypeId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/ServiceLocation",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/ServiceLocation",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"ServiceLocationId\":{\"entity\":\"ServiceLocation.cdm.json/ServiceLocation\",\"name\":\"ServiceLocationId\"},\"ServiceLocationName\":{\"entity\":\"ServiceLocation.cdm.json/ServiceLocation\",\"name\":\"ServiceLocationName\"},\"ServiceLocationDescription\":{\"entity\":\"ServiceLocation.cdm.json/ServiceLocation\",\"name\":\"ServiceLocationDescription\"},\"StoreServiceLocationTypeId\":{\"entity\":\"ServiceLocation.cdm.json/ServiceLocation\",\"name\":\"StoreServiceLocationTypeId\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"ServiceLocation\",\"path\":\"ServiceLocation.cdm.json/ServiceLocation\"},\"description\":\"A location where services are provided.\",\"primaryKey\":[\"ServiceLocationId\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ServiceLocation.cdm.json/ServiceLocation\",\"name\":\"ServiceLocationId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a service location.\",\"isNullable\":false,\"name\":\"ServiceLocationId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ServiceLocation.cdm.json/ServiceLocation\",\"name\":\"ServiceLocationName\"},\"dataType\":\"string\",\"dataTypeLength\":256,\"description\":\"The name of the Service Location.\",\"isNullable\":true,\"name\":\"ServiceLocationName\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ServiceLocation.cdm.json/ServiceLocation\",\"name\":\"ServiceLocationDescription\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"The description of the Service Location.\",\"isNullable\":true,\"name\":\"ServiceLocationDescription\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"ServiceLocation.cdm.json/ServiceLocation\",\"name\":\"StoreServiceLocationTypeId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Service Location Type.\",\"isNullable\":true,\"name\":\"StoreServiceLocationTypeId\"}]}}}",
+			"Description": "A location where services are provided.",
+			"DisplayFolderInfo": "{\"name\":\"Channel\",\"colorCode\":\"#001D3F\"}",
+			"PrimaryKeys": "ServiceLocationId",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

@@ -1,0 +1,162 @@
+{
+	"name": "CustomerCharacteristic",
+	"properties": {
+		"Name": "CustomerCharacteristic",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "The characteristics that identify a customer.",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "CustomerId",
+					"Description": "The unique identifier of a Customer.",
+					"BaseAttributeReference": {
+						"Entity": "CustomerCharacteristic.cdm.json/CustomerCharacteristic",
+						"Name": "CustomerId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "long",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "long"
+						}
+					}
+				},
+				{
+					"Name": "CharacteristicTypeId",
+					"Description": "The unique identifier of a physical characteristic.",
+					"BaseAttributeReference": {
+						"Entity": "CustomerCharacteristic.cdm.json/CustomerCharacteristic",
+						"Name": "CharacteristicTypeId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "Timestamp",
+					"Description": "The timestamp that the associated information is reported, recorded or effective as-of.",
+					"BaseAttributeReference": {
+						"Entity": "CustomerCharacteristic.cdm.json/CustomerCharacteristic",
+						"Name": "Timestamp"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "timestamp",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"TimestampFormat": "YYYY-MM-DD HH:MM:SS.fffffffff",
+							"HIVE_TYPE_STRING": "timestamp"
+						}
+					}
+				},
+				{
+					"Name": "CustomerCharacteristicValue",
+					"Description": "A value or text field regarding the customer characteristic.",
+					"BaseAttributeReference": {
+						"Entity": "CustomerCharacteristic.cdm.json/CustomerCharacteristic",
+						"Name": "CustomerCharacteristicValue"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "CustomerCharacteristicNumber",
+					"Description": "A numeric value associated with the customer characteristic.",
+					"BaseAttributeReference": {
+						"Entity": "CustomerCharacteristic.cdm.json/CustomerCharacteristic",
+						"Name": "CustomerCharacteristicNumber"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "CustomerCharacteristicNote",
+					"Description": "A note, comment or additional information regarding the customer characteristic.",
+					"BaseAttributeReference": {
+						"Entity": "CustomerCharacteristic.cdm.json/CustomerCharacteristic",
+						"Name": "CustomerCharacteristicNote"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/CustomerCharacteristic",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/CustomerCharacteristic",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"CustomerId\":{\"entity\":\"CustomerCharacteristic.cdm.json/CustomerCharacteristic\",\"name\":\"CustomerId\"},\"CharacteristicTypeId\":{\"entity\":\"CustomerCharacteristic.cdm.json/CustomerCharacteristic\",\"name\":\"CharacteristicTypeId\"},\"Timestamp\":{\"entity\":\"CustomerCharacteristic.cdm.json/CustomerCharacteristic\",\"name\":\"Timestamp\"},\"CustomerCharacteristicValue\":{\"entity\":\"CustomerCharacteristic.cdm.json/CustomerCharacteristic\",\"name\":\"CustomerCharacteristicValue\"},\"CustomerCharacteristicNumber\":{\"entity\":\"CustomerCharacteristic.cdm.json/CustomerCharacteristic\",\"name\":\"CustomerCharacteristicNumber\"},\"CustomerCharacteristicNote\":{\"entity\":\"CustomerCharacteristic.cdm.json/CustomerCharacteristic\",\"name\":\"CustomerCharacteristicNote\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"CustomerCharacteristic\",\"path\":\"CustomerCharacteristic.cdm.json/CustomerCharacteristic\"},\"description\":\"The characteristics that identify a customer.\",\"primaryKey\":[\"CustomerId\",\"CharacteristicTypeId\",\"Timestamp\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CustomerCharacteristic.cdm.json/CustomerCharacteristic\",\"name\":\"CustomerId\"},\"dataType\":\"long\",\"description\":\"The unique identifier of a Customer.\",\"isNullable\":false,\"name\":\"CustomerId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CustomerCharacteristic.cdm.json/CustomerCharacteristic\",\"name\":\"CharacteristicTypeId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a physical characteristic.\",\"isNullable\":false,\"name\":\"CharacteristicTypeId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CustomerCharacteristic.cdm.json/CustomerCharacteristic\",\"name\":\"Timestamp\"},\"dataType\":\"timestamp\",\"description\":\"The timestamp that the associated information is reported, recorded or effective as-of.\",\"isNullable\":false,\"name\":\"Timestamp\",\"timestampFormat\":\"YYYY-MM-DD HH:MM:SS.fffffffff\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CustomerCharacteristic.cdm.json/CustomerCharacteristic\",\"name\":\"CustomerCharacteristicValue\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"A value or text field regarding the customer characteristic.\",\"isNullable\":true,\"name\":\"CustomerCharacteristicValue\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CustomerCharacteristic.cdm.json/CustomerCharacteristic\",\"name\":\"CustomerCharacteristicNumber\"},\"dataType\":\"integer\",\"description\":\"A numeric value associated with the customer characteristic.\",\"isNullable\":true,\"name\":\"CustomerCharacteristicNumber\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"CustomerCharacteristic.cdm.json/CustomerCharacteristic\",\"name\":\"CustomerCharacteristicNote\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"A note, comment or additional information regarding the customer characteristic.\",\"isNullable\":true,\"name\":\"CustomerCharacteristicNote\"}]}}}",
+			"Description": "The characteristics that identify a customer.",
+			"DisplayFolderInfo": "{\"name\":\"Customer\",\"colorCode\":\"#4B003F\"}",
+			"PrimaryKeys": "CustomerId,CharacteristicTypeId,Timestamp",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

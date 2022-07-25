@@ -1,0 +1,563 @@
+{
+	"name": "LegalEntityCustomer",
+	"properties": {
+		"Name": "LegalEntityCustomer",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "A 'legal entity customer' is one of the two types of customers upon which the Microsoft data models focus.      'Individual customer' is the other.\n\nThe definition of 'customer' is of critical importance for every organization.    \n\nIt is the customer that is the focus of product planning, marketing, sales, service, reporting and analytics.    Without 'customer' there would be no need for the organization to exist since its purpose is to serve the customer and profit from that interaction.\n\nThe definition of 'customer' must be consistent with how customers exist and interact with the organization in the real world.  \n\nAn artificial or conceptual definition of 'customer' that is not consistent with these two objectives is doomed to fail because the data will not be consistent with the definition and employees will not accept concepts or terms that are not consistent with what they see, know and how they interact with customers on a working basis.\n\nMicrosoft defines 'customer' to meet these objectives.    When we look out into the real world we see two dominant types of customers:  human beings ('individual customers') and legal entities ('legal entity customers')>    \n\nLegal entities are those legally-defined entities such as corporations, partnerships, non-profit organizations, government organizations etc. that purchase products, goods and services.\n\nIndividual customers are human beings, male and female individuals, of various ages, sex, demographics and a variety of similar dimensions that describe and define those who purchase products, good and services.    \n\nThis view of 'customer' is consistent with the real world and consistent with how employees view and interact with customers.\n\nOf course, that is just the start of identifying, defining and understanding each corresponding type of 'customer'.     There is a great deal of detail, complexity and related data that can be used to define each type of customer to various levels of detail and different dimensions of information.    Microsoft implements these detailed concepts and related data via two distinct business area models that expand the coverage and complexity of each type of customer:\n\n-  LEGAL ENTITY CUSTOMER Business Area Model\n-  INDIVIDUAL CUSTOMER Business Area Model\n\nNote:\nEach of the Microsoft models - enterprise, business area or data warehouse - have a representative level of detail for the appropriate type of customer, which is a 'subset' of the total data available in the associated INDIVIDUAL CUSTOMER or LEGAL ENTITY CUSTOMER business area models..   Reference either of those models to expand the coverage or level of detail in each respective data model.\n\nThe actual customer implemented in each model depends upon the dominant use of customer for that industry.     \n\nFor example, in the pharmaceutical industry the customer is a legal entity, which represents another corporation, company, government organization etc. that purchases the pharmaceutical product and then distributes that product to the end-customer, which is an individual in a retail environment or a government-distribution scheme.    \n\nFor this example, the pharmaceutical models will have the legal entity customer represented but not the individual 'end customer' since that is represented in the appropriate retail industry models, which are a different offering.     \n\nOf course, the entire set of data available for a legal entity customer is contained in the associated LEGAL ENTITY CUSTOMER Business Area Model.   Reference the LEGAL ENTITY CUSTOMER Business Area Model to incorporate additional data that may be of relevance.\n\nIn many industries both types of customers are represented since a legal entity or individual can purchase products, goods or services and enter into contracts.    For these industries, both types of customers are represented by some of the more significant or relevant data derived from the associated LEGAL ENTITY or INDIVIDUAL CUSTOMER business area models.   These models can be used to expand the scope or level of detail in any of the enterprise, business area or data warehouse models.",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "CustomerId",
+					"Description": "The unique identifier of a Customer.",
+					"BaseAttributeReference": {
+						"Entity": "LegalEntityCustomer.cdm.json/LegalEntityCustomer",
+						"Name": "CustomerId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "long",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "long"
+						}
+					}
+				},
+				{
+					"Name": "LegalEntityName",
+					"Description": "The business name of the Legal Entity.",
+					"BaseAttributeReference": {
+						"Entity": "LegalEntityCustomer.cdm.json/LegalEntityCustomer",
+						"Name": "LegalEntityName"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 256,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "LegalEntityNote",
+					"Description": "A narrative, description or additional detail regarding the associated Legal Entity.",
+					"BaseAttributeReference": {
+						"Entity": "LegalEntityCustomer.cdm.json/LegalEntityCustomer",
+						"Name": "LegalEntityNote"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "LegalEntityDateOfEstablishment",
+					"Description": "The date that the Legal Entity was established.",
+					"BaseAttributeReference": {
+						"Entity": "LegalEntityCustomer.cdm.json/LegalEntityCustomer",
+						"Name": "LegalEntityDateOfEstablishment"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "date",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"DateFormat": "YYYY-MM-DD",
+							"HIVE_TYPE_STRING": "date"
+						}
+					}
+				},
+				{
+					"Name": "StateOfLegalEntityEstablishment",
+					"Description": "The state in which the Legal Entity was established.",
+					"BaseAttributeReference": {
+						"Entity": "LegalEntityCustomer.cdm.json/LegalEntityCustomer",
+						"Name": "StateOfLegalEntityEstablishment"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 64,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "CountryOfLegalEntityEstablishment",
+					"Description": "The country in which the Legal Entity was established.",
+					"BaseAttributeReference": {
+						"Entity": "LegalEntityCustomer.cdm.json/LegalEntityCustomer",
+						"Name": "CountryOfLegalEntityEstablishment"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 64,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "StateOfLegalEntityResidence",
+					"Description": "The state in which the Legal Entity has it's primary business or official residence.",
+					"BaseAttributeReference": {
+						"Entity": "LegalEntityCustomer.cdm.json/LegalEntityCustomer",
+						"Name": "StateOfLegalEntityResidence"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 64,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "CountryOfLegalEntityResidence",
+					"Description": "The country in which the Legal Entity has it's primary business or official residence.",
+					"BaseAttributeReference": {
+						"Entity": "LegalEntityCustomer.cdm.json/LegalEntityCustomer",
+						"Name": "CountryOfLegalEntityResidence"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 64,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "CurrentManagementFirstControlDate",
+					"Description": "The date that current management assumed control of the Legal Entity's normal business operations.",
+					"BaseAttributeReference": {
+						"Entity": "LegalEntityCustomer.cdm.json/LegalEntityCustomer",
+						"Name": "CurrentManagementFirstControlDate"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "date",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"DateFormat": "YYYY-MM-DD",
+							"HIVE_TYPE_STRING": "date"
+						}
+					}
+				},
+				{
+					"Name": "FirstDateOfOperation",
+					"Description": "The first date that the Legal Entity entered into normal business operations.",
+					"BaseAttributeReference": {
+						"Entity": "LegalEntityCustomer.cdm.json/LegalEntityCustomer",
+						"Name": "FirstDateOfOperation"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "date",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"DateFormat": "YYYY-MM-DD",
+							"HIVE_TYPE_STRING": "date"
+						}
+					}
+				},
+				{
+					"Name": "StockExchangeName",
+					"Description": "The name of the stock exchange that the security is listed upon.",
+					"BaseAttributeReference": {
+						"Entity": "LegalEntityCustomer.cdm.json/LegalEntityCustomer",
+						"Name": "StockExchangeName"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 256,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "ListedSecuritySymbol",
+					"Description": "The security symbol of the Legal Entity, if any.",
+					"BaseAttributeReference": {
+						"Entity": "LegalEntityCustomer.cdm.json/LegalEntityCustomer",
+						"Name": "ListedSecuritySymbol"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 8,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "TaxExemptCertificateStatement",
+					"Description": "A statement from a customer indicating that they are either an exempt organization (i.e. Red Cross, government, other nonprofit) OR they are using the purchase in an exempt manner (i.e. for use in manufacturing).",
+					"BaseAttributeReference": {
+						"Entity": "LegalEntityCustomer.cdm.json/LegalEntityCustomer",
+						"Name": "TaxExemptCertificateStatement"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "BankruptcyIndicator",
+					"Description": "Indicates that bankruptcy proceeding exist for the legal entity customer, which is a proceeding under the U.S. Bankruptcy Code, in which either a debtor files a bankruptcy petition and voluntarily seeks protection from creditors, or creditors file a bankruptcy petition against a debtor to force the debtor to pay debts owed to them.",
+					"BaseAttributeReference": {
+						"Entity": "LegalEntityCustomer.cdm.json/LegalEntityCustomer",
+						"Name": "BankruptcyIndicator"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "boolean",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"HIVE_TYPE_STRING": "boolean"
+						}
+					}
+				},
+				{
+					"Name": "SmallBusinessIndicator",
+					"Description": "Indicates that business is a small business by SBA guidelines.",
+					"BaseAttributeReference": {
+						"Entity": "LegalEntityCustomer.cdm.json/LegalEntityCustomer",
+						"Name": "SmallBusinessIndicator"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "boolean",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"HIVE_TYPE_STRING": "boolean"
+						}
+					}
+				},
+				{
+					"Name": "ManufacturingIndicator",
+					"Description": "Notes manufacturing operations occur at site.",
+					"BaseAttributeReference": {
+						"Entity": "LegalEntityCustomer.cdm.json/LegalEntityCustomer",
+						"Name": "ManufacturingIndicator"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "boolean",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"HIVE_TYPE_STRING": "boolean"
+						}
+					}
+				},
+				{
+					"Name": "ForeignOwnedIndicator",
+					"Description": "Identifies companies with parent outside of the U.S.",
+					"BaseAttributeReference": {
+						"Entity": "LegalEntityCustomer.cdm.json/LegalEntityCustomer",
+						"Name": "ForeignOwnedIndicator"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "boolean",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"HIVE_TYPE_STRING": "boolean"
+						}
+					}
+				},
+				{
+					"Name": "DunsNumber",
+					"Description": "The DUNS number is a nine-digit number issued by Dun & Bradstreet and assigned to each business location in the D&B database having a unique, separate, and distinct operation to businesses for the purpose of identifying them. The number as issued is random and the digits apparently have no significance as to their issuance.",
+					"BaseAttributeReference": {
+						"Entity": "LegalEntityCustomer.cdm.json/LegalEntityCustomer",
+						"Name": "DunsNumber"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "decimal",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Precision": 9,
+						"Scale": 0,
+						"Properties": {
+							"HIVE_TYPE_STRING": "decimal"
+						}
+					}
+				},
+				{
+					"Name": "DunBradstreetSingleLocationSubsidiary",
+					"Description": "There are eight (8) types of business relationships defined in D&B WorldBase:\n\nSingle Location Subsidiary\n\nA single location subsidiary has reporting responsibilities to its parent; however, it does not have branches or subsidiaries reporting to it. Do not confuse this with a stand-alone business which is titled \"single location\" and is not part of a corporate family.\n\nHeadquarters\n\nA headquarters is a business establishment that has branches or divisions reporting to it, and is financially responsible for those branches or divisions. If the headquarters is more that 50% owned by another corporation, it also will be a subsidiary. If it owns more that 50% of another corporation, then it is also a parent.\n\nBranch\n\nA branch is a secondary location of its headquarters. It has no legal responsibility for its debts, even though bills may be paid from the branch location. It will have the same legal business name as its headquarters, although branches frequently operate under a different trade style than the headquarters establishment. A branch may be located at the same address as the headquarters if it has a unique trade style. In such cases, the branch may appear to be a duplicate with a different D-U-N-S number than the headquarters record, which may confuse customers if they don't purchase the trade style field.\n\nDivision\n\nA division, like a branch, is a secondary location of a business. However, a division carries out specific business operations related to the headquarters under a divisional name. Divisions look similar to branches in D&B WorldBase and carry a branch code.\n\nSubsidiary\n\nA subsidiary is a corporation that is more than 50% owned by another corporation and will have a different legal business name from its parent company. A subsidiary may have branches and/or subsidiaries of its own. If it does, then its D-U-N-S Number appears in the headquarter/parent D-U-N-S Number field of its children.\n\nParent\n\nA parent is a corporation that owns more than 50 percent of another corporation. The parent company also may be a subsidiary of another corporation. If the parent also has branches, then it is also a headquarters.\n\nDomestic Ultimate\n\nThe Domestic Ultimate is a subsidiary within the global family tree which is the highest ranking member within a specific country.\n\nGlobal Ultimate\n\nThe Global Ultimate is the top most responsible entity within the global family tree. The Global Ultimate may have branches and/or subsidiaries reporting directly or indirectly to it.",
+					"BaseAttributeReference": {
+						"Entity": "LegalEntityCustomer.cdm.json/LegalEntityCustomer",
+						"Name": "DunBradstreetSingleLocationSubsidiary"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "boolean",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"HIVE_TYPE_STRING": "boolean"
+						}
+					}
+				},
+				{
+					"Name": "DunBradstreetHeadquarters",
+					"Description": "There are eight (8) types of business relationships defined in D&B WorldBase:\n\nSingle Location Subsidiary\n\nA single location subsidiary has reporting responsibilities to its parent; however, it does not have branches or subsidiaries reporting to it. Do not confuse this with a stand-alone business which is titled \"single location\" and is not part of a corporate family.\n\nHeadquarters\n\nA headquarters is a business establishment that has branches or divisions reporting to it, and is financially responsible for those branches or divisions. If the headquarters is more that 50% owned by another corporation, it also will be a subsidiary. If it owns more that 50% of another corporation, then it is also a parent.\n\nBranch\n\nA branch is a secondary location of its headquarters. It has no legal responsibility for its debts, even though bills may be paid from the branch location. It will have the same legal business name as its headquarters, although branches frequently operate under a different trade style than the headquarters establishment. A branch may be located at the same address as the headquarters if it has a unique trade style. In such cases, the branch may appear to be a duplicate with a different D-U-N-S number than the headquarters record, which may confuse customers if they don't purchase the trade style field.\n\nDivision\n\nA division, like a branch, is a secondary location of a business. However, a division carries out specific business operations related to the headquarters under a divisional name. Divisions look similar to branches in D&B WorldBase and carry a branch code.\n\nSubsidiary\n\nA subsidiary is a corporation that is more than 50% owned by another corporation and will have a different legal business name from its parent company. A subsidiary may have branches and/or subsidiaries of its own. If it does, then its D-U-N-S Number appears in the headquarter/parent D-U-N-S Number field of its children.\n\nParent\n\nA parent is a corporation that owns more than 50 percent of another corporation. The parent company also may be a subsidiary of another corporation. If the parent also has branches, then it is also a headquarters.\n\nDomestic Ultimate\n\nThe Domestic Ultimate is a subsidiary within the global family tree which is the highest ranking member within a specific country.\n\nGlobal Ultimate\n\nThe Global Ultimate is the top most responsible entity within the global family tree. The Global Ultimate may have branches and/or subsidiaries reporting directly or indirectly to it.",
+					"BaseAttributeReference": {
+						"Entity": "LegalEntityCustomer.cdm.json/LegalEntityCustomer",
+						"Name": "DunBradstreetHeadquarters"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "boolean",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"HIVE_TYPE_STRING": "boolean"
+						}
+					}
+				},
+				{
+					"Name": "DunBradstreetBranch",
+					"Description": "There are eight (8) types of business relationships defined in D&B WorldBase:\n\nSingle Location Subsidiary\n\nA single location subsidiary has reporting responsibilities to its parent; however, it does not have branches or subsidiaries reporting to it. Do not confuse this with a stand-alone business which is titled \"single location\" and is not part of a corporate family.\n\nHeadquarters\n\nA headquarters is a business establishment that has branches or divisions reporting to it, and is financially responsible for those branches or divisions. If the headquarters is more that 50% owned by another corporation, it also will be a subsidiary. If it owns more that 50% of another corporation, then it is also a parent.\n\nBranch\n\nA branch is a secondary location of its headquarters. It has no legal responsibility for its debts, even though bills may be paid from the branch location. It will have the same legal business name as its headquarters, although branches frequently operate under a different trade style than the headquarters establishment. A branch may be located at the same address as the headquarters if it has a unique trade style. In such cases, the branch may appear to be a duplicate with a different D-U-N-S number than the headquarters record, which may confuse customers if they don't purchase the trade style field.\n\nDivision\n\nA division, like a branch, is a secondary location of a business. However, a division carries out specific business operations related to the headquarters under a divisional name. Divisions look similar to branches in D&B WorldBase and carry a branch code.\n\nSubsidiary\n\nA subsidiary is a corporation that is more than 50% owned by another corporation and will have a different legal business name from its parent company. A subsidiary may have branches and/or subsidiaries of its own. If it does, then its D-U-N-S Number appears in the headquarter/parent D-U-N-S Number field of its children.\n\nParent\n\nA parent is a corporation that owns more than 50 percent of another corporation. The parent company also may be a subsidiary of another corporation. If the parent also has branches, then it is also a headquarters.\n\nDomestic Ultimate\n\nThe Domestic Ultimate is a subsidiary within the global family tree which is the highest ranking member within a specific country.\n\nGlobal Ultimate\n\nThe Global Ultimate is the top most responsible entity within the global family tree. The Global Ultimate may have branches and/or subsidiaries reporting directly or indirectly to it.",
+					"BaseAttributeReference": {
+						"Entity": "LegalEntityCustomer.cdm.json/LegalEntityCustomer",
+						"Name": "DunBradstreetBranch"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "boolean",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"HIVE_TYPE_STRING": "boolean"
+						}
+					}
+				},
+				{
+					"Name": "DunBradstreetDivision",
+					"Description": "There are eight (8) types of business relationships defined in D&B WorldBase:\n\nSingle Location Subsidiary\n\nA single location subsidiary has reporting responsibilities to its parent; however, it does not have branches or subsidiaries reporting to it. Do not confuse this with a stand-alone business which is titled \"single location\" and is not part of a corporate family.\n\nHeadquarters\n\nA headquarters is a business establishment that has branches or divisions reporting to it, and is financially responsible for those branches or divisions. If the headquarters is more that 50% owned by another corporation, it also will be a subsidiary. If it owns more that 50% of another corporation, then it is also a parent.\n\nBranch\n\nA branch is a secondary location of its headquarters. It has no legal responsibility for its debts, even though bills may be paid from the branch location. It will have the same legal business name as its headquarters, although branches frequently operate under a different trade style than the headquarters establishment. A branch may be located at the same address as the headquarters if it has a unique trade style. In such cases, the branch may appear to be a duplicate with a different D-U-N-S number than the headquarters record, which may confuse customers if they don't purchase the trade style field.\n\nDivision\n\nA division, like a branch, is a secondary location of a business. However, a division carries out specific business operations related to the headquarters under a divisional name. Divisions look similar to branches in D&B WorldBase and carry a branch code.\n\nSubsidiary\n\nA subsidiary is a corporation that is more than 50% owned by another corporation and will have a different legal business name from its parent company. A subsidiary may have branches and/or subsidiaries of its own. If it does, then its D-U-N-S Number appears in the headquarter/parent D-U-N-S Number field of its children.\n\nParent\n\nA parent is a corporation that owns more than 50 percent of another corporation. The parent company also may be a subsidiary of another corporation. If the parent also has branches, then it is also a headquarters.\n\nDomestic Ultimate\n\nThe Domestic Ultimate is a subsidiary within the global family tree which is the highest ranking member within a specific country.\n\nGlobal Ultimate\n\nThe Global Ultimate is the top most responsible entity within the global family tree. The Global Ultimate may have branches and/or subsidiaries reporting directly or indirectly to it.",
+					"BaseAttributeReference": {
+						"Entity": "LegalEntityCustomer.cdm.json/LegalEntityCustomer",
+						"Name": "DunBradstreetDivision"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "boolean",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"HIVE_TYPE_STRING": "boolean"
+						}
+					}
+				},
+				{
+					"Name": "DunBradstreetSubsidiary",
+					"Description": "There are eight (8) types of business relationships defined in D&B WorldBase:\n\nSingle Location Subsidiary\n\nA single location subsidiary has reporting responsibilities to its parent; however, it does not have branches or subsidiaries reporting to it. Do not confuse this with a stand-alone business which is titled \"single location\" and is not part of a corporate family.\n\nHeadquarters\n\nA headquarters is a business establishment that has branches or divisions reporting to it, and is financially responsible for those branches or divisions. If the headquarters is more that 50% owned by another corporation, it also will be a subsidiary. If it owns more that 50% of another corporation, then it is also a parent.\n\nBranch\n\nA branch is a secondary location of its headquarters. It has no legal responsibility for its debts, even though bills may be paid from the branch location. It will have the same legal business name as its headquarters, although branches frequently operate under a different trade style than the headquarters establishment. A branch may be located at the same address as the headquarters if it has a unique trade style. In such cases, the branch may appear to be a duplicate with a different D-U-N-S number than the headquarters record, which may confuse customers if they don't purchase the trade style field.\n\nDivision\n\nA division, like a branch, is a secondary location of a business. However, a division carries out specific business operations related to the headquarters under a divisional name. Divisions look similar to branches in D&B WorldBase and carry a branch code.\n\nSubsidiary\n\nA subsidiary is a corporation that is more than 50% owned by another corporation and will have a different legal business name from its parent company. A subsidiary may have branches and/or subsidiaries of its own. If it does, then its D-U-N-S Number appears in the headquarter/parent D-U-N-S Number field of its children.\n\nParent\n\nA parent is a corporation that owns more than 50 percent of another corporation. The parent company also may be a subsidiary of another corporation. If the parent also has branches, then it is also a headquarters.\n\nDomestic Ultimate\n\nThe Domestic Ultimate is a subsidiary within the global family tree which is the highest ranking member within a specific country.\n\nGlobal Ultimate\n\nThe Global Ultimate is the top most responsible entity within the global family tree. The Global Ultimate may have branches and/or subsidiaries reporting directly or indirectly to it.",
+					"BaseAttributeReference": {
+						"Entity": "LegalEntityCustomer.cdm.json/LegalEntityCustomer",
+						"Name": "DunBradstreetSubsidiary"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "boolean",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"HIVE_TYPE_STRING": "boolean"
+						}
+					}
+				},
+				{
+					"Name": "DunBradstreetParent",
+					"Description": "There are eight (8) types of business relationships defined in D&B WorldBase:\n\nSingle Location Subsidiary\n\nA single location subsidiary has reporting responsibilities to its parent; however, it does not have branches or subsidiaries reporting to it. Do not confuse this with a stand-alone business which is titled \"single location\" and is not part of a corporate family.\n\nHeadquarters\n\nA headquarters is a business establishment that has branches or divisions reporting to it, and is financially responsible for those branches or divisions. If the headquarters is more that 50% owned by another corporation, it also will be a subsidiary. If it owns more that 50% of another corporation, then it is also a parent.\n\nBranch\n\nA branch is a secondary location of its headquarters. It has no legal responsibility for its debts, even though bills may be paid from the branch location. It will have the same legal business name as its headquarters, although branches frequently operate under a different trade style than the headquarters establishment. A branch may be located at the same address as the headquarters if it has a unique trade style. In such cases, the branch may appear to be a duplicate with a different D-U-N-S number than the headquarters record, which may confuse customers if they don't purchase the trade style field.\n\nDivision\n\nA division, like a branch, is a secondary location of a business. However, a division carries out specific business operations related to the headquarters under a divisional name. Divisions look similar to branches in D&B WorldBase and carry a branch code.\n\nSubsidiary\n\nA subsidiary is a corporation that is more than 50% owned by another corporation and will have a different legal business name from its parent company. A subsidiary may have branches and/or subsidiaries of its own. If it does, then its D-U-N-S Number appears in the headquarter/parent D-U-N-S Number field of its children.\n\nParent\n\nA parent is a corporation that owns more than 50 percent of another corporation. The parent company also may be a subsidiary of another corporation. If the parent also has branches, then it is also a headquarters.\n\nDomestic Ultimate\n\nThe Domestic Ultimate is a subsidiary within the global family tree which is the highest ranking member within a specific country.\n\nGlobal Ultimate\n\nThe Global Ultimate is the top most responsible entity within the global family tree. The Global Ultimate may have branches and/or subsidiaries reporting directly or indirectly to it.",
+					"BaseAttributeReference": {
+						"Entity": "LegalEntityCustomer.cdm.json/LegalEntityCustomer",
+						"Name": "DunBradstreetParent"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "boolean",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"HIVE_TYPE_STRING": "boolean"
+						}
+					}
+				},
+				{
+					"Name": "DunBradstreetUltimate",
+					"Description": "There are eight (8) types of business relationships defined in D&B WorldBase:\n\nSingle Location Subsidiary\n\nA single location subsidiary has reporting responsibilities to its parent; however, it does not have branches or subsidiaries reporting to it. Do not confuse this with a stand-alone business which is titled \"single location\" and is not part of a corporate family.\n\nHeadquarters\n\nA headquarters is a business establishment that has branches or divisions reporting to it, and is financially responsible for those branches or divisions. If the headquarters is more that 50% owned by another corporation, it also will be a subsidiary. If it owns more that 50% of another corporation, then it is also a parent.\n\nBranch\n\nA branch is a secondary location of its headquarters. It has no legal responsibility for its debts, even though bills may be paid from the branch location. It will have the same legal business name as its headquarters, although branches frequently operate under a different trade style than the headquarters establishment. A branch may be located at the same address as the headquarters if it has a unique trade style. In such cases, the branch may appear to be a duplicate with a different D-U-N-S number than the headquarters record, which may confuse customers if they don't purchase the trade style field.\n\nDivision\n\nA division, like a branch, is a secondary location of a business. However, a division carries out specific business operations related to the headquarters under a divisional name. Divisions look similar to branches in D&B WorldBase and carry a branch code.\n\nSubsidiary\n\nA subsidiary is a corporation that is more than 50% owned by another corporation and will have a different legal business name from its parent company. A subsidiary may have branches and/or subsidiaries of its own. If it does, then its D-U-N-S Number appears in the headquarter/parent D-U-N-S Number field of its children.\n\nParent\n\nA parent is a corporation that owns more than 50 percent of another corporation. The parent company also may be a subsidiary of another corporation. If the parent also has branches, then it is also a headquarters.\n\nDomestic Ultimate\n\nThe Domestic Ultimate is a subsidiary within the global family tree which is the highest ranking member within a specific country.\n\nGlobal Ultimate\n\nThe Global Ultimate is the top most responsible entity within the global family tree. The Global Ultimate may have branches and/or subsidiaries reporting directly or indirectly to it.",
+					"BaseAttributeReference": {
+						"Entity": "LegalEntityCustomer.cdm.json/LegalEntityCustomer",
+						"Name": "DunBradstreetUltimate"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "boolean",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"HIVE_TYPE_STRING": "boolean"
+						}
+					}
+				},
+				{
+					"Name": "DunBradstreetGlobalUltimate",
+					"Description": "There are eight (8) types of business relationships defined in D&B WorldBase:\n\nSingle Location Subsidiary\n\nA single location subsidiary has reporting responsibilities to its parent; however, it does not have branches or subsidiaries reporting to it. Do not confuse this with a stand-alone business which is titled \"single location\" and is not part of a corporate family.\n\nHeadquarters\n\nA headquarters is a business establishment that has branches or divisions reporting to it, and is financially responsible for those branches or divisions. If the headquarters is more that 50% owned by another corporation, it also will be a subsidiary. If it owns more that 50% of another corporation, then it is also a parent.\n\nBranch\n\nA branch is a secondary location of its headquarters. It has no legal responsibility for its debts, even though bills may be paid from the branch location. It will have the same legal business name as its headquarters, although branches frequently operate under a different trade style than the headquarters establishment. A branch may be located at the same address as the headquarters if it has a unique trade style. In such cases, the branch may appear to be a duplicate with a different D-U-N-S number than the headquarters record, which may confuse customers if they don't purchase the trade style field.\n\nDivision\n\nA division, like a branch, is a secondary location of a business. However, a division carries out specific business operations related to the headquarters under a divisional name. Divisions look similar to branches in D&B WorldBase and carry a branch code.\n\nSubsidiary\n\nA subsidiary is a corporation that is more than 50% owned by another corporation and will have a different legal business name from its parent company. A subsidiary may have branches and/or subsidiaries of its own. If it does, then its D-U-N-S Number appears in the headquarter/parent D-U-N-S Number field of its children.\n\nParent\n\nA parent is a corporation that owns more than 50 percent of another corporation. The parent company also may be a subsidiary of another corporation. If the parent also has branches, then it is also a headquarters.\n\nDomestic Ultimate\n\nThe Domestic Ultimate is a subsidiary within the global family tree which is the highest ranking member within a specific country.\n\nGlobal Ultimate\n\nThe Global Ultimate is the top most responsible entity within the global family tree. The Global Ultimate may have branches and/or subsidiaries reporting directly or indirectly to it.",
+					"BaseAttributeReference": {
+						"Entity": "LegalEntityCustomer.cdm.json/LegalEntityCustomer",
+						"Name": "DunBradstreetGlobalUltimate"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "boolean",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"HIVE_TYPE_STRING": "boolean"
+						}
+					}
+				},
+				{
+					"Name": "LegalEntityFormId",
+					"Description": "The unique identifier of the Legal Entity Form.",
+					"BaseAttributeReference": {
+						"Entity": "LegalEntityCustomer.cdm.json/LegalEntityCustomer",
+						"Name": "LegalEntityFormId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "NaicsNationalIndustryCode",
+					"Description": "The unique identifier of a NAICS National Industry Code.",
+					"BaseAttributeReference": {
+						"Entity": "LegalEntityCustomer.cdm.json/LegalEntityCustomer",
+						"Name": "NaicsNationalIndustryCode"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "decimal",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Precision": 6,
+						"Scale": 0,
+						"Properties": {
+							"HIVE_TYPE_STRING": "decimal"
+						}
+					}
+				},
+				{
+					"Name": "SicIndustryCode",
+					"Description": "The unique identifier of the SIC Industry.",
+					"BaseAttributeReference": {
+						"Entity": "LegalEntityCustomer.cdm.json/LegalEntityCustomer",
+						"Name": "SicIndustryCode"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "decimal",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Precision": 4,
+						"Scale": 0,
+						"Properties": {
+							"HIVE_TYPE_STRING": "decimal"
+						}
+					}
+				},
+				{
+					"Name": "AnzsicClassCode",
+					"Description": "The unique identifier of an ANZSIC Class.",
+					"BaseAttributeReference": {
+						"Entity": "LegalEntityCustomer.cdm.json/LegalEntityCustomer",
+						"Name": "AnzsicClassCode"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "decimal",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Precision": 4,
+						"Scale": 0,
+						"Properties": {
+							"HIVE_TYPE_STRING": "decimal"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/LegalEntityCustomer",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/LegalEntityCustomer",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"CustomerId\":{\"entity\":\"LegalEntityCustomer.cdm.json/LegalEntityCustomer\",\"name\":\"CustomerId\"},\"LegalEntityName\":{\"entity\":\"LegalEntityCustomer.cdm.json/LegalEntityCustomer\",\"name\":\"LegalEntityName\"},\"LegalEntityNote\":{\"entity\":\"LegalEntityCustomer.cdm.json/LegalEntityCustomer\",\"name\":\"LegalEntityNote\"},\"LegalEntityDateOfEstablishment\":{\"entity\":\"LegalEntityCustomer.cdm.json/LegalEntityCustomer\",\"name\":\"LegalEntityDateOfEstablishment\"},\"StateOfLegalEntityEstablishment\":{\"entity\":\"LegalEntityCustomer.cdm.json/LegalEntityCustomer\",\"name\":\"StateOfLegalEntityEstablishment\"},\"CountryOfLegalEntityEstablishment\":{\"entity\":\"LegalEntityCustomer.cdm.json/LegalEntityCustomer\",\"name\":\"CountryOfLegalEntityEstablishment\"},\"StateOfLegalEntityResidence\":{\"entity\":\"LegalEntityCustomer.cdm.json/LegalEntityCustomer\",\"name\":\"StateOfLegalEntityResidence\"},\"CountryOfLegalEntityResidence\":{\"entity\":\"LegalEntityCustomer.cdm.json/LegalEntityCustomer\",\"name\":\"CountryOfLegalEntityResidence\"},\"CurrentManagementFirstControlDate\":{\"entity\":\"LegalEntityCustomer.cdm.json/LegalEntityCustomer\",\"name\":\"CurrentManagementFirstControlDate\"},\"FirstDateOfOperation\":{\"entity\":\"LegalEntityCustomer.cdm.json/LegalEntityCustomer\",\"name\":\"FirstDateOfOperation\"},\"StockExchangeName\":{\"entity\":\"LegalEntityCustomer.cdm.json/LegalEntityCustomer\",\"name\":\"StockExchangeName\"},\"ListedSecuritySymbol\":{\"entity\":\"LegalEntityCustomer.cdm.json/LegalEntityCustomer\",\"name\":\"ListedSecuritySymbol\"},\"TaxExemptCertificateStatement\":{\"entity\":\"LegalEntityCustomer.cdm.json/LegalEntityCustomer\",\"name\":\"TaxExemptCertificateStatement\"},\"BankruptcyIndicator\":{\"entity\":\"LegalEntityCustomer.cdm.json/LegalEntityCustomer\",\"name\":\"BankruptcyIndicator\"},\"SmallBusinessIndicator\":{\"entity\":\"LegalEntityCustomer.cdm.json/LegalEntityCustomer\",\"name\":\"SmallBusinessIndicator\"},\"ManufacturingIndicator\":{\"entity\":\"LegalEntityCustomer.cdm.json/LegalEntityCustomer\",\"name\":\"ManufacturingIndicator\"},\"ForeignOwnedIndicator\":{\"entity\":\"LegalEntityCustomer.cdm.json/LegalEntityCustomer\",\"name\":\"ForeignOwnedIndicator\"},\"DunsNumber\":{\"entity\":\"LegalEntityCustomer.cdm.json/LegalEntityCustomer\",\"name\":\"DunsNumber\"},\"DunBradstreetSingleLocationSubsidiary\":{\"entity\":\"LegalEntityCustomer.cdm.json/LegalEntityCustomer\",\"name\":\"DunBradstreetSingleLocationSubsidiary\"},\"DunBradstreetHeadquarters\":{\"entity\":\"LegalEntityCustomer.cdm.json/LegalEntityCustomer\",\"name\":\"DunBradstreetHeadquarters\"},\"DunBradstreetBranch\":{\"entity\":\"LegalEntityCustomer.cdm.json/LegalEntityCustomer\",\"name\":\"DunBradstreetBranch\"},\"DunBradstreetDivision\":{\"entity\":\"LegalEntityCustomer.cdm.json/LegalEntityCustomer\",\"name\":\"DunBradstreetDivision\"},\"DunBradstreetSubsidiary\":{\"entity\":\"LegalEntityCustomer.cdm.json/LegalEntityCustomer\",\"name\":\"DunBradstreetSubsidiary\"},\"DunBradstreetParent\":{\"entity\":\"LegalEntityCustomer.cdm.json/LegalEntityCustomer\",\"name\":\"DunBradstreetParent\"},\"DunBradstreetUltimate\":{\"entity\":\"LegalEntityCustomer.cdm.json/LegalEntityCustomer\",\"name\":\"DunBradstreetUltimate\"},\"DunBradstreetGlobalUltimate\":{\"entity\":\"LegalEntityCustomer.cdm.json/LegalEntityCustomer\",\"name\":\"DunBradstreetGlobalUltimate\"},\"LegalEntityFormId\":{\"entity\":\"LegalEntityCustomer.cdm.json/LegalEntityCustomer\",\"name\":\"LegalEntityFormId\"},\"NaicsNationalIndustryCode\":{\"entity\":\"LegalEntityCustomer.cdm.json/LegalEntityCustomer\",\"name\":\"NaicsNationalIndustryCode\"},\"SicIndustryCode\":{\"entity\":\"LegalEntityCustomer.cdm.json/LegalEntityCustomer\",\"name\":\"SicIndustryCode\"},\"AnzsicClassCode\":{\"entity\":\"LegalEntityCustomer.cdm.json/LegalEntityCustomer\",\"name\":\"AnzsicClassCode\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"LegalEntityCustomer\",\"path\":\"LegalEntityCustomer.cdm.json/LegalEntityCustomer\"},\"description\":\"A 'legal entity customer' is one of the two types of customers upon which the Microsoft data models focus.      'Individual customer' is the other.\\n\\nThe definition of 'customer' is of critical importance for every organization.    \\n\\nIt is the customer that is the focus of product planning, marketing, sales, service, reporting and analytics.    Without 'customer' there would be no need for the organization to exist since its purpose is to serve the customer and profit from that interaction.\\n\\nThe definition of 'customer' must be consistent with how customers exist and interact with the organization in the real world.  \\n\\nAn artificial or conceptual definition of 'customer' that is not consistent with these two objectives is doomed to fail because the data will not be consistent with the definition and employees will not accept concepts or terms that are not consistent with what they see, know and how they interact with customers on a working basis.\\n\\nMicrosoft defines 'customer' to meet these objectives.    When we look out into the real world we see two dominant types of customers:  human beings ('individual customers') and legal entities ('legal entity customers')>    \\n\\nLegal entities are those legally-defined entities such as corporations, partnerships, non-profit organizations, government organizations etc. that purchase products, goods and services.\\n\\nIndividual customers are human beings, male and female individuals, of various ages, sex, demographics and a variety of similar dimensions that describe and define those who purchase products, good and services.    \\n\\nThis view of 'customer' is consistent with the real world and consistent with how employees view and interact with customers.\\n\\nOf course, that is just the start of identifying, defining and understanding each corresponding type of 'customer'.     There is a great deal of detail, complexity and related data that can be used to define each type of customer to various levels of detail and different dimensions of information.    Microsoft implements these detailed concepts and related data via two distinct business area models that expand the coverage and complexity of each type of customer:\\n\\n-  LEGAL ENTITY CUSTOMER Business Area Model\\n-  INDIVIDUAL CUSTOMER Business Area Model\\n\\nNote:\\nEach of the Microsoft models - enterprise, business area or data warehouse - have a representative level of detail for the appropriate type of customer, which is a 'subset' of the total data available in the associated INDIVIDUAL CUSTOMER or LEGAL ENTITY CUSTOMER business area models..   Reference either of those models to expand the coverage or level of detail in each respective data model.\\n\\nThe actual customer implemented in each model depends upon the dominant use of customer for that industry.     \\n\\nFor example, in the pharmaceutical industry the customer is a legal entity, which represents another corporation, company, government organization etc. that purchases the pharmaceutical product and then distributes that product to the end-customer, which is an individual in a retail environment or a government-distribution scheme.    \\n\\nFor this example, the pharmaceutical models will have the legal entity customer represented but not the individual 'end customer' since that is represented in the appropriate retail industry models, which are a different offering.     \\n\\nOf course, the entire set of data available for a legal entity customer is contained in the associated LEGAL ENTITY CUSTOMER Business Area Model.   Reference the LEGAL ENTITY CUSTOMER Business Area Model to incorporate additional data that may be of relevance.\\n\\nIn many industries both types of customers are represented since a legal entity or individual can purchase products, goods or services and enter into contracts.    For these industries, both types of customers are represented by some of the more significant or relevant data derived from the associated LEGAL ENTITY or INDIVIDUAL CUSTOMER business area models.   These models can be used to expand the scope or level of detail in any of the enterprise, business area or data warehouse models.\",\"primaryKey\":[\"CustomerId\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"LegalEntityCustomer.cdm.json/LegalEntityCustomer\",\"name\":\"CustomerId\"},\"dataType\":\"long\",\"description\":\"The unique identifier of a Customer.\",\"isNullable\":false,\"name\":\"CustomerId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"LegalEntityCustomer.cdm.json/LegalEntityCustomer\",\"name\":\"LegalEntityName\"},\"dataType\":\"string\",\"dataTypeLength\":256,\"description\":\"The business name of the Legal Entity.\",\"isNullable\":true,\"name\":\"LegalEntityName\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"LegalEntityCustomer.cdm.json/LegalEntityCustomer\",\"name\":\"LegalEntityNote\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"A narrative, description or additional detail regarding the associated Legal Entity.\",\"isNullable\":true,\"name\":\"LegalEntityNote\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"LegalEntityCustomer.cdm.json/LegalEntityCustomer\",\"name\":\"LegalEntityDateOfEstablishment\"},\"dataType\":\"date\",\"dateFormat\":\"YYYY-MM-DD\",\"description\":\"The date that the Legal Entity was established.\",\"isNullable\":true,\"name\":\"LegalEntityDateOfEstablishment\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"LegalEntityCustomer.cdm.json/LegalEntityCustomer\",\"name\":\"StateOfLegalEntityEstablishment\"},\"dataType\":\"string\",\"dataTypeLength\":64,\"description\":\"The state in which the Legal Entity was established.\",\"isNullable\":true,\"name\":\"StateOfLegalEntityEstablishment\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"LegalEntityCustomer.cdm.json/LegalEntityCustomer\",\"name\":\"CountryOfLegalEntityEstablishment\"},\"dataType\":\"string\",\"dataTypeLength\":64,\"description\":\"The country in which the Legal Entity was established.\",\"isNullable\":true,\"name\":\"CountryOfLegalEntityEstablishment\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"LegalEntityCustomer.cdm.json/LegalEntityCustomer\",\"name\":\"StateOfLegalEntityResidence\"},\"dataType\":\"string\",\"dataTypeLength\":64,\"description\":\"The state in which the Legal Entity has it's primary business or official residence.\",\"isNullable\":true,\"name\":\"StateOfLegalEntityResidence\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"LegalEntityCustomer.cdm.json/LegalEntityCustomer\",\"name\":\"CountryOfLegalEntityResidence\"},\"dataType\":\"string\",\"dataTypeLength\":64,\"description\":\"The country in which the Legal Entity has it's primary business or official residence.\",\"isNullable\":true,\"name\":\"CountryOfLegalEntityResidence\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"LegalEntityCustomer.cdm.json/LegalEntityCustomer\",\"name\":\"CurrentManagementFirstControlDate\"},\"dataType\":\"date\",\"dateFormat\":\"YYYY-MM-DD\",\"description\":\"The date that current management assumed control of the Legal Entity's normal business operations.\",\"isNullable\":true,\"name\":\"CurrentManagementFirstControlDate\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"LegalEntityCustomer.cdm.json/LegalEntityCustomer\",\"name\":\"FirstDateOfOperation\"},\"dataType\":\"date\",\"dateFormat\":\"YYYY-MM-DD\",\"description\":\"The first date that the Legal Entity entered into normal business operations.\",\"isNullable\":true,\"name\":\"FirstDateOfOperation\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"LegalEntityCustomer.cdm.json/LegalEntityCustomer\",\"name\":\"StockExchangeName\"},\"dataType\":\"string\",\"dataTypeLength\":256,\"description\":\"The name of the stock exchange that the security is listed upon.\",\"isNullable\":true,\"name\":\"StockExchangeName\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"LegalEntityCustomer.cdm.json/LegalEntityCustomer\",\"name\":\"ListedSecuritySymbol\"},\"dataType\":\"string\",\"dataTypeLength\":8,\"description\":\"The security symbol of the Legal Entity, if any.\",\"isNullable\":true,\"name\":\"ListedSecuritySymbol\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"LegalEntityCustomer.cdm.json/LegalEntityCustomer\",\"name\":\"TaxExemptCertificateStatement\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"A statement from a customer indicating that they are either an exempt organization (i.e. Red Cross, government, other nonprofit) OR they are using the purchase in an exempt manner (i.e. for use in manufacturing).\",\"isNullable\":true,\"name\":\"TaxExemptCertificateStatement\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"LegalEntityCustomer.cdm.json/LegalEntityCustomer\",\"name\":\"BankruptcyIndicator\"},\"dataType\":\"boolean\",\"description\":\"Indicates that bankruptcy proceeding exist for the legal entity customer, which is a proceeding under the U.S. Bankruptcy Code, in which either a debtor files a bankruptcy petition and voluntarily seeks protection from creditors, or creditors file a bankruptcy petition against a debtor to force the debtor to pay debts owed to them.\",\"isNullable\":true,\"name\":\"BankruptcyIndicator\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"LegalEntityCustomer.cdm.json/LegalEntityCustomer\",\"name\":\"SmallBusinessIndicator\"},\"dataType\":\"boolean\",\"description\":\"Indicates that business is a small business by SBA guidelines.\",\"isNullable\":true,\"name\":\"SmallBusinessIndicator\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"LegalEntityCustomer.cdm.json/LegalEntityCustomer\",\"name\":\"ManufacturingIndicator\"},\"dataType\":\"boolean\",\"description\":\"Notes manufacturing operations occur at site.\",\"isNullable\":true,\"name\":\"ManufacturingIndicator\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"LegalEntityCustomer.cdm.json/LegalEntityCustomer\",\"name\":\"ForeignOwnedIndicator\"},\"dataType\":\"boolean\",\"description\":\"Identifies companies with parent outside of the U.S.\",\"isNullable\":true,\"name\":\"ForeignOwnedIndicator\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"LegalEntityCustomer.cdm.json/LegalEntityCustomer\",\"name\":\"DunsNumber\"},\"dataType\":\"decimal\",\"dataTypeLength\":9,\"description\":\"The DUNS number is a nine-digit number issued by Dun & Bradstreet and assigned to each business location in the D&B database having a unique, separate, and distinct operation to businesses for the purpose of identifying them. The number as issued is random and the digits apparently have no significance as to their issuance.\",\"isNullable\":true,\"scale\":0,\"name\":\"DunsNumber\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"LegalEntityCustomer.cdm.json/LegalEntityCustomer\",\"name\":\"DunBradstreetSingleLocationSubsidiary\"},\"dataType\":\"boolean\",\"description\":\"There are eight (8) types of business relationships defined in D&B WorldBase:\\n\\nSingle Location Subsidiary\\n\\nA single location subsidiary has reporting responsibilities to its parent; however, it does not have branches or subsidiaries reporting to it. Do not confuse this with a stand-alone business which is titled \\\"single location\\\" and is not part of a corporate family.\\n\\nHeadquarters\\n\\nA headquarters is a business establishment that has branches or divisions reporting to it, and is financially responsible for those branches or divisions. If the headquarters is more that 50% owned by another corporation, it also will be a subsidiary. If it owns more that 50% of another corporation, then it is also a parent.\\n\\nBranch\\n\\nA branch is a secondary location of its headquarters. It has no legal responsibility for its debts, even though bills may be paid from the branch location. It will have the same legal business name as its headquarters, although branches frequently operate under a different trade style than the headquarters establishment. A branch may be located at the same address as the headquarters if it has a unique trade style. In such cases, the branch may appear to be a duplicate with a different D-U-N-S number than the headquarters record, which may confuse customers if they don't purchase the trade style field.\\n\\nDivision\\n\\nA division, like a branch, is a secondary location of a business. However, a division carries out specific business operations related to the headquarters under a divisional name. Divisions look similar to branches in D&B WorldBase and carry a branch code.\\n\\nSubsidiary\\n\\nA subsidiary is a corporation that is more than 50% owned by another corporation and will have a different legal business name from its parent company. A subsidiary may have branches and/or subsidiaries of its own. If it does, then its D-U-N-S Number appears in the headquarter/parent D-U-N-S Number field of its children.\\n\\nParent\\n\\nA parent is a corporation that owns more than 50 percent of another corporation. The parent company also may be a subsidiary of another corporation. If the parent also has branches, then it is also a headquarters.\\n\\nDomestic Ultimate\\n\\nThe Domestic Ultimate is a subsidiary within the global family tree which is the highest ranking member within a specific country.\\n\\nGlobal Ultimate\\n\\nThe Global Ultimate is the top most responsible entity within the global family tree. The Global Ultimate may have branches and/or subsidiaries reporting directly or indirectly to it.\",\"isNullable\":true,\"name\":\"DunBradstreetSingleLocationSubsidiary\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"LegalEntityCustomer.cdm.json/LegalEntityCustomer\",\"name\":\"DunBradstreetHeadquarters\"},\"dataType\":\"boolean\",\"description\":\"There are eight (8) types of business relationships defined in D&B WorldBase:\\n\\nSingle Location Subsidiary\\n\\nA single location subsidiary has reporting responsibilities to its parent; however, it does not have branches or subsidiaries reporting to it. Do not confuse this with a stand-alone business which is titled \\\"single location\\\" and is not part of a corporate family.\\n\\nHeadquarters\\n\\nA headquarters is a business establishment that has branches or divisions reporting to it, and is financially responsible for those branches or divisions. If the headquarters is more that 50% owned by another corporation, it also will be a subsidiary. If it owns more that 50% of another corporation, then it is also a parent.\\n\\nBranch\\n\\nA branch is a secondary location of its headquarters. It has no legal responsibility for its debts, even though bills may be paid from the branch location. It will have the same legal business name as its headquarters, although branches frequently operate under a different trade style than the headquarters establishment. A branch may be located at the same address as the headquarters if it has a unique trade style. In such cases, the branch may appear to be a duplicate with a different D-U-N-S number than the headquarters record, which may confuse customers if they don't purchase the trade style field.\\n\\nDivision\\n\\nA division, like a branch, is a secondary location of a business. However, a division carries out specific business operations related to the headquarters under a divisional name. Divisions look similar to branches in D&B WorldBase and carry a branch code.\\n\\nSubsidiary\\n\\nA subsidiary is a corporation that is more than 50% owned by another corporation and will have a different legal business name from its parent company. A subsidiary may have branches and/or subsidiaries of its own. If it does, then its D-U-N-S Number appears in the headquarter/parent D-U-N-S Number field of its children.\\n\\nParent\\n\\nA parent is a corporation that owns more than 50 percent of another corporation. The parent company also may be a subsidiary of another corporation. If the parent also has branches, then it is also a headquarters.\\n\\nDomestic Ultimate\\n\\nThe Domestic Ultimate is a subsidiary within the global family tree which is the highest ranking member within a specific country.\\n\\nGlobal Ultimate\\n\\nThe Global Ultimate is the top most responsible entity within the global family tree. The Global Ultimate may have branches and/or subsidiaries reporting directly or indirectly to it.\",\"isNullable\":true,\"name\":\"DunBradstreetHeadquarters\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"LegalEntityCustomer.cdm.json/LegalEntityCustomer\",\"name\":\"DunBradstreetBranch\"},\"dataType\":\"boolean\",\"description\":\"There are eight (8) types of business relationships defined in D&B WorldBase:\\n\\nSingle Location Subsidiary\\n\\nA single location subsidiary has reporting responsibilities to its parent; however, it does not have branches or subsidiaries reporting to it. Do not confuse this with a stand-alone business which is titled \\\"single location\\\" and is not part of a corporate family.\\n\\nHeadquarters\\n\\nA headquarters is a business establishment that has branches or divisions reporting to it, and is financially responsible for those branches or divisions. If the headquarters is more that 50% owned by another corporation, it also will be a subsidiary. If it owns more that 50% of another corporation, then it is also a parent.\\n\\nBranch\\n\\nA branch is a secondary location of its headquarters. It has no legal responsibility for its debts, even though bills may be paid from the branch location. It will have the same legal business name as its headquarters, although branches frequently operate under a different trade style than the headquarters establishment. A branch may be located at the same address as the headquarters if it has a unique trade style. In such cases, the branch may appear to be a duplicate with a different D-U-N-S number than the headquarters record, which may confuse customers if they don't purchase the trade style field.\\n\\nDivision\\n\\nA division, like a branch, is a secondary location of a business. However, a division carries out specific business operations related to the headquarters under a divisional name. Divisions look similar to branches in D&B WorldBase and carry a branch code.\\n\\nSubsidiary\\n\\nA subsidiary is a corporation that is more than 50% owned by another corporation and will have a different legal business name from its parent company. A subsidiary may have branches and/or subsidiaries of its own. If it does, then its D-U-N-S Number appears in the headquarter/parent D-U-N-S Number field of its children.\\n\\nParent\\n\\nA parent is a corporation that owns more than 50 percent of another corporation. The parent company also may be a subsidiary of another corporation. If the parent also has branches, then it is also a headquarters.\\n\\nDomestic Ultimate\\n\\nThe Domestic Ultimate is a subsidiary within the global family tree which is the highest ranking member within a specific country.\\n\\nGlobal Ultimate\\n\\nThe Global Ultimate is the top most responsible entity within the global family tree. The Global Ultimate may have branches and/or subsidiaries reporting directly or indirectly to it.\",\"isNullable\":true,\"name\":\"DunBradstreetBranch\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"LegalEntityCustomer.cdm.json/LegalEntityCustomer\",\"name\":\"DunBradstreetDivision\"},\"dataType\":\"boolean\",\"description\":\"There are eight (8) types of business relationships defined in D&B WorldBase:\\n\\nSingle Location Subsidiary\\n\\nA single location subsidiary has reporting responsibilities to its parent; however, it does not have branches or subsidiaries reporting to it. Do not confuse this with a stand-alone business which is titled \\\"single location\\\" and is not part of a corporate family.\\n\\nHeadquarters\\n\\nA headquarters is a business establishment that has branches or divisions reporting to it, and is financially responsible for those branches or divisions. If the headquarters is more that 50% owned by another corporation, it also will be a subsidiary. If it owns more that 50% of another corporation, then it is also a parent.\\n\\nBranch\\n\\nA branch is a secondary location of its headquarters. It has no legal responsibility for its debts, even though bills may be paid from the branch location. It will have the same legal business name as its headquarters, although branches frequently operate under a different trade style than the headquarters establishment. A branch may be located at the same address as the headquarters if it has a unique trade style. In such cases, the branch may appear to be a duplicate with a different D-U-N-S number than the headquarters record, which may confuse customers if they don't purchase the trade style field.\\n\\nDivision\\n\\nA division, like a branch, is a secondary location of a business. However, a division carries out specific business operations related to the headquarters under a divisional name. Divisions look similar to branches in D&B WorldBase and carry a branch code.\\n\\nSubsidiary\\n\\nA subsidiary is a corporation that is more than 50% owned by another corporation and will have a different legal business name from its parent company. A subsidiary may have branches and/or subsidiaries of its own. If it does, then its D-U-N-S Number appears in the headquarter/parent D-U-N-S Number field of its children.\\n\\nParent\\n\\nA parent is a corporation that owns more than 50 percent of another corporation. The parent company also may be a subsidiary of another corporation. If the parent also has branches, then it is also a headquarters.\\n\\nDomestic Ultimate\\n\\nThe Domestic Ultimate is a subsidiary within the global family tree which is the highest ranking member within a specific country.\\n\\nGlobal Ultimate\\n\\nThe Global Ultimate is the top most responsible entity within the global family tree. The Global Ultimate may have branches and/or subsidiaries reporting directly or indirectly to it.\",\"isNullable\":true,\"name\":\"DunBradstreetDivision\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"LegalEntityCustomer.cdm.json/LegalEntityCustomer\",\"name\":\"DunBradstreetSubsidiary\"},\"dataType\":\"boolean\",\"description\":\"There are eight (8) types of business relationships defined in D&B WorldBase:\\n\\nSingle Location Subsidiary\\n\\nA single location subsidiary has reporting responsibilities to its parent; however, it does not have branches or subsidiaries reporting to it. Do not confuse this with a stand-alone business which is titled \\\"single location\\\" and is not part of a corporate family.\\n\\nHeadquarters\\n\\nA headquarters is a business establishment that has branches or divisions reporting to it, and is financially responsible for those branches or divisions. If the headquarters is more that 50% owned by another corporation, it also will be a subsidiary. If it owns more that 50% of another corporation, then it is also a parent.\\n\\nBranch\\n\\nA branch is a secondary location of its headquarters. It has no legal responsibility for its debts, even though bills may be paid from the branch location. It will have the same legal business name as its headquarters, although branches frequently operate under a different trade style than the headquarters establishment. A branch may be located at the same address as the headquarters if it has a unique trade style. In such cases, the branch may appear to be a duplicate with a different D-U-N-S number than the headquarters record, which may confuse customers if they don't purchase the trade style field.\\n\\nDivision\\n\\nA division, like a branch, is a secondary location of a business. However, a division carries out specific business operations related to the headquarters under a divisional name. Divisions look similar to branches in D&B WorldBase and carry a branch code.\\n\\nSubsidiary\\n\\nA subsidiary is a corporation that is more than 50% owned by another corporation and will have a different legal business name from its parent company. A subsidiary may have branches and/or subsidiaries of its own. If it does, then its D-U-N-S Number appears in the headquarter/parent D-U-N-S Number field of its children.\\n\\nParent\\n\\nA parent is a corporation that owns more than 50 percent of another corporation. The parent company also may be a subsidiary of another corporation. If the parent also has branches, then it is also a headquarters.\\n\\nDomestic Ultimate\\n\\nThe Domestic Ultimate is a subsidiary within the global family tree which is the highest ranking member within a specific country.\\n\\nGlobal Ultimate\\n\\nThe Global Ultimate is the top most responsible entity within the global family tree. The Global Ultimate may have branches and/or subsidiaries reporting directly or indirectly to it.\",\"isNullable\":true,\"name\":\"DunBradstreetSubsidiary\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"LegalEntityCustomer.cdm.json/LegalEntityCustomer\",\"name\":\"DunBradstreetParent\"},\"dataType\":\"boolean\",\"description\":\"There are eight (8) types of business relationships defined in D&B WorldBase:\\n\\nSingle Location Subsidiary\\n\\nA single location subsidiary has reporting responsibilities to its parent; however, it does not have branches or subsidiaries reporting to it. Do not confuse this with a stand-alone business which is titled \\\"single location\\\" and is not part of a corporate family.\\n\\nHeadquarters\\n\\nA headquarters is a business establishment that has branches or divisions reporting to it, and is financially responsible for those branches or divisions. If the headquarters is more that 50% owned by another corporation, it also will be a subsidiary. If it owns more that 50% of another corporation, then it is also a parent.\\n\\nBranch\\n\\nA branch is a secondary location of its headquarters. It has no legal responsibility for its debts, even though bills may be paid from the branch location. It will have the same legal business name as its headquarters, although branches frequently operate under a different trade style than the headquarters establishment. A branch may be located at the same address as the headquarters if it has a unique trade style. In such cases, the branch may appear to be a duplicate with a different D-U-N-S number than the headquarters record, which may confuse customers if they don't purchase the trade style field.\\n\\nDivision\\n\\nA division, like a branch, is a secondary location of a business. However, a division carries out specific business operations related to the headquarters under a divisional name. Divisions look similar to branches in D&B WorldBase and carry a branch code.\\n\\nSubsidiary\\n\\nA subsidiary is a corporation that is more than 50% owned by another corporation and will have a different legal business name from its parent company. A subsidiary may have branches and/or subsidiaries of its own. If it does, then its D-U-N-S Number appears in the headquarter/parent D-U-N-S Number field of its children.\\n\\nParent\\n\\nA parent is a corporation that owns more than 50 percent of another corporation. The parent company also may be a subsidiary of another corporation. If the parent also has branches, then it is also a headquarters.\\n\\nDomestic Ultimate\\n\\nThe Domestic Ultimate is a subsidiary within the global family tree which is the highest ranking member within a specific country.\\n\\nGlobal Ultimate\\n\\nThe Global Ultimate is the top most responsible entity within the global family tree. The Global Ultimate may have branches and/or subsidiaries reporting directly or indirectly to it.\",\"isNullable\":true,\"name\":\"DunBradstreetParent\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"LegalEntityCustomer.cdm.json/LegalEntityCustomer\",\"name\":\"DunBradstreetUltimate\"},\"dataType\":\"boolean\",\"description\":\"There are eight (8) types of business relationships defined in D&B WorldBase:\\n\\nSingle Location Subsidiary\\n\\nA single location subsidiary has reporting responsibilities to its parent; however, it does not have branches or subsidiaries reporting to it. Do not confuse this with a stand-alone business which is titled \\\"single location\\\" and is not part of a corporate family.\\n\\nHeadquarters\\n\\nA headquarters is a business establishment that has branches or divisions reporting to it, and is financially responsible for those branches or divisions. If the headquarters is more that 50% owned by another corporation, it also will be a subsidiary. If it owns more that 50% of another corporation, then it is also a parent.\\n\\nBranch\\n\\nA branch is a secondary location of its headquarters. It has no legal responsibility for its debts, even though bills may be paid from the branch location. It will have the same legal business name as its headquarters, although branches frequently operate under a different trade style than the headquarters establishment. A branch may be located at the same address as the headquarters if it has a unique trade style. In such cases, the branch may appear to be a duplicate with a different D-U-N-S number than the headquarters record, which may confuse customers if they don't purchase the trade style field.\\n\\nDivision\\n\\nA division, like a branch, is a secondary location of a business. However, a division carries out specific business operations related to the headquarters under a divisional name. Divisions look similar to branches in D&B WorldBase and carry a branch code.\\n\\nSubsidiary\\n\\nA subsidiary is a corporation that is more than 50% owned by another corporation and will have a different legal business name from its parent company. A subsidiary may have branches and/or subsidiaries of its own. If it does, then its D-U-N-S Number appears in the headquarter/parent D-U-N-S Number field of its children.\\n\\nParent\\n\\nA parent is a corporation that owns more than 50 percent of another corporation. The parent company also may be a subsidiary of another corporation. If the parent also has branches, then it is also a headquarters.\\n\\nDomestic Ultimate\\n\\nThe Domestic Ultimate is a subsidiary within the global family tree which is the highest ranking member within a specific country.\\n\\nGlobal Ultimate\\n\\nThe Global Ultimate is the top most responsible entity within the global family tree. The Global Ultimate may have branches and/or subsidiaries reporting directly or indirectly to it.\",\"isNullable\":true,\"name\":\"DunBradstreetUltimate\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"LegalEntityCustomer.cdm.json/LegalEntityCustomer\",\"name\":\"DunBradstreetGlobalUltimate\"},\"dataType\":\"boolean\",\"description\":\"There are eight (8) types of business relationships defined in D&B WorldBase:\\n\\nSingle Location Subsidiary\\n\\nA single location subsidiary has reporting responsibilities to its parent; however, it does not have branches or subsidiaries reporting to it. Do not confuse this with a stand-alone business which is titled \\\"single location\\\" and is not part of a corporate family.\\n\\nHeadquarters\\n\\nA headquarters is a business establishment that has branches or divisions reporting to it, and is financially responsible for those branches or divisions. If the headquarters is more that 50% owned by another corporation, it also will be a subsidiary. If it owns more that 50% of another corporation, then it is also a parent.\\n\\nBranch\\n\\nA branch is a secondary location of its headquarters. It has no legal responsibility for its debts, even though bills may be paid from the branch location. It will have the same legal business name as its headquarters, although branches frequently operate under a different trade style than the headquarters establishment. A branch may be located at the same address as the headquarters if it has a unique trade style. In such cases, the branch may appear to be a duplicate with a different D-U-N-S number than the headquarters record, which may confuse customers if they don't purchase the trade style field.\\n\\nDivision\\n\\nA division, like a branch, is a secondary location of a business. However, a division carries out specific business operations related to the headquarters under a divisional name. Divisions look similar to branches in D&B WorldBase and carry a branch code.\\n\\nSubsidiary\\n\\nA subsidiary is a corporation that is more than 50% owned by another corporation and will have a different legal business name from its parent company. A subsidiary may have branches and/or subsidiaries of its own. If it does, then its D-U-N-S Number appears in the headquarter/parent D-U-N-S Number field of its children.\\n\\nParent\\n\\nA parent is a corporation that owns more than 50 percent of another corporation. The parent company also may be a subsidiary of another corporation. If the parent also has branches, then it is also a headquarters.\\n\\nDomestic Ultimate\\n\\nThe Domestic Ultimate is a subsidiary within the global family tree which is the highest ranking member within a specific country.\\n\\nGlobal Ultimate\\n\\nThe Global Ultimate is the top most responsible entity within the global family tree. The Global Ultimate may have branches and/or subsidiaries reporting directly or indirectly to it.\",\"isNullable\":true,\"name\":\"DunBradstreetGlobalUltimate\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"LegalEntityCustomer.cdm.json/LegalEntityCustomer\",\"name\":\"LegalEntityFormId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of the Legal Entity Form.\",\"isNullable\":true,\"name\":\"LegalEntityFormId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"LegalEntityCustomer.cdm.json/LegalEntityCustomer\",\"name\":\"NaicsNationalIndustryCode\"},\"dataType\":\"decimal\",\"dataTypeLength\":6,\"description\":\"The unique identifier of a NAICS National Industry Code.\",\"isNullable\":true,\"scale\":0,\"name\":\"NaicsNationalIndustryCode\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"LegalEntityCustomer.cdm.json/LegalEntityCustomer\",\"name\":\"SicIndustryCode\"},\"dataType\":\"decimal\",\"dataTypeLength\":4,\"description\":\"The unique identifier of the SIC Industry.\",\"isNullable\":true,\"scale\":0,\"name\":\"SicIndustryCode\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"LegalEntityCustomer.cdm.json/LegalEntityCustomer\",\"name\":\"AnzsicClassCode\"},\"dataType\":\"decimal\",\"dataTypeLength\":4,\"description\":\"The unique identifier of an ANZSIC Class.\",\"isNullable\":true,\"scale\":0,\"name\":\"AnzsicClassCode\"}]}}}",
+			"Description": "A 'legal entity customer' is one of the two types of customers upon which the Microsoft data models focus.      'Individual customer' is the other.\n\nThe definition of 'customer' is of critical importance for every organization.    \n\nIt is the customer that is the focus of product planning, marketing, sales, service, reporting and analytics.    Without 'customer' there would be no need for the organization to exist since its purpose is to serve the customer and profit from that interaction.\n\nThe definition of 'customer' must be consistent with how customers exist and interact with the organization in the real world.  \n\nAn artificial or conceptual definition of 'customer' that is not consistent with these two objectives is doomed to fail because the data will not be consistent with the definition and employees will not accept concepts or terms that are not consistent with what they see, know and how they interact with customers on a working basis.\n\nMicrosoft defines 'customer' to meet these objectives.    When we look out into the real world we see two dominant types of customers:  human beings ('individual customers') and legal entities ('legal entity customers')>    \n\nLegal entities are those legally-defined entities such as corporations, partnerships, non-profit organizations, government organizations etc. that purchase products, goods and services.\n\nIndividual customers are human beings, male and female individuals, of various ages, sex, demographics and a variety of similar dimensions that describe and define those who purchase products, good and services.    \n\nThis view of 'customer' is consistent with the real world and consistent with how employees view and interact with customers.\n\nOf course, that is just the start of identifying, defining and understanding each corresponding type of 'customer'.     There is a great deal of detail, complexity and related data that can be used to define each type of customer to various levels of detail and different dimensions of information.    Microsoft implements these detailed concepts and related data via two distinct business area models that expand the coverage and complexity of each type of customer:\n\n-  LEGAL ENTITY CUSTOMER Business Area Model\n-  INDIVIDUAL CUSTOMER Business Area Model\n\nNote:\nEach of the Microsoft models - enterprise, business area or data warehouse - have a representative level of detail for the appropriate type of customer, which is a 'subset' of the total data available in the associated INDIVIDUAL CUSTOMER or LEGAL ENTITY CUSTOMER business area models..   Reference either of those models to expand the coverage or level of detail in each respective data model.\n\nThe actual customer implemented in each model depends upon the dominant use of customer for that industry.     \n\nFor example, in the pharmaceutical industry the customer is a legal entity, which represents another corporation, company, government organization etc. that purchases the pharmaceutical product and then distributes that product to the end-customer, which is an individual in a retail environment or a government-distribution scheme.    \n\nFor this example, the pharmaceutical models will have the legal entity customer represented but not the individual 'end customer' since that is represented in the appropriate retail industry models, which are a different offering.     \n\nOf course, the entire set of data available for a legal entity customer is contained in the associated LEGAL ENTITY CUSTOMER Business Area Model.   Reference the LEGAL ENTITY CUSTOMER Business Area Model to incorporate additional data that may be of relevance.\n\nIn many industries both types of customers are represented since a legal entity or individual can purchase products, goods or services and enter into contracts.    For these industries, both types of customers are represented by some of the more significant or relevant data derived from the associated LEGAL ENTITY or INDIVIDUAL CUSTOMER business area models.   These models can be used to expand the scope or level of detail in any of the enterprise, business area or data warehouse models.",
+			"DisplayFolderInfo": "{\"name\":\"Customer\",\"colorCode\":\"#4B003F\"}",
+			"PrimaryKeys": "CustomerId",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

@@ -1,0 +1,162 @@
+{
+	"name": "AssignmentProceedingRelatedParty",
+	"properties": {
+		"Name": "AssignmentProceedingRelatedParty",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "A party that has a relationship with the assignment proceeding over the indicated period.",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "AssignmentProceedingId",
+					"Description": "The unique identifier of an Assignment Proceeding.",
+					"BaseAttributeReference": {
+						"Entity": "AssignmentProceedingRelatedParty.cdm.json/AssignmentProceedingRelatedParty",
+						"Name": "AssignmentProceedingId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "PartyId",
+					"Description": "The unique identifier of a Party.",
+					"BaseAttributeReference": {
+						"Entity": "AssignmentProceedingRelatedParty.cdm.json/AssignmentProceedingRelatedParty",
+						"Name": "PartyId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "long",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "long"
+						}
+					}
+				},
+				{
+					"Name": "AssignmentProceedingPartyRelationshipTypeId",
+					"Description": "The unique identifier of a Assignment Proceeding - Party relationship type.",
+					"BaseAttributeReference": {
+						"Entity": "AssignmentProceedingRelatedParty.cdm.json/AssignmentProceedingRelatedParty",
+						"Name": "AssignmentProceedingPartyRelationshipTypeId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "PeriodStartDate",
+					"Description": "The period start date for which the associated assignment proceeding - party relationship is valid or in-effect.",
+					"BaseAttributeReference": {
+						"Entity": "AssignmentProceedingRelatedParty.cdm.json/AssignmentProceedingRelatedParty",
+						"Name": "PeriodStartDate"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "date",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"DateFormat": "YYYY-MM-DD",
+							"HIVE_TYPE_STRING": "date"
+						}
+					}
+				},
+				{
+					"Name": "PeriodEndDate",
+					"Description": "The period end date for which the associated assignment proceeding - party relationship is valid or in-effect.",
+					"BaseAttributeReference": {
+						"Entity": "AssignmentProceedingRelatedParty.cdm.json/AssignmentProceedingRelatedParty",
+						"Name": "PeriodEndDate"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "date",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"DateFormat": "YYYY-MM-DD",
+							"HIVE_TYPE_STRING": "date"
+						}
+					}
+				},
+				{
+					"Name": "AssignmentProceedingPartyRelationshipNote",
+					"Description": "A note, comment or additional information regarding the assignment proceeding - party relationship.",
+					"BaseAttributeReference": {
+						"Entity": "AssignmentProceedingRelatedParty.cdm.json/AssignmentProceedingRelatedParty",
+						"Name": "AssignmentProceedingPartyRelationshipNote"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/AssignmentProceedingRelatedParty",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/AssignmentProceedingRelatedParty",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"AssignmentProceedingId\":{\"entity\":\"AssignmentProceedingRelatedParty.cdm.json/AssignmentProceedingRelatedParty\",\"name\":\"AssignmentProceedingId\"},\"PartyId\":{\"entity\":\"AssignmentProceedingRelatedParty.cdm.json/AssignmentProceedingRelatedParty\",\"name\":\"PartyId\"},\"AssignmentProceedingPartyRelationshipTypeId\":{\"entity\":\"AssignmentProceedingRelatedParty.cdm.json/AssignmentProceedingRelatedParty\",\"name\":\"AssignmentProceedingPartyRelationshipTypeId\"},\"PeriodStartDate\":{\"entity\":\"AssignmentProceedingRelatedParty.cdm.json/AssignmentProceedingRelatedParty\",\"name\":\"PeriodStartDate\"},\"PeriodEndDate\":{\"entity\":\"AssignmentProceedingRelatedParty.cdm.json/AssignmentProceedingRelatedParty\",\"name\":\"PeriodEndDate\"},\"AssignmentProceedingPartyRelationshipNote\":{\"entity\":\"AssignmentProceedingRelatedParty.cdm.json/AssignmentProceedingRelatedParty\",\"name\":\"AssignmentProceedingPartyRelationshipNote\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"AssignmentProceedingRelatedParty\",\"path\":\"AssignmentProceedingRelatedParty.cdm.json/AssignmentProceedingRelatedParty\"},\"description\":\"A party that has a relationship with the assignment proceeding over the indicated period.\",\"primaryKey\":[\"AssignmentProceedingId\",\"PartyId\",\"AssignmentProceedingPartyRelationshipTypeId\",\"PeriodStartDate\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"AssignmentProceedingRelatedParty.cdm.json/AssignmentProceedingRelatedParty\",\"name\":\"AssignmentProceedingId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of an Assignment Proceeding.\",\"isNullable\":false,\"name\":\"AssignmentProceedingId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"AssignmentProceedingRelatedParty.cdm.json/AssignmentProceedingRelatedParty\",\"name\":\"PartyId\"},\"dataType\":\"long\",\"description\":\"The unique identifier of a Party.\",\"isNullable\":false,\"name\":\"PartyId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"AssignmentProceedingRelatedParty.cdm.json/AssignmentProceedingRelatedParty\",\"name\":\"AssignmentProceedingPartyRelationshipTypeId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Assignment Proceeding - Party relationship type.\",\"isNullable\":false,\"name\":\"AssignmentProceedingPartyRelationshipTypeId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"AssignmentProceedingRelatedParty.cdm.json/AssignmentProceedingRelatedParty\",\"name\":\"PeriodStartDate\"},\"dataType\":\"date\",\"dateFormat\":\"YYYY-MM-DD\",\"description\":\"The period start date for which the associated assignment proceeding - party relationship is valid or in-effect.\",\"isNullable\":false,\"name\":\"PeriodStartDate\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"AssignmentProceedingRelatedParty.cdm.json/AssignmentProceedingRelatedParty\",\"name\":\"PeriodEndDate\"},\"dataType\":\"date\",\"dateFormat\":\"YYYY-MM-DD\",\"description\":\"The period end date for which the associated assignment proceeding - party relationship is valid or in-effect.\",\"isNullable\":true,\"name\":\"PeriodEndDate\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"AssignmentProceedingRelatedParty.cdm.json/AssignmentProceedingRelatedParty\",\"name\":\"AssignmentProceedingPartyRelationshipNote\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"A note, comment or additional information regarding the assignment proceeding - party relationship.\",\"isNullable\":true,\"name\":\"AssignmentProceedingPartyRelationshipNote\"}]}}}",
+			"Description": "A party that has a relationship with the assignment proceeding over the indicated period.",
+			"DisplayFolderInfo": "{\"name\":\"Customer Credit & Collections\",\"colorCode\":\"#022F22\"}",
+			"PrimaryKeys": "AssignmentProceedingId,PartyId,AssignmentProceedingPartyRelationshipTypeId,PeriodStartDate",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

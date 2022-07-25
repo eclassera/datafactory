@@ -1,0 +1,193 @@
+{
+	"name": "StoreDisplayArea",
+	"properties": {
+		"Name": "StoreDisplayArea",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "Areas are sections of a site. Like sites, areas can be organized by various means, including physical layout or business function. Under S88, not every section of a plant need be part of an area, especially if that section has nothing to do with batch control.\n\nWhile S88 defines all seven levels and considers each important, it's the bottom four levels that really matter. Those four are shown in Figure 10 by a slightly darker color. The reason for this extra importance is that batches are typically made and contained within the level called process cell, and the remaining three levels are all subsequent components of a process cell.",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "StoreId",
+					"Description": "The unique identifier of a Store.",
+					"BaseAttributeReference": {
+						"Entity": "StoreDisplayArea.cdm.json/StoreDisplayArea",
+						"Name": "StoreId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "AreaId",
+					"Description": "The unique identifier of an Area.",
+					"BaseAttributeReference": {
+						"Entity": "StoreDisplayArea.cdm.json/StoreDisplayArea",
+						"Name": "AreaId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "FloorId",
+					"Description": "The unique identifier of a Floor.",
+					"BaseAttributeReference": {
+						"Entity": "StoreDisplayArea.cdm.json/StoreDisplayArea",
+						"Name": "FloorId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "AreaName",
+					"Description": "The name of an Area.",
+					"BaseAttributeReference": {
+						"Entity": "StoreDisplayArea.cdm.json/StoreDisplayArea",
+						"Name": "AreaName"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 256,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "LocationAddress",
+					"Description": "A unique address within a Warehouse that may identify a Building, Storeroom, Area, Aisle, Shelf, Tier, Bin etc.",
+					"BaseAttributeReference": {
+						"Entity": "StoreDisplayArea.cdm.json/StoreDisplayArea",
+						"Name": "LocationAddress"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Length": 512,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "FloorLocationXCoordinate",
+					"Description": "The floor location x-coordinate of the Area.",
+					"BaseAttributeReference": {
+						"Entity": "StoreDisplayArea.cdm.json/StoreDisplayArea",
+						"Name": "FloorLocationXCoordinate"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "FloorLocationYCoordinate",
+					"Description": "The floor location y-coordinate of the Area.",
+					"BaseAttributeReference": {
+						"Entity": "StoreDisplayArea.cdm.json/StoreDisplayArea",
+						"Name": "FloorLocationYCoordinate"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "AreaTotalFloorSpace",
+					"Description": "The total floor space of the area measured in the unit of measure specified by the Unit of Measure ID.",
+					"BaseAttributeReference": {
+						"Entity": "StoreDisplayArea.cdm.json/StoreDisplayArea",
+						"Name": "AreaTotalFloorSpace"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/StoreDisplayArea",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/StoreDisplayArea",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"StoreId\":{\"entity\":\"StoreDisplayArea.cdm.json/StoreDisplayArea\",\"name\":\"StoreId\"},\"AreaId\":{\"entity\":\"StoreDisplayArea.cdm.json/StoreDisplayArea\",\"name\":\"AreaId\"},\"FloorId\":{\"entity\":\"StoreDisplayArea.cdm.json/StoreDisplayArea\",\"name\":\"FloorId\"},\"AreaName\":{\"entity\":\"StoreDisplayArea.cdm.json/StoreDisplayArea\",\"name\":\"AreaName\"},\"LocationAddress\":{\"entity\":\"StoreDisplayArea.cdm.json/StoreDisplayArea\",\"name\":\"LocationAddress\"},\"FloorLocationXCoordinate\":{\"entity\":\"StoreDisplayArea.cdm.json/StoreDisplayArea\",\"name\":\"FloorLocationXCoordinate\"},\"FloorLocationYCoordinate\":{\"entity\":\"StoreDisplayArea.cdm.json/StoreDisplayArea\",\"name\":\"FloorLocationYCoordinate\"},\"AreaTotalFloorSpace\":{\"entity\":\"StoreDisplayArea.cdm.json/StoreDisplayArea\",\"name\":\"AreaTotalFloorSpace\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"StoreDisplayArea\",\"path\":\"StoreDisplayArea.cdm.json/StoreDisplayArea\"},\"description\":\"Areas are sections of a site. Like sites, areas can be organized by various means, including physical layout or business function. Under S88, not every section of a plant need be part of an area, especially if that section has nothing to do with batch control.\\n\\nWhile S88 defines all seven levels and considers each important, it's the bottom four levels that really matter. Those four are shown in Figure 10 by a slightly darker color. The reason for this extra importance is that batches are typically made and contained within the level called process cell, and the remaining three levels are all subsequent components of a process cell.\",\"primaryKey\":[\"StoreId\",\"AreaId\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"StoreDisplayArea.cdm.json/StoreDisplayArea\",\"name\":\"StoreId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Store.\",\"isNullable\":false,\"name\":\"StoreId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"StoreDisplayArea.cdm.json/StoreDisplayArea\",\"name\":\"AreaId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of an Area.\",\"isNullable\":false,\"name\":\"AreaId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"StoreDisplayArea.cdm.json/StoreDisplayArea\",\"name\":\"FloorId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Floor.\",\"isNullable\":false,\"name\":\"FloorId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"StoreDisplayArea.cdm.json/StoreDisplayArea\",\"name\":\"AreaName\"},\"dataType\":\"string\",\"dataTypeLength\":256,\"description\":\"The name of an Area.\",\"isNullable\":true,\"name\":\"AreaName\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"StoreDisplayArea.cdm.json/StoreDisplayArea\",\"name\":\"LocationAddress\"},\"dataType\":\"string\",\"dataTypeLength\":512,\"description\":\"A unique address within a Warehouse that may identify a Building, Storeroom, Area, Aisle, Shelf, Tier, Bin etc.\",\"isNullable\":false,\"name\":\"LocationAddress\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"StoreDisplayArea.cdm.json/StoreDisplayArea\",\"name\":\"FloorLocationXCoordinate\"},\"dataType\":\"integer\",\"description\":\"The floor location x-coordinate of the Area.\",\"isNullable\":true,\"name\":\"FloorLocationXCoordinate\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"StoreDisplayArea.cdm.json/StoreDisplayArea\",\"name\":\"FloorLocationYCoordinate\"},\"dataType\":\"integer\",\"description\":\"The floor location y-coordinate of the Area.\",\"isNullable\":true,\"name\":\"FloorLocationYCoordinate\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"StoreDisplayArea.cdm.json/StoreDisplayArea\",\"name\":\"AreaTotalFloorSpace\"},\"dataType\":\"integer\",\"description\":\"The total floor space of the area measured in the unit of measure specified by the Unit of Measure ID.\",\"isNullable\":true,\"name\":\"AreaTotalFloorSpace\"}]}}}",
+			"Description": "Areas are sections of a site. Like sites, areas can be organized by various means, including physical layout or business function. Under S88, not every section of a plant need be part of an area, especially if that section has nothing to do with batch control.\n\nWhile S88 defines all seven levels and considers each important, it's the bottom four levels that really matter. Those four are shown in Figure 10 by a slightly darker color. The reason for this extra importance is that batches are typically made and contained within the level called process cell, and the remaining three levels are all subsequent components of a process cell.",
+			"DisplayFolderInfo": "{\"name\":\"Channel\",\"colorCode\":\"#001D3F\"}",
+			"PrimaryKeys": "StoreId,AreaId",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

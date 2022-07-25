@@ -1,0 +1,113 @@
+{
+	"name": "NamePreference",
+	"properties": {
+		"Name": "NamePreference",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "A preference that is applied to a name and its usage.\n\nEx:\n- Preferred\n- First Alternate\n- Second Alternate\n- Not to be used\n- N/A",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "NamePreferenceId",
+					"Description": "The unique identifier of a name preference.",
+					"BaseAttributeReference": {
+						"Entity": "NamePreference.cdm.json/NamePreference",
+						"Name": "NamePreferenceId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "NamePreferenceName",
+					"Description": "The name of a name preference.",
+					"BaseAttributeReference": {
+						"Entity": "NamePreference.cdm.json/NamePreference",
+						"Name": "NamePreferenceName"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 256,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "NamePreferenceDescription",
+					"Description": "The description of a name preference.",
+					"BaseAttributeReference": {
+						"Entity": "NamePreference.cdm.json/NamePreference",
+						"Name": "NamePreferenceDescription"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 2048,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/NamePreference",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/NamePreference",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"NamePreferenceId\":{\"entity\":\"NamePreference.cdm.json/NamePreference\",\"name\":\"NamePreferenceId\"},\"NamePreferenceName\":{\"entity\":\"NamePreference.cdm.json/NamePreference\",\"name\":\"NamePreferenceName\"},\"NamePreferenceDescription\":{\"entity\":\"NamePreference.cdm.json/NamePreference\",\"name\":\"NamePreferenceDescription\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"NamePreference\",\"path\":\"NamePreference.cdm.json/NamePreference\"},\"description\":\"A preference that is applied to a name and its usage.\\n\\nEx:\\n- Preferred\\n- First Alternate\\n- Second Alternate\\n- Not to be used\\n- N/A\",\"primaryKey\":[\"NamePreferenceId\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"NamePreference.cdm.json/NamePreference\",\"name\":\"NamePreferenceId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a name preference.\",\"isNullable\":false,\"name\":\"NamePreferenceId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"NamePreference.cdm.json/NamePreference\",\"name\":\"NamePreferenceName\"},\"dataType\":\"string\",\"dataTypeLength\":256,\"description\":\"The name of a name preference.\",\"isNullable\":true,\"name\":\"NamePreferenceName\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"NamePreference.cdm.json/NamePreference\",\"name\":\"NamePreferenceDescription\"},\"dataType\":\"string\",\"dataTypeLength\":2048,\"description\":\"The description of a name preference.\",\"isNullable\":true,\"name\":\"NamePreferenceDescription\"}]}}}",
+			"Description": "A preference that is applied to a name and its usage.\n\nEx:\n- Preferred\n- First Alternate\n- Second Alternate\n- Not to be used\n- N/A",
+			"DisplayFolderInfo": "{\"name\":\"Party\",\"colorCode\":\"#00727A\"}",
+			"PrimaryKeys": "NamePreferenceId",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

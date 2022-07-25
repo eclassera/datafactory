@@ -1,0 +1,97 @@
+{
+	"name": "DunBradstreetFinancialRating",
+	"properties": {
+		"Name": "DunBradstreetFinancialRating",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "The Dun & Bradstreet \"5A\" to \"HH\" Ratings reflect the company size based on net worth or equity as computed by Dun & Bradstreet.\n\nThe company size can be an effective indicator of credit capacity. \n\nRatings are assigned to businesses that have supplied D&B with a current financial statement.\n\nDun & Bradstreet rates financial strength as follows:\n\n5A = $50,000,000 +\n4A = $10,000,000 - 49,999,999\n3A = 1,000,000 - 999,999\n2A = 750,000 - 999,999\n1A = 500,000 - 749,999\nBA = 300,000 - 499,999\nBB = 200,000 -299,999\nCB = 125,000 - 199,999\nCC = 75,000 - 124,999\nDC = 50,000 - 74,999\nDD = 35,000 - 49,999\nEE = 20,000 - 34,999\nFF = 10,000 - 19,999\nGG = 5,000 - 9,999\nHH = 0 - 4,999\n\nThe US 5A to HH ratings reflect company size based on net worth or equity as computed by D&B. These ratings are assigned to businesses that have supplied D&B with current financial information.\n\nThe 1R and 2R ratings categories reflect company size based on the total number of employees for the business. They are assigned to business files that do not contain a current financial statement. For 5A to HH Ratings, the Composite Credit Appraisal is a number between 1 and 4 that makes up the second half of the company's Rating and reflects an overall assessment of creditworthiness. Our creditworthiness assessment is based on both payments and financial stability. In 1R and 2R Ratings, the 2, 3, or 4 creditworthiness indicator is based on analysis by D&B of public filings, trade payments, business age and other important factors. 2 is the highest Composite Credit Appraisal a company not supplying D&B with current financial information can receive.",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "DunBradstreetFinancialRatingId",
+					"Description": "The unique identifier of a Dun Bradstreet Financial Rating metric.",
+					"BaseAttributeReference": {
+						"Entity": "DunBradstreetFinancialRating.cdm.json/DunBradstreetFinancialRating",
+						"Name": "DunBradstreetFinancialRatingId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "DunBradstreetFinancialRatingEstimatedNetWorth",
+					"Description": "The net worth associated with the Dun Bradstreet Financial Rating metric.",
+					"BaseAttributeReference": {
+						"Entity": "DunBradstreetFinancialRating.cdm.json/DunBradstreetFinancialRating",
+						"Name": "DunBradstreetFinancialRatingEstimatedNetWorth"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "decimal",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Precision": 18,
+						"Scale": 2,
+						"Properties": {
+							"HIVE_TYPE_STRING": "decimal"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/DunBradstreetFinancialRating",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/DunBradstreetFinancialRating",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"DunBradstreetFinancialRatingId\":{\"entity\":\"DunBradstreetFinancialRating.cdm.json/DunBradstreetFinancialRating\",\"name\":\"DunBradstreetFinancialRatingId\"},\"DunBradstreetFinancialRatingEstimatedNetWorth\":{\"entity\":\"DunBradstreetFinancialRating.cdm.json/DunBradstreetFinancialRating\",\"name\":\"DunBradstreetFinancialRatingEstimatedNetWorth\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"DunBradstreetFinancialRating\",\"path\":\"DunBradstreetFinancialRating.cdm.json/DunBradstreetFinancialRating\"},\"description\":\"The Dun & Bradstreet \\\"5A\\\" to \\\"HH\\\" Ratings reflect the company size based on net worth or equity as computed by Dun & Bradstreet.\\n\\nThe company size can be an effective indicator of credit capacity. \\n\\nRatings are assigned to businesses that have supplied D&B with a current financial statement.\\n\\nDun & Bradstreet rates financial strength as follows:\\n\\n5A = $50,000,000 +\\n4A = $10,000,000 - 49,999,999\\n3A = 1,000,000 - 999,999\\n2A = 750,000 - 999,999\\n1A = 500,000 - 749,999\\nBA = 300,000 - 499,999\\nBB = 200,000 -299,999\\nCB = 125,000 - 199,999\\nCC = 75,000 - 124,999\\nDC = 50,000 - 74,999\\nDD = 35,000 - 49,999\\nEE = 20,000 - 34,999\\nFF = 10,000 - 19,999\\nGG = 5,000 - 9,999\\nHH = 0 - 4,999\\n\\nThe US 5A to HH ratings reflect company size based on net worth or equity as computed by D&B. These ratings are assigned to businesses that have supplied D&B with current financial information.\\n\\nThe 1R and 2R ratings categories reflect company size based on the total number of employees for the business. They are assigned to business files that do not contain a current financial statement. For 5A to HH Ratings, the Composite Credit Appraisal is a number between 1 and 4 that makes up the second half of the company's Rating and reflects an overall assessment of creditworthiness. Our creditworthiness assessment is based on both payments and financial stability. In 1R and 2R Ratings, the 2, 3, or 4 creditworthiness indicator is based on analysis by D&B of public filings, trade payments, business age and other important factors. 2 is the highest Composite Credit Appraisal a company not supplying D&B with current financial information can receive.\",\"primaryKey\":[\"DunBradstreetFinancialRatingId\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"DunBradstreetFinancialRating.cdm.json/DunBradstreetFinancialRating\",\"name\":\"DunBradstreetFinancialRatingId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Dun Bradstreet Financial Rating metric.\",\"isNullable\":false,\"name\":\"DunBradstreetFinancialRatingId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"DunBradstreetFinancialRating.cdm.json/DunBradstreetFinancialRating\",\"name\":\"DunBradstreetFinancialRatingEstimatedNetWorth\"},\"dataType\":\"decimal\",\"dataTypeLength\":18,\"description\":\"The net worth associated with the Dun Bradstreet Financial Rating metric.\",\"isNullable\":true,\"scale\":2,\"name\":\"DunBradstreetFinancialRatingEstimatedNetWorth\"}]}}}",
+			"Description": "The Dun & Bradstreet \"5A\" to \"HH\" Ratings reflect the company size based on net worth or equity as computed by Dun & Bradstreet.\n\nThe company size can be an effective indicator of credit capacity. \n\nRatings are assigned to businesses that have supplied D&B with a current financial statement.\n\nDun & Bradstreet rates financial strength as follows:\n\n5A = $50,000,000 +\n4A = $10,000,000 - 49,999,999\n3A = 1,000,000 - 999,999\n2A = 750,000 - 999,999\n1A = 500,000 - 749,999\nBA = 300,000 - 499,999\nBB = 200,000 -299,999\nCB = 125,000 - 199,999\nCC = 75,000 - 124,999\nDC = 50,000 - 74,999\nDD = 35,000 - 49,999\nEE = 20,000 - 34,999\nFF = 10,000 - 19,999\nGG = 5,000 - 9,999\nHH = 0 - 4,999\n\nThe US 5A to HH ratings reflect company size based on net worth or equity as computed by D&B. These ratings are assigned to businesses that have supplied D&B with current financial information.\n\nThe 1R and 2R ratings categories reflect company size based on the total number of employees for the business. They are assigned to business files that do not contain a current financial statement. For 5A to HH Ratings, the Composite Credit Appraisal is a number between 1 and 4 that makes up the second half of the company's Rating and reflects an overall assessment of creditworthiness. Our creditworthiness assessment is based on both payments and financial stability. In 1R and 2R Ratings, the 2, 3, or 4 creditworthiness indicator is based on analysis by D&B of public filings, trade payments, business age and other important factors. 2 is the highest Composite Credit Appraisal a company not supplying D&B with current financial information can receive.",
+			"DisplayFolderInfo": "{\"name\":\"Customer Credit & Collections\",\"colorCode\":\"#022F22\"}",
+			"PrimaryKeys": "DunBradstreetFinancialRatingId",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

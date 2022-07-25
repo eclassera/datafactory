@@ -1,0 +1,163 @@
+{
+	"name": "GeneralOverheadBudget",
+	"properties": {
+		"Name": "GeneralOverheadBudget",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "Overhead costs are resources consumed for purposes which are incidental to, but necessary to, the production, sales and support of products and services.\n\nEx:\n- Utilities\n- Rent\n- Insurance\n- Indirect material",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "GeneralOverheadBudgetId",
+					"Description": "The unique identifier of a General Overhead Budget.",
+					"BaseAttributeReference": {
+						"Entity": "GeneralOverheadBudget.cdm.json/GeneralOverheadBudget",
+						"Name": "GeneralOverheadBudgetId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "GeneralOverheadBudgetVersionId",
+					"Description": "The unique identifier of a General Overhead Budget Version.",
+					"BaseAttributeReference": {
+						"Entity": "GeneralOverheadBudget.cdm.json/GeneralOverheadBudget",
+						"Name": "GeneralOverheadBudgetVersionId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "GeneralOperatingBudgetId",
+					"Description": "The unique identifier of a General Operating Budget.",
+					"BaseAttributeReference": {
+						"Entity": "GeneralOverheadBudget.cdm.json/GeneralOverheadBudget",
+						"Name": "GeneralOperatingBudgetId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "GeneralOperatingBudgetVersionId",
+					"Description": "The unique identifier of a General Operating Budget Version.",
+					"BaseAttributeReference": {
+						"Entity": "GeneralOverheadBudget.cdm.json/GeneralOverheadBudget",
+						"Name": "GeneralOperatingBudgetVersionId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "BudgetedTotalOverheadCostsAmount",
+					"Description": "The budgeted/planned overhead costs for the associated period.",
+					"BaseAttributeReference": {
+						"Entity": "GeneralOverheadBudget.cdm.json/GeneralOverheadBudget",
+						"Name": "BudgetedTotalOverheadCostsAmount"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "decimal",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Precision": 18,
+						"Scale": 2,
+						"Properties": {
+							"HIVE_TYPE_STRING": "decimal"
+						}
+					}
+				},
+				{
+					"Name": "ActualTotalOverheadCostsAmount",
+					"Description": "The actual overhead costs for the associated period.",
+					"BaseAttributeReference": {
+						"Entity": "GeneralOverheadBudget.cdm.json/GeneralOverheadBudget",
+						"Name": "ActualTotalOverheadCostsAmount"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "decimal",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Precision": 18,
+						"Scale": 2,
+						"Properties": {
+							"HIVE_TYPE_STRING": "decimal"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/GeneralOverheadBudget",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/GeneralOverheadBudget",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"GeneralOverheadBudgetId\":{\"entity\":\"GeneralOverheadBudget.cdm.json/GeneralOverheadBudget\",\"name\":\"GeneralOverheadBudgetId\"},\"GeneralOverheadBudgetVersionId\":{\"entity\":\"GeneralOverheadBudget.cdm.json/GeneralOverheadBudget\",\"name\":\"GeneralOverheadBudgetVersionId\"},\"GeneralOperatingBudgetId\":{\"entity\":\"GeneralOverheadBudget.cdm.json/GeneralOverheadBudget\",\"name\":\"GeneralOperatingBudgetId\"},\"GeneralOperatingBudgetVersionId\":{\"entity\":\"GeneralOverheadBudget.cdm.json/GeneralOverheadBudget\",\"name\":\"GeneralOperatingBudgetVersionId\"},\"BudgetedTotalOverheadCostsAmount\":{\"entity\":\"GeneralOverheadBudget.cdm.json/GeneralOverheadBudget\",\"name\":\"BudgetedTotalOverheadCostsAmount\"},\"ActualTotalOverheadCostsAmount\":{\"entity\":\"GeneralOverheadBudget.cdm.json/GeneralOverheadBudget\",\"name\":\"ActualTotalOverheadCostsAmount\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"GeneralOverheadBudget\",\"path\":\"GeneralOverheadBudget.cdm.json/GeneralOverheadBudget\"},\"description\":\"Overhead costs are resources consumed for purposes which are incidental to, but necessary to, the production, sales and support of products and services.\\n\\nEx:\\n- Utilities\\n- Rent\\n- Insurance\\n- Indirect material\",\"primaryKey\":[\"GeneralOverheadBudgetId\",\"GeneralOverheadBudgetVersionId\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"GeneralOverheadBudget.cdm.json/GeneralOverheadBudget\",\"name\":\"GeneralOverheadBudgetId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a General Overhead Budget.\",\"isNullable\":false,\"name\":\"GeneralOverheadBudgetId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"GeneralOverheadBudget.cdm.json/GeneralOverheadBudget\",\"name\":\"GeneralOverheadBudgetVersionId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a General Overhead Budget Version.\",\"isNullable\":false,\"name\":\"GeneralOverheadBudgetVersionId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"GeneralOverheadBudget.cdm.json/GeneralOverheadBudget\",\"name\":\"GeneralOperatingBudgetId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a General Operating Budget.\",\"isNullable\":false,\"name\":\"GeneralOperatingBudgetId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"GeneralOverheadBudget.cdm.json/GeneralOverheadBudget\",\"name\":\"GeneralOperatingBudgetVersionId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a General Operating Budget Version.\",\"isNullable\":false,\"name\":\"GeneralOperatingBudgetVersionId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"GeneralOverheadBudget.cdm.json/GeneralOverheadBudget\",\"name\":\"BudgetedTotalOverheadCostsAmount\"},\"dataType\":\"decimal\",\"dataTypeLength\":18,\"description\":\"The budgeted/planned overhead costs for the associated period.\",\"isNullable\":true,\"scale\":2,\"name\":\"BudgetedTotalOverheadCostsAmount\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"GeneralOverheadBudget.cdm.json/GeneralOverheadBudget\",\"name\":\"ActualTotalOverheadCostsAmount\"},\"dataType\":\"decimal\",\"dataTypeLength\":18,\"description\":\"The actual overhead costs for the associated period.\",\"isNullable\":true,\"scale\":2,\"name\":\"ActualTotalOverheadCostsAmount\"}]}}}",
+			"Description": "Overhead costs are resources consumed for purposes which are incidental to, but necessary to, the production, sales and support of products and services.\n\nEx:\n- Utilities\n- Rent\n- Insurance\n- Indirect material",
+			"DisplayFolderInfo": "{\"name\":\"Budget & Forecasting\",\"colorCode\":\"#00188F\"}",
+			"PrimaryKeys": "GeneralOverheadBudgetId,GeneralOverheadBudgetVersionId",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}

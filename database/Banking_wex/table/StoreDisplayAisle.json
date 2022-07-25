@@ -1,0 +1,195 @@
+{
+	"name": "StoreDisplayAisle",
+	"properties": {
+		"Name": "StoreDisplayAisle",
+		"EntityType": "TABLE",
+		"Namespace": {
+			"DatabaseName": "Banking_wex"
+		},
+		"Description": "An Aisle is the space between storage devices that is used by material handlers for access.",
+		"TableType": "EXTERNAL",
+		"Origin": {
+			"Type": "SPARK"
+		},
+		"StorageDescriptor": {
+			"Columns": [
+				{
+					"Name": "StoreId",
+					"Description": "The unique identifier of a Store.",
+					"BaseAttributeReference": {
+						"Entity": "StoreDisplayAisle.cdm.json/StoreDisplayAisle",
+						"Name": "StoreId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "AisleId",
+					"Description": "The unique identifier of an Aisle.\n\nAn Aisle is the space between storage devices that is used by material handlers for access.",
+					"BaseAttributeReference": {
+						"Entity": "StoreDisplayAisle.cdm.json/StoreDisplayAisle",
+						"Name": "AisleId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "AreaId",
+					"Description": "The unique identifier of an Area.",
+					"BaseAttributeReference": {
+						"Entity": "StoreDisplayAisle.cdm.json/StoreDisplayAisle",
+						"Name": "AreaId"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "AisleName",
+					"Description": "The name of the Aisle.\n\nEx:\n- Building B/Aisle 6",
+					"BaseAttributeReference": {
+						"Entity": "StoreDisplayAisle.cdm.json/StoreDisplayAisle",
+						"Name": "AisleName"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Length": 256,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "LocationAddress",
+					"Description": "A unique address within a Warehouse that may identify a Building, Storeroom, Area, Aisle, Shelf, Tier, Bin etc.",
+					"BaseAttributeReference": {
+						"Entity": "StoreDisplayAisle.cdm.json/StoreDisplayAisle",
+						"Name": "LocationAddress"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "string",
+						"IsComplexType": false,
+						"IsNullable": false,
+						"Length": 512,
+						"Properties": {
+							"HIVE_TYPE_STRING": "string"
+						}
+					}
+				},
+				{
+					"Name": "FloorLocationXCoordinate",
+					"Description": "The floor location x-coordinate of the Aisle.",
+					"BaseAttributeReference": {
+						"Entity": "StoreDisplayAisle.cdm.json/StoreDisplayAisle",
+						"Name": "FloorLocationXCoordinate"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "FloorLocationYCoordinate",
+					"Description": "The floor location y-coordinate of the Aisle.",
+					"BaseAttributeReference": {
+						"Entity": "StoreDisplayAisle.cdm.json/StoreDisplayAisle",
+						"Name": "FloorLocationYCoordinate"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "integer",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Properties": {
+							"HIVE_TYPE_STRING": "integer"
+						}
+					}
+				},
+				{
+					"Name": "AisleLength",
+					"Description": "The length of the aisle measured in the unit of measure specified by the Unit of Measure ID.",
+					"BaseAttributeReference": {
+						"Entity": "StoreDisplayAisle.cdm.json/StoreDisplayAisle",
+						"Name": "AisleLength"
+					},
+					"OriginDataTypeName": {
+						"TypeName": "decimal",
+						"IsComplexType": false,
+						"IsNullable": true,
+						"Precision": 18,
+						"Scale": 8,
+						"Properties": {
+							"HIVE_TYPE_STRING": "decimal"
+						}
+					}
+				}
+			],
+			"Format": {
+				"InputFormat": "org.apache.hadoop.mapred.SequenceFileInputFormat",
+				"OutputFormat": "org.apache.hadoop.hive.ql.io.HiveSequenceFileOutputFormat",
+				"FormatType": "csv",
+				"SerializeLib": "org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe",
+				"Properties": {
+					"path": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/StoreDisplayAisle",
+					"delimiter": ",",
+					"multiLine": "false",
+					"firstRowAsHeader": "false",
+					"serialization.format": "1",
+					"escape": "\\",
+					"quote": "\"",
+					"FormatTypeSetToDatabaseDefault": true,
+					"header": "false"
+				}
+			},
+			"Source": {
+				"Provider": "ADLS",
+				"Location": "abfss://packagezone@azureadlsstoragesa.dfs.core.windows.net/Banking_wex/StoreDisplayAisle",
+				"Properties": {
+					"LinkedServiceName": "azuresynapsetrainings-WorkspaceDefaultStorage",
+					"LocationSetToDatabaseDefault": true
+				}
+			},
+			"Properties": {
+				"textinputformat.record.delimiter": ",",
+				"compression": "{\"type\":\"None\",\"level\":\"optimal\"}",
+				"derivedModelAttributeInfo": "{\"attributeReferences\":{\"StoreId\":{\"entity\":\"StoreDisplayAisle.cdm.json/StoreDisplayAisle\",\"name\":\"StoreId\"},\"AisleId\":{\"entity\":\"StoreDisplayAisle.cdm.json/StoreDisplayAisle\",\"name\":\"AisleId\"},\"AreaId\":{\"entity\":\"StoreDisplayAisle.cdm.json/StoreDisplayAisle\",\"name\":\"AreaId\"},\"AisleName\":{\"entity\":\"StoreDisplayAisle.cdm.json/StoreDisplayAisle\",\"name\":\"AisleName\"},\"LocationAddress\":{\"entity\":\"StoreDisplayAisle.cdm.json/StoreDisplayAisle\",\"name\":\"LocationAddress\"},\"FloorLocationXCoordinate\":{\"entity\":\"StoreDisplayAisle.cdm.json/StoreDisplayAisle\",\"name\":\"FloorLocationXCoordinate\"},\"FloorLocationYCoordinate\":{\"entity\":\"StoreDisplayAisle.cdm.json/StoreDisplayAisle\",\"name\":\"FloorLocationYCoordinate\"},\"AisleLength\":{\"entity\":\"StoreDisplayAisle.cdm.json/StoreDisplayAisle\",\"name\":\"AisleLength\"}}}"
+			},
+			"Compressed": false,
+			"IsStoredAsSubdirectories": false
+		},
+		"Properties": {
+			"DerivedModelEntityInfo": "{\"entityDirectives\":{\"baseEntityReference\":{\"name\":\"StoreDisplayAisle\",\"path\":\"StoreDisplayAisle.cdm.json/StoreDisplayAisle\"},\"description\":\"An Aisle is the space between storage devices that is used by material handlers for access.\",\"primaryKey\":[\"StoreId\",\"AisleId\"],\"projectionInfo\":{\"attributes\":[{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"StoreDisplayAisle.cdm.json/StoreDisplayAisle\",\"name\":\"StoreId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of a Store.\",\"isNullable\":false,\"name\":\"StoreId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"StoreDisplayAisle.cdm.json/StoreDisplayAisle\",\"name\":\"AisleId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of an Aisle.\\n\\nAn Aisle is the space between storage devices that is used by material handlers for access.\",\"isNullable\":false,\"name\":\"AisleId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"StoreDisplayAisle.cdm.json/StoreDisplayAisle\",\"name\":\"AreaId\"},\"dataType\":\"integer\",\"description\":\"The unique identifier of an Area.\",\"isNullable\":false,\"name\":\"AreaId\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"StoreDisplayAisle.cdm.json/StoreDisplayAisle\",\"name\":\"AisleName\"},\"dataType\":\"string\",\"dataTypeLength\":256,\"description\":\"The name of the Aisle.\\n\\nEx:\\n- Building B/Aisle 6\",\"isNullable\":true,\"name\":\"AisleName\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"StoreDisplayAisle.cdm.json/StoreDisplayAisle\",\"name\":\"LocationAddress\"},\"dataType\":\"string\",\"dataTypeLength\":512,\"description\":\"A unique address within a Warehouse that may identify a Building, Storeroom, Area, Aisle, Shelf, Tier, Bin etc.\",\"isNullable\":false,\"name\":\"LocationAddress\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"StoreDisplayAisle.cdm.json/StoreDisplayAisle\",\"name\":\"FloorLocationXCoordinate\"},\"dataType\":\"integer\",\"description\":\"The floor location x-coordinate of the Aisle.\",\"isNullable\":true,\"name\":\"FloorLocationXCoordinate\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"StoreDisplayAisle.cdm.json/StoreDisplayAisle\",\"name\":\"FloorLocationYCoordinate\"},\"dataType\":\"integer\",\"description\":\"The floor location y-coordinate of the Aisle.\",\"isNullable\":true,\"name\":\"FloorLocationYCoordinate\"},{\"type\":\"Existing\",\"attributeReference\":{\"entity\":\"StoreDisplayAisle.cdm.json/StoreDisplayAisle\",\"name\":\"AisleLength\"},\"dataType\":\"decimal\",\"dataTypeLength\":18,\"description\":\"The length of the aisle measured in the unit of measure specified by the Unit of Measure ID.\",\"isNullable\":true,\"scale\":8,\"name\":\"AisleLength\"}]}}}",
+			"Description": "An Aisle is the space between storage devices that is used by material handlers for access.",
+			"DisplayFolderInfo": "{\"name\":\"Channel\",\"colorCode\":\"#001D3F\"}",
+			"PrimaryKeys": "StoreId,AisleId",
+			"spark.sql.sources.provider": "csv",
+			"sql:IsAppendOnly": false
+		},
+		"Retention": 0,
+		"Temporary": false,
+		"IsRewriteEnabled": false
+	},
+	"type": "TABLE"
+}
