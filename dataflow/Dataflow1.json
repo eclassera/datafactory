@@ -1,0 +1,66 @@
+{
+	"name": "Dataflow1",
+	"properties": {
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"dataset": {
+						"referenceName": "Parquetdataflowsource",
+						"type": "DatasetReference"
+					},
+					"name": "sourcedataflow"
+				}
+			],
+			"sinks": [
+				{
+					"dataset": {
+						"referenceName": "Parquetsink",
+						"type": "DatasetReference"
+					},
+					"name": "sinkdataflow"
+				}
+			],
+			"transformations": [],
+			"scriptLines": [
+				"source(output(",
+				"          DateID as integer,",
+				"          MedallionID as integer,",
+				"          HackneyLicenseID as integer,",
+				"          PickupTimeID as integer,",
+				"          DropoffTimeID as integer,",
+				"          PickupGeographyID as integer,",
+				"          DropoffGeographyID as integer,",
+				"          PickupLatitude as double,",
+				"          PickupLongitude as double,",
+				"          PickupLatLong as string,",
+				"          DropoffLatitude as double,",
+				"          DropoffLongitude as double,",
+				"          DropoffLatLong as string,",
+				"          PassengerCount as integer,",
+				"          TripDurationSeconds as integer,",
+				"          TripDistanceMiles as double,",
+				"          PaymentType as string,",
+				"          FareAmount as decimal(19,4),",
+				"          SurchargeAmount as decimal(19,4),",
+				"          TaxAmount as decimal(19,4),",
+				"          TipAmount as decimal(19,4),",
+				"          TollsAmount as decimal(19,4),",
+				"          TotalAmount as decimal(19,4)",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     ignoreNoFilesFound: false,",
+				"     format: 'parquet') ~> sourcedataflow",
+				"sourcedataflow sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     format: 'parquet',",
+				"     umask: 0022,",
+				"     preCommands: [],",
+				"     postCommands: [],",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true) ~> sinkdataflow"
+			]
+		}
+	}
+}
